@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import Icon from '../../../components/AppIcon';
 import Image from '../../../components/AppImage';
 import Button from '../../../components/ui/Button';
-import ProblemSolvingBasic from '../../../../public/assets/Certificate/basic.png'
-import ProblemSolvingIntermediate from '../../../../public/assets/Certificate/Intermediate.png'
+import ProblemSolvingBasic from '../../../../public/assets/Certificate/basic.png';
+import ProblemSolvingIntermediate from '../../../../public/assets/Certificate/Intermediate.png';
 
 const FeaturedAchievements = () => {
   const [currentSlide, setCurrentSlide] = useState(0);

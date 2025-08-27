@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from '../../../components/AppImage';
 import Icon from '../../../components/AppIcon';
-import AboutImg from '../../../../public/assets/krishna.jpeg'
+import AboutImg from '../../../../public/assets/krishna.jpeg';
 
 const HeroSection = () => {
   return (

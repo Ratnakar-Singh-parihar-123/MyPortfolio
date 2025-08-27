@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Icon from '../../../components/AppIcon';
 import Image from '../../../components/AppImage';
 import Button from '../../../components/ui/Button';
-import HeroImg from '../../../../public/assets/krishna.jpeg'
+import HeroImg from '../../../../public/assets/krishna.jpeg';
 
 const HeroSection = () => {
   const [currentCodeLine, setCurrentCodeLine] = useState(0);
