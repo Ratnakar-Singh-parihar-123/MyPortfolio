@@ -8,36 +8,39 @@ const BeyondCode = () => {
   const interests = [
     {
       id: 0,
-      title: "Photography",
-      description: "Capturing moments and perspectives through the lens teaches me to see details and composition—skills that translate beautifully into UI/UX design and problem-solving.",
-      image: "https://images.pexels.com/photos/1983037/pexels-photo-1983037.jpeg?w=400&h=300&fit=crop",
-      icon: "Camera",
-      skills: ["Attention to Detail", "Visual Composition", "Patience", "Creative Problem Solving"],
-      connection: "Photography has sharpened my eye for design and helped me understand the importance of visual hierarchy in web development."
+      title: "Travel",
+      description: "Exploring new places and cultures broadens my perspective, teaches adaptability, and helps me appreciate diversity—qualities that strengthen creativity in problem-solving and design.",
+      image: "https://media.istockphoto.com/id/1497396873/photo/ready-for-starting-my-beach-holiday.jpg?s=612x612&w=0&k=20&c=Rfb7IbYAZR1hNTF6KUDYq8CVu9Yr4wRgK2VLZIZyORY=",
+      icon: "Globe",
+      skills: ["Adaptability", "Cultural Awareness", "Creativity", "Open-Mindedness"],
+      connection: "Travel inspires creativity and helps me bring fresh ideas into web development and design by observing diverse perspectives."
     },
+
     {
       id: 1,
-      title: "Chess",
-      description: "Strategic thinking, pattern recognition, and planning several moves ahead—chess has taught me invaluable lessons about anticipating challenges and thinking systematically.",
-      image: "https://images.pixabay.com/photo/2017/05/31/18/38/chess-2359725_1280.jpg?w=400&h=300&fit=crop",
-      icon: "Crown",
-      skills: ["Strategic Thinking", "Pattern Recognition", "Problem Analysis", "Decision Making"],
-      connection: "The strategic mindset from chess helps me architect better code solutions and debug complex problems methodically."
+      title: "Cricket",
+      description: "Cricket teaches teamwork, patience, and strategy—whether batting, bowling, or fielding, it requires focus, practice, and coordination to achieve success.",
+      image: "https://thumbs.dreamstime.com/b/cricket-bat-ball-26560801.jpg",
+      icon: "Trophy",
+      skills: ["Teamwork", "Patience", "Strategic Thinking", "Focus"],
+      connection: "The teamwork and patience from cricket help me collaborate effectively on projects and handle challenges with a steady mindset."
     },
+
     {
       id: 2,
       title: "Reading",
       description: "From technical books to science fiction, reading expands my knowledge base and keeps me curious about new ideas, technologies, and different ways of thinking about problems.",
-      image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop",
+      image: "https://littlescholars-kashipur.com/images/blog/Yellow%20And%20Red%20Modern%20Business%20Coach%20Blog%20Banner.png",
       icon: "BookOpen",
       skills: ["Continuous Learning", "Critical Thinking", "Communication", "Research Skills"],
       connection: "Reading keeps me updated with industry trends and helps me communicate complex technical concepts more effectively."
     },
+
     {
       id: 3,
       title: "Fitness",
       description: "Regular exercise and maintaining physical health helps me stay focused, manage stress, and maintain the energy needed for long coding sessions and continuous learning.",
-      image: "https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg?w=400&h=300&fit=crop",
+      image: "https://images.pexels.com/photos/2827392/pexels-photo-2827392.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
       icon: "Dumbbell",
       skills: ["Discipline", "Goal Setting", "Stress Management", "Consistency"],
       connection: "The discipline and goal-setting from fitness routines directly apply to learning new technologies and completing challenging projects."
@@ -75,7 +78,7 @@ const BeyondCode = () => {
             Beyond the Code
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            The interests, values, and experiences that shape who I am as a person 
+            The interests, values, and experiences that shape who I am as a person
             and how they make me a better developer and team member.
           </p>
         </div>
@@ -86,18 +89,17 @@ const BeyondCode = () => {
             <h3 className="text-2xl font-bold text-foreground mb-8 text-center">
               What I'm Passionate About
             </h3>
-            
+
             {/* Interest Navigation */}
             <div className="flex flex-wrap justify-center gap-4 mb-12">
               {interests?.map((interest, index) => (
                 <button
                   key={interest?.id}
                   onClick={() => setActiveInterest(index)}
-                  className={`flex items-center space-x-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                    activeInterest === index
-                      ? 'bg-primary text-primary-foreground shadow-lg'
-                      : 'bg-background text-muted-foreground hover:text-foreground hover:bg-muted border border-border'
-                  }`}
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeInterest === index
+                    ? 'bg-primary text-primary-foreground shadow-lg'
+                    : 'bg-background text-muted-foreground hover:text-foreground hover:bg-muted border border-border'
+                    }`}
                 >
                   <Icon name={interest?.icon} size={16} />
                   <span>{interest?.title}</span>
@@ -172,7 +174,7 @@ const BeyondCode = () => {
             <h3 className="text-2xl font-bold text-foreground mb-8 text-center">
               Core Values That Drive Me
             </h3>
-            
+
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {personalValues?.map((value, index) => (
                 <div
@@ -199,15 +201,15 @@ const BeyondCode = () => {
               <div className="w-16 h-16 bg-gradient-to-br from-accent to-green-500 rounded-xl flex items-center justify-center mx-auto">
                 <Icon name="Heart" size={32} color="white" />
               </div>
-              
+
               <h3 className="text-2xl lg:text-3xl font-bold text-foreground">
                 Why This Matters for Teams
               </h3>
-              
+
               <p className="text-lg text-muted-foreground leading-relaxed">
-                I believe that great software is built by great teams, and great teams are made up of 
-                well-rounded individuals who bring diverse perspectives, maintain positive energy, and 
-                support each other's growth. My interests and values shape me into someone who not only 
+                I believe that great software is built by great teams, and great teams are made up of
+                well-rounded individuals who bring diverse perspectives, maintain positive energy, and
+                support each other's growth. My interests and values shape me into someone who not only
                 writes good code but also contributes to a positive, collaborative work environment.
               </p>
 

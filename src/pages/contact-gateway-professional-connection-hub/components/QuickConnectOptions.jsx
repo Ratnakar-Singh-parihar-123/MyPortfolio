@@ -6,39 +6,39 @@ const QuickConnectOptions = () => {
   const connectOptions = [
     {
       id: 'job-opportunity',
-      title: 'Job Opportunity',
-      description: 'Discuss full-time or contract positions',
+      title: 'Job Opportunities',
+      description: 'Open to entry-level and internship roles',
       icon: 'Briefcase',
       color: 'bg-blue-500',
       hoverColor: 'hover:bg-blue-600',
-      action: () => window.open('mailto:developer@portfoliopro.com?subject=Job Opportunity Discussion', '_blank')
+      action: () => window.open('mailto:yourmail@example.com?subject=Job Opportunity Discussion', '_blank')
     },
     {
-      id: 'collaboration',
-      title: 'Collaboration',
-      description: 'Partner on exciting projects together',
-      icon: 'Users',
+      id: 'project',
+      title: 'Projects & Internships',
+      description: 'Excited to work on real-world projects',
+      icon: 'FolderGit',
       color: 'bg-green-500',
       hoverColor: 'hover:bg-green-600',
-      action: () => window.open('mailto:developer@portfoliopro.com?subject=Collaboration Opportunity', '_blank')
+      action: () => window.open('mailto:ratnakarsinghparihar9399@gmail.com?subject=Project/Internship Opportunity', '_blank')
     },
     {
       id: 'networking',
-      title: 'Professional Networking',
-      description: 'Connect and expand our networks',
+      title: 'Networking',
+      description: 'Connect with peers and professionals',
       icon: 'Network',
       color: 'bg-purple-500',
       hoverColor: 'hover:bg-purple-600',
-      action: () => window.open('https://linkedin.com/in/portfoliopro', '_blank')
+      action: () => window.open('https://www.linkedin.com/in/ratnakar-singh-parihar-a87528260/', '_blank')
     },
     {
-      id: 'mentoring',
-      title: 'Mentoring & Guidance',
-      description: 'Seek advice or share knowledge',
-      icon: 'GraduationCap',
+      id: 'learning',
+      title: 'Learning Together',
+      description: 'Open to knowledge sharing & collaboration',
+      icon: 'Lightbulb',
       color: 'bg-orange-500',
       hoverColor: 'hover:bg-orange-600',
-      action: () => window.open('mailto:developer@portfoliopro.com?subject=Mentoring Discussion', '_blank')
+      action: () => window.open('mailto:ratnakarsinghparihar9399@gmail.com?subject=Learning & Collaboration', '_blank')
     }
   ];
 
@@ -61,7 +61,7 @@ const QuickConnectOptions = () => {
               <div className={`${option?.color} ${option?.hoverColor} p-3 rounded-lg transition-colors duration-300 group-hover:scale-110 transform`}>
                 <Icon name={option?.icon} size={24} className="text-white" />
               </div>
-              
+
               <div className="flex-1">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
                   {option?.title}
@@ -70,11 +70,11 @@ const QuickConnectOptions = () => {
                   {option?.description}
                 </p>
               </div>
-              
-              <Icon 
-                name="ArrowUpRight" 
-                size={20} 
-                className="text-gray-400 group-hover:text-blue-500 transition-colors duration-300" 
+
+              <Icon
+                name="ArrowUpRight"
+                size={20}
+                className="text-gray-400 group-hover:text-blue-500 transition-colors duration-300"
               />
             </div>
           </div>

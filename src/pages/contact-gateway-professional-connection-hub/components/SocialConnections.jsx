@@ -8,7 +8,7 @@ const SocialConnections = () => {
       handle: '@portfoliopro',
       description: 'Professional networking and career updates',
       icon: 'Linkedin',
-      url: 'https://linkedin.com/in/portfoliopro',
+      url: 'https://www.linkedin.com/in/ratnakar-singh-parihar-a87528260/',
       color: 'bg-blue-600',
       hoverColor: 'hover:bg-blue-700',
       followers: '2.5K connections'
@@ -18,7 +18,7 @@ const SocialConnections = () => {
       handle: '@portfoliopro',
       description: 'Code repositories and open source contributions',
       icon: 'Github',
-      url: 'https://github.com/portfoliopro',
+      url: 'https://github.com/Ratnakar-Singh-parihar-123/MyPortfolio',
       color: 'bg-gray-800',
       hoverColor: 'hover:bg-gray-900',
       followers: '1.2K followers'
@@ -28,14 +28,14 @@ const SocialConnections = () => {
       handle: '@portfoliopro_dev',
       description: 'Tech insights and industry conversations',
       icon: 'Twitter',
-      url: 'https://twitter.com/portfoliopro_dev',
+      url: 'https://x.com/RatnakarSi85551',
       color: 'bg-blue-400',
       hoverColor: 'hover:bg-blue-500',
       followers: '890 followers'
     },
     {
       name: 'Email',
-      handle: 'developer@portfoliopro.com',
+      handle: 'ratnakarsinghparihar9399@gmail.com',
       description: 'Direct communication for business inquiries',
       icon: 'Mail',
       url: 'mailto:developer@portfoliopro.com',

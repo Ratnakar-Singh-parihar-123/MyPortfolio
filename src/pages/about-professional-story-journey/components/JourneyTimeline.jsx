@@ -9,10 +9,10 @@ const JourneyTimeline = () => {
       id: 0,
       year: "2022",
       title: "The Spark",
-      subtitle: "First Line of Code",
-      description: `My journey began with curiosity about how websites work. I started with HTML and CSS, creating my first "Hello World" webpage. The excitement of seeing my code come to life on the browser was the moment I knew I wanted to pursue development seriously.`,
+      subtitle: "First Step into Coding",
+      description: `Started my journey by learning the basics of programming and web development. Built simple webpages with HTML & CSS, which sparked my interest in creating interactive applications.`,
       skills: ["HTML", "CSS", "Basic JavaScript"],
-      milestone: "Built my first personal webpage",
+      milestone: "Created my first personal webpage",
       icon: "Zap",
       color: "from-yellow-500 to-orange-500"
     },
@@ -20,33 +20,44 @@ const JourneyTimeline = () => {
       id: 1,
       year: "2023",
       title: "Foundation Building",
-      subtitle: "Diving Deeper",
-      description: `Enrolled in comprehensive web development courses and started building more complex projects. Learned the fundamentals of JavaScript, responsive design, and version control. This phase was about building solid foundations and understanding core programming concepts.`,
-      skills: ["JavaScript ES6+", "Git/GitHub", "Responsive Design", "Bootstrap"],
-      milestone: "Completed 5 practice projects",
-      icon: "Building",
+      subtitle: "Learning Core Concepts",
+      description: `Focused on strengthening my fundamentals in programming and web development. Learned JavaScript, responsive design, and version control while building small projects to practice my skills.`,
+      skills: ["JavaScript", "Git/GitHub", "Responsive Design"],
+      milestone: "Completed multiple practice projects",
+      icon: "BookOpen",
       color: "from-blue-500 to-purple-500"
     },
     {
       id: 2,
       year: "2024",
-      title: "Framework Mastery",
-      subtitle: "React & Modern Tools",
-      description: `Transitioned to modern frameworks and tools. Mastered React, learned state management, and started working with APIs. This phase marked my evolution from a beginner to someone who could build real-world applications with confidence.`,
+      title: "Exploring Frameworks",
+      subtitle: "React & Backend Basics",
+      description: `Started working with modern tools like React and Node.js. Gained experience with APIs and databases while building projects that went beyond the basics.`,
       skills: ["React", "Node.js", "REST APIs", "Tailwind CSS"],
-      milestone: "Built 3 full-stack applications",
+      milestone: "Built a couple of full-stack projects",
       icon: "Rocket",
       color: "from-green-500 to-teal-500"
     },
     {
       id: 3,
       year: "2025",
-      title: "Professional Growth",
-      subtitle: "Current Focus",
-      description: `Currently focusing on advanced React patterns, performance optimization, and contributing to open-source projects. Building a portfolio of meaningful projects while continuously learning new technologies and best practices.`,
-      skills: ["Advanced React", "TypeScript", "Testing", "Performance Optimization"],
-      milestone: "Seeking first professional role",
+      title: "Final Year & Preparation",
+      subtitle: "Sharpening Skills",
+      description: `Currently in my final year of college. Focusing on Data Structures & Algorithms, advanced JavaScript, and preparing for interviews. Also building a strong portfolio with real-world projects.`,
+      skills: ["DSA", "Advanced JavaScript", "Problem Solving", "Projects"],
+      milestone: "Preparing for placements & internships",
       icon: "Target",
+      color: "from-indigo-500 to-pink-500"
+    },
+    {
+      id: 4,
+      year: "2026",
+      title: "Career Kickstart",
+      subtitle: "Looking Ahead",
+      description: `Graduating this year and seeking my first professional role in software development. Excited to apply my skills, contribute to impactful projects, and grow as a developer.`,
+      skills: ["Collaboration", "Continuous Learning", "Adaptability"],
+      milestone: "Graduation & Job Hunt",
+      icon: "Briefcase",
       color: "from-primary to-secondary"
     }
   ];
@@ -59,8 +70,7 @@ const JourneyTimeline = () => {
             My Development Journey
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            From curiosity to competence - here's how I've grown as a developer, 
-            one milestone at a time.
+            A journey of growth and learning — shaping my path as a developer, step by step.
           </p>
         </div>
 
@@ -71,11 +81,10 @@ const JourneyTimeline = () => {
               <button
                 key={phase?.id}
                 onClick={() => setActivePhase(index)}
-                className={`flex items-center space-x-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                  activePhase === index
+                className={`flex items-center space-x-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activePhase === index
                     ? 'bg-primary text-primary-foreground shadow-lg'
                     : 'bg-background text-muted-foreground hover:text-foreground hover:bg-muted'
-                }`}
+                  }`}
               >
                 <span>{phase?.year}</span>
                 <span className="hidden sm:inline">- {phase?.title}</span>
@@ -93,10 +102,10 @@ const JourneyTimeline = () => {
                   <div className="space-y-3">
                     <div className="flex items-center space-x-3">
                       <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${journeyPhases?.[activePhase]?.color} flex items-center justify-center`}>
-                        <Icon 
-                          name={journeyPhases?.[activePhase]?.icon} 
-                          size={24} 
-                          color="white" 
+                        <Icon
+                          name={journeyPhases?.[activePhase]?.icon}
+                          size={24}
+                          color="white"
                         />
                       </div>
                       <div>
@@ -138,7 +147,7 @@ const JourneyTimeline = () => {
                     <Icon name="Code" size={20} />
                     <span>Technologies Learned</span>
                   </h4>
-                  
+
                   <div className="grid grid-cols-2 gap-3">
                     {journeyPhases?.[activePhase]?.skills?.map((skill, index) => (
                       <div
@@ -161,7 +170,7 @@ const JourneyTimeline = () => {
                       </span>
                     </div>
                     <div className="w-full bg-border rounded-full h-2">
-                      <div 
+                      <div
                         className={`h-2 rounded-full bg-gradient-to-r ${journeyPhases?.[activePhase]?.color} transition-all duration-500`}
                         style={{ width: `${((activePhase + 1) / journeyPhases?.length) * 100}%` }}
                       ></div>
@@ -177,11 +186,10 @@ const JourneyTimeline = () => {
             <button
               onClick={() => setActivePhase(Math.max(0, activePhase - 1))}
               disabled={activePhase === 0}
-              className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
-                activePhase === 0
+              className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${activePhase === 0
                   ? 'text-muted-foreground cursor-not-allowed'
                   : 'text-foreground hover:bg-muted'
-              }`}
+                }`}
             >
               <Icon name="ChevronLeft" size={18} />
               <span>Previous</span>
@@ -191,9 +199,8 @@ const JourneyTimeline = () => {
               {journeyPhases?.map((_, index) => (
                 <div
                   key={index}
-                  className={`w-2 h-2 rounded-full transition-colors duration-200 ${
-                    index === activePhase ? 'bg-primary' : 'bg-border'
-                  }`}
+                  className={`w-2 h-2 rounded-full transition-colors duration-200 ${index === activePhase ? 'bg-primary' : 'bg-border'
+                    }`}
                 ></div>
               ))}
             </div>
@@ -201,11 +208,10 @@ const JourneyTimeline = () => {
             <button
               onClick={() => setActivePhase(Math.min(journeyPhases?.length - 1, activePhase + 1))}
               disabled={activePhase === journeyPhases?.length - 1}
-              className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
-                activePhase === journeyPhases?.length - 1
+              className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${activePhase === journeyPhases?.length - 1
                   ? 'text-muted-foreground cursor-not-allowed'
                   : 'text-foreground hover:bg-muted'
-              }`}
+                }`}
             >
               <span>Next</span>
               <Icon name="ChevronRight" size={18} />

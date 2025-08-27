@@ -5,15 +5,15 @@ const ContactInfo = () => {
   const contactDetails = [
     {
       type: 'Email',
-      value: 'developer@portfoliopro.com',
+      value: 'ratnakarsinghparihar9399@gmail.com',
       description: 'Primary contact for business inquiries',
       icon: 'Mail',
-      action: () => window.open('mailto:developer@portfoliopro.com', '_blank'),
+      action: () => window.open('mailto:ratnakarsinghparihar9399@gmail.com', '_blank'),
       color: 'text-blue-600'
     },
     {
       type: 'Phone',
-      value: '+1 (555) 123-4567',
+      value: '+91 (999) 974-1051',
       description: 'Available for scheduled calls',
       icon: 'Phone',
       action: () => window.open('tel:+15551234567', '_blank'),
@@ -21,7 +21,7 @@ const ContactInfo = () => {
     },
     {
       type: 'Location',
-      value: 'New York, NY, USA',
+      value: 'India, Madhya Pradesh Bhopal',
       description: 'Eastern Time Zone (UTC-5)',
       icon: 'MapPin',
       action: null,
@@ -29,10 +29,10 @@ const ContactInfo = () => {
     },
     {
       type: 'LinkedIn',
-      value: 'linkedin.com/in/portfoliopro',
+      value: 'linkedin.com/in/ratnakar-singh-parihar-a87528260/',
       description: 'Professional networking',
       icon: 'Linkedin',
-      action: () => window.open('https://linkedin.com/in/portfoliopro', '_blank'),
+      action: () => window.open('https://www.linkedin.com/in/ratnakar-singh-parihar-a87528260/', '_blank'),
       color: 'text-blue-700'
     }
   ];

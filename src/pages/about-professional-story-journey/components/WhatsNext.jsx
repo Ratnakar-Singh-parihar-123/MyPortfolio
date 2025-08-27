@@ -71,7 +71,7 @@ const WhatsNext = () => {
     {
       category: "Technical Skills",
       items: [
-        { name: "TypeScript", priority: "High", reason: "Industry standard for large applications" },
+        { name: "JavaScript", priority: "High", reason: "Industry standard for large applications" },
         { name: "Testing (Jest, RTL)", priority: "High", reason: "Essential for professional development" },
         { name: "Backend Development", priority: "Medium", reason: "Become a full-stack developer" },
         { name: "Cloud Platforms", priority: "Medium", reason: "Modern deployment and scaling" }
@@ -117,7 +117,7 @@ const WhatsNext = () => {
             What's Next in My Journey
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            My roadmap for growth, learning objectives, and career aspirations as I continue 
+            My roadmap for growth, learning objectives, and career aspirations as I continue
             evolving as a developer and professional.
           </p>
         </div>
@@ -128,18 +128,17 @@ const WhatsNext = () => {
             <h3 className="text-2xl font-bold text-foreground mb-8 text-center">
               Career Roadmap
             </h3>
-            
+
             {/* Goal Navigation */}
             <div className="flex flex-wrap justify-center gap-4 mb-12">
               {careerGoals?.map((goal, index) => (
                 <button
                   key={goal?.id}
                   onClick={() => setActiveGoal(index)}
-                  className={`flex flex-col items-center space-y-2 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 min-w-[140px] ${
-                    activeGoal === index
+                  className={`flex flex-col items-center space-y-2 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 min-w-[140px] ${activeGoal === index
                       ? 'bg-primary text-primary-foreground shadow-lg'
                       : 'bg-background text-muted-foreground hover:text-foreground hover:bg-muted border border-border'
-                  }`}
+                    }`}
                 >
                   <Icon name={goal?.icon} size={20} />
                   <span className="text-center">{goal?.timeframe}</span>
@@ -155,10 +154,10 @@ const WhatsNext = () => {
                   <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
                     <div className="flex items-start space-x-4">
                       <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${careerGoals?.[activeGoal]?.color} flex items-center justify-center flex-shrink-0`}>
-                        <Icon 
-                          name={careerGoals?.[activeGoal]?.icon} 
-                          size={28} 
-                          color="white" 
+                        <Icon
+                          name={careerGoals?.[activeGoal]?.icon}
+                          size={28}
+                          color="white"
                         />
                       </div>
                       <div>
@@ -170,7 +169,7 @@ const WhatsNext = () => {
                         </h3>
                       </div>
                     </div>
-                    
+
                     <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(careerGoals?.[activeGoal]?.status)}`}>
                       {careerGoals?.[activeGoal]?.status}
                     </div>
@@ -213,7 +212,7 @@ const WhatsNext = () => {
             <h3 className="text-2xl font-bold text-foreground mb-8 text-center">
               Current Learning Priorities
             </h3>
-            
+
             <div className="grid lg:grid-cols-2 gap-8">
               {learningPriorities?.map((category, categoryIndex) => (
                 <div
@@ -228,7 +227,7 @@ const WhatsNext = () => {
                       {category?.category}
                     </h4>
                   </div>
-                  
+
                   <div className="space-y-4">
                     {category?.items?.map((item, itemIndex) => (
                       <div
@@ -258,14 +257,14 @@ const WhatsNext = () => {
               <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mx-auto">
                 <Icon name="Handshake" size={32} color="white" />
               </div>
-              
+
               <h3 className="text-2xl lg:text-3xl font-bold text-foreground">
                 Let's Build the Future Together
               </h3>
-              
+
               <p className="text-lg text-muted-foreground leading-relaxed">
-                I'm excited about the journey ahead and would love to connect with like-minded 
-                professionals, potential mentors, or teams looking for a dedicated developer who 
+                I'm excited about the journey ahead and would love to connect with like-minded
+                professionals, potential mentors, or teams looking for a dedicated developer who
                 brings enthusiasm, curiosity, and a commitment to continuous growth.
               </p>
 
@@ -282,8 +281,7 @@ const WhatsNext = () => {
 
               <div className="pt-6 border-t border-border/50">
                 <p className="text-sm text-muted-foreground">
-                  Currently available for full-time opportunities • Open to mentorship • 
-                  Always happy to connect with fellow developers
+                  Open to entry-level opportunities • Eager to learn and grow • Excited to connect with fellow developers.
                 </p>
               </div>
             </div>

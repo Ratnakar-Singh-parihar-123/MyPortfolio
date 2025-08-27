@@ -21,7 +21,6 @@ const ContactForm = () => {
 
   const projectTypes = [
     { value: 'web-development', label: 'Web Development' },
-    { value: 'mobile-app', label: 'Mobile Application' },
     { value: 'full-stack', label: 'Full Stack Solution' },
     { value: 'frontend', label: 'Frontend Development' },
     { value: 'backend', label: 'Backend Development' },

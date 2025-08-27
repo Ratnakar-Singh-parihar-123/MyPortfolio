@@ -126,16 +126,16 @@ const ContactGatewayPage = () => {
                 development and creative problem-solving.
               </p>
               <div className="flex space-x-4">
-                <a href="https://linkedin.com/in/portfoliopro" className="text-gray-400 hover:text-white transition-colors">
+                <a href="https://www.linkedin.com/in/ratnakar-singh-parihar-a87528260/" className="text-gray-400 hover:text-white transition-colors">
                   <Icon name="Linkedin" size={20} />
                 </a>
-                <a href="https://github.com/portfoliopro" className="text-gray-400 hover:text-white transition-colors">
+                <a href="https://github.com/Ratnakar-Singh-parihar-123/MyPortfolio" className="text-gray-400 hover:text-white transition-colors">
                   <Icon name="Github" size={20} />
                 </a>
-                <a href="https://twitter.com/portfoliopro_dev" className="text-gray-400 hover:text-white transition-colors">
+                <a href="https://x.com/RatnakarSi85551" className="text-gray-400 hover:text-white transition-colors">
                   <Icon name="Twitter" size={20} />
                 </a>
-                <a href="mailto:developer@portfoliopro.com" className="text-gray-400 hover:text-white transition-colors">
+                <a href="mailto:ratnakarsinghparihar9399@gmail.com" className="text-gray-400 hover:text-white transition-colors">
                   <Icon name="Mail" size={20} />
                 </a>
               </div>
@@ -145,7 +145,7 @@ const ContactGatewayPage = () => {
             <div>
               <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="/homepage-developer-portfolio-hero-experience" className="hover:text-white transition-colors">Home</a></li>
+                <li><a href="/" className="hover:text-white transition-colors">Home</a></li>
                 <li><a href="/about-professional-story-journey" className="hover:text-white transition-colors">About</a></li>
                 <li><a href="/skills-laboratory-interactive-technical-showcase" className="hover:text-white transition-colors">Skills</a></li>
                 <li><a href="/achievements-center-credibility-growth-documentation" className="hover:text-white transition-colors">Achievements</a></li>
@@ -162,18 +162,18 @@ const ContactGatewayPage = () => {
                 </li>
                 <li className="flex items-center space-x-2">
                   <Icon name="Phone" size={16} />
-                  <span>+1 (555) 123-4567</span>
+                  <span>+91 (939) 974-1051</span>
                 </li>
                 <li className="flex items-center space-x-2">
                   <Icon name="MapPin" size={16} />
-                  <span>New York, NY, USA</span>
+                  <span>India, Madhya Pradesh Bhopal</span>
                 </li>
               </ul>
             </div>
           </div>
 
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; {new Date()?.getFullYear()} Portfolio Pro. All rights reserved. Built with React & Tailwind CSS.</p>
+            <p>&copy; {new Date()?.getFullYear()} Portfolio. All rights reserved. Built with React & Tailwind CSS.</p>
           </div>
         </div>
       </footer>
