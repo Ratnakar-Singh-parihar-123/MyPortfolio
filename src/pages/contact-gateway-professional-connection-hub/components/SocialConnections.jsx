@@ -5,7 +5,7 @@ const SocialConnections = () => {
   const socialPlatforms = [
     {
       name: 'LinkedIn',
-      handle: '@portfoliopro',
+      handle: '@ratnakar',
       description: 'Professional networking and career updates',
       icon: 'Linkedin',
       url: 'https://www.linkedin.com/in/ratnakar-singh-parihar-a87528260/',
@@ -15,7 +15,7 @@ const SocialConnections = () => {
     },
     {
       name: 'GitHub',
-      handle: '@portfoliopro',
+      handle: '@ratnakar',
       description: 'Code repositories and open source contributions',
       icon: 'Github',
       url: 'https://github.com/Ratnakar-Singh-parihar-123/MyPortfolio',
@@ -25,7 +25,7 @@ const SocialConnections = () => {
     },
     {
       name: 'Twitter',
-      handle: '@portfoliopro_dev',
+      handle: '@ratnakar',
       description: 'Tech insights and industry conversations',
       icon: 'Twitter',
       url: 'https://x.com/RatnakarSi85551',
@@ -38,7 +38,7 @@ const SocialConnections = () => {
       handle: 'ratnakarsinghparihar9399@gmail.com',
       description: 'Direct communication for business inquiries',
       icon: 'Mail',
-      url: 'mailto:developer@portfoliopro.com',
+      url: 'mailto:ratnakarsinghparihar9399@gmail.com',
       color: 'bg-red-500',
       hoverColor: 'hover:bg-red-600',
       followers: 'Primary contact'

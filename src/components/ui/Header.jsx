@@ -24,6 +24,11 @@ const Header = () => {
       path: '/skills-laboratory-interactive-technical-showcase',
       icon: 'Code'
     },
+    {
+      name: 'Projects',
+      path: '/projects-gallery-development-portfolio-showcase',
+      icon: 'Project'
+    },
     { 
       name: 'Achievements', 
       path: '/achievements-center-credibility-growth-documentation',

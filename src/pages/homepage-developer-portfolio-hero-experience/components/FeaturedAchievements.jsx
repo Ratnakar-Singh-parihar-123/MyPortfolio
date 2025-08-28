@@ -6,6 +6,7 @@ import Image from '../../../components/AppImage';
 import Button from '../../../components/ui/Button';
 import ProblemSolvingBasic from '../../../../public/assets/Certificate/basic.png';
 import ProblemSolvingIntermediate from '../../../../public/assets/Certificate/Intermediate.png';
+import JavaScriptBasics from '../../../../public/assets/Certificate/javaScriptBasics.png';
 
 const FeaturedAchievements = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -17,7 +18,7 @@ const FeaturedAchievements = () => {
       id: 1,
       title: "Problem Solving (Basic) Certificate",
       issuer: "HackerRank",
-      date: "July 2024",
+      date: "May 2025",
       type: "certification",
       icon: "Award",
       image: ProblemSolvingBasic,
@@ -64,6 +65,19 @@ const FeaturedAchievements = () => {
       verificationLink: "#",
       skills: ["MongoDB", "Express.js", "React", "Node.js"],
       credentialId: "MERN-2024-004"
+    },
+    {
+      id: 5,
+      title: "JavaScript Basics Certificate",
+      issuer: "Coding Thinker",
+      date: "August 2025",
+      type: "certification",
+      icon: "Code",
+      image: JavaScriptBasics,
+      description: "Successfully completed JavaScript basics training covering fundamentals like variables, functions, arrays, objects, DOM manipulation, and ES6 concepts.",
+      verificationLink: "#",
+      skills: ["JavaScript", "ES6", "DOM Manipulation", "Functions", "Objects", "Arrays"],
+      credentialId: "JS-2024-005"
     }
 
   ];
@@ -165,7 +179,7 @@ const FeaturedAchievements = () => {
                     {/* Achievement Type Badge */}
                     <div className="absolute top-4 left-4">
                       <div className={`px-3 py-1 rounded-full text-xs font-medium ${achievements?.[currentSlide]?.type === 'certification'
-                          ? 'bg-primary text-primary-foreground' : 'bg-accent text-accent-foreground'
+                        ? 'bg-primary text-primary-foreground' : 'bg-accent text-accent-foreground'
                         }`}>
                         {achievements?.[currentSlide]?.type === 'certification' ? 'Certification' : 'Achievement'}
                       </div>
@@ -255,7 +269,7 @@ const FeaturedAchievements = () => {
                 key={index}
                 onClick={() => goToSlide(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-200 ${index === currentSlide
-                    ? 'bg-primary scale-110' : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                  ? 'bg-primary scale-110' : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
                   }`}
                 aria-label={`Go to slide ${index + 1}`}
               />

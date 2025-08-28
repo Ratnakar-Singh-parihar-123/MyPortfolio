@@ -4,8 +4,9 @@ import Header from '../../components/ui/Header';
 import HeroSection from './components/HeroSection';
 import SkillsPreview from './components/SkillsPreview';
 import FeaturedAchievements from './components/FeaturedAchievements';
-import CurrentlyLearning from './components/CurrentlyLearning';
-import SocialProof from './components/SocialProof';
+import FeaturedProjects from './components/FeaturedProjects';
+// import CurrentlyLearning from './components/CurrentlyLearning';
+// import SocialProof from './components/SocialProof';
 import Icon from '../../components/AppIcon';
 
 
@@ -44,31 +45,31 @@ const HomepageDeveloperPortfolioHeroExperience = () => {
     <>
       <Helmet>
         <title>Ratnakar Singh Parihar - Full-Stack Developer & Problem Solver | Portfolio </title>
-        <meta 
-          name="description" 
-          content="Experienced Full-Stack Developer specializing in React, JavaScript, and modern web technologies. Building scalable applications with clean, maintainable code. Available for new opportunities." 
+        <meta
+          name="description"
+          content="Experienced Full-Stack Developer specializing in React, JavaScript, and modern web technologies. Building scalable applications with clean, maintainable code. Available for new opportunities."
         />
         <meta name="keywords" content="React Developer, Full-Stack Developer, JavaScript, TypeScript, Web Development, Frontend, Backend, Portfolio" />
         <meta name="author" content="Alex Chen" />
-        
+
         {/* Open Graph Tags */}
         <meta property="og:title" content="Ratnakar Singh Parihar - Full-Stack Developer & Problem Solver" />
         <meta property="og:description" content="Experienced Full-Stack Developer specializing in React, JavaScript, and modern web technologies." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://ratnakarparihar-portfolio.com" />
         <meta property="og:image" content="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=630&fit=crop&crop=face" />
-        
+
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Ratnakar Singh Parihar - Full-Stack Developer & Problem Solver" />
         <meta name="twitter:description" content="Experienced Full-Stack Developer specializing in React, JavaScript, and modern web technologies." />
         <meta name="twitter:image" content="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=630&fit=crop&crop=face" />
-        
+
         {/* Additional SEO Tags */}
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="canonical" href="https://ratnakarparihar-portfolio.com" />
-        
+
         {/* Structured Data */}
         <script type="application/ld+json">
           {JSON.stringify({
@@ -96,7 +97,7 @@ const HomepageDeveloperPortfolioHeroExperience = () => {
       </Helmet>
       <div className="min-h-screen bg-background">
         <Header />
-        
+
         <main className="relative">
           {/* Hero Section */}
           <section id="hero">
@@ -108,20 +109,25 @@ const HomepageDeveloperPortfolioHeroExperience = () => {
             <SkillsPreview />
           </section>
 
+          {/* Featured Projects Section */}
+          <section id="projects">
+            <FeaturedProjects />
+          </section>
+
           {/* Featured Achievements Section */}
           <section id="achievements">
             <FeaturedAchievements />
           </section>
 
           {/* Currently Learning Section */}
-          <section id="learning">
+          {/* <section id="learning">
             <CurrentlyLearning />
-          </section>
+          </section> */}
 
           {/* Social Proof Section */}
-          <section id="social-proof">
+          {/* <section id="social-proof">
             <SocialProof />
-          </section>
+          </section> */}
         </main>
 
         {/* Footer */}
@@ -140,7 +146,7 @@ const HomepageDeveloperPortfolioHeroExperience = () => {
                   </div>
                 </div>
                 <p className="text-muted-foreground max-w-md">
-                  Passionate about creating exceptional digital experiences through clean code, 
+                  Passionate about creating exceptional digital experiences through clean code,
                   innovative solutions, and continuous learning.
                 </p>
                 <div className="flex space-x-4">
@@ -171,6 +177,7 @@ const HomepageDeveloperPortfolioHeroExperience = () => {
                   {[
                     { name: 'About', href: '/about-professional-story-journey' },
                     { name: 'Skills', href: '/skills-laboratory-interactive-technical-showcase' },
+                    { name: 'Projects', href: '/projects-gallery-development-portfolio-showcase' },
                     { name: 'Achievements', href: '/achievements-center-credibility-growth-documentation' },
                     { name: 'Contact', href: '/contact-gateway-professional-connection-hub' }
                   ]?.map((link) => (

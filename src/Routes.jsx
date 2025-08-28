@@ -8,6 +8,7 @@ import AchievementsCenterPage from './pages/achievements-center-credibility-grow
 import HomepageDeveloperPortfolioHeroExperience from './pages/homepage-developer-portfolio-hero-experience';
 import ContactGatewayPage from './pages/contact-gateway-professional-connection-hub';
 import TodoApp from './pages/skills-laboratory-interactive-technical-showcase';
+import ProjectsGalleryDevelopmentPortfolioShowcase from './pages/projects-gallery-development-portfolio-showcase';
 
 const Routes = () => {
   return (
@@ -16,12 +17,13 @@ const Routes = () => {
       <ScrollToTop />
       <RouterRoutes>
         {/* Define your route here */}
-        <Route path="/" element={<AboutProfessionalStoryJourney />} />
+        <Route path="/" element={<HomepageDeveloperPortfolioHeroExperience />} />
         <Route path="/about-professional-story-journey" element={<AboutProfessionalStoryJourney />} />
         <Route path="/achievements-center-credibility-growth-documentation" element={<AchievementsCenterPage />} />
         <Route path="/homepage-developer-portfolio-hero-experience" element={<HomepageDeveloperPortfolioHeroExperience />} />
         <Route path="/contact-gateway-professional-connection-hub" element={<ContactGatewayPage />} />
         <Route path="/skills-laboratory-interactive-technical-showcase" element={<TodoApp />} />
+        <Route path="/projects-gallery-development-portfolio-showcase" element={<ProjectsGalleryDevelopmentPortfolioShowcase />} />
         <Route path="*" element={<NotFound />} />
       </RouterRoutes>
       </ErrorBoundary>

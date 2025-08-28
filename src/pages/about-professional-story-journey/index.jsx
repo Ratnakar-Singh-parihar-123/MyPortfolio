@@ -3,9 +3,9 @@ import { Helmet } from 'react-helmet';
 import Header from '../../components/ui/Header';
 import HeroSection from './components/HeroSection';
 import JourneyTimeline from './components/JourneyTimeline';
-import WorkingPhilosophy from './components/WorkingPhilosophy';
+// import WorkingPhilosophy from './components/WorkingPhilosophy';
 import BeyondCode from './components/BeyondCode';
-import WhatsNext from './components/WhatsNext';
+// import WhatsNext from './components/WhatsNext';
 
 const AboutProfessionalStoryJourney = () => {
   useEffect(() => {
@@ -38,13 +38,13 @@ const AboutProfessionalStoryJourney = () => {
           <JourneyTimeline />
           
           {/* Working Philosophy */}
-          <WorkingPhilosophy />
+          {/* <WorkingPhilosophy /> */}
           
           {/* Beyond Code */}
           <BeyondCode />
           
           {/* What's Next */}
-          <WhatsNext />
+          {/* <WhatsNext /> */}
         </main>
 
         {/* Footer */}
