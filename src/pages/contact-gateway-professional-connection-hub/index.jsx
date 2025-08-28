@@ -10,6 +10,7 @@ import Icon from '../../components/AppIcon';
 const ContactGatewayPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      
       <Header />
       {/* Hero Section */}
       <section className="pt-24 pb-16">
@@ -19,14 +20,14 @@ const ContactGatewayPage = () => {
               <Icon name="MessageCircle" size={16} />
               <span>Let's Build Something Amazing Together</span>
             </div>
-            
+
             <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
               Contact Gateway
               <span className="block text-blue-600">Professional Connection Hub</span>
             </h1>
-            
+
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Ready to turn your ideas into reality? Whether you're looking for a development partner, 
+              Ready to turn your ideas into reality? Whether you're looking for a development partner,
               have a project in mind, or just want to connect, I'm here to help make it happen.
             </p>
           </div>
@@ -87,7 +88,7 @@ const ContactGatewayPage = () => {
               Ready to Start Your Project?
             </h2>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Don't let your ideas stay as just ideas. Let's discuss how we can bring 
+              Don't let your ideas stay as just ideas. Let's discuss how we can bring
               your vision to life with cutting-edge technology and creative solutions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -122,7 +123,7 @@ const ContactGatewayPage = () => {
                 <span className="text-xl font-bold">Portfolio Pro</span>
               </div>
               <p className="text-gray-400 mb-4 max-w-md">
-                Transforming ideas into exceptional digital experiences through innovative 
+                Transforming ideas into exceptional digital experiences through innovative
                 development and creative problem-solving.
               </p>
               <div className="flex space-x-4">
@@ -148,6 +149,7 @@ const ContactGatewayPage = () => {
                 <li><a href="/" className="hover:text-white transition-colors">Home</a></li>
                 <li><a href="/about-professional-story-journey" className="hover:text-white transition-colors">About</a></li>
                 <li><a href="/skills-laboratory-interactive-technical-showcase" className="hover:text-white transition-colors">Skills</a></li>
+                <li><a href="/projects-gallery-development-portfolio-showcase" className="hover:text-white transition-colors duration-200">Projects</a></li>
                 <li><a href="/achievements-center-credibility-growth-documentation" className="hover:text-white transition-colors">Achievements</a></li>
               </ul>
             </div>
@@ -173,7 +175,7 @@ const ContactGatewayPage = () => {
           </div>
 
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; {new Date()?.getFullYear()} Portfolio. All rights reserved. Built with React & Tailwind CSS.</p>
+            <p>&copy; {new Date()?.getFullYear()} RSP. All rights reserved. Built with React & Tailwind CSS.</p>
           </div>
         </div>
       </footer>

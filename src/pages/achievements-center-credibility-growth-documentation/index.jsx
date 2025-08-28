@@ -227,6 +227,7 @@ const AchievementsCenterPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <Helmet>
+        <link rel="icon" href="/achivement.png" />
         <title>Achievements Center - Credibility & Growth Documentation | Portfolio Pro</title>
         <meta name="description" content="Comprehensive documentation of verified accomplishments, certifications, and continuous professional development milestones showcasing technical expertise and growth." />
         <meta name="keywords" content="achievements, certifications, professional development, technical skills, credentials, portfolio" />
@@ -420,9 +421,10 @@ const AchievementsCenterPage = () => {
             <div>
               <h3 className="font-semibold mb-4">Quick Links</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="/homepage-developer-portfolio-hero-experience" className="hover:text-white transition-colors duration-200">Home</a></li>
+                <li><a href="/" className="hover:text-white transition-colors duration-200">Home</a></li>
                 <li><a href="/about-professional-story-journey" className="hover:text-white transition-colors duration-200">About</a></li>
                 <li><a href="/skills-laboratory-interactive-technical-showcase" className="hover:text-white transition-colors duration-200">Skills</a></li>
+                <li><a href="/projects-gallery-development-portfolio-showcase" className="hover:text-white transition-colors duration-200">Projects</a></li>
                 <li><a href="/contact-gateway-professional-connection-hub" className="hover:text-white transition-colors duration-200">Contact</a></li>
               </ul>
             </div>
@@ -439,7 +441,7 @@ const AchievementsCenterPage = () => {
           </div>
           
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; {new Date()?.getFullYear()} Portfolio Pro. All rights reserved.</p>
+            <p>&copy; {new Date()?.getFullYear()} RSP. All rights reserved.</p>
           </div>
         </div>
       </footer>

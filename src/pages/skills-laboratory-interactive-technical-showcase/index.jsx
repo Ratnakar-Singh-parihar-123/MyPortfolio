@@ -584,7 +584,8 @@ function isAdmin(user: User): user is User & { role: 'admin' } {
   return (
     <div className="min-h-screen bg-gray-50">
       <Helmet>
-        <title>Skills Laboratory - Interactive Technical Showcase | Portfolio Pro</title>
+        <link rel="icon" href="/code.png" />
+        <title>Skills Laboratory - Interactive Technical Showcase | Portfolio </title>
         <meta name="description" content="Explore my technical skills through interactive demonstrations, code samples, and real-world project applications. From frontend to backend development." />
         <meta name="keywords" content="technical skills, programming, web development, React, JavaScript, Node.js, portfolio" />
       </Helmet>
@@ -757,7 +758,7 @@ function isAdmin(user: User): user is User & { role: 'admin' } {
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center">
+          {/* <div className="text-center">
             <div className="flex justify-center mb-6">
               <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
                 <Icon name="Code2" size={24} color="white" />
@@ -775,9 +776,9 @@ function isAdmin(user: User): user is User & { role: 'admin' } {
                 View Portfolio
               </button>
             </div>
-          </div>
+          </div> */}
           <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-            <p>&copy; {new Date()?.getFullYear()} Portfolio Pro. All rights reserved.</p>
+            <p>&copy; {new Date()?.getFullYear()} RSP. All rights reserved.</p>
           </div>
         </div>
       </footer>

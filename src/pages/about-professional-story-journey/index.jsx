@@ -16,10 +16,11 @@ const AboutProfessionalStoryJourney = () => {
   return (
     <>
       <Helmet>
+        <link rel="icon" href="/about.png" />
         <title>About - Learning, Building, Growing | Portfolio </title>
-        <meta 
-          name="description" 
-          content="Discover my development journey from curiosity to competence. Learn about my working philosophy, personal interests, and career aspirations as a passionate developer committed to continuous growth and meaningful impact." 
+        <meta
+          name="description"
+          content="Discover my development journey from curiosity to competence. Learn about my working philosophy, personal interests, and career aspirations as a passionate developer committed to continuous growth and meaningful impact."
         />
         <meta name="keywords" content="developer story, professional journey, working philosophy, career goals, personal interests, growth mindset, collaboration, technical skills" />
         <meta property="og:title" content="About - Professional Story & Journey | Portfolio Pro" />
@@ -29,20 +30,20 @@ const AboutProfessionalStoryJourney = () => {
       </Helmet>
       <div className="min-h-screen bg-background">
         <Header />
-        
+
         <main className="pt-16">
           {/* Hero Section */}
           <HeroSection />
-          
+
           {/* Journey Timeline */}
           <JourneyTimeline />
-          
+
           {/* Working Philosophy */}
           {/* <WorkingPhilosophy /> */}
-          
+
           {/* Beyond Code */}
           <BeyondCode />
-          
+
           {/* What's Next */}
           {/* <WhatsNext /> */}
         </main>
@@ -70,6 +71,7 @@ const AboutProfessionalStoryJourney = () => {
                 <div className="space-y-2 text-sm">
                   <div><a href="/" className="text-background/80 hover:text-background transition-colors">Home</a></div>
                   <div><a href="/skills-laboratory-interactive-technical-showcase" className="text-background/80 hover:text-background transition-colors">Skills</a></div>
+                  <div><a href="/projects-gallery-development-portfolio-showcase" className="text-background/80 hover:text-background transition-colors">Projects</a></div>
                   <div><a href="/achievements-center-credibility-growth-documentation" className="text-background/80 hover:text-background transition-colors">Achievements</a></div>
                   <div><a href="/contact-gateway-professional-connection-hub" className="text-background/80 hover:text-background transition-colors">Contact</a></div>
                 </div>

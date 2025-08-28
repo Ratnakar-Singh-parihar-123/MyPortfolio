@@ -8,6 +8,7 @@ import FeaturedProjects from './components/FeaturedProjects';
 // import CurrentlyLearning from './components/CurrentlyLearning';
 // import SocialProof from './components/SocialProof';
 import Icon from '../../components/AppIcon';
+import { FaLinkedin, FaGithub, FaTwitter } from "react-icons/fa";
 
 
 const HomepageDeveloperPortfolioHeroExperience = () => {
@@ -44,6 +45,7 @@ const HomepageDeveloperPortfolioHeroExperience = () => {
   return (
     <>
       <Helmet>
+        <link rel="icon" href="/home-button.png" />
         <title>Ratnakar Singh Parihar - Full-Stack Developer & Problem Solver | Portfolio </title>
         <meta
           name="description"
@@ -217,18 +219,26 @@ const HomepageDeveloperPortfolioHeroExperience = () => {
             {/* Bottom Bar */}
             <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <div className="text-sm text-muted-foreground">
-                © {new Date()?.getFullYear()} Ratnakar Singh Parihar. All rights reserved.
+                © {new Date()?.getFullYear()} RSP. All rights reserved.
               </div>
               <div className="flex space-x-6 text-sm text-muted-foreground">
-                <a href="#" className="hover:text-primary transition-colors duration-200">
-                  Privacy Policy
-                </a>
-                <a href="#" className="hover:text-primary transition-colors duration-200">
-                  Terms of Service
-                </a>
-                <a href="#" className="hover:text-primary transition-colors duration-200">
-                  Sitemap
-                </a>
+                <div className="flex space-x-4">
+                  {[
+                    { name: 'Github', href: 'https://github.com/Ratnakar-Singh-parihar-123' },
+                    { name: 'Linkedin', href: 'https://www.linkedin.com/in/ratnakar-singh-parihar-a87528260/' },
+                    { name: 'Twitter', href: 'https://x.com/RatnakarSi85551' },
+                    { name: 'Mail', href: 'ratnakarsinghparihar9399@gmail.com' }
+                  ]?.map((social) => (
+                    <a
+                      key={social?.name}
+                      href={social?.href}
+                      className="p-2 text-muted-foreground hover:text-primary transition-colors duration-200"
+                      aria-label={social?.name}
+                    >
+                      <Icon name={social?.name} size={20} />
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

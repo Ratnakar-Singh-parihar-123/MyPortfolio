@@ -211,17 +211,18 @@ const ProjectsGalleryDevelopmentPortfolioShowcase = () => {
     return (
         <>
             <Helmet>
-                <title>Projects Gallery - Development Portfolio Showcase | Alex Chen</title>
+                <link rel="icon" href="/layers.png" />
+                <title>Projects Gallery.| Ratnakar Singh Parihar</title>
                 <meta
                     name="description"
-                    content="Explore Alex Chen's comprehensive project portfolio featuring React applications, full-stack solutions, and JavaScript projects. View live demos, source code, and detailed case studies."
+                    content="Explore Ratnakar Singh Parihar comprehensive project portfolio featuring React applications, full-stack solutions, and JavaScript projects. View live demos, source code, and detailed case studies."
                 />
-                <meta name="keywords" content="React Projects, Full-Stack Portfolio, JavaScript Development, Web Applications, Project Showcase, Code Examples" />
-                <meta name="author" content="Alex Chen" />
+                <meta name="keywords" content="React Projects, Full-Stack Portfolio, JavaScript Development, Web Applications, Project, Code" />
+                <meta name="author" content="Ratnakar Singh Parihar" />
 
                 {/* Open Graph Tags */}
                 <meta property="og:title" content="Projects Gallery - Development Portfolio Showcase" />
-                <meta property="og:description" content="Explore Alex Chen's comprehensive project portfolio featuring React applications, full-stack solutions, and JavaScript projects." />
+                <meta property="og:description" content="Explore Ratnakar Singh Parihar comprehensive project portfolio featuring React applications, full-stack solutions, and JavaScript projects." />
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content="https://alexchen-portfolio.com/projects-gallery-development-portfolio-showcase" />
                 <meta property="og:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop" />
@@ -229,7 +230,7 @@ const ProjectsGalleryDevelopmentPortfolioShowcase = () => {
                 {/* Twitter Card Tags */}
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:title" content="Projects Gallery - Development Portfolio Showcase" />
-                <meta name="twitter:description" content="Explore Alex Chen's comprehensive project portfolio featuring React applications, full-stack solutions, and JavaScript projects." />
+                <meta name="twitter:description" content="Explore Ratnakar Singh Parihar comprehensive project portfolio featuring React applications, full-stack solutions, and JavaScript projects." />
                 <meta name="twitter:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop" />
             </Helmet>
             <div className="min-h-screen bg-background">
@@ -356,7 +357,7 @@ const ProjectsGalleryDevelopmentPortfolioShowcase = () => {
                                 </h3>
                                 <div className="space-y-2">
                                     {[
-                                        { name: 'Home', href: '/homepage-developer-portfolio-hero-experience' },
+                                        { name: 'Home', href: '/' },
                                         { name: 'About', href: '/about-professional-story-journey' },
                                         { name: 'Skills', href: '/skills-laboratory-interactive-technical-showcase' },
                                         { name: 'Projects', href: '/projects-gallery-development-portfolio-showcase' },
@@ -403,18 +404,26 @@ const ProjectsGalleryDevelopmentPortfolioShowcase = () => {
                         {/* Bottom Bar */}
                         <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                             <div className="text-sm text-muted-foreground">
-                                © {new Date()?.getFullYear()} Alex Chen. All rights reserved.
+                                © {new Date()?.getFullYear()} RSP. All rights reserved.
                             </div>
                             <div className="flex space-x-6 text-sm text-muted-foreground">
-                                <a href="#" className="hover:text-primary transition-colors duration-200">
-                                    Privacy Policy
-                                </a>
-                                <a href="#" className="hover:text-primary transition-colors duration-200">
-                                    Terms of Service
-                                </a>
-                                <a href="#" className="hover:text-primary transition-colors duration-200">
-                                    Sitemap
-                                </a>
+                                <div className="flex space-x-4">
+                                    {[
+                                        { name: 'Github', href: 'https://github.com/Ratnakar-Singh-parihar-123' },
+                                        { name: 'Linkedin', href: 'https://www.linkedin.com/in/ratnakar-singh-parihar-a87528260/' },
+                                        { name: 'Twitter', href: 'https://x.com/RatnakarSi85551' },
+                                        { name: 'Mail', href: 'ratnakarsinghparihar9399@gmail.com' }
+                                    ]?.map((social) => (
+                                        <a
+                                            key={social?.name}
+                                            href={social?.href}
+                                            className="p-2 text-muted-foreground hover:text-primary transition-colors duration-200"
+                                            aria-label={social?.name}
+                                        >
+                                            <Icon name={social?.name} size={20} />
+                                        </a>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -56,9 +56,8 @@ const ContactInfo = () => {
         {contactDetails?.map((contact, index) => (
           <div
             key={index}
-            className={`flex items-center p-4 rounded-lg border border-gray-200 hover:border-gray-300 transition-all duration-300 ${
-              contact?.action ? 'cursor-pointer hover:shadow-md' : ''
-            }`}
+            className={`flex items-center p-4 rounded-lg border border-gray-200 hover:border-gray-300 transition-all duration-300 ${contact?.action ? 'cursor-pointer hover:shadow-md' : ''
+              }`}
             onClick={contact?.action}
           >
             <div className="flex-shrink-0">
@@ -78,7 +77,7 @@ const ContactInfo = () => {
         ))}
       </div>
       {/* Office Hours */}
-      <div className="border-t border-gray-200 pt-8">
+      {/* <div className="border-t border-gray-200 pt-8">
         <h3 className="text-xl font-semibold text-gray-900 mb-4">Office Hours</h3>
         <div className="space-y-3">
           {officeHours?.map((schedule, index) => (
@@ -88,7 +87,7 @@ const ContactInfo = () => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
       {/* Additional Info */}
       <div className="mt-8 pt-6 border-t border-gray-200">
         <div className="bg-blue-50 rounded-lg p-4">
@@ -97,7 +96,7 @@ const ContactInfo = () => {
             <div>
               <h4 className="text-sm font-semibold text-blue-900 mb-1">Quick Response Guarantee</h4>
               <p className="text-sm text-blue-800">
-                All inquiries receive a response within 24 hours during business days. 
+                All inquiries receive a response within 24 hours during business days.
                 For urgent matters, please mention "URGENT" in your subject line.
               </p>
             </div>
@@ -119,10 +118,11 @@ const ContactInfo = () => {
           />
         </div>
         <p className="text-sm text-gray-600 mt-2">
-          Based in New York City, available for remote work worldwide
+          Based in India, Madhya Pradesh Bhoapl city. available for remote work worldwide
         </p>
       </div>
-    </div>
+
+    </div >
   );
 };
 

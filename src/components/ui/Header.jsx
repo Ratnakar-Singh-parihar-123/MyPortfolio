@@ -9,18 +9,18 @@ const Header = () => {
   const location = useLocation();
 
   const navigationItems = [
-    { 
-      name: 'Home', 
+    {
+      name: 'Home',
       path: '/homepage-developer-portfolio-hero-experience',
       icon: 'Home'
     },
-    { 
-      name: 'About', 
+    {
+      name: 'About',
       path: '/about-professional-story-journey',
       icon: 'User'
     },
-    { 
-      name: 'Skills', 
+    {
+      name: 'Skills',
       path: '/skills-laboratory-interactive-technical-showcase',
       icon: 'Code'
     },
@@ -29,13 +29,13 @@ const Header = () => {
       path: '/projects-gallery-development-portfolio-showcase',
       icon: 'Project'
     },
-    { 
-      name: 'Achievements', 
+    {
+      name: 'Achievements',
       path: '/achievements-center-credibility-growth-documentation',
       icon: 'Award'
     },
-    { 
-      name: 'Contact', 
+    {
+      name: 'Contact',
       path: '/contact-gateway-professional-connection-hub',
       icon: 'MessageCircle'
     }
@@ -63,18 +63,17 @@ const Header = () => {
   };
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-background/95 backdrop-blur-md shadow-soft border-b border-border' 
-          : 'bg-background/80 backdrop-blur-sm'
-      }`}
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+        ? 'bg-background/95 backdrop-blur-md shadow-soft border-b border-border'
+        : 'bg-background/80 backdrop-blur-sm'
+        }`}
     >
       <div className="w-full">
         <div className="flex items-center justify-between h-16 px-6 lg:px-8">
           {/* Logo */}
-          <Link 
-            to="/homepage-developer-portfolio-hero-experience" 
+          <Link
+            to="/homepage-developer-portfolio-hero-experience"
             className="flex items-center space-x-2 group"
             onClick={closeMenu}
           >
@@ -86,7 +85,7 @@ const Header = () => {
             </div>
             <div className="flex flex-col">
               <span className="text-lg font-bold text-foreground tracking-tight">
-                RSP. 
+                RSP.
               </span>
               <span className="text-xs text-muted-foreground font-mono -mt-1">
                 Ratnakar Singh Parihar
@@ -100,18 +99,16 @@ const Header = () => {
               <Link
                 key={item?.path}
                 to={item?.path}
-                className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 group ${
-                  isActivePath(item?.path)
-                    ? 'text-primary bg-primary/10' :'text-muted-foreground hover:text-foreground hover:bg-muted'
-                }`}
+                className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 group ${isActivePath(item?.path)
+                  ? 'text-primary bg-primary/10' : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                  }`}
               >
                 <div className="flex items-center space-x-2">
-                  <Icon 
-                    name={item?.icon} 
-                    size={16} 
-                    className={`transition-colors duration-300 ${
-                      isActivePath(item?.path) ? 'text-primary' : 'text-current'
-                    }`}
+                  <Icon
+                    name={item?.icon}
+                    size={16}
+                    className={`transition-colors duration-300 ${isActivePath(item?.path) ? 'text-primary' : 'text-current'
+                      }`}
                   />
                   <span>{item?.name}</span>
                 </div>
@@ -136,6 +133,19 @@ const Header = () => {
             <Button
               variant="default"
               size="sm"
+              iconName="Explore"
+              iconPosition="left"
+              className="text-sm px-4 py-2 bg-blue-800 text-white font-medium 
+             flex items-center gap-2 shadow-md 
+             transition-all duration-300 ease-in-out"
+            >
+              <a href="https://linked-in-developer-card.vercel.app/">
+                Learn More
+              </a>
+            </Button>
+            <Button
+              variant="default"
+              size="sm"
               iconName="MessageCircle"
               iconPosition="left"
               asChild
@@ -152,20 +162,19 @@ const Header = () => {
             className="lg:hidden p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors duration-200"
             aria-label="Toggle menu"
           >
-            <Icon 
-              name={isMenuOpen ? "X" : "Menu"} 
-              size={24} 
+            <Icon
+              name={isMenuOpen ? "X" : "Menu"}
+              size={24}
               className="transition-transform duration-200"
             />
           </button>
         </div>
 
         {/* Mobile Navigation */}
-        <div 
-          className={`lg:hidden transition-all duration-300 ease-spring ${
-            isMenuOpen 
-              ? 'max-h-96 opacity-100' :'max-h-0 opacity-0 overflow-hidden'
-          }`}
+        <div
+          className={`lg:hidden transition-all duration-300 ease-spring ${isMenuOpen
+            ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
+            }`}
         >
           <nav className="px-6 py-4 bg-background/95 backdrop-blur-md border-t border-border">
             <div className="space-y-2">
@@ -174,18 +183,16 @@ const Header = () => {
                   key={item?.path}
                   to={item?.path}
                   onClick={closeMenu}
-                  className={`flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
-                    isActivePath(item?.path)
-                      ? 'text-primary bg-primary/10 border border-primary/20' :'text-muted-foreground hover:text-foreground hover:bg-muted'
-                  }`}
+                  className={`flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${isActivePath(item?.path)
+                    ? 'text-primary bg-primary/10 border border-primary/20' : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                    }`}
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
-                  <Icon 
-                    name={item?.icon} 
-                    size={18} 
-                    className={`transition-colors duration-300 ${
-                      isActivePath(item?.path) ? 'text-primary' : 'text-current'
-                    }`}
+                  <Icon
+                    name={item?.icon}
+                    size={18}
+                    className={`transition-colors duration-300 ${isActivePath(item?.path) ? 'text-primary' : 'text-current'
+                      }`}
                   />
                   <span>{item?.name}</span>
                   {isActivePath(item?.path) && (
@@ -194,15 +201,36 @@ const Header = () => {
                 </Link>
               ))}
             </div>
-            
+
             {/* Mobile CTA Buttons */}
             <div className="mt-6 pt-4 border-t border-border space-y-3">
               <Button
-                variant="outline"
+                variant="default"
+                size="sm"
+                iconName="Explore"
+                iconPosition="left"
+                className="text-sm px-4 py-2 bg-blue-800 text-white font-medium 
+             flex items-center gap-2 shadow-md 
+             transition-all duration-300 ease-in-out 
+             hover:bg-blue-500 hover:shadow-lg hover:scale-105 
+             active:scale-95"
+              >
+                <a href="https://linked-in-developer-card.vercel.app/">
+                  Learn More
+                </a>
+
+              </Button>
+              <Button
+                variant="default"
                 fullWidth
                 iconName="Download"
                 iconPosition="left"
                 size="sm"
+                className="text-sm px-4 py-2 bg-blue-800 text-white font-medium 
+             flex items-center gap-2 shadow-md 
+             transition-all duration-300 ease-in-out 
+             hover:bg-green-500 hover:shadow-lg hover:scale-105 
+             active:scale-95"
               >
                 Download Resume
               </Button>
@@ -213,6 +241,11 @@ const Header = () => {
                 iconPosition="left"
                 size="sm"
                 asChild
+                className="text-sm px-4 py-2 bg-blue-800 text-white font-medium 
+             flex items-center gap-2 shadow-md 
+             transition-all duration-300 ease-in-out 
+             hover:bg-red-500 hover:shadow-lg hover:scale-105 
+             active:scale-95"
               >
                 <Link to="/contact-gateway-professional-connection-hub">
                   Let's Build Something Together
