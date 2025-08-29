@@ -1,10 +1,10 @@
 import React from 'react';
 import Header from '../../components/ui/Header';
-import ContactForm from './components/ContactForm';
-import QuickConnectOptions from './components/QuickConnectOptions';
-import SocialConnections from './components/SocialConnections';
-import AvailabilityStatus from './components/AvailabilityStatus';
-import ContactInfo from './components/ContactInfo';
+// import ContactForm from './components/ContactForm';
+// import QuickConnectOptions from './components/QuickConnectOptions';
+// import SocialConnections from './components/SocialConnections';
+// import AvailabilityStatus from './components/AvailabilityStatus';
+// import ContactInfo from './components/ContactInfo';
 import Icon from '../../components/AppIcon';
 
 const ContactGatewayPage = () => {
@@ -23,7 +23,7 @@ const ContactGatewayPage = () => {
 
             <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
               Contact Gateway
-              <span className="block text-blue-600">Professional Connection Hub</span>
+              <span className="block text-blue-600">Connection Hub</span>
             </h1>
 
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -33,7 +33,7 @@ const ContactGatewayPage = () => {
           </div>
 
           {/* Stats Row */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
+          {/* <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
             <div className="text-center bg-white rounded-xl p-6 shadow-sm border border-gray-100">
               <div className="text-3xl font-bold text-blue-600 mb-2">24hrs</div>
               <div className="text-sm text-gray-600">Response Time</div>
@@ -50,7 +50,7 @@ const ContactGatewayPage = () => {
               <div className="text-3xl font-bold text-orange-600 mb-2">5+</div>
               <div className="text-sm text-gray-600">Years Experience</div>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
       {/* Main Content */}
@@ -59,13 +59,13 @@ const ContactGatewayPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Left Column - Contact Form */}
             <div className="lg:col-span-2">
-              <ContactForm />
+              {/* <ContactForm /> */}
             </div>
 
             {/* Right Column - Quick Options & Status */}
             <div className="space-y-8">
-              <QuickConnectOptions />
-              <AvailabilityStatus />
+              {/* <QuickConnectOptions /> */}
+              {/* <AvailabilityStatus /> */}
             </div>
           </div>
         </div>
@@ -74,13 +74,13 @@ const ContactGatewayPage = () => {
       <section className="pb-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <SocialConnections />
-            <ContactInfo />
+            {/* <SocialConnections /> */}
+            {/* <ContactInfo /> */}
           </div>
         </div>
       </section>
       {/* Call to Action Section */}
-      <section className="pb-16">
+      {/* <section className="pb-16">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 lg:p-12 text-center text-white">
             <Icon name="Rocket" size={48} className="mx-auto mb-6 text-white" />
@@ -109,7 +109,7 @@ const ContactGatewayPage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -120,7 +120,7 @@ const ContactGatewayPage = () => {
                 <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
                   <Icon name="Code2" size={18} color="white" strokeWidth={2.5} />
                 </div>
-                <span className="text-xl font-bold">Portfolio Pro</span>
+                <span className="text-xl font-bold">Portfolio </span>
               </div>
               <p className="text-gray-400 mb-4 max-w-md">
                 Transforming ideas into exceptional digital experiences through innovative
