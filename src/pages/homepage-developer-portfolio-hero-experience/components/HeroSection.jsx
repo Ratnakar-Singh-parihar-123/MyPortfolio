@@ -5,6 +5,7 @@ import Icon from '../../../components/AppIcon';
 import Image from '../../../components/AppImage';
 import Button from '../../../components/ui/Button';
 import HeroImg from '../../../../public/assets/krishna.jpeg';
+import ResumeActions from 'components/ui/ResumeActions';
 
 const HeroSection = () => {
   const [currentCodeLine, setCurrentCodeLine] = useState(0);
@@ -140,14 +141,16 @@ const HeroSection = () => {
                   Let's Build Together
                 </Link>
               </Button>
-              <Button
+              {/* <Button
                 variant="outline"
                 size="lg"
                 iconName="Download"
                 iconPosition="left"
               >
                 Download Resume
-              </Button>
+              </Button> */}
+              <ResumeActions />
+
             </motion.div>
 
             {/* Social Links */}

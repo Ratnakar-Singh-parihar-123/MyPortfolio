@@ -8,6 +8,7 @@ import LearningProgress from './components/LearningProgress';
 import SkillSearch from './components/SkillSearch';
 import SkillStats from './components/SkillStats';
 import CodeDemo from './components/CodeDemo';
+import { Link } from 'react-router-dom';
 
 const SkillsLaboratory = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -546,9 +547,9 @@ function isAdmin(user: User): user is User & { role: 'admin' } {
     let filtered = skills?.filter(skill => {
       const matchesCategory = activeCategory === 'all' || skill?.category === activeCategory;
       const matchesSearch = skill?.name?.toLowerCase()?.includes(searchTerm?.toLowerCase()) ||
-                           skill?.description?.toLowerCase()?.includes(searchTerm?.toLowerCase());
+        skill?.description?.toLowerCase()?.includes(searchTerm?.toLowerCase());
       const matchesProficiency = proficiencyFilter === 'all' || skill?.proficiency === proficiencyFilter;
-      
+
       return matchesCategory && matchesSearch && matchesProficiency;
     });
 
@@ -607,7 +608,7 @@ function isAdmin(user: User): user is User & { role: 'admin' } {
                 </span>
               </h1>
               <p className="text-xl text-white/90 max-w-3xl mx-auto mb-8">
-                Explore my technical expertise through live demonstrations, interactive code samples, 
+                Explore my technical expertise through live demonstrations, interactive code samples,
                 and real-world project applications. From frontend magic to backend architecture.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
@@ -756,29 +757,86 @@ function isAdmin(user: User): user is User & { role: 'admin' } {
         )}
       </main>
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          {/* <div className="text-center">
-            <div className="flex justify-center mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
-                <Icon name="Code2" size={24} color="white" />
+      <footer className="bg-foreground text-background py-12">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Brand */}
+            <div className="space-y-4">
+              <div className="flex items-center space-x-2">
+                <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">P</span>
+                </div>
+                <span className="text-xl font-bold">Portfolio</span>
+              </div>
+              <p className="text-background/80 text-sm">
+                Coding, not just for today ,but for tomorrow.
+              </p>
+            </div>
+
+            {/* Quick Links */}
+            <div className="space-y-4">
+              <h4 className="font-semibold text-background">Quick Links</h4>
+              <div className="space-y-2 text-sm">
+                <div>
+                  <Link to="/" className="text-background/80 hover:text-background transition-colors">
+                    Home
+                  </Link>
+                </div>
+
+                <div>
+                  <Link
+                    to="/about-professional-story-journey"
+                    className="text-background/80 hover:text-background transition-colors"
+                  >
+                    About
+                  </Link>
+                </div>
+
+                <div>
+                  <Link
+                    to="/projects-gallery-development-portfolio-showcase"
+                    className="text-background/80 hover:text-background transition-colors"
+                  >
+                    Projects
+                  </Link>
+                </div>
+
+                <div>
+                  <Link
+                    to="/achievements-center-credibility-growth-documentation"
+                    className="text-background/80 hover:text-background transition-colors"
+                  >
+                    Achievements
+                  </Link>
+                </div>
+
+                <div>
+                  <Link
+                    to="/contact-gateway-professional-connection-hub"
+                    className="text-background/80 hover:text-background transition-colors"
+                  >
+                    Contact
+                  </Link>
+                </div>
+
               </div>
             </div>
-            <h3 className="text-xl font-semibold mb-2">Ready to Build Something Amazing?</h3>
-            <p className="text-gray-400 mb-6">
-              Let's discuss how my skills can contribute to your next project.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-              <button className="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium transition-colors">
-                Start a Project
-              </button>
-              <button className="border border-gray-600 hover:border-gray-500 text-white px-6 py-3 rounded-lg font-medium transition-colors">
-                View Portfolio
-              </button>
+
+            {/* Contact Info */}
+            <div className="space-y-4">
+              <h4 className="font-semibold text-background">Let's Connect</h4>
+              <div className="space-y-2 text-sm text-background/80">
+                <div>Available for opportunities</div>
+                <div>Open to collaboration</div>
+                <div>Always learning, always growing</div>
+              </div>
             </div>
-          </div> */}
-          <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-            <p>&copy; {new Date()?.getFullYear()} RSP. All rights reserved.</p>
+          </div>
+
+          <div className="border-t border-background/20 mt-8 pt-8 text-center">
+            <p className="text-background/60 text-sm">
+              © {new Date()?.getFullYear()} Portfolio. Built with passion and continuous learning.
+            </p>
           </div>
         </div>
       </footer>

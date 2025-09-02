@@ -8,6 +8,7 @@ import FilterBar from './components/FilterBar';
 import ProjectModal from './components/ProjectModal';
 import WorkInProgress from './components/WorkInProgress';
 import Icon from '../../components/AppIcon';
+import { Link } from 'react-router-dom';
 
 const ProjectsGalleryDevelopmentPortfolioShowcase = () => {
     const [selectedFilter, setSelectedFilter] = useState('All');
@@ -355,26 +356,25 @@ const ProjectsGalleryDevelopmentPortfolioShowcase = () => {
                                 <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">
                                     Quick Links
                                 </h3>
+
                                 <div className="space-y-2">
                                     {[
-                                        { name: 'Home', href: '/' },
-                                        { name: 'About', href: '/about-professional-story-journey' },
-                                        { name: 'Skills', href: '/skills-laboratory-interactive-technical-showcase' },
-                                        { name: 'Projects', href: '/projects-gallery-development-portfolio-showcase' },
-                                        { name: 'Achievements', href: '/achievements-center-credibility-growth-documentation' },
-                                        { name: 'Contact', href: '/contact-gateway-professional-connection-hub' }
-                                    ]?.map((link) => (
-                                        <a
-                                            key={link?.name}
-                                            href={link?.href}
+                                        { label: "Home", to: "/" },
+                                        { label: "About", to: "/about-professional-story-journey" },
+                                        { label: "Skills", to: "/skills-laboratory-interactive-technical-showcase" },
+                                        { label: "Achievements", to: "/achievements-center-credibility-growth-documentation" },
+                                        { label: "Contact", to: "/contact-gateway-professional-connection-hub" }
+                                    ].map(link => (
+                                        <Link
+                                            key={link.label}
+                                            to={link.to}                   // ← use `to`, not `href`
                                             className="block text-muted-foreground hover:text-primary transition-colors duration-200"
                                         >
-                                            {link?.name}
-                                        </a>
+                                            {link.label}
+                                        </Link>
                                     ))}
                                 </div>
                             </div>
-
                             {/* Project Stats */}
                             <div className="space-y-4">
                                 <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">

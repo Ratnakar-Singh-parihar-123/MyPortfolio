@@ -8,6 +8,7 @@ import RecentWinsSection from './components/RecentWinsSection';
 import ProgressTracker from './components/ProgressTracker';
 import AchievementModal from './components/AchievementModal';
 import StatsOverview from './components/StatsOverview';
+import { Link } from 'react-router-dom';
 
 const AchievementsCenterPage = () => {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -190,11 +191,11 @@ const AchievementsCenterPage = () => {
 
   const getFilteredAchievements = () => {
     let filtered = achievements;
-    
+
     if (activeCategory !== 'All') {
       filtered = filtered?.filter(achievement => achievement?.category === activeCategory);
     }
-    
+
     if (searchTerm) {
       filtered = filtered?.filter(achievement =>
         achievement?.title?.toLowerCase()?.includes(searchTerm?.toLowerCase()) ||
@@ -202,7 +203,7 @@ const AchievementsCenterPage = () => {
         achievement?.skills?.some(skill => skill?.toLowerCase()?.includes(searchTerm?.toLowerCase()))
       );
     }
-    
+
     return filtered;
   };
 
@@ -244,9 +245,9 @@ const AchievementsCenterPage = () => {
                   Achievements Center
                 </h1>
               </div>
-              
+
               <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
-                Comprehensive documentation of verified accomplishments, certifications, and continuous 
+                Comprehensive documentation of verified accomplishments, certifications, and continuous
                 professional development milestones showcasing technical expertise and growth journey.
               </p>
 
@@ -273,7 +274,7 @@ const AchievementsCenterPage = () => {
           <StatsOverview achievements={achievements} />
 
           {/* Recent Wins Section */}
-          <RecentWinsSection 
+          <RecentWinsSection
             recentAchievements={recentAchievements}
             onViewDetails={handleViewDetails}
           />
@@ -289,7 +290,7 @@ const AchievementsCenterPage = () => {
                   <Icon name="Search" size={24} />
                   <span>Explore Achievements</span>
                 </h2>
-                
+
                 <div className="relative max-w-md w-full">
                   <Icon name="Search" size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                   <input
@@ -339,7 +340,7 @@ const AchievementsCenterPage = () => {
                   No achievements found
                 </h3>
                 <p className="text-gray-600 mb-6">
-                  {searchTerm 
+                  {searchTerm
                     ? `No achievements match "${searchTerm}". Try adjusting your search terms.`
                     : `No achievements found in the ${activeCategory} category.`
                   }
@@ -363,7 +364,7 @@ const AchievementsCenterPage = () => {
               Ready to Build Something Amazing Together?
             </h2>
             <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
-              These achievements represent my commitment to continuous learning and technical excellence. 
+              These achievements represent my commitment to continuous learning and technical excellence.
               Let's discuss how I can bring this expertise to your next project.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-4">
@@ -395,40 +396,41 @@ const AchievementsCenterPage = () => {
       <footer className="bg-gray-900 text-white py-12 mt-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8">
+            {/* brand */}
             <div className="md:col-span-2">
               <div className="flex items-center space-x-3 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg grid place-content-center">
                   <Icon name="Code2" size={18} color="white" strokeWidth={2.5} />
                 </div>
                 <span className="text-xl font-bold">Portfolio Pro</span>
               </div>
+
               <p className="text-gray-400 mb-4">
-                Showcasing technical excellence through verified achievements and continuous professional development.
+                Showcasing technical excellence through verified achievements and continuous
+                professional development.
               </p>
+
+              {/* social – external links stay <a> */}
               <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                  <Icon name="Github" size={20} />
-                </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                  <Icon name="Linkedin" size={20} />
-                </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                  <Icon name="Twitter" size={20} />
-                </a>
+                <a href="https://github.com/your-handle" className="text-gray-400 hover:text-white transition-colors"><Icon name="Github" size={20} /></a>
+                <a href="https://linkedin.com/in/your-url" className="text-gray-400 hover:text-white transition-colors"><Icon name="Linkedin" size={20} /></a>
+                <a href="https://x.com/your-handle" className="text-gray-400 hover:text-white transition-colors"><Icon name="Twitter" size={20} /></a>
               </div>
             </div>
-            
+
+            {/* quick links – internal routes use <Link> */}
             <div>
               <h3 className="font-semibold mb-4">Quick Links</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="/" className="hover:text-white transition-colors duration-200">Home</a></li>
-                <li><a href="/about-professional-story-journey" className="hover:text-white transition-colors duration-200">About</a></li>
-                <li><a href="/skills-laboratory-interactive-technical-showcase" className="hover:text-white transition-colors duration-200">Skills</a></li>
-                <li><a href="/projects-gallery-development-portfolio-showcase" className="hover:text-white transition-colors duration-200">Projects</a></li>
-                <li><a href="/contact-gateway-professional-connection-hub" className="hover:text-white transition-colors duration-200">Contact</a></li>
+                <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
+                <li><Link to="/about-professional-story-journey" className="hover:text-white transition-colors">About</Link></li>
+                <li><Link to="/skills-laboratory-interactive-technical-showcase" className="hover:text-white transition-colors">Skills</Link></li>
+                <li><Link to="/projects-gallery-development-portfolio-showcase" className="hover:text-white transition-colors">Projects</Link></li>
+                <li><Link to="/contact-gateway-professional-connection-hub" className="hover:text-white transition-colors">Contact</Link></li>
               </ul>
             </div>
-            
+
+            {/* achievements – just text */}
             <div>
               <h3 className="font-semibold mb-4">Achievements</h3>
               <ul className="space-y-2 text-gray-400">
@@ -439,12 +441,13 @@ const AchievementsCenterPage = () => {
               </ul>
             </div>
           </div>
-          
+
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; {new Date()?.getFullYear()} RSP. All rights reserved.</p>
+            © {new Date().getFullYear()} RSP. All rights reserved.
           </div>
         </div>
       </footer>
+
     </div>
   );
 };

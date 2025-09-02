@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Icon from '../AppIcon';
 import Button from './Button';
+import ResumeActions from './ResumeActions';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -128,7 +129,7 @@ const Header = () => {
               iconPosition="left"
               className="text-sm"
             >
-              Resume
+              Download Résumé
             </Button>
             <Button
               variant="default"
