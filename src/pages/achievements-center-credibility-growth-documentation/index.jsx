@@ -5,10 +5,20 @@ import Icon from '../../components/AppIcon';
 import AchievementCard from './components/AchievementCard';
 import CategoryFilter from './components/CategoryFilter';
 import RecentWinsSection from './components/RecentWinsSection';
-import ProgressTracker from './components/ProgressTracker';
+// import ProgressTracker from './components/ProgressTracker';
 import AchievementModal from './components/AchievementModal';
 import StatsOverview from './components/StatsOverview';
 import { Link } from 'react-router-dom';
+
+// image for certificates
+import FrontendDevloper from '../../../public/assets/Certificate/FrontendDeveloper.png';
+import react from '../../../public/assets/Certificate/react.png';
+import psBasic from '../../../public/assets/Certificate/basic.png';
+import psIntermediate from '../../../public/assets/Certificate/Intermediate.png';
+import javaScriptBasics from '../../../public/assets/Certificate/javaScriptBasics.png';
+
+
+
 
 const AchievementsCenterPage = () => {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -20,130 +30,160 @@ const AchievementsCenterPage = () => {
   const achievements = [
     {
       id: 1,
-      title: "AWS Certified Developer - Associate",
-      organization: "Amazon Web Services",
+      title: "Frontend Developer (React)",
+      organization: "Hackerrank",
       category: "Technical Certifications",
       description: "Comprehensive certification covering AWS services, deployment, security, and troubleshooting for cloud applications.",
-      completedDate: "2024-08-15",
-      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=300&fit=crop",
+      completedDate: "2025-08-29",
+      image: FrontendDevloper,
       verified: true,
       isRecent: true,
-      verificationUrl: "https://aws.amazon.com/verification",
+      verificationUrl: "https://www.hackerrank.com/certificates/iframe/eaae9fd31c8c",
       credentialId: "AWS-DEV-2024-001",
       validUntil: "2027-08-15",
-      skills: ["AWS Lambda", "DynamoDB", "S3", "CloudFormation", "API Gateway"],
+      skills: ["It covers topics like React, CSS, and JavaScript."],
       learningStory: `This certification journey was intense but rewarding. I spent 3 months diving deep into AWS services, building hands-on projects, and understanding cloud architecture patterns. The exam challenged my practical knowledge of serverless computing and infrastructure as code.`,
       socialProof: "Demonstrated exceptional understanding of AWS development practices and cloud-native application design.",
       score: "892/1000"
     },
     {
       id: 2,
-      title: "React Advanced Patterns Certification",
-      organization: "Meta (Facebook)",
+      title: "React",
+      organization: "Hackerrank",
       category: "Technical Certifications",
       description: "Advanced React certification covering hooks, context, performance optimization, and modern development patterns.",
-      completedDate: "2024-07-22",
-      image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=300&fit=crop",
+      completedDate: "2025-09-03",
+      image: react,
       verified: true,
       isRecent: true,
-      verificationUrl: "https://developers.facebook.com/certification",
-      credentialId: "META-REACT-2024-045",
-      skills: ["React Hooks", "Context API", "Performance Optimization", "Testing", "TypeScript"],
+      verificationUrl: "https://www.hackerrank.com/certificates/iframe/240df00a1852",
+      credentialId: "240DF00A1852",
+      skills: ["React (Basic) It covers topics like Basic Routing, Rendering Elements,State Management (Internal Component State), Handling Events, ES6 and JavaScript and Form Validation."],
       learningStory: `Building complex React applications taught me the importance of component composition and state management. This certification validated my expertise in modern React patterns and best practices.`,
       socialProof: "Showcased mastery of advanced React concepts and modern frontend development practices."
     },
     {
       id: 3,
-      title: "Full Stack Web Development Bootcamp",
-      organization: "The Odin Project",
-      category: "Educational Achievements",
+      title: "Problem Solving (Basic)",
+      organization: "Hackerrank",
+      category: "Technical Certifications",
       description: "Comprehensive full-stack development program covering frontend, backend, databases, and deployment strategies.",
-      completedDate: "2024-06-10",
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop",
+      completedDate: "2025-06-06",
+      image: psBasic,
       verified: true,
       isRecent: false,
-      verificationUrl: "https://theodinproject.com/certificates",
-      skills: ["HTML/CSS", "JavaScript", "Node.js", "Express", "MongoDB", "Git"],
+      verificationUrl: "https://www.hackerrank.com/certificates/iframe/5ce289a1a111",
+      skills: ["It covers basic topics of Data Structures (such as Arrays, Strings) and Algorithms (such as Sorting and Searching)."],
       learningStory: `This intensive bootcamp transformed me from a beginner to a confident full-stack developer. The project-based learning approach helped me build real-world applications and understand the complete development lifecycle.`,
       socialProof: "Completed with distinction, demonstrating strong problem-solving skills and technical proficiency."
     },
     {
       id: 4,
-      title: "E-Commerce Platform Launch",
-      organization: "Personal Project",
-      category: "Project Milestones",
-      description: "Successfully launched a full-featured e-commerce platform with payment integration, user authentication, and admin dashboard.",
-      completedDate: "2024-05-28",
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop",
-      verified: false,
+      title: "Problem Solving (Intermediate)",
+      organization: "Hackerrank",
+      category: "Technical Certifications",
+      description: "Comprehensive full-stack development program covering frontend, backend, databases, and deployment strategies.",
+      completedDate: "2025-06-06",
+      image: psIntermediate,
+      verified: true,
       isRecent: false,
-      skills: ["React", "Node.js", "Stripe API", "JWT", "MongoDB"],
-      learningStory: `Building this e-commerce platform from scratch was my biggest challenge yet. I learned about payment processing, security best practices, and scalable architecture design. The project now serves real customers and processes actual transactions.`,
-      socialProof: "Successfully deployed and maintained with 99.9% uptime and positive user feedback."
+      verificationUrl: "https://www.hackerrank.com/certificates/iframe/cbf68707295d",
+      skills: ["It covers topics of Data Structures (such as HashMaps, Stacks and Queues) and Algorithms (such as Optimal Solutions)."],
+      learningStory: `This intensive bootcamp transformed me from a beginner to a confident full-stack developer. The project-based learning approach helped me build real-world applications and understand the complete development lifecycle.`,
+      socialProof: "Completed with distinction, demonstrating strong problem-solving skills and technical proficiency."
     },
     {
       id: 5,
-      title: "Open Source Contributor - React Router",
-      organization: "Remix (React Router)",
-      category: "Community Contributions",
-      description: "Contributed bug fixes and feature improvements to React Router, one of the most popular React libraries.",
-      completedDate: "2024-04-15",
-      image: "https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=300&fit=crop",
-      verified: true,
-      isRecent: false,
-      verificationUrl: "https://github.com/remix-run/react-router/contributors",
-      skills: ["React", "TypeScript", "Testing", "Documentation"],
-      learningStory: `Contributing to React Router taught me about large-scale open source development. I learned to write clean, well-tested code and collaborate with maintainers from around the world. My contributions helped improve the library for thousands of developers.`,
-      socialProof: "Recognized by maintainers for high-quality contributions and attention to detail."
-    },
-    {
-      id: 6,
-      title: "JavaScript Algorithms and Data Structures",
-      organization: "freeCodeCamp",
-      category: "Educational Achievements",
-      description: "Comprehensive course covering fundamental algorithms, data structures, and problem-solving techniques in JavaScript.",
-      completedDate: "2024-03-20",
-      image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=400&h=300&fit=crop",
-      verified: true,
-      isRecent: false,
-      verificationUrl: "https://freecodecamp.org/certification",
-      credentialId: "FCC-JS-ALG-2024-789",
-      skills: ["JavaScript", "Algorithms", "Data Structures", "Problem Solving"],
-      learningStory: `This course strengthened my computer science fundamentals. Learning algorithms and data structures improved my problem-solving approach and made me a more efficient programmer. The hands-on challenges were particularly valuable.`,
-      socialProof: "Completed all 300+ coding challenges with optimal solutions and clean code practices."
-    },
-    {
-      id: 7,
-      title: "Mentorship Program Completion",
-      organization: "ADPList",
-      category: "Community Contributions",
-      description: "Completed a structured mentorship program, helping junior developers transition into tech careers.",
-      completedDate: "2024-02-14",
-      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=300&fit=crop",
-      verified: true,
-      isRecent: false,
-      verificationUrl: "https://adplist.org/mentors",
-      skills: ["Mentoring", "Communication", "Career Guidance", "Technical Leadership"],
-      learningStory: `Mentoring others reinforced my own knowledge while helping newcomers navigate their tech journey. I guided 5 mentees through career transitions, resume reviews, and technical interviews. Seeing their success was incredibly rewarding.`,
-      socialProof: "Received 5-star ratings from all mentees with testimonials highlighting impact on their careers."
-    },
-    {
-      id: 8,
-      title: "Google Analytics Certified",
-      organization: "Google",
+      title: "JavaScript (Basic)",
+      organization: "Hackerrank",
       category: "Technical Certifications",
-      description: "Certification in Google Analytics covering data analysis, reporting, and digital marketing insights.",
-      completedDate: "2024-01-30",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
+      description: "Comprehensive full-stack development program covering frontend, backend, databases, and deployment strategies.",
+      completedDate: "2025-08-28",
+      image: javaScriptBasics,
       verified: true,
       isRecent: false,
-      verificationUrl: "https://skillshop.exceedlms.com/student/catalog",
-      credentialId: "GOOGLE-GA-2024-456",
-      validUntil: "2025-01-30",
-      skills: ["Google Analytics", "Data Analysis", "Digital Marketing", "Reporting"],
-      learningStory: `Understanding user behavior through analytics became crucial for my web development projects. This certification taught me how to make data-driven decisions and optimize user experiences based on real metrics.`,
-      socialProof: "Applied analytics insights to improve website performance by 40% across multiple projects."
-    }
+      verificationUrl: "https://www.hackerrank.com/certificates/iframe/438c3130ea15",
+      skills: ["It covers topics like, Functions, Currying, Hoisting, Scope, Inheritance, Events and Error Handling."],
+      learningStory: `This intensive bootcamp transformed me from a beginner to a confident full-stack developer. The project-based learning approach helped me build real-world applications and understand the complete development lifecycle.`,
+      socialProof: "Completed with distinction, demonstrating strong problem-solving skills and technical proficiency."
+    },
+    // {
+    //   id: 4,
+    //   title: "E-Commerce Platform Launch",
+    //   organization: "Personal Project",
+    //   category: "Project Milestones",
+    //   description: "Successfully launched a full-featured e-commerce platform with payment integration, user authentication, and admin dashboard.",
+    //   completedDate: "2024-05-28",
+    //   image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop",
+    //   verified: false,
+    //   isRecent: false,
+    //   skills: ["React", "Node.js", "Stripe API", "JWT", "MongoDB"],
+    //   learningStory: `Building this e-commerce platform from scratch was my biggest challenge yet. I learned about payment processing, security best practices, and scalable architecture design. The project now serves real customers and processes actual transactions.`,
+    //   socialProof: "Successfully deployed and maintained with 99.9% uptime and positive user feedback."
+    // },
+    // {
+    //   id: 5,
+    //   title: "Open Source Contributor - React Router",
+    //   organization: "Remix (React Router)",
+    //   category: "Community Contributions",
+    //   description: "Contributed bug fixes and feature improvements to React Router, one of the most popular React libraries.",
+    //   completedDate: "2024-04-15",
+    //   image: "https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=300&fit=crop",
+    //   verified: true,
+    //   isRecent: false,
+    //   verificationUrl: "https://github.com/remix-run/react-router/contributors",
+    //   skills: ["React", "TypeScript", "Testing", "Documentation"],
+    //   learningStory: `Contributing to React Router taught me about large-scale open source development. I learned to write clean, well-tested code and collaborate with maintainers from around the world. My contributions helped improve the library for thousands of developers.`,
+    //   socialProof: "Recognized by maintainers for high-quality contributions and attention to detail."
+    // },
+    // {
+    //   id: 6,
+    //   title: "JavaScript Algorithms and Data Structures",
+    //   organization: "freeCodeCamp",
+    //   category: "Educational Achievements",
+    //   description: "Comprehensive course covering fundamental algorithms, data structures, and problem-solving techniques in JavaScript.",
+    //   completedDate: "2024-03-20",
+    //   image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=400&h=300&fit=crop",
+    //   verified: true,
+    //   isRecent: false,
+    //   verificationUrl: "https://freecodecamp.org/certification",
+    //   credentialId: "FCC-JS-ALG-2024-789",
+    //   skills: ["JavaScript", "Algorithms", "Data Structures", "Problem Solving"],
+    //   learningStory: `This course strengthened my computer science fundamentals. Learning algorithms and data structures improved my problem-solving approach and made me a more efficient programmer. The hands-on challenges were particularly valuable.`,
+    //   socialProof: "Completed all 300+ coding challenges with optimal solutions and clean code practices."
+    // },
+    // {
+    //   id: 7,
+    //   title: "Mentorship Program Completion",
+    //   organization: "ADPList",
+    //   category: "Community Contributions",
+    //   description: "Completed a structured mentorship program, helping junior developers transition into tech careers.",
+    //   completedDate: "2024-02-14",
+    //   image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=300&fit=crop",
+    //   verified: true,
+    //   isRecent: false,
+    //   verificationUrl: "https://adplist.org/mentors",
+    //   skills: ["Mentoring", "Communication", "Career Guidance", "Technical Leadership"],
+    //   learningStory: `Mentoring others reinforced my own knowledge while helping newcomers navigate their tech journey. I guided 5 mentees through career transitions, resume reviews, and technical interviews. Seeing their success was incredibly rewarding.`,
+    //   socialProof: "Received 5-star ratings from all mentees with testimonials highlighting impact on their careers."
+    // },
+    // {
+    //   id: 8,
+    //   title: "Google Analytics Certified",
+    //   organization: "Google",
+    //   category: "Technical Certifications",
+    //   description: "Certification in Google Analytics covering data analysis, reporting, and digital marketing insights.",
+    //   completedDate: "2024-01-30",
+    //   image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
+    //   verified: true,
+    //   isRecent: false,
+    //   verificationUrl: "https://skillshop.exceedlms.com/student/catalog",
+    //   credentialId: "GOOGLE-GA-2024-456",
+    //   validUntil: "2025-01-30",
+    //   skills: ["Google Analytics", "Data Analysis", "Digital Marketing", "Reporting"],
+    //   learningStory: `Understanding user behavior through analytics became crucial for my web development projects. This certification taught me how to make data-driven decisions and optimize user experiences based on real metrics.`,
+    //   socialProof: "Applied analytics insights to improve website performance by 40% across multiple projects."
+    // }
   ];
 
   // Mock progress tracking data
@@ -280,7 +320,7 @@ const AchievementsCenterPage = () => {
           />
 
           {/* Progress Tracker */}
-          <ProgressTracker progressData={progressData} />
+          {/* <ProgressTracker progressData={progressData} /> */}
 
           {/* Search and Filter Section */}
           <div className="mb-8">

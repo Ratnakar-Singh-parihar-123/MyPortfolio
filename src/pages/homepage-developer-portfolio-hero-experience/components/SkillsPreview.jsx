@@ -41,7 +41,7 @@ const SkillsPreview = () => {
         { name: 'Git', level: 92, icon: 'GitBranch', certified: true },
         { name: 'Github', level: 85, icon: 'Package', certified: false },
         { name: 'VS Code', level: 90, icon: 'Cloud', certified: true },
-        { name: 'Figma', level: 60, icon: 'Figma', certified: false }
+        { name: 'Postman', level: 60, icon: 'Postman', certified: false }
       ]
     }
   ];

@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import Icon from '../../../components/AppIcon';
-import Image from '../../../components/AppImage';
-import Button from '../../../components/ui/Button';
-import ProblemSolvingBasic from '../../../../public/assets/Certificate/basic.png';
-import ProblemSolvingIntermediate from '../../../../public/assets/Certificate/Intermediate.png';
-import JavaScriptBasics from '../../../../public/assets/Certificate/javaScriptBasics.png';
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
+import Icon from "../../../components/AppIcon";
+import Image from "../../../components/AppImage";
+import Button from "../../../components/ui/Button";
+import ProblemSolvingBasic from "../../../../public/assets/Certificate/basic.png";
+import ProblemSolvingIntermediate from "../../../../public/assets/Certificate/Intermediate.png";
+import JavaScriptBasics from "../../../../public/assets/Certificate/javaScriptBasics.png";
+import FrontendDeveloper from "../../../../public/assets/Certificate/FrontendDeveloper.png";
+import react from '../../../../public/assets/Certificate/react.png';
 
 const FeaturedAchievements = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   const achievements = [
-
     {
       id: 1,
       title: "Problem Solving (Basic) Certificate",
@@ -22,10 +23,11 @@ const FeaturedAchievements = () => {
       type: "certification",
       icon: "Award",
       image: ProblemSolvingBasic,
-      description: "Earned recognition for foundational problem-solving skills, covering data structures, algorithms, and logical reasoning challenges.",
-      verificationLink: "#",
+      description:
+        "Earned recognition for foundational problem-solving skills, covering data structures, algorithms, and logical reasoning challenges.",
+      verificationLink: "https://www.hackerrank.com/certificates/iframe/5ce289a1a111",
       skills: ["Algorithms", "Data Structures", "Logic Building"],
-      credentialId: "HR-PSB-2024-001"
+      credentialId: "",
     },
     {
       id: 2,
@@ -35,37 +37,42 @@ const FeaturedAchievements = () => {
       type: "certification",
       icon: "Award",
       image: ProblemSolvingIntermediate,
-      description: "Validated intermediate-level problem-solving expertise with advanced algorithmic and coding challenges.",
-      verificationLink: "#",
+      description:
+        "Validated intermediate-level problem-solving expertise with advanced algorithmic and coding challenges.",
+      verificationLink: "https://www.hackerrank.com/certificates/iframe/cbf68707295d",
       skills: ["Dynamic Programming", "Greedy Algorithms", "Optimization"],
-      credentialId: "HR-PSI-2024-002"
+      credentialId: "",
     },
-    {
-      id: 3,
-      title: "Java Programming Certificate",
-      issuer: "Online Coding Platform",
-      date: "September 2024",
-      type: "certification",
-      icon: "Code",
-      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=300&fit=crop",
-      description: "Demonstrated proficiency in Java programming, object-oriented principles, and application development.",
-      verificationLink: "#",
-      skills: ["Java", "OOPs", "Exception Handling", "Collections"],
-      credentialId: "JAVA-2024-003"
-    },
-    {
-      id: 4,
-      title: "MERN Stack Developer Certificate",
-      issuer: "Coding Thinker",
-      date: "October 2024",
-      type: "certification",
-      icon: "Globe",
-      image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=300&fit=crop",
-      description: "Completed MERN stack training with practical projects covering full-stack web development using MongoDB, Express, React, and Node.js.",
-      verificationLink: "#",
-      skills: ["MongoDB", "Express.js", "React", "Node.js"],
-      credentialId: "MERN-2024-004"
-    },
+    // {
+    //   id: 3,
+    //   title: "Java Programming Certificate",
+    //   issuer: "Online Coding Platform",
+    //   date: "September 2024",
+    //   type: "certification",
+    //   icon: "Code",
+    //   image:
+    //     "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=300&fit=crop",
+    //   description:
+    //     "Demonstrated proficiency in Java programming, object-oriented principles, and application development.",
+    //   verificationLink: "#",
+    //   skills: ["Java", "OOPs", "Exception Handling", "Collections"],
+    //   credentialId: "JAVA-2024-003",
+    // },
+    // {
+    //   id: 4,
+    //   title: "MERN Stack Developer Certificate",
+    //   issuer: "Coding Thinker",
+    //   date: "October 2024",
+    //   type: "certification",
+    //   icon: "Globe",
+    //   image:
+    //     "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=300&fit=crop",
+    //   description:
+    //     "Completed MERN stack training with practical projects covering full-stack web development using MongoDB, Express, React, and Node.js.",
+    //   verificationLink: "#",
+    //   skills: ["MongoDB", "Express.js", "React", "Node.js"],
+    //   credentialId: "MERN-2024-004",
+    // },
     {
       id: 5,
       title: "JavaScript Basics Certificate",
@@ -74,12 +81,51 @@ const FeaturedAchievements = () => {
       type: "certification",
       icon: "Code",
       image: JavaScriptBasics,
-      description: "Successfully completed JavaScript basics training covering fundamentals like variables, functions, arrays, objects, DOM manipulation, and ES6 concepts.",
-      verificationLink: "#",
-      skills: ["JavaScript", "ES6", "DOM Manipulation", "Functions", "Objects", "Arrays"],
-      credentialId: "JS-2024-005"
-    }
-
+      description:
+        "Successfully completed JavaScript basics training covering fundamentals like variables, functions, arrays, objects, DOM manipulation, and ES6 concepts.",
+      verificationLink: "https://www.hackerrank.com/certificates/iframe/438c3130ea15",
+      skills: [
+        "JavaScript",
+        "ES6",
+        "DOM Manipulation",
+        "Functions",
+        "Objects",
+        "Arrays",
+      ],
+      credentialId: "",
+    },
+    {
+      id: 6,
+      title: "React",
+      issuer: "HackerRank",
+      date: "july 2025",
+      type: "certification",
+      icon: "Code",
+      image: react,
+      description:
+        "A software professional skilled in building responsive, interactive, and scalable web applications using React. Certified by HackerRank for expertise in modern frontend practices.",
+      verificationLink: "https://www.hackerrank.com/certificates/iframe/240df00a1852",
+      skills: [
+        "React.js (Hooks, State, Props)","Redux (State Management)","REST API (Axios, JSON)",
+      ],
+      credentialId: "240DF00A1852",
+    },
+    {
+      id: 7,
+      title: "Frontend Developer (React)",
+      issuer: "HackerRank",
+      date: "September 2025",
+      type: "certification",
+      icon: "Code",
+      image: FrontendDeveloper,
+      description:
+        "A software professional skilled in building responsive, interactive, and scalable web applications using React. Certified by HackerRank for expertise in modern frontend practices.",
+      verificationLink: "https://www.hackerrank.com/certificates/iframe/eaae9fd31c8c",
+      skills: [
+        "React.js (Hooks, State, Props)","Redux (State Management)","REST API (Axios, JSON)",
+      ],
+      credentialId: "",
+    },
   ];
 
   useEffect(() => {
@@ -98,7 +144,9 @@ const FeaturedAchievements = () => {
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + achievements?.length) % achievements?.length);
+    setCurrentSlide(
+      (prev) => (prev - 1 + achievements?.length) % achievements?.length
+    );
     setIsAutoPlaying(false);
   };
 
@@ -113,9 +161,9 @@ const FeaturedAchievements = () => {
       opacity: 1,
       transition: {
         duration: 0.6,
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
@@ -123,8 +171,8 @@ const FeaturedAchievements = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: "easeOut" }
-    }
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
   };
 
   return (
@@ -142,8 +190,8 @@ const FeaturedAchievements = () => {
               Latest Achievements
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Recent certifications, awards, and milestones that showcase continuous learning
-              and professional growth in the tech industry.
+              Recent certifications, awards, and milestones that showcase
+              continuous learning and professional growth in the tech industry.
             </p>
           </motion.div>
         </motion.div>
@@ -178,10 +226,16 @@ const FeaturedAchievements = () => {
 
                     {/* Achievement Type Badge */}
                     <div className="absolute top-4 left-4">
-                      <div className={`px-3 py-1 rounded-full text-xs font-medium ${achievements?.[currentSlide]?.type === 'certification'
-                        ? 'bg-primary text-primary-foreground' : 'bg-accent text-accent-foreground'
-                        }`}>
-                        {achievements?.[currentSlide]?.type === 'certification' ? 'Certification' : 'Achievement'}
+                      <div
+                        className={`px-3 py-1 rounded-full text-xs font-medium ${
+                          achievements?.[currentSlide]?.type === "certification"
+                            ? "bg-primary text-primary-foreground"
+                            : "bg-accent text-accent-foreground"
+                        }`}
+                      >
+                        {achievements?.[currentSlide]?.type === "certification"
+                          ? "Certification"
+                          : "Achievement"}
                       </div>
                     </div>
 
@@ -202,10 +256,15 @@ const FeaturedAchievements = () => {
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
                         <div className="p-2 bg-primary/10 rounded-lg">
-                          <Icon name={achievements?.[currentSlide]?.icon} size={20} className="text-primary" />
+                          <Icon
+                            name={achievements?.[currentSlide]?.icon}
+                            size={20}
+                            className="text-primary"
+                          />
                         </div>
                         <div className="text-sm text-muted-foreground">
-                          {achievements?.[currentSlide]?.issuer} • {achievements?.[currentSlide]?.date}
+                          {achievements?.[currentSlide]?.issuer} •{" "}
+                          {achievements?.[currentSlide]?.date}
                         </div>
                       </div>
 
@@ -220,7 +279,9 @@ const FeaturedAchievements = () => {
 
                     {/* Skills Tags */}
                     <div className="space-y-2">
-                      <div className="text-sm font-medium text-foreground">Key Skills:</div>
+                      <div className="text-sm font-medium text-foreground">
+                        Key Skills:
+                      </div>
                       <div className="flex flex-wrap gap-2">
                         {achievements?.[currentSlide]?.skills?.map((skill) => (
                           <span
@@ -268,9 +329,11 @@ const FeaturedAchievements = () => {
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-200 ${index === currentSlide
-                  ? 'bg-primary scale-110' : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
-                  }`}
+                className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                  index === currentSlide
+                    ? "bg-primary scale-110"
+                    : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}

@@ -1,10 +1,10 @@
 // ResumeActions.jsx
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Button from "./Button";      // ← adjust path
-import Icon   from "../AppIcon";    // ← adjust path
+import Button from "./Button";       // ← adjust path
+import Icon from "../AppIcon";       // ← adjust path
 
-const RESUME_URL = "/assets/Ratnakar_Singh_Parihar_Resume.pdf";
+const RESUME_URL ="/assets/Resume/Ratnakar_Singh_Parihar.pdf";
 
 const ResumeActions = () => {
   const [open, setOpen] = useState(false);
@@ -14,11 +14,11 @@ const ResumeActions = () => {
   useEffect(() => {
     if (open) {
       window.addEventListener("keydown", escHandler);
-      document.body.style.overflow = "hidden";        // lock scroll
+      document.body.style.overflow = "hidden"; // lock scroll
     }
     return () => {
       window.removeEventListener("keydown", escHandler);
-      document.body.style.overflow = "";              // unlock scroll
+      document.body.style.overflow = ""; // unlock scroll
     };
   }, [open, escHandler]);
 
@@ -40,49 +40,50 @@ const ResumeActions = () => {
         {open && (
           /* backdrop */
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-2 sm:px-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             {/* dialog */}
             <motion.div
-              className="w-full max-w-3xl h-[80vh] max-h-[90vh] bg-background rounded-lg shadow-2xl flex flex-col"
+              className="w-full max-w-3xl h-[85vh] sm:h-[80vh] max-h-[95vh] bg-background rounded-lg shadow-2xl flex flex-col overflow-hidden"
               initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1,   opacity: 1 }}
+              animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
             >
               {/* header */}
-              <div className="flex items-center justify-between p-4 border-b border-border">
-                <span className="font-semibold">My Résumé</span>
+              <div className="flex items-center justify-between p-3 sm:p-4 border-b border-border text-sm sm:text-base">
+                <span className="font-semibold truncate">My Résumé</span>
                 <button
                   onClick={() => setOpen(false)}
-                  className="text-muted-foreground hover:text-foreground"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                   aria-label="Close résumé viewer"
                 >
-                  <Icon name="X" size={18} />
+                  <Icon name="X" size={20} />
                 </button>
               </div>
 
               {/* PDF viewer */}
-              <div className="flex-grow overflow-auto" tabIndex={-1}>
+              <div className="flex-grow overflow-auto bg-muted">
                 <iframe
                   src={RESUME_URL}
                   title="Résumé PDF"
-                  className="w-full h-full min-h-full"
-                  tabIndex={-1}
+                  className="w-full h-full min-h-[70vh] sm:min-h-full"
+                  loading="lazy"
                 />
               </div>
 
               {/* footer */}
-              <div className="p-4 border-t border-border flex justify-center">
+              <div className="p-3 sm:p-4 border-t border-border flex justify-center">
                 <Button
                   asChild
                   variant="outline"
                   size="sm"
                   iconName="Download"
                   iconPosition="left"
+                  className="w-full sm:w-auto text-sm"
                 >
                   <a href={RESUME_URL} download="Ratnakar_Singh_Parihar_Resume.pdf">
                     Download Résumé

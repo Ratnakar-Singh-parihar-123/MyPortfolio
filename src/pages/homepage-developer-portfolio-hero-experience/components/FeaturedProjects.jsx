@@ -4,6 +4,12 @@ import Icon from "../../../components/AppIcon";
 import ProjectCard from "../../projects-gallery-development-portfolio-showcase/components/ProjectCard";
 import { Link } from "react-router-dom";
 
+// projects image import
+
+import Pimge from "../../../../public/assets/PtojectsImage/premium vehicel services.png";
+import Bimge from "../../../../public/assets/PtojectsImage/Blood organ donation platfrom.png";
+import Simge from "../../../../public/assets/PtojectsImage/scooty fy.png";
+
 const FeaturedProjects = () => {
   /* ------------------------------------------------------------------ */
   /*                         Component state                            */
@@ -13,51 +19,52 @@ const FeaturedProjects = () => {
   const featuredProjects = [
     {
       id: 1,
-      title: "TaskFlow Pro",
+      title: "Premium Vechicel Services",
       description:
-        "A comprehensive project management platform with real-time collaboration, Kanban boards, and team analytics. Built for modern distributed teams.",
+        "Premium Vehicle Services - trusted care for your car with expert maintenance, detailing, and complete service solutions.",
       image:
-        "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop",
-      technologies: ["React", "Node.js", "PostgreSQL", "Socket.io", "Tailwind"],
+        Pimge,
+      technologies: ["React", "Node.js", "Express.js", "MongoDB", "Socket.io", "Tailwind CSS"],
       type: "Personal",
       status: "completed",
       timeline: "6 months",
-      github: "https://github.com/alexchen/taskflow-pro",
-      demo: "https://taskflow-pro-demo.com",
+      github: "https://github.com/Ratnakar-Singh-parihar-123/Vehicle-Service-Booking-Platform",
+      demo: "https://vehicle-service-booking-platform.onrender.com",
     },
     {
       id: 2,
-      title: "EcoTracker Mobile",
+      title: "Blood organ donation platfrom",
       description:
-        "React Native app for tracking carbon footprint with AI-powered suggestions and social challenges. Over 10k downloads.",
+        "Donate blood, donate organs - give hope, save lives, and be someone’s reason to live.",
       image:
-        "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&h=600&fit=crop",
+        Bimge,
       technologies: [
-        "React Native",
-        "TypeScript",
-        "Firebase",
-        "TensorFlow",
-        "Redux",
+        "React",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "Socket.io",
+        "Tailwind CSS",
       ],
-      type: "Collaborative",
+      type: "Personal",
       status: "completed",
       timeline: "8 months",
-      github: "https://github.com/greenteam/ecotracker",
-      demo: "https://apps.apple.com/app/ecotracker",
+      github: "",
+      demo: "",
     },
     {
       id: 3,
-      title: "DevToolkit",
+      title: "scooty fy",
       description:
-        "Open-source developer utilities suite with code formatters, API testers, and productivity tools. 500+ GitHub stars.",
+        "ScootyFy - a convenient platform for reliable two-wheeler rides and services.",
       image:
-        "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop",
+        Simge,
       technologies: ["Vue.js", "Electron", "Python", "Docker", "AWS"],
       type: "Personal",
       status: "in-progress",
-      timeline: "4 months",
-      github: "https://github.com/alexchen/devtoolkit",
-      demo: "https://devtoolkit.dev",
+      timeline: "3 months",
+      github: "",
+      demo: "",
     },
   ];
 
@@ -269,7 +276,7 @@ const FeaturedProjects = () => {
         </motion.div>
 
         {/* Stats */}
-        <motion.div
+        {/* <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -294,7 +301,7 @@ const FeaturedProjects = () => {
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
 
       {/* Modal */}

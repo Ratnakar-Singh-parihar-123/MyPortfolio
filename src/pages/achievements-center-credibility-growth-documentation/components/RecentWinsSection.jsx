@@ -3,6 +3,10 @@ import Icon from '../../../components/AppIcon';
 import Image from '../../../components/AppImage';
 import Button from '../../../components/ui/Button';
 
+// image 
+// import FrontendReact from '../../../../public/assets/Certificate/FrontendDeveloper.png';
+// import javaScript from '../../../../public/assets/Certificate/javaScriptBasics.png';
+
 const RecentWinsSection = ({ recentAchievements, onViewDetails }) => {
   const formatDate = (dateString) => {
     const date = new Date(dateString);
