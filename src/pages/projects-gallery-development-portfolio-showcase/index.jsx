@@ -10,6 +10,14 @@ import WorkInProgress from "./components/WorkInProgress";
 import Icon from "../../components/AppIcon";
 import { Link } from "react-router-dom";
 
+// projects image import
+import PremiumVechicelServices from "../../../public/assets/PtojectsImage/premium vehicel services.png"
+import Textutils from "../../../public/assets/PtojectsImage/TextUtils.png";
+import BODP from "../../../public/assets/PtojectsImage/Blood organ donation platfrom.png";
+import portfolio from "../../../public/assets/PtojectsImage/protfolio.png";
+import colculator from "../../../public/assets/PtojectsImage/Calculator.png";
+import ScootyFY from "../../../public/assets/PtojectsImage/scooty fy.png";
+
 const ProjectsGalleryDevelopmentPortfolioShowcase = () => {
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [selectedProject, setSelectedProject] = useState(null);
@@ -18,22 +26,22 @@ const ProjectsGalleryDevelopmentPortfolioShowcase = () => {
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Dashboard",
+      title: "Premium Vechicel Services",
       category: "Full-stack",
       type: "Personal",
       status: "completed",
       featured: true,
       image:
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+        PremiumVechicelServices,
       preview:
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+        PremiumVechicelServices,
       description:
-        "A comprehensive e-commerce management dashboard with real-time analytics, inventory tracking, and order management.",
+        "A comprehensive services management dashboard with real-time analytics, inventory tracking, and order management.",
       technologies: [
         "React",
         "Node.js",
-        "PostgreSQL",
-        "Chart.js",
+        "MongoDB",
+        "Express js",
         "Tailwind CSS",
       ],
       timeline: "3 months",
@@ -47,8 +55,8 @@ const ProjectsGalleryDevelopmentPortfolioShowcase = () => {
         "Database optimization",
         "Real-time WebSocket connections",
       ],
-      github: "https://github.com/alexchen/ecommerce-dashboard",
-      demo: "https://ecommerce-dashboard-demo.com",
+      github: "",
+      demo: "",
       metrics: {
         commits: 247,
         linesOfCode: "12,500+",
@@ -57,23 +65,21 @@ const ProjectsGalleryDevelopmentPortfolioShowcase = () => {
     },
     {
       id: 2,
-      title: "Task Management App",
+      title: "TextUtils",
       category: "React",
       type: "Educational",
       status: "completed",
       featured: true,
       image:
-        "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
+        Textutils,
       preview:
-        "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
+        Textutils,
       description:
         "A collaborative task management application with drag-and-drop functionality, real-time updates, and team collaboration features.",
       technologies: [
         "React",
-        "Redux Toolkit",
-        "Firebase",
-        "React Beautiful DND",
-        "Material-UI",
+        "APIs",
+        "Bootstrap",
       ],
       timeline: "2 months",
       challenges: [
@@ -86,8 +92,8 @@ const ProjectsGalleryDevelopmentPortfolioShowcase = () => {
         "Firebase real-time database",
         "Advanced UI interactions",
       ],
-      github: "https://github.com/alexchen/task-manager",
-      demo: "https://task-manager-demo.com",
+      github: "",
+      demo: "",
       metrics: {
         commits: 156,
         linesOfCode: "8,200+",
@@ -135,22 +141,23 @@ const ProjectsGalleryDevelopmentPortfolioShowcase = () => {
     },
     {
       id: 4,
-      title: "AI Chat Interface",
+      title: "Blood organ donation platfrom",
       category: "Full-stack",
       type: "Collaborative",
       status: "completed",
       featured: true,
       image:
-        "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop",
+        BODP,
       preview:
         "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop",
       description:
         "An intelligent chat interface with natural language processing, real-time messaging, and AI-powered response suggestions.",
       technologies: [
         "React",
-        "TypeScript",
+        "Tailwind CSS",
         "Socket.io",
         "OpenAI API",
+        "Node js",
         "Express.js",
         "MongoDB",
       ],
@@ -181,7 +188,7 @@ const ProjectsGalleryDevelopmentPortfolioShowcase = () => {
       status: "completed",
       featured: false,
       image:
-        "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop",
+        portfolio,
       preview:
         "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop",
       description:
@@ -214,13 +221,13 @@ const ProjectsGalleryDevelopmentPortfolioShowcase = () => {
     },
     {
       id: 6,
-      title: "Expense Tracker",
+      title: "Calculator",
       category: "JavaScript",
       type: "Educational",
       status: "completed",
       featured: false,
       image:
-        "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=400&fit=crop",
+        colculator,
       preview:
         "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=400&fit=crop",
       description:
@@ -256,13 +263,13 @@ const ProjectsGalleryDevelopmentPortfolioShowcase = () => {
   const wipProjects = [
     {
       id: 7,
-      title: "Social Media Analytics Dashboard",
+      title: "ScootyFY",
       category: "Full-stack",
       type: "Personal",
       status: "in-progress",
       progress: 75,
       image:
-        "https://images.unsplash.com/photo-1611926653458-09294b3142bf?w=600&h=400&fit=crop",
+        ScootyFY,
       description:
         "Real-time social media analytics with sentiment analysis and engagement tracking.",
       technologies: [
@@ -273,7 +280,7 @@ const ProjectsGalleryDevelopmentPortfolioShowcase = () => {
         "Chart.js",
       ],
       timeline: "4 months (2 months remaining)",
-      github: "https://github.com/alexchen/social-analytics",
+      github: "",
       lastCommit: "2 days ago",
       estimatedCompletion: "March 2025",
     },
@@ -290,7 +297,7 @@ const ProjectsGalleryDevelopmentPortfolioShowcase = () => {
         "A React Native app for recipe sharing with meal planning and shopping list features.",
       technologies: ["React Native", "Firebase", "Redux", "React Navigation"],
       timeline: "3 months (1.5 months remaining)",
-      github: "https://github.com/alexchen/recipe-mobile-app",
+      github: "",
       lastCommit: "5 hours ago",
       estimatedCompletion: "April 2025",
     },

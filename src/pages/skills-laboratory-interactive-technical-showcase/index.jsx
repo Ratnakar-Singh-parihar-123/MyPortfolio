@@ -35,7 +35,7 @@ const SkillsLaboratory = () => {
         { name: "React Developer", issuer: "Meta", verificationUrl: "#" }
       ],
       hasDemo: true,
-      codeRepository: "https://github.com/example/react-projects",
+      codeRepository: "",
       isNew: false,
       lastUpdated: "2025-01-15",
       version: "18.2.0",
@@ -100,7 +100,7 @@ export default TodoApp;`,
         { name: "JavaScript Algorithms", issuer: "freeCodeCamp", verificationUrl: "#" }
       ],
       hasDemo: true,
-      codeRepository: "https://github.com/example/js-projects",
+      codeRepository: "",
       isNew: false,
       lastUpdated: "2025-01-20",
       version: "ES2023",
@@ -174,7 +174,7 @@ processor.processData().then(console.log);`,
       recentProjects: ["REST API", "Authentication System", "File Upload Service"],
       certifications: [],
       hasDemo: true,
-      codeRepository: "https://github.com/example/node-projects",
+      codeRepository: "",
       isNew: false,
       lastUpdated: "2025-01-10",
       version: "18.19.0",
@@ -261,7 +261,7 @@ app.listen(3000, () => {
       recentProjects: ["Design System", "Landing Pages", "Dashboard UI"],
       certifications: [],
       hasDemo: true,
-      codeRepository: "https://github.com/example/tailwind-projects",
+      codeRepository: "",
       isNew: false,
       lastUpdated: "2025-01-18",
       version: "3.4.0",
@@ -324,7 +324,7 @@ app.listen(3000, () => {
       recentProjects: ["CI/CD Pipeline", "Team Collaboration", "Open Source Contributions"],
       certifications: [],
       hasDemo: true,
-      codeRepository: "https://github.com/example/git-workflows",
+      codeRepository: "",
       isNew: false,
       lastUpdated: "2025-01-22",
       version: "2.43.0",
@@ -384,94 +384,6 @@ jobs:
       explanation: "This Git example demonstrates professional version control workflows including feature branches, conventional commits, pull requests, and automated CI/CD with GitHub Actions.",
       useCases: ["Team Collaboration", "Code Reviews", "Continuous Integration", "Release Management"]
     },
-    {
-      id: 6,
-      name: "TypeScript",
-      category: "frontend",
-      icon: "FileCode",
-      proficiency: "Intermediate",
-      experience: "1+ years",
-      description: "Strongly-typed JavaScript development with TypeScript. Experience with interfaces, generics, and type-safe React applications.",
-      details: `Growing expertise in TypeScript for building type-safe applications. Experience with interfaces, generics, utility types, and integrating TypeScript with React and Node.js projects.`,
-      keyFeatures: ["Type Safety", "Interfaces", "Generics", "Utility Types", "React Integration"],
-      recentProjects: ["Type-safe API Client", "React TypeScript App"],
-      certifications: [],
-      hasDemo: true,
-      codeRepository: "https://github.com/example/typescript-projects",
-      isNew: true,
-      lastUpdated: "2025-01-25",
-      version: "5.3.0",
-      demoCode: `// TypeScript Advanced Types Demo
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  role: 'admin' | 'user' | 'moderator';
-  preferences?: UserPreferences;
-}
-
-interface UserPreferences {
-  theme: 'light' | 'dark';
-  notifications: boolean;
-  language: string;
-}
-
-// Generic API Response Type
-interface ApiResponse<T> {
-  data: T;
-  status: number;
-  message: string;
-  timestamp: Date;
-}
-
-// Generic API Client Class
-class ApiClient {
-  private baseUrl: string;
-
-  constructor(baseUrl: string) {
-    this.baseUrl = baseUrl;
-  }
-
-  async get<T>(endpoint: string): Promise<ApiResponse<T>> {
-    const response = await fetch(\`\${this.baseUrl}\${endpoint}\`);
-    return response.json();
-  }
-
-  async post<T, U>(endpoint: string, data: T): Promise<ApiResponse<U>> {
-    const response = await fetch(\`\${this.baseUrl}\${endpoint}\`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    return response.json();
-  }
-}
-
-// Usage with type safety
-const apiClient = new ApiClient('https://api.example.com');
-
-// Type-safe API calls
-const getUsers = async (): Promise<User[]> => {
-  const response = await apiClient.get<User[]>('/users');
-  return response.data;
-};
-
-const createUser = async (userData: Omit<User, 'id'>): Promise<User> => {
-  const response = await apiClient.post<Omit<User, 'id'>, User>('/users', userData);
-  return response.data;
-};
-
-// Utility type examples
-type UserUpdate = Partial<Pick<User, 'name' | 'email' | 'preferences'>>;
-type UserPublic = Omit<User, 'email'>;
-
-// Advanced type guards
-function isAdmin(user: User): user is User & { role: 'admin' } {
-  return user.role === 'admin';
-}`,
-      explanation: "This TypeScript example demonstrates advanced type system features including generics, utility types, interfaces, and type guards for building robust, type-safe applications.",
-      useCases: ["Large Scale Applications", "API Development", "React Applications", "Team Collaboration"]
-    }
   ];
 
   // Mock data for learning skills

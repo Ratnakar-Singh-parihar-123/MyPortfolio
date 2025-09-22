@@ -28,8 +28,8 @@ const FeaturedProjects = () => {
       type: "Personal",
       status: "completed",
       timeline: "6 months",
-      github: "https://github.com/Ratnakar-Singh-parihar-123/Vehicle-Service-Booking-Platform",
-      demo: "https://vehicle-service-booking-platform.onrender.com",
+      github: "",
+      demo: "",
     },
     {
       id: 2,
