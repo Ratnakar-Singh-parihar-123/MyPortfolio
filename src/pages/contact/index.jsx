@@ -6,6 +6,9 @@ import ContactInfo from "./components/ContactInfo";
 import LocationMap from "./components/LocationMap";
 // import TestimonialsPreview from "./components/TestimonialsPreview";
 
+// logoImg
+import logoImg from "../../assets/logo/logo.jpeg";
+
 const ContactPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [activeTab, setActiveTab] = useState("form");
@@ -77,43 +80,38 @@ const ContactPage = () => {
     <div className="min-h-screen bg-background">
       <Header />
       {/* Hero Section */}
-      <section className="pt-20 pb-12 bg-gradient-to-b from-primary/5 to-background">
-        <div className="container-brand">
-          <div className="max-w-3xl mx-auto text-center">
-            {/* Small Badge */}
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-medium mb-5">
-              <Icon name="MessageCircle" size={16} />
-              <span>Let’s Connect</span>
-            </div>
+      <section className="pt-16 pb-12 bg-gradient-to-b from-primary/10 via-background to-background">
+        <div className="container-brand text-center max-w-2xl mx-auto">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-medium mb-5">
+            <Icon name="MessageCircle" size={16} />
+            <span>Let’s Connect</span>
+          </div>
 
-            {/* Heading */}
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Let’s Build Something
-              <span className="text-gradient-brand block">
-                Amazing Together
+          {/* Heading */}
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Let’s Build Something{" "}
+            <span className="text-gradient-brand">Together</span>
+          </h2>
+
+          {/* Short Description */}
+          <p className="text-base md:text-lg text-muted-foreground mb-8 leading-relaxed">
+            Got an idea, project, or collaboration in mind? Let’s turn your
+            vision into a beautiful and functional web experience.
+          </p>
+
+          {/* Availability + Response */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 text-sm">
+            <div className="flex items-center gap-2 text-success">
+              <div className="w-2.5 h-2.5 bg-success rounded-full animate-pulse"></div>
+              <span>
+                Available for internships, freelance, and full-time roles
               </span>
-            </h1>
-
-            {/* Short Description */}
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              Have an idea or project in mind? I’d love to hear about it and see
-              how we can turn your vision into a real web experience using
-              modern technologies.
-            </p>
-
-            {/* Status Info */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <div className="flex items-center gap-2 text-success">
-                <div className="w-3 h-3 bg-success rounded-full animate-pulse"></div>
-                <span className="font-medium">
-                  Open to internship, full-time, and freelance opportunities in
-                  web development.
-                </span>
-              </div>
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <Icon name="Clock" size={16} />
-                <span>Replies within 24 hours</span>
-              </div>
+            </div>
+            <div className="hidden sm:block h-4 w-px bg-border"></div>
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <Icon name="Clock" size={16} />
+              <span>Replies within 24 hours</span>
             </div>
           </div>
         </div>
@@ -352,15 +350,16 @@ const ContactPage = () => {
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="flex items-center space-x-2 mb-4 md:mb-0">
               <div className="w-8 h-8 bg-gradient-brand rounded-lg flex items-center justify-center">
-                <Icon name="Code2" size={18} color="white" strokeWidth={2.5} />
+                <img
+                  src={logoImg} // image path
+                  alt="RSP Logo"
+                  className="w-7 h-7 object-contain rounded-lg"
+                />
               </div>
-              <span className="text-lg font-bold text-foreground">
-                Ratnakar
-              </span>
+              <span className="text-lg font-bold text-foreground">RSP</span>
             </div>
             <div className="text-sm text-muted-foreground">
-              © {new Date()?.getFullYear()} RSP. All rights
-              reserved.
+              © {new Date()?.getFullYear()} RSP. All rights reserved.
             </div>
           </div>
         </div>

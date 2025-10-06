@@ -20,50 +20,66 @@ const AchievementsPage = () => {
 
   const achievements = [
     {
-      title: "React Developer Certificate",
-      issuer: "Meta (Facebook)",
+      title: "Problem Solving (Basic)",
+      issuer: "HackerRank",
       date: "2024",
       image: problemSolvingBasic,
       description:
-        "Certified React Developer proficient in hooks, context API, and modern React architecture.",
-      link: "https://www.coursera.org/account/accomplishments",
+        "Demonstrated strong analytical thinking and mastery in basic algorithmic concepts including loops, arrays, and conditionals through HackerRank’s coding challenges.",
+      link: "https://www.hackerrank.com/certificates",
+      badge:
+        "https://upload.wikimedia.org/wikipedia/commons/4/40/HackerRank_Icon-1000px.png",
+      skills: ["Algorithms", "Logic Building", "Basic Data Structures"],
     },
     {
-      title: "JavaScript Mastery Certificate",
-      issuer: "Udemy",
+      title: "Problem Solving (Intermediate)",
+      issuer: "HackerRank",
       date: "2023",
       image: problemSolvingIntermedated,
       description:
-        "Completed advanced JavaScript course covering ES6+, async programming, and DOM manipulation.",
-      link: "https://www.udemy.com/certificate",
+        "Validated advanced problem-solving ability through complex challenges covering recursion, sorting, and optimization algorithms on HackerRank.",
+      link: "https://www.hackerrank.com/certificates",
+      badge:
+        "https://upload.wikimedia.org/wikipedia/commons/4/40/HackerRank_Icon-1000px.png",
+      skills: ["Algorithms", "Optimization", "Recursion", "Time Complexity"],
     },
     {
-      title: "Node.js & Express Backend Course",
-      issuer: "Coursera",
+      title: "JavaScript (Basic)",
+      issuer: "HackerRank",
       date: "2023",
-      image: reactBasic,
+      image: javaScriptBasic,
       description:
-        "Built scalable backend APIs with Express.js, MongoDB, and authentication system.",
-      link: "https://www.coursera.org/account/accomplishments",
+        "Earned certification for core JavaScript programming skills including ES6 features, control flow, and DOM fundamentals through HackerRank assessment.",
+      link: "https://www.hackerrank.com/certificates",
+      badge:
+        "https://upload.wikimedia.org/wikipedia/commons/4/40/HackerRank_Icon-1000px.png",
+      skills: ["JavaScript", "ES6+", "DOM", "Functions"],
     },
-     {
-      title: "Node.js & Express Backend Course",
-      issuer: "Coursera",
-      date: "2023",
-      image: reactBasic,
-      description:
-        "Built scalable backend APIs with Express.js, MongoDB, and authentication system.",
-      link: "https://www.coursera.org/account/accomplishments",
-    },
-     {
-      title: "Node.js & Express Backend Course",
-      issuer: "Coursera",
+    {
+      title: "Frontend Development (React)",
+      issuer: "HackerRank",
       date: "2023",
       image: frontendRect,
       description:
-        "Built scalable backend APIs with Express.js, MongoDB, and authentication system.",
-      link: "https://www.coursera.org/account/accomplishments",
+        "Proven ability to build interactive user interfaces with React, handling props, hooks, and state management efficiently using best coding practices.",
+      link: "https://www.hackerrank.com/certificates",
+      badge:
+        "https://upload.wikimedia.org/wikipedia/commons/4/40/HackerRank_Icon-1000px.png",
+      skills: ["React", "Hooks", "State Management", "Component Architecture"],
     },
+    {
+      title: "REST API (Intermediate)",
+      issuer: "HackerRank",
+      date: "2023",
+      image: reactBasic,
+      description:
+        "Certified for understanding and implementing RESTful APIs, HTTP methods, and JSON handling for building real-world backend integrations.",
+      link: "https://www.hackerrank.com/certificates",
+      badge:
+        "https://upload.wikimedia.org/wikipedia/commons/4/40/HackerRank_Icon-1000px.png",
+      skills: ["REST API", "HTTP", "JSON", "Backend Integration"],
+    },
+
     // {
     //   title: "MERN Stack Projects",
     //   issuer: "Personal Projects",
@@ -87,7 +103,7 @@ const AchievementsPage = () => {
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-5xl font-bold mb-4"
         >
-          My <span className="text-gradient-brand">Achievements</span>
+          My <span className="text-gradient-brand">Achievements & Certificates</span>
         </motion.h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           Certificates and projects that reflect my learning, dedication, and

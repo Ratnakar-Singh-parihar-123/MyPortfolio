@@ -15,13 +15,13 @@ const ContactInfo = () => {
       icon: "Phone",
       label: "Phone",
       value: "+91 93997 41051",
-      description: "Available 9 AM - 9 PM ",
+      description: "Available 9 AM - 9 PM",
       action: "tel:+919399741051",
     },
     {
       icon: "MapPin",
       label: "Location",
-      value: "Madhya Pradesh ,Bhoapl ,India",
+      value: "Madhya Pradesh, Bhopal, India",
       description: "Available for remote & local collaborations",
     },
   ];
@@ -39,32 +39,20 @@ const ContactInfo = () => {
       username: "in/ratnakar-singh-parihar",
       url: "https://linkedin.com/in/ratnakar-singh-parihar",
     },
-    // {
-    //   icon: "Globe",
-    //   label: "Portfolio",
-    //   username: "ratnakar-portfolio.vercel.app",
-    //   url: "https://ratnakar-portfolio.vercel.app",
-    // },
   ];
-
-  // const workingHours = [
-  //   { day: "Monday - Friday", hours: "9:00 AM - 6:00 PM" },
-  //   { day: "Saturday", hours: "10:00 AM - 2:00 PM" },
-  //   { day: "Sunday", hours: "Closed" },
-  // ];
 
   return (
     <div className="space-y-8">
       {/* Availability */}
       <div className="bg-success/10 border border-success/20 rounded-xl p-5 text-center">
-        <div className="flex items-center justify-center space-x-2 mb-2">
-          <div className="w-2 h-2 bg-success rounded-full animate-pulse"></div>
-          <h3 className="text-lg font-semibold text-success">
+        <div className="flex items-center justify-center gap-2 mb-2 flex-wrap">
+          <div className="w-2.5 h-2.5 bg-success rounded-full animate-pulse"></div>
+          <h3 className="text-base md:text-lg font-semibold text-success leading-snug">
             Open to internship, full-time, and freelance opportunities in web development.
           </h3>
         </div>
         <p className="text-sm text-muted-foreground">
-          Currently open to freelance and full-time opportunities.
+          Currently available for freelance and full-time roles.
         </p>
       </div>
 
@@ -75,28 +63,32 @@ const ContactInfo = () => {
           {contactMethods.map((method, index) => (
             <div
               key={index}
-              className="flex items-center justify-between p-4 bg-card border border-border rounded-lg hover:shadow-md transition-all"
+              className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 bg-card border border-border rounded-lg hover:shadow-md transition-all"
             >
-              <div className="flex items-center space-x-4">
-                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+              <div className="flex items-start sm:items-center gap-3">
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
                   <Icon name={method.icon} size={20} className="text-primary" />
                 </div>
                 <div>
                   <h4 className="font-medium text-foreground">{method.label}</h4>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted-foreground leading-snug">
                     {method.description}
                   </p>
                 </div>
               </div>
+
+              {/* Value (Email / Phone / Location) */}
               {method.action ? (
                 <a
                   href={method.action}
-                  className="text-primary hover:text-primary/80 text-sm font-medium transition-colors"
+                  className="text-primary hover:text-primary/80 text-sm font-medium break-all text-center sm:text-right transition-colors"
                 >
                   {method.value}
                 </a>
               ) : (
-                <span className="text-sm text-foreground/80">{method.value}</span>
+                <span className="text-sm text-foreground/80 text-center sm:text-right break-words">
+                  {method.value}
+                </span>
               )}
             </div>
           ))}
@@ -105,17 +97,15 @@ const ContactInfo = () => {
 
       {/* Social Links */}
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-foreground">
-          Connect with Me
-        </h3>
-        <div className="grid grid-cols-2 gap-3">
+        <h3 className="text-lg font-semibold text-foreground">Connect with Me</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {socialLinks.map((social, index) => (
             <a
               key={index}
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center space-x-3 p-3 bg-card border border-border rounded-lg hover:shadow-md transition-all group"
+              className="flex items-center gap-3 p-3 bg-card border border-border rounded-lg hover:shadow-md transition-all group"
             >
               <Icon
                 name={social.icon}
@@ -126,7 +116,7 @@ const ContactInfo = () => {
                 <div className="font-medium text-foreground group-hover:text-primary transition-colors">
                   {social.label}
                 </div>
-                <div className="text-xs text-muted-foreground">
+                <div className="text-xs text-muted-foreground break-all">
                   {social.username}
                 </div>
               </div>
@@ -134,26 +124,6 @@ const ContactInfo = () => {
           ))}
         </div>
       </div>
-
-      {/* Working Hours */}
-      {/* <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-foreground">Working Hours</h3>
-        <div className="bg-card border border-border rounded-lg p-4">
-          <div className="space-y-2">
-            {workingHours.map((time, index) => (
-              <div
-                key={index}
-                className="flex justify-between text-sm text-muted-foreground"
-              >
-                <span>{time.day}</span>
-                <span className="font-medium text-foreground">
-                  {time.hours}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div> */}
 
       {/* Quick Actions */}
       <div className="space-y-3">
@@ -168,17 +138,6 @@ const ContactInfo = () => {
         >
           Download Resume
         </Button>
-        {/* <Button
-          variant="outline"
-          fullWidth
-          iconName="Calendar"
-          iconPosition="left"
-          onClick={() =>
-            window.open("https://calendly.com/ratnakar-meeting", "_blank")
-          }
-        >
-          Schedule a Call
-        </Button> */}
       </div>
     </div>
   );
