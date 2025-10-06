@@ -99,7 +99,7 @@ const LocationMap = () => {
             iconName="Video"
             iconPosition="left"
             onClick={() =>
-              window.open("https://calendly.com/ratnakar-meeting", "_blank")
+              window.open("", "_blank")
             }
             className="flex-1"
           >

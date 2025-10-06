@@ -69,7 +69,7 @@ const About = () => {
                   },
                   {
                     name: "Mail",
-                    href: "mailto:ratnakarsinghparihar@gmail.com",
+                    href: "mailto:ratnakarsinghparihar9399@gmail.com",
                   },
                 ].map((social, i) => (
                   <a

@@ -69,7 +69,7 @@ const HeroSection = () => {
                 View My Projects
               </a>
               <a
-                href="mailto:ratnakarsinghparihar@gmail.com"
+                href="mailto:ratnakarsinghparihar9399@gmail.com"
                 className="inline-flex items-center justify-center gap-2 border border-border text-foreground px-6 py-3 rounded-lg font-medium hover:bg-muted/40 transition-colors"
               >
                 <Icon name="MessageCircle" size={18} />

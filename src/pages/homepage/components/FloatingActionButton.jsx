@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Icon from '../../../components/AppIcon';
 
+// resume
+import resumefile from "../../../assets/resume/Ratnakar_Singh_Parihar.pdf";
+
 const FloatingActionButton = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -17,7 +20,7 @@ const FloatingActionButton = () => {
     {
       icon: "Download",
       label: "Resume",
-      href: "/resume.pdf",
+      href: resumefile,
       color: "bg-success hover:bg-success/90"
     },
     {

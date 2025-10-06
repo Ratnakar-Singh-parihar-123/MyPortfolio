@@ -7,21 +7,21 @@ const ContactInfo = () => {
     {
       icon: "Mail",
       label: "Email",
-      value: "ratnakarsinghparihar@gmail.com",
+      value: "ratnakarsinghparihar9399@gmail.com",
       description: "Best way to reach me for projects and queries",
-      action: "mailto:ratnakarsinghparihar@gmail.com",
+      action: "mailto:ratnakarsinghparihar9399@gmail.com",
     },
     {
       icon: "Phone",
       label: "Phone",
-      value: "+91 98765 43210",
-      description: "Available 9 AM - 6 PM IST",
-      action: "tel:+919876543210",
+      value: "+91 93997 41051",
+      description: "Available 9 AM - 9 PM ",
+      action: "tel:+919399741051",
     },
     {
       icon: "MapPin",
       label: "Location",
-      value: "Madhya Pradesh, India",
+      value: "Madhya Pradesh ,Bhoapl ,India",
       description: "Available for remote & local collaborations",
     },
   ];
@@ -39,12 +39,12 @@ const ContactInfo = () => {
       username: "in/ratnakar-singh-parihar",
       url: "https://linkedin.com/in/ratnakar-singh-parihar",
     },
-    {
-      icon: "Globe",
-      label: "Portfolio",
-      username: "ratnakar-portfolio.vercel.app",
-      url: "https://ratnakar-portfolio.vercel.app",
-    },
+    // {
+    //   icon: "Globe",
+    //   label: "Portfolio",
+    //   username: "ratnakar-portfolio.vercel.app",
+    //   url: "https://ratnakar-portfolio.vercel.app",
+    // },
   ];
 
   // const workingHours = [
@@ -60,7 +60,7 @@ const ContactInfo = () => {
         <div className="flex items-center justify-center space-x-2 mb-2">
           <div className="w-2 h-2 bg-success rounded-full animate-pulse"></div>
           <h3 className="text-lg font-semibold text-success">
-            Available for New Projects
+            Open to internship, full-time, and freelance opportunities in web development.
           </h3>
         </div>
         <p className="text-sm text-muted-foreground">
@@ -168,7 +168,7 @@ const ContactInfo = () => {
         >
           Download Resume
         </Button>
-        <Button
+        {/* <Button
           variant="outline"
           fullWidth
           iconName="Calendar"
@@ -178,7 +178,7 @@ const ContactInfo = () => {
           }
         >
           Schedule a Call
-        </Button>
+        </Button> */}
       </div>
     </div>
   );

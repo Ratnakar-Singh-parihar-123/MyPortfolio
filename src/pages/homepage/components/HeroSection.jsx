@@ -66,7 +66,7 @@ const HeroSection = () => {
             >
               <div className="w-2 h-2 bg-success rounded-full animate-pulse"></div>
               <span className="text-sm font-medium text-success">
-                Available for new projects
+                Open to internship, full-time, and freelance opportunities in web development.
               </span>
             </motion.div>
 

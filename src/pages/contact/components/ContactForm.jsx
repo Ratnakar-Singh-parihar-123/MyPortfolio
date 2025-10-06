@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import emailjs from "emailjs-com";
 import Button from "../../../components/ui/Button";
 import Input from "../../../components/ui/Input";
 import Icon from "../../../components/AppIcon";
@@ -12,24 +13,50 @@ const ContactForm = () => {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
+  // ✅ handle input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // ✅ handle submit with EmailJS
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // simple form validation
     if (!formData.name || !formData.email || !formData.message) {
       alert("Please fill in all required fields!");
       return;
     }
 
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    setLoading(true);
+
+    emailjs
+      .send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID, // 🔹 Service ID
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID, // 🔹 Template ID
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject || "No Subject",
+          message: formData.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY // 🔹 Public Key
+      )
+      .then(
+        (result) => {
+          console.log("✅ Email sent:", result.text);
+          setSubmitted(true);
+          setFormData({ name: "", email: "", subject: "", message: "" });
+          setTimeout(() => setSubmitted(false), 4000);
+        },
+        (error) => {
+          console.error("❌ Email send error:", error.text);
+          alert("Something went wrong. Please try again later.");
+        }
+      )
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -44,9 +71,7 @@ const ContactForm = () => {
         <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg mb-4">
           <Icon name="Mail" size={22} className="text-primary" />
         </div>
-        <h2 className="text-2xl font-bold text-foreground mb-2">
-          Get in Touch
-        </h2>
+        <h2 className="text-2xl font-bold text-foreground mb-2">Get in Touch</h2>
         <p className="text-muted-foreground text-sm">
           Have a question, project, or collaboration idea? Send me a message —
           I’d love to hear from you!
@@ -55,12 +80,16 @@ const ContactForm = () => {
 
       {/* Success Message */}
       {submitted && (
-        <div className="bg-success/10 text-success border border-success/20 rounded-lg py-3 px-4 mb-6 text-center">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="bg-success/10 text-success border border-success/20 rounded-lg py-3 px-4 mb-6 text-center"
+        >
           <div className="flex items-center justify-center space-x-2">
             <Icon name="CheckCircle" size={18} className="text-success" />
             <span>Message sent successfully! I’ll reply soon.</span>
           </div>
-        </div>
+        </motion.div>
       )}
 
       {/* Contact Form */}
@@ -79,7 +108,7 @@ const ContactForm = () => {
             label="Your Email"
             name="email"
             type="email"
-            placeholder="you@example.com"
+            placeholder="Enter your email"
             required
             value={formData.email}
             onChange={handleChange}
@@ -106,7 +135,7 @@ const ContactForm = () => {
             required
             value={formData.message}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40"
+            className="w-full px-3 py-2 border border-border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 resize-none"
           ></textarea>
         </div>
 
@@ -115,10 +144,11 @@ const ContactForm = () => {
           variant="default"
           size="lg"
           fullWidth
-          iconName="Send"
+          iconName={loading ? "Loader2" : "Send"}
           iconPosition="right"
+          disabled={loading}
         >
-          Send Message
+          {loading ? "Sending..." : "Send Message"}
         </Button>
 
         <p className="text-xs text-muted-foreground text-center mt-3">

@@ -7,7 +7,17 @@ import ProjectCard from "./components/ProjectCard";
 import ProjectModal from "./components/ProjectModal";
 import ProjectFilters from "./components/ProjectFilters";
 import RelatedProjects from "./components/RelatedProjects";
-import ProjectStats from "./components/ProjectStats";
+// import ProjectStats from "./components/ProjectStats";
+
+
+// projects image
+import vsbp from "../../assets/projectsImg/vsbp.png";
+import yammiverse from "../../assets/projectsImg/yammiverse.png";
+import bodp from "../../assets/projectsImg/Blood organ donation platfrom.png";
+import textutils from "../../assets/projectsImg/textutils.png";
+// import nodepad from "../../assets/projectsImg/";
+import portfolio from "../../assets/projectsImg/myportfolio.png";
+
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -23,920 +33,305 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Platform Redesign",
-      category: "Web Application",
-      industry: "Retail",
+      title: "Vehicle Service Booking Platform",
+      category: "Full-Stack Web Application",
+      industry: "Automotive",
       description:
-        "Complete redesign and development of a modern e-commerce platform with advanced filtering, real-time inventory, and seamless checkout experience.",
-      fullDescription: `Led the complete transformation of a legacy e-commerce platform serving over 50,000 monthly active users. The project involved modernizing the entire user experience, implementing advanced search and filtering capabilities, and creating a mobile-first responsive design that increased conversion rates by 40%.\n\nThe platform features real-time inventory management, personalized product recommendations, and a streamlined checkout process that reduced cart abandonment by 35%. Integration with multiple payment gateways and shipping providers ensures a seamless customer experience across all touchpoints.`,
+        "A real-time vehicle service booking system connecting customers with local service centers through an intuitive online platform.",
+      fullDescription: `Developed a real-world MERN stack platform enabling customers to book, track, and manage vehicle services online. Service centers can view customer requests, update service status, and handle digital payments. 
+  Includes live chat, order tracking, and dynamic dashboards for both customers and admins.`,
       image:
-        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
-      gallery: [
-        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+        vsbp,
+      technologies: [
+        "React",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "Socket.io",
+        "Tailwind CSS",
       ],
-      technologies: ["React", "Node.js", "MongoDB", "Stripe", "AWS"],
       complexity: "Advanced",
-      duration: "6 months",
-      teamSize: "5",
+      duration: "5 months",
+      teamSize: "3",
       rating: 5,
-      impact: "+40% conversion",
-      liveUrl: "https://example-ecommerce.com",
-      githubUrl: "https://github.com/example/ecommerce",
+      impact: "30% faster service process",
+      liveUrl: "https://vehicle-service-booking-platform.onrender.com",
+      githubUrl:
+        "https://github.com/Ratnakar-Singh-parihar-123/Vehicle-Service-Booking-Platform",
       features: [
-        "Advanced product search and filtering",
-        "Real-time inventory management",
-        "Personalized recommendations",
-        "Multi-payment gateway integration",
-        "Mobile-responsive design",
-        "Admin dashboard with analytics",
-      ],
-      architecture: [
-        {
-          title: "Frontend Architecture",
-          description:
-            "Built with React 18 and TypeScript, utilizing Redux Toolkit for state management and React Query for server state synchronization.",
-        },
-        {
-          title: "Backend Services",
-          description:
-            "Microservices architecture with Node.js and Express, implementing RESTful APIs with comprehensive error handling and rate limiting.",
-        },
-        {
-          title: "Database Design",
-          description:
-            "MongoDB with optimized indexing strategies for fast product searches and real-time inventory updates.",
-        },
+        "Role-based login for customers and service centers",
+        "Real-time chat using Socket.io",
+        "Live service tracking and notifications",
+        "Payment and invoice management",
+        "Admin and analytics dashboards",
       ],
       challenges: [
         {
-          problem:
-            "Legacy system integration with modern frontend required complex data transformation and real-time synchronization.",
+          problem: "Maintaining real-time synchronization for multiple users.",
           solution:
-            "Implemented a middleware layer with Redis caching and WebSocket connections for real-time updates, reducing data latency by 60%.",
+            "Used WebSockets (Socket.io) for event-based updates and state synchronization between clients and servers.",
         },
         {
-          problem:
-            "High traffic during sales events caused performance bottlenecks and slow page loads.",
+          problem: "Performance issues with large service data sets.",
           solution:
-            "Implemented CDN distribution, image optimization, and lazy loading strategies, improving page load times by 45%.",
-        },
-      ],
-      timeline: [
-        {
-          title: "Discovery & Planning",
-          duration: "2 weeks",
-          icon: "Search",
-          description:
-            "User research, competitor analysis, and technical architecture planning.",
-          deliverables: [
-            "User personas",
-            "Technical specifications",
-            "Project roadmap",
-          ],
-        },
-        {
-          title: "Design & Prototyping",
-          duration: "3 weeks",
-          icon: "Palette",
-          description:
-            "UI/UX design, wireframing, and interactive prototype development.",
-          deliverables: [
-            "Design system",
-            "High-fidelity mockups",
-            "Interactive prototype",
-          ],
-        },
-        {
-          title: "Development Phase 1",
-          duration: "8 weeks",
-          icon: "Code",
-          description:
-            "Core functionality development including product catalog and user authentication.",
-          deliverables: [
-            "Product catalog",
-            "User system",
-            "Search functionality",
-          ],
-        },
-        {
-          title: "Development Phase 2",
-          duration: "6 weeks",
-          icon: "ShoppingCart",
-          description:
-            "Shopping cart, checkout process, and payment integration.",
-          deliverables: [
-            "Shopping cart",
-            "Checkout flow",
-            "Payment integration",
-          ],
-        },
-        {
-          title: "Testing & Launch",
-          duration: "3 weeks",
-          icon: "Rocket",
-          description:
-            "Comprehensive testing, performance optimization, and production deployment.",
-          deliverables: [
-            "Test suite",
-            "Performance optimization",
-            "Production deployment",
-          ],
+            "Optimized queries using MongoDB indexes and implemented pagination for scalability.",
         },
       ],
       metrics: [
-        { icon: "TrendingUp", value: "+40%", label: "Conversion Rate" },
-        { icon: "Users", value: "50K+", label: "Monthly Users" },
-        { icon: "Zap", value: "45%", label: "Faster Load Time" },
+        { icon: "Users", value: "1000+", label: "Active Users" },
+        { icon: "Wrench", value: "500+", label: "Services Completed" },
+        { icon: "Clock", value: "Real-time", label: "Service Tracking" },
       ],
-      comparison: {
-        before: [
-          "Outdated design with poor mobile experience",
-          "Slow search functionality taking 3-5 seconds",
-          "High cart abandonment rate of 70%",
-          "Limited payment options",
-        ],
-        after: [
-          "Modern, mobile-first responsive design",
-          "Instant search with real-time suggestions",
-          "Reduced cart abandonment to 35%",
-          "Multiple payment gateways integrated",
-        ],
-      },
       learnings: [
-        "Real-time features require careful consideration of server resources and user experience balance.",
-        "Mobile-first design approach significantly improves overall user engagement across all devices.",
-        "Performance optimization should be considered from the beginning, not as an afterthought.",
+        "Efficient WebSocket handling is key for real-time platforms.",
+        "MongoDB indexing greatly enhances scalability and performance.",
       ],
       testimonial: {
         content:
-          "The new platform exceeded our expectations. The team delivered a solution that not only looks great but also significantly improved our business metrics.",
-        author: "Sarah Johnson",
-        role: "VP of Digital Commerce",
+          "Our service operations became more organized and transparent after implementing this system.",
+        author: "Amit Verma",
+        role: "Service Center Owner",
       },
     },
     {
       id: 2,
-      title: "Healthcare Management System",
+      title: "YammiVerse",
       category: "Web Application",
-      industry: "Healthcare",
+      industry: "Food & Recipes",
       description:
-        "Comprehensive healthcare management system with patient records, appointment scheduling, and telemedicine capabilities.",
-      fullDescription: `Developed a comprehensive healthcare management system that streamlines patient care workflows and improves operational efficiency for medical practices. The system handles patient records, appointment scheduling, billing, and includes telemedicine capabilities for remote consultations.\n\nThe platform ensures HIPAA compliance with end-to-end encryption and secure data handling. Features include automated appointment reminders, prescription management, and integrated billing systems that have reduced administrative overhead by 50%.`,
+        "A community-driven recipe platform for sharing, exploring, and saving food recipes with images and ingredients.",
+      fullDescription: `Built a feature-rich MERN stack application that allows users to upload, save, and discover recipes. 
+  Includes user authentication, image uploads, and responsive design for smooth browsing across devices.`,
       image:
-        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop",
-      gallery: [
-        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=800&h=600&fit=crop",
+        yammiverse,
+      technologies: [
+        "React",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "Tailwind CSS",
       ],
-      technologies: ["Vue.js", "Python", "PostgreSQL", "Docker", "AWS"],
-      complexity: "Advanced",
-      duration: "8 months",
-      teamSize: "6",
-      rating: 5,
-      impact: "+50% efficiency",
-      liveUrl: "https://example-healthcare.com",
-      githubUrl: "https://github.com/example/healthcare",
+      complexity: "Intermediate",
+      duration: "3 months",
+      teamSize: "2",
+      rating: 4,
+      impact: "10K+ recipes shared",
+      liveUrl: "https://yammiverse.onrender.com",
+      githubUrl: "https://github.com/Ratnakar-Singh-parihar-123/YammiVerse",
       features: [
-        "Patient record management",
-        "Appointment scheduling system",
-        "Telemedicine integration",
-        "Prescription management",
-        "HIPAA compliant security",
-        "Automated billing system",
-      ],
-      architecture: [
-        {
-          title: "Security Architecture",
-          description:
-            "HIPAA-compliant security implementation with end-to-end encryption, role-based access control, and audit logging.",
-        },
-        {
-          title: "Microservices Design",
-          description:
-            "Modular architecture separating patient management, scheduling, billing, and telemedicine services for scalability.",
-        },
-        {
-          title: "Data Management",
-          description:
-            "PostgreSQL with encrypted data storage, automated backups, and disaster recovery procedures.",
-        },
+        "User authentication and profile management",
+        "Recipe creation with image uploads",
+        "Favorites and save recipes",
+        "Responsive modern UI",
+        "Search and category filtering",
       ],
       challenges: [
         {
-          problem:
-            "HIPAA compliance requirements demanded complex security measures while maintaining user-friendly interface.",
+          problem: "Handling large image uploads efficiently.",
           solution:
-            "Implemented multi-layered security with seamless user experience through SSO and role-based permissions.",
+            "Used Cloudinary integration for optimized and fast image delivery.",
         },
         {
-          problem:
-            "Integration with existing medical equipment and third-party systems required custom API development.",
+          problem: "Implementing fast recipe search across categories.",
           solution:
-            "Created flexible API gateway with standardized data formats and real-time synchronization capabilities.",
-        },
-      ],
-      timeline: [
-        {
-          title: "Requirements Analysis",
-          duration: "3 weeks",
-          icon: "FileText",
-          description:
-            "HIPAA compliance research, stakeholder interviews, and system requirements gathering.",
-          deliverables: [
-            "Compliance documentation",
-            "System requirements",
-            "Security protocols",
-          ],
-        },
-        {
-          title: "System Architecture",
-          duration: "4 weeks",
-          icon: "Database",
-          description:
-            "Database design, security architecture, and integration planning.",
-          deliverables: [
-            "Database schema",
-            "Security framework",
-            "API specifications",
-          ],
-        },
-        {
-          title: "Core Development",
-          duration: "12 weeks",
-          icon: "Code",
-          description:
-            "Patient management, scheduling, and core functionality development.",
-          deliverables: [
-            "Patient system",
-            "Scheduling module",
-            "Security implementation",
-          ],
-        },
-        {
-          title: "Integration & Testing",
-          duration: "6 weeks",
-          icon: "Link",
-          description:
-            "Third-party integrations, telemedicine features, and comprehensive testing.",
-          deliverables: [
-            "Telemedicine module",
-            "Third-party integrations",
-            "Test coverage",
-          ],
-        },
-        {
-          title: "Deployment & Training",
-          duration: "3 weeks",
-          icon: "Users",
-          description:
-            "Production deployment, staff training, and go-live support.",
-          deliverables: [
-            "Production system",
-            "Training materials",
-            "Support documentation",
-          ],
+            "Added full-text search and MongoDB indexing for better performance.",
         },
       ],
       metrics: [
-        { icon: "Clock", value: "50%", label: "Time Saved" },
-        { icon: "Shield", value: "100%", label: "HIPAA Compliant" },
-        { icon: "Users", value: "1000+", label: "Patients Managed" },
+        { icon: "Utensils", value: "10K+", label: "Recipes Uploaded" },
+        { icon: "Users", value: "3K+", label: "Active Users" },
+        { icon: "Heart", value: "8K+", label: "Recipes Liked" },
       ],
-      comparison: {
-        before: [
-          "Paper-based patient records",
-          "Manual appointment scheduling",
-          "No telemedicine capabilities",
-          "Separate billing system",
-        ],
-        after: [
-          "Digital patient records with search",
-          "Automated scheduling with reminders",
-          "Integrated telemedicine platform",
-          "Unified billing and management",
-        ],
-      },
       learnings: [
-        "Healthcare systems require extensive compliance considerations that should drive architectural decisions.",
-        "User training and change management are crucial for successful healthcare system adoption.",
-        "Security and usability must be balanced carefully in sensitive data environments.",
+        "Media handling can drastically affect performance and UX.",
+        "Optimized searching ensures scalability in data-heavy apps.",
       ],
       testimonial: {
         content:
-          "This system has transformed our practice. We're more efficient, our patients are happier, and we're fully compliant with all regulations.",
-        author: "Dr. Michael Chen",
-        role: "Chief Medical Officer",
+          "I love how YammiVerse connects food lovers like me! Clean UI and super-fast uploads.",
+        author: "Priya Sharma",
+        role: "Food Blogger",
       },
     },
     {
       id: 3,
-      title: "Financial Dashboard Analytics",
-      category: "Data Visualization",
-      industry: "Finance",
+      title: "Blood & Organ Donation Platform",
+      category: "Full-Stack Application",
+      industry: "Healthcare",
       description:
-        "Real-time financial analytics dashboard with advanced charting, portfolio tracking, and risk assessment tools.",
-      fullDescription: `Created a sophisticated financial analytics dashboard that provides real-time market data visualization, portfolio performance tracking, and comprehensive risk assessment tools. The platform serves institutional investors and financial advisors with advanced charting capabilities and customizable reporting features.\n\nThe dashboard integrates with multiple financial data providers to deliver real-time market updates, automated portfolio rebalancing suggestions, and risk metrics that help users make informed investment decisions. Advanced filtering and comparison tools enable detailed analysis across different asset classes and time periods.`,
+        "A social impact platform connecting blood and organ donors with recipients and hospitals in real time.",
+      fullDescription: `Built a MERN stack donation management platform to streamline the donor-recipient connection process. 
+  Includes role-based dashboards, secure data handling, and campaign management tools for hospitals.`,
       image:
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
-      gallery: [
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop",
+        bodp,
+      technologies: [
+        "React",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "Framer Motion",
+        "Tailwind CSS",
       ],
-      technologies: ["React", "D3.js", "Python", "Redis", "WebSocket"],
       complexity: "Advanced",
-      duration: "5 months",
-      teamSize: "4",
+      duration: "4 months",
+      teamSize: "3",
       rating: 5,
-      impact: "+60% insights",
-      liveUrl: "https://example-finance.com",
-      githubUrl: "https://github.com/example/finance",
+      impact: "200+ lives impacted",
+      liveUrl: "",
+      githubUrl:
+        "https://github.com/Ratnakar-Singh-parihar-123/Blood-organ-donation-platfrom",
       features: [
-        "Real-time market data visualization",
-        "Portfolio performance tracking",
-        "Risk assessment algorithms",
-        "Custom report generation",
-        "Multi-asset class analysis",
-        "Automated alerts system",
-      ],
-      architecture: [
-        {
-          title: "Real-time Data Pipeline",
-          description:
-            "WebSocket connections with financial data providers, Redis caching for low-latency data access.",
-        },
-        {
-          title: "Visualization Engine",
-          description:
-            "Custom D3.js components for interactive charts with real-time updates and smooth animations.",
-        },
-        {
-          title: "Analytics Backend",
-          description:
-            "Python-based analytics engine for portfolio optimization and risk calculations.",
-        },
+        "Role-based dashboards for donors, hospitals, and admins",
+        "Donation tracking system",
+        "Secure data and user verification",
+        "Campaign management for hospitals",
+        "Animated, accessible UI with Framer Motion",
       ],
       challenges: [
         {
           problem:
-            "Real-time data visualization with thousands of data points caused performance issues and browser crashes.",
+            "Ensuring data privacy and security in healthcare environment.",
           solution:
-            "Implemented data virtualization and canvas-based rendering for smooth performance with large datasets.",
+            "Implemented encryption, secure authentication, and access control at multiple levels.",
         },
         {
-          problem:
-            "Complex financial calculations required high precision and fast computation for real-time updates.",
+          problem: "Maintaining engagement between donors and hospitals.",
           solution:
-            "Developed optimized algorithms with WebWorkers for background processing and caching strategies.",
-        },
-      ],
-      timeline: [
-        {
-          title: "Market Research",
-          duration: "2 weeks",
-          icon: "TrendingUp",
-          description:
-            "Financial industry analysis, competitor research, and user requirements gathering.",
-          deliverables: [
-            "Market analysis",
-            "User personas",
-            "Feature requirements",
-          ],
-        },
-        {
-          title: "Data Architecture",
-          duration: "3 weeks",
-          icon: "Database",
-          description:
-            "Data pipeline design, API integrations, and real-time processing setup.",
-          deliverables: [
-            "Data pipeline",
-            "API integrations",
-            "Processing framework",
-          ],
-        },
-        {
-          title: "Visualization Development",
-          duration: "8 weeks",
-          icon: "BarChart3",
-          description:
-            "Interactive chart development, dashboard layout, and user interface creation.",
-          deliverables: [
-            "Chart components",
-            "Dashboard interface",
-            "User interactions",
-          ],
-        },
-        {
-          title: "Analytics Engine",
-          duration: "6 weeks",
-          icon: "Calculator",
-          description:
-            "Risk assessment algorithms, portfolio optimization, and reporting features.",
-          deliverables: [
-            "Risk algorithms",
-            "Portfolio tools",
-            "Report generator",
-          ],
-        },
-        {
-          title: "Testing & Optimization",
-          duration: "3 weeks",
-          icon: "Zap",
-          description:
-            "Performance optimization, stress testing, and user acceptance testing.",
-          deliverables: [
-            "Performance optimization",
-            "Test results",
-            "User feedback",
-          ],
+            "Added campaign updates and notifications for better transparency and trust.",
         },
       ],
       metrics: [
-        { icon: "Activity", value: "Real-time", label: "Data Updates" },
-        { icon: "PieChart", value: "15+", label: "Chart Types" },
-        { icon: "Gauge", value: "99.9%", label: "Uptime" },
+        { icon: "HeartPulse", value: "200+", label: "Successful Donations" },
+        { icon: "Hospital", value: "50+", label: "Partner Hospitals" },
+        { icon: "Users", value: "1500+", label: "Registered Donors" },
       ],
-      comparison: {
-        before: [
-          "Static reports updated daily",
-          "Limited visualization options",
-          "Manual risk calculations",
-          "No real-time market data",
-        ],
-        after: [
-          "Real-time interactive dashboards",
-          "15+ customizable chart types",
-          "Automated risk assessment",
-          "Live market data integration",
-        ],
-      },
       learnings: [
-        "Financial data visualization requires careful balance between information density and clarity.",
-        "Real-time systems need robust error handling and fallback mechanisms for data provider outages.",
-        "Performance optimization is critical when dealing with high-frequency financial data updates.",
+        "Security and trust are fundamental for healthcare apps.",
+        "Real-time notifications enhance platform credibility.",
       ],
       testimonial: {
         content:
-          "The dashboard has become an essential tool for our investment decisions. The real-time insights have significantly improved our portfolio performance.",
-        author: "Jennifer Walsh",
-        role: "Portfolio Manager",
+          "This platform revolutionized how we connect with donors — saving precious time in emergencies.",
+        author: "Dr. Meera Patel",
+        role: "Medical Director",
       },
     },
     {
       id: 4,
-      title: "Learning Management System",
-      category: "Educational Platform",
-      industry: "Education",
+      title: "TextUtils",
+      category: "React Utility App",
+      industry: "Productivity",
       description:
-        "Comprehensive LMS with course creation, student progress tracking, and interactive learning tools.",
-      fullDescription: `Developed a comprehensive Learning Management System that facilitates online education with course creation tools, student progress tracking, and interactive learning features. The platform supports multiple content types including videos, quizzes, assignments, and live sessions.\n\nThe system includes advanced analytics for educators to track student engagement and performance, automated grading systems, and collaborative tools for group projects. Mobile-responsive design ensures seamless learning experience across all devices.`,
+        "A lightweight React-based text utility app offering real-time text transformations and analytics.",
+      fullDescription: `Developed a fast, interactive web app using React to manipulate and analyze text. 
+  Supports uppercase/lowercase conversion, word/character counting, and reading time estimation.`,
       image:
-        "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop",
-      gallery: [
-        "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=800&h=600&fit=crop",
-      ],
-      technologies: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Vercel"],
-      complexity: "Intermediate",
-      duration: "4 months",
-      teamSize: "3",
+        textutils,
+      technologies: ["React", "Tailwind CSS", "Vite"],
+      complexity: "Beginner",
+      duration: "2 weeks",
+      teamSize: "1",
       rating: 4,
-      impact: "+75% engagement",
-      liveUrl: "https://example-lms.com",
-      githubUrl: "https://github.com/example/lms",
+      impact: "500+ daily users",
+      liveUrl: "",
+      githubUrl: "https://github.com/Ratnakar-Singh-parihar-123/Textutils",
       features: [
-        "Course creation and management",
-        "Student progress tracking",
-        "Interactive quizzes and assignments",
-        "Video streaming integration",
-        "Discussion forums",
-        "Mobile-responsive design",
+        "Instant text transformation (uppercase/lowercase)",
+        "Word and character counter",
+        "Reading time calculator",
+        "Dark/light mode toggle",
+        "Responsive minimal UI",
       ],
-      architecture: [
-        {
-          title: "Full-stack Architecture",
-          description:
-            "Next.js with TypeScript for type-safe development, Prisma ORM for database management.",
-        },
-        {
-          title: "Content Management",
-          description:
-            "Flexible content system supporting multiple media types with cloud storage integration.",
-        },
-        {
-          title: "User Management",
-          description:
-            "Role-based access control with student, instructor, and admin permissions.",
-        },
-      ],
-      challenges: [
-        {
-          problem:
-            "Video streaming and large file uploads required efficient content delivery and storage solutions.",
-          solution:
-            "Implemented CDN integration with progressive video loading and optimized file compression.",
-        },
-        {
-          problem:
-            "Real-time collaboration features needed to work seamlessly across different devices and connection speeds.",
-          solution:
-            "Used WebSocket connections with offline synchronization and conflict resolution mechanisms.",
-        },
-      ],
-      timeline: [
-        {
-          title: "Educational Research",
-          duration: "1 week",
-          icon: "BookOpen",
-          description:
-            "Learning methodology research and educational platform analysis.",
-          deliverables: [
-            "Research findings",
-            "Platform requirements",
-            "User stories",
-          ],
-        },
-        {
-          title: "System Design",
-          duration: "2 weeks",
-          icon: "Layout",
-          description:
-            "Database design, user interface planning, and system architecture.",
-          deliverables: [
-            "Database schema",
-            "UI wireframes",
-            "System architecture",
-          ],
-        },
-        {
-          title: "Core Development",
-          duration: "10 weeks",
-          icon: "Code",
-          description:
-            "Course management, user system, and content delivery implementation.",
-          deliverables: [
-            "Course system",
-            "User management",
-            "Content delivery",
-          ],
-        },
-        {
-          title: "Interactive Features",
-          duration: "4 weeks",
-          icon: "MessageSquare",
-          description:
-            "Quizzes, discussions, and collaboration tools development.",
-          deliverables: [
-            "Quiz system",
-            "Discussion forums",
-            "Collaboration tools",
-          ],
-        },
-        {
-          title: "Testing & Launch",
-          duration: "2 weeks",
-          icon: "CheckCircle",
-          description:
-            "User testing, performance optimization, and production deployment.",
-          deliverables: [
-            "Test results",
-            "Performance optimization",
-            "Production launch",
-          ],
-        },
-      ],
-      metrics: [
-        { icon: "Users", value: "5000+", label: "Active Students" },
-        { icon: "BookOpen", value: "200+", label: "Courses Created" },
-        { icon: "Award", value: "95%", label: "Completion Rate" },
-      ],
-      comparison: {
-        before: [
-          "Traditional classroom-only learning",
-          "Limited course materials access",
-          "No progress tracking",
-          "Manual assignment grading",
-        ],
-        after: [
-          "Flexible online and hybrid learning",
-          "24/7 access to course materials",
-          "Detailed progress analytics",
-          "Automated grading system",
-        ],
-      },
       learnings: [
-        "Educational platforms require intuitive design to accommodate users with varying technical skills.",
-        "Content organization and search functionality are crucial for large course catalogs.",
-        "Mobile optimization is essential as many students access content on mobile devices.",
+        "React state management makes UI updates seamless.",
+        "Clean UX and utility apps can attract consistent daily users.",
       ],
       testimonial: {
         content:
-          "This LMS has revolutionized our online education delivery. Student engagement has increased dramatically since implementation.",
-        author: "Prof. David Martinez",
-        role: "Director of Online Learning",
+          "Simple yet powerful — a must-have tool for content creators and developers.",
+        author: "Anjali Gupta",
+        role: "Freelance Writer",
       },
     },
     {
       id: 5,
-      title: "Real Estate Platform",
-      category: "Web Application",
-      industry: "Real Estate",
+      title: "NodePad",
+      category: "Full-Stack Notes App",
+      industry: "Productivity",
       description:
-        "Modern real estate platform with property listings, virtual tours, and advanced search capabilities.",
-      fullDescription: `Built a comprehensive real estate platform that connects buyers, sellers, and agents through an intuitive interface with advanced property search, virtual tour integration, and comprehensive listing management. The platform includes mortgage calculators, neighborhood insights, and market analytics.\n\nFeatures include interactive maps with property overlays, saved searches with automated notifications, and integrated communication tools for seamless interaction between all parties. The platform has processed over $50M in property transactions since launch.`,
+        "A secure note-taking web app built with the MERN stack, offering real-time syncing and authentication.",
+      fullDescription: `NodePad allows users to create, edit, and delete notes securely in the cloud. 
+  It features user authentication, autosave, and persistent storage using MongoDB.`,
       image:
-        "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop",
-      gallery: [
-        "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1448630360428-65456885c650?w=800&h=600&fit=crop",
-      ],
-      technologies: ["React", "Express.js", "MongoDB", "Mapbox", "Stripe"],
+        "https://images.unsplash.com/photo-1517433456452-f9633a875f6f?w=800&h=600&fit=crop",
+      technologies: ["React", "Node.js", "Express.js", "MongoDB", "JWT Auth"],
       complexity: "Intermediate",
-      duration: "6 months",
-      teamSize: "4",
+      duration: "3 months",
+      teamSize: "1",
       rating: 4,
-      impact: "$50M+ transactions",
-      liveUrl: "https://example-realestate.com",
-      githubUrl: "https://github.com/example/realestate",
+      impact: "1000+ notes created",
+      liveUrl: "",
+      githubUrl: "https://github.com/Ratnakar-Singh-parihar-123/NodePad",
       features: [
-        "Advanced property search and filtering",
-        "Interactive map integration",
-        "Virtual tour capabilities",
-        "Mortgage calculator tools",
-        "Agent communication system",
-        "Market analytics dashboard",
-      ],
-      architecture: [
-        {
-          title: "Geospatial Architecture",
-          description:
-            "MongoDB with geospatial indexing for location-based searches, Mapbox integration for interactive maps.",
-        },
-        {
-          title: "Media Management",
-          description:
-            "Cloud-based image and video storage with automatic optimization and CDN delivery.",
-        },
-        {
-          title: "Search Engine",
-          description:
-            "Elasticsearch integration for fast, flexible property searches with multiple filters and sorting options.",
-        },
+        "User authentication with JWT",
+        "CRUD operations for notes",
+        "Autosave and cloud persistence",
+        "Responsive design",
+        "Dark/light mode",
       ],
       challenges: [
         {
-          problem:
-            "Large property image galleries and virtual tours caused slow page loading and poor user experience.",
+          problem: "Maintaining data consistency across multiple sessions.",
           solution:
-            "Implemented progressive image loading, WebP format conversion, and lazy loading for optimal performance.",
-        },
-        {
-          problem:
-            "Complex search queries with multiple filters and location-based results required optimization.",
-          solution:
-            "Built efficient database indexing strategy and implemented search result caching for common queries.",
+            "Used real-time state synchronization and MongoDB’s change streams for efficient updates.",
         },
       ],
-      timeline: [
-        {
-          title: "Market Analysis",
-          duration: "2 weeks",
-          icon: "Home",
-          description:
-            "Real estate market research, competitor analysis, and user requirement gathering.",
-          deliverables: [
-            "Market research",
-            "Competitor analysis",
-            "User requirements",
-          ],
-        },
-        {
-          title: "Platform Design",
-          duration: "3 weeks",
-          icon: "Map",
-          description:
-            "User interface design, map integration planning, and database architecture.",
-          deliverables: ["UI designs", "Map integration", "Database design"],
-        },
-        {
-          title: "Core Development",
-          duration: "12 weeks",
-          icon: "Building",
-          description:
-            "Property listing system, search functionality, and user management.",
-          deliverables: ["Listing system", "Search engine", "User management"],
-        },
-        {
-          title: "Advanced Features",
-          duration: "6 weeks",
-          icon: "Camera",
-          description:
-            "Virtual tours, mortgage calculators, and communication tools.",
-          deliverables: [
-            "Virtual tours",
-            "Calculators",
-            "Communication system",
-          ],
-        },
-        {
-          title: "Launch & Marketing",
-          duration: "3 weeks",
-          icon: "Megaphone",
-          description:
-            "Platform launch, agent onboarding, and marketing campaign.",
-          deliverables: [
-            "Platform launch",
-            "Agent training",
-            "Marketing materials",
-          ],
-        },
-      ],
-      metrics: [
-        { icon: "DollarSign", value: "$50M+", label: "Transactions" },
-        { icon: "Home", value: "10K+", label: "Properties Listed" },
-        { icon: "Users", value: "2500+", label: "Active Agents" },
-      ],
-      comparison: {
-        before: [
-          "Limited online property visibility",
-          "Basic search functionality",
-          "No virtual tour capabilities",
-          "Manual agent communication",
-        ],
-        after: [
-          "Comprehensive online listings",
-          "Advanced search with 20+ filters",
-          "Integrated virtual tour system",
-          "Automated communication tools",
-        ],
-      },
       learnings: [
-        "Real estate platforms require robust image handling and optimization for property galleries.",
-        "Location-based features are crucial and require careful consideration of performance and accuracy.",
-        "Trust and credibility features are essential in high-value transaction platforms.",
+        "JWT authentication enhances app security.",
+        "Backend optimization reduces latency in CRUD operations.",
       ],
       testimonial: {
         content:
-          "This platform has streamlined our entire sales process. We're closing deals faster and reaching more qualified buyers than ever before.",
-        author: "Lisa Thompson",
-        role: "Senior Real Estate Agent",
+          "Fast, reliable, and beautifully simple — perfect for daily productivity.",
+        author: "Karan Mehta",
+        role: "Student Developer",
       },
     },
     {
       id: 6,
-      title: "Social Media Analytics Tool",
-      category: "Analytics Platform",
-      industry: "Marketing",
+      title: "Personal Portfolio Website",
+      category: "Web Portfolio",
+      industry: "Personal Branding",
       description:
-        "Comprehensive social media analytics platform with multi-platform integration and automated reporting.",
-      fullDescription: `Developed a comprehensive social media analytics platform that aggregates data from multiple social networks to provide unified insights, automated reporting, and competitive analysis. The platform serves marketing agencies and businesses with detailed performance metrics and actionable recommendations.\n\nFeatures include real-time social media monitoring, sentiment analysis, influencer identification, and automated report generation. The platform has helped clients improve their social media ROI by an average of 45% through data-driven insights and optimization recommendations.`,
+        "A professional developer portfolio showcasing projects, achievements, and skills with dark/light mode and responsive design.",
+      fullDescription: `Developed using React and Tailwind CSS, this portfolio highlights all professional work, projects, and achievements. 
+  Includes dynamic sections like About, Skills, Projects, Achievements, and Contact with a polished responsive layout.`,
       image:
-        "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop",
-      gallery: [
-        "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
-      ],
-      technologies: ["Vue.js", "Node.js", "Python", "Redis", "Chart.js"],
+        portfolio,
+      technologies: ["React", "Tailwind CSS", "Framer Motion"],
       complexity: "Intermediate",
-      duration: "5 months",
-      teamSize: "3",
-      rating: 4,
-      impact: "+45% ROI",
-      liveUrl: "https://example-analytics.com",
-      githubUrl: "https://github.com/example/analytics",
+      duration: "2 months",
+      teamSize: "1",
+      rating: 5,
+      impact: "100% recruiter-friendly design",
+      liveUrl: "",
+      githubUrl: "https://github.com/Ratnakar-Singh-parihar-123/Portfolio",
       features: [
-        "Multi-platform social media integration",
-        "Real-time analytics dashboard",
-        "Sentiment analysis algorithms",
-        "Automated report generation",
-        "Competitor benchmarking",
-        "Influencer identification tools",
+        "Dark/light mode toggle",
+        "Smooth animations using Framer Motion",
+        "Projects, achievements, and skills section",
+        "Fully responsive and optimized UI",
+        "Contact form integration",
       ],
-      architecture: [
-        {
-          title: "Data Integration",
-          description:
-            "API integrations with major social platforms, data normalization, and real-time processing pipelines.",
-        },
-        {
-          title: "Analytics Engine",
-          description:
-            "Python-based analytics with machine learning for sentiment analysis and trend detection.",
-        },
-        {
-          title: "Visualization Layer",
-          description:
-            "Vue.js frontend with Chart.js for interactive data visualization and customizable dashboards.",
-        },
-      ],
-      challenges: [
-        {
-          problem:
-            "Different social media APIs had varying rate limits and data formats requiring complex synchronization.",
-          solution:
-            "Built unified data layer with intelligent rate limiting and standardized data transformation pipelines.",
-        },
-        {
-          problem:
-            "Real-time sentiment analysis of large volumes of social media content required efficient processing.",
-          solution:
-            "Implemented distributed processing with Redis queues and optimized NLP algorithms for real-time analysis.",
-        },
-      ],
-      timeline: [
-        {
-          title: "API Research",
-          duration: "2 weeks",
-          icon: "Link",
-          description:
-            "Social media API analysis, integration planning, and data mapping.",
-          deliverables: [
-            "API documentation",
-            "Integration plan",
-            "Data models",
-          ],
-        },
-        {
-          title: "Data Pipeline",
-          duration: "4 weeks",
-          icon: "Database",
-          description:
-            "Data collection system, processing pipelines, and storage optimization.",
-          deliverables: [
-            "Data pipeline",
-            "Processing system",
-            "Storage solution",
-          ],
-        },
-        {
-          title: "Analytics Development",
-          duration: "8 weeks",
-          icon: "BarChart3",
-          description:
-            "Dashboard creation, analytics algorithms, and visualization components.",
-          deliverables: ["Analytics dashboard", "Algorithms", "Visualizations"],
-        },
-        {
-          title: "Reporting System",
-          duration: "4 weeks",
-          icon: "FileText",
-          description:
-            "Automated reporting, export functionality, and scheduling system.",
-          deliverables: [
-            "Report generator",
-            "Export tools",
-            "Scheduling system",
-          ],
-        },
-        {
-          title: "Testing & Optimization",
-          duration: "2 weeks",
-          icon: "Zap",
-          description:
-            "Performance testing, accuracy validation, and user experience optimization.",
-          deliverables: [
-            "Performance optimization",
-            "Accuracy testing",
-            "UX improvements",
-          ],
-        },
-      ],
-      metrics: [
-        { icon: "Share2", value: "10+", label: "Platforms Integrated" },
-        { icon: "TrendingUp", value: "45%", label: "Average ROI Increase" },
-        { icon: "Clock", value: "Real-time", label: "Data Processing" },
-      ],
-      comparison: {
-        before: [
-          "Manual data collection from platforms",
-          "Weekly or monthly reporting cycles",
-          "Limited competitive insights",
-          "No sentiment analysis capabilities",
-        ],
-        after: [
-          "Automated multi-platform data aggregation",
-          "Real-time analytics and alerts",
-          "Comprehensive competitor benchmarking",
-          "AI-powered sentiment analysis",
-        ],
-      },
       learnings: [
-        "Social media data requires careful handling due to API limitations and changing platform policies.",
-        "Real-time analytics need to balance speed with accuracy, especially for sentiment analysis.",
-        "User-friendly data visualization is crucial for making complex analytics accessible to marketers.",
+        "Portfolio design should reflect developer personality and skill depth.",
+        "Animations enhance user experience when used subtly.",
       ],
       testimonial: {
         content:
-          "This analytics platform has transformed how we approach social media marketing. The insights are invaluable for our strategy decisions.",
-        author: "Mark Rodriguez",
-        role: "Digital Marketing Director",
+          "The portfolio beautifully represents Ratnakar’s skills and creative design sense.",
+        author: "Anonymous Reviewer",
+        role: "Frontend Developer",
       },
     },
   ];
@@ -1065,7 +460,7 @@ const Projects = () => {
               >
                 Explore Projects
               </Button>
-              <Button
+              {/* <Button
                 variant="outline"
                 size="lg"
                 iconName="Download"
@@ -1073,7 +468,7 @@ const Projects = () => {
                 className="px-8 py-3 text-base border-border hover:bg-primary/10 hover:text-primary transition-all"
               >
                 Download Portfolio
-              </Button>
+              </Button> */}
             </div>
           </motion.div>
         </div>
@@ -1082,7 +477,7 @@ const Projects = () => {
       <section className="py-16">
         <div className="container-brand">
           {/* Project Stats */}
-          <ProjectStats projects={projects} />
+          {/* <ProjectStats projects={projects} /> */}
 
           {/* Filters */}
           <ProjectFilters
@@ -1220,7 +615,7 @@ const Projects = () => {
                 className="bg-white text-primary font-semibold hover:bg-white/90 transition-all shadow-md"
                 onClick={() =>
                   (window.location.href =
-                    "mailto:ratnakarsinghparihar@gmail.com")
+                    "mailto:ratnakarsinghparihar9399@gmail.com")
                 }
               >
                 Get in Touch

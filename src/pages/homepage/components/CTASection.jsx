@@ -89,7 +89,7 @@ const CTASection = () => {
           className="bg-gradient-brand text-white rounded-2xl shadow-2xl p-10 text-center max-w-3xl mx-auto"
         >
           <h3 className="text-2xl md:text-3xl font-bold mb-4">
-            Open to Internships & Collaborations 💼
+            Open to internship, full-time, and freelance opportunities in web development. 💼
           </h3>
           <p className="text-white/90 mb-6 max-w-2xl mx-auto leading-relaxed">
             I’m currently looking for opportunities to apply my MERN stack
@@ -105,7 +105,7 @@ const CTASection = () => {
               iconPosition="left"
               className="bg-white text-primary hover:bg-white/90"
               onClick={() =>
-                (window.location.href = "mailto:ratnakarsinghparihar@gmail.com")
+                (window.location.href = "mailto:ratnakarsinghparihar9399@gmail.com")
               }
             >
               Send a Message

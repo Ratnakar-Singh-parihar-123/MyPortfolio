@@ -205,22 +205,28 @@ const Header = ({ className = "" }) => {
 
             {/* Mobile CTAs */}
             <div className="flex flex-col space-y-3 mt-6 pt-6 border-t border-border">
-              <Button
-                variant="outline"
-                fullWidth
-                iconName="Download"
-                iconPosition="left"
-              >
-                Download Resume
-              </Button>
-              <Button
-                variant="default"
-                fullWidth
-                iconName="MessageCircle"
-                iconPosition="left"
-              >
-                Let's Talk
-              </Button>
+              <a href={resumefile}>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  iconName="Download"
+                  iconPosition="left"
+                  className="text-sm"
+                >
+                  Resume
+                </Button>
+              </a>
+              <Link to="/contact">
+                <Button
+                  variant="default"
+                  size="sm"
+                  iconName="MessageCircle"
+                  iconPosition="left"
+                  className="text-sm"
+                >
+                  Let's Talk
+                </Button>
+              </Link>
             </div>
 
             {/* Status Indicator */}
@@ -228,7 +234,8 @@ const Header = ({ className = "" }) => {
               <div className="flex items-center space-x-3 px-4 py-2 bg-success/10 rounded-lg">
                 <div className="w-2 h-2 bg-success rounded-full animate-pulse"></div>
                 <span className="text-sm text-success font-medium">
-                  Available for new projects
+                  Open to internship, full-time, and freelance opportunities in
+                  web development.
                 </span>
               </div>
             </div>
