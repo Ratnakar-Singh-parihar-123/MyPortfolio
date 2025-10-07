@@ -1,11 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Github, ExternalLink } from "lucide-react";
-
 // projects image
 import yammiverse from "../../../assets/projectsImg/yammiverse.png";
 import vsbp from "../../../assets/projectsImg/vsbp.png";
-import bodp from "../../../assets/projectsImg/Blood organ donation platfrom.png";
+import bodp from "../../../assets/projectsImg/bloodOrganDonatiosn.png";
 
 const projects = [
   {
@@ -48,8 +47,8 @@ const projects = [
       "Framer Motion",
     ],
     live: "",
-    github:
-      "https://github.com/Ratnakar-Singh-parihar-123/Blood-organ-donation-platfrom",
+    github: "",
+    status: "In Progress", // ✅ Added project status
   },
 ];
 
@@ -66,7 +65,6 @@ const ProjectShowcaseSection = () => {
         >
           Projects
         </motion.h2>
-
         <p className="text-muted-foreground mb-12 max-w-2xl mx-auto">
           Here are some of my favorite projects that showcase my passion for
           building full-stack web apps and solving real-world problems using
@@ -90,27 +88,39 @@ const ProjectShowcaseSection = () => {
                   alt={project.title}
                   className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                 />
+
+                {/* ✅ Status Badge (In Progress) */}
+                {project.status && (
+                  <div className="absolute top-3 left-3 bg-yellow-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+                    {project.status}
+                  </div>
+                )}
+
                 {/* Overlay on hover */}
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-black/50 transition-all duration-500 flex items-center justify-center opacity-0 group-hover:opacity-100">
                   <div className="flex space-x-4">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 bg-white rounded-full hover:bg-gray-100 transition"
-                      aria-label="GitHub Link"
-                    >
-                      <Github size={18} className="text-gray-800" />
-                    </a>
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 bg-white rounded-full hover:bg-gray-100 transition"
-                      aria-label="Live Link"
-                    >
-                      <ExternalLink size={18} className="text-gray-800" />
-                    </a>
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 bg-white rounded-full hover:bg-gray-100 transition"
+                        aria-label="GitHub Link"
+                      >
+                        <Github size={18} className="text-gray-800" />
+                      </a>
+                    )}
+                    {project.live && (
+                      <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 bg-white rounded-full hover:bg-gray-100 transition"
+                        aria-label="Live Link"
+                      >
+                        <ExternalLink size={18} className="text-gray-800" />
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>

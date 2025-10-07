@@ -8,6 +8,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
   const [activeTab, setActiveTab] = useState("overview");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  // Lock scroll when modal opens
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -30,13 +31,17 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 
   const nextImage = () => {
     setCurrentImageIndex((prev) =>
-      prev === project?.gallery?.length - 1 ? 0 : prev + 1
+      project?.gallery
+        ? (prev + 1) % project.gallery.length
+        : 0
     );
   };
 
   const prevImage = () => {
     setCurrentImageIndex((prev) =>
-      prev === 0 ? project?.gallery?.length - 1 : prev - 1
+      project?.gallery
+        ? (prev - 1 + project.gallery.length) % project.gallery.length
+        : 0
     );
   };
 
@@ -44,7 +49,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4">
-          {/* Backdrop */}
+          {/* Overlay */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -55,9 +60,10 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 
           {/* Modal Container */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            initial={{ opacity: 0, scale: 0.9, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            exit={{ opacity: 0, scale: 0.9, y: 30 }}
+            transition={{ duration: 0.3 }}
             className="relative bg-background border border-border rounded-2xl shadow-2xl w-full max-w-6xl max-h-[95vh] flex flex-col overflow-hidden"
           >
             {/* Header */}
@@ -71,10 +77,11 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                     {project?.title}
                   </h2>
                   <p className="text-xs sm:text-sm text-muted-foreground">
-                    {project?.category}
+                    {project?.category || "Full Stack Project"}
                   </p>
                 </div>
               </div>
+
               <Button
                 variant="ghost"
                 size="icon"
@@ -84,7 +91,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
               />
             </div>
 
-            {/* Tabs (Responsive) */}
+            {/* Tabs (Mobile) */}
             <div className="border-b border-border bg-muted/20 overflow-x-auto no-scrollbar flex sm:hidden">
               {tabs.map((tab) => (
                 <button
@@ -102,16 +109,16 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
               ))}
             </div>
 
-            {/* Content Area */}
+            {/* Main Content Area */}
             <div className="flex-1 flex flex-col sm:flex-row overflow-hidden">
-              {/* Sidebar (Hidden on mobile) */}
+              {/* Sidebar (Desktop) */}
               <div className="hidden sm:flex flex-col w-64 border-r border-border bg-muted/30 overflow-y-auto">
-                <div className="p-4">
+                <div className="p-4 space-y-1">
                   {tabs.map((tab) => (
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
-                      className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition ${
+                      className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition ${
                         activeTab === tab.id
                           ? "bg-primary text-primary-foreground"
                           : "text-muted-foreground hover:bg-muted hover:text-foreground"
@@ -122,6 +129,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                     </button>
                   ))}
                 </div>
+
                 <div className="p-4 border-t border-border space-y-2">
                   {project?.liveUrl && (
                     <Button
@@ -148,17 +156,23 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                 </div>
               </div>
 
-              {/* Main Content */}
+              {/* Main Panel */}
               <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6">
-                {/* Image Gallery */}
+                {/* Overview Tab */}
                 {activeTab === "overview" && (
                   <>
                     <div className="relative rounded-lg overflow-hidden">
                       <Image
-                        src={project?.gallery?.[currentImageIndex]}
-                        alt="Project"
+                        src={
+                          project?.gallery
+                            ? project.gallery[currentImageIndex]
+                            : project?.image
+                        }
+                        alt={project?.title || "Project Image"}
                         className="w-full h-56 sm:h-80 object-cover"
                       />
+
+                      {/* Image Navigation */}
                       {project?.gallery?.length > 1 && (
                         <>
                           <button
@@ -182,34 +196,37 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                         Project Overview
                       </h3>
                       <p className="text-sm sm:text-base text-muted-foreground leading-relaxed whitespace-pre-line">
-                        {project?.fullDescription}
+                        {project?.fullDescription ||
+                          "A full-stack web application built to showcase robust functionality, modern UI, and scalable architecture."}
                       </p>
                     </div>
 
-                    <div>
-                      <h3 className="text-base sm:text-lg font-semibold text-foreground mb-3">
-                        Key Features
-                      </h3>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {project?.features?.map((f, i) => (
-                          <div
-                            key={i}
-                            className="flex items-start gap-3 p-3 bg-muted/50 rounded-lg"
-                          >
-                            <Icon
-                              name="Check"
-                              size={15}
-                              className="text-success mt-0.5"
-                            />
-                            <span className="text-sm">{f}</span>
-                          </div>
-                        ))}
+                    {project?.features && (
+                      <div>
+                        <h3 className="text-base sm:text-lg font-semibold text-foreground mb-3">
+                          Key Features
+                        </h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          {project.features.map((f, i) => (
+                            <div
+                              key={i}
+                              className="flex items-start gap-3 p-3 bg-muted/50 rounded-lg"
+                            >
+                              <Icon
+                                name="Check"
+                                size={15}
+                                className="text-success mt-0.5"
+                              />
+                              <span className="text-sm">{f}</span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </>
                 )}
 
-                {/* Other Tabs */}
+                {/* Technical Tab */}
                 {activeTab === "technical" && (
                   <div>
                     <h3 className="text-lg font-semibold mb-3">
@@ -226,6 +243,28 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                         </div>
                       ))}
                     </div>
+                  </div>
+                )}
+
+                {/* Timeline Tab */}
+                {activeTab === "timeline" && (
+                  <div>
+                    <h3 className="text-lg font-semibold mb-3">Project Timeline</h3>
+                    <p className="text-sm text-muted-foreground">
+                      {project?.timeline ||
+                        "The project was developed iteratively across design, development, testing, and deployment phases to ensure robust functionality."}
+                    </p>
+                  </div>
+                )}
+
+                {/* Results Tab */}
+                {activeTab === "results" && (
+                  <div>
+                    <h3 className="text-lg font-semibold mb-3">Results & Outcomes</h3>
+                    <p className="text-sm text-muted-foreground">
+                      {project?.results ||
+                        "Successfully delivered a scalable and responsive web application with enhanced user experience and real-time performance improvements."}
+                    </p>
                   </div>
                 )}
               </div>

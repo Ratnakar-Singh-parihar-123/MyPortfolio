@@ -22,7 +22,7 @@ const AchievementsPage = () => {
     {
       title: "Problem Solving (Basic)",
       issuer: "HackerRank",
-      date: "2024",
+      date: "2025",
       image: problemSolvingBasic,
       description:
         "Demonstrated strong analytical thinking and mastery in basic algorithmic concepts including loops, arrays, and conditionals through HackerRank’s coding challenges.",
@@ -34,7 +34,7 @@ const AchievementsPage = () => {
     {
       title: "Problem Solving (Intermediate)",
       issuer: "HackerRank",
-      date: "2023",
+      date: "2025",
       image: problemSolvingIntermedated,
       description:
         "Validated advanced problem-solving ability through complex challenges covering recursion, sorting, and optimization algorithms on HackerRank.",
@@ -46,7 +46,7 @@ const AchievementsPage = () => {
     {
       title: "JavaScript (Basic)",
       issuer: "HackerRank",
-      date: "2023",
+      date: "2025",
       image: javaScriptBasic,
       description:
         "Earned certification for core JavaScript programming skills including ES6 features, control flow, and DOM fundamentals through HackerRank assessment.",
@@ -58,7 +58,7 @@ const AchievementsPage = () => {
     {
       title: "Frontend Development (React)",
       issuer: "HackerRank",
-      date: "2023",
+      date: "2025",
       image: frontendRect,
       description:
         "Proven ability to build interactive user interfaces with React, handling props, hooks, and state management efficiently using best coding practices.",
@@ -70,7 +70,7 @@ const AchievementsPage = () => {
     {
       title: "REST API (Intermediate)",
       issuer: "HackerRank",
-      date: "2023",
+      date: "2025",
       image: reactBasic,
       description:
         "Certified for understanding and implementing RESTful APIs, HTTP methods, and JSON handling for building real-world backend integrations.",

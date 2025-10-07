@@ -315,7 +315,7 @@ const Projects = () => {
       teamSize: "1",
       rating: 5,
       impact: "100% recruiter-friendly design",
-      liveUrl: "",
+      liveUrl: "https://my-portfolio-78gt.vercel.app/",
       githubUrl: "https://github.com/Ratnakar-Singh-parihar-123/MyPortfolio",
       features: [
         "Dark/light mode toggle",

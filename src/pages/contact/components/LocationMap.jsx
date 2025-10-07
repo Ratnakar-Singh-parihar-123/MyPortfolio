@@ -94,7 +94,7 @@ const LocationMap = () => {
           >
             Get Directions
           </Button>
-          <Button
+          {/* <Button
             variant="outline"
             iconName="Video"
             iconPosition="left"
@@ -104,7 +104,7 @@ const LocationMap = () => {
             className="flex-1"
           >
             Book Virtual Meet
-          </Button>
+          </Button> */}
         </div>
       </div>
     </div>
