@@ -30,14 +30,14 @@ const ContactInfo = () => {
     {
       icon: "Github",
       label: "GitHub",
-      username: "@ratnakar-singh",
-      url: "https://github.com/ratnakar-singh",
+      username: "Ratnakar-Singh-parihar-123",
+      url: "https://github.com/Ratnakar-Singh-parihar-123",
     },
     {
       icon: "Linkedin",
       label: "LinkedIn",
       username: "in/ratnakar-singh-parihar",
-      url: "https://linkedin.com/in/ratnakar-singh-parihar",
+      url: "https://www.linkedin.com/in/ratnakar-singh-parihar-a87528260/",
     },
   ];
 

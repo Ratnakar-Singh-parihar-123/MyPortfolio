@@ -26,7 +26,7 @@ const AchievementsPage = () => {
       image: problemSolvingBasic,
       description:
         "Demonstrated strong analytical thinking and mastery in basic algorithmic concepts including loops, arrays, and conditionals through HackerRank’s coding challenges.",
-      link: "https://www.hackerrank.com/certificates",
+      link: "https://www.hackerrank.com/certificates/iframe/5ce289a1a111",
       badge:
         "https://upload.wikimedia.org/wikipedia/commons/4/40/HackerRank_Icon-1000px.png",
       skills: ["Algorithms", "Logic Building", "Basic Data Structures"],
@@ -38,7 +38,7 @@ const AchievementsPage = () => {
       image: problemSolvingIntermedated,
       description:
         "Validated advanced problem-solving ability through complex challenges covering recursion, sorting, and optimization algorithms on HackerRank.",
-      link: "https://www.hackerrank.com/certificates",
+      link: "https://www.hackerrank.com/certificates/iframe/cbf68707295d",
       badge:
         "https://upload.wikimedia.org/wikipedia/commons/4/40/HackerRank_Icon-1000px.png",
       skills: ["Algorithms", "Optimization", "Recursion", "Time Complexity"],
@@ -50,7 +50,7 @@ const AchievementsPage = () => {
       image: javaScriptBasic,
       description:
         "Earned certification for core JavaScript programming skills including ES6 features, control flow, and DOM fundamentals through HackerRank assessment.",
-      link: "https://www.hackerrank.com/certificates",
+      link: "https://www.hackerrank.com/certificates/iframe/438c3130ea15",
       badge:
         "https://upload.wikimedia.org/wikipedia/commons/4/40/HackerRank_Icon-1000px.png",
       skills: ["JavaScript", "ES6+", "DOM", "Functions"],
@@ -62,22 +62,29 @@ const AchievementsPage = () => {
       image: frontendRect,
       description:
         "Proven ability to build interactive user interfaces with React, handling props, hooks, and state management efficiently using best coding practices.",
-      link: "https://www.hackerrank.com/certificates",
+      link: "https://www.hackerrank.com/certificates/iframe/eaae9fd31c8c",
       badge:
         "https://upload.wikimedia.org/wikipedia/commons/4/40/HackerRank_Icon-1000px.png",
       skills: ["React", "Hooks", "State Management", "Component Architecture"],
     },
     {
-      title: "REST API (Intermediate)",
+      title: "React (Basic)",
       issuer: "HackerRank",
       date: "2025",
-      image: reactBasic,
+      image: reactBasic, 
       description:
-        "Certified for understanding and implementing RESTful APIs, HTTP methods, and JSON handling for building real-world backend integrations.",
-      link: "https://www.hackerrank.com/certificates",
+        "Certified for foundational knowledge of React, including components, state management, props, JSX, and lifecycle methods for building interactive UIs.",
+      link: "https://www.hackerrank.com/certificates/iframe/240df00a1852",
       badge:
         "https://upload.wikimedia.org/wikipedia/commons/4/40/HackerRank_Icon-1000px.png",
-      skills: ["REST API", "HTTP", "JSON", "Backend Integration"],
+      skills: [
+        "React",
+        "JSX",
+        "Components",
+        "State",
+        "Props",
+        "Lifecycle Methods",
+      ],
     },
 
     // {
@@ -103,7 +110,10 @@ const AchievementsPage = () => {
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-5xl font-bold mb-4"
         >
-          My <span className="text-gradient-brand">Achievements & Certificates</span>
+          My{" "}
+          <span className="text-gradient-brand">
+            Achievements & Certificates
+          </span>
         </motion.h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           Certificates and projects that reflect my learning, dedication, and

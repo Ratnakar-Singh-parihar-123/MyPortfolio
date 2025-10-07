@@ -286,17 +286,6 @@ const ContactPage = () => {
                     {/* Q2 */}
                     <div className="p-3 rounded-lg bg-muted/40 hover:bg-muted/60 transition-all">
                       <p className="font-medium text-foreground mb-1">
-                        🌍 Do you work with international clients?
-                      </p>
-                      <p className="text-muted-foreground leading-relaxed">
-                        Yes, I collaborate with clients from all over the world
-                        across multiple time zones.
-                      </p>
-                    </div>
-
-                    {/* Q3 */}
-                    <div className="p-3 rounded-lg bg-muted/40 hover:bg-muted/60 transition-all">
-                      <p className="font-medium text-foreground mb-1">
                         💻 What technologies do you use?
                       </p>
                       <p className="text-muted-foreground leading-relaxed">
