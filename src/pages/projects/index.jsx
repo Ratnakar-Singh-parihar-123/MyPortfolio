@@ -13,8 +13,9 @@ import RelatedProjects from "./components/RelatedProjects";
 // projects image
 import vsbp from "../../assets/projectsImg/vsbp.png";
 import yammiverse from "../../assets/projectsImg/yammiverse.png";
-import bodp from "../../assets/projectsImg/Blood organ donation platfrom.png";
+import bodp from "../../assets/projectsImg/bloodOrganDonatiosn.png";
 import textutils from "../../assets/projectsImg/textutils.png";
+// import scootyFy from "../../assets/projectsImg/scootyfy.png";
 // import nodepad from "../../assets/projectsImg/";
 import portfolio from "../../assets/projectsImg/myportfolio.png";
 
@@ -172,14 +173,14 @@ const Projects = () => {
         "Framer Motion",
         "Tailwind CSS",
       ],
-      complexity: "Advanced",
+      complexity: "In Progress",
       duration: "4 months",
       teamSize: "3",
       rating: 5,
-      impact: "200+ lives impacted",
+      impact: "300+ lives impacted",
       liveUrl: "",
       githubUrl:
-        "https://github.com/Ratnakar-Singh-parihar-123/Blood-organ-donation-platfrom",
+        "",
       features: [
         "Role-based dashboards for donors, hospitals, and admins",
         "Donation tracking system",
@@ -227,14 +228,14 @@ const Projects = () => {
   Supports uppercase/lowercase conversion, word/character counting, and reading time estimation.`,
       image:
         textutils,
-      technologies: ["React", "Tailwind CSS", "Vite"],
+      technologies: ["React", "Tailwind CSS" , "APIs"],
       complexity: "Beginner",
       duration: "2 weeks",
       teamSize: "1",
       rating: 4,
       impact: "500+ daily users",
-      liveUrl: "",
-      githubUrl: "https://github.com/Ratnakar-Singh-parihar-123/Textutils",
+      liveUrl: "https://ratnakar-singh-parihar-123.github.io/TextUtils/",
+      githubUrl: "https://github.com/Ratnakar-Singh-parihar-123/TextUtils",
       features: [
         "Instant text transformation (uppercase/lowercase)",
         "Word and character counter",
@@ -253,50 +254,50 @@ const Projects = () => {
         role: "Freelance Writer",
       },
     },
-    {
-      id: 5,
-      title: "NodePad",
-      category: "Full-Stack Notes App",
-      industry: "Productivity",
-      description:
-        "A secure note-taking web app built with the MERN stack, offering real-time syncing and authentication.",
-      fullDescription: `NodePad allows users to create, edit, and delete notes securely in the cloud. 
-  It features user authentication, autosave, and persistent storage using MongoDB.`,
-      image:
-        "https://images.unsplash.com/photo-1517433456452-f9633a875f6f?w=800&h=600&fit=crop",
-      technologies: ["React", "Node.js", "Express.js", "MongoDB", "JWT Auth"],
-      complexity: "Intermediate",
-      duration: "3 months",
-      teamSize: "1",
-      rating: 4,
-      impact: "1000+ notes created",
-      liveUrl: "",
-      githubUrl: "https://github.com/Ratnakar-Singh-parihar-123/NodePad",
-      features: [
-        "User authentication with JWT",
-        "CRUD operations for notes",
-        "Autosave and cloud persistence",
-        "Responsive design",
-        "Dark/light mode",
-      ],
-      challenges: [
-        {
-          problem: "Maintaining data consistency across multiple sessions.",
-          solution:
-            "Used real-time state synchronization and MongoDB’s change streams for efficient updates.",
-        },
-      ],
-      learnings: [
-        "JWT authentication enhances app security.",
-        "Backend optimization reduces latency in CRUD operations.",
-      ],
-      testimonial: {
-        content:
-          "Fast, reliable, and beautifully simple — perfect for daily productivity.",
-        author: "Karan Mehta",
-        role: "Student Developer",
-      },
-    },
+  //   {
+  //     id: 5,
+  //     title: "NodePad",
+  //     category: "Full-Stack Notes App",
+  //     industry: "Productivity",
+  //     description:
+  //       "A secure note-taking web app built with the MERN stack, offering real-time syncing and authentication.",
+  //     fullDescription: `NodePad allows users to create, edit, and delete notes securely in the cloud. 
+  // It features user authentication, autosave, and persistent storage using MongoDB.`,
+  //     image:
+  //       "https://images.unsplash.com/photo-1517433456452-f9633a875f6f?w=800&h=600&fit=crop",
+  //     technologies: ["React", "Node.js", "Express.js", "MongoDB", "JWT Auth"],
+  //     complexity: "Intermediate",
+  //     duration: "3 months",
+  //     teamSize: "1",
+  //     rating: 4,
+  //     impact: "1000+ notes created",
+  //     liveUrl: "",
+  //     githubUrl: "https://github.com/Ratnakar-Singh-parihar-123/NodePad",
+  //     features: [
+  //       "User authentication with JWT",
+  //       "CRUD operations for notes",
+  //       "Autosave and cloud persistence",
+  //       "Responsive design",
+  //       "Dark/light mode",
+  //     ],
+  //     challenges: [
+  //       {
+  //         problem: "Maintaining data consistency across multiple sessions.",
+  //         solution:
+  //           "Used real-time state synchronization and MongoDB’s change streams for efficient updates.",
+  //       },
+  //     ],
+  //     learnings: [
+  //       "JWT authentication enhances app security.",
+  //       "Backend optimization reduces latency in CRUD operations.",
+  //     ],
+  //     testimonial: {
+  //       content:
+  //         "Fast, reliable, and beautifully simple — perfect for daily productivity.",
+  //       author: "Karan Mehta",
+  //       role: "Student Developer",
+  //     },
+  //   },
     {
       id: 6,
       title: "Personal Portfolio Website",
@@ -315,7 +316,7 @@ const Projects = () => {
       rating: 5,
       impact: "100% recruiter-friendly design",
       liveUrl: "",
-      githubUrl: "https://github.com/Ratnakar-Singh-parihar-123/Portfolio",
+      githubUrl: "https://github.com/Ratnakar-Singh-parihar-123/MyPortfolio",
       features: [
         "Dark/light mode toggle",
         "Smooth animations using Framer Motion",
