@@ -10,6 +10,10 @@ import problemSolvingIntermedated from "../../../assets/caritificatesImg/Problem
 import reactBasic from "../../../assets/caritificatesImg/React Basic.png";
 import frontendRect from "../../../assets/caritificatesImg/frontend React.png";
 import javaScriptBasic from "../../../assets/caritificatesImg/javascript basic.png";
+import codingThinker from "../../../assets/caritificatesImg/coding-thinker-certificates.png";
+
+//logo
+import codingThinkerLogos from "../../../assets/brandLogos/coding-thinker-logo.png";
 
 const CertificatesSection = () => {
   const [activeCertificate, setActiveCertificate] = useState(0);
@@ -128,6 +132,28 @@ const CertificatesSection = () => {
       verificationUrl:
         "https://www.hackerrank.com/certificates/iframe/438c3130ea15",
       level: "Fundamental",
+    },
+    {
+      id: 6,
+      name: "45 Days Coding Challenge",
+      issuer: "Coding Thinker",
+      date: "Aug 2025",
+      category: "Programming & Algorithms",
+      credentialId: "CT-45DAYS-2025",
+      image: codingThinker,
+      badge: codingThinkerLogos,
+      description:
+        "Actively participated in the '45 Days Coding Challenge' organized by Coding Thinker from 14th July 2025. Demonstrated consistent effort, enthusiasm, and dedication towards learning Coding, Data Structures, and Algorithms while engaging and growing with the community.",
+      skills: [
+        "Coding",
+        "Data Structures",
+        "Algorithms",
+        "Problem Solving",
+        "Consistency",
+        "Team Collaboration",
+      ],
+      verificationUrl: "", // Agar koi official certificate link hai to yahan daal sakte ho
+      level: "Participation",
     },
   ];
 

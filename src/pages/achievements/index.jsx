@@ -9,6 +9,10 @@ import problemSolvingIntermedated from "../../assets/caritificatesImg/Problem so
 import reactBasic from "../../assets/caritificatesImg/React Basic.png";
 import frontendRect from "../../assets/caritificatesImg/frontend React.png";
 import javaScriptBasic from "../../assets/caritificatesImg/javascript basic.png";
+import codingThinker from "../../assets/caritificatesImg/coding-thinker-certificates.png";
+
+//codingThinker logo
+import codingThinkerLogo from "../../assets/brandLogos/coding-thinker-logo.png";
 
 const AchievementsPage = () => {
   const [selectedCertificate, setSelectedCertificate] = useState(null);
@@ -71,7 +75,7 @@ const AchievementsPage = () => {
       title: "React (Basic)",
       issuer: "HackerRank",
       date: "2025",
-      image: reactBasic, 
+      image: reactBasic,
       description:
         "Certified for foundational knowledge of React, including components, state management, props, JSX, and lifecycle methods for building interactive UIs.",
       link: "https://www.hackerrank.com/certificates/iframe/240df00a1852",
@@ -84,6 +88,24 @@ const AchievementsPage = () => {
         "State",
         "Props",
         "Lifecycle Methods",
+      ],
+    },
+    {
+      title: "45 Days Coding Challenge",
+      issuer: "Coding Thinker",
+      date: "30-08-2025",
+      image: codingThinker, 
+      description:
+        "Actively participated in the '45 Days Coding Challenge' organized by Coding Thinker from 14th July 2025, demonstrating consistent effort, enthusiasm, and dedication towards learning Coding, Data Structures, and Algorithms while engaging and growing with the community.",
+      link: "", // Agar certificate ka online link hai to yahan daal sakte ho, warna blank chhodo
+      badge: codingThinkerLogo, // Approx official Coding Thinker logo URL
+      skills: [
+        "Coding",
+        "Data Structures",
+        "Algorithms",
+        "Problem Solving",
+        "Consistency",
+        "Community Engagement",
       ],
     },
 
