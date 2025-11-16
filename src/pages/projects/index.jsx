@@ -9,7 +9,6 @@ import ProjectFilters from "./components/ProjectFilters";
 import RelatedProjects from "./components/RelatedProjects";
 // import ProjectStats from "./components/ProjectStats";
 
-
 // projects image
 import vsbp from "../../assets/projectsImg/vsbp.png";
 import yammiverse from "../../assets/projectsImg/yammiverse.png";
@@ -18,7 +17,7 @@ import textutils from "../../assets/projectsImg/textutils.png";
 // import scootyFy from "../../assets/projectsImg/scootyfy.png";
 // import nodepad from "../../assets/projectsImg/";
 import portfolio from "../../assets/projectsImg/myportfolio.png";
-
+import SpiceCraft from "../../assets/projectsImg/SpiceCraft.png";
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -41,8 +40,7 @@ const Projects = () => {
         "A real-time vehicle service booking system connecting customers with local service centers through an intuitive online platform.",
       fullDescription: `Developed a real-world MERN stack platform enabling customers to book, track, and manage vehicle services online. Service centers can view customer requests, update service status, and handle digital payments. 
   Includes live chat, order tracking, and dynamic dashboards for both customers and admins.`,
-      image:
-        vsbp,
+      image: vsbp,
       technologies: [
         "React",
         "Node.js",
@@ -103,8 +101,7 @@ const Projects = () => {
         "A community-driven recipe platform for sharing, exploring, and saving food recipes with images and ingredients.",
       fullDescription: `Built a feature-rich MERN stack application that allows users to upload, save, and discover recipes. 
   Includes user authentication, image uploads, and responsive design for smooth browsing across devices.`,
-      image:
-        yammiverse,
+      image: yammiverse,
       technologies: [
         "React",
         "Node.js",
@@ -163,8 +160,7 @@ const Projects = () => {
         "A social impact platform connecting blood and organ donors with recipients and hospitals in real time.",
       fullDescription: `Built a MERN stack donation management platform to streamline the donor-recipient connection process. 
   Includes role-based dashboards, secure data handling, and campaign management tools for hospitals.`,
-      image:
-        bodp,
+      image: bodp,
       technologies: [
         "React",
         "Node.js",
@@ -179,8 +175,7 @@ const Projects = () => {
       rating: 5,
       impact: "300+ lives impacted",
       liveUrl: "",
-      githubUrl:
-        "",
+      githubUrl: "",
       features: [
         "Role-based dashboards for donors, hospitals, and admins",
         "Donation tracking system",
@@ -226,9 +221,8 @@ const Projects = () => {
         "A lightweight React-based text utility app offering real-time text transformations and analytics.",
       fullDescription: `Developed a fast, interactive web app using React to manipulate and analyze text. 
   Supports uppercase/lowercase conversion, word/character counting, and reading time estimation.`,
-      image:
-        textutils,
-      technologies: ["React", "Tailwind CSS" , "APIs"],
+      image: textutils,
+      technologies: ["React", "Tailwind CSS", "APIs"],
       complexity: "Beginner",
       duration: "2 weeks",
       teamSize: "1",
@@ -254,50 +248,50 @@ const Projects = () => {
         role: "Freelance Writer",
       },
     },
-  //   {
-  //     id: 5,
-  //     title: "NodePad",
-  //     category: "Full-Stack Notes App",
-  //     industry: "Productivity",
-  //     description:
-  //       "A secure note-taking web app built with the MERN stack, offering real-time syncing and authentication.",
-  //     fullDescription: `NodePad allows users to create, edit, and delete notes securely in the cloud. 
-  // It features user authentication, autosave, and persistent storage using MongoDB.`,
-  //     image:
-  //       "https://images.unsplash.com/photo-1517433456452-f9633a875f6f?w=800&h=600&fit=crop",
-  //     technologies: ["React", "Node.js", "Express.js", "MongoDB", "JWT Auth"],
-  //     complexity: "Intermediate",
-  //     duration: "3 months",
-  //     teamSize: "1",
-  //     rating: 4,
-  //     impact: "1000+ notes created",
-  //     liveUrl: "",
-  //     githubUrl: "https://github.com/Ratnakar-Singh-parihar-123/NodePad",
-  //     features: [
-  //       "User authentication with JWT",
-  //       "CRUD operations for notes",
-  //       "Autosave and cloud persistence",
-  //       "Responsive design",
-  //       "Dark/light mode",
-  //     ],
-  //     challenges: [
-  //       {
-  //         problem: "Maintaining data consistency across multiple sessions.",
-  //         solution:
-  //           "Used real-time state synchronization and MongoDB’s change streams for efficient updates.",
-  //       },
-  //     ],
-  //     learnings: [
-  //       "JWT authentication enhances app security.",
-  //       "Backend optimization reduces latency in CRUD operations.",
-  //     ],
-  //     testimonial: {
-  //       content:
-  //         "Fast, reliable, and beautifully simple — perfect for daily productivity.",
-  //       author: "Karan Mehta",
-  //       role: "Student Developer",
-  //     },
-  //   },
+    //   {
+    //     id: 5,
+    //     title: "NodePad",
+    //     category: "Full-Stack Notes App",
+    //     industry: "Productivity",
+    //     description:
+    //       "A secure note-taking web app built with the MERN stack, offering real-time syncing and authentication.",
+    //     fullDescription: `NodePad allows users to create, edit, and delete notes securely in the cloud.
+    // It features user authentication, autosave, and persistent storage using MongoDB.`,
+    //     image:
+    //       "https://images.unsplash.com/photo-1517433456452-f9633a875f6f?w=800&h=600&fit=crop",
+    //     technologies: ["React", "Node.js", "Express.js", "MongoDB", "JWT Auth"],
+    //     complexity: "Intermediate",
+    //     duration: "3 months",
+    //     teamSize: "1",
+    //     rating: 4,
+    //     impact: "1000+ notes created",
+    //     liveUrl: "",
+    //     githubUrl: "https://github.com/Ratnakar-Singh-parihar-123/NodePad",
+    //     features: [
+    //       "User authentication with JWT",
+    //       "CRUD operations for notes",
+    //       "Autosave and cloud persistence",
+    //       "Responsive design",
+    //       "Dark/light mode",
+    //     ],
+    //     challenges: [
+    //       {
+    //         problem: "Maintaining data consistency across multiple sessions.",
+    //         solution:
+    //           "Used real-time state synchronization and MongoDB’s change streams for efficient updates.",
+    //       },
+    //     ],
+    //     learnings: [
+    //       "JWT authentication enhances app security.",
+    //       "Backend optimization reduces latency in CRUD operations.",
+    //     ],
+    //     testimonial: {
+    //       content:
+    //         "Fast, reliable, and beautifully simple — perfect for daily productivity.",
+    //       author: "Karan Mehta",
+    //       role: "Student Developer",
+    //     },
+    //   },
     {
       id: 6,
       title: "Personal Portfolio Website",
@@ -307,8 +301,7 @@ const Projects = () => {
         "A professional developer portfolio showcasing projects, achievements, and skills with dark/light mode and responsive design.",
       fullDescription: `Developed using React and Tailwind CSS, this portfolio highlights all professional work, projects, and achievements. 
   Includes dynamic sections like About, Skills, Projects, Achievements, and Contact with a polished responsive layout.`,
-      image:
-        portfolio,
+      image: portfolio,
       technologies: ["React", "Tailwind CSS", "Framer Motion"],
       complexity: "Intermediate",
       duration: "2 months",
@@ -334,6 +327,57 @@ const Projects = () => {
         author: "Anonymous Reviewer",
         role: "Frontend Developer",
       },
+    },
+
+    {
+      id: 7,
+      title: "SpiceCraft Traders",
+      category: "E-commerce",
+      industry: "Food & Spices",
+      description:
+        "A clean, responsive HTML–CSS website created for a fictional spice brand, showcasing high-quality masalas with a modern UI.",
+      fullDescription: `SpiceCraft Traders is a visually appealing and fast-loading spice brand website built using pure HTML and CSS. 
+  Designed with a premium masala brand theme, the site highlights products such as turmeric, red chili powder, cumin, and garam masala.
+  It includes smooth hover effects, product cards, brand story section, contact form, and fully mobile-responsive layouts.`,
+
+      image: SpiceCraft,
+
+      technologies: ["HTML", "CSS"],
+      complexity: "Beginner",
+      duration: "1 week",
+      teamSize: "1",
+      rating: 2,
+
+      liveUrl: "https://spice-craft-traders.vercel.app/",
+      githubUrl:
+        "https://github.com/Ratnakar-Singh-parihar-123/SpiceCraft-Traders",
+
+      features: [
+        "Modern landing page with hero spice banner",
+        "Dedicated product section (masalas, herbs, blends)",
+        "Smooth hover animations for product cards",
+        "Brand story + quality assurance section",
+        "Contact form for customer inquiries",
+        "Fully responsive layout for mobile/tablet/desktop",
+        "Premium color palette suited for a spice brand",
+        "Clean typography for a rich user experience",
+      ],
+
+      learnings: [
+        "Mastered responsive design fundamentals using pure CSS.",
+        "Learned how to structure brand-themed landing pages with product cards.",
+        "Improved my UI sense for color combinations and layout spacing.",
+      ],
+
+      testimonial: {
+        content:
+          "The website feels premium and gives a real spice brand vibe. Clean, fast, and visually appealing!",
+        author: "Radhika Sharma",
+        role: "Food Blogger",
+      },
+
+      impact:
+        "Gives a professional brand identity feel — ideal for small spice businesses.",
     },
   ];
 

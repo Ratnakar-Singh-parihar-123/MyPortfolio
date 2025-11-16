@@ -7,6 +7,7 @@ import ProjectShowcaseSection from './components/ProjectShowcaseSection';
 import CertificatesSection from './components/TestimonialSection';
 import CTASection from './components/CTASection';
 import FloatingActionButton from './components/FloatingActionButton';
+import ReaalSections from './components/VideoModel';
 
 
 const Homepage = () => {
@@ -93,6 +94,9 @@ const Homepage = () => {
       <main className="relative">
         {/* Hero Section */}
         <HeroSection />
+
+        {/* // reel sections  */}
+        {/* <ReaalSections /> */}
 
         {/* Skills Preview Section */}
         <SkillPreviewSection />
