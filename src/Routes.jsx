@@ -9,6 +9,7 @@ import Skills from './pages/skills';
 import Projects from './pages/projects';
 import About from './pages/about';
 import Homepage from './pages/homepage';
+import BlogPage from "./pages/blog/BlogPage";
 
 const Routes = () => {
   return (
@@ -24,6 +25,7 @@ const Routes = () => {
         <Route path="/projects" element={<Projects />} />
         <Route path="/about" element={<About />} />
         <Route path="/homepage" element={<Homepage />} />
+        <Route path="/blog" element={<BlogPage />} />
         <Route path="*" element={<NotFound />} />
       </RouterRoutes>
       </ErrorBoundary>

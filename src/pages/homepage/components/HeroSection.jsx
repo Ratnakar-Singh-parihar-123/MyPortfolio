@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Icon from "../../../components/AppIcon";
 import Image from "../../../components/AppImage";
 import Button from "../../../components/ui/Button";
 import HeroImg from "../../../assets/heroImg/hero.jpeg";
 import { Link } from "react-router-dom";
-import ResumePopup from "../../../components/ResumePopup"; // ✅ added import
+import ResumePopup from "../../../components/ResumePopup";
 
 const HeroSection = () => {
   const [currentTagline, setCurrentTagline] = useState(0);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(true);
-  const [isPopupOpen, setIsPopupOpen] = useState(false); // ✅ added for popup
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   const taglines = [
-    "Full-Stack Developer & UI/UX Enthusiast",
-    "Turning Ideas into Interactive Experiences",
-    "Bridging Frontend Creativity with Backend Logic",
-    "React Specialist & Problem Solver",
-    "Designing Seamless Digital Experiences",
-    "Building Scalable, Modern Web Solutions",
+    { text: "Full-Stack Developer & UI/UX Enthusiast", emoji: "🚀", color: "from-blue-500 to-cyan-400" },
+    { text: "Turning Ideas into Interactive Experiences", emoji: "💡", color: "from-purple-500 to-pink-400" },
+    { text: "Bridging Frontend Creativity with Backend Logic", emoji: "🌉", color: "from-emerald-500 to-green-400" },
+    { text: "React Specialist & Problem Solver", emoji: "⚛️", color: "from-orange-500 to-yellow-400" },
+    { text: "Designing Seamless Digital Experiences", emoji: "🎨", color: "from-indigo-500 to-purple-400" },
+    { text: "Building Scalable, Modern Web Solutions", emoji: "🏗️", color: "from-red-500 to-orange-400" },
   ];
 
   useEffect(() => {
@@ -26,152 +26,354 @@ const HeroSection = () => {
       setCurrentTagline((prev) => (prev + 1) % taglines.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [taglines.length]);
 
-  const toggleVideo = () => setIsVideoPlaying(!isVideoPlaying);
+  const handleScrollDown = () => {
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: "smooth"
+    });
+  };
+
+  const stats = [
+    { value: "260+", label: "LeetCode", icon: "Code", color: "text-emerald-500", bgColor: "bg-emerald-50 dark:bg-emerald-900/20" },
+    { value: "200+", label: "GFG Questions", icon: "Database", color: "text-blue-500", bgColor: "bg-blue-50 dark:bg-blue-900/20" },
+    { value: "8+", label: "Projects", icon: "FolderOpen", color: "text-purple-500", bgColor: "bg-purple-50 dark:bg-purple-900/20" },
+    { value: "2+", label: "Internships", icon: "Briefcase", color: "text-amber-500", bgColor: "bg-amber-50 dark:bg-amber-900/20" },
+  ];
+
+  const techSkills = ["React", "Node.js", "MongoDB", "Express", "TypeScript", "Tailwind CSS"];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-surface to-muted pt-24 md:pt-28 lg:pt-32">
-      {/* Background Decorative Gradient */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-950 pt-16 md:pt-20">
+
+      {/* Background Pattern */}
       <div className="absolute inset-0 z-0">
-        <div className="relative w-full h-full bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2072&q=80')] bg-cover bg-center opacity-10"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-background/40"></div>
-        </div>
-        {/* Background animation control */}
-        <button
-          onClick={toggleVideo}
-          className="absolute bottom-6 right-6 z-10 p-3 bg-background/80 backdrop-blur-sm rounded-full border border-border hover:bg-background transition-all duration-200"
-        >
-          <Icon name={isVideoPlaying ? "Pause" : "Play"} size={20} />
-        </button>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-emerald-500/5" />
+        <div
+          className="absolute inset-0 opacity-5 dark:opacity-10"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundSize: '60px 60px'
+          }}
+        />
+      </div>
+
+      {/* Floating Elements */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {[...Array(15)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-2 h-2 bg-gradient-to-r from-blue-400/30 to-purple-400/30 dark:from-blue-500/20 dark:to-purple-500/20 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animation: `float ${3 + Math.random() * 4}s infinite ease-in-out ${i * 0.2}s`
+            }}
+          />
+        ))}
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 container-brand pb-20 sm:pb-28 md:pb-32">
-        <div className="flex flex-col-reverse lg:flex-row items-center gap-12">
-          {/* LEFT COLUMN - TEXT */}
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
+
+          {/* Left Column - Text Content */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center lg:text-left w-full"
+            transition={{ duration: 0.6 }}
+            className="text-center lg:text-left w-full lg:w-1/2 space-y-10"
           >
-            {/* Availability Badge */}
+            {/* Welcome Badge */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              className="inline-flex items-center space-x-2 px-4 py-2 bg-success/10 border border-success/20 rounded-full mb-8"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="inline-flex items-center gap-3 px-5 py-2.5 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-full border border-blue-200 dark:border-blue-700/30"
             >
-              <div className="w-2 h-2 bg-success rounded-full animate-pulse"></div>
-              <span className="text-sm font-medium text-success">
-                Open to internship, full-time, and freelance opportunities in web development.
-              </span>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
+                <span className="text-sm font-medium text-blue-700 dark:text-blue-300">
+                  👋 Welcome to my Portfolio
+                </span>
+              </div>
             </motion.div>
 
             {/* Main Heading */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight"
-            >
-              Hi, I'm{" "}
-              <span className="text-gradient-brand">
-                Ratnakar Singh Parihar
-              </span>
-            </motion.h1>
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="text-lg font-medium text-blue-600 dark:text-blue-400"
+                >
+                  Hello, I'm
+                </motion.p>
+                <motion.h1
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight"
+                >
+                  <span className="text-gray-900 dark:text-white">Ratnakar Singh</span>
+                  <br />
+                  <span className="bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
+                    Parihar
+                  </span>
+                </motion.h1>
+              </div>
+            </div>
 
-            {/* Tagline */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              className="h-16 md:h-20 flex items-center justify-center lg:justify-start mb-8"
-            >
-              <motion.p
-                key={currentTagline}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-                className="text-xl md:text-2xl lg:text-3xl text-muted-foreground font-medium"
-              >
-                {taglines[currentTagline]}
-              </motion.p>
-            </motion.div>
+            {/* Animated Tagline */}
+            <div className="relative min-h-[80px]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentTagline}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.4 }}
+                  className="flex items-center justify-center lg:justify-start gap-3"
+                >
+                  <span className="text-2xl" role="img" aria-label="tagline icon">
+                    {taglines[currentTagline].emoji}
+                  </span>
+                  <p className={`text-xl sm:text-2xl font-semibold bg-gradient-to-r ${taglines[currentTagline].color} bg-clip-text text-transparent`}>
+                    {taglines[currentTagline].text}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Tagline Dots */}
+              <div className="flex justify-center lg:justify-start gap-2 mt-4">
+                {taglines.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentTagline(index)}
+                    className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${index === currentTagline
+                        ? "w-6 bg-gradient-to-r from-blue-500 to-purple-500"
+                        : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500"
+                      }`}
+                    aria-label={`Show tagline ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
 
             {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.6 }}
-              className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-12 leading-relaxed"
+              transition={{ delay: 0.5 }}
+              className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 space-y-4"
             >
-              I’m an aspiring Full-Stack Developer specializing in the MERN
-              stack. Passionate about turning ideas into responsive,
-              user-friendly web apps. With a focus on clean design, efficient
-              code, and problem-solving, I aim to build experiences that are
-              both functional and meaningful.
-            </motion.p>
+              <p>
+                Final year Computer Science student at <span className="font-semibold text-blue-600 dark:text-blue-400">Graphic Era Hill University</span>,
+                specializing in the <span className="font-semibold text-purple-600 dark:text-purple-400">MERN stack</span> development.
+              </p>
+              <p>
+                Passionate about creating <span className="font-semibold text-emerald-600 dark:text-emerald-400">efficient solutions</span> and
+                <span className="font-semibold text-pink-600 dark:text-pink-400"> engaging user experiences</span>.
+              </p>
+            </motion.div>
+
+            {/* Tech Skills */}
+            {/* <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="pt-4"
+            >
+              <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Tech Stack</p>
+              <div className="flex flex-wrap gap-2">
+                {techSkills.map((skill, index) => (
+                  <motion.span
+                    key={skill}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.6 + index * 0.05 }}
+                    className="px-3 py-1.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:shadow-md transition-shadow duration-300"
+                  >
+                    {skill}
+                  </motion.span>
+                ))}
+              </div>
+            </motion.div> */}
 
             {/* CTA Buttons */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9, duration: 0.6 }}
-              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-6"
+              transition={{ delay: 0.7 }}
+              className="flex flex-col sm:flex-row gap-4 pt-6"
             >
-              <Link to="/contact">
+              <Link to="/contact" className="w-full sm:w-auto">
                 <Button
-                  variant="default"
+                  variant="gradient"
                   size="lg"
                   iconName="MessageCircle"
-                  iconPosition="left"
-                  className="text-lg px-8 py-4 w-full sm:w-auto"
+                  className="w-full sm:w-auto px-8 py-3.5 text-base rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 shadow-md hover:shadow-lg transition-all duration-300"
                 >
-                  Contact.
+                  Get in Touch
                 </Button>
               </Link>
 
-              {/* ✅ View Resume Button */}
               <Button
                 variant="outline"
                 size="lg"
-                iconName="Download"
-                iconPosition="left"
-                className="text-lg px-8 py-4 w-full sm:w-auto"
+                iconName="FileText"
+                className="w-full sm:w-auto px-8 py-3.5 text-base rounded-xl border-2 border-gray-300 dark:border-gray-600 hover:border-blue-400 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300"
                 onClick={() => setIsPopupOpen(true)}
               >
                 View Resume
               </Button>
             </motion.div>
+
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.9 }}
+              className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8"
+            >
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.9 + index * 0.1 }}
+                  whileHover={{ y: -5 }}
+                  className={`p-4 rounded-xl border border-gray-200 dark:border-gray-900 ${stat.bgColor} hover:shadow-md transition-all duration-300 cursor-default`}
+                >
+                  <div className={`text-2xl font-bold ${stat.color} mb-1`}>
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
           </motion.div>
 
-          {/* RIGHT COLUMN - IMAGE */}
+          {/* Right Column - Image */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative w-full flex justify-center"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="relative w-full lg:w-1/2 flex justify-center"
           >
-            <div className="relative max-w-md sm:max-w-lg mx-auto">
-              <div className="relative overflow-hidden rounded-3xl bg-gradient-brand p-[2px] shadow-xl">
-                <Image
-                  src={HeroImg}
-                  alt="Ratnakar Singh Parihar - Full-Stack Developer"
-                  className="w-full h-[420px] sm:h-[500px] md:h-[550px] object-cover rounded-3xl"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent rounded-3xl"></div>
+            <div className="relative max-w-md">
+              {/* Glow Effect */}
+              <div className="absolute -inset-6 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-3xl blur-2xl" />
+
+              {/* Image Container */}
+              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 p-1 shadow-lg">
+                <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-gray-900">
+                  {/* Image Skeleton Loader */}
+                  {!isImageLoaded && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 animate-pulse rounded-2xl z-10" />
+                  )}
+
+                  <Image
+                    src={HeroImg}
+                    alt="Ratnakar Singh Parihar - Full-Stack Developer"
+                    className={`w-full h-[350px] md:h-[450px] object-cover object-center transition-opacity duration-500 ${isImageLoaded ? 'opacity-100' : 'opacity-0'
+                      }`}
+                    onLoad={() => setIsImageLoaded(true)}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                </div>
               </div>
+
+              {/* Tech Badges */}
+              <div className="absolute -bottom-4 -left-4">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  whileHover={{ scale: 1.05 }}
+                  className="flex items-center gap-3 px-4 py-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+                    <Icon name="Code" size={18} className="text-white" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-900 dark:text-white">Full-Stack</div>
+                    <div className="text-xs text-gray-600 dark:text-gray-400">Developer</div>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div className="absolute -top-4 -right-4">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                  whileHover={{ scale: 1.05 }}
+                  className="flex items-center gap-3 px-4 py-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                    <Icon name="Palette" size={18} className="text-white" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-900 dark:text-white">UI/UX</div>
+                    <div className="text-xs text-gray-600 dark:text-gray-400">Designer</div>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Experience Badge */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.8 }}
+                whileHover={{ scale: 1.1 }}
+                className="absolute top-6 -left-2 px-3 py-1.5 bg-gradient-to-r from-emerald-500 to-green-500 text-white text-sm font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
+              >
+                <div className="flex items-center gap-1.5">
+                  <Icon name="Award" size={14} />
+                  <span>2+ Years Experience</span>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>
       </div>
 
-      {/* ✅ Resume Popup */}
+      {/* Scroll Down Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.8 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+      >
+        <button
+          onClick={handleScrollDown}
+          className="flex flex-col items-center gap-2 group"
+          aria-label="Scroll down"
+        >
+          <span className="text-xs text-gray-500 dark:text-gray-400 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors duration-300">
+            Scroll down
+          </span>
+          <div className="w-5 h-8 border border-gray-300 dark:border-gray-600 rounded-full flex justify-center group-hover:border-blue-400 transition-colors duration-300">
+            <div className="w-1 h-2 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full mt-2 animate-bounce" />
+          </div>
+        </button>
+      </motion.div>
+
+      {/* Resume Popup */}
       <ResumePopup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
+
+      {/* Animation Styles */}
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-15px) rotate(180deg); }
+        }
+      `}</style>
     </section>
   );
 };

@@ -7,17 +7,38 @@ import ProjectCard from "./components/ProjectCard";
 import ProjectModal from "./components/ProjectModal";
 import ProjectFilters from "./components/ProjectFilters";
 import RelatedProjects from "./components/RelatedProjects";
-// import ProjectStats from "./components/ProjectStats";
 
-// projects image
+// Main project images
 import vsbp from "../../assets/projectsImg/vsbp.png";
 import yammiverse from "../../assets/projectsImg/yammiverse.png";
 import bodp from "../../assets/projectsImg/bloodOrganDonatiosn.png";
 import textutils from "../../assets/projectsImg/textutils.png";
-// import scootyFy from "../../assets/projectsImg/scootyfy.png";
-// import nodepad from "../../assets/projectsImg/";
 import portfolio from "../../assets/projectsImg/myportfolio.png";
 import SpiceCraft from "../../assets/projectsImg/SpiceCraft.png";
+
+// Gallery images for each project (agar nahi hain toh placeholder use karein)
+// import vsbp1 from "../../assets/projectsImg/vsbp-1.png";
+// import vsbp2 from "../../assets/projectsImg/vsbp-2.png";
+// import vsbp3 from "../../assets/projectsImg/vsbp-3.png";
+
+// import yammiverse1 from "../../assets/projectsImg/yammiverse-1.png";
+// import yammiverse2 from "../../assets/projectsImg/yammiverse-2.png";
+// import yammiverse3 from "../../assets/projectsImg/yammiverse-3.png";
+
+// import bodp1 from "../../assets/projectsImg/bodp-1.png";
+// import bodp2 from "../../assets/projectsImg/bodp-2.png";
+// import bodp3 from "../../assets/projectsImg/bodp-3.png";
+
+// import textutils1 from "../../assets/projectsImg/textutils-1.png";
+// import textutils2 from "../../assets/projectsImg/textutils-2.png";
+
+// import portfolio1 from "../../assets/projectsImg/portfolio-1.png";
+// import portfolio2 from "../../assets/projectsImg/portfolio-2.png";
+// import portfolio3 from "../../assets/projectsImg/portfolio-3.png";
+
+// import SpiceCraft1 from "../../assets/projectsImg/SpiceCraft-1.png";
+// import SpiceCraft2 from "../../assets/projectsImg/SpiceCraft-2.png";
+// import SpiceCraft3 from "../../assets/projectsImg/SpiceCraft-3.png";
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -29,7 +50,7 @@ const Projects = () => {
   });
   const [sortBy, setSortBy] = useState("recent");
 
-  // Mock project data
+  // Complete project data with gallery images
   const projects = [
     {
       id: 1,
@@ -41,6 +62,12 @@ const Projects = () => {
       fullDescription: `Developed a real-world MERN stack platform enabling customers to book, track, and manage vehicle services online. Service centers can view customer requests, update service status, and handle digital payments. 
   Includes live chat, order tracking, and dynamic dashboards for both customers and admins.`,
       image: vsbp,
+      gallery: [
+        'vsbp',    // Main dashboard
+        'vsbp1',   // Booking interface
+        'sbp2,',   // Service center dashboard
+        'vsbp3',   // Admin panel
+      ],
       technologies: [
         "React",
         "Node.js",
@@ -102,6 +129,12 @@ const Projects = () => {
       fullDescription: `Built a feature-rich MERN stack application that allows users to upload, save, and discover recipes. 
   Includes user authentication, image uploads, and responsive design for smooth browsing across devices.`,
       image: yammiverse,
+      gallery: [
+        'yammiverse',   // Homepage
+        'yammiverse1',  // Recipe listing
+        'yammiverse2',  // Recipe detail
+        'yammiverse3',  // User profile
+      ],
       technologies: [
         "React",
         "Node.js",
@@ -161,6 +194,12 @@ const Projects = () => {
       fullDescription: `Built a MERN stack donation management platform to streamline the donor-recipient connection process. 
   Includes role-based dashboards, secure data handling, and campaign management tools for hospitals.`,
       image: bodp,
+      gallery: [
+        'bodp',   // Landing page
+        'bodp1',  // Donor registration
+        'bodp2',  // Hospital dashboard
+        'bodp3',  // Campaign management
+      ],
       technologies: [
         "React",
         "Node.js",
@@ -222,6 +261,11 @@ const Projects = () => {
       fullDescription: `Developed a fast, interactive web app using React to manipulate and analyze text. 
   Supports uppercase/lowercase conversion, word/character counting, and reading time estimation.`,
       image: textutils,
+      gallery: [
+        'textutils',   // Main interface
+        'textutils1',  // Light mode
+        'textutils2',  // Dark mode
+      ],
       technologies: ["React", "Tailwind CSS", "APIs"],
       complexity: "Beginner",
       duration: "2 weeks",
@@ -248,50 +292,6 @@ const Projects = () => {
         role: "Freelance Writer",
       },
     },
-    //   {
-    //     id: 5,
-    //     title: "NodePad",
-    //     category: "Full-Stack Notes App",
-    //     industry: "Productivity",
-    //     description:
-    //       "A secure note-taking web app built with the MERN stack, offering real-time syncing and authentication.",
-    //     fullDescription: `NodePad allows users to create, edit, and delete notes securely in the cloud.
-    // It features user authentication, autosave, and persistent storage using MongoDB.`,
-    //     image:
-    //       "https://images.unsplash.com/photo-1517433456452-f9633a875f6f?w=800&h=600&fit=crop",
-    //     technologies: ["React", "Node.js", "Express.js", "MongoDB", "JWT Auth"],
-    //     complexity: "Intermediate",
-    //     duration: "3 months",
-    //     teamSize: "1",
-    //     rating: 4,
-    //     impact: "1000+ notes created",
-    //     liveUrl: "",
-    //     githubUrl: "https://github.com/Ratnakar-Singh-parihar-123/NodePad",
-    //     features: [
-    //       "User authentication with JWT",
-    //       "CRUD operations for notes",
-    //       "Autosave and cloud persistence",
-    //       "Responsive design",
-    //       "Dark/light mode",
-    //     ],
-    //     challenges: [
-    //       {
-    //         problem: "Maintaining data consistency across multiple sessions.",
-    //         solution:
-    //           "Used real-time state synchronization and MongoDB’s change streams for efficient updates.",
-    //       },
-    //     ],
-    //     learnings: [
-    //       "JWT authentication enhances app security.",
-    //       "Backend optimization reduces latency in CRUD operations.",
-    //     ],
-    //     testimonial: {
-    //       content:
-    //         "Fast, reliable, and beautifully simple — perfect for daily productivity.",
-    //       author: "Karan Mehta",
-    //       role: "Student Developer",
-    //     },
-    //   },
     {
       id: 6,
       title: "Personal Portfolio Website",
@@ -302,6 +302,12 @@ const Projects = () => {
       fullDescription: `Developed using React and Tailwind CSS, this portfolio highlights all professional work, projects, and achievements. 
   Includes dynamic sections like About, Skills, Projects, Achievements, and Contact with a polished responsive layout.`,
       image: portfolio,
+      gallery: [
+        'portfolio',   // Homepage
+        'portfolio1',  // Projects section
+        'portfolio2',  // Skills section
+        'portfolio3',  // Contact section
+      ],
       technologies: ["React", "Tailwind CSS", "Framer Motion"],
       complexity: "Intermediate",
       duration: "2 months",
@@ -323,35 +329,36 @@ const Projects = () => {
       ],
       testimonial: {
         content:
-          "The portfolio beautifully represents Ratnakar’s skills and creative design sense.",
+          "The portfolio beautifully represents Ratnakar's skills and creative design sense.",
         author: "Anonymous Reviewer",
         role: "Frontend Developer",
       },
     },
-
     {
       id: 7,
       title: "SpiceCraft Traders",
       category: "E-commerce",
       industry: "Food & Spices",
       description:
-        "A clean, responsive HTML–CSS website created for a fictional spice brand, showcasing high-quality masalas with a modern UI.",
+        "A clean, responsive HTML-CSS website created for a fictional spice brand, showcasing high-quality masalas with a modern UI.",
       fullDescription: `SpiceCraft Traders is a visually appealing and fast-loading spice brand website built using pure HTML and CSS. 
   Designed with a premium masala brand theme, the site highlights products such as turmeric, red chili powder, cumin, and garam masala.
   It includes smooth hover effects, product cards, brand story section, contact form, and fully mobile-responsive layouts.`,
-
       image: SpiceCraft,
-
+      gallery: [
+        'SpiceCraft',   // Landing page
+        'SpiceCraft1',  // Products section
+        'SpiceCraft2',  // About section
+        'SpiceCraft3',  // Contact section
+      ],
       technologies: ["HTML", "CSS"],
       complexity: "Beginner",
       duration: "1 week",
       teamSize: "1",
       rating: 2,
-
       liveUrl: "https://spice-craft-traders.vercel.app/",
       githubUrl:
         "https://github.com/Ratnakar-Singh-parihar-123/SpiceCraft-Traders",
-
       features: [
         "Modern landing page with hero spice banner",
         "Dedicated product section (masalas, herbs, blends)",
@@ -362,20 +369,17 @@ const Projects = () => {
         "Premium color palette suited for a spice brand",
         "Clean typography for a rich user experience",
       ],
-
       learnings: [
         "Mastered responsive design fundamentals using pure CSS.",
         "Learned how to structure brand-themed landing pages with product cards.",
         "Improved my UI sense for color combinations and layout spacing.",
       ],
-
       testimonial: {
         content:
           "The website feels premium and gives a real spice brand vibe. Clean, fast, and visually appealing!",
         author: "Radhika Sharma",
         role: "Food Blogger",
       },
-
       impact:
         "Gives a professional brand identity feel — ideal for small spice businesses.",
     },
@@ -505,25 +509,14 @@ const Projects = () => {
               >
                 Explore Projects
               </Button>
-              {/* <Button
-                variant="outline"
-                size="lg"
-                iconName="Download"
-                iconPosition="left"
-                className="px-8 py-3 text-base border-border hover:bg-primary/10 hover:text-primary transition-all"
-              >
-                Download Portfolio
-              </Button> */}
             </div>
           </motion.div>
         </div>
       </section>
+      
       {/* Main Content */}
       <section className="py-16">
         <div className="container-brand">
-          {/* Project Stats */}
-          {/* <ProjectStats projects={projects} /> */}
-
           {/* Filters */}
           <ProjectFilters
             filters={filterOptions}
@@ -619,7 +612,6 @@ const Projects = () => {
 
       {/* Call to Action */}
       <section className="py-20 bg-gradient-to-b from-primary to-primary/90 text-white text-center relative overflow-hidden">
-        {/* Soft Glow Background */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.15),transparent_70%)]"></div>
 
         <div className="container-brand relative z-10">
@@ -630,27 +622,23 @@ const Projects = () => {
             viewport={{ once: true }}
             className="max-w-3xl mx-auto"
           >
-            {/* Icon */}
             <div className="flex items-center justify-center mb-6">
               <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center">
                 <Icon name="Rocket" size={30} className="text-white" />
               </div>
             </div>
 
-            {/* Headline */}
             <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-snug">
-              Let’s Build Something{" "}
+              Let's Build Something{" "}
               <span className="text-white/90">Amazing Together</span>
             </h2>
 
-            {/* Description */}
             <p className="text-white/85 text-lg max-w-2xl mx-auto mb-10">
-              Whether it’s a small idea or a big project, I’d love to
+              Whether it's a small idea or a big project, I'd love to
               collaborate and help bring your vision to life with clean design
               and solid code.
             </p>
 
-            {/* Buttons */}
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
               <Button
                 variant="secondary"
