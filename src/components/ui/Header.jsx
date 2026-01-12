@@ -204,7 +204,7 @@ const Header = ({ className = "" }) => {
           RSP
         </span>
         <span className="text-xs text-gray-600 dark:text-gray-400 font-medium -mt-1">
-          Ratnakar Singh
+          Ratnakar Singh Parihar
         </span>
       </div>
     </div>

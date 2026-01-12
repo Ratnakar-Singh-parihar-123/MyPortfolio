@@ -13,18 +13,43 @@ const HeroSection = () => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   const taglines = [
-    { text: "Full-Stack Developer & UI/UX Enthusiast", emoji: "🚀", color: "from-blue-500 to-cyan-400" },
-    { text: "Turning Ideas into Interactive Experiences", emoji: "💡", color: "from-purple-500 to-pink-400" },
-    { text: "Bridging Frontend Creativity with Backend Logic", emoji: "🌉", color: "from-emerald-500 to-green-400" },
-    { text: "React Specialist & Problem Solver", emoji: "⚛️", color: "from-orange-500 to-yellow-400" },
-    { text: "Designing Seamless Digital Experiences", emoji: "🎨", color: "from-indigo-500 to-purple-400" },
-    { text: "Building Scalable, Modern Web Solutions", emoji: "🏗️", color: "from-red-500 to-orange-400" },
+    {
+      text: "MERN Stack Full-Stack Developer | Building End-to-End Web Solutions",
+      emoji: "🚀",
+      color: "from-blue-500 to-cyan-400",
+    },
+    {
+      text: "Turning Ideas into Functional & Scalable Web Applications",
+      emoji: "💡",
+      color: "from-purple-500 to-pink-400",
+    },
+    {
+      text: "Crafting Clean Frontends with Powerful Backend Logic",
+      emoji: "⚙️",
+      color: "from-emerald-500 to-green-400",
+    },
+    {
+      text: "React-Driven Interfaces with Node & MongoDB at the Core",
+      emoji: "⚛️",
+      color: "from-orange-500 to-yellow-400",
+    },
+    {
+      text: "Focused on Performance, Usability & Real-World Problem Solving",
+      emoji: "🎯",
+      color: "from-indigo-500 to-purple-400",
+    },
+    {
+      text: "Learning, Building & Growing as a Full-Stack Developer",
+      emoji: "📈",
+      color: "from-red-500 to-orange-400",
+    },
   ];
+
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTagline((prev) => (prev + 1) % taglines.length);
-    }, 3000);
+    }, 3500);
     return () => clearInterval(interval);
   }, [taglines.length]);
 
@@ -39,7 +64,15 @@ const HeroSection = () => {
     { value: "260+", label: "LeetCode", icon: "Code", color: "text-emerald-500", bgColor: "bg-emerald-50 dark:bg-emerald-900/20" },
     { value: "200+", label: "GFG Questions", icon: "Database", color: "text-blue-500", bgColor: "bg-blue-50 dark:bg-blue-900/20" },
     { value: "8+", label: "Projects", icon: "FolderOpen", color: "text-purple-500", bgColor: "bg-purple-50 dark:bg-purple-900/20" },
-    { value: "2+", label: "Internships", icon: "Briefcase", color: "text-amber-500", bgColor: "bg-amber-50 dark:bg-amber-900/20" },
+    {
+      value: "1+",
+      label: "Hands-on Development & Freelancing",
+      icon: "Code",
+      color: "text-indigo-500",
+      bgColor: "bg-indigo-50 dark:bg-indigo-900/20",
+    }
+
+
   ];
 
   const techSkills = ["React", "Node.js", "MongoDB", "Express", "TypeScript", "Tailwind CSS"];
@@ -153,8 +186,8 @@ const HeroSection = () => {
                     key={index}
                     onClick={() => setCurrentTagline(index)}
                     className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${index === currentTagline
-                        ? "w-6 bg-gradient-to-r from-blue-500 to-purple-500"
-                        : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500"
+                      ? "w-6 bg-gradient-to-r from-blue-500 to-purple-500"
+                      : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500"
                       }`}
                     aria-label={`Show tagline ${index + 1}`}
                   />
@@ -170,14 +203,35 @@ const HeroSection = () => {
               className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 space-y-4"
             >
               <p>
-                Final year Computer Science student at <span className="font-semibold text-blue-600 dark:text-blue-400">Graphic Era Hill University</span>,
-                specializing in the <span className="font-semibold text-purple-600 dark:text-purple-400">MERN stack</span> development.
+                <span className="font-semibold text-blue-600 dark:text-blue-400">
+                  Full Stack Developer
+                </span>{" "}
+                passionate about crafting{" "}
+                <span className="font-semibold text-purple-600 dark:text-purple-400">
+                  innovative solutions
+                </span>{" "}
+                and turning ideas into{" "}
+                <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                  scalable applications
+                </span>.
               </p>
+
               <p>
-                Passionate about creating <span className="font-semibold text-emerald-600 dark:text-emerald-400">efficient solutions</span> and
-                <span className="font-semibold text-pink-600 dark:text-pink-400"> engaging user experiences</span>.
+                Committed to leveraging{" "}
+                <span className="font-semibold text-pink-600 dark:text-pink-400">
+                  modern technologies
+                </span>{" "}
+                to solve{" "}
+                <span className="font-semibold text-amber-600 dark:text-amber-400">
+                  real-world challenges
+                </span>{" "}
+                and create a{" "}
+                <span className="font-semibold text-indigo-600 dark:text-indigo-400">
+                  meaningful impact
+                </span>.
               </p>
             </motion.div>
+
 
             {/* Tech Skills */}
             {/* <motion.div

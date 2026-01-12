@@ -10,6 +10,8 @@ import Projects from './pages/projects';
 import About from './pages/about';
 import Homepage from './pages/homepage';
 import BlogPage from "./pages/blog/BlogPage";
+import Experience from "./pages/experience/experience";
+import Education from "./pages/education/education"
 
 const Routes = () => {
   return (
@@ -26,6 +28,8 @@ const Routes = () => {
         <Route path="/about" element={<About />} />
         <Route path="/homepage" element={<Homepage />} />
         <Route path="/blog" element={<BlogPage />} />
+        <Route path="/experience" element={<Experience />} />
+        <Route path="/education" element={<Education/>}/>
         <Route path="*" element={<NotFound />} />
       </RouterRoutes>
       </ErrorBoundary>
