@@ -14,7 +14,7 @@ import yammiverse from "../../assets/projectsImg/yammiverse.png";
 import bodp from "../../assets/projectsImg/bloodOrganDonatiosn.png";
 import textutils from "../../assets/projectsImg/textutils.png";
 import portfolio from "../../assets/projectsImg/myportfolio.png";
-import SpiceCraft from "../../assets/projectsImg/SpiceCraft.png";
+import SpiceCraft from "../../assets/projectsImg/spiceCraftTradersImg/SpiceCraft Traders Home.png";
 
 // Gallery images for each project (agar nahi hain toh placeholder use karein)
 // import vsbp1 from "../../assets/projectsImg/vsbp-1.png";
@@ -36,9 +36,13 @@ import SpiceCraft from "../../assets/projectsImg/SpiceCraft.png";
 // import portfolio2 from "../../assets/projectsImg/portfolio-2.png";
 // import portfolio3 from "../../assets/projectsImg/portfolio-3.png";
 
-// import SpiceCraft1 from "../../assets/projectsImg/SpiceCraft-1.png";
-// import SpiceCraft2 from "../../assets/projectsImg/SpiceCraft-2.png";
-// import SpiceCraft3 from "../../assets/projectsImg/SpiceCraft-3.png";
+import SpiceCraft1 from "../../assets/projectsImg/spiceCraftTradersImg/SpiceCraft Traders 1.png";
+import SpiceCraft2 from "../../assets/projectsImg/spiceCraftTradersImg/SpiceCraft Traders 2.png";
+import SpiceCraft3 from "../../assets/projectsImg/spiceCraftTradersImg/SpiceCraft Traders 3.png";
+import SpiceCraft4 from "../../assets/projectsImg/spiceCraftTradersImg/SpiceCraft Traders 4.png";
+import SpiceCraft5 from "../../assets/projectsImg/spiceCraftTradersImg/SpiceCraft Traders 5.png";
+import SpiceCraft6 from "../../assets/projectsImg/spiceCraftTradersImg/SpiceCraft Traders 6.png";
+
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -346,10 +350,13 @@ const Projects = () => {
   It includes smooth hover effects, product cards, brand story section, contact form, and fully mobile-responsive layouts.`,
       image: SpiceCraft,
       gallery: [
-        'SpiceCraft',   // Landing page
-        'SpiceCraft1',  // Products section
-        'SpiceCraft2',  // About section
-        'SpiceCraft3',  // Contact section
+        SpiceCraft,   // Landing page
+        SpiceCraft1,  // Products section
+        SpiceCraft2,  // About section
+        SpiceCraft3,
+        SpiceCraft4,
+        SpiceCraft5,
+        SpiceCraft6,
       ],
       technologies: ["HTML", "CSS"],
       complexity: "Beginner",
