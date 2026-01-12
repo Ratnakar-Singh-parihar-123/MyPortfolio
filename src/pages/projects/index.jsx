@@ -11,7 +11,7 @@ import RelatedProjects from "./components/RelatedProjects";
 // Main project images
 import vsbp from "../../assets/projectsImg/vsbp.png";
 import yammiverse from "../../assets/projectsImg/yammiverse.png";
-import bodp from "../../assets/projectsImg/bloodOrganDonatiosn.png";
+import bodp from "../../assets/projectsImg/bloodAndOrganDonationsImg/Blood And Organ Donation Home.png";
 import textutils from "../../assets/projectsImg/textutils.png";
 import portfolio from "../../assets/projectsImg/myportfolio.png";
 import SpiceCraft from "../../assets/projectsImg/spiceCraftTradersImg/SpiceCraft Traders Home.png";
@@ -25,9 +25,14 @@ import SpiceCraft from "../../assets/projectsImg/spiceCraftTradersImg/SpiceCraft
 // import yammiverse2 from "../../assets/projectsImg/yammiverse-2.png";
 // import yammiverse3 from "../../assets/projectsImg/yammiverse-3.png";
 
-// import bodp1 from "../../assets/projectsImg/bodp-1.png";
-// import bodp2 from "../../assets/projectsImg/bodp-2.png";
-// import bodp3 from "../../assets/projectsImg/bodp-3.png";
+import bodp1 from "../../assets/projectsImg/bloodAndOrganDonationsImg/Blood And Organ Donation 2.png"
+import bodp2 from "../../assets/projectsImg/bloodAndOrganDonationsImg/Blood And Organ Donation 3.png";
+import bodp3 from "../../assets/projectsImg/bloodAndOrganDonationsImg/Blood And Organ Donation hospitals.png";
+import bodp4 from "../../assets/projectsImg/bloodAndOrganDonationsImg/Blood And Organ Donation About.png";
+import bodp5 from "../../assets/projectsImg/bloodAndOrganDonationsImg/Blood And Organ Donation Footers.png";
+
+
+
 
 // import textutils1 from "../../assets/projectsImg/textutils-1.png";
 // import textutils2 from "../../assets/projectsImg/textutils-2.png";
@@ -199,10 +204,12 @@ const Projects = () => {
   Includes role-based dashboards, secure data handling, and campaign management tools for hospitals.`,
       image: bodp,
       gallery: [
-        'bodp',   // Landing page
-        'bodp1',  // Donor registration
-        'bodp2',  // Hospital dashboard
-        'bodp3',  // Campaign management
+        bodp,   // Landing page
+        bodp1,  // Donor registration
+        bodp2,  // Hospital dashboard
+        bodp3,
+        bodp4,
+        bodp5,  // Campaign management
       ],
       technologies: [
         "React",
