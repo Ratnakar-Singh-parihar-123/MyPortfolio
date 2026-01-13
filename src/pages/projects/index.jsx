@@ -18,6 +18,7 @@ import portfolio from "../../assets/projectsImg/myportfolio.png";
 import SpiceCraft from "../../assets/projectsImg/spiceCraftTradersImg/SpiceCraft Traders Home.png";
 import RestaurantMain from "../../assets/projectsImg/restaurantImg/restaurant home.png";
 import CoachingMain from "../../assets/projectsImg/coachingWebsitesimg/CoachingWebsiite Home.png";
+import tiffinDelivery from "../../assets/projectsImg/tiffinDeliveryImg/TiffinDeliveryHome.png"
 
 // Gallery images
 import bodp1 from "../../assets/projectsImg/bloodAndOrganDonationsImg/Blood And Organ Donation 2.png";
@@ -49,6 +50,15 @@ import CoachingCourses from "../../assets/projectsImg/coachingWebsitesimg/Coachi
 import CoachingHomeSecond from "../../assets/projectsImg/coachingWebsitesimg/CoachingWebsiite Home 1.png";
 import CoachingFeatures from "../../assets/projectsImg/coachingWebsitesimg/CoachingWebsiite 4.png";
 import CoachingTestimonials from "../../assets/projectsImg/coachingWebsitesimg/CoachingWebsiite 4.png";
+
+import TiffinDeliveryUser from "../../assets/projectsImg/tiffinDeliveryImg/TiffinDeliveryUser.png";
+import TiffinDeliveryAdmindashboard from "../../assets/projectsImg/tiffinDeliveryImg/TiffinDelivery1.png";
+import TiffinDeliveryCreateAcc from "../../assets/projectsImg/tiffinDeliveryImg/TiffinDelivery2.png";
+import TiffinDelivery3 from "../../assets/projectsImg/tiffinDeliveryImg/TiffinDelivery3.png";
+import TiffinDelivery4 from "../../assets/projectsImg/tiffinDeliveryImg/TiffinDelivery4.png";
+import TiffinDelivery5 from "../../assets/projectsImg/tiffinDeliveryImg/TiffinDelivery5.png";
+import TiffinDelivery6 from "../../assets/projectsImg/tiffinDeliveryImg/TiffinDelivery6.png";
+import TiffinDelivery7 from "../../assets/projectsImg/tiffinDeliveryImg/TiffinDelivery7.png";
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -343,6 +353,63 @@ const Projects = () => {
       },
       featured: true,
     },
+    {
+      id: 9,
+      title: "Tiffin Delivery Web App",
+      category: "Food Delivery",
+      projectType: "react",
+      industry: "Food & Services",
+      description:
+        "A modern tiffin delivery web application with user authentication, clean UI, and responsive design.",
+      fullDescription: `Built using React and Tailwind CSS, this tiffin delivery platform allows users to register, log in, and explore daily meal plans.
+The project includes complete authentication logic, protected routes, and a user-friendly interface optimized for all devices.`,
+      image: tiffinDelivery,
+      gallery: [tiffinDelivery,
+        TiffinDeliveryUser,
+        TiffinDeliveryCreateAcc,
+        TiffinDeliveryAdmindashboard,
+        TiffinDelivery3,
+        TiffinDelivery4,
+        TiffinDelivery5,
+        TiffinDelivery6,
+        TiffinDelivery7,
+      ],
+      technologies: [
+        "React",
+        "Tailwind CSS",
+        "JavaScript",
+        "React Router",
+        "Authentication Logic",
+      ],
+      complexity: "Intermediate",
+      duration: "1.5 months",
+      teamSize: "1",
+      rating: 4.8,
+      impact: "Improved understanding of real-world authentication flows",
+      liveUrl: "https://tiffin-delivery-app.vercel.app/",
+      githubUrl: "https://github.com/your-username/tiffin-delivery",
+      features: [
+        "User login & signup functionality",
+        "Form validation and error handling",
+        "Protected routes after authentication",
+        "Responsive UI using Tailwind CSS",
+        "Clean and modern food-service design",
+      ],
+      learnings: [
+        "Implemented complete authentication flow in React",
+        "Improved state management and form handling",
+        "Learned how to structure scalable React projects",
+        "Enhanced UI/UX skills using Tailwind CSS",
+      ],
+      testimonial: {
+        content:
+          "A well-structured food delivery app with clean UI and solid authentication logic.",
+        author: "Peer Review",
+        role: "Frontend Developer",
+      },
+      featured: true,
+    },
+
 
     // HTML/CSS Projects
     {
@@ -675,8 +742,8 @@ const Projects = () => {
                   key={category.id}
                   onClick={() => setActiveCategory(category.id)}
                   className={`flex items-center gap-2 px-4 py-3 rounded-xl transition-all duration-200 ${activeCategory === category.id
-                      ? "bg-primary text-white shadow-md"
-                      : "bg-card hover:bg-accent text-foreground"
+                    ? "bg-primary text-white shadow-md"
+                    : "bg-card hover:bg-accent text-foreground"
                     }`}
                 >
                   <Icon
@@ -691,8 +758,8 @@ const Projects = () => {
                   <span className="font-medium">{category.name}</span>
                   <span
                     className={`ml-2 px-2 py-0.5 rounded-full text-xs ${activeCategory === category.id
-                        ? "bg-white/20"
-                        : "bg-primary/10 text-primary"
+                      ? "bg-white/20"
+                      : "bg-primary/10 text-primary"
                       }`}
                   >
                     {getCategoryCount(category.id)}
