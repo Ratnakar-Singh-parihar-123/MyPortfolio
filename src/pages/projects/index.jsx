@@ -14,7 +14,7 @@ import vsbp from "../../assets/projectsImg/vsbp.png";
 import yammiverse from "../../assets/projectsImg/yammiverse.png";
 import bodp from "../../assets/projectsImg/bloodAndOrganDonationsImg/Blood And Organ Donation Home.png";
 import textutils from "../../assets/projectsImg/textUtilksImg/textutils.png";
-import portfolio from "../../assets/projectsImg/myportfolio.png";
+import portfolio from "../../assets/projectsImg/portfolioImg/portfolioHome.png";
 import SpiceCraft from "../../assets/projectsImg/spiceCraftTradersImg/SpiceCraft Traders Home.png";
 import RestaurantMain from "../../assets/projectsImg/restaurantImg/restaurant home.png";
 import CoachingMain from "../../assets/projectsImg/coachingWebsitesimg/CoachingWebsiite Home.png";
@@ -59,6 +59,24 @@ import TiffinDelivery4 from "../../assets/projectsImg/tiffinDeliveryImg/TiffinDe
 import TiffinDelivery5 from "../../assets/projectsImg/tiffinDeliveryImg/TiffinDelivery5.png";
 import TiffinDelivery6 from "../../assets/projectsImg/tiffinDeliveryImg/TiffinDelivery6.png";
 import TiffinDelivery7 from "../../assets/projectsImg/tiffinDeliveryImg/TiffinDelivery7.png";
+
+import portfolioHome1 from "../../assets/projectsImg/portfolioImg/portfolioHome1.png";
+import portfolio1 from "../../assets/projectsImg/portfolioImg/portfolio1.png";
+import portfolio2 from "../../assets/projectsImg/portfolioImg/portfolio2.png";
+import portfolio3 from "../../assets/projectsImg/portfolioImg/portfolio3.png";
+import portfolio4 from "../../assets/projectsImg/portfolioImg/portfolio4.png";
+import portfolio5 from "../../assets/projectsImg/portfolioImg/portfolio5.png";
+import portfolio6 from "../../assets/projectsImg/portfolioImg/portfolio6.png";
+import portfolio7 from "../../assets/projectsImg/portfolioImg/portfolio7.png";
+import portfolio8 from "../../assets/projectsImg/portfolioImg/portfolio8.png";
+import portfolio9 from "../../assets/projectsImg/portfolioImg/portfolio9.png";
+import portfolio10 from "../../assets/projectsImg/portfolioImg/portfolio10.png";
+import portfolio11 from "../../assets/projectsImg/portfolioImg/portfolio11.png";
+import portfolio12 from "../../assets/projectsImg/portfolioImg/portfolio12.png";
+import portfolio13 from "../../assets/projectsImg/portfolioImg/portfolio13.png";
+import portfolio14 from "../../assets/projectsImg/portfolioImg/portfolio14.png";
+import portfolio15 from "../../assets/projectsImg/portfolioImg/portfolio15.png";
+
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -325,7 +343,7 @@ const Projects = () => {
       fullDescription: `Developed using React and Tailwind CSS, this portfolio highlights all professional work, projects, and achievements. 
   Includes dynamic sections like About, Skills, Projects, Achievements, and Contact with a polished responsive layout.`,
       image: portfolio,
-      gallery: [portfolio],
+      gallery: [portfolio, portfolioHome1, portfolio1, portfolio2, portfolio3, portfolio4, portfolio5, portfolio6, portfolio7, portfolio8, portfolio9, portfolio10, portfolio11, portfolio12, portfolio13, portfolio14, portfolio15],
       technologies: ["React", "Tailwind CSS", "Framer Motion"],
       complexity: "Intermediate",
       duration: "2 months",
@@ -360,11 +378,15 @@ const Projects = () => {
       projectType: "react",
       industry: "Food & Services",
       description:
-        "A modern tiffin delivery web application with user authentication, clean UI, and responsive design.",
+        "A modern tiffin delivery web application with user authentication, clean UI, and responsive design. Demo admin credentials are provided for testing.",
       fullDescription: `Built using React and Tailwind CSS, this tiffin delivery platform allows users to register, log in, and explore daily meal plans.
-The project includes complete authentication logic, protected routes, and a user-friendly interface optimized for all devices.`,
+The project includes complete authentication logic, protected routes, and a user-friendly interface optimized for all devices.
+Demo credentials for admin access:
+- Email: admin@admin.com
+- Password: admin123`,
       image: tiffinDelivery,
-      gallery: [tiffinDelivery,
+      gallery: [
+        tiffinDelivery,
         TiffinDeliveryUser,
         TiffinDeliveryCreateAcc,
         TiffinDeliveryAdmindashboard,
@@ -385,7 +407,7 @@ The project includes complete authentication logic, protected routes, and a user
       duration: "1.5 months",
       teamSize: "1",
       rating: 4.8,
-      impact: "Improved understanding of real-world authentication flows",
+      impact: "Improved understanding of real-world authentication flows and admin panel management",
       liveUrl: "https://tiffin-delivery-app.vercel.app/",
       githubUrl: "https://github.com/your-username/tiffin-delivery",
       features: [
@@ -394,12 +416,14 @@ The project includes complete authentication logic, protected routes, and a user
         "Protected routes after authentication",
         "Responsive UI using Tailwind CSS",
         "Clean and modern food-service design",
+        "Demo admin access: admin@admin.com / admin123",
       ],
       learnings: [
         "Implemented complete authentication flow in React",
         "Improved state management and form handling",
         "Learned how to structure scalable React projects",
         "Enhanced UI/UX skills using Tailwind CSS",
+        "Gained experience with admin dashboard functionalities and role-based access",
       ],
       testimonial: {
         content:
@@ -1043,7 +1067,7 @@ The project includes complete authentication logic, protected routes, and a user
                   <Icon name="React" size={24} className="text-blue-500" />
                 </div>
                 <div className="text-left">
-                  <div className="text-3xl font-bold text-foreground">2</div>
+                  <div className="text-3xl font-bold text-foreground">3</div>
                   <div className="text-sm text-muted-foreground">
                     React Projects
                   </div>

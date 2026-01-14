@@ -30,12 +30,12 @@ const Education = () => {
   const educationTimeline = [
     {
       id: 1,
-      institution: "Your College Name",
+      institution: "Ies University Bhopal",
       location: "Bhopal, Madhya Pradesh",
       degree: "Bachelor of Technology (B.Tech)",
-      field: "Computer Science / Engineering",
+      field: "Computer Science & Engineering",
       duration: "2021 - Present",
-      status: "Final Year (Expected Graduation: 2025)",
+      status: "Final Year (Expected Graduation: 2026)",
       description: "Currently pursuing final year with focus on software development, algorithms, and computer science fundamentals.",
       achievements: [
         "Active participant in coding competitions",
@@ -45,15 +45,15 @@ const Education = () => {
       ],
       courses: ["Data Structures", "Algorithms", "Database Management", "Web Development", "Computer Networks"],
       type: "college",
-      image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=600",
+      image: "https://content.jdmagicbox.com/comp/bhopal/65/0755p755std2700465/catalogue/ies-university-bhopal-kalkheda-bhopal-institutes-9h4364j1aw.jpg?w=1920&q=75",
       color: "blue"
     },
     {
       id: 2,
-      institution: "Your School Name",
+      institution: "Saraswati Higher Secondary school Nagod",
       location: "City, State",
       stream: "Science Stream (PCM)",
-      duration: "2019 - 2021",
+      duration: "2021 - 2022",
       description: "Completed 11th and 12th standard with Physics, Chemistry, and Mathematics as main subjects. Developed strong analytical and problem-solving skills.",
       achievements: [
         "Science stream with PCM",
@@ -63,15 +63,15 @@ const Education = () => {
       ],
       focus: ["Physics", "Chemistry", "Mathematics", "Computer Science", "English"],
       type: "school",
-      image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600",
+      image: "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxYLPWOweouz-hmVdvgf8N2u7cbFlvKTjIOMcaMHZLKSD9e5A7I3Mxj7o8okCtpy5nNNaSgKFNToQKhMFR_tctAYzFdnZYtaO1_hv0Xm5rCsXPNblpdZvk79F7qaw7-9Q_2n-Ag=s1360-w1360-h1020-rw",
       color: "green"
     },
     {
       id: 3,
-      institution: "Your High School",
+      institution: "Saraswati Higher Secondary school Nagod",
       location: "City, State",
       grade: "10th Standard",
-      duration: "2018 - 2019",
+      duration: "2019 - 2020",
       description: "Completed foundational education with strong academic performance and participation in extracurricular activities.",
       achievements: [
         "Completed secondary education",
@@ -80,7 +80,7 @@ const Education = () => {
         "Academic excellence"
       ],
       type: "school",
-      image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w-600",
+      image: "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxYLPWOweouz-hmVdvgf8N2u7cbFlvKTjIOMcaMHZLKSD9e5A7I3Mxj7o8okCtpy5nNNaSgKFNToQKhMFR_tctAYzFdnZYtaO1_hv0Xm5rCsXPNblpdZvk79F7qaw7-9Q_2n-Ag=s1360-w1360-h1020-rw",
       color: "purple"
     }
   ];
@@ -89,14 +89,14 @@ const Education = () => {
   const milestones = [
     {
       title: "Started Engineering Journey",
-      year: "2021",
+      year: "2022",
       description: "Began B.Tech in Computer Science",
       icon: <GraduationCap className="h-6 w-6" />,
       color: "from-blue-500 to-cyan-500"
     },
     {
       title: "Science Stream Selection",
-      year: "2019",
+      year: "2020",
       description: "Chose PCM for 11th & 12th",
       icon: <BookOpen className="h-6 w-6" />,
       color: "from-green-500 to-emerald-500"
@@ -110,7 +110,7 @@ const Education = () => {
     },
     {
       title: "Future Goal",
-      year: "2025",
+      year: "2026",
       description: "Graduation & Career Launch",
       icon: <Flag className="h-6 w-6" />,
       color: "from-orange-500 to-red-500"

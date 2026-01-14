@@ -63,7 +63,7 @@ const HeroSection = () => {
   const stats = [
     { value: "260+", label: "LeetCode", icon: "Code", color: "text-emerald-500", bgColor: "bg-emerald-50 dark:bg-emerald-900/20" },
     { value: "200+", label: "GFG Questions", icon: "Database", color: "text-blue-500", bgColor: "bg-blue-50 dark:bg-blue-900/20" },
-    { value: "8+", label: "Projects", icon: "FolderOpen", color: "text-purple-500", bgColor: "bg-purple-50 dark:bg-purple-900/20" },
+    { value: "9+", label: "Projects", icon: "FolderOpen", color: "text-purple-500", bgColor: "bg-purple-50 dark:bg-purple-900/20" },
     {
       value: "1+",
       label: "Hands-on Development & Freelancing",
@@ -370,11 +370,12 @@ const HeroSection = () => {
                   className="flex items-center gap-3 px-4 py-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-                    <Icon name="Palette" size={18} className="text-white" />
+                    <Icon name="Brain" size={18} className="text-white" />
                   </div>
                   <div>
-                    <div className="font-semibold text-gray-900 dark:text-white">UI/UX</div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400">Designer</div>
+                    <div className="font-semibold text-gray-900 dark:text-white">DSA</div>
+                    <div className="text-xs text-gray-600 dark:text-gray-400">Enthusiast</div>
+
                   </div>
                 </motion.div>
               </div>
@@ -389,7 +390,8 @@ const HeroSection = () => {
               >
                 <div className="flex items-center gap-1.5">
                   <Icon name="Award" size={14} />
-                  <span>2+ Years Experience</span>
+                  <span>Aspiring Software Engineer</span>
+
                 </div>
               </motion.div>
             </div>

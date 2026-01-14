@@ -31,9 +31,9 @@ const TimelineSection = () => {
         "Created animation systems",
         "Mastered Auth, JWT, APIs",
       ],
-      technologies: ["React", "Node", "MongoDB", "Tailwind"],
+      technologies: [""],
       image:
-        "https://content.jdmagicbox.com/comp/bhopal/65/0755p755std2700465/catalogue/ies-university-bhopal-kalkheda-bhopal-institutes-9h4364j1aw.jpg",
+        "https://media.licdn.com/dms/image/v2/C511BAQFoeRqNJ3j_sw/company-background_10000/company-background_10000/0/1584491150389/ies_university_cover?e=2147483647&v=beta&t=sIBh9oqB6PY6yuI8VyOM-VS9i9KiPJiBp3gNlUFcBrY",
     },
     {
       id: 2,
@@ -44,7 +44,18 @@ const TimelineSection = () => {
       color: "accent",
       description: "Built real projects and refined full-stack logic.",
       achievements: ["Created LocalKart", "Built YammiVerse", "Deployments"],
-      technologies: ["React", "Node", "MongoDB", "Express"],
+      technologies: [
+        "React.js",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "JavaScript",
+        "HTML5",
+        "CSS3",
+        "Tailwind CSS",
+        "Socket.IO",
+        "Git & GitHub"
+      ],
       image:
         "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=1000&q=80",
     },
@@ -57,22 +68,22 @@ const TimelineSection = () => {
       color: "warning",
       description: "Learned UI/UX and frontend core fundamentals.",
       achievements: ["Portfolio site", "DOM mastery", "CSS Grid & Flex"],
-      technologies: ["HTML", "CSS", "JavaScript"],
+      technologies: ["HTML", "CSS", "JavaScript", "React", "Tailwind"],
       image:
         "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1000&q=80",
     },
     {
       id: 4,
-      year: "2019",
-      title: "Higher Secondary (PCM)",
-      institution: "SHSS Nagod",
+      year: "2019-2022",
+      title: "Saraswati Higher Secondary school Nagod (PCM)",
+      institution: "SHSS , Nagod",
       icon: "School",
       color: "success",
       description: "PCM major & early interest in tech.",
       achievements: ["PCM Excellence", "Competitions"],
       technologies: ["", ""],
       image:
-        "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSx9msUBFDIPKxtXskKntIPZ76jPpVFi2PWsU6J0xnU3b0_FoGDvyIiWbBjSniZ8lIIeILlqxkk58X_WDYl1mejar55lJN6kbGr6R6aUzE63UTOcmb76DIQNkd3TodHS3cpEQGU6CQ=s1360-w1360-h1020-rw",
+        "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxYLPWOweouz-hmVdvgf8N2u7cbFlvKTjIOMcaMHZLKSD9e5A7I3Mxj7o8okCtpy5nNNaSgKFNToQKhMFR_tctAYzFdnZYtaO1_hv0Xm5rCsXPNblpdZvk79F7qaw7-9Q_2n-Ag=s1360-w1360-h1020-rw",
     },
   ];
 
@@ -135,9 +146,8 @@ const TimelineSection = () => {
 
                   {/* Card */}
                   <div
-                    className={`w-full md:w-5/12 mt-4 ${
-                      reverse ? "md:pl-20" : "md:pr-20"
-                    }`}
+                    className={`w-full md:w-5/12 mt-4 ${reverse ? "md:pl-20" : "md:pr-20"
+                      }`}
                   >
                     <motion.div
                       whileHover={{ y: -10, scale: 1.03 }}

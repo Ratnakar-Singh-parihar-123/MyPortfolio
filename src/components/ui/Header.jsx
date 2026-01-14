@@ -34,13 +34,13 @@ const Header = ({ className = "" }) => {
   ];
 
   const secondaryItems = [
-    { 
-      name: "Blog", 
-      path: "/blog", 
-      icon: "BookOpen", 
-      desc: "Tech Insights & Tutorials",
-      gradient: "from-blue-400 to-indigo-500"
-    },
+    // { 
+    //   name: "Blog", 
+    //   path: "/blog", 
+    //   icon: "BookOpen", 
+    //   desc: "Tech Insights & Tutorials",
+    //   gradient: "from-blue-400 to-indigo-500"
+    // },
     { 
       name: "Achievements", 
       path: "/achievements", 
@@ -48,13 +48,13 @@ const Header = ({ className = "" }) => {
       desc: "Awards & Recognitions",
       gradient: "from-yellow-400 to-amber-500"
     },
-    { 
-      name: "Experience", 
-      path: "/experience", 
-      icon: "Briefcase", 
-      desc: "Professional Journey",
-      gradient: "from-purple-400 to-violet-500"
-    },
+    // { 
+    //   name: "Experience", 
+    //   path: "/experience", 
+    //   icon: "Briefcase", 
+    //   desc: "Professional Journey",
+    //   gradient: "from-purple-400 to-violet-500"
+    // },
     { 
       name: "Education", 
       path: "/education", 
