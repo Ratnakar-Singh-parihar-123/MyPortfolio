@@ -1,5 +1,1386 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+// import React, { useState, useEffect, useCallback, useRef } from "react";
+// import { motion, AnimatePresence } from "framer-motion";
+// import Icon from "../../../components/AppIcon";
+// import Image from "../../../components/AppImage";
+// import Button from "../../../components/ui/Button";
+
+// const ProjectModal = ({ project, isOpen, onClose }) => {
+//   const [activeTab, setActiveTab] = useState("overview");
+//   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+//   const [isLoading, setIsLoading] = useState(true);
+//   const [touchStart, setTouchStart] = useState(null);
+//   const [isAnimating, setIsAnimating] = useState(false);
+//   const [isMobile, setIsMobile] = useState(false);
+//   const [isFullscreen, setIsFullscreen] = useState(false);
+//   const [showGallery, setShowGallery] = useState(false);
+//   const [isScrolling, setIsScrolling] = useState(false);
+//   const modalRef = useRef(null);
+//   const imageContainerRef = useRef(null);
+//   const contentRef = useRef(null);
+
+//   // Check for mobile device
+//   useEffect(() => {
+//     const checkMobile = () => {
+//       setIsMobile(window.innerWidth < 768);
+//     };
+
+//     checkMobile();
+//     window.addEventListener('resize', checkMobile);
+
+//     return () => window.removeEventListener('resize', checkMobile);
+//   }, []);
+
+//   // Lock scroll when modal opens with smooth transition
+//   useEffect(() => {
+//     if (isOpen) {
+//       document.body.style.overflow = "hidden";
+//       document.body.style.position = "fixed";
+//       document.body.style.width = "100%";
+//       document.body.style.height = "100%";
+
+//       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+//       if (scrollbarWidth > 0) {
+//         document.body.style.paddingRight = `${scrollbarWidth}px`;
+//       }
+
+//       // Add class for smooth transitions
+//       document.documentElement.classList.add('modal-open');
+//     }
+
+//     return () => {
+//       document.body.style.overflow = "";
+//       document.body.style.position = "";
+//       document.body.style.width = "";
+//       document.body.style.height = "";
+//       document.body.style.paddingRight = "";
+//       document.documentElement.classList.remove('modal-open');
+//     };
+//   }, [isOpen]);
+
+//   // Reset states when project changes
+//   useEffect(() => {
+//     if (project) {
+//       setCurrentImageIndex(0);
+//       setActiveTab("overview");
+//       setIsLoading(true);
+//       setShowGallery(false);
+//       setIsFullscreen(false);
+
+//       // Preload images
+//       if (project.gallery && project.gallery.length > 0) {
+//         project.gallery.forEach(src => {
+//           const img = new window.Image();
+//           img.src = src;
+//         });
+//       }
+//     }
+//   }, [project]);
+
+//   // Handle keyboard navigation
+//   useEffect(() => {
+//     const handleKeyDown = (e) => {
+//       if (!isOpen || !project) return;
+
+//       switch (e.key) {
+//         case "Escape":
+//           if (isFullscreen) {
+//             setIsFullscreen(false);
+//           } else {
+//             onClose();
+//           }
+//           break;
+//         case "ArrowLeft":
+//           prevImage();
+//           break;
+//         case "ArrowRight":
+//           nextImage();
+//           break;
+//         case " ":
+//           e.preventDefault();
+//           if (hasGallery && project.gallery.length > 1) {
+//             nextImage();
+//           }
+//           break;
+//         case "f":
+//           e.preventDefault();
+//           if (hasGallery) {
+//             setIsFullscreen(!isFullscreen);
+//           }
+//           break;
+//         case "g":
+//           e.preventDefault();
+//           if (hasGallery && project.gallery.length > 1) {
+//             setShowGallery(!showGallery);
+//           }
+//           break;
+//         default:
+//           break;
+//       }
+//     };
+
+//     window.addEventListener("keydown", handleKeyDown);
+//     return () => window.removeEventListener("keydown", handleKeyDown);
+//   }, [isOpen, project, onClose, isFullscreen, showGallery]);
+
+//   // Handle touch gestures for image swiping
+//   const handleTouchStart = (e) => {
+//     setTouchStart(e.touches[0].clientX);
+//     setIsScrolling(false);
+//   };
+
+//   const handleTouchMove = (e) => {
+//     if (touchStart === null) return;
+//     const diff = touchStart - e.touches[0].clientX;
+//     setIsScrolling(Math.abs(diff) < 10);
+//   };
+
+//   const handleTouchEnd = (e) => {
+//     if (!touchStart || isScrolling) {
+//       setTouchStart(null);
+//       return;
+//     }
+
+//     const touchEnd = e.changedTouches[0].clientX;
+//     const diff = touchStart - touchEnd;
+//     const minSwipeDistance = isMobile ? 30 : 50;
+
+//     if (Math.abs(diff) > minSwipeDistance) {
+//       if (diff > 0) {
+//         nextImage();
+//       } else {
+//         prevImage();
+//       }
+//     }
+
+//     setTouchStart(null);
+//   };
+
+//   // Smooth image transitions with parallax effect
+//   const nextImage = useCallback(() => {
+//     if (!project?.gallery || project.gallery.length <= 1 || isAnimating) return;
+
+//     setIsAnimating(true);
+//     setCurrentImageIndex((prev) => {
+//       const nextIndex = (prev + 1) % project.gallery.length;
+//       return nextIndex;
+//     });
+
+//     setTimeout(() => setIsAnimating(false), 400);
+//   }, [project, isAnimating]);
+
+//   const prevImage = useCallback(() => {
+//     if (!project?.gallery || project.gallery.length <= 1 || isAnimating) return;
+
+//     setIsAnimating(true);
+//     setCurrentImageIndex((prev) => {
+//       const nextIndex = prev === 0 ? project.gallery.length - 1 : prev - 1;
+//       return nextIndex;
+//     });
+
+//     setTimeout(() => setIsAnimating(false), 400);
+//   }, [project, isAnimating]);
+
+//   // Click outside to close
+//   const handleBackdropClick = useCallback((e) => {
+//     if (isFullscreen) {
+//       setIsFullscreen(false);
+//       return;
+//     }
+
+//     if (modalRef.current && !modalRef.current.contains(e.target)) {
+//       onClose();
+//     }
+//   }, [onClose, isFullscreen]);
+
+//   // Handle scroll for parallax effect
+//   const handleScroll = useCallback(() => {
+//     if (contentRef.current && !isMobile) {
+//       const scrolled = contentRef.current.scrollTop;
+//       const maxScroll = contentRef.current.scrollHeight - contentRef.current.clientHeight;
+//       const progress = scrolled / maxScroll;
+
+//       if (imageContainerRef.current) {
+//         imageContainerRef.current.style.transform = `translateY(${progress * 20}px)`;
+//         imageContainerRef.current.style.opacity = `${1 - progress * 0.3}`;
+//       }
+//     }
+//   }, [isMobile]);
+
+//   useEffect(() => {
+//     const content = contentRef.current;
+//     if (content) {
+//       content.addEventListener('scroll', handleScroll);
+//       return () => content.removeEventListener('scroll', handleScroll);
+//     }
+//   }, [handleScroll]);
+
+//   if (!project) return null;
+
+//   const tabs = [
+//     {
+//       id: "overview",
+//       label: "Overview",
+//       icon: "Eye",
+//       color: "from-blue-500 via-blue-400 to-blue-300",
+//       gradient: "bg-gradient-to-r from-blue-500/20 via-blue-400/20 to-blue-300/20"
+//     },
+//     {
+//       id: "technical",
+//       label: "Technical",
+//       icon: "Cpu",
+//       color: "from-purple-500 via-purple-400 to-purple-300",
+//       gradient: "bg-gradient-to-r from-purple-500/20 via-purple-400/20 to-purple-300/20"
+//     },
+//     {
+//       id: "features",
+//       label: "Features",
+//       icon: "Layers",
+//       color: "from-emerald-500 via-emerald-400 to-emerald-300",
+//       gradient: "bg-gradient-to-r from-emerald-500/20 via-emerald-400/20 to-emerald-300/20"
+//     },
+//     {
+//       id: "impact",
+//       label: "Impact",
+//       icon: "TrendingUp",
+//       color: "from-amber-500 via-amber-400 to-amber-300",
+//       gradient: "bg-gradient-to-r from-amber-500/20 via-amber-400/20 to-amber-300/20"
+//     },
+//   ];
+
+//   const hasGallery = project?.gallery && project.gallery.length > 0;
+//   const currentImage = hasGallery
+//     ? project.gallery[currentImageIndex]
+//     : project?.image;
+
+//   const handleImageLoad = () => {
+//     setIsLoading(false);
+//   };
+
+//   const getProgressPercentage = () => {
+//     if (!hasGallery || project.gallery.length === 0) return 0;
+//     return ((currentImageIndex + 1) / project.gallery.length) * 100;
+//   };
+
+//   // Animation variants
+//   const modalVariants = {
+//     hidden: {
+//       opacity: 0,
+//       scale: 0.95,
+//       y: isMobile ? 50 : 0,
+//       rotateX: 10
+//     },
+//     visible: {
+//       opacity: 1,
+//       scale: 1,
+//       y: 0,
+//       rotateX: 0,
+//       transition: {
+//         type: "spring",
+//         damping: 25,
+//         stiffness: 400,
+//         mass: 0.8
+//       }
+//     },
+//     exit: {
+//       opacity: 0,
+//       scale: 0.95,
+//       y: isMobile ? 50 : 0,
+//       rotateX: 10,
+//       transition: { duration: 0.2 }
+//     }
+//   };
+
+//   const backdropVariants = {
+//     hidden: { opacity: 0 },
+//     visible: {
+//       opacity: 1,
+//       transition: {
+//         duration: 0.4,
+//         ease: "easeOut"
+//       }
+//     },
+//     exit: {
+//       opacity: 0,
+//       transition: {
+//         duration: 0.3,
+//         ease: "easeIn"
+//       }
+//     }
+//   };
+
+//   return (
+//     <AnimatePresence mode="wait">
+//       {isOpen && (
+//         <>
+//           {/* Premium Backdrop with gradient animation */}
+//           <motion.div
+//             variants={backdropVariants}
+//             initial="hidden"
+//             animate="visible"
+//             exit="exit"
+//             className="fixed inset-0 z-50"
+//           >
+//             <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+//             <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/10 via-transparent to-purple-900/10"></div>
+//             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.15),transparent_50%),radial-gradient(circle_at_70%_80%,rgba(168,85,247,0.15),transparent_50%)]"></div>
+//             <div
+//               className="absolute inset-0 backdrop-blur-xl"
+//               onClick={handleBackdropClick}
+//             />
+//           </motion.div>
+
+//           {/* Modal Container */}
+//           <div className="fixed inset-0 z-50 overflow-y-auto">
+//             <div className="min-h-full flex items-start sm:items-center justify-center p-0 sm:p-2 md:p-4">
+//               <motion.div
+//                 ref={modalRef}
+//                 variants={modalVariants}
+//                 initial="hidden"
+//                 animate="visible"
+//                 exit="exit"
+//                 className="relative w-full h-screen sm:h-auto sm:max-h-[95vh] sm:max-w-7xl bg-gradient-to-br from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 rounded-none sm:rounded-3xl shadow-2xl shadow-black/30 overflow-hidden border-0 sm:border border-white/10 dark:border-gray-700/30"
+//                 style={{
+//                   boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1)"
+//                 }}
+//               >
+//                 {/* Header with glass morphism effect */}
+//                 <div className="sticky top-0 z-50 bg-gradient-to-b from-white/90 via-white/80 to-white/70 dark:from-gray-900/90 dark:via-gray-900/80 dark:to-gray-900/70 backdrop-blur-xl border-b border-white/20 dark:border-gray-700/30 px-4 py-3 sm:px-8 sm:py-5">
+//                   <div className="flex items-center justify-between gap-2 sm:gap-4">
+//                     <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+//                       {/* Animated Project Icon */}
+//                       <motion.div
+//                         className="relative flex-shrink-0"
+//                         animate={{
+//                           rotate: [0, 5, -5, 0],
+//                           scale: [1, 1.05, 1]
+//                         }}
+//                         transition={{
+//                           duration: 2,
+//                           repeat: Infinity,
+//                           repeatDelay: 5
+//                         }}
+//                       >
+//                         <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 dark:from-blue-600 dark:via-blue-700 dark:to-blue-800 flex items-center justify-center shadow-lg shadow-blue-500/30">
+//                           <Icon name="FolderKanban" size={isMobile ? 18 : 22} className="text-white" />
+//                           {/* Pulsing glow effect */}
+//                           <motion.div
+//                             className="absolute inset-0 rounded-xl sm:rounded-2xl bg-blue-500/30"
+//                             animate={{ scale: [1, 1.3, 1] }}
+//                             transition={{
+//                               duration: 2,
+//                               repeat: Infinity,
+//                               ease: "easeInOut"
+//                             }}
+//                           />
+//                         </div>
+//                         {/* Floating particles */}
+//                         <motion.div
+//                           className="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 bg-gradient-to-br from-blue-400 to-blue-300 rounded-full flex items-center justify-center shadow-lg shadow-blue-400/50"
+//                           animate={{
+//                             y: [0, -4, 0],
+//                             rotate: [0, 360]
+//                           }}
+//                           transition={{
+//                             y: {
+//                               duration: 1.5,
+//                               repeat: Infinity,
+//                               ease: "easeInOut"
+//                             },
+//                             rotate: {
+//                               duration: 3,
+//                               repeat: Infinity,
+//                               ease: "linear"
+//                             }
+//                           }}
+//                         >
+//                           <Icon name="Sparkles" size={isMobile ? 8 : 10} className="text-white" />
+//                         </motion.div>
+//                       </motion.div>
+
+//                       {/* Project Title with typewriter effect */}
+//                       <div className="flex-1 min-w-0">
+//                         <motion.h2
+//                           initial={{ opacity: 0, x: -20 }}
+//                           animate={{ opacity: 1, x: 0 }}
+//                           transition={{ delay: 0.2 }}
+//                           className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-200 dark:to-white bg-clip-text text-transparent truncate"
+//                         >
+//                           {project?.title}
+//                         </motion.h2>
+//                         <motion.div
+//                           initial={{ opacity: 0 }}
+//                           animate={{ opacity: 1 }}
+//                           transition={{ delay: 0.3 }}
+//                           className="flex flex-wrap items-center gap-1 sm:gap-2 mt-0.5"
+//                         >
+//                           <span className="text-xs sm:text-sm font-medium bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent truncate">
+//                             {project?.category}
+//                           </span>
+//                           {project?.complexity && (
+//                             <>
+//                               <span className="text-gray-400 hidden sm:inline">•</span>
+//                               <motion.span
+//                                 initial={{ scale: 0.8 }}
+//                                 animate={{ scale: 1 }}
+//                                 transition={{ type: "spring", delay: 0.4 }}
+//                                 className={`text-xs px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full font-semibold shadow-lg backdrop-blur-sm ${project.complexity === "Advanced"
+//                                     ? "bg-gradient-to-r from-red-500/20 to-red-600/20 text-red-700 dark:text-red-300 border border-red-200/50 dark:border-red-800/50"
+//                                     : project.complexity === "Intermediate"
+//                                       ? "bg-gradient-to-r from-amber-500/20 to-amber-600/20 text-amber-700 dark:text-amber-300 border border-amber-200/50 dark:border-amber-800/50"
+//                                       : "bg-gradient-to-r from-emerald-500/20 to-emerald-600/20 text-emerald-700 dark:text-emerald-300 border border-emerald-200/50 dark:border-emerald-800/50"
+//                                   }`}
+//                               >
+//                                 {project.complexity}
+//                               </motion.span>
+//                             </>
+//                           )}
+//                         </motion.div>
+//                       </div>
+//                     </div>
+
+//                     {/* Close Button with hover animation */}
+//                     <motion.button
+//                       initial={{ opacity: 0, rotate: -90 }}
+//                       animate={{ opacity: 1, rotate: 0 }}
+//                       transition={{ delay: 0.3, type: "spring" }}
+//                       whileHover={{ scale: 1.1, rotate: 90 }}
+//                       whileTap={{ scale: 0.9 }}
+//                       onClick={onClose}
+//                       className="group relative w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 flex items-center justify-center rounded-lg sm:rounded-xl hover:bg-white/20 dark:hover:bg-gray-800/50 transition-all duration-200 backdrop-blur-sm flex-shrink-0"
+//                       aria-label="Close"
+//                     >
+//                       <div className="absolute inset-0 bg-gradient-to-br from-gray-200/50 to-gray-300/50 dark:from-gray-800/50 dark:to-gray-700/50 rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+//                       <Icon
+//                         name="X"
+//                         size={isMobile ? 18 : 20}
+//                         className="relative text-gray-600 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors"
+//                       />
+//                     </motion.button>
+//                   </div>
+//                 </div>
+
+//                 {/* Main Content */}
+//                 <div className="flex flex-col lg:flex-row h-[calc(100vh-4rem)] sm:h-auto">
+//                   {/* Left Column - Gallery with floating effect */}
+//                   <motion.div
+//                     ref={imageContainerRef}
+//                     className={`lg:w-1/2 p-4 sm:p-6 md:p-8 border-b lg:border-b-0 lg:border-r border-gray-200/20 dark:border-gray-700/20 ${showGallery ? 'lg:flex lg:flex-col' : ''}`}
+//                     animate={isFullscreen ? {
+//                       position: 'fixed',
+//                       top: 0,
+//                       left: 0,
+//                       right: 0,
+//                       bottom: 0,
+//                       width: '100vw',
+//                       height: '100vh',
+//                       zIndex: 60,
+//                       padding: 0,
+//                       borderRadius: 0
+//                     } : {}}
+//                     transition={{ type: "spring", damping: 25 }}
+//                   >
+//                     <div className={`space-y-4 sm:space-y-6 ${showGallery ? 'flex-1 flex flex-col' : ''}`}>
+//                       {/* Fullscreen Controls */}
+//                       {hasGallery && (
+//                         <div className="flex items-center justify-between mb-2">
+//                           <div className="text-xs text-gray-500 dark:text-gray-400">
+//                             Press <kbd className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">F</kbd> for fullscreen
+//                           </div>
+//                           {hasGallery && project.gallery.length > 1 && (
+//                             <Button
+//                               variant="ghost"
+//                               size="xs"
+//                               iconName={showGallery ? "X" : "Grid3x3"}
+//                               onClick={() => setShowGallery(!showGallery)}
+//                               className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+//                             >
+//                               {showGallery ? "Close Gallery" : "View Grid"}
+//                             </Button>
+//                           )}
+//                         </div>
+//                       )}
+
+//                       {/* Image Gallery */}
+//                       {showGallery ? (
+//                         // Grid Gallery View
+//                         <div className="flex-1 overflow-y-auto">
+//                           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 auto-rows-max">
+//                             {project.gallery.map((img, index) => (
+//                               <motion.button
+//                                 key={index}
+//                                 layoutId={`gallery-image-${index}`}
+//                                 initial={{ opacity: 0, scale: 0.9 }}
+//                                 animate={{ opacity: 1, scale: 1 }}
+//                                 transition={{ delay: index * 0.05 }}
+//                                 whileHover={{ scale: 1.02, zIndex: 10 }}
+//                                 whileTap={{ scale: 0.98 }}
+//                                 onClick={() => {
+//                                   setCurrentImageIndex(index);
+//                                   setShowGallery(false);
+//                                 }}
+//                                 className={`relative aspect-square rounded-lg sm:rounded-xl overflow-hidden group ${currentImageIndex === index
+//                                     ? "ring-2 sm:ring-3 ring-blue-500"
+//                                     : "ring-1 ring-gray-200 dark:ring-gray-700"
+//                                   }`}
+//                               >
+//                                 <Image
+//                                   src={img}
+//                                   alt={`Gallery image ${index + 1}`}
+//                                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+//                                 />
+//                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+//                                 <div className="absolute bottom-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+//                                   View
+//                                 </div>
+//                               </motion.button>
+//                             ))}
+//                           </div>
+//                         </div>
+//                       ) : (
+//                         // Single Image View
+//                         <div
+//                           ref={imageContainerRef}
+//                           className="relative rounded-xl sm:rounded-2xl xl:rounded-3xl overflow-hidden bg-gradient-to-br from-gray-100/50 via-gray-200/30 to-gray-100/50 dark:from-gray-800/50 dark:via-gray-900/30 dark:to-gray-800/50 shadow-2xl shadow-black/10"
+//                           onTouchStart={handleTouchStart}
+//                           onTouchMove={handleTouchMove}
+//                           onTouchEnd={handleTouchEnd}
+//                         >
+//                           {/* Loading Animation */}
+//                           {isLoading && (
+//                             <div className="absolute inset-0 flex items-center justify-center">
+//                               <div className="relative">
+//                                 <div className="w-14 h-14 sm:w-20 sm:h-20 border-4 border-blue-500/20 border-t-blue-500 border-r-blue-400 rounded-full animate-spin"></div>
+//                                 <div className="absolute inset-0 flex items-center justify-center">
+//                                   <motion.div
+//                                     animate={{ rotate: 360 }}
+//                                     transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+//                                   >
+//                                     <Icon name="Loader" size={isMobile ? 24 : 32} className="text-blue-500" />
+//                                   </motion.div>
+//                                 </div>
+//                               </div>
+//                             </div>
+//                           )}
+
+//                           {/* Main Image with parallax */}
+//                           <motion.div
+//                             key={currentImageIndex}
+//                             initial={{ opacity: 0, scale: 1.1 }}
+//                             animate={{ opacity: 1, scale: 1 }}
+//                             exit={{ opacity: 0, scale: 0.9 }}
+//                             transition={{
+//                               duration: 0.5,
+//                               ease: "easeOut"
+//                             }}
+//                             className="relative"
+//                           >
+//                             <Image
+//                               src={currentImage}
+//                               alt={`${project?.title} - Image ${currentImageIndex + 1}`}
+//                               className={`w-full h-48 sm:h-64 md:h-72 lg:h-80 xl:h-96 object-cover transition-all duration-700 ${isLoading ? 'opacity-0 blur-sm' : 'opacity-100 blur-0'
+//                                 }`}
+//                               style={{
+//                                 transform: isAnimating ? 'scale(1.02)' : 'scale(1)',
+//                                 filter: isAnimating ? 'brightness(1.1)' : 'brightness(1)'
+//                               }}
+//                               onLoad={handleImageLoad}
+//                             />
+
+//                             {/* Animated Gradient Overlay */}
+//                             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+//                             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10" />
+
+//                             {/* Floating Particles */}
+//                             <div className="absolute inset-0 overflow-hidden">
+//                               {[...Array(5)].map((_, i) => (
+//                                 <motion.div
+//                                   key={i}
+//                                   className="absolute w-1 h-1 bg-white/30 rounded-full"
+//                                   initial={{
+//                                     x: Math.random() * 100 + '%',
+//                                     y: Math.random() * 100 + '%',
+//                                     opacity: 0
+//                                   }}
+//                                   animate={{
+//                                     y: [null, '-100px'],
+//                                     opacity: [0, 1, 0]
+//                                   }}
+//                                   transition={{
+//                                     duration: Math.random() * 3 + 2,
+//                                     repeat: Infinity,
+//                                     delay: Math.random() * 2
+//                                   }}
+//                                 />
+//                               ))}
+//                             </div>
+//                           </motion.div>
+
+//                           {/* Gallery Navigation */}
+//                           {hasGallery && project.gallery.length > 1 && (
+//                             <>
+//                               {/* Navigation Arrows with glow */}
+//                               <motion.button
+//                                 initial={{ opacity: 0, x: -20 }}
+//                                 animate={{ opacity: 1, x: 0 }}
+//                                 transition={{ delay: 0.5 }}
+//                                 whileHover={{ scale: 1.1 }}
+//                                 whileTap={{ scale: 0.9 }}
+//                                 onClick={prevImage}
+//                                 className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 group"
+//                                 aria-label="Previous image"
+//                               >
+//                                 <div className="relative">
+//                                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-md group-hover:blur-lg transition-all"></div>
+//                                   <div className="relative w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-black/70 backdrop-blur-md rounded-full flex items-center justify-center transition-all group-hover:bg-black/80">
+//                                     <Icon
+//                                       name="ChevronLeft"
+//                                       size={isMobile ? 18 : 24}
+//                                       className="text-white group-hover:text-blue-300 transition-colors"
+//                                     />
+//                                   </div>
+//                                 </div>
+//                               </motion.button>
+
+//                               <motion.button
+//                                 initial={{ opacity: 0, x: 20 }}
+//                                 animate={{ opacity: 1, x: 0 }}
+//                                 transition={{ delay: 0.5 }}
+//                                 whileHover={{ scale: 1.1 }}
+//                                 whileTap={{ scale: 0.9 }}
+//                                 onClick={nextImage}
+//                                 className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 group"
+//                                 aria-label="Next image"
+//                               >
+//                                 <div className="relative">
+//                                   <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full blur-md group-hover:blur-lg transition-all"></div>
+//                                   <div className="relative w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-black/70 backdrop-blur-md rounded-full flex items-center justify-center transition-all group-hover:bg-black/80">
+//                                     <Icon
+//                                       name="ChevronRight"
+//                                       size={isMobile ? 18 : 24}
+//                                       className="text-white group-hover:text-blue-300 transition-colors"
+//                                     />
+//                                   </div>
+//                                 </div>
+//                               </motion.button>
+
+//                               {/* Progress Indicator */}
+//                               <div className="absolute bottom-0 left-0 right-0 h-1 sm:h-1.5 bg-gray-800/30 backdrop-blur-sm">
+//                                 <motion.div
+//                                   className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500"
+//                                   initial={{ width: "0%" }}
+//                                   animate={{ width: `${getProgressPercentage()}%` }}
+//                                   transition={{
+//                                     duration: 0.8,
+//                                     ease: "easeInOut"
+//                                   }}
+//                                   style={{
+//                                     backgroundSize: '200% 100%',
+//                                     backgroundPosition: '100% 0',
+//                                     animation: 'gradientFlow 2s ease infinite'
+//                                   }}
+//                                 />
+//                               </div>
+
+//                               {/* Image Counter with animation */}
+//                               <motion.div
+//                                 initial={{ opacity: 0, y: 10 }}
+//                                 animate={{ opacity: 1, y: 0 }}
+//                                 transition={{ delay: 0.6 }}
+//                                 className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 bg-black/60 backdrop-blur-md text-white text-xs sm:text-sm px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg flex items-center gap-1 sm:gap-2 border border-white/10"
+//                               >
+//                                 <motion.div
+//                                   animate={{ rotate: [0, 360] }}
+//                                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+//                                 >
+//                                   <Icon name="Image" size={isMobile ? 12 : 16} className="text-blue-300" />
+//                                 </motion.div>
+//                                 <span className="font-semibold">
+//                                   {currentImageIndex + 1} / {project.gallery.length}
+//                                 </span>
+//                               </motion.div>
+
+//                               {/* Fullscreen Button */}
+//                               <motion.button
+//                                 initial={{ opacity: 0, scale: 0.8 }}
+//                                 animate={{ opacity: 1, scale: 1 }}
+//                                 transition={{ delay: 0.7 }}
+//                                 whileHover={{ scale: 1.1 }}
+//                                 whileTap={{ scale: 0.9 }}
+//                                 onClick={() => setIsFullscreen(!isFullscreen)}
+//                                 className="absolute bottom-2 sm:bottom-4 right-2 sm:right-4 bg-black/60 backdrop-blur-md text-white p-2 rounded-lg border border-white/10 hover:bg-black/70 transition-colors"
+//                                 aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+//                               >
+//                                 <Icon
+//                                   name={isFullscreen ? "Minimize2" : "Maximize2"}
+//                                   size={isMobile ? 16 : 20}
+//                                 />
+//                               </motion.button>
+//                             </>
+//                           )}
+//                         </div>
+//                       )}
+
+//                       {/* Thumbnail Rail */}
+//                       {hasGallery && project.gallery.length > 1 && !showGallery && (
+//                         <div className="space-y-2 sm:space-y-3">
+//                           <div className="flex items-center justify-between">
+//                             <div className="flex items-center gap-2">
+//                               <Icon name="GalleryVertical" size={16} className="text-gray-500" />
+//                               <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
+//                                 Scroll Gallery
+//                               </span>
+//                             </div>
+//                             <span className="text-xs text-gray-500 dark:text-gray-400">
+//                               {project.gallery.length} images
+//                             </span>
+//                           </div>
+//                           <div className="flex gap-1.5 sm:gap-2 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent pb-2">
+//                             {project.gallery.map((img, index) => (
+//                               <motion.button
+//                                 key={index}
+//                                 whileHover={{ scale: 1.05, y: -2 }}
+//                                 whileTap={{ scale: 0.95 }}
+//                                 onClick={() => setCurrentImageIndex(index)}
+//                                 className={`relative flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden transition-all duration-300 ${currentImageIndex === index
+//                                     ? "ring-2 sm:ring-3 ring-blue-500 shadow-lg shadow-blue-500/30 scale-105"
+//                                     : "ring-1 ring-gray-200 dark:ring-gray-700 hover:ring-gray-300 dark:hover:ring-gray-600 opacity-80 hover:opacity-100"
+//                                   }`}
+//                               >
+//                                 <Image
+//                                   src={img}
+//                                   alt={`Thumbnail ${index + 1}`}
+//                                   className="w-full h-full object-cover"
+//                                 />
+//                                 {currentImageIndex === index && (
+//                                   <div className="absolute inset-0 bg-blue-500/20 backdrop-blur-[1px]" />
+//                                 )}
+//                                 <div className={`absolute bottom-0 left-0 right-0 h-0.5 transition-all duration-300 ${currentImageIndex === index
+//                                     ? 'bg-gradient-to-r from-blue-500 to-purple-500'
+//                                     : 'bg-transparent'
+//                                   }`} />
+//                               </motion.button>
+//                             ))}
+//                           </div>
+//                         </div>
+//                       )}
+
+//                       {/* Quick Stats with animated counters */}
+//                       <div className="grid grid-cols-3 gap-2 sm:gap-3">
+//                         {project?.duration && (
+//                           <motion.div
+//                             initial={{ opacity: 0, y: 20 }}
+//                             animate={{ opacity: 1, y: 0 }}
+//                             transition={{ delay: 0.8 }}
+//                             className="group p-2 sm:p-3 bg-gradient-to-br from-white/50 to-white/30 dark:from-gray-800/50 dark:to-gray-900/30 rounded-xl sm:rounded-2xl border border-white/20 dark:border-gray-700/30 hover:border-blue-500/20 dark:hover:border-blue-500/20 backdrop-blur-sm hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300"
+//                           >
+//                             <div className="flex items-center gap-1 sm:gap-2">
+//                               <motion.div
+//                                 animate={{ rotate: [0, 360] }}
+//                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+//                               >
+//                                 <Icon name="Calendar" size={isMobile ? 14 : 18} className="text-blue-500 group-hover:scale-110 transition-transform" />
+//                               </motion.div>
+//                               <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Duration</span>
+//                             </div>
+//                             <p className="text-sm font-bold bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-blue-300 bg-clip-text text-transparent mt-0.5 sm:mt-1">
+//                               {project.duration}
+//                             </p>
+//                           </motion.div>
+//                         )}
+//                         {project?.teamSize && (
+//                           <motion.div
+//                             initial={{ opacity: 0, y: 20 }}
+//                             animate={{ opacity: 1, y: 0 }}
+//                             transition={{ delay: 0.9 }}
+//                             className="group p-2 sm:p-3 bg-gradient-to-br from-white/50 to-white/30 dark:from-gray-800/50 dark:to-gray-900/30 rounded-xl sm:rounded-2xl border border-white/20 dark:border-gray-700/30 hover:border-emerald-500/20 dark:hover:border-emerald-500/20 backdrop-blur-sm hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300"
+//                           >
+//                             <div className="flex items-center gap-1 sm:gap-2">
+//                               <motion.div
+//                                 animate={{ scale: [1, 1.1, 1] }}
+//                                 transition={{ duration: 2, repeat: Infinity }}
+//                               >
+//                                 <Icon name="Users" size={isMobile ? 14 : 18} className="text-emerald-500 group-hover:scale-110 transition-transform" />
+//                               </motion.div>
+//                               <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Team</span>
+//                             </div>
+//                             <p className="text-sm font-bold bg-gradient-to-r from-emerald-600 to-emerald-400 dark:from-emerald-400 dark:to-emerald-300 bg-clip-text text-transparent mt-0.5 sm:mt-1">
+//                               {project.teamSize} member{project.teamSize !== "1" ? "s" : ""}
+//                             </p>
+//                           </motion.div>
+//                         )}
+//                         {project?.rating && (
+//                           <motion.div
+//                             initial={{ opacity: 0, y: 20 }}
+//                             animate={{ opacity: 1, y: 0 }}
+//                             transition={{ delay: 1 }}
+//                             className="group p-2 sm:p-3 bg-gradient-to-br from-white/50 to-white/30 dark:from-gray-800/50 dark:to-gray-900/30 rounded-xl sm:rounded-2xl border border-white/20 dark:border-gray-700/30 hover:border-amber-500/20 dark:hover:border-amber-500/20 backdrop-blur-sm hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-300"
+//                           >
+//                             <div className="flex items-center gap-1 sm:gap-2">
+//                               <motion.div
+//                                 animate={{ rotate: [0, 180, 0] }}
+//                                 transition={{ duration: 3, repeat: Infinity }}
+//                               >
+//                                 <Icon name="Star" size={isMobile ? 14 : 18} className="text-amber-500 group-hover:scale-110 transition-transform" />
+//                               </motion.div>
+//                               <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Rating</span>
+//                             </div>
+//                             <div className="flex items-center gap-1 mt-0.5 sm:mt-1">
+//                               <p className="text-sm font-bold bg-gradient-to-r from-amber-600 to-amber-400 dark:from-amber-400 dark:to-amber-300 bg-clip-text text-transparent">
+//                                 {project.rating}/5
+//                               </p>
+//                               <div className="flex ml-1">
+//                                 {[...Array(5)].map((_, i) => (
+//                                   <Icon
+//                                     key={i}
+//                                     name="Star"
+//                                     size={10}
+//                                     className={i < project.rating ? "text-amber-400" : "text-gray-300 dark:text-gray-600"}
+//                                   />
+//                                 ))}
+//                               </div>
+//                             </div>
+//                           </motion.div>
+//                         )}
+//                       </div>
+
+//                       {/* Action Buttons with animated hover */}
+//                       <motion.div
+//                         initial={{ opacity: 0 }}
+//                         animate={{ opacity: 1 }}
+//                         transition={{ delay: 1.1 }}
+//                         className="flex flex-col sm:grid sm:grid-cols-2 gap-2 sm:gap-3"
+//                       >
+//                         {project?.liveUrl && (
+//                           <Button
+//                             variant="default"
+//                             size={isMobile ? "md" : "lg"}
+//                             iconName="ExternalLink"
+//                             iconPosition="left"
+//                             className="group relative bg-gradient-to-r from-blue-600 via-blue-500 to-blue-600 hover:from-blue-700 hover:via-blue-600 hover:to-blue-700 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 w-full overflow-hidden"
+//                             onClick={() => window.open(project.liveUrl, "_blank")}
+//                           >
+//                             {/* Animated background */}
+//                             <motion.div
+//                               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+//                               animate={{
+//                                 x: ["-100%", "100%"]
+//                               }}
+//                               transition={{
+//                                 duration: 1.5,
+//                                 repeat: Infinity,
+//                                 ease: "linear"
+//                               }}
+//                             />
+//                             <span className="relative font-semibold truncate">Live Demo</span>
+//                             <motion.div
+//                               animate={{ x: [0, 4, 0] }}
+//                               transition={{ duration: 1, repeat: Infinity }}
+//                               className="relative ml-2"
+//                             >
+//                               <Icon name="ArrowUpRight" size={isMobile ? 16 : 18} />
+//                             </motion.div>
+//                           </Button>
+//                         )}
+//                         {project?.githubUrl && (
+//                           <Button
+//                             variant="outline"
+//                             size={isMobile ? "md" : "lg"}
+//                             iconName="Github"
+//                             iconPosition="left"
+//                             className="group relative border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm hover:shadow-lg w-full overflow-hidden"
+//                             onClick={() => window.open(project.githubUrl, "_blank")}
+//                           >
+//                             <span className="relative font-semibold truncate">Source Code</span>
+//                             <motion.div
+//                               animate={{ rotate: [0, 360] }}
+//                               transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+//                               className="relative ml-2"
+//                             >
+//                               <Icon name="Github" size={isMobile ? 16 : 18} />
+//                             </motion.div>
+//                           </Button>
+//                         )}
+//                       </motion.div>
+//                     </div>
+//                   </motion.div>
+
+//                   {/* Right Column - Content */}
+//                   <div className="lg:w-1/2 flex flex-col">
+//                     {/* Tabs Navigation with animated indicators */}
+//                     <div className="sticky top-0 z-20 bg-gradient-to-b from-white/95 to-white/90 dark:from-gray-900/95 dark:to-gray-900/90 backdrop-blur-xl border-b border-gray-200/30 dark:border-gray-700/30">
+//                       <div className="flex overflow-x-auto scrollbar-hide">
+//                         {tabs.map((tab) => (
+//                           <motion.button
+//                             key={tab.id}
+//                             onClick={() => setActiveTab(tab.id)}
+//                             className={`group relative flex-1 min-w-0 flex flex-col items-center px-3 sm:px-4 py-2 sm:py-3 transition-all duration-300 ${activeTab === tab.id
+//                                 ? "text-gray-900 dark:text-white"
+//                                 : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
+//                               }`}
+//                             whileHover={{ scale: 1.05 }}
+//                             whileTap={{ scale: 0.95 }}
+//                           >
+//                             {/* Background gradient on active */}
+//                             {activeTab === tab.id && (
+//                               <motion.div
+//                                 layoutId="activeTab"
+//                                 className={`absolute inset-0 ${tab.gradient}`}
+//                                 transition={{ type: "spring", bounce: 0.2 }}
+//                               />
+//                             )}
+
+//                             <div className="relative flex items-center gap-1.5 sm:gap-2 z-10">
+//                               <motion.div
+//                                 animate={activeTab === tab.id ? {
+//                                   scale: [1, 1.2, 1],
+//                                   rotate: [0, 5, -5, 0]
+//                                 } : {}}
+//                                 transition={{ duration: 0.5 }}
+//                               >
+//                                 <Icon
+//                                   name={tab.icon}
+//                                   size={isMobile ? 16 : 20}
+//                                   className={activeTab === tab.id ? `bg-gradient-to-r ${tab.color} bg-clip-text text-transparent` : ''}
+//                                 />
+//                               </motion.div>
+//                               <span className={`text-xs sm:text-sm font-semibold whitespace-nowrap ${activeTab === tab.id ? 'bg-gradient-to-r ' + tab.color + ' bg-clip-text text-transparent' : ''
+//                                 }`}>
+//                                 {isMobile ? tab.label.substring(0, 3) : tab.label}
+//                               </span>
+//                             </div>
+
+//                             {/* Animated underline */}
+//                             <div className="relative mt-1.5 sm:mt-2 h-0.5 w-4 sm:w-8 rounded-full overflow-hidden">
+//                               <motion.div
+//                                 className={`h-full bg-gradient-to-r ${tab.color}`}
+//                                 initial={false}
+//                                 animate={{
+//                                   width: activeTab === tab.id ? "100%" : "0%",
+//                                   opacity: activeTab === tab.id ? 1 : 0
+//                                 }}
+//                                 transition={{ duration: 0.3 }}
+//                               />
+//                             </div>
+//                           </motion.button>
+//                         ))}
+//                       </div>
+//                     </div>
+
+//                     {/* Tab Content */}
+//                     <div
+//                       ref={contentRef}
+//                       className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 max-h-[calc(100vh-300px)] sm:max-h-[calc(95vh-200px)] lg:max-h-[calc(100vh-200px)] scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent"
+//                     >
+//                       <AnimatePresence mode="wait">
+//                         <motion.div
+//                           key={activeTab}
+//                           initial={{ opacity: 0, x: 20 }}
+//                           animate={{ opacity: 1, x: 0 }}
+//                           exit={{ opacity: 0, x: -20 }}
+//                           transition={{
+//                             duration: 0.3,
+//                             ease: "easeInOut"
+//                           }}
+//                           className="space-y-6 sm:space-y-8"
+//                         >
+//                           {/* Overview Tab */}
+//                           {activeTab === "overview" && (
+//                             <>
+//                               <div className="space-y-4">
+//                                 <motion.h3
+//                                   initial={{ opacity: 0, y: 10 }}
+//                                   animate={{ opacity: 1, y: 0 }}
+//                                   transition={{ delay: 0.1 }}
+//                                   className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent"
+//                                 >
+//                                   Project Overview
+//                                 </motion.h3>
+//                                 <motion.div
+//                                   initial={{ opacity: 0 }}
+//                                   animate={{ opacity: 1 }}
+//                                   transition={{ delay: 0.2 }}
+//                                   className="prose prose-sm dark:prose-invert max-w-none"
+//                                 >
+//                                   <p className="text-sm sm:text-base leading-relaxed text-gray-600 dark:text-gray-300 whitespace-pre-line">
+//                                     {project?.fullDescription}
+//                                   </p>
+//                                 </motion.div>
+//                               </div>
+
+//                               {project?.impact && (
+//                                 <motion.div
+//                                   initial={{ opacity: 0, y: 20 }}
+//                                   animate={{ opacity: 1, y: 0 }}
+//                                   transition={{ delay: 0.3 }}
+//                                   className="p-4 sm:p-5 bg-gradient-to-br from-blue-50/50 to-white/50 dark:from-blue-900/20 dark:to-gray-900/20 rounded-xl sm:rounded-2xl border border-blue-100/50 dark:border-blue-800/20 backdrop-blur-sm"
+//                                 >
+//                                   <div className="flex items-start gap-3">
+//                                     <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-400 flex items-center justify-center flex-shrink-0">
+//                                       <Icon name="Target" size={20} className="text-white" />
+//                                     </div>
+//                                     <div>
+//                                       <h4 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-1">
+//                                         Project Impact
+//                                       </h4>
+//                                       <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">
+//                                         {project.impact}
+//                                       </p>
+//                                     </div>
+//                                   </div>
+//                                 </motion.div>
+//                               )}
+//                             </>
+//                           )}
+
+//                           {/* Technical Tab */}
+//                           {activeTab === "technical" && (
+//                             <>
+//                               <div className="space-y-4">
+//                                 <motion.h3
+//                                   initial={{ opacity: 0, y: 10 }}
+//                                   animate={{ opacity: 1, y: 0 }}
+//                                   transition={{ delay: 0.1 }}
+//                                   className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-purple-600 to-purple-400 dark:from-purple-400 dark:to-purple-300 bg-clip-text text-transparent"
+//                                 >
+//                                   Technology Stack
+//                                 </motion.h3>
+//                                 <motion.p
+//                                   initial={{ opacity: 0 }}
+//                                   animate={{ opacity: 1 }}
+//                                   transition={{ delay: 0.2 }}
+//                                   className="text-sm sm:text-base text-gray-600 dark:text-gray-300"
+//                                 >
+//                                   Built using modern technologies and frameworks
+//                                 </motion.p>
+//                               </div>
+
+//                               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-3">
+//                                 {project?.technologies?.map((tech, index) => (
+//                                   <motion.div
+//                                     key={index}
+//                                     initial={{ opacity: 0, scale: 0.8, y: 20 }}
+//                                     animate={{ opacity: 1, scale: 1, y: 0 }}
+//                                     transition={{
+//                                       delay: index * 0.05,
+//                                       type: "spring",
+//                                       stiffness: 200
+//                                     }}
+//                                     whileHover={{
+//                                       scale: 1.05,
+//                                       y: -5,
+//                                       transition: { type: "spring", stiffness: 400 }
+//                                     }}
+//                                     className="group"
+//                                   >
+//                                     <div className="p-3 sm:p-4 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-xl sm:rounded-2xl border border-gray-200/50 dark:border-gray-700/50 group-hover:border-purple-200 dark:group-hover:border-purple-700/50 shadow-sm group-hover:shadow-lg group-hover:shadow-purple-500/10 transition-all duration-300">
+//                                       <div className="flex flex-col items-center text-center gap-1.5 sm:gap-2">
+//                                         <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br from-purple-100 to-purple-50 dark:from-purple-900/30 dark:to-gray-900 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+//                                           <motion.div
+//                                             animate={{ rotate: [0, 360] }}
+//                                             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+//                                           >
+//                                             <Icon name="Code" size={isMobile ? 18 : 22} className="text-purple-600 dark:text-purple-400" />
+//                                           </motion.div>
+//                                         </div>
+//                                         <span className="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white truncate w-full">
+//                                           {tech}
+//                                         </span>
+//                                       </div>
+//                                     </div>
+//                                   </motion.div>
+//                                 ))}
+//                               </div>
+
+//                               {project?.challenges && project.challenges.length > 0 && (
+//                                 <motion.div
+//                                   initial={{ opacity: 0 }}
+//                                   animate={{ opacity: 1 }}
+//                                   transition={{ delay: 0.5 }}
+//                                   className="mt-6 space-y-4"
+//                                 >
+//                                   <h4 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
+//                                     Technical Challenges
+//                                   </h4>
+//                                   <div className="space-y-3">
+//                                     {project.challenges.map((challenge, index) => (
+//                                       <motion.div
+//                                         key={index}
+//                                         initial={{ opacity: 0, x: -20 }}
+//                                         animate={{ opacity: 1, x: 0 }}
+//                                         transition={{ delay: 0.6 + index * 0.1 }}
+//                                         className="p-4 bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-xl border border-gray-200 dark:border-gray-700"
+//                                       >
+//                                         <div className="flex items-start gap-3">
+//                                           <div className="flex-shrink-0">
+//                                             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-100 to-amber-50 dark:from-amber-900/30 dark:to-gray-900 flex items-center justify-center">
+//                                               <Icon name="AlertCircle" size={16} className="text-amber-600 dark:text-amber-400" />
+//                                             </div>
+//                                           </div>
+//                                           <div className="flex-1">
+//                                             <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-2">
+//                                               <span className="font-semibold text-gray-900 dark:text-white">Challenge: </span>
+//                                               {challenge.problem}
+//                                             </p>
+//                                             <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">
+//                                               <span className="font-semibold text-gray-900 dark:text-white">Solution: </span>
+//                                               {challenge.solution}
+//                                             </p>
+//                                           </div>
+//                                         </div>
+//                                       </motion.div>
+//                                     ))}
+//                                   </div>
+//                                 </motion.div>
+//                               )}
+//                             </>
+//                           )}
+
+//                           {/* Features Tab */}
+//                           {activeTab === "features" && project?.features && (
+//                             <>
+//                               <div className="space-y-4">
+//                                 <motion.h3
+//                                   initial={{ opacity: 0, y: 10 }}
+//                                   animate={{ opacity: 1, y: 0 }}
+//                                   transition={{ delay: 0.1 }}
+//                                   className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-400 dark:from-emerald-400 dark:to-emerald-300 bg-clip-text text-transparent"
+//                                 >
+//                                   Key Features
+//                                 </motion.h3>
+//                                 <motion.p
+//                                   initial={{ opacity: 0 }}
+//                                   animate={{ opacity: 1 }}
+//                                   transition={{ delay: 0.2 }}
+//                                   className="text-sm sm:text-base text-gray-600 dark:text-gray-300"
+//                                 >
+//                                   Core functionalities and capabilities
+//                                 </motion.p>
+//                               </div>
+
+//                               <div className="grid grid-cols-1 gap-3 sm:gap-4">
+//                                 {project.features.map((feature, index) => (
+//                                   <motion.div
+//                                     key={index}
+//                                     initial={{ opacity: 0, y: 20 }}
+//                                     animate={{ opacity: 1, y: 0 }}
+//                                     transition={{
+//                                       delay: 0.3 + index * 0.1,
+//                                       type: "spring",
+//                                       stiffness: 100
+//                                     }}
+//                                     whileHover={{ x: 5 }}
+//                                     className="group"
+//                                   >
+//                                     <div className="p-4 sm:p-5 bg-gradient-to-br from-emerald-50/50 to-white/50 dark:from-emerald-900/10 dark:to-gray-900/10 rounded-xl sm:rounded-2xl border border-emerald-100/50 dark:border-emerald-800/20 hover:border-emerald-200 dark:hover:border-emerald-700/30 transition-colors backdrop-blur-sm">
+//                                       <div className="flex items-start gap-3 sm:gap-4">
+//                                         <motion.div
+//                                           className="flex-shrink-0"
+//                                           animate={{
+//                                             rotate: [0, 10, -10, 0],
+//                                             scale: [1, 1.1, 1]
+//                                           }}
+//                                           transition={{
+//                                             duration: 2,
+//                                             repeat: Infinity,
+//                                             repeatDelay: 2
+//                                           }}
+//                                         >
+//                                           <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-400 flex items-center justify-center shadow-lg shadow-emerald-500/30">
+//                                             <Icon name="CheckCircle" size={20} className="text-white" />
+//                                           </div>
+//                                         </motion.div>
+//                                         <div className="flex-1">
+//                                           <p className="text-sm sm:text-base font-medium text-gray-900 dark:text-white">
+//                                             {feature}
+//                                           </p>
+//                                         </div>
+//                                         <motion.div
+//                                           initial={{ opacity: 0, x: -10 }}
+//                                           animate={{ opacity: 1, x: 0 }}
+//                                           transition={{ delay: 0.5 + index * 0.1 }}
+//                                           className="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity"
+//                                         >
+//                                           <Icon name="ArrowRight" size={20} className="text-emerald-500" />
+//                                         </motion.div>
+//                                       </div>
+//                                     </div>
+//                                   </motion.div>
+//                                 ))}
+//                               </div>
+//                             </>
+//                           )}
+
+//                           {/* Impact Tab */}
+//                           {activeTab === "impact" && (
+//                             <>
+//                               <div className="space-y-4">
+//                                 <motion.h3
+//                                   initial={{ opacity: 0, y: 10 }}
+//                                   animate={{ opacity: 1, y: 0 }}
+//                                   transition={{ delay: 0.1 }}
+//                                   className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-amber-600 to-amber-400 dark:from-amber-400 dark:to-amber-300 bg-clip-text text-transparent"
+//                                 >
+//                                   Impact & Results
+//                                 </motion.h3>
+//                               </div>
+
+//                               {project?.metrics && project.metrics.length > 0 && (
+//                                 <motion.div
+//                                   initial={{ opacity: 0 }}
+//                                   animate={{ opacity: 1 }}
+//                                   transition={{ delay: 0.2 }}
+//                                   className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4"
+//                                 >
+//                                   {project.metrics.map((metric, index) => (
+//                                     <motion.div
+//                                       key={index}
+//                                       initial={{ opacity: 0, scale: 0.8 }}
+//                                       animate={{ opacity: 1, scale: 1 }}
+//                                       transition={{
+//                                         delay: 0.3 + index * 0.1,
+//                                         type: "spring",
+//                                         stiffness: 200
+//                                       }}
+//                                       whileHover={{ scale: 1.05 }}
+//                                       className="p-4 sm:p-5 bg-gradient-to-br from-amber-50/50 to-white/50 dark:from-amber-900/10 dark:to-gray-900/10 rounded-xl sm:rounded-2xl border border-amber-100/50 dark:border-amber-800/20 text-center backdrop-blur-sm"
+//                                     >
+//                                       <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-amber-600 to-amber-400 bg-clip-text text-transparent mb-2">
+//                                         {metric.value}
+//                                       </div>
+//                                       <div className="flex items-center justify-center gap-2">
+//                                         <Icon name={metric.icon} size={16} className="text-amber-500" />
+//                                         <div className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 truncate">
+//                                           {metric.label}
+//                                         </div>
+//                                       </div>
+//                                     </motion.div>
+//                                   ))}
+//                                 </motion.div>
+//                               )}
+
+//                               {project?.testimonial && (
+//                                 <motion.div
+//                                   initial={{ opacity: 0, y: 20 }}
+//                                   animate={{ opacity: 1, y: 0 }}
+//                                   transition={{ delay: 0.6 }}
+//                                   className="mt-6"
+//                                 >
+//                                   <div className="p-5 sm:p-6 bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg relative overflow-hidden"
+//                                   >
+//                                     {/* Quote marks */}
+//                                     <div className="absolute top-4 left-4 text-5xl text-blue-500/10 font-serif">"</div>
+//                                     <div className="absolute bottom-4 right-4 text-5xl text-blue-500/10 font-serif">"</div>
+
+//                                     <div className="relative z-10">
+//                                       <p className="text-base sm:text-lg italic text-gray-700 dark:text-gray-300 mb-4">
+//                                         "{project.testimonial.content}"
+//                                       </p>
+//                                       <div className="flex items-center gap-3">
+//                                         <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
+//                                           <Icon name="User" size={20} className="text-white" />
+//                                         </div>
+//                                         <div>
+//                                           <p className="font-semibold text-gray-900 dark:text-white">
+//                                             {project.testimonial.author}
+//                                           </p>
+//                                           <p className="text-sm text-gray-600 dark:text-gray-400">
+//                                             {project.testimonial.role}
+//                                           </p>
+//                                         </div>
+//                                       </div>
+//                                     </div>
+//                                   </div>
+//                                 </motion.div>
+//                               )}
+
+//                               {project?.learnings && (
+//                                 <motion.div
+//                                   initial={{ opacity: 0, y: 20 }}
+//                                   animate={{ opacity: 1, y: 0 }}
+//                                   transition={{ delay: 0.7 }}
+//                                   className="mt-6 space-y-4"
+//                                 >
+//                                   <h4 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
+//                                     Key Learnings
+//                                   </h4>
+//                                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+//                                     {project.learnings.map((learning, index) => (
+//                                       <motion.div
+//                                         key={index}
+//                                         initial={{ opacity: 0, scale: 0.9 }}
+//                                         animate={{ opacity: 1, scale: 1 }}
+//                                         transition={{ delay: 0.8 + index * 0.1 }}
+//                                         className="p-3 sm:p-4 bg-gradient-to-br from-blue-50/50 to-white/50 dark:from-blue-900/10 dark:to-gray-900/10 rounded-xl border border-blue-100/50 dark:border-blue-800/20"
+//                                       >
+//                                         <div className="flex items-start gap-2">
+//                                           <div className="w-6 h-6 rounded-md bg-gradient-to-br from-blue-500 to-blue-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+//                                             <Icon name="Lightbulb" size={12} className="text-white" />
+//                                           </div>
+//                                           <p className="text-sm text-gray-700 dark:text-gray-300">
+//                                             {learning}
+//                                           </p>
+//                                         </div>
+//                                       </motion.div>
+//                                     ))}
+//                                   </div>
+//                                 </motion.div>
+//                               )}
+//                             </>
+//                           )}
+//                         </motion.div>
+//                       </AnimatePresence>
+//                     </div>
+//                   </div>
+//                 </div>
+//               </motion.div>
+//             </div>
+//           </div>
+
+//           {/* Custom CSS for animations */}
+//           <style jsx global>{`
+//             @keyframes gradientFlow {
+//               0% { background-position: 100% 0; }
+//               50% { background-position: 0 0; }
+//               100% { background-position: 100% 0; }
+//             }
+            
+//             .modal-open {
+//               overflow: hidden;
+//             }
+            
+//             .scrollbar-thin::-webkit-scrollbar {
+//               width: 4px;
+//               height: 4px;
+//             }
+            
+//             .scrollbar-thin::-webkit-scrollbar-track {
+//               background: transparent;
+//             }
+            
+//             .scrollbar-thin::-webkit-scrollbar-thumb {
+//               background: #d1d5db;
+//               border-radius: 4px;
+//             }
+            
+//             .dark .scrollbar-thin::-webkit-scrollbar-thumb {
+//               background: #4b5563;
+//             }
+            
+//             .scrollbar-hide::-webkit-scrollbar {
+//               display: none;
+//             }
+//           `}</style>
+//         </>
+//       )}
+//     </AnimatePresence>
+//   );
+// };
+
+// export default ProjectModal;
+
+
+import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
+import { motion, AnimatePresence, useSpring, useTransform } from "framer-motion";
 import Icon from "../../../components/AppIcon";
 import Image from "../../../components/AppImage";
 import Button from "../../../components/ui/Button";
@@ -8,200 +1389,34 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
   const [activeTab, setActiveTab] = useState("overview");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  const [touchStart, setTouchStart] = useState(null);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showGallery, setShowGallery] = useState(false);
-  const [isScrolling, setIsScrolling] = useState(false);
+  const [isHoveringNav, setIsHoveringNav] = useState(false);
+  const [touchPosition, setTouchPosition] = useState(null);
+  const [showTechGlow, setShowTechGlow] = useState(false);
+  const [parallaxOffset, setParallaxOffset] = useState({ x: 0, y: 0 });
+  const [scrollProgress, setScrollProgress] = useState(0);
+  
   const modalRef = useRef(null);
   const imageContainerRef = useRef(null);
   const contentRef = useRef(null);
-
-  // Check for mobile device
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  // Lock scroll when modal opens with smooth transition
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-      document.body.style.position = "fixed";
-      document.body.style.width = "100%";
-      document.body.style.height = "100%";
-
-      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-      if (scrollbarWidth > 0) {
-        document.body.style.paddingRight = `${scrollbarWidth}px`;
-      }
-
-      // Add class for smooth transitions
-      document.documentElement.classList.add('modal-open');
-    }
-
-    return () => {
-      document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.width = "";
-      document.body.style.height = "";
-      document.body.style.paddingRight = "";
-      document.documentElement.classList.remove('modal-open');
-    };
-  }, [isOpen]);
-
-  // Reset states when project changes
-  useEffect(() => {
-    if (project) {
-      setCurrentImageIndex(0);
-      setActiveTab("overview");
-      setIsLoading(true);
-      setShowGallery(false);
-      setIsFullscreen(false);
-
-      // Preload images
-      if (project.gallery && project.gallery.length > 0) {
-        project.gallery.forEach(src => {
-          const img = new window.Image();
-          img.src = src;
-        });
-      }
-    }
-  }, [project]);
-
-  // Handle keyboard navigation
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (!isOpen || !project) return;
-
-      switch (e.key) {
-        case "Escape":
-          if (isFullscreen) {
-            setIsFullscreen(false);
-          } else {
-            onClose();
-          }
-          break;
-        case "ArrowLeft":
-          prevImage();
-          break;
-        case "ArrowRight":
-          nextImage();
-          break;
-        case " ":
-          e.preventDefault();
-          if (hasGallery && project.gallery.length > 1) {
-            nextImage();
-          }
-          break;
-        case "f":
-          e.preventDefault();
-          if (hasGallery) {
-            setIsFullscreen(!isFullscreen);
-          }
-          break;
-        case "g":
-          e.preventDefault();
-          if (hasGallery && project.gallery.length > 1) {
-            setShowGallery(!showGallery);
-          }
-          break;
-        default:
-          break;
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, project, onClose, isFullscreen, showGallery]);
-
-  // Handle touch gestures for image swiping
-  const handleTouchStart = (e) => {
-    setTouchStart(e.touches[0].clientX);
-    setIsScrolling(false);
-  };
-
-  const handleTouchMove = (e) => {
-    if (touchStart === null) return;
-    const diff = touchStart - e.touches[0].clientX;
-    setIsScrolling(Math.abs(diff) < 10);
-  };
-
-  const handleTouchEnd = (e) => {
-    if (!touchStart || isScrolling) {
-      setTouchStart(null);
-      return;
-    }
-
-    const touchEnd = e.changedTouches[0].clientX;
-    const diff = touchStart - touchEnd;
-    const minSwipeDistance = isMobile ? 30 : 50;
-
-    if (Math.abs(diff) > minSwipeDistance) {
-      if (diff > 0) {
-        nextImage();
-      } else {
-        prevImage();
-      }
-    }
-
-    setTouchStart(null);
-  };
-
-  // Smooth image transitions with parallax effect
-  const nextImage = useCallback(() => {
-    if (!project?.gallery || project.gallery.length <= 1 || isAnimating) return;
-
-    setIsAnimating(true);
-    setCurrentImageIndex((prev) => {
-      const nextIndex = (prev + 1) % project.gallery.length;
-      return nextIndex;
-    });
-
-    setTimeout(() => setIsAnimating(false), 400);
-  }, [project, isAnimating]);
-
-  const prevImage = useCallback(() => {
-    if (!project?.gallery || project.gallery.length <= 1 || isAnimating) return;
-
-    setIsAnimating(true);
-    setCurrentImageIndex((prev) => {
-      const nextIndex = prev === 0 ? project.gallery.length - 1 : prev - 1;
-      return nextIndex;
-    });
-
-    setTimeout(() => setIsAnimating(false), 400);
-  }, [project, isAnimating]);
-
-  // Click outside to close
-  const handleBackdropClick = useCallback((e) => {
-    if (isFullscreen) {
-      setIsFullscreen(false);
-      return;
-    }
-
-    if (modalRef.current && !modalRef.current.contains(e.target)) {
-      onClose();
-    }
-  }, [onClose, isFullscreen]);
-
-  // Handle scroll for parallax effect
+  const galleryRef = useRef(null);
+  const animationFrameRef = useRef(null);
+  
+  // Manual scroll progress tracking instead of useScroll
   const handleScroll = useCallback(() => {
-    if (contentRef.current && !isMobile) {
+    if (contentRef.current) {
       const scrolled = contentRef.current.scrollTop;
       const maxScroll = contentRef.current.scrollHeight - contentRef.current.clientHeight;
-      const progress = scrolled / maxScroll;
-
-      if (imageContainerRef.current) {
-        imageContainerRef.current.style.transform = `translateY(${progress * 20}px)`;
-        imageContainerRef.current.style.opacity = `${1 - progress * 0.3}`;
+      const progress = maxScroll > 0 ? scrolled / maxScroll : 0;
+      setScrollProgress(progress);
+      
+      // Apply parallax effect
+      if (imageContainerRef.current && !isMobile) {
+        imageContainerRef.current.style.transform = `translateY(${progress * 30}px)`;
+        imageContainerRef.current.style.opacity = `${1 - progress * 0.2}`;
       }
     }
   }, [isMobile]);
@@ -214,36 +1429,349 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
     }
   }, [handleScroll]);
 
+  // Smooth parallax values
+  const parallaxY = useSpring(scrollProgress * 100, { stiffness: 100, damping: 30 });
+  const opacityTransform = useSpring(1 - scrollProgress * 0.3, { stiffness: 100 });
+
+  // Detect device with more comprehensive checks
+  useEffect(() => {
+    const checkDevice = () => {
+      const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      const isSmall = window.innerWidth < 768;
+      setIsMobile(isTouch && isSmall);
+    };
+
+    checkDevice();
+    const handleResize = () => {
+      checkDevice();
+      if (window.innerWidth >= 768 && isFullscreen) {
+        setIsFullscreen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', checkDevice);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', checkDevice);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, [isFullscreen]);
+
+  // Enhanced scroll lock with smooth transitions
+  useEffect(() => {
+    if (isOpen) {
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      document.body.style.overflow = 'hidden';
+      
+      // Store scroll position
+      document.body.dataset.scrollY = scrollY;
+      
+      // Add smooth transition class
+      document.documentElement.classList.add('modal-open-smooth');
+    }
+
+    return () => {
+      const scrollY = document.body.dataset.scrollY || '0';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.style.overflow = '';
+      document.documentElement.classList.remove('modal-open-smooth');
+      
+      // Restore scroll position
+      window.scrollTo(0, parseInt(scrollY, 10));
+    };
+  }, [isOpen]);
+
+  // Enhanced reset with animations
+  useEffect(() => {
+    if (project) {
+      setCurrentImageIndex(0);
+      setActiveTab("overview");
+      setIsLoading(true);
+      setShowGallery(false);
+      setIsFullscreen(false);
+      setShowTechGlow(false);
+
+      // Enhanced preloading with priority
+      if (project.gallery?.length > 0) {
+        const preloadImages = async () => {
+          const promises = project.gallery.map((src, index) => {
+            return new Promise((resolve) => {
+              const img = new Image();
+              img.src = src;
+              img.onload = resolve;
+              img.onerror = resolve;
+              // Prioritize first image
+              if (index === 0) img.fetchPriority = 'high';
+            });
+          });
+          await Promise.all(promises);
+        };
+        preloadImages();
+      }
+    }
+  }, [project]);
+
+  // Enhanced keyboard navigation with more shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (!isOpen || !project) return;
+
+      const isTyping = e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA';
+      if (isTyping) return;
+
+      switch (e.key.toLowerCase()) {
+        case "escape":
+          e.preventDefault();
+          if (isFullscreen) {
+            setIsFullscreen(false);
+          } else if (showGallery) {
+            setShowGallery(false);
+          } else {
+            onClose();
+          }
+          break;
+        case "arrowleft":
+          e.preventDefault();
+          prevImage();
+          break;
+        case "arrowright":
+          e.preventDefault();
+          nextImage();
+          break;
+        case " ":
+          e.preventDefault();
+          if (hasGallery && project.gallery.length > 1) {
+            nextImage();
+          }
+          break;
+        case "f":
+          e.preventDefault();
+          if (hasGallery) {
+            toggleFullscreen();
+          }
+          break;
+        case "g":
+          e.preventDefault();
+          if (hasGallery && project.gallery.length > 1) {
+            setShowGallery(prev => !prev);
+          }
+          break;
+        case "t":
+          e.preventDefault();
+          setActiveTab(prev => {
+            const tabs = ["overview", "technical", "features", "impact"];
+            const currentIndex = tabs.indexOf(prev);
+            return tabs[(currentIndex + 1) % tabs.length];
+          });
+          break;
+        case "1":
+        case "2":
+        case "3":
+        case "4":
+          e.preventDefault();
+          const tabIndex = parseInt(e.key) - 1;
+          const tabs = ["overview", "technical", "features", "impact"];
+          if (tabs[tabIndex]) {
+            setActiveTab(tabs[tabIndex]);
+          }
+          break;
+        default:
+          break;
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, project, onClose, isFullscreen, showGallery]);
+
+  // Enhanced touch gestures with momentum
+  const handleTouchStart = useCallback((e) => {
+    setTouchPosition({
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY,
+      time: Date.now()
+    });
+  }, []);
+
+  const handleTouchMove = useCallback((e) => {
+    if (!touchPosition) return;
+    
+    e.preventDefault();
+    const currentX = e.touches[0].clientX;
+    const deltaX = touchPosition.x - currentX;
+    
+    // Add parallax effect during swipe
+    if (imageContainerRef.current && Math.abs(deltaX) > 10) {
+      imageContainerRef.current.style.transform = `translateX(${-deltaX * 0.1}px)`;
+    }
+  }, [touchPosition]);
+
+  const handleTouchEnd = useCallback((e) => {
+    if (!touchPosition) return;
+
+    const endX = e.changedTouches[0].clientX;
+    const deltaX = touchPosition.x - endX;
+    const deltaTime = Date.now() - touchPosition.time;
+    const velocity = Math.abs(deltaX) / deltaTime;
+    
+    // Reset parallax
+    if (imageContainerRef.current) {
+      imageContainerRef.current.style.transform = '';
+    }
+
+    const minSwipeDistance = isMobile ? 40 : 60;
+    const minVelocity = 0.3;
+
+    if (Math.abs(deltaX) > minSwipeDistance || velocity > minVelocity) {
+      if (deltaX > 0) {
+        nextImage();
+      } else {
+        prevImage();
+      }
+    }
+
+    setTouchPosition(null);
+  }, [touchPosition, isMobile]);
+
+  // Enhanced image transitions with spring physics
+  const nextImage = useCallback(() => {
+    if (!project?.gallery || project.gallery.length <= 1 || isAnimating) return;
+
+    setIsAnimating(true);
+    setCurrentImageIndex((prev) => {
+      const nextIndex = (prev + 1) % project.gallery.length;
+      return nextIndex;
+    });
+
+    // Add haptic feedback on mobile
+    if (navigator.vibrate) {
+      navigator.vibrate(10);
+    }
+
+    setTimeout(() => setIsAnimating(false), 500);
+  }, [project, isAnimating]);
+
+  const prevImage = useCallback(() => {
+    if (!project?.gallery || project.gallery.length <= 1 || isAnimating) return;
+
+    setIsAnimating(true);
+    setCurrentImageIndex((prev) => {
+      const nextIndex = prev === 0 ? project.gallery.length - 1 : prev - 1;
+      return nextIndex;
+    });
+
+    if (navigator.vibrate) {
+      navigator.vibrate(10);
+    }
+
+    setTimeout(() => setIsAnimating(false), 500);
+  }, [project, isAnimating]);
+
+  // Enhanced fullscreen toggle
+  const toggleFullscreen = useCallback(() => {
+    setIsFullscreen(prev => !prev);
+    
+    // Add scale animation
+    if (imageContainerRef.current) {
+      imageContainerRef.current.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+      setTimeout(() => {
+        if (imageContainerRef.current) {
+          imageContainerRef.current.style.transition = '';
+        }
+      }, 500);
+    }
+  }, []);
+
+  // Enhanced backdrop click
+  const handleBackdropClick = useCallback((e) => {
+    if (!modalRef.current) return;
+    
+    const isClickInside = modalRef.current.contains(e.target);
+    const isGalleryClick = galleryRef.current?.contains(e.target);
+    
+    if (!isClickInside && !isGalleryClick) {
+      if (isFullscreen) {
+        setIsFullscreen(false);
+      } else if (showGallery) {
+        setShowGallery(false);
+      } else {
+        onClose();
+      }
+    }
+  }, [onClose, isFullscreen, showGallery]);
+
+  // Mouse parallax effect
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (!imageContainerRef.current || isMobile || isFullscreen) return;
+      
+      const rect = imageContainerRef.current.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      
+      setParallaxOffset({
+        x: (x - 0.5) * 20,
+        y: (y - 0.5) * 20
+      });
+    };
+
+    if (!isMobile) {
+      window.addEventListener('mousemove', handleMouseMove);
+      return () => window.removeEventListener('mousemove', handleMouseMove);
+    }
+  }, [isMobile, isFullscreen]);
+
+  // Tech glow effect
+  useEffect(() => {
+    if (activeTab === 'technical') {
+      const timer = setTimeout(() => setShowTechGlow(true), 300);
+      return () => {
+        clearTimeout(timer);
+        setShowTechGlow(false);
+      };
+    }
+  }, [activeTab]);
+
   if (!project) return null;
 
+  // Enhanced tabs with icons and gradients - moved outside to avoid conditional hooks
   const tabs = [
     {
       id: "overview",
       label: "Overview",
       icon: "Eye",
-      color: "from-blue-500 via-blue-400 to-blue-300",
-      gradient: "bg-gradient-to-r from-blue-500/20 via-blue-400/20 to-blue-300/20"
+      gradient: "linear-gradient(135deg, #3b82f6, #8b5cf6)",
+      glow: "rgba(59, 130, 246, 0.3)"
     },
     {
       id: "technical",
       label: "Technical",
       icon: "Cpu",
-      color: "from-purple-500 via-purple-400 to-purple-300",
-      gradient: "bg-gradient-to-r from-purple-500/20 via-purple-400/20 to-purple-300/20"
+      gradient: "linear-gradient(135deg, #8b5cf6, #ec4899)",
+      glow: "rgba(139, 92, 246, 0.4)"
     },
     {
       id: "features",
       label: "Features",
       icon: "Layers",
-      color: "from-emerald-500 via-emerald-400 to-emerald-300",
-      gradient: "bg-gradient-to-r from-emerald-500/20 via-emerald-400/20 to-emerald-300/20"
+      gradient: "linear-gradient(135deg, #10b981, #06b6d4)",
+      glow: "rgba(16, 185, 129, 0.3)"
     },
     {
       id: "impact",
       label: "Impact",
       icon: "TrendingUp",
-      color: "from-amber-500 via-amber-400 to-amber-300",
-      gradient: "bg-gradient-to-r from-amber-500/20 via-amber-400/20 to-amber-300/20"
+      gradient: "linear-gradient(135deg, #f59e0b, #ef4444)",
+      glow: "rgba(245, 158, 11, 0.3)"
     },
   ];
 
@@ -266,27 +1794,35 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
     hidden: {
       opacity: 0,
       scale: 0.95,
-      y: isMobile ? 50 : 0,
-      rotateX: 10
+      y: isMobile ? 60 : 0,
+      rotateX: 15,
+      filter: "blur(10px)"
     },
     visible: {
       opacity: 1,
       scale: 1,
       y: 0,
       rotateX: 0,
+      filter: "blur(0px)",
       transition: {
         type: "spring",
-        damping: 25,
+        damping: 30,
         stiffness: 400,
-        mass: 0.8
+        mass: 0.8,
+        when: "beforeChildren",
+        staggerChildren: 0.1
       }
     },
     exit: {
       opacity: 0,
       scale: 0.95,
-      y: isMobile ? 50 : 0,
-      rotateX: 10,
-      transition: { duration: 0.2 }
+      y: isMobile ? 60 : 0,
+      rotateX: 15,
+      filter: "blur(10px)",
+      transition: {
+        duration: 0.3,
+        ease: "easeIn"
+      }
     }
   };
 
@@ -295,15 +1831,36 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
     visible: {
       opacity: 1,
       transition: {
-        duration: 0.4,
-        ease: "easeOut"
+        duration: 0.5,
+        ease: [0.4, 0, 0.2, 1]
       }
     },
     exit: {
       opacity: 0,
       transition: {
-        duration: 0.3,
+        duration: 0.4,
         ease: "easeIn"
+      }
+    }
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 1.1, filter: "brightness(0.8) blur(10px)" },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      filter: "brightness(1) blur(0px)",
+      transition: {
+        duration: 0.7,
+        ease: [0.4, 0, 0.2, 1]
+      }
+    },
+    exit: {
+      opacity: 0,
+      scale: 0.95,
+      filter: "brightness(0.8) blur(5px)",
+      transition: {
+        duration: 0.3
       }
     }
   };
@@ -312,133 +1869,203 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
     <AnimatePresence mode="wait">
       {isOpen && (
         <>
-          {/* Premium Backdrop with gradient animation */}
+          {/* Premium Backdrop with animated particles */}
           <motion.div
             variants={backdropVariants}
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed inset-0 z-50"
+            className="fixed inset-0 z-50 cursor-pointer"
+            onClick={handleBackdropClick}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
-            <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/10 via-transparent to-purple-900/10"></div>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.15),transparent_50%),radial-gradient(circle_at_70%_80%,rgba(168,85,247,0.15),transparent_50%)]"></div>
-            <div
-              className="absolute inset-0 backdrop-blur-xl"
-              onClick={handleBackdropClick}
+            {/* Animated gradient background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900"></div>
+            
+            {/* Particle system */}
+            <div className="absolute inset-0 overflow-hidden">
+              {[...Array(20)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-1 h-1 bg-white/10 rounded-full"
+                  initial={{
+                    x: Math.random() * 100 + 'vw',
+                    y: Math.random() * 100 + 'vh',
+                    scale: 0
+                  }}
+                  animate={{
+                    x: [null, Math.random() * 100 + 'vw'],
+                    y: [null, Math.random() * 100 + 'vh'],
+                    scale: [0, 1, 0]
+                  }}
+                  transition={{
+                    duration: Math.random() * 10 + 10,
+                    repeat: Infinity,
+                    delay: Math.random() * 5,
+                    ease: "linear"
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Animated gradient rings */}
+            <motion.div
+              className="absolute inset-0"
+              animate={{
+                background: [
+                  'radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)',
+                  'radial-gradient(circle at 70% 80%, rgba(168, 85, 247, 0.15) 0%, transparent 50%)',
+                  'radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)'
+                ]
+              }}
+              transition={{
+                duration: 10,
+                repeat: Infinity,
+                ease: "linear"
+              }}
             />
+            
+            <div className="absolute inset-0 backdrop-blur-2xl" />
           </motion.div>
 
           {/* Modal Container */}
-          <div className="fixed inset-0 z-50 overflow-y-auto">
-            <div className="min-h-full flex items-start sm:items-center justify-center p-0 sm:p-2 md:p-4">
+          <div className="fixed inset-0 z-50 overflow-y-auto p-0 sm:p-4">
+            <div className="min-h-full flex items-start sm:items-center justify-center p-0 sm:p-4">
               <motion.div
                 ref={modalRef}
                 variants={modalVariants}
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="relative w-full h-screen sm:h-auto sm:max-h-[95vh] sm:max-w-7xl bg-gradient-to-br from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 rounded-none sm:rounded-3xl shadow-2xl shadow-black/30 overflow-hidden border-0 sm:border border-white/10 dark:border-gray-700/30"
+                className="relative w-full h-screen sm:h-auto sm:max-h-[96vh] sm:max-w-7xl bg-gradient-to-br from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 rounded-none sm:rounded-3xl shadow-2xl shadow-black/50 overflow-hidden border-0 sm:border border-white/20 dark:border-gray-700/50"
                 style={{
-                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1)"
+                  boxShadow: `
+                    0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                    0 0 0 1px rgba(255, 255, 255, 0.1),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1)
+                  `
                 }}
               >
-                {/* Header with glass morphism effect */}
-                <div className="sticky top-0 z-50 bg-gradient-to-b from-white/90 via-white/80 to-white/70 dark:from-gray-900/90 dark:via-gray-900/80 dark:to-gray-900/70 backdrop-blur-xl border-b border-white/20 dark:border-gray-700/30 px-4 py-3 sm:px-8 sm:py-5">
+                {/* Animated border glow */}
+                <motion.div
+                  className="absolute inset-0 rounded-none sm:rounded-3xl pointer-events-none"
+                  animate={{
+                    boxShadow: [
+                      'inset 0 0 20px rgba(59, 130, 246, 0.1)',
+                      'inset 0 0 40px rgba(139, 92, 246, 0.2)',
+                      'inset 0 0 20px rgba(59, 130, 246, 0.1)'
+                    ]
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+
+                {/* Header */}
+                <motion.div
+                  initial={{ y: -20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                  className="sticky top-0 z-50 bg-gradient-to-b from-white/95 via-white/90 to-white/85 dark:from-gray-900/95 dark:via-gray-900/90 dark:to-gray-900/85 backdrop-blur-xl border-b border-white/20 dark:border-gray-700/30 px-4 py-3 sm:px-8 sm:py-5"
+                >
                   <div className="flex items-center justify-between gap-2 sm:gap-4">
-                    <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+                    <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
                       {/* Animated Project Icon */}
                       <motion.div
                         className="relative flex-shrink-0"
                         animate={{
-                          rotate: [0, 5, -5, 0],
-                          scale: [1, 1.05, 1]
+                          rotate: [0, 360],
+                          scale: [1, 1.1, 1]
                         }}
                         transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          repeatDelay: 5
+                          rotate: {
+                            duration: 20,
+                            repeat: Infinity,
+                            ease: "linear"
+                          },
+                          scale: {
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }
                         }}
                       >
-                        <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 dark:from-blue-600 dark:via-blue-700 dark:to-blue-800 flex items-center justify-center shadow-lg shadow-blue-500/30">
-                          <Icon name="FolderKanban" size={isMobile ? 18 : 22} className="text-white" />
-                          {/* Pulsing glow effect */}
-                          <motion.div
-                            className="absolute inset-0 rounded-xl sm:rounded-2xl bg-blue-500/30"
-                            animate={{ scale: [1, 1.3, 1] }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }}
-                          />
+                        <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-blue-500 via-blue-600 to-purple-600 dark:from-blue-600 dark:via-blue-700 dark:to-purple-700 flex items-center justify-center shadow-2xl shadow-blue-500/30">
+                          <Icon name="FolderKanban" size={24} className="text-white" />
+                          
+                          {/* Orbiting dots */}
+                          {[...Array(3)].map((_, i) => (
+                            <motion.div
+                              key={i}
+                              className="absolute w-2 h-2 bg-white rounded-full"
+                              animate={{
+                                x: [0, Math.cos(i * 120) * 24, 0],
+                                y: [0, Math.sin(i * 120) * 24, 0]
+                              }}
+                              transition={{
+                                duration: 3,
+                                repeat: Infinity,
+                                delay: i * 0.5,
+                                ease: "easeInOut"
+                              }}
+                            />
+                          ))}
                         </div>
-                        {/* Floating particles */}
-                        <motion.div
-                          className="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 bg-gradient-to-br from-blue-400 to-blue-300 rounded-full flex items-center justify-center shadow-lg shadow-blue-400/50"
-                          animate={{
-                            y: [0, -4, 0],
-                            rotate: [0, 360]
-                          }}
-                          transition={{
-                            y: {
-                              duration: 1.5,
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            },
-                            rotate: {
-                              duration: 3,
-                              repeat: Infinity,
-                              ease: "linear"
-                            }
-                          }}
-                        >
-                          <Icon name="Sparkles" size={isMobile ? 8 : 10} className="text-white" />
-                        </motion.div>
                       </motion.div>
 
-                      {/* Project Title with typewriter effect */}
+                      {/* Project Title */}
                       <div className="flex-1 min-w-0">
-                        <motion.h2
+                        <motion.div
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.2 }}
-                          className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-200 dark:to-white bg-clip-text text-transparent truncate"
+                          transition={{ delay: 0.3 }}
+                          className="relative"
                         >
-                          {project?.title}
-                        </motion.h2>
+                          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-200 dark:to-white bg-clip-text text-transparent truncate">
+                            {project?.title}
+                          </h2>
+                          
+                          {/* Animated underline */}
+                          <motion.div
+                            className="h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mt-1"
+                            initial={{ width: 0 }}
+                            animate={{ width: "100%" }}
+                            transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
+                          />
+                        </motion.div>
+                        
                         <motion.div
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
-                          transition={{ delay: 0.3 }}
-                          className="flex flex-wrap items-center gap-1 sm:gap-2 mt-0.5"
+                          transition={{ delay: 0.4 }}
+                          className="flex flex-wrap items-center gap-2 sm:gap-3 mt-2"
                         >
-                          <span className="text-xs sm:text-sm font-medium bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent truncate">
+                          <span className="text-sm font-medium bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
                             {project?.category}
                           </span>
+                          
                           {project?.complexity && (
-                            <>
-                              <span className="text-gray-400 hidden sm:inline">•</span>
-                              <motion.span
-                                initial={{ scale: 0.8 }}
-                                animate={{ scale: 1 }}
-                                transition={{ type: "spring", delay: 0.4 }}
-                                className={`text-xs px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full font-semibold shadow-lg backdrop-blur-sm ${project.complexity === "Advanced"
-                                    ? "bg-gradient-to-r from-red-500/20 to-red-600/20 text-red-700 dark:text-red-300 border border-red-200/50 dark:border-red-800/50"
-                                    : project.complexity === "Intermediate"
-                                      ? "bg-gradient-to-r from-amber-500/20 to-amber-600/20 text-amber-700 dark:text-amber-300 border border-amber-200/50 dark:border-amber-800/50"
-                                      : "bg-gradient-to-r from-emerald-500/20 to-emerald-600/20 text-emerald-700 dark:text-emerald-300 border border-emerald-200/50 dark:border-emerald-800/50"
-                                  }`}
-                              >
-                                {project.complexity}
-                              </motion.span>
-                            </>
+                            <motion.span
+                              initial={{ scale: 0 }}
+                              animate={{ scale: 1 }}
+                              transition={{ type: "spring", delay: 0.6 }}
+                              className={`px-3 py-1 rounded-full text-xs font-semibold shadow-lg backdrop-blur-sm border ${
+                                project.complexity === "Advanced"
+                                  ? "bg-gradient-to-r from-red-500/20 to-red-600/20 text-red-700 dark:text-red-300 border-red-200/50 dark:border-red-800/50"
+                                  : project.complexity === "Intermediate"
+                                  ? "bg-gradient-to-r from-amber-500/20 to-amber-600/20 text-amber-700 dark:text-amber-300 border-amber-200/50 dark:border-amber-800/50"
+                                  : "bg-gradient-to-r from-emerald-500/20 to-emerald-600/20 text-emerald-700 dark:text-emerald-300 border-emerald-200/50 dark:border-emerald-800/50"
+                              }`}
+                            >
+                              {project.complexity}
+                            </motion.span>
                           )}
                         </motion.div>
                       </div>
                     </div>
 
-                    {/* Close Button with hover animation */}
+                    {/* Close Button */}
                     <motion.button
                       initial={{ opacity: 0, rotate: -90 }}
                       animate={{ opacity: 1, rotate: 0 }}
@@ -446,25 +2073,28 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                       whileHover={{ scale: 1.1, rotate: 90 }}
                       whileTap={{ scale: 0.9 }}
                       onClick={onClose}
-                      className="group relative w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 flex items-center justify-center rounded-lg sm:rounded-xl hover:bg-white/20 dark:hover:bg-gray-800/50 transition-all duration-200 backdrop-blur-sm flex-shrink-0"
+                      className="group relative w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-xl hover:bg-white/20 dark:hover:bg-gray-800/50 transition-all duration-200 backdrop-blur-sm flex-shrink-0"
                       aria-label="Close"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-br from-gray-200/50 to-gray-300/50 dark:from-gray-800/50 dark:to-gray-700/50 rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-gray-200/50 to-gray-300/50 dark:from-gray-800/50 dark:to-gray-700/50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
                       <Icon
                         name="X"
-                        size={isMobile ? 18 : 20}
+                        size={24}
                         className="relative text-gray-600 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors"
                       />
                     </motion.button>
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Main Content */}
-                <div className="flex flex-col lg:flex-row h-[calc(100vh-4rem)] sm:h-auto">
-                  {/* Left Column - Gallery with floating effect */}
+                <div className="flex flex-col lg:flex-row h-[calc(100vh-5rem)] sm:h-auto">
+                  {/* Left Column - Gallery */}
                   <motion.div
                     ref={imageContainerRef}
                     className={`lg:w-1/2 p-4 sm:p-6 md:p-8 border-b lg:border-b-0 lg:border-r border-gray-200/20 dark:border-gray-700/20 ${showGallery ? 'lg:flex lg:flex-col' : ''}`}
+                    style={{
+                      transform: `translate(${parallaxOffset.x}px, ${parallaxOffset.y}px)`
+                    }}
                     animate={isFullscreen ? {
                       position: 'fixed',
                       top: 0,
@@ -480,11 +2110,18 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                     transition={{ type: "spring", damping: 25 }}
                   >
                     <div className={`space-y-4 sm:space-y-6 ${showGallery ? 'flex-1 flex flex-col' : ''}`}>
-                      {/* Fullscreen Controls */}
+                      {/* Gallery Controls */}
                       {hasGallery && (
-                        <div className="flex items-center justify-between mb-2">
-                          <div className="text-xs text-gray-500 dark:text-gray-400">
-                            Press <kbd className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">F</kbd> for fullscreen
+                        <motion.div
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="flex items-center justify-between mb-2"
+                        >
+                          <div className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-2">
+                            <kbd className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">F</kbd>
+                            <span>Fullscreen</span>
+                            <kbd className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-xs ml-2">G</kbd>
+                            <span>Grid</span>
                           </div>
                           {hasGallery && project.gallery.length > 1 && (
                             <Button
@@ -494,17 +2131,17 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                               onClick={() => setShowGallery(!showGallery)}
                               className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
                             >
-                              {showGallery ? "Close Gallery" : "View Grid"}
+                              {showGallery ? "Close Grid" : "Grid View"}
                             </Button>
                           )}
-                        </div>
+                        </motion.div>
                       )}
 
                       {/* Image Gallery */}
                       {showGallery ? (
                         // Grid Gallery View
-                        <div className="flex-1 overflow-y-auto">
-                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 auto-rows-max">
+                        <div ref={galleryRef} className="flex-1 overflow-y-auto">
+                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 auto-rows-max">
                             {project.gallery.map((img, index) => (
                               <motion.button
                                 key={index}
@@ -512,16 +2149,17 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: index * 0.05 }}
-                                whileHover={{ scale: 1.02, zIndex: 10 }}
-                                whileTap={{ scale: 0.98 }}
+                                whileHover={{ scale: 1.05, zIndex: 10 }}
+                                whileTap={{ scale: 0.95 }}
                                 onClick={() => {
                                   setCurrentImageIndex(index);
                                   setShowGallery(false);
                                 }}
-                                className={`relative aspect-square rounded-lg sm:rounded-xl overflow-hidden group ${currentImageIndex === index
-                                    ? "ring-2 sm:ring-3 ring-blue-500"
+                                className={`relative aspect-square rounded-xl overflow-hidden group ${
+                                  currentImageIndex === index
+                                    ? "ring-3 ring-blue-500 ring-offset-2 dark:ring-offset-gray-900"
                                     : "ring-1 ring-gray-200 dark:ring-gray-700"
-                                  }`}
+                                }`}
                               >
                                 <Image
                                   src={img}
@@ -529,7 +2167,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                                <div className="absolute bottom-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div className="absolute bottom-3 left-3 bg-black/60 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
                                   View
                                 </div>
                               </motion.button>
@@ -539,102 +2177,105 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                       ) : (
                         // Single Image View
                         <div
-                          ref={imageContainerRef}
-                          className="relative rounded-xl sm:rounded-2xl xl:rounded-3xl overflow-hidden bg-gradient-to-br from-gray-100/50 via-gray-200/30 to-gray-100/50 dark:from-gray-800/50 dark:via-gray-900/30 dark:to-gray-800/50 shadow-2xl shadow-black/10"
+                          className="relative rounded-2xl xl:rounded-3xl overflow-hidden bg-gradient-to-br from-gray-100/50 via-gray-200/30 to-gray-100/50 dark:from-gray-800/50 dark:via-gray-900/30 dark:to-gray-800/50 shadow-2xl shadow-black/20"
                           onTouchStart={handleTouchStart}
                           onTouchMove={handleTouchMove}
                           onTouchEnd={handleTouchEnd}
                         >
                           {/* Loading Animation */}
                           {isLoading && (
-                            <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
                               <div className="relative">
-                                <div className="w-14 h-14 sm:w-20 sm:h-20 border-4 border-blue-500/20 border-t-blue-500 border-r-blue-400 rounded-full animate-spin"></div>
+                                <motion.div
+                                  animate={{ rotate: 360 }}
+                                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                                  className="w-16 h-16 border-4 border-blue-500/20 border-t-blue-500 border-r-blue-400 rounded-full"
+                                />
                                 <div className="absolute inset-0 flex items-center justify-center">
-                                  <motion.div
-                                    animate={{ rotate: 360 }}
-                                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                                  >
-                                    <Icon name="Loader" size={isMobile ? 24 : 32} className="text-blue-500" />
-                                  </motion.div>
+                                  <Icon name="Loader" size={32} className="text-blue-500 animate-pulse" />
                                 </div>
                               </div>
                             </div>
                           )}
 
-                          {/* Main Image with parallax */}
-                          <motion.div
-                            key={currentImageIndex}
-                            initial={{ opacity: 0, scale: 1.1 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.9 }}
-                            transition={{
-                              duration: 0.5,
-                              ease: "easeOut"
-                            }}
-                            className="relative"
-                          >
-                            <Image
-                              src={currentImage}
-                              alt={`${project?.title} - Image ${currentImageIndex + 1}`}
-                              className={`w-full h-48 sm:h-64 md:h-72 lg:h-80 xl:h-96 object-cover transition-all duration-700 ${isLoading ? 'opacity-0 blur-sm' : 'opacity-100 blur-0'
+                          {/* Main Image */}
+                          <AnimatePresence mode="wait">
+                            <motion.div
+                              key={currentImageIndex}
+                              variants={imageVariants}
+                              initial="hidden"
+                              animate="visible"
+                              exit="exit"
+                              className="relative"
+                            >
+                              <Image
+                                src={currentImage}
+                                alt={`${project?.title} - Image ${currentImageIndex + 1}`}
+                                className={`w-full h-64 sm:h-80 md:h-96 lg:h-[28rem] xl:h-[32rem] object-cover transition-all duration-700 ${
+                                  isLoading ? 'opacity-0 blur-sm' : 'opacity-100 blur-0'
                                 }`}
-                              style={{
-                                transform: isAnimating ? 'scale(1.02)' : 'scale(1)',
-                                filter: isAnimating ? 'brightness(1.1)' : 'brightness(1)'
-                              }}
-                              onLoad={handleImageLoad}
-                            />
+                                onLoad={handleImageLoad}
+                              />
 
-                            {/* Animated Gradient Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10" />
+                              {/* Gradient Overlays */}
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10" />
 
-                            {/* Floating Particles */}
-                            <div className="absolute inset-0 overflow-hidden">
-                              {[...Array(5)].map((_, i) => (
-                                <motion.div
-                                  key={i}
-                                  className="absolute w-1 h-1 bg-white/30 rounded-full"
-                                  initial={{
-                                    x: Math.random() * 100 + '%',
-                                    y: Math.random() * 100 + '%',
-                                    opacity: 0
-                                  }}
-                                  animate={{
-                                    y: [null, '-100px'],
-                                    opacity: [0, 1, 0]
-                                  }}
-                                  transition={{
-                                    duration: Math.random() * 3 + 2,
-                                    repeat: Infinity,
-                                    delay: Math.random() * 2
-                                  }}
-                                />
-                              ))}
-                            </div>
-                          </motion.div>
+                              {/* Floating Particles */}
+                              <div className="absolute inset-0 overflow-hidden">
+                                {[...Array(8)].map((_, i) => (
+                                  <motion.div
+                                    key={i}
+                                    className="absolute w-2 h-2 bg-white/20 rounded-full"
+                                    initial={{
+                                      x: Math.random() * 100 + '%',
+                                      y: Math.random() * 100 + '%',
+                                      opacity: 0
+                                    }}
+                                    animate={{
+                                      y: [null, '-100px'],
+                                      opacity: [0, 0.5, 0]
+                                    }}
+                                    transition={{
+                                      duration: Math.random() * 3 + 2,
+                                      repeat: Infinity,
+                                      delay: Math.random() * 2
+                                    }}
+                                  />
+                                ))}
+                              </div>
+                            </motion.div>
+                          </AnimatePresence>
 
                           {/* Gallery Navigation */}
                           {hasGallery && project.gallery.length > 1 && (
                             <>
-                              {/* Navigation Arrows with glow */}
+                              {/* Navigation Arrows */}
                               <motion.button
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 0.5 }}
-                                whileHover={{ scale: 1.1 }}
+                                whileHover={{ scale: 1.1, x: -2 }}
                                 whileTap={{ scale: 0.9 }}
+                                onMouseEnter={() => setIsHoveringNav(true)}
+                                onMouseLeave={() => setIsHoveringNav(false)}
                                 onClick={prevImage}
-                                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 group"
+                                className="absolute left-4 top-1/2 -translate-y-1/2 group z-10"
                                 aria-label="Previous image"
                               >
                                 <div className="relative">
-                                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-md group-hover:blur-lg transition-all"></div>
-                                  <div className="relative w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-black/70 backdrop-blur-md rounded-full flex items-center justify-center transition-all group-hover:bg-black/80">
+                                  <motion.div
+                                    className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
+                                    animate={{
+                                      scale: isHoveringNav ? [1, 1.2, 1] : 1,
+                                      opacity: isHoveringNav ? [0.5, 0.8, 0.5] : 0.5
+                                    }}
+                                    transition={{ duration: 1.5, repeat: Infinity }}
+                                  />
+                                  <div className="relative w-12 h-12 bg-black/70 backdrop-blur-md rounded-full flex items-center justify-center transition-all group-hover:bg-black/80 border border-white/10">
                                     <Icon
                                       name="ChevronLeft"
-                                      size={isMobile ? 18 : 24}
+                                      size={24}
                                       className="text-white group-hover:text-blue-300 transition-colors"
                                     />
                                   </div>
@@ -645,18 +2286,27 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                                 initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 0.5 }}
-                                whileHover={{ scale: 1.1 }}
+                                whileHover={{ scale: 1.1, x: 2 }}
                                 whileTap={{ scale: 0.9 }}
+                                onMouseEnter={() => setIsHoveringNav(true)}
+                                onMouseLeave={() => setIsHoveringNav(false)}
                                 onClick={nextImage}
-                                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 group"
+                                className="absolute right-4 top-1/2 -translate-y-1/2 group z-10"
                                 aria-label="Next image"
                               >
                                 <div className="relative">
-                                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full blur-md group-hover:blur-lg transition-all"></div>
-                                  <div className="relative w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-black/70 backdrop-blur-md rounded-full flex items-center justify-center transition-all group-hover:bg-black/80">
+                                  <motion.div
+                                    className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full"
+                                    animate={{
+                                      scale: isHoveringNav ? [1, 1.2, 1] : 1,
+                                      opacity: isHoveringNav ? [0.5, 0.8, 0.5] : 0.5
+                                    }}
+                                    transition={{ duration: 1.5, repeat: Infinity }}
+                                  />
+                                  <div className="relative w-12 h-12 bg-black/70 backdrop-blur-md rounded-full flex items-center justify-center transition-all group-hover:bg-black/80 border border-white/10">
                                     <Icon
                                       name="ChevronRight"
-                                      size={isMobile ? 18 : 24}
+                                      size={24}
                                       className="text-white group-hover:text-blue-300 transition-colors"
                                     />
                                   </div>
@@ -664,9 +2314,9 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                               </motion.button>
 
                               {/* Progress Indicator */}
-                              <div className="absolute bottom-0 left-0 right-0 h-1 sm:h-1.5 bg-gray-800/30 backdrop-blur-sm">
+                              <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-gray-900/50 backdrop-blur-sm">
                                 <motion.div
-                                  className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500"
+                                  className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
                                   initial={{ width: "0%" }}
                                   animate={{ width: `${getProgressPercentage()}%` }}
                                   transition={{
@@ -674,25 +2324,23 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                                     ease: "easeInOut"
                                   }}
                                   style={{
-                                    backgroundSize: '200% 100%',
-                                    backgroundPosition: '100% 0',
-                                    animation: 'gradientFlow 2s ease infinite'
+                                    backgroundSize: '200% 100%'
                                   }}
                                 />
                               </div>
 
-                              {/* Image Counter with animation */}
+                              {/* Image Counter */}
                               <motion.div
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.6 }}
-                                className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 bg-black/60 backdrop-blur-md text-white text-xs sm:text-sm px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg flex items-center gap-1 sm:gap-2 border border-white/10"
+                                className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md text-white text-sm px-3 py-1.5 rounded-xl flex items-center gap-2 border border-white/10"
                               >
                                 <motion.div
                                   animate={{ rotate: [0, 360] }}
                                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                                 >
-                                  <Icon name="Image" size={isMobile ? 12 : 16} className="text-blue-300" />
+                                  <Icon name="Image" size={16} className="text-blue-300" />
                                 </motion.div>
                                 <span className="font-semibold">
                                   {currentImageIndex + 1} / {project.gallery.length}
@@ -706,13 +2354,13 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                                 transition={{ delay: 0.7 }}
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
-                                onClick={() => setIsFullscreen(!isFullscreen)}
-                                className="absolute bottom-2 sm:bottom-4 right-2 sm:right-4 bg-black/60 backdrop-blur-md text-white p-2 rounded-lg border border-white/10 hover:bg-black/70 transition-colors"
+                                onClick={toggleFullscreen}
+                                className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md text-white p-2.5 rounded-xl border border-white/10 hover:bg-black/70 transition-colors"
                                 aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
                               >
                                 <Icon
                                   name={isFullscreen ? "Minimize2" : "Maximize2"}
-                                  size={isMobile ? 16 : 20}
+                                  size={20}
                                 />
                               </motion.button>
                             </>
@@ -722,29 +2370,35 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 
                       {/* Thumbnail Rail */}
                       {hasGallery && project.gallery.length > 1 && !showGallery && (
-                        <div className="space-y-2 sm:space-y-3">
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: 0.8 }}
+                          className="space-y-3"
+                        >
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2">
-                              <Icon name="GalleryVertical" size={16} className="text-gray-500" />
-                              <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
-                                Scroll Gallery
+                              <Icon name="GalleryVertical" size={18} className="text-gray-500" />
+                              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                                Gallery Preview
                               </span>
                             </div>
                             <span className="text-xs text-gray-500 dark:text-gray-400">
                               {project.gallery.length} images
                             </span>
                           </div>
-                          <div className="flex gap-1.5 sm:gap-2 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent pb-2">
+                          <div className="flex gap-2 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent pb-2">
                             {project.gallery.map((img, index) => (
                               <motion.button
                                 key={index}
                                 whileHover={{ scale: 1.05, y: -2 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setCurrentImageIndex(index)}
-                                className={`relative flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg sm:rounded-xl overflow-hidden transition-all duration-300 ${currentImageIndex === index
-                                    ? "ring-2 sm:ring-3 ring-blue-500 shadow-lg shadow-blue-500/30 scale-105"
+                                className={`relative flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-xl overflow-hidden transition-all duration-300 ${
+                                  currentImageIndex === index
+                                    ? "ring-3 ring-blue-500 shadow-lg shadow-blue-500/30"
                                     : "ring-1 ring-gray-200 dark:ring-gray-700 hover:ring-gray-300 dark:hover:ring-gray-600 opacity-80 hover:opacity-100"
-                                  }`}
+                                }`}
                               >
                                 <Image
                                   src={img}
@@ -752,114 +2406,99 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                                   className="w-full h-full object-cover"
                                 />
                                 {currentImageIndex === index && (
-                                  <div className="absolute inset-0 bg-blue-500/20 backdrop-blur-[1px]" />
+                                  <motion.div
+                                    className="absolute inset-0 bg-blue-500/20"
+                                    layoutId="thumbnail-highlight"
+                                  />
                                 )}
-                                <div className={`absolute bottom-0 left-0 right-0 h-0.5 transition-all duration-300 ${currentImageIndex === index
-                                    ? 'bg-gradient-to-r from-blue-500 to-purple-500'
-                                    : 'bg-transparent'
-                                  }`} />
                               </motion.button>
                             ))}
                           </div>
-                        </div>
+                        </motion.div>
                       )}
 
-                      {/* Quick Stats with animated counters */}
-                      <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                      {/* Quick Stats */}
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.9 }}
+                        className="grid grid-cols-3 gap-3"
+                      >
                         {project?.duration && (
                           <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.8 }}
-                            className="group p-2 sm:p-3 bg-gradient-to-br from-white/50 to-white/30 dark:from-gray-800/50 dark:to-gray-900/30 rounded-xl sm:rounded-2xl border border-white/20 dark:border-gray-700/30 hover:border-blue-500/20 dark:hover:border-blue-500/20 backdrop-blur-sm hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300"
+                            whileHover={{ scale: 1.05 }}
+                            className="group p-4 bg-gradient-to-br from-white/50 to-white/30 dark:from-gray-800/50 dark:to-gray-900/30 rounded-2xl border border-white/20 dark:border-gray-700/30 hover:border-blue-500/20 dark:hover:border-blue-500/20 backdrop-blur-sm transition-all duration-300"
                           >
-                            <div className="flex items-center gap-1 sm:gap-2">
+                            <div className="flex items-center gap-2">
                               <motion.div
                                 animate={{ rotate: [0, 360] }}
                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                               >
-                                <Icon name="Calendar" size={isMobile ? 14 : 18} className="text-blue-500 group-hover:scale-110 transition-transform" />
+                                <Icon name="Calendar" size={20} className="text-blue-500" />
                               </motion.div>
-                              <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Duration</span>
+                              <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Duration</span>
                             </div>
-                            <p className="text-sm font-bold bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-blue-300 bg-clip-text text-transparent mt-0.5 sm:mt-1">
+                            <p className="text-lg font-bold bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-blue-300 bg-clip-text text-transparent mt-1">
                               {project.duration}
                             </p>
                           </motion.div>
                         )}
                         {project?.teamSize && (
                           <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.9 }}
-                            className="group p-2 sm:p-3 bg-gradient-to-br from-white/50 to-white/30 dark:from-gray-800/50 dark:to-gray-900/30 rounded-xl sm:rounded-2xl border border-white/20 dark:border-gray-700/30 hover:border-emerald-500/20 dark:hover:border-emerald-500/20 backdrop-blur-sm hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300"
+                            whileHover={{ scale: 1.05 }}
+                            className="group p-4 bg-gradient-to-br from-white/50 to-white/30 dark:from-gray-800/50 dark:to-gray-900/30 rounded-2xl border border-white/20 dark:border-gray-700/30 hover:border-emerald-500/20 dark:hover:border-emerald-500/20 backdrop-blur-sm transition-all duration-300"
                           >
-                            <div className="flex items-center gap-1 sm:gap-2">
+                            <div className="flex items-center gap-2">
                               <motion.div
                                 animate={{ scale: [1, 1.1, 1] }}
                                 transition={{ duration: 2, repeat: Infinity }}
                               >
-                                <Icon name="Users" size={isMobile ? 14 : 18} className="text-emerald-500 group-hover:scale-110 transition-transform" />
+                                <Icon name="Users" size={20} className="text-emerald-500" />
                               </motion.div>
-                              <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Team</span>
+                              <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Team</span>
                             </div>
-                            <p className="text-sm font-bold bg-gradient-to-r from-emerald-600 to-emerald-400 dark:from-emerald-400 dark:to-emerald-300 bg-clip-text text-transparent mt-0.5 sm:mt-1">
-                              {project.teamSize} member{project.teamSize !== "1" ? "s" : ""}
+                            <p className="text-lg font-bold bg-gradient-to-r from-emerald-600 to-emerald-400 dark:from-emerald-400 dark:to-emerald-300 bg-clip-text text-transparent mt-1">
+                              {project.teamSize}
                             </p>
                           </motion.div>
                         )}
-                        {project?.rating && (
+                        {project?.status && (
                           <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 1 }}
-                            className="group p-2 sm:p-3 bg-gradient-to-br from-white/50 to-white/30 dark:from-gray-800/50 dark:to-gray-900/30 rounded-xl sm:rounded-2xl border border-white/20 dark:border-gray-700/30 hover:border-amber-500/20 dark:hover:border-amber-500/20 backdrop-blur-sm hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-300"
+                            whileHover={{ scale: 1.05 }}
+                            className="group p-4 bg-gradient-to-br from-white/50 to-white/30 dark:from-gray-800/50 dark:to-gray-900/30 rounded-2xl border border-white/20 dark:border-gray-700/30 hover:border-amber-500/20 dark:hover:border-amber-500/20 backdrop-blur-sm transition-all duration-300"
                           >
-                            <div className="flex items-center gap-1 sm:gap-2">
+                            <div className="flex items-center gap-2">
                               <motion.div
                                 animate={{ rotate: [0, 180, 0] }}
                                 transition={{ duration: 3, repeat: Infinity }}
                               >
-                                <Icon name="Star" size={isMobile ? 14 : 18} className="text-amber-500 group-hover:scale-110 transition-transform" />
+                                <Icon name="CheckCircle" size={20} className="text-amber-500" />
                               </motion.div>
-                              <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Rating</span>
+                              <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Status</span>
                             </div>
-                            <div className="flex items-center gap-1 mt-0.5 sm:mt-1">
-                              <p className="text-sm font-bold bg-gradient-to-r from-amber-600 to-amber-400 dark:from-amber-400 dark:to-amber-300 bg-clip-text text-transparent">
-                                {project.rating}/5
-                              </p>
-                              <div className="flex ml-1">
-                                {[...Array(5)].map((_, i) => (
-                                  <Icon
-                                    key={i}
-                                    name="Star"
-                                    size={10}
-                                    className={i < project.rating ? "text-amber-400" : "text-gray-300 dark:text-gray-600"}
-                                  />
-                                ))}
-                              </div>
-                            </div>
+                            <p className="text-lg font-bold bg-gradient-to-r from-amber-600 to-amber-400 dark:from-amber-400 dark:to-amber-300 bg-clip-text text-transparent mt-1">
+                              {project.status}
+                            </p>
                           </motion.div>
                         )}
-                      </div>
+                      </motion.div>
 
-                      {/* Action Buttons with animated hover */}
+                      {/* Action Buttons */}
                       <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ delay: 1.1 }}
-                        className="flex flex-col sm:grid sm:grid-cols-2 gap-2 sm:gap-3"
+                        transition={{ delay: 1 }}
+                        className="flex flex-col sm:grid sm:grid-cols-2 gap-3"
                       >
                         {project?.liveUrl && (
                           <Button
                             variant="default"
-                            size={isMobile ? "md" : "lg"}
+                            size="lg"
                             iconName="ExternalLink"
                             iconPosition="left"
                             className="group relative bg-gradient-to-r from-blue-600 via-blue-500 to-blue-600 hover:from-blue-700 hover:via-blue-600 hover:to-blue-700 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 w-full overflow-hidden"
                             onClick={() => window.open(project.liveUrl, "_blank")}
                           >
-                            {/* Animated background */}
                             <motion.div
                               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
                               animate={{
@@ -871,32 +2510,32 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                                 ease: "linear"
                               }}
                             />
-                            <span className="relative font-semibold truncate">Live Demo</span>
+                            <span className="relative font-semibold">Live Demo</span>
                             <motion.div
                               animate={{ x: [0, 4, 0] }}
                               transition={{ duration: 1, repeat: Infinity }}
                               className="relative ml-2"
                             >
-                              <Icon name="ArrowUpRight" size={isMobile ? 16 : 18} />
+                              <Icon name="ArrowUpRight" size={20} />
                             </motion.div>
                           </Button>
                         )}
                         {project?.githubUrl && (
                           <Button
                             variant="outline"
-                            size={isMobile ? "md" : "lg"}
+                            size="lg"
                             iconName="Github"
                             iconPosition="left"
                             className="group relative border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm hover:shadow-lg w-full overflow-hidden"
                             onClick={() => window.open(project.githubUrl, "_blank")}
                           >
-                            <span className="relative font-semibold truncate">Source Code</span>
+                            <span className="relative font-semibold">Source Code</span>
                             <motion.div
                               animate={{ rotate: [0, 360] }}
                               transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                               className="relative ml-2"
                             >
-                              <Icon name="Github" size={isMobile ? 16 : 18} />
+                              <Icon name="Github" size={20} />
                             </motion.div>
                           </Button>
                         )}
@@ -906,30 +2545,40 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 
                   {/* Right Column - Content */}
                   <div className="lg:w-1/2 flex flex-col">
-                    {/* Tabs Navigation with animated indicators */}
-                    <div className="sticky top-0 z-20 bg-gradient-to-b from-white/95 to-white/90 dark:from-gray-900/95 dark:to-gray-900/90 backdrop-blur-xl border-b border-gray-200/30 dark:border-gray-700/30">
+                    {/* Tabs Navigation */}
+                    <div className="sticky top-0 z-20 bg-gradient-to-b from-white/95 via-white/90 to-white/85 dark:from-gray-900/95 dark:via-gray-900/90 dark:to-gray-900/85 backdrop-blur-xl border-b border-gray-200/30 dark:border-gray-700/30">
                       <div className="flex overflow-x-auto scrollbar-hide">
                         {tabs.map((tab) => (
                           <motion.button
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
-                            className={`group relative flex-1 min-w-0 flex flex-col items-center px-3 sm:px-4 py-2 sm:py-3 transition-all duration-300 ${activeTab === tab.id
+                            className={`group relative flex-1 min-w-0 flex flex-col items-center px-4 py-3 transition-all duration-300 ${
+                              activeTab === tab.id
                                 ? "text-gray-900 dark:text-white"
                                 : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
-                              }`}
+                            }`}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                           >
-                            {/* Background gradient on active */}
                             {activeTab === tab.id && (
-                              <motion.div
-                                layoutId="activeTab"
-                                className={`absolute inset-0 ${tab.gradient}`}
-                                transition={{ type: "spring", bounce: 0.2 }}
-                              />
+                              <>
+                                <motion.div
+                                  layoutId="activeTab"
+                                  className="absolute inset-0"
+                                  style={{
+                                    background: `linear-gradient(135deg, ${tab.glow}, transparent)`
+                                  }}
+                                  transition={{ type: "spring", bounce: 0.2 }}
+                                />
+                                <motion.div
+                                  className="absolute bottom-0 left-0 right-0 h-0.5"
+                                  style={{ background: tab.gradient }}
+                                  layoutId="activeTabLine"
+                                />
+                              </>
                             )}
 
-                            <div className="relative flex items-center gap-1.5 sm:gap-2 z-10">
+                            <div className="relative flex items-center gap-2 z-10">
                               <motion.div
                                 animate={activeTab === tab.id ? {
                                   scale: [1, 1.2, 1],
@@ -939,27 +2588,15 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                               >
                                 <Icon
                                   name={tab.icon}
-                                  size={isMobile ? 16 : 20}
-                                  className={activeTab === tab.id ? `bg-gradient-to-r ${tab.color} bg-clip-text text-transparent` : ''}
+                                  size={22}
+                                  className={activeTab === tab.id ? '' : 'opacity-60'}
                                 />
                               </motion.div>
-                              <span className={`text-xs sm:text-sm font-semibold whitespace-nowrap ${activeTab === tab.id ? 'bg-gradient-to-r ' + tab.color + ' bg-clip-text text-transparent' : ''
-                                }`}>
-                                {isMobile ? tab.label.substring(0, 3) : tab.label}
+                              <span className={`text-sm font-semibold whitespace-nowrap ${
+                                activeTab === tab.id ? '' : 'opacity-80'
+                              }`}>
+                                {tab.label}
                               </span>
-                            </div>
-
-                            {/* Animated underline */}
-                            <div className="relative mt-1.5 sm:mt-2 h-0.5 w-4 sm:w-8 rounded-full overflow-hidden">
-                              <motion.div
-                                className={`h-full bg-gradient-to-r ${tab.color}`}
-                                initial={false}
-                                animate={{
-                                  width: activeTab === tab.id ? "100%" : "0%",
-                                  opacity: activeTab === tab.id ? 1 : 0
-                                }}
-                                transition={{ duration: 0.3 }}
-                              />
                             </div>
                           </motion.button>
                         ))}
@@ -969,7 +2606,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                     {/* Tab Content */}
                     <div
                       ref={contentRef}
-                      className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 max-h-[calc(100vh-300px)] sm:max-h-[calc(95vh-200px)] lg:max-h-[calc(100vh-200px)] scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent"
+                      className="flex-1 overflow-y-auto p-6 md:p-8 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent"
                     >
                       <AnimatePresence mode="wait">
                         <motion.div
@@ -978,30 +2615,33 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -20 }}
                           transition={{
-                            duration: 0.3,
+                            duration: 0.4,
                             ease: "easeInOut"
                           }}
-                          className="space-y-6 sm:space-y-8"
+                          className="space-y-8"
                         >
                           {/* Overview Tab */}
                           {activeTab === "overview" && (
                             <>
-                              <div className="space-y-4">
-                                <motion.h3
+                              <div className="space-y-6">
+                                <motion.div
                                   initial={{ opacity: 0, y: 10 }}
                                   animate={{ opacity: 1, y: 0 }}
                                   transition={{ delay: 0.1 }}
-                                  className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent"
                                 >
-                                  Project Overview
-                                </motion.h3>
+                                  <h3 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+                                    Project Overview
+                                  </h3>
+                                  <div className="h-1 w-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mt-2" />
+                                </motion.div>
+                                
                                 <motion.div
                                   initial={{ opacity: 0 }}
                                   animate={{ opacity: 1 }}
                                   transition={{ delay: 0.2 }}
-                                  className="prose prose-sm dark:prose-invert max-w-none"
+                                  className="prose prose-lg dark:prose-invert max-w-none"
                                 >
-                                  <p className="text-sm sm:text-base leading-relaxed text-gray-600 dark:text-gray-300 whitespace-pre-line">
+                                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed whitespace-pre-line">
                                     {project?.fullDescription}
                                   </p>
                                 </motion.div>
@@ -1012,17 +2652,21 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                                   initial={{ opacity: 0, y: 20 }}
                                   animate={{ opacity: 1, y: 0 }}
                                   transition={{ delay: 0.3 }}
-                                  className="p-4 sm:p-5 bg-gradient-to-br from-blue-50/50 to-white/50 dark:from-blue-900/20 dark:to-gray-900/20 rounded-xl sm:rounded-2xl border border-blue-100/50 dark:border-blue-800/20 backdrop-blur-sm"
+                                  className="p-6 bg-gradient-to-br from-blue-50/50 to-white/50 dark:from-blue-900/20 dark:to-gray-900/20 rounded-2xl border border-blue-100/50 dark:border-blue-800/20 backdrop-blur-sm"
                                 >
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-400 flex items-center justify-center flex-shrink-0">
-                                      <Icon name="Target" size={20} className="text-white" />
-                                    </div>
+                                  <div className="flex items-start gap-4">
+                                    <motion.div
+                                      animate={{ rotate: [0, 10, -10, 0] }}
+                                      transition={{ duration: 2, repeat: Infinity }}
+                                      className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-400 flex items-center justify-center flex-shrink-0"
+                                    >
+                                      <Icon name="Target" size={24} className="text-white" />
+                                    </motion.div>
                                     <div>
-                                      <h4 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                                      <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                                         Project Impact
                                       </h4>
-                                      <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">
+                                      <p className="text-gray-600 dark:text-gray-300">
                                         {project.impact}
                                       </p>
                                     </div>
@@ -1035,93 +2679,97 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                           {/* Technical Tab */}
                           {activeTab === "technical" && (
                             <>
-                              <div className="space-y-4">
+                              <div className="space-y-6">
                                 <motion.h3
                                   initial={{ opacity: 0, y: 10 }}
                                   animate={{ opacity: 1, y: 0 }}
                                   transition={{ delay: 0.1 }}
-                                  className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-purple-600 to-purple-400 dark:from-purple-400 dark:to-purple-300 bg-clip-text text-transparent"
+                                  className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-purple-400 dark:from-purple-400 dark:to-purple-300 bg-clip-text text-transparent"
                                 >
                                   Technology Stack
                                 </motion.h3>
-                                <motion.p
-                                  initial={{ opacity: 0 }}
-                                  animate={{ opacity: 1 }}
-                                  transition={{ delay: 0.2 }}
-                                  className="text-sm sm:text-base text-gray-600 dark:text-gray-300"
-                                >
-                                  Built using modern technologies and frameworks
-                                </motion.p>
-                              </div>
-
-                              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-3">
-                                {project?.technologies?.map((tech, index) => (
+                                
+                                {/* Tech Glow Effect */}
+                                {showTechGlow && (
                                   <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                                    transition={{
-                                      delay: index * 0.05,
-                                      type: "spring",
-                                      stiffness: 200
+                                    className="absolute inset-0 pointer-events-none"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 0.1 }}
+                                    style={{
+                                      background: 'radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.5), transparent 70%)'
                                     }}
-                                    whileHover={{
-                                      scale: 1.05,
-                                      y: -5,
-                                      transition: { type: "spring", stiffness: 400 }
-                                    }}
-                                    className="group"
-                                  >
-                                    <div className="p-3 sm:p-4 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-xl sm:rounded-2xl border border-gray-200/50 dark:border-gray-700/50 group-hover:border-purple-200 dark:group-hover:border-purple-700/50 shadow-sm group-hover:shadow-lg group-hover:shadow-purple-500/10 transition-all duration-300">
-                                      <div className="flex flex-col items-center text-center gap-1.5 sm:gap-2">
-                                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br from-purple-100 to-purple-50 dark:from-purple-900/30 dark:to-gray-900 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                          <motion.div
-                                            animate={{ rotate: [0, 360] }}
-                                            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                                          >
-                                            <Icon name="Code" size={isMobile ? 18 : 22} className="text-purple-600 dark:text-purple-400" />
-                                          </motion.div>
+                                  />
+                                )}
+
+                                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                                  {project?.technologies?.map((tech, index) => (
+                                    <motion.div
+                                      key={index}
+                                      initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                                      transition={{
+                                        delay: index * 0.05,
+                                        type: "spring",
+                                        stiffness: 200
+                                      }}
+                                      whileHover={{
+                                        scale: 1.05,
+                                        y: -5,
+                                        transition: { type: "spring", stiffness: 400 }
+                                      }}
+                                      className="group"
+                                    >
+                                      <div className="p-4 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl border border-gray-200/50 dark:border-gray-700/50 group-hover:border-purple-200 dark:group-hover:border-purple-700/50 shadow-lg group-hover:shadow-xl group-hover:shadow-purple-500/20 transition-all duration-300">
+                                        <div className="flex flex-col items-center text-center gap-3">
+                                          <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-100 to-purple-50 dark:from-purple-900/30 dark:to-gray-900 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-inner">
+                                            <motion.div
+                                              animate={{ rotate: [0, 360] }}
+                                              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                                            >
+                                              <Icon name="Code" size={28} className="text-purple-600 dark:text-purple-400" />
+                                            </motion.div>
+                                          </div>
+                                          <span className="text-sm font-semibold text-gray-900 dark:text-white">
+                                            {tech}
+                                          </span>
                                         </div>
-                                        <span className="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white truncate w-full">
-                                          {tech}
-                                        </span>
                                       </div>
-                                    </div>
-                                  </motion.div>
-                                ))}
+                                    </motion.div>
+                                  ))}
+                                </div>
                               </div>
 
                               {project?.challenges && project.challenges.length > 0 && (
                                 <motion.div
-                                  initial={{ opacity: 0 }}
-                                  animate={{ opacity: 1 }}
+                                  initial={{ opacity: 0, y: 20 }}
+                                  animate={{ opacity: 1, y: 0 }}
                                   transition={{ delay: 0.5 }}
-                                  className="mt-6 space-y-4"
+                                  className="mt-8 space-y-6"
                                 >
-                                  <h4 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
+                                  <h4 className="text-xl font-semibold text-gray-900 dark:text-white">
                                     Technical Challenges
                                   </h4>
-                                  <div className="space-y-3">
+                                  <div className="space-y-4">
                                     {project.challenges.map((challenge, index) => (
                                       <motion.div
                                         key={index}
                                         initial={{ opacity: 0, x: -20 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ delay: 0.6 + index * 0.1 }}
-                                        className="p-4 bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-xl border border-gray-200 dark:border-gray-700"
+                                        className="p-5 bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg"
                                       >
-                                        <div className="flex items-start gap-3">
+                                        <div className="flex items-start gap-4">
                                           <div className="flex-shrink-0">
-                                            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-100 to-amber-50 dark:from-amber-900/30 dark:to-gray-900 flex items-center justify-center">
-                                              <Icon name="AlertCircle" size={16} className="text-amber-600 dark:text-amber-400" />
+                                            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-100 to-amber-50 dark:from-amber-900/30 dark:to-gray-900 flex items-center justify-center">
+                                              <Icon name="AlertCircle" size={20} className="text-amber-600 dark:text-amber-400" />
                                             </div>
                                           </div>
                                           <div className="flex-1">
-                                            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-2">
+                                            <p className="text-gray-600 dark:text-gray-300 mb-3">
                                               <span className="font-semibold text-gray-900 dark:text-white">Challenge: </span>
                                               {challenge.problem}
                                             </p>
-                                            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">
+                                            <p className="text-gray-600 dark:text-gray-300">
                                               <span className="font-semibold text-gray-900 dark:text-white">Solution: </span>
                                               {challenge.solution}
                                             </p>
@@ -1138,74 +2786,66 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                           {/* Features Tab */}
                           {activeTab === "features" && project?.features && (
                             <>
-                              <div className="space-y-4">
+                              <div className="space-y-6">
                                 <motion.h3
                                   initial={{ opacity: 0, y: 10 }}
                                   animate={{ opacity: 1, y: 0 }}
                                   transition={{ delay: 0.1 }}
-                                  className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-400 dark:from-emerald-400 dark:to-emerald-300 bg-clip-text text-transparent"
+                                  className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-400 dark:from-emerald-400 dark:to-emerald-300 bg-clip-text text-transparent"
                                 >
                                   Key Features
                                 </motion.h3>
-                                <motion.p
-                                  initial={{ opacity: 0 }}
-                                  animate={{ opacity: 1 }}
-                                  transition={{ delay: 0.2 }}
-                                  className="text-sm sm:text-base text-gray-600 dark:text-gray-300"
-                                >
-                                  Core functionalities and capabilities
-                                </motion.p>
-                              </div>
 
-                              <div className="grid grid-cols-1 gap-3 sm:gap-4">
-                                {project.features.map((feature, index) => (
-                                  <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{
-                                      delay: 0.3 + index * 0.1,
-                                      type: "spring",
-                                      stiffness: 100
-                                    }}
-                                    whileHover={{ x: 5 }}
-                                    className="group"
-                                  >
-                                    <div className="p-4 sm:p-5 bg-gradient-to-br from-emerald-50/50 to-white/50 dark:from-emerald-900/10 dark:to-gray-900/10 rounded-xl sm:rounded-2xl border border-emerald-100/50 dark:border-emerald-800/20 hover:border-emerald-200 dark:hover:border-emerald-700/30 transition-colors backdrop-blur-sm">
-                                      <div className="flex items-start gap-3 sm:gap-4">
-                                        <motion.div
-                                          className="flex-shrink-0"
-                                          animate={{
-                                            rotate: [0, 10, -10, 0],
-                                            scale: [1, 1.1, 1]
-                                          }}
-                                          transition={{
-                                            duration: 2,
-                                            repeat: Infinity,
-                                            repeatDelay: 2
-                                          }}
-                                        >
-                                          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-400 flex items-center justify-center shadow-lg shadow-emerald-500/30">
-                                            <Icon name="CheckCircle" size={20} className="text-white" />
+                                <div className="grid grid-cols-1 gap-4">
+                                  {project.features.map((feature, index) => (
+                                    <motion.div
+                                      key={index}
+                                      initial={{ opacity: 0, y: 20 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      transition={{
+                                        delay: 0.2 + index * 0.1,
+                                        type: "spring",
+                                        stiffness: 100
+                                      }}
+                                      whileHover={{ x: 5 }}
+                                      className="group"
+                                    >
+                                      <div className="p-5 bg-gradient-to-br from-emerald-50/50 to-white/50 dark:from-emerald-900/10 dark:to-gray-900/10 rounded-2xl border border-emerald-100/50 dark:border-emerald-800/20 hover:border-emerald-200 dark:hover:border-emerald-700/30 transition-colors backdrop-blur-sm shadow-lg">
+                                        <div className="flex items-start gap-4">
+                                          <motion.div
+                                            className="flex-shrink-0"
+                                            animate={{
+                                              rotate: [0, 10, -10, 0],
+                                              scale: [1, 1.1, 1]
+                                            }}
+                                            transition={{
+                                              duration: 2,
+                                              repeat: Infinity,
+                                              repeatDelay: 2
+                                            }}
+                                          >
+                                            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-400 flex items-center justify-center shadow-lg shadow-emerald-500/30">
+                                              <Icon name="CheckCircle" size={24} className="text-white" />
+                                            </div>
+                                          </motion.div>
+                                          <div className="flex-1">
+                                            <p className="text-lg font-medium text-gray-900 dark:text-white">
+                                              {feature}
+                                            </p>
                                           </div>
-                                        </motion.div>
-                                        <div className="flex-1">
-                                          <p className="text-sm sm:text-base font-medium text-gray-900 dark:text-white">
-                                            {feature}
-                                          </p>
+                                          <motion.div
+                                            initial={{ opacity: 0, x: -10 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: 0.5 + index * 0.1 }}
+                                            className="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                                          >
+                                            <Icon name="ArrowRight" size={24} className="text-emerald-500" />
+                                          </motion.div>
                                         </div>
-                                        <motion.div
-                                          initial={{ opacity: 0, x: -10 }}
-                                          animate={{ opacity: 1, x: 0 }}
-                                          transition={{ delay: 0.5 + index * 0.1 }}
-                                          className="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity"
-                                        >
-                                          <Icon name="ArrowRight" size={20} className="text-emerald-500" />
-                                        </motion.div>
                                       </div>
-                                    </div>
-                                  </motion.div>
-                                ))}
+                                    </motion.div>
+                                  ))}
+                                </div>
                               </div>
                             </>
                           )}
@@ -1213,118 +2853,127 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                           {/* Impact Tab */}
                           {activeTab === "impact" && (
                             <>
-                              <div className="space-y-4">
-                                <motion.h3
-                                  initial={{ opacity: 0, y: 10 }}
-                                  animate={{ opacity: 1, y: 0 }}
-                                  transition={{ delay: 0.1 }}
-                                  className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-amber-600 to-amber-400 dark:from-amber-400 dark:to-amber-300 bg-clip-text text-transparent"
-                                >
-                                  Impact & Results
-                                </motion.h3>
-                              </div>
-
-                              {project?.metrics && project.metrics.length > 0 && (
-                                <motion.div
-                                  initial={{ opacity: 0 }}
-                                  animate={{ opacity: 1 }}
-                                  transition={{ delay: 0.2 }}
-                                  className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4"
-                                >
-                                  {project.metrics.map((metric, index) => (
-                                    <motion.div
-                                      key={index}
-                                      initial={{ opacity: 0, scale: 0.8 }}
-                                      animate={{ opacity: 1, scale: 1 }}
-                                      transition={{
-                                        delay: 0.3 + index * 0.1,
-                                        type: "spring",
-                                        stiffness: 200
-                                      }}
-                                      whileHover={{ scale: 1.05 }}
-                                      className="p-4 sm:p-5 bg-gradient-to-br from-amber-50/50 to-white/50 dark:from-amber-900/10 dark:to-gray-900/10 rounded-xl sm:rounded-2xl border border-amber-100/50 dark:border-amber-800/20 text-center backdrop-blur-sm"
-                                    >
-                                      <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-amber-600 to-amber-400 bg-clip-text text-transparent mb-2">
-                                        {metric.value}
-                                      </div>
-                                      <div className="flex items-center justify-center gap-2">
-                                        <Icon name={metric.icon} size={16} className="text-amber-500" />
-                                        <div className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 truncate">
-                                          {metric.label}
-                                        </div>
-                                      </div>
-                                    </motion.div>
-                                  ))}
-                                </motion.div>
-                              )}
-
-                              {project?.testimonial && (
-                                <motion.div
-                                  initial={{ opacity: 0, y: 20 }}
-                                  animate={{ opacity: 1, y: 0 }}
-                                  transition={{ delay: 0.6 }}
-                                  className="mt-6"
-                                >
-                                  <div className="p-5 sm:p-6 bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg relative overflow-hidden"
+                              <div className="space-y-8">
+                                <div>
+                                  <motion.h3
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.1 }}
+                                    className="text-2xl font-bold bg-gradient-to-r from-amber-600 to-amber-400 dark:from-amber-400 dark:to-amber-300 bg-clip-text text-transparent"
                                   >
-                                    {/* Quote marks */}
-                                    <div className="absolute top-4 left-4 text-5xl text-blue-500/10 font-serif">"</div>
-                                    <div className="absolute bottom-4 right-4 text-5xl text-blue-500/10 font-serif">"</div>
+                                    Impact & Results
+                                  </motion.h3>
+                                  <motion.p
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 0.2 }}
+                                    className="text-gray-600 dark:text-gray-300 mt-2"
+                                  >
+                                    Measurable outcomes and key achievements
+                                  </motion.p>
+                                </div>
 
-                                    <div className="relative z-10">
-                                      <p className="text-base sm:text-lg italic text-gray-700 dark:text-gray-300 mb-4">
-                                        "{project.testimonial.content}"
-                                      </p>
-                                      <div className="flex items-center gap-3">
-                                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
-                                          <Icon name="User" size={20} className="text-white" />
-                                        </div>
-                                        <div>
-                                          <p className="font-semibold text-gray-900 dark:text-white">
-                                            {project.testimonial.author}
-                                          </p>
-                                          <p className="text-sm text-gray-600 dark:text-gray-400">
-                                            {project.testimonial.role}
-                                          </p>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </motion.div>
-                              )}
-
-                              {project?.learnings && (
-                                <motion.div
-                                  initial={{ opacity: 0, y: 20 }}
-                                  animate={{ opacity: 1, y: 0 }}
-                                  transition={{ delay: 0.7 }}
-                                  className="mt-6 space-y-4"
-                                >
-                                  <h4 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
-                                    Key Learnings
-                                  </h4>
-                                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                    {project.learnings.map((learning, index) => (
+                                {project?.metrics && project.metrics.length > 0 && (
+                                  <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.3 }}
+                                    className="grid grid-cols-2 lg:grid-cols-3 gap-4"
+                                  >
+                                    {project.metrics.map((metric, index) => (
                                       <motion.div
                                         key={index}
-                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        initial={{ opacity: 0, scale: 0.8 }}
                                         animate={{ opacity: 1, scale: 1 }}
-                                        transition={{ delay: 0.8 + index * 0.1 }}
-                                        className="p-3 sm:p-4 bg-gradient-to-br from-blue-50/50 to-white/50 dark:from-blue-900/10 dark:to-gray-900/10 rounded-xl border border-blue-100/50 dark:border-blue-800/20"
+                                        transition={{
+                                          delay: 0.4 + index * 0.1,
+                                          type: "spring",
+                                          stiffness: 200
+                                        }}
+                                        whileHover={{ scale: 1.05 }}
+                                        className="p-5 bg-gradient-to-br from-amber-50/50 to-white/50 dark:from-amber-900/10 dark:to-gray-900/10 rounded-2xl border border-amber-100/50 dark:border-amber-800/20 text-center backdrop-blur-sm shadow-lg"
                                       >
-                                        <div className="flex items-start gap-2">
-                                          <div className="w-6 h-6 rounded-md bg-gradient-to-br from-blue-500 to-blue-400 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                            <Icon name="Lightbulb" size={12} className="text-white" />
+                                        <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-amber-600 to-amber-400 bg-clip-text text-transparent mb-2">
+                                          {metric.value}
+                                        </div>
+                                        <div className="flex items-center justify-center gap-2">
+                                          <Icon name={metric.icon} size={20} className="text-amber-500" />
+                                          <div className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                                            {metric.label}
                                           </div>
-                                          <p className="text-sm text-gray-700 dark:text-gray-300">
-                                            {learning}
-                                          </p>
                                         </div>
                                       </motion.div>
                                     ))}
-                                  </div>
-                                </motion.div>
-                              )}
+                                  </motion.div>
+                                )}
+
+                                {project?.testimonial && (
+                                  <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.6 }}
+                                    className="mt-8"
+                                  >
+                                    <div className="p-6 bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-xl relative overflow-hidden"
+                                    >
+                                      <div className="absolute top-4 left-4 text-6xl text-blue-500/10 font-serif">"</div>
+                                      <div className="absolute bottom-4 right-4 text-6xl text-blue-500/10 font-serif">"</div>
+
+                                      <div className="relative z-10">
+                                        <p className="text-lg italic text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                                          "{project.testimonial.content}"
+                                        </p>
+                                        <div className="flex items-center gap-4">
+                                          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center shadow-lg">
+                                            <Icon name="User" size={24} className="text-white" />
+                                          </div>
+                                          <div>
+                                            <p className="font-semibold text-gray-900 dark:text-white">
+                                              {project.testimonial.author}
+                                            </p>
+                                            <p className="text-gray-600 dark:text-gray-400">
+                                              {project.testimonial.role}
+                                            </p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </motion.div>
+                                )}
+
+                                {project?.learnings && (
+                                  <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.7 }}
+                                    className="mt-8 space-y-6"
+                                  >
+                                    <h4 className="text-xl font-semibold text-gray-900 dark:text-white">
+                                      Key Learnings
+                                    </h4>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                      {project.learnings.map((learning, index) => (
+                                        <motion.div
+                                          key={index}
+                                          initial={{ opacity: 0, scale: 0.9 }}
+                                          animate={{ opacity: 1, scale: 1 }}
+                                          transition={{ delay: 0.8 + index * 0.1 }}
+                                          className="p-4 bg-gradient-to-br from-blue-50/50 to-white/50 dark:from-blue-900/10 dark:to-gray-900/10 rounded-xl border border-blue-100/50 dark:border-blue-800/20 shadow-sm"
+                                        >
+                                          <div className="flex items-start gap-3">
+                                            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                              <Icon name="Lightbulb" size={16} className="text-white" />
+                                            </div>
+                                            <p className="text-gray-700 dark:text-gray-300">
+                                              {learning}
+                                            </p>
+                                          </div>
+                                        </motion.div>
+                                      ))}
+                                    </div>
+                                  </motion.div>
+                                )}
+                              </div>
                             </>
                           )}
                         </motion.div>
@@ -1335,41 +2984,6 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
               </motion.div>
             </div>
           </div>
-
-          {/* Custom CSS for animations */}
-          <style jsx global>{`
-            @keyframes gradientFlow {
-              0% { background-position: 100% 0; }
-              50% { background-position: 0 0; }
-              100% { background-position: 100% 0; }
-            }
-            
-            .modal-open {
-              overflow: hidden;
-            }
-            
-            .scrollbar-thin::-webkit-scrollbar {
-              width: 4px;
-              height: 4px;
-            }
-            
-            .scrollbar-thin::-webkit-scrollbar-track {
-              background: transparent;
-            }
-            
-            .scrollbar-thin::-webkit-scrollbar-thumb {
-              background: #d1d5db;
-              border-radius: 4px;
-            }
-            
-            .dark .scrollbar-thin::-webkit-scrollbar-thumb {
-              background: #4b5563;
-            }
-            
-            .scrollbar-hide::-webkit-scrollbar {
-              display: none;
-            }
-          `}</style>
         </>
       )}
     </AnimatePresence>
@@ -1377,5 +2991,3 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 };
 
 export default ProjectModal;
-
-

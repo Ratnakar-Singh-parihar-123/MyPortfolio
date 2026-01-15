@@ -10,7 +10,7 @@ import RelatedProjects from "./components/RelatedProjects";
 
 // Import all images
 // Main project images
-import vsbp from "../../assets/projectsImg/vsbp.png";
+import vsbp from "../../assets/projectsImg/VSBPImg/VSBPHome.png";
 import yammiverse from "../../assets/projectsImg/yammiverse.png";
 import bodp from "../../assets/projectsImg/bloodAndOrganDonationsImg/Blood And Organ Donation Home.png";
 import textutils from "../../assets/projectsImg/textUtilksImg/textutils.png";
@@ -77,6 +77,33 @@ import portfolio13 from "../../assets/projectsImg/portfolioImg/portfolio13.png";
 import portfolio14 from "../../assets/projectsImg/portfolioImg/portfolio14.png";
 import portfolio15 from "../../assets/projectsImg/portfolioImg/portfolio15.png";
 
+import VSBP1 from "../../assets/projectsImg/VSBPImg/VSBP1.png";
+import VSBP2 from "../../assets/projectsImg/VSBPImg/VSBP2.png";
+import VSBP3 from "../../assets/projectsImg/VSBPImg/VSBP3.png";
+import VSBP4 from "../../assets/projectsImg/VSBPImg/VSBP4.png";
+import VSBP5 from "../../assets/projectsImg/VSBPImg/VSBP5.png";
+import VSBP6 from "../../assets/projectsImg/VSBPImg/VSBP6.png";
+import VSBP7 from "../../assets/projectsImg/VSBPImg/VSBP7.png";
+import VSBP8 from "../../assets/projectsImg/VSBPImg/VSBP8.png";
+import VSBP9 from "../../assets/projectsImg/VSBPImg/VSBP9.png";
+import VSBP10 from "../../assets/projectsImg/VSBPImg/VSBP10.png";
+import VSBP11 from "../../assets/projectsImg/VSBPImg/VSBP11.png";
+import VSBP12 from "../../assets/projectsImg/VSBPImg/VSBP12.png";
+import VSBP13 from "../../assets/projectsImg/VSBPImg/VSBP13.png";
+import VSBP14 from "../../assets/projectsImg/VSBPImg/VSBP14.png";
+import VSBP15 from "../../assets/projectsImg/VSBPImg/VSBP15.png";
+import VSBP16 from "../../assets/projectsImg/VSBPImg/VSBP16.png";
+import VSBP17 from "../../assets/projectsImg/VSBPImg/VSBP17.png";
+import VSBP18 from "../../assets/projectsImg/VSBPImg/VSBP18.png";
+import VSBP19 from "../../assets/projectsImg/VSBPImg/VSBP19.png";
+import VSBP20 from "../../assets/projectsImg/VSBPImg/VSBP20.png";
+import VSBP21 from "../../assets/projectsImg/VSBPImg/VSBP21.png";
+import VSBP22 from "../../assets/projectsImg/VSBPImg/VSBP22.png";
+import VSBP23 from "../../assets/projectsImg/VSBPImg/VSBP23.png";
+import VSBP24 from "../../assets/projectsImg/VSBPImg/VSBP24.png";
+import VSBP25 from "../../assets/projectsImg/VSBPImg/VSBP25.png";
+
+
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -112,7 +139,7 @@ const Projects = () => {
       fullDescription: `Developed a real-world MERN stack platform enabling customers to book, track, and manage vehicle services online. Service centers can view customer requests, update service status, and handle digital payments. 
   Includes live chat, order tracking, and dynamic dashboards for both customers and admins.`,
       image: vsbp,
-      gallery: [vsbp],
+      gallery: [vsbp, VSBP1, VSBP2, VSBP3, VSBP4, VSBP5, VSBP6, VSBP7, VSBP8, VSBP9, VSBP10, VSBP11, VSBP12, VSBP13, VSBP14, VSBP15, VSBP16, VSBP17, VSBP18, VSBP19, VSBP20, VSBP21, VSBP22, VSBP23, VSBP24, VSBP25],
       technologies: [
         "React",
         "Node.js",
