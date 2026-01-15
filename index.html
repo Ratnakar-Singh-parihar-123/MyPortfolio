@@ -1,70 +1,136 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- ✅ Basic Meta Tags -->
+    <!-- =========================================================
+    BASIC META
+    ========================================================== -->
     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- =========================================================
+    PRIMARY SEO
+    ========================================================== -->
+    <title>Ratnakar Singh Parihar | Full-Stack Developer (MERN)</title>
     <meta
       name="description"
-      content="I'm Ratnakar Singh Parihar — a Full-Stack Developer crafting modern web experiences using React, Node.js, and Tailwind CSS."
+      content="Ratnakar Singh Parihar is a Full-Stack MERN Developer building fast, scalable, and modern web applications using React, Node.js, MongoDB, and Tailwind CSS."
     />
+    <meta
+      name="keywords"
+      content="Ratnakar Singh Parihar, Full Stack Developer, MERN Developer, React Developer, Node.js Developer, Web Developer Portfolio"
+    />
+    <meta name="author" content="Ratnakar Singh Parihar" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- =========================================================
+    THEME & MOBILE
+    ========================================================== -->
     <meta name="theme-color" content="#0f172a" />
+    <meta name="color-scheme" content="dark light" />
 
-    <!-- ✅ Title -->
-    <title>Ratnakar Singh Parihar | Full-Stack Developer Portfolio</title>
-
-    <!-- ✅ Favicon & Icons -->
-    <link rel="icon" type="image/png" href="/favicon.ico" />
-    <link rel="apple-touch-icon" href="/logo192.png" />
+    <!-- =========================================================
+    FAVICONS & APP ICONS
+    ========================================================== -->
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/logo192.png" />
     <link rel="manifest" href="/manifest.json" />
 
-    <!-- ✅ SEO & Social Sharing -->
+    <!-- =========================================================
+    OPEN GRAPH (FACEBOOK, LINKEDIN)
+    ========================================================== -->
     <meta property="og:title" content="Ratnakar Singh Parihar | Full-Stack Developer" />
     <meta
       property="og:description"
-      content="Explore my portfolio of modern web projects built using React, Node.js, and the MERN stack."
+      content="Explore modern web projects built with React, Node.js, MongoDB, and Tailwind CSS."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ratnakarparihar.dev" />
-    <meta property="og:image" content="https://your-image-link-or-banner.png" />
+    <meta property="og:url" content="https://ratnakarsinghparihar.dev" />
+    <meta property="og:image" content="https://ratnakarsinghparihar.dev/og-image.png" />
+    <meta property="og:site_name" content="Ratnakar Singh Parihar Portfolio" />
 
-    <meta name="twitter:card" content="summary_large_image" />
+    <!-- =========================================================
+    TWITTER CARD
+    ========================================================== -->
+    <meta name="twitter:card" content="./PortfolioBannerHome.png" />
     <meta name="twitter:title" content="Ratnakar Singh Parihar | Full-Stack Developer" />
     <meta
       name="twitter:description"
-      content="Building interactive, responsive, and modern web experiences."
+      content="Building scalable and high-performance web applications with MERN stack."
     />
-    <meta name="twitter:image" content="https://your-image-link-or-banner.png" />
+    <meta name="twitter:image" content="./PortfolioBannerHome.png" />
 
-    <!-- ✅ Font Preload for Performance -->
-    <link
-      rel="preconnect"
-      href="https://fonts.googleapis.com"
-    />
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin
-    />
+    <!-- =========================================================
+    PERFORMANCE: PRECONNECT & FONTS
+    ========================================================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
 
-    <!-- ✅ Optional: Smooth Scroll & Transition -->
+    <!-- =========================================================
+    BASE STYLES (MINIMAL)
+    ========================================================== -->
     <style>
+      :root {
+        --bg: #0f172a;
+        --text: #f8fafc;
+        --muted: #94a3b8;
+        --accent: #38bdf8;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
       html {
         scroll-behavior: smooth;
       }
+
       body {
         margin: 0;
-        font-family: "Inter", sans-serif;
-        background-color: #0f172a;
-        color: #f8fafc;
+        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Roboto, Ubuntu, sans-serif;
+        background-color: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      noscript {
+        display: block;
+        padding: 1rem;
+        background: #020617;
+        color: #e11d48;
+        text-align: center;
+        font-weight: 500;
       }
     </style>
 
-    <!-- ✅ Rocket.js or Any Analytics (deferred for performance) -->
+    <!-- =========================================================
+    STRUCTURED DATA (GOOGLE SEO BOOST)
+    ========================================================== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Ratnakar Singh Parihar",
+        "url": "https://ratnakarsinghparihar.dev",
+        "jobTitle": "Full Stack Developer",
+        "sameAs": [
+          "https://github.com/Ratnakar-Singh-parihar-123",
+          "https://www.linkedin.com/in/ratnakar-singh-parihar-a87528260/"
+        ]
+      }
+    </script>
+
+    <!-- =========================================================
+    ANALYTICS / ROCKET (DEFERRED)
+    ========================================================== -->
     <script
       type="module"
       defer
@@ -73,11 +139,18 @@
   </head>
 
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>
+      JavaScript is required to run this application. Please enable JavaScript.
+    </noscript>
 
-    <div id="root" class="dhiwise-code"></div>
+    <!-- =========================================================
+    REACT ROOT
+    ========================================================== -->
+    <div id="root"></div>
 
-    <!-- ✅ Main React Script -->
+    <!-- =========================================================
+    MAIN REACT ENTRY
+    ========================================================== -->
     <script type="module" src="/src/index.jsx"></script>
   </body>
 </html>
