@@ -282,7 +282,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
     "Frontend": [
       { name: "React.js", level: 95, icon: Code },
       { name: "Next.js", level: 90, icon: Code },
-      { name: "TypeScript", level: 85, icon: Code },
+      // { name: "TypeScript", level: 85, icon: Code },
       { name: "JavaScript", level: 95, icon: Code },
       { name: "HTML5", level: 98, icon: Code },
       { name: "CSS3", level: 95, icon: Code },
@@ -304,9 +304,9 @@ const ResumePopup = ({ isOpen, onClose }) => {
       { name: "VS Code", level: 98, icon: Code },
       { name: "Postman", level: 85, icon: Cloud },
       { name: "Vercel", level: 80, icon: Cloud },
-      { name: "Netlify", level: 80, icon: Cloud },
-      { name: "Docker", level: 70, icon: Package },
-      { name: "AWS", level: 65, icon: Cloud }
+      // { name: "Netlify", level: 80, icon: Cloud },
+      // { name: "Docker", level: 70, icon: Package },
+      // { name: "AWS", level: 65, icon: Cloud }
     ]
   };
 
@@ -337,7 +337,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
         "Worked with REST APIs and implemented state management solutions",
         "Participated in code reviews and contributed to team knowledge sharing"
       ],
-      tech: ["React", "TypeScript", "Tailwind", "Figma"]
+      tech: ["React",  "Tailwind"]
     }
   ];
 
@@ -368,9 +368,9 @@ const ResumePopup = ({ isOpen, onClose }) => {
   const stats = {
     coding: [
       { label: "LeetCode Problems", value: "260+", icon: Code, color: "text-blue-500" },
-      { label: "GitHub Contributions", value: "1500+", icon: GitBranch, color: "text-green-500" },
+      // { label: "GitHub Contributions", value: "1500+", icon: GitBranch, color: "text-green-500" },
       { label: "Projects Completed", value: "8+", icon: Briefcase, color: "text-purple-500" },
-      { label: "Years Experience", value: "2+", icon: Calendar, color: "text-amber-500" }
+      { label: "Years Experience", value: "Fresher", icon: Calendar, color: "text-amber-500" }
     ],
     performance: [
       { label: "Code Quality", value: "95%", icon: Star, color: "text-emerald-500" },
@@ -1122,15 +1122,15 @@ const ResumePopup = ({ isOpen, onClose }) => {
                       >
                         <div className="flex items-center justify-center gap-3 px-4 py-3 bg-gray-50 dark:bg-gray-800/50 rounded-xl">
                           <Mail className="w-5 h-5" />
-                          <span className="truncate">contact@ratnakar.dev</span>
+                          <span className="truncate">ratnakarsinghparihar9399@gmail.com</span>
                         </div>
                         <div className="flex items-center justify-center gap-3 px-4 py-3 bg-gray-50 dark:bg-gray-800/50 rounded-xl">
                           <Phone className="w-5 h-5" />
-                          <span>+91 98765 43210</span>
+                          <span>+91 93997 41051</span>
                         </div>
                         <div className="flex items-center justify-center gap-3 px-4 py-3 bg-gray-50 dark:bg-gray-800/50 rounded-xl">
                           <MapPin className="w-5 h-5" />
-                          <span>Dehradun, Uttarakhand</span>
+                          <span>Bhopal, Madhya Pradesh</span>
                         </div>
                       </motion.div>
                     </div>
@@ -1335,7 +1335,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                             <motion.button
                               whileHover={{ scale: 1.02 }}
                               whileTap={{ scale: 0.98 }}
-                              onClick={() => window.location.href = "mailto:contact@ratnakar.dev"}
+                              onClick={() => window.location.href = "mailto:ratnakarsinghparihar9399@gmail.com"}
                               className="w-full flex items-center justify-center gap-3 px-6 py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:shadow-lg transition-shadow"
                             >
                               <Mail className="w-5 h-5" />
@@ -1344,7 +1344,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                             <motion.button
                               whileHover={{ scale: 1.02 }}
                               whileTap={{ scale: 0.98 }}
-                              onClick={() => window.open('https://portfolio.ratnakar.dev', '_blank')}
+                              onClick={() => window.open('https://ratnakarsinghparihar.vercel.app', '_blank')}
                               className="w-full flex items-center justify-center gap-3 px-6 py-3.5 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-semibold rounded-xl hover:border-blue-400 dark:hover:border-blue-600 transition-colors"
                             >
                               <ExternalLink className="w-5 h-5" />

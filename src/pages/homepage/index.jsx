@@ -7,7 +7,7 @@ import ProjectShowcaseSection from './components/ProjectShowcaseSection';
 import CertificatesSection from './components/TestimonialSection';
 import CTASection from './components/CTASection';
 import FloatingActionButton from './components/FloatingActionButton';
-import ReaalSections from './components/VideoModel';
+// import ReaalSections from './components/VideoModel';
 
 
 const Homepage = () => {

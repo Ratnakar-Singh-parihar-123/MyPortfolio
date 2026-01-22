@@ -63,7 +63,7 @@ const HeroSection = () => {
   const stats = [
     { value: "260+", label: "LeetCode", icon: "Code", color: "text-emerald-500", bgColor: "bg-emerald-50 dark:bg-emerald-900/20" },
     { value: "200+", label: "GFG Questions", icon: "Database", color: "text-blue-500", bgColor: "bg-blue-50 dark:bg-blue-900/20" },
-    { value: "9+", label: "Projects", icon: "FolderOpen", color: "text-purple-500", bgColor: "bg-purple-50 dark:bg-purple-900/20" },
+    { value: "8+", label: "Projects", icon: "FolderOpen", color: "text-purple-500", bgColor: "bg-purple-50 dark:bg-purple-900/20" },
     {
       value: "1+",
       label: "Hands-on Development & Freelancing",
