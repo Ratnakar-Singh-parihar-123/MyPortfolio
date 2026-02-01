@@ -179,7 +179,7 @@ import { Github, ExternalLink, ArrowRight, Sparkles, Layers, Zap } from "lucide-
 // projects image
 import yammiverse from "../../../assets/projectsImg/yammiverse.png";
 import vsbp from "../../../assets/projectsImg/vsbp.png";
-import bodp from "../../../assets/projectsImg/bloodAndOrganDonationsImg/Blood And Organ Donation Home.png";
+import bodp from "../../../assets/projectsImg/bloodAndOrganDonationsImg/jeevandaancareHome.png";
 
 const projects = [
   {

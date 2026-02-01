@@ -12,7 +12,7 @@ import RelatedProjects from "./components/RelatedProjects";
 // Main project images
 import vsbp from "../../assets/projectsImg/VSBPImg/VSBPHome.png";
 import yammiverse from "../../assets/projectsImg/yammiverse.png";
-import bodp from "../../assets/projectsImg/bloodAndOrganDonationsImg/Blood And Organ Donation Home.png";
+import bodp from "../../assets/projectsImg/bloodAndOrganDonationsImg/jeevandaancareHome.png";
 import textutils from "../../assets/projectsImg/textUtilksImg/textutils.png";
 import portfolio from "../../assets/projectsImg/portfolioImg/portfolioHome.png";
 import SpiceCraft from "../../assets/projectsImg/spiceCraftTradersImg/SpiceCraft Traders Home.png";
