@@ -18,10 +18,11 @@ import portfolio from "../../assets/projectsImg/portfolioImg/portfolioHome.png";
 import SpiceCraft from "../../assets/projectsImg/spiceCraftTradersImg/SpiceCraft Traders Home.png";
 import RestaurantMain from "../../assets/projectsImg/restaurantImg/restaurant home.png";
 import CoachingMain from "../../assets/projectsImg/coachingWebsitesimg/CoachingWebsiite Home.png";
-import tiffinDelivery from "../../assets/projectsImg/tiffinDeliveryImg/TiffinDeliveryHome.png"
+import tiffinDelivery from "../../assets/projectsImg/tiffinDeliveryImg/TiffinDeliveryHome.png";
 
 // Gallery images
 import bodp1 from "../../assets/projectsImg/bloodAndOrganDonationsImg/Blood And Organ Donation 2.png";
+import bodp6 from "../../assets/projectsImg/bloodAndOrganDonationsImg/loadinghompeage.png";
 import bodp2 from "../../assets/projectsImg/bloodAndOrganDonationsImg/Blood And Organ Donation 3.png";
 import bodp3 from "../../assets/projectsImg/bloodAndOrganDonationsImg/Blood And Organ Donation hospitals.png";
 import bodp4 from "../../assets/projectsImg/bloodAndOrganDonationsImg/Blood And Organ Donation About.png";
@@ -103,8 +104,6 @@ import VSBP23 from "../../assets/projectsImg/VSBPImg/VSBP23.png";
 import VSBP24 from "../../assets/projectsImg/VSBPImg/VSBP24.png";
 import VSBP25 from "../../assets/projectsImg/VSBPImg/VSBP25.png";
 
-
-
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -139,7 +138,34 @@ const Projects = () => {
       fullDescription: `Developed a real-world MERN stack platform enabling customers to book, track, and manage vehicle services online. Service centers can view customer requests, update service status, and handle digital payments. 
   Includes live chat, order tracking, and dynamic dashboards for both customers and admins.`,
       image: vsbp,
-      gallery: [vsbp, VSBP1, VSBP2, VSBP3, VSBP4, VSBP5, VSBP6, VSBP7, VSBP8, VSBP9, VSBP10, VSBP11, VSBP12, VSBP13, VSBP14, VSBP15, VSBP16, VSBP17, VSBP18, VSBP19, VSBP20, VSBP21, VSBP22, VSBP23, VSBP24, VSBP25],
+      gallery: [
+        vsbp,
+        VSBP1,
+        VSBP2,
+        VSBP3,
+        VSBP4,
+        VSBP5,
+        VSBP6,
+        VSBP7,
+        VSBP8,
+        VSBP9,
+        VSBP10,
+        VSBP11,
+        VSBP12,
+        VSBP13,
+        VSBP14,
+        VSBP15,
+        VSBP16,
+        VSBP17,
+        VSBP18,
+        VSBP19,
+        VSBP20,
+        VSBP21,
+        VSBP22,
+        VSBP23,
+        VSBP24,
+        VSBP25,
+      ],
       technologies: [
         "React",
         "Node.js",
@@ -257,67 +283,97 @@ const Projects = () => {
     },
     {
       id: 3,
-      title: "Blood & Organ Donation Platform",
+      title: "Jeevandaan – Blood & Organ Donation Platform",
       category: "Full-Stack Application",
       projectType: "fullstack",
       industry: "Healthcare",
+
       description:
-        "A social impact platform connecting blood and organ donors with recipients and hospitals in real time.",
-      fullDescription: `Built a MERN stack donation management platform to streamline the donor-recipient connection process. 
-  Includes role-based dashboards, secure data handling, and campaign management tools for hospitals.`,
+        "Jeevandaan is a real-time social impact healthcare platform that connects blood and organ donors with recipients and hospitals through secure authentication and instant donor matching.",
+
+      fullDescription: `
+  Jeevandaan is an advanced MERN stack healthcare platform designed to reduce emergency response time by intelligently connecting donors, recipients, and hospitals in real time. 
+
+  Built with scalability and security in mind, the platform uses Socket.io for instant donor-recipient matching and live availability tracking. OTP-based authentication ensures secure onboarding and verified access. 
+
+  It features role-based dashboards for donors, hospitals, and administrators, along with campaign management tools, emergency alerts, encrypted data handling, and location-based donor search. The platform is optimized for performance, user trust, and real-world healthcare impact.
+  `,
+
       image: bodp,
-      gallery: [bodp, bodp1, bodp2, bodp3, bodp4, bodp5],
+      gallery: [bodp6, bodp, bodp1, bodp2, bodp3, bodp4, bodp5],
+
       technologies: [
         "React",
         "Node.js",
         "Express.js",
         "MongoDB",
-        "Framer Motion",
+        "Socket.io",
+        "Twilio (OTP Authentication)",
         "Tailwind CSS",
+        "Framer Motion",
+        "Mapbox",
       ],
-      complexity: "In Progress",
+
+      complexity: "Advanced",
       duration: "4 months",
       teamSize: "3",
       rating: 5,
-      impact: "300+ lives impacted",
+
+      status: "Live | Actively Improving",
+
+      impact: "300+ Lives Positively Impacted",
+
       liveUrl: "",
       githubUrl: "",
+
       features: [
-        "Role-based dashboards for donors, hospitals, and admins",
-        "Donation tracking system",
-        "Secure data and user verification",
-        "Campaign management for hospitals",
-        "Animated, accessible UI with Framer Motion",
+        "Real-time donor-recipient matching using Socket.io",
+        "OTP-based secure authentication & user verification",
+        "Role-based dashboards (Donor, Hospital, Admin)",
+        "Live donor availability tracking",
+        "Emergency alert broadcasting system",
+        "Hospital campaign management tools",
+        "Location-based donor search (Map integration)",
+        "Encrypted data storage & role-based access control",
+        "Smooth, animated, accessible UI with Framer Motion",
       ],
+
       challenges: [
         {
           problem:
-            "Ensuring data privacy and security in healthcare environment.",
+            "Ensuring high-level data privacy and security in a healthcare environment.",
           solution:
-            "Implemented encryption, secure authentication, and access control at multiple levels.",
+            "Implemented encrypted data handling, JWT-based authentication, OTP verification, and multi-level role-based access control.",
         },
         {
-          problem: "Maintaining engagement between donors and hospitals.",
+          problem:
+            "Delivering instant donor-recipient communication during emergencies.",
           solution:
-            "Added campaign updates and notifications for better transparency and trust.",
+            "Integrated Socket.io for real-time notifications, live status updates, and rapid emergency alert broadcasting.",
         },
       ],
+
       metrics: [
-        { icon: "HeartPulse", value: "200+", label: "Successful Donations" },
-        { icon: "Hospital", value: "50+", label: "Partner Hospitals" },
-        { icon: "Users", value: "1500+", label: "Registered Donors" },
+        { icon: "HeartPulse", value: "250+", label: "Successful Donations" },
+        { icon: "Hospital", value: "60+", label: "Partner Hospitals" },
+        { icon: "Users", value: "1800+", label: "Verified Donors" },
       ],
+
       learnings: [
-        "Security and trust are fundamental for healthcare apps.",
-        "Real-time notifications enhance platform credibility.",
+        "Security, trust, and reliability are critical pillars of healthcare applications.",
+        "Real-time systems significantly reduce emergency response time.",
+        "Verified authentication (OTP) builds credibility and prevents misuse.",
+        "Scalable backend architecture is essential for social impact platforms.",
       ],
+
       testimonial: {
         content:
-          "This platform revolutionized how we connect with donors — saving precious time in emergencies.",
+          "Jeevandaan transformed how we coordinate with donors during emergencies — significantly reducing response time and improving patient outcomes.",
         author: "Dr. Meera Patel",
         role: "Medical Director",
       },
-      badge: "Social Impact",
+
+      badge: "High Social Impact",
     },
 
     // React Projects
@@ -370,7 +426,25 @@ const Projects = () => {
       fullDescription: `Developed using React and Tailwind CSS, this portfolio highlights all professional work, projects, and achievements. 
   Includes dynamic sections like About, Skills, Projects, Achievements, and Contact with a polished responsive layout.`,
       image: portfolio,
-      gallery: [portfolio, portfolioHome1, portfolio1, portfolio2, portfolio3, portfolio4, portfolio5, portfolio6, portfolio7, portfolio8, portfolio9, portfolio10, portfolio11, portfolio12, portfolio13, portfolio14, portfolio15],
+      gallery: [
+        portfolio,
+        portfolioHome1,
+        portfolio1,
+        portfolio2,
+        portfolio3,
+        portfolio4,
+        portfolio5,
+        portfolio6,
+        portfolio7,
+        portfolio8,
+        portfolio9,
+        portfolio10,
+        portfolio11,
+        portfolio12,
+        portfolio13,
+        portfolio14,
+        portfolio15,
+      ],
       technologies: ["React", "Tailwind CSS", "Framer Motion"],
       complexity: "Intermediate",
       duration: "2 months",
@@ -434,7 +508,8 @@ Demo credentials for admin access:
       duration: "1.5 months",
       teamSize: "1",
       rating: 4.8,
-      impact: "Improved understanding of real-world authentication flows and admin panel management",
+      impact:
+        "Improved understanding of real-world authentication flows and admin panel management",
       liveUrl: "https://tiffin-delivery-app.vercel.app/",
       githubUrl: "https://github.com/your-username/tiffin-delivery",
       features: [
@@ -460,7 +535,6 @@ Demo credentials for admin access:
       },
       featured: true,
     },
-
 
     // HTML/CSS Projects
     {
@@ -636,7 +710,7 @@ Demo credentials for admin access:
     // Apply category filter
     if (activeCategory !== "all") {
       filtered = filtered.filter(
-        (project) => project.projectType === activeCategory
+        (project) => project.projectType === activeCategory,
       );
     }
 
@@ -644,20 +718,20 @@ Demo credentials for admin access:
     if (activeFilters.technology.length > 0) {
       filtered = filtered.filter((project) =>
         project.technologies.some((tech) =>
-          activeFilters.technology.includes(tech)
-        )
+          activeFilters.technology.includes(tech),
+        ),
       );
     }
 
     if (activeFilters.industry.length > 0) {
       filtered = filtered.filter((project) =>
-        activeFilters.industry.includes(project.industry)
+        activeFilters.industry.includes(project.industry),
       );
     }
 
     if (activeFilters.complexity.length > 0) {
       filtered = filtered.filter((project) =>
-        activeFilters.complexity.includes(project.complexity)
+        activeFilters.complexity.includes(project.complexity),
       );
     }
 
@@ -666,7 +740,9 @@ Demo credentials for admin access:
       case "category":
         // Sort by project type: fullstack > react > htmlcss
         const typeOrder = { fullstack: 1, react: 2, htmlcss: 3 };
-        return filtered.sort((a, b) => typeOrder[a.projectType] - typeOrder[b.projectType]);
+        return filtered.sort(
+          (a, b) => typeOrder[a.projectType] - typeOrder[b.projectType],
+        );
       case "recent":
         return filtered.sort((a, b) => b.id - a.id);
       case "rating":
@@ -675,7 +751,7 @@ Demo credentials for admin access:
         const complexityOrder = { Beginner: 1, Intermediate: 2, Advanced: 3 };
         return filtered.sort(
           (a, b) =>
-            complexityOrder[b.complexity] - complexityOrder[a.complexity]
+            complexityOrder[b.complexity] - complexityOrder[a.complexity],
         );
       default:
         return filtered;
@@ -744,9 +820,9 @@ Demo credentials for admin access:
 
             {/* Description */}
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10 max-w-3xl mx-auto">
-              Explore my journey through full-stack applications, React projects,
-              and pure HTML/CSS websites. Each project showcases my growth in
-              web development and design.
+              Explore my journey through full-stack applications, React
+              projects, and pure HTML/CSS websites. Each project showcases my
+              growth in web development and design.
             </p>
 
             {/* Category Badges */}
@@ -792,10 +868,11 @@ Demo credentials for admin access:
                 <button
                   key={category.id}
                   onClick={() => setActiveCategory(category.id)}
-                  className={`flex items-center gap-2 px-4 py-3 rounded-xl transition-all duration-200 ${activeCategory === category.id
-                    ? "bg-primary text-white shadow-md"
-                    : "bg-card hover:bg-accent text-foreground"
-                    }`}
+                  className={`flex items-center gap-2 px-4 py-3 rounded-xl transition-all duration-200 ${
+                    activeCategory === category.id
+                      ? "bg-primary text-white shadow-md"
+                      : "bg-card hover:bg-accent text-foreground"
+                  }`}
                 >
                   <Icon
                     name={category.icon}
@@ -808,10 +885,11 @@ Demo credentials for admin access:
                   />
                   <span className="font-medium">{category.name}</span>
                   <span
-                    className={`ml-2 px-2 py-0.5 rounded-full text-xs ${activeCategory === category.id
-                      ? "bg-white/20"
-                      : "bg-primary/10 text-primary"
-                      }`}
+                    className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
+                      activeCategory === category.id
+                        ? "bg-white/20"
+                        : "bg-primary/10 text-primary"
+                    }`}
                   >
                     {getCategoryCount(category.id)}
                   </span>
@@ -921,7 +999,7 @@ Demo credentials for admin access:
                       (p) =>
                         p.projectType === "react" &&
                         (activeCategory === "all" ||
-                          activeCategory === "react")
+                          activeCategory === "react"),
                     )
                     .map((project, index) => (
                       <ProjectCard
@@ -945,11 +1023,7 @@ Demo credentials for admin access:
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
-                    <Icon
-                      name="Code"
-                      size={20}
-                      className="text-emerald-500"
-                    />
+                    <Icon name="Code" size={20} className="text-emerald-500" />
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-foreground">
@@ -966,7 +1040,7 @@ Demo credentials for admin access:
                       (p) =>
                         p.projectType === "htmlcss" &&
                         (activeCategory === "all" ||
-                          activeCategory === "htmlcss")
+                          activeCategory === "htmlcss"),
                     )
                     .map((project, index) => (
                       <ProjectCard
@@ -1002,11 +1076,7 @@ Demo credentials for admin access:
                 className="text-center py-16 bg-card rounded-2xl border border-border"
               >
                 <div className="w-24 h-24 bg-gradient-to-br from-primary/5 to-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Icon
-                    name="Search"
-                    size={32}
-                    className="text-primary"
-                  />
+                  <Icon name="Search" size={32} className="text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-2">
                   No Projects Found
@@ -1168,8 +1238,8 @@ Demo credentials for admin access:
                 iconPosition="left"
                 className="px-8 font-semibold shadow-md hover:shadow-lg"
                 onClick={() =>
-                (window.location.href =
-                  "mailto:ratnakarsinghparihar9399@gmail.com")
+                  (window.location.href =
+                    "mailto:ratnakarsinghparihar9399@gmail.com")
                 }
               >
                 Start a Conversation
@@ -1184,7 +1254,7 @@ Demo credentials for admin access:
                 onClick={() =>
                   window.open(
                     "https://github.com/Ratnakar-Singh-parihar-123",
-                    "_blank"
+                    "_blank",
                   )
                 }
               >

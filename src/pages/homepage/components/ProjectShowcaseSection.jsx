@@ -170,12 +170,16 @@
 
 // export default ProjectShowcaseSection;
 
-
-
-
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, ExternalLink, ArrowRight, Sparkles, Layers, Zap } from "lucide-react";
+import {
+  Github,
+  ExternalLink,
+  ArrowRight,
+  Sparkles,
+  Layers,
+  Zap,
+} from "lucide-react";
 // projects image
 import yammiverse from "../../../assets/projectsImg/yammiverse.png";
 import vsbp from "../../../assets/projectsImg/vsbp.png";
@@ -184,12 +188,24 @@ import bodp from "../../../assets/projectsImg/bloodAndOrganDonationsImg/jeevanda
 const projects = [
   {
     title: "Vehicle Service Booking Platform",
-    description: "A full-stack MERN web app that connects customers with nearby vehicle service centers. Clients can book, track, and pay for services in real-time, while service centers can manage bookings, update statuses, and maintain complete service records. Features include live chat, secure payments, and role-based dashboards.",
-    fullDescription: "A comprehensive vehicle service ecosystem featuring real-time booking, live chat between customers and service providers, secure payment integration, and dynamic service tracking. Built with microservices architecture for scalability and performance optimization.",
+    description:
+      "A full-stack MERN web app that connects customers with nearby vehicle service centers. Clients can book, track, and pay for services in real-time, while service centers can manage bookings, update statuses, and maintain complete service records. Features include live chat, secure payments, and role-based dashboards.",
+    fullDescription:
+      "A comprehensive vehicle service ecosystem featuring real-time booking, live chat between customers and service providers, secure payment integration, and dynamic service tracking. Built with microservices architecture for scalability and performance optimization.",
     image: vsbp,
-    tech: ["React", "Node.js", "Express", "MongoDB", "Socket.io", "Tailwind CSS", "Razorpay", "JWT"],
+    tech: [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Socket.io",
+      "Tailwind CSS",
+      "Razorpay",
+      "JWT",
+    ],
     live: "https://vehicle-service-booking-platform.onrender.com",
-    github: "https://github.com/Ratnakar-Singh-parihar-123/Vehicle-Service-Booking-Platform",
+    github:
+      "https://github.com/Ratnakar-Singh-parihar-123/Vehicle-Service-Booking-Platform",
     category: "Full-Stack Web App",
     complexity: "Advanced",
     duration: "3 months",
@@ -202,20 +218,30 @@ const projects = [
       "Secure payment gateway integration",
       "Role-based dashboards",
       "Service history & analytics",
-      "Email/SMS notifications"
+      "Email/SMS notifications",
     ],
     metrics: [
       { value: "95%", label: "User Satisfaction", icon: "Heart" },
       { value: "2.5s", label: "Avg Load Time", icon: "Zap" },
-      { value: "10K+", label: "Monthly Users", icon: "Users" }
-    ]
+      { value: "10K+", label: "Monthly Users", icon: "Users" },
+    ],
   },
   {
     title: "YammiVerse",
-    description: "A MERN-based recipe sharing platform where users can explore, create, and save food recipes with secure login and image uploads. Built with responsive design and smooth user experience in mind.",
-    fullDescription: "A social recipe sharing community where food enthusiasts can discover, create, and share culinary creations. Features include AI-powered recipe recommendations, step-by-step cooking guides, nutritional analysis, and social interaction capabilities.",
+    description:
+      "A MERN-based recipe sharing platform where users can explore, create, and save food recipes with secure login and image uploads. Built with responsive design and smooth user experience in mind.",
+    fullDescription:
+      "A social recipe sharing community where food enthusiasts can discover, create, and share culinary creations. Features include AI-powered recipe recommendations, step-by-step cooking guides, nutritional analysis, and social interaction capabilities.",
     image: yammiverse,
-    tech: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS", "Cloudinary", "Redux"],
+    tech: [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Tailwind CSS",
+      "Cloudinary",
+      "Redux",
+    ],
     live: "https://yammiverse.onrender.com",
     github: "https://github.com/Ratnakar-Singh-parihar-123/YammiVerse",
     category: "Recipe Sharing Platform",
@@ -230,41 +256,64 @@ const projects = [
       "Personal recipe collections",
       "Advanced search & filters",
       "Nutritional information display",
-      "User ratings & reviews"
+      "User ratings & reviews",
     ],
     metrics: [
       { value: "5K+", label: "Recipes Shared", icon: "BookOpen" },
       { value: "3.2K", label: "Active Users", icon: "Users" },
-      { value: "98%", label: "Mobile Responsive", icon: "Smartphone" }
-    ]
+      { value: "98%", label: "Mobile Responsive", icon: "Smartphone" },
+    ],
   },
   {
-    title: "Blood & Organ Donation Platform",
-    description: "A MERN-based life-saving platform that connects blood and organ donors with recipients. It features donor registration, real-time availability tracking, secure authentication, and an intuitive dashboard for hospitals and users.",
-    fullDescription: "A life-saving platform connecting donors with recipients in critical need. Features advanced matching algorithms, real-time availability tracking, emergency alert systems, and comprehensive donor management tools for hospitals and organizations.",
+    title: "Jeevandaan – Blood & Organ Donation Platform",
+
+    description:
+      "Jeevandaan is an advanced MERN-based healthcare platform that connects blood and organ donors with recipients in real-time. It enables secure donor registration, instant availability tracking using Socket.io, OTP-based authentication, and a powerful hospital dashboard for emergency coordination.",
+
+    fullDescription:
+      "Jeevandaan is a life-saving full-stack healthcare platform built using the MERN stack. The system intelligently connects blood and organ donors with patients in critical need through real-time matching powered by Socket.io. It features OTP-based authentication for secure access, location-based donor search, emergency alert broadcasting, and a comprehensive hospital management dashboard. The platform ensures data privacy through encryption and enables fast response times during medical emergencies. Designed with scalability and performance in mind, Jeevandaan aims to make life-saving connections faster, safer, and more efficient.",
+
     image: bodp,
-    tech: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS", "Framer Motion", "Mapbox", "Twilio"],
-    live: "",
-    github: "",
+
+    tech: [
+      "React",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Socket.io",
+      "Mapbox",
+      "Twilio (OTP Authentication)",
+    ],
+
+    live: "https://jeevandaancare.vercel.app/",
+    github:
+      "https://github.com/Ratnakar-Singh-parihar-123/Blood-Organ-Donations-",
+
     category: "Healthcare Platform",
     complexity: "Advanced",
     duration: "4 months",
-    teamSize: "2",
+    teamSize: "1",
     rating: "4.9",
-    status: "In Development",
+    status: "Production Ready | Scaling Phase",
+
     features: [
-      "Real-time donor matching",
-      "Emergency alert system",
-      "Hospital dashboard",
+      "Real-time donor-recipient matching (Socket.io)",
+      "OTP-based secure authentication (Twilio)",
+      "Emergency alert broadcasting system",
+      "Hospital admin dashboard",
       "Donor management portal",
-      "Location-based search",
-      "Secure data encryption"
+      "Location-based donor search (Mapbox integration)",
+      "Secure data encryption & role-based access control",
+      "Live availability status tracking",
     ],
+
     metrics: [
       { value: "99.9%", label: "Data Security", icon: "Shield" },
-      { value: "<1min", label: "Match Time", icon: "Clock" },
-      { value: "100+", label: "Lives Impacted", icon: "Heart" }
-    ]
+      { value: "<30s", label: "Real-time Match", icon: "Clock" },
+      { value: "100+", label: "Lives Impacted", icon: "Heart" },
+    ],
   },
 ];
 
@@ -322,10 +371,11 @@ const ProjectShowcaseSection = () => {
                 />
               </span>
             </h2>
-            
+
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Explore my portfolio of innovative solutions that combine cutting-edge technology
-              with user-centric design to solve real-world problems.
+              Explore my portfolio of innovative solutions that combine
+              cutting-edge technology with user-centric design to solve
+              real-world problems.
             </p>
           </motion.div>
 
@@ -405,24 +455,30 @@ const ProjectShowcaseSection = () => {
                   <div className="relative h-64 overflow-hidden">
                     {/* Status Badge */}
                     <div className="absolute top-4 left-4 z-20">
-                      <span className={`px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-md border ${project.status === "Live" 
-                        ? "bg-green-500/20 text-green-700 dark:text-green-300 border-green-200/50 dark:border-green-800/50"
-                        : project.status === "In Development"
-                        ? "bg-yellow-500/20 text-yellow-700 dark:text-yellow-300 border-yellow-200/50 dark:border-yellow-800/50"
-                        : "bg-blue-500/20 text-blue-700 dark:text-blue-300 border-blue-200/50 dark:border-blue-800/50"
-                      }`}>
+                      <span
+                        className={`px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-md border ${
+                          project.status === "Live"
+                            ? "bg-green-500/20 text-green-700 dark:text-green-300 border-green-200/50 dark:border-green-800/50"
+                            : project.status === "In Development"
+                              ? "bg-yellow-500/20 text-yellow-700 dark:text-yellow-300 border-yellow-200/50 dark:border-yellow-800/50"
+                              : "bg-blue-500/20 text-blue-700 dark:text-blue-300 border-blue-200/50 dark:border-blue-800/50"
+                        }`}
+                      >
                         {project.status}
                       </span>
                     </div>
 
                     {/* Complexity Badge */}
                     <div className="absolute top-4 right-4 z-20">
-                      <span className={`px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-md border ${project.complexity === "Advanced"
-                        ? "bg-red-500/20 text-red-700 dark:text-red-300 border-red-200/50 dark:border-red-800/50"
-                        : project.complexity === "Intermediate"
-                        ? "bg-amber-500/20 text-amber-700 dark:text-amber-300 border-amber-200/50 dark:border-amber-800/50"
-                        : "bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border-emerald-200/50 dark:border-emerald-800/50"
-                      }`}>
+                      <span
+                        className={`px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-md border ${
+                          project.complexity === "Advanced"
+                            ? "bg-red-500/20 text-red-700 dark:text-red-300 border-red-200/50 dark:border-red-800/50"
+                            : project.complexity === "Intermediate"
+                              ? "bg-amber-500/20 text-amber-700 dark:text-amber-300 border-amber-200/50 dark:border-amber-800/50"
+                              : "bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border-emerald-200/50 dark:border-emerald-800/50"
+                        }`}
+                      >
                         {project.complexity}
                       </span>
                     </div>
@@ -447,7 +503,10 @@ const ProjectShowcaseSection = () => {
                           className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center hover:bg-white/20 transition-colors"
                           onClick={(e) => {
                             e.stopPropagation();
-                            window.open(project.live || project.github, "_blank");
+                            window.open(
+                              project.live || project.github,
+                              "_blank",
+                            );
                           }}
                         >
                           <ExternalLink className="w-5 h-5 text-white" />
@@ -509,9 +568,11 @@ const ProjectShowcaseSection = () => {
                           {[...Array(5)].map((_, i) => (
                             <div
                               key={i}
-                              className={`w-2 h-2 rounded-full ${i < Math.floor(project.rating) 
-                                ? "bg-amber-500" 
-                                : "bg-muted"}`}
+                              className={`w-2 h-2 rounded-full ${
+                                i < Math.floor(project.rating)
+                                  ? "bg-amber-500"
+                                  : "bg-muted"
+                              }`}
                             />
                           ))}
                           <span className="text-xs font-medium text-foreground ml-2">
@@ -521,7 +582,8 @@ const ProjectShowcaseSection = () => {
                         <div className="flex items-center gap-2">
                           <Sparkles className="w-3 h-3 text-primary" />
                           <span className="text-xs text-muted-foreground">
-                            {project.teamSize} member{project.teamSize !== "1" ? "s" : ""}
+                            {project.teamSize} member
+                            {project.teamSize !== "1" ? "s" : ""}
                           </span>
                         </div>
                       </div>
@@ -552,7 +614,7 @@ const ProjectShowcaseSection = () => {
               <div className="text-sm font-medium text-primary bg-primary/10 px-4 py-2 rounded-full">
                 EXPLORE MY COMPLETE PORTFOLIO
               </div>
-              
+
               <a
                 href="/projects"
                 className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl font-semibold bg-gradient-to-r from-primary to-primary/80 text-white hover:shadow-2xl hover:shadow-primary/25 transition-all duration-300 overflow-hidden"
@@ -561,15 +623,15 @@ const ProjectShowcaseSection = () => {
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
                   animate={{
-                    x: ["-100%", "100%"]
+                    x: ["-100%", "100%"],
                   }}
                   transition={{
                     duration: 1.5,
                     repeat: Infinity,
-                    ease: "linear"
+                    ease: "linear",
                   }}
                 />
-                
+
                 <span>View All Projects</span>
                 <motion.div
                   animate={{ x: [0, 4, 0] }}
@@ -581,8 +643,9 @@ const ProjectShowcaseSection = () => {
               </a>
 
               <p className="text-sm text-muted-foreground max-w-md">
-                Discover more innovative solutions, case studies, and technical implementations
-                that showcase my expertise in full-stack development.
+                Discover more innovative solutions, case studies, and technical
+                implementations that showcase my expertise in full-stack
+                development.
               </p>
             </div>
           </motion.div>
@@ -601,7 +664,7 @@ const ProjectShowcaseSection = () => {
               onClick={() => setSelectedProject(null)}
               className="absolute inset-0 bg-black/60 backdrop-blur-md"
             />
-            
+
             {/* Modal Content */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -637,20 +700,26 @@ const ProjectShowcaseSection = () => {
                 <div className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <h4 className="text-lg font-semibold text-foreground mb-3">Project Overview</h4>
+                      <h4 className="text-lg font-semibold text-foreground mb-3">
+                        Project Overview
+                      </h4>
                       <p className="text-muted-foreground leading-relaxed">
                         {selectedProject.fullDescription}
                       </p>
                     </div>
                     <div>
-                      <h4 className="text-lg font-semibold text-foreground mb-3">Key Features</h4>
+                      <h4 className="text-lg font-semibold text-foreground mb-3">
+                        Key Features
+                      </h4>
                       <ul className="space-y-2">
                         {selectedProject.features.map((feature, index) => (
                           <li key={index} className="flex items-start gap-2">
                             <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
                               <div className="w-2 h-2 rounded-full bg-primary" />
                             </div>
-                            <span className="text-muted-foreground">{feature}</span>
+                            <span className="text-muted-foreground">
+                              {feature}
+                            </span>
                           </li>
                         ))}
                       </ul>
@@ -659,7 +728,9 @@ const ProjectShowcaseSection = () => {
 
                   {/* Tech Stack */}
                   <div>
-                    <h4 className="text-lg font-semibold text-foreground mb-3">Technology Stack</h4>
+                    <h4 className="text-lg font-semibold text-foreground mb-3">
+                      Technology Stack
+                    </h4>
                     <div className="flex flex-wrap gap-2">
                       {selectedProject.tech.map((tech, index) => (
                         <span
@@ -675,9 +746,16 @@ const ProjectShowcaseSection = () => {
                   {/* Metrics */}
                   <div className="grid grid-cols-3 gap-4">
                     {selectedProject.metrics.map((metric, index) => (
-                      <div key={index} className="p-4 rounded-xl bg-card border border-border text-center">
-                        <div className="text-2xl font-bold text-foreground mb-1">{metric.value}</div>
-                        <div className="text-sm text-muted-foreground">{metric.label}</div>
+                      <div
+                        key={index}
+                        className="p-4 rounded-xl bg-card border border-border text-center"
+                      >
+                        <div className="text-2xl font-bold text-foreground mb-1">
+                          {metric.value}
+                        </div>
+                        <div className="text-sm text-muted-foreground">
+                          {metric.label}
+                        </div>
                       </div>
                     ))}
                   </div>
