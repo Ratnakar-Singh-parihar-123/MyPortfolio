@@ -2,60 +2,60 @@
 <html lang="en">
 
 <head>
-
-  <!-- =========================
-BASIC META
-========================= -->
-
+  <!-- =========================================
+  BASIC META
+  ========================================== -->
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- =========================================
+  SEO META
+  ========================================== -->
   <title>Ratnakar Singh Parihar | MERN Full Stack Developer</title>
 
   <meta name="description"
-    content="Portfolio of Ratnakar Singh Parihar, a Full-Stack MERN Developer creating modern scalable web applications using React, Node.js, MongoDB and Tailwind CSS." />
+    content="Portfolio of Ratnakar Singh Parihar, a MERN Stack Developer building scalable web applications with React, Node.js, MongoDB, and Tailwind CSS." />
 
   <meta name="keywords"
-    content="Ratnakar Singh Parihar, MERN Developer, React Developer, Node Developer, Full Stack Developer Portfolio" />
+    content="Ratnakar Singh Parihar, MERN Developer, React Developer, Node.js Developer, Full Stack Developer, Portfolio" />
 
   <meta name="author" content="Ratnakar Singh Parihar" />
   <meta name="robots" content="index, follow" />
 
+  <!-- =========================================
+  THEME COLOR
+  ========================================== -->
   <meta name="theme-color" content="#020617" />
-  <meta name="color-scheme" content="dark light" />
 
-  <!-- =========================
-FAVICON
-========================= -->
-
+  <!-- =========================================
+  FAVICON
+  ========================================== -->
   <link rel="icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" href="/logo192.png" />
   <link rel="manifest" href="/manifest.json" />
 
-  <!-- =========================
-SOCIAL SHARE
-========================= -->
-
+  <!-- =========================================
+  OPEN GRAPH (LinkedIn / Facebook)
+  ========================================== -->
   <meta property="og:title" content="Ratnakar Singh Parihar | Full Stack Developer" />
   <meta property="og:description"
-    content="Explore modern web projects built using React, Node.js, MongoDB and Tailwind CSS." />
+    content="Explore modern web applications built using React, Node.js, MongoDB, and Tailwind CSS." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ratnakarsinghparihar.dev" />
   <meta property="og:image" content="/PortfolioBannerHome.png" />
 
+  <!-- =========================================
+  TWITTER
+  ========================================== -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Ratnakar Singh Parihar | Full Stack Developer" />
-  <meta name="twitter:description" content="Building scalable web applications using MERN stack" />
+  <meta name="twitter:description" content="Building scalable web apps with MERN stack." />
   <meta name="twitter:image" content="/PortfolioBannerHome.png" />
 
-  <!-- =========================
-PERFORMANCE
-========================= -->
-
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-
+  <!-- =========================================
+  FONTS
+  ========================================== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -63,96 +63,61 @@ PERFORMANCE
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet">
 
-  <!-- =========================
-GLOBAL STYLE
-========================= -->
-
+  <!-- =========================================
+  BASE CSS
+  ========================================== -->
   <style>
     :root {
       --bg: #020617;
       --text: #f8fafc;
       --accent: #38bdf8;
-      --muted: #94a3b8;
     }
 
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
     }
 
     body {
       font-family: "Inter", system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      overflow-x: hidden;
     }
 
-    /* ======================
-APP REVEAL
-====================== */
-
-    #root {
-      opacity: 0;
-      transform: translateY(10px);
-      transition: all .6s ease;
+    html {
+      scroll-behavior: smooth;
     }
 
-    #root.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ======================
-LOADER BACKGROUND
-====================== */
+    /* ===================================
+    LOADING SCREEN
+    =================================== */
 
     #loader {
       position: fixed;
       inset: 0;
+      background: #020617;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
       z-index: 9999;
-
-      background:
-        radial-gradient(circle at 20% 20%, #0f172a, transparent),
-        radial-gradient(circle at 80% 80%, #020617, #000);
+      flex-direction: column;
     }
-
-    /* ======================
-LOGO
-====================== */
-
-    .logo {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      margin-bottom: 30px;
-    }
-
-    .logo span {
-      color: var(--accent);
-    }
-
-    /* ======================
-SPINNER
-====================== */
 
     .spinner {
       width: 50px;
       height: 50px;
-      border-radius: 50%;
       border: 4px solid #1e293b;
-      border-top: 4px solid var(--accent);
+      border-top: 4px solid #38bdf8;
+      border-radius: 50%;
       animation: spin 1s linear infinite;
+    }
+
+    .loading-text {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #94a3b8;
+      letter-spacing: 1px;
     }
 
     @keyframes spin {
@@ -161,79 +126,22 @@ SPINNER
       }
     }
 
-    /* ======================
-PROGRESS BAR
-====================== */
-
-    .progress {
-      width: 220px;
-      height: 4px;
-      background: #1e293b;
-      border-radius: 20px;
-      margin-top: 25px;
-      overflow: hidden;
-    }
-
-    .progress-bar {
-      width: 0%;
-      height: 100%;
-      background: linear-gradient(90deg, #38bdf8, #0ea5e9);
-      animation: load 2s ease forwards;
-    }
-
-    @keyframes load {
-      to {
-        width: 100%;
-      }
-    }
-
-    /* ======================
-LOADING TEXT
-====================== */
-
-    .loading-text {
-      margin-top: 15px;
-      font-size: 13px;
-      color: var(--muted);
-      letter-spacing: 1px;
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0% {
-        opacity: .4
-      }
-
-      50% {
-        opacity: 1
-      }
-
-      100% {
-        opacity: .4
-      }
-    }
-
-    noscript {
-      display: block;
-      padding: 20px;
-      background: black;
-      color: red;
-      text-align: center;
+    #root {
+      display: none;
     }
   </style>
 
-  <!-- =========================
-STRUCTURED DATA
-========================= -->
-
+  <!-- =========================================
+  STRUCTURED DATA (SEO)
+  ========================================== -->
   <script type="application/ld+json">
 {
-"@context":"https://schema.org",
-"@type":"Person",
-"name":"Ratnakar Singh Parihar",
-"url":"https://ratnakarsinghparihar.dev",
-"jobTitle":"Full Stack Developer",
-"sameAs":[
+"@context": "https://schema.org",
+"@type": "Person",
+"name": "Ratnakar Singh Parihar",
+"url": "https://ratnakarsinghparihar.dev",
+"jobTitle": "Full Stack Developer",
+"sameAs": [
 "https://github.com/Ratnakar-Singh-parihar-123",
 "https://www.linkedin.com/in/ratnakar-singh-parihar-a87528260/"
 ]
@@ -244,66 +152,32 @@ STRUCTURED DATA
 
 <body>
 
-  <noscript>
-    JavaScript is required to run this portfolio.
-  </noscript>
-
-  <!-- =========================
-LOADER
-========================= -->
+  <!-- =========================================
+  LOADING SCREEN
+  ========================================== -->
 
   <div id="loader">
-
-    <div class="logo">
-      Ratnakar<span>.</span>
-    </div>
-
     <div class="spinner"></div>
-
-    <div class="progress">
-      <div class="progress-bar"></div>
-    </div>
-
-    <div class="loading-text">
-      Initializing Portfolio...
-    </div>
-
+    <div class="loading-text">Loading Portfolio...</div>
   </div>
 
-  <!-- =========================
-REACT ROOT
-========================= -->
+  <!-- =========================================
+  REACT ROOT
+  ========================================== -->
 
   <div id="root"></div>
 
-  <!-- =========================
-REACT ENTRY
-========================= -->
+  <!-- =========================================
+  SCRIPT
+  ========================================== -->
 
   <script type="module" src="/src/index.jsx"></script>
 
-  <!-- =========================
-LOADER SCRIPT
-========================= -->
-
   <script>
-
     window.addEventListener("load", () => {
-
-      const loader = document.getElementById("loader")
-      const root = document.getElementById("root")
-
-      loader.style.opacity = "0"
-
-      setTimeout(() => {
-
-        loader.style.display = "none"
-        root.classList.add("show")
-
-      }, 600)
-
-    })
-
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("root").style.display = "block";
+    });
   </script>
 
 </body>
