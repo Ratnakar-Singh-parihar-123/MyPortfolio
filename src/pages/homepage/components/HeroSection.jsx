@@ -45,7 +45,6 @@ const HeroSection = () => {
     },
   ];
 
-
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTagline((prev) => (prev + 1) % taglines.length);
@@ -56,30 +55,52 @@ const HeroSection = () => {
   const handleScrollDown = () => {
     window.scrollTo({
       top: window.innerHeight,
-      behavior: "smooth"
+      behavior: "smooth",
     });
   };
 
   const stats = [
-    { value: "260+", label: "LeetCode", icon: "Code", color: "text-emerald-500", bgColor: "bg-emerald-50 dark:bg-emerald-900/20" },
-    { value: "200+", label: "GFG Questions", icon: "Database", color: "text-blue-500", bgColor: "bg-blue-50 dark:bg-blue-900/20" },
-    { value: "8+", label: "Projects", icon: "FolderOpen", color: "text-purple-500", bgColor: "bg-purple-50 dark:bg-purple-900/20" },
+    // {
+    //   value: "260+",
+    //   label: "LeetCode",
+    //   icon: "Code",
+    //   color: "text-emerald-500",
+    //   bgColor: "bg-emerald-50 dark:bg-emerald-900/20",
+    // },
+    // {
+    //   value: "200+",
+    //   label: "GFG Questions",
+    //   icon: "Database",
+    //   color: "text-blue-500",
+    //   bgColor: "bg-blue-50 dark:bg-blue-900/20",
+    // },
     {
-      value: "1+",
-      label: "Hands-on Development & Freelancing",
+      value: "8+",
+      label: "Projects",
+      icon: "FolderOpen",
+      color: "text-purple-500",
+      bgColor: "bg-purple-50 dark:bg-purple-900/20",
+    },
+    {
+      value: "2+",
+      label: "Hands-on Development",
       icon: "Code",
       color: "text-indigo-500",
       bgColor: "bg-indigo-50 dark:bg-indigo-900/20",
-    }
-
-
+    },
   ];
 
-  const techSkills = ["React", "Node.js", "MongoDB", "Express", "TypeScript", "Tailwind CSS"];
+  const techSkills = [
+    "React",
+    "Node.js",
+    "MongoDB",
+    "Express",
+    "TypeScript",
+    "Tailwind CSS",
+  ];
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-950 pt-16 md:pt-20">
-
       {/* Background Pattern */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-emerald-500/5" />
@@ -87,7 +108,7 @@ const HeroSection = () => {
           className="absolute inset-0 opacity-5 dark:opacity-10"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-            backgroundSize: '60px 60px'
+            backgroundSize: "60px 60px",
           }}
         />
       </div>
@@ -101,7 +122,7 @@ const HeroSection = () => {
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animation: `float ${3 + Math.random() * 4}s infinite ease-in-out ${i * 0.2}s`
+              animation: `float ${3 + Math.random() * 4}s infinite ease-in-out ${i * 0.2}s`,
             }}
           />
         ))}
@@ -110,7 +131,6 @@ const HeroSection = () => {
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
-
           {/* Left Column - Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -150,7 +170,9 @@ const HeroSection = () => {
                   transition={{ delay: 0.3 }}
                   className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight"
                 >
-                  <span className="text-gray-900 dark:text-white">Ratnakar Singh</span>
+                  <span className="text-gray-900 dark:text-white">
+                    Ratnakar Singh
+                  </span>
                   <br />
                   <span className="bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
                     Parihar
@@ -170,10 +192,16 @@ const HeroSection = () => {
                   transition={{ duration: 0.4 }}
                   className="flex items-center justify-center lg:justify-start gap-3"
                 >
-                  <span className="text-2xl" role="img" aria-label="tagline icon">
+                  <span
+                    className="text-2xl"
+                    role="img"
+                    aria-label="tagline icon"
+                  >
                     {taglines[currentTagline].emoji}
                   </span>
-                  <p className={`text-xl sm:text-2xl font-semibold bg-gradient-to-r ${taglines[currentTagline].color} bg-clip-text text-transparent`}>
+                  <p
+                    className={`text-xl sm:text-2xl font-semibold bg-gradient-to-r ${taglines[currentTagline].color} bg-clip-text text-transparent`}
+                  >
                     {taglines[currentTagline].text}
                   </p>
                 </motion.div>
@@ -185,10 +213,11 @@ const HeroSection = () => {
                   <button
                     key={index}
                     onClick={() => setCurrentTagline(index)}
-                    className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${index === currentTagline
-                      ? "w-6 bg-gradient-to-r from-blue-500 to-purple-500"
-                      : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500"
-                      }`}
+                    className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                      index === currentTagline
+                        ? "w-6 bg-gradient-to-r from-blue-500 to-purple-500"
+                        : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500"
+                    }`}
                     aria-label={`Show tagline ${index + 1}`}
                   />
                 ))}
@@ -213,7 +242,8 @@ const HeroSection = () => {
                 and turning ideas into{" "}
                 <span className="font-semibold text-emerald-600 dark:text-emerald-400">
                   scalable applications
-                </span>.
+                </span>
+                .
               </p>
 
               <p>
@@ -228,10 +258,10 @@ const HeroSection = () => {
                 and create a{" "}
                 <span className="font-semibold text-indigo-600 dark:text-indigo-400">
                   meaningful impact
-                </span>.
+                </span>
+                .
               </p>
             </motion.div>
-
 
             {/* Tech Skills */}
             {/* <motion.div
@@ -334,8 +364,9 @@ const HeroSection = () => {
                   <Image
                     src={HeroImg}
                     alt="Ratnakar Singh Parihar - Full-Stack Developer"
-                    className={`w-full h-[350px] md:h-[450px] object-cover object-center transition-opacity duration-500 ${isImageLoaded ? 'opacity-100' : 'opacity-0'
-                      }`}
+                    className={`w-full h-[350px] md:h-[450px] object-cover object-center transition-opacity duration-500 ${
+                      isImageLoaded ? "opacity-100" : "opacity-0"
+                    }`}
                     onLoad={() => setIsImageLoaded(true)}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
@@ -355,8 +386,12 @@ const HeroSection = () => {
                     <Icon name="Code" size={18} className="text-white" />
                   </div>
                   <div>
-                    <div className="font-semibold text-gray-900 dark:text-white">Full-Stack</div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400">Developer</div>
+                    <div className="font-semibold text-gray-900 dark:text-white">
+                      Full-Stack
+                    </div>
+                    <div className="text-xs text-gray-600 dark:text-gray-400">
+                      Developer
+                    </div>
                   </div>
                 </motion.div>
               </div>
@@ -373,9 +408,12 @@ const HeroSection = () => {
                     <Icon name="Brain" size={18} className="text-white" />
                   </div>
                   <div>
-                    <div className="font-semibold text-gray-900 dark:text-white">DSA</div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400">Enthusiast</div>
-
+                    <div className="font-semibold text-gray-900 dark:text-white">
+                      DSA
+                    </div>
+                    <div className="text-xs text-gray-600 dark:text-gray-400">
+                      Enthusiast
+                    </div>
                   </div>
                 </motion.div>
               </div>
@@ -391,7 +429,6 @@ const HeroSection = () => {
                 <div className="flex items-center gap-1.5">
                   <Icon name="Award" size={14} />
                   <span>Aspiring Software Engineer</span>
-
                 </div>
               </motion.div>
             </div>
@@ -426,8 +463,13 @@ const HeroSection = () => {
       {/* Animation Styles */}
       <style jsx>{`
         @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-15px) rotate(180deg); }
+          0%,
+          100% {
+            transform: translateY(0px) rotate(0deg);
+          }
+          50% {
+            transform: translateY(-15px) rotate(180deg);
+          }
         }
       `}</style>
     </section>
