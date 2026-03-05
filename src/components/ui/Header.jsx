@@ -1468,7 +1468,7 @@ const Header = ({ className = "" }) => {
 
                   <div className="min-w-0 flex-1">
                     <h3 className="font-black text-gray-900 dark:text-white text-sm sm:text-base md:text-xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent truncate">
-                      Ratnakar Singh
+                      Ratnakar Singh Parihar
                     </h3>
                     <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-0.5 flex items-center space-x-1">
                       <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full animate-pulse flex-shrink-0" />
@@ -1655,7 +1655,7 @@ const Header = ({ className = "" }) => {
               {/* Copyright */}
               <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-gray-200/50 dark:border-gray-800/50">
                 <p className="text-center text-[8px] sm:text-xs text-gray-500 dark:text-gray-400">
-                  © {new Date().getFullYear()} Ratnakar Singh
+                  © {new Date().getFullYear()} Ratnakar Singh Parihar
                 </p>
                 <p className="text-center text-[6px] sm:text-[10px] text-gray-400 dark:text-gray-500 mt-0.5 sm:mt-1">
                   Crafted with ❤️ using React
