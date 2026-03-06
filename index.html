@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
   <!-- =========================================
   BASIC META
   ========================================== -->
@@ -12,16 +13,19 @@
   <!-- =========================================
   SEO META
   ========================================== -->
-  <title>Ratnakar Singh Parihar | MERN Full Stack Developer</title>
+  <title>Ratnakar Singh Parihar | MERN Stack Developer Portfolio</title>
 
   <meta name="description"
-    content="Portfolio of Ratnakar Singh Parihar, a MERN Stack Developer building scalable web applications with React, Node.js, MongoDB, and Tailwind CSS." />
+    content="Portfolio of Ratnakar Singh Parihar — MERN Stack Developer specializing in React, Node.js, MongoDB, and modern scalable web applications." />
 
   <meta name="keywords"
-    content="Ratnakar Singh Parihar, MERN Developer, React Developer, Node.js Developer, Full Stack Developer, Portfolio" />
+    content="Ratnakar Singh Parihar, MERN Developer, React Developer, Node.js Developer, Full Stack Developer, Portfolio, JavaScript Developer" />
 
   <meta name="author" content="Ratnakar Singh Parihar" />
   <meta name="robots" content="index, follow" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://ratnakarsinghparihar.vercel.app" />
 
   <!-- =========================================
   THEME COLOR
@@ -31,33 +35,44 @@
   <!-- =========================================
   FAVICON
   ========================================== -->
-  <link rel="icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/logo192.png" />
   <link rel="manifest" href="/manifest.json" />
 
   <!-- =========================================
-  OPEN GRAPH
+  OPEN GRAPH (Social Media Share)
   ========================================== -->
-  <meta property="og:title" content="Ratnakar Singh Parihar | Full Stack Developer" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Ratnakar Portfolio" />
+  <meta property="og:title" content="Ratnakar Singh Parihar | MERN Stack Developer Portfolio" />
   <meta property="og:description"
     content="Explore modern web applications built using React, Node.js, MongoDB, and Tailwind CSS." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://ratnakarsinghparihar.dev" />
-  <meta property="og:image" content="/PortfolioBannerHome.png" />
+  <meta property="og:url" content="https://ratnakarsinghparihar.vercel.app" />
+
+  <meta property="og:image" content="https://ratnakarsinghparihar.vercel.app/PortfolioBannerHome.png" />
+
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
 
   <!-- =========================================
-  TWITTER
+  TWITTER CARD
   ========================================== -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Ratnakar Singh Parihar | Full Stack Developer" />
-  <meta name="twitter:description" content="Building scalable web apps with MERN stack." />
-  <meta name="twitter:image" content="/PortfolioBannerHome.png" />
+  <meta name="twitter:title" content="Ratnakar Singh Parihar | MERN Stack Developer Portfolio" />
+  <meta name="twitter:description"
+    content="Building scalable web apps with React, Node.js, MongoDB, and Tailwind CSS." />
+
+  <meta name="twitter:image" content="https://ratnakarsinghparihar.vercel.app/PortfolioBannerHome.png" />
 
   <!-- =========================================
   FONTS
   ========================================== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Preload Font for Performance -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    as="style">
 
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
@@ -79,14 +94,15 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: "Inter", system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
-    }
-
-    html {
-      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
     }
   </style>
 
@@ -98,11 +114,20 @@
 "@context": "https://schema.org",
 "@type": "Person",
 "name": "Ratnakar Singh Parihar",
-"url": "https://ratnakarsinghparihar.dev",
-"jobTitle": "Full Stack Developer",
+"url": "https://ratnakarsinghparihar.vercel.app",
+"image": "https://ratnakarsinghparihar.vercel.app/profile.jpg",
+"jobTitle": "MERN Stack Developer",
 "sameAs": [
 "https://github.com/Ratnakar-Singh-parihar-123",
 "https://www.linkedin.com/in/ratnakar-singh-parihar-a87528260/"
+],
+"knowsAbout": [
+"React",
+"Node.js",
+"MongoDB",
+"Express",
+"JavaScript",
+"Full Stack Development"
 ]
 }
 </script>
@@ -117,7 +142,7 @@
   <div id="root"></div>
 
   <!-- =========================================
-  SCRIPT
+  MAIN SCRIPT
   ========================================== -->
   <script type="module" src="/src/index.jsx"></script>
 

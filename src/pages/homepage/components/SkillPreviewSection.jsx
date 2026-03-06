@@ -57,7 +57,7 @@ const SkillPreviewSection = () => {
       borderColor: "border-purple-200 dark:border-purple-700",
       skills: [
         { name: "Problem Solving", level: 88, icon: "Lightbulb" },
-        { name: "UI/UX Understanding", level: 82, icon: "MonitorSmartphone" },
+        // { name: "UI/UX Understanding", level: 82, icon: "MonitorSmartphone" },
         { name: "REST APIs", level: 80, icon: "Network" },
         { name: "Responsive Design", level: 90, icon: "Smartphone" },
       ],
