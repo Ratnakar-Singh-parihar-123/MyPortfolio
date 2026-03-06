@@ -4,7 +4,7 @@ import Header from "../../components/ui/Header";
 import HeroSection from "./components/HeroSection";
 import TimelineSection from "./components/TimelineSection";
 import ReadingProgressIndicator from "./components/ReadingProgressIndicator";
-import Icon from "../../components/AppIcon"; // ✅ FIXED: Added missing import
+import Icon from "../../components/AppIcon";
 
 const About = () => {
   useEffect(() => {
@@ -16,7 +16,7 @@ const About = () => {
     if (metaDescription) {
       metaDescription.setAttribute(
         "content",
-        "Discover the story behind The Digital Craftsperson - my journey, philosophy, and approach to creating meaningful digital experiences through thoughtful design and technical excellence."
+        "Discover the story behind The Digital Craftsperson - my journey, philosophy, and approach to creating meaningful digital experiences through thoughtful design and technical excellence.",
       );
     }
 
@@ -49,11 +49,11 @@ const About = () => {
             {/* Brand Section */}
             <div>
               <h3 className="text-2xl font-bold mb-3 tracking-tight">
-                Ratnakar<span className="text-primary">.</span>
+                Ratnakar Singh Parihar<span className="text-primary">.</span>
               </h3>
               <p className="text-background/80 text-sm leading-relaxed max-w-xs">
-                Turning ideas into impactful digital experiences through clean
-                design, efficient code, and creativity.
+                Crafting modern and scalable web applications with the MERN
+                stack while constantly learning and improving as a developer.
               </p>
 
               {/* Social Icons */}

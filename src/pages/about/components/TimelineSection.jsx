@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Icon from "../../../components/AppIcon";
 import Image from "../../../components/AppImage";
+import schoolImg from "../../../assets/schoolImg/schoolImg.webp";
 
 const TimelineSection = () => {
   const [expanded, setExpanded] = useState(null);
@@ -25,7 +26,8 @@ const TimelineSection = () => {
       institution: "IES University, Bhopal",
       icon: "GraduationCap",
       color: "primary",
-      description: "Final year specialization in MERN stack & scalable systems.",
+      description:
+        "Final year specialization in MERN stack & scalable systems.",
       achievements: [
         "Built advanced MERN projects",
         "Created animation systems",
@@ -54,7 +56,7 @@ const TimelineSection = () => {
         "CSS3",
         "Tailwind CSS",
         "Socket.IO",
-        "Git & GitHub"
+        "Git & GitHub",
       ],
       image:
         "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=1000&q=80",
@@ -82,8 +84,7 @@ const TimelineSection = () => {
       description: "PCM major & early interest in tech.",
       achievements: ["PCM Excellence", "Competitions"],
       technologies: ["", ""],
-      image:
-        "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxYLPWOweouz-hmVdvgf8N2u7cbFlvKTjIOMcaMHZLKSD9e5A7I3Mxj7o8okCtpy5nNNaSgKFNToQKhMFR_tctAYzFdnZYtaO1_hv0Xm5rCsXPNblpdZvk79F7qaw7-9Q_2n-Ag=s1360-w1360-h1020-rw",
+      image: schoolImg,
     },
   ];
 
@@ -93,7 +94,6 @@ const TimelineSection = () => {
 
   return (
     <section className="py-32 relative overflow-hidden">
-
       {/* ✨ Floating Particles Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute w-96 h-96 bg-primary/10 blur-[120px] rounded-full top-10 left-10 animate-pulse"></div>
@@ -115,7 +115,8 @@ const TimelineSection = () => {
             My Learning Timeline
           </h1>
           <p className="mt-4 text-muted-foreground text-lg">
-            A premium futuristic timeline showcasing skills, growth & achievements
+            A premium futuristic timeline showcasing skills, growth &
+            achievements
           </p>
         </motion.div>
 
@@ -146,8 +147,9 @@ const TimelineSection = () => {
 
                   {/* Card */}
                   <div
-                    className={`w-full md:w-5/12 mt-4 ${reverse ? "md:pl-20" : "md:pr-20"
-                      }`}
+                    className={`w-full md:w-5/12 mt-4 ${
+                      reverse ? "md:pl-20" : "md:pr-20"
+                    }`}
                   >
                     <motion.div
                       whileHover={{ y: -10, scale: 1.03 }}
@@ -168,7 +170,9 @@ const TimelineSection = () => {
                           </div>
 
                           <div>
-                            <h3 className="text-xl font-semibold">{item.title}</h3>
+                            <h3 className="text-xl font-semibold">
+                              {item.title}
+                            </h3>
                             <p className="text-sm text-muted-foreground">
                               {item.year} — {item.institution}
                             </p>
@@ -176,7 +180,9 @@ const TimelineSection = () => {
                         </div>
 
                         <Icon
-                          name={expanded === item.id ? "ChevronUp" : "ChevronDown"}
+                          name={
+                            expanded === item.id ? "ChevronUp" : "ChevronDown"
+                          }
                           size={22}
                           className="text-muted-foreground"
                         />
@@ -216,7 +222,10 @@ const TimelineSection = () => {
                             <h4 className="font-semibold mb-2">Highlights</h4>
                             <ul className="space-y-2">
                               {item.achievements.map((ach, a) => (
-                                <li key={a} className="flex gap-2 text-sm text-muted-foreground">
+                                <li
+                                  key={a}
+                                  className="flex gap-2 text-sm text-muted-foreground"
+                                >
                                   <Icon
                                     name="CheckCircle"
                                     size={16}

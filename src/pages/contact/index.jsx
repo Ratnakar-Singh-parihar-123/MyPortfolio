@@ -80,7 +80,7 @@ const ContactPage = () => {
     <div className="min-h-screen bg-background">
       <Header />
       {/* Hero Section */}
-      <section className="pt-16 pb-12 bg-gradient-to-b from-primary/10 via-background to-background">
+      <section className="pt-16 pb-12 bg-gradient-to-b from-primary/10 via-background to-background mt-5">
         <div className="container-brand text-center max-w-2xl mx-auto">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-medium mb-5">
@@ -311,8 +311,8 @@ const ContactPage = () => {
               Ready to Build Something Amazing?
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
-              Let's discuss your project and explore how we can work together to
-              create exceptional digital experiences.
+              Have a project idea or an opportunity to collaborate? Let’s
+              connect and build something amazing together.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
               <button
@@ -334,22 +334,99 @@ const ContactPage = () => {
         </div>
       </section>
       {/* Footer */}
-      <footer className="py-8 border-t border-border bg-background">
+      <footer className="border-t border-border bg-background py-12">
         <div className="container-brand">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <div className="w-8 h-8 bg-gradient-brand rounded-lg flex items-center justify-center">
-                <img
-                  src={logoImg} // image path
-                  alt="RSP Logo"
-                  className="w-7 h-7 object-contain rounded-lg"
-                />
+          <div className="grid gap-10 md:grid-cols-3 items-start">
+            {/* Brand Section */}
+            <div className="flex items-start gap-3">
+              <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 p-[2px]">
+                <div className="flex items-center justify-center w-full h-full bg-background rounded-xl">
+                  <img
+                    src={logoImg}
+                    alt="RSP Logo"
+                    className="w-7 h-7 object-contain rounded-md"
+                  />
+                </div>
               </div>
-              <span className="text-lg font-bold text-foreground">RSP</span>
+
+              <div>
+                <h3 className="text-lg font-semibold text-foreground">
+                  Ratnakar Singh Parihar
+                </h3>
+
+                <p className="text-sm text-muted-foreground mt-1 max-w-xs">
+                  Entry-Level Full-Stack Developer focused on building scalable
+                  web applications using the MERN stack and modern technologies.
+                </p>
+              </div>
             </div>
-            <div className="text-sm text-muted-foreground">
-              © {new Date()?.getFullYear()} RSP. All rights reserved.
+
+            {/* Navigation */}
+            <div className="flex flex-col gap-3 text-sm text-muted-foreground">
+              <span className="font-semibold text-foreground">Quick Links</span>
+
+              <a href="/" className="hover:text-foreground transition-colors">
+                Home
+              </a>
+              <a
+                href="/about"
+                className="hover:text-foreground transition-colors"
+              >
+                About
+              </a>
+              <a
+                href="/projects"
+                className="hover:text-foreground transition-colors"
+              >
+                Projects
+              </a>
+              <a
+                href="/skills"
+                className="hover:text-foreground transition-colors"
+              >
+                Skills
+              </a>
             </div>
+
+            {/* Social Links */}
+            <div className="flex flex-col gap-3">
+              <span className="font-semibold text-foreground text-sm">
+                Connect With Me
+              </span>
+
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://github.com/Ratnakar-Singh-parihar-123"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-md hover:bg-muted transition-all hover:scale-105"
+                >
+                  <Icon name="Github" size={18} />
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/in/ratnakarsinghparihar/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-md hover:bg-muted transition-all hover:scale-105"
+                >
+                  <Icon name="Linkedin" size={18} />
+                </a>
+
+                <a
+                  href="mailto:ratnakarsinghparihar9399@gmail.com"
+                  className="p-2 rounded-md hover:bg-muted transition-all hover:scale-105"
+                >
+                  <Icon name="Mail" size={18} />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Section */}
+          <div className="mt-10 pt-6 border-t border-border text-center text-sm text-muted-foreground">
+            © {new Date().getFullYear()} Ratnakar Singh Parihar. Built with
+            React.js & Tailwind CSS.
           </div>
         </div>
       </footer>

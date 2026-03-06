@@ -36,26 +36,40 @@ const ContactInfo = () => {
     {
       icon: "Linkedin",
       label: "LinkedIn",
-      username: "in/ratnakar-singh-parihar",
-      url: "https://www.linkedin.com/in/ratnakar-singh-parihar-a87528260/",
+      username: "in/ratnakarsinghparihar",
+      url: "https://www.linkedin.com/in/ratnakarsinghparihar/",
     },
   ];
 
   return (
     <div className="space-y-8">
       {/* Availability */}
-      <div className="bg-success/10 border border-success/20 rounded-xl p-5 text-center">
-        <div className="flex items-center justify-center gap-2 mb-2 flex-wrap">
-          <div className="w-2.5 h-2.5 bg-success rounded-full animate-pulse"></div>
-          <h3 className="text-base md:text-lg font-semibold text-success leading-snug">
-            Open to internship, full-time, and freelance opportunities in web development.
-          </h3>
+      <div className="bg-green-500/10 border border-green-500/20 rounded-2xl p-6 text-center max-w-xl mx-auto">
+        {/* Status */}
+        <div className="flex items-center justify-center gap-2 mb-3">
+          <span className="relative flex h-3 w-3">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+          </span>
+
+          <span className="text-sm font-semibold text-green-600">
+            Available for Opportunities
+          </span>
         </div>
-        <p className="text-sm text-muted-foreground">
-          Currently available for freelance and full-time roles.
+
+        {/* Heading */}
+        <h3 className="text-lg md:text-xl font-semibold text-foreground leading-snug">
+          Open to Internship, Entry-Level, Full-Time & Freelance Opportunities
+          in Web Development.
+        </h3>
+
+        {/* Description */}
+        <p className="text-sm text-muted-foreground mt-2 max-w-md mx-auto">
+          Passionate about building modern web applications using the MERN
+          stack. Currently seeking opportunities to contribute, learn, and grow
+          as a developer.
         </p>
       </div>
-
       {/* Contact Details */}
       <div className="space-y-4">
         <h3 className="text-lg font-semibold text-foreground">Get in Touch</h3>
@@ -70,7 +84,9 @@ const ContactInfo = () => {
                   <Icon name={method.icon} size={20} className="text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-medium text-foreground">{method.label}</h4>
+                  <h4 className="font-medium text-foreground">
+                    {method.label}
+                  </h4>
                   <p className="text-sm text-muted-foreground leading-snug">
                     {method.description}
                   </p>
@@ -94,10 +110,11 @@ const ContactInfo = () => {
           ))}
         </div>
       </div>
-
       {/* Social Links */}
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-foreground">Connect with Me</h3>
+        <h3 className="text-lg font-semibold text-foreground">
+          Connect with Me
+        </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {socialLinks.map((social, index) => (
             <a
@@ -124,7 +141,6 @@ const ContactInfo = () => {
           ))}
         </div>
       </div>
-
       {/* Quick Actions */}
       <div className="space-y-3">
         <Button

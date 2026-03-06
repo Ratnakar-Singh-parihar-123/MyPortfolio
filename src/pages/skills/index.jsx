@@ -185,6 +185,25 @@ const Skills = () => {
     },
   ];
 
+  const socialLinks = [
+    {
+      name: "Github",
+      url: "https://github.com/Ratnakar-Singh-parihar-123",
+    },
+    {
+      name: "Linkedin",
+      url: "https://www.linkedin.com/in/ratnakarsinghparihar/",
+    },
+    {
+      name: "Twitter",
+      url: "https://x.com/RatnakarSi85551",
+    },
+    {
+      name: "Email",
+      url: "mailto:ratnakarsinghparihar9399@gmail.com",
+    },
+  ];
+
   const filteredSkills =
     activeFilter === "all"
       ? skillSections
@@ -279,36 +298,36 @@ const Skills = () => {
           </h1>
 
           <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
-            Over 20+ technologies mastered through 2+ years of hands-on
-            development. Each skill represents real project experience and
-            continuous learning.
+            Skilled in 15+ technologies with 2+ years of hands-on experience,
+            gained through building real-world projects and continuously
+            expanding my development expertise.
           </p>
 
           {/* Stats Cards */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-8 sm:mt-12 max-w-2xl mx-auto">
             {[
               {
-                label: "Technologies",
-                value: "20+",
+                label: "Technologies Worked With",
+                value: "15+",
                 icon: "Code",
                 color: "from-blue-500 to-cyan-500",
               },
               {
-                label: "Projects",
-                value: "15+",
+                label: "Projects Built",
+                value: "8+",
                 icon: "FolderOpen",
                 color: "from-purple-500 to-pink-500",
               },
               {
-                label: "Experience",
-                value: "2+ yrs",
+                label: "Hands-on Experience",
+                value: "2+ Years",
                 icon: "Clock",
                 color: "from-orange-500 to-red-500",
               },
               {
-                label: "Commits",
-                value: "1k+",
-                icon: "Git",
+                label: "GitHub Commits",
+                value: "1000+",
+                icon: "GitBranch",
                 color: "from-green-500 to-emerald-500",
               },
             ].map((stat, index) => (
@@ -706,9 +725,9 @@ const Skills = () => {
           {/* Stats */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 sm:mt-12">
             {[
-              { value: "15+", label: "Projects" },
-              { value: "20+", label: "Technologies" },
-              { value: "2+ yrs", label: "Experience" },
+              { value: "8+", label: "Projects" },
+              { value: "15+", label: "Technologies" },
+              { value: "2+ years,Hands-on", label: "Experience" },
               { value: "24/7", label: "Available" },
             ].map((stat, index) => (
               <div key={index} className="text-center">
@@ -745,14 +764,16 @@ const Skills = () => {
               <span>using React & Tailwind CSS</span>
             </p>
 
-            <div className="flex items-center space-x-3">
-              {["Github", "Linkedin", "Twitter"].map((social) => (
+            <div className="flex items-center gap-3">
+              {socialLinks.map((social) => (
                 <a
-                  key={social}
-                  href="#"
-                  className="p-1.5 sm:p-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
+                  key={social.name}
+                  href={social.url}
+                  target=""
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg text-gray-500 hover:text-white hover:bg-gray-900 dark:text-gray-400 dark:hover:bg-white dark:hover:text-black transition-all duration-300"
                 >
-                  <Icon name={social} size={windowWidth < 640 ? 16 : 18} />
+                  <Icon name={social.name} size={18} />
                 </a>
               ))}
             </div>

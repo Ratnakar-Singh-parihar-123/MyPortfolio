@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Icon from "../../../components/AppIcon";
 import Image from "../../../components/AppImage";
-import AboutImg from "../../../assets/heroImg/hero.jpeg";
+import AboutImg from "../../../assets/about/about.jpeg";
+// import schoolImg from "../../../assets/schoolImg/schoolImg.webp";
 
 const HeroSection = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -25,19 +26,42 @@ const HeroSection = () => {
 
   const socialLinks = [
     { name: "github", url: "https://github.com/yourusername", icon: "Github" },
-    { name: "linkedin", url: "https://linkedin.com/in/yourusername", icon: "Linkedin" },
-    { name: "twitter", url: "https://twitter.com/yourusername", icon: "Twitter" },
-    { name: "mail", url: "mailto:ratnakarsinghparihar9399@gmail.com", icon: "Mail" },
+    {
+      name: "linkedin",
+      url: "https://linkedin.com/in/yourusername",
+      icon: "Linkedin",
+    },
+    {
+      name: "twitter",
+      url: "https://twitter.com/yourusername",
+      icon: "Twitter",
+    },
+    {
+      name: "mail",
+      url: "mailto:ratnakarsinghparihar9399@gmail.com",
+      icon: "Mail",
+    },
   ];
 
   const stats = [
-    { value: "15+", label: "Projects", icon: "FolderOpen" },
-    { value: "2+", label: "Years Exp", icon: "Calendar" },
-    { value: "260+", label: "LeetCode", icon: "Code" },
-    { value: "10+", label: "Skills", icon: "Layers" },
+    { value: "8+", label: "Projects", icon: "FolderOpen" },
+    { value: "2+", label: "Years handExp", icon: "Calendar" },
+    // { value: "260+", label: "LeetCode", icon: "Code" },
+    { value: "15+", label: "Skills", icon: "Layers" },
   ];
 
-  const techStack = ["React", "Next.js", "Node.js", "MongoDB", "TypeScript", "Tailwind", "Express", "GraphQL"];
+  const techStack = [
+    "React",
+    "JavaScript.js",
+    "Node.js",
+    "MongoDB",
+    // "TypeScript",
+    "Tailwind",
+    "Express",
+    "SQL",
+    "java",
+    // "GraphQL",
+  ];
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
@@ -106,8 +130,12 @@ const HeroSection = () => {
                 <span className="text-white">👋</span>
               </motion.div>
               <div>
-                <p className="text-sm font-medium text-gray-600 dark:text-gray-300">Hello there! I'm</p>
-                <p className="text-lg font-bold text-gray-900 dark:text-white">Ratnakar Singh Parihar</p>
+                <p className="text-sm font-medium text-gray-600 dark:text-gray-300">
+                  Hello there! I'm
+                </p>
+                <p className="text-lg font-bold text-gray-900 dark:text-white">
+                  Ratnakar Singh Parihar
+                </p>
               </div>
             </motion.div>
 
@@ -119,7 +147,9 @@ const HeroSection = () => {
                 transition={{ delay: 0.3, duration: 0.6 }}
                 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
               >
-                <span className="block text-gray-900 dark:text-white">Crafting</span>
+                <span className="block text-gray-900 dark:text-white">
+                  Crafting
+                </span>
                 <span className="relative inline-block">
                   <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
                     Digital Magic
@@ -130,7 +160,9 @@ const HeroSection = () => {
                     className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
                   />
                 </span>
-                <span className="block text-gray-900 dark:text-white">With Code</span>
+                <span className="block text-gray-900 dark:text-white">
+                  With Code
+                </span>
               </motion.h1>
 
               <motion.p
@@ -139,7 +171,7 @@ const HeroSection = () => {
                 transition={{ delay: 0.5, duration: 0.6 }}
                 className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto lg:mx-0"
               >
-                Full-Stack Developer • UI/UX Designer • Problem Solver
+                Full-Stack Developer • Mern Stack Dev.. • Problem Solver
               </motion.p>
             </div>
 
@@ -150,9 +182,13 @@ const HeroSection = () => {
               transition={{ delay: 0.6, duration: 0.6 }}
               className="text-lg text-gray-500 dark:text-gray-400 leading-relaxed max-w-2xl mx-auto lg:mx-0"
             >
-              I specialize in building modern, responsive web applications using the{" "}
-              <span className="font-semibold text-blue-600 dark:text-blue-400">MERN stack</span>. 
-              Passionate about creating seamless user experiences and scalable solutions that make an impact.
+              I specialize in building modern, responsive web applications using
+              the{" "}
+              <span className="font-semibold text-blue-600 dark:text-blue-400">
+                MERN stack
+              </span>
+              . Passionate about creating seamless user experiences and scalable
+              solutions that make an impact.
             </motion.p>
 
             {/* Stats Grid */}
@@ -199,20 +235,37 @@ const HeroSection = () => {
                 <span className="relative flex items-center justify-center gap-3">
                   <Icon name="FolderKanban" size={22} />
                   View My Projects
-                  <Icon name="ArrowRight" size={18} className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                  <Icon
+                    name="ArrowRight"
+                    size={18}
+                    className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"
+                  />
                 </span>
               </motion.button>
 
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => window.open("mailto:ratnakarsinghparihar9399@gmail.com", "_blank")}
+                onClick={() =>
+                  window.open(
+                    "mailto:ratnakarsinghparihar9399@gmail.com",
+                    "_blank",
+                  )
+                }
                 className="group bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-2 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white px-8 py-4 rounded-xl font-semibold text-lg hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-300"
               >
                 <span className="flex items-center justify-center gap-3">
-                  <Icon name="MessageSquare" size={22} className="text-blue-600 dark:text-blue-400" />
+                  <Icon
+                    name="MessageSquare"
+                    size={22}
+                    className="text-blue-600 dark:text-blue-400"
+                  />
                   Get In Touch
-                  <Icon name="ExternalLink" size={16} className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                  <Icon
+                    name="ExternalLink"
+                    size={16}
+                    className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"
+                  />
                 </span>
               </motion.button>
             </motion.div>
@@ -259,14 +312,22 @@ const HeroSection = () => {
                     transition={{ duration: 4, repeat: Infinity }}
                     className="absolute -top-6 -left-6 w-20 h-20 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-2xl border border-blue-200/20 dark:border-blue-500/10 backdrop-blur-sm flex items-center justify-center"
                   >
-                    <Icon name="Sparkles" size={24} className="text-blue-500 dark:text-blue-400" />
+                    <Icon
+                      name="Sparkles"
+                      size={24}
+                      className="text-blue-500 dark:text-blue-400"
+                    />
                   </motion.div>
                   <motion.div
                     animate={{ y: [0, 20, 0] }}
                     transition={{ duration: 5, repeat: Infinity, delay: 1 }}
                     className="absolute -bottom-6 -right-6 w-16 h-16 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-2xl border border-purple-200/20 dark:border-purple-500/10 backdrop-blur-sm flex items-center justify-center"
                   >
-                    <Icon name="Code" size={20} className="text-purple-500 dark:text-purple-400" />
+                    <Icon
+                      name="Code"
+                      size={20}
+                      className="text-purple-500 dark:text-purple-400"
+                    />
                   </motion.div>
                 </>
               )}
@@ -278,7 +339,7 @@ const HeroSection = () => {
               >
                 {/* Gradient Border */}
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-3xl opacity-30 blur-xl"></div>
-                
+
                 {/* Image */}
                 <div className="relative rounded-3xl overflow-hidden border-8 border-white dark:border-gray-900 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
                   <Image
@@ -286,39 +347,12 @@ const HeroSection = () => {
                     alt="Ratnakar Singh Parihar - Full Stack Developer"
                     className="w-full h-[500px] sm:h-[600px] object-cover object-center"
                   />
-                  
+
                   {/* Overlay Gradient */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
-                  
+
                   {/* Interactive Badge */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.2, duration: 0.6 }}
-                    className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50 rounded-2xl p-4 shadow-2xl min-w-[280px]"
-                  >
-                    <div className="flex items-center gap-4">
-                      <div className="relative">
-                        <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center">
-                          <Icon name="Cpu" size={24} className="text-white" />
-                        </div>
-                        <motion.div
-                          animate={{ rotate: 360 }}
-                          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                          className="absolute -inset-2 border-2 border-blue-500/20 rounded-xl"
-                        />
-                      </div>
-                      <div className="flex-1">
-                        <p className="font-bold text-gray-900 dark:text-white text-sm sm:text-base">Currently Building</p>
-                        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">
-                          Innovative MERN Stack Applications
-                        </p>
-                      </div>
-                      <div className="text-xs px-3 py-1 bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-600 dark:text-blue-400 rounded-full font-semibold">
-                        Active
-                      </div>
-                    </div>
-                  </motion.div>
+                  {/*  */}
                 </div>
               </motion.div>
             </div>
@@ -326,7 +360,6 @@ const HeroSection = () => {
         </div>
 
         {/* Bottom Elements */}
-      
       </div>
     </section>
   );

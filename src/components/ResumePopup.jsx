@@ -1,33 +1,50 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  X, Download, Printer, Eye, FileText, Award,
-  Briefcase, GraduationCap, Star, Mail, Phone,
-  MapPin, Menu, Maximize2, Minimize2, ZoomIn,
-  ZoomOut, RotateCcw, Smartphone, Monitor,
-  ChevronDown, ChevronUp, ExternalLink, Link,
-  CheckCircle, Clock, User, Globe, Sparkles,
-  Shield, Lock, FileCheck, BarChart3, Code,
-  Database, Cloud, Cpu, Smartphone as SmartphoneIcon,
-  Tablet, Laptop, Heart, ThumbsUp, TrendingUp,
-  Users, GitBranch, Zap, Target, DownloadCloud,
-  Share2, Copy, Check, Edit3, BookOpen,
-  Coffee, Moon, Sun, Wifi, WifiOff, Search,
-  Filter, Grid, List, Settings, HelpCircle,
-  Info, AlertCircle, Bell, Star as StarIcon,
-  Calendar, Map, Navigation, Compass, Flag,
-  Gift, Package, ShoppingBag, Truck, CreditCard,
-  DollarSign, Percent, TrendingDown, RefreshCw,
-  RotateCw, Play, Pause, StopCircle, SkipBack,
-  SkipForward, FastForward, Rewind, Volume2,
-  VolumeX, Headphones, Mic, Video, Camera,
-  Image, Film, Music, Radio, Tv, Gamepad2,
-  Book, Newspaper, PenTool, Brush, Palette,
-  Camera as CameraIcon, Film as FilmIcon,
-  Music as MusicIcon, Gamepad2 as GamepadIcon
+import {
+  X,
+  Download,
+  Printer,
+  Eye,
+  FileText,
+  Award,
+  Briefcase,
+  GraduationCap,
+  Star,
+  Mail,
+  Phone,
+  MapPin,
+  Menu,
+  Maximize2,
+  Minimize2,
+  ZoomIn,
+  ZoomOut,
+  ChevronDown,
+  ChevronUp,
+  ExternalLink,
+  CheckCircle,
+  Clock,
+  User,
+  Sparkles,
+  Shield,
+  FileCheck,
+  BarChart3,
+  Code,
+  Database,
+  Cloud,
+  Cpu,
+  Smartphone as SmartphoneIcon,
+  Tablet,
+  Laptop,
+  Heart,
+  Users,
+  GitBranch,
+  Zap,
+  Share2,
+  Copy,
+  Check,
+  RefreshCw,
+  Calendar,
 } from "lucide-react";
-import Icon from "./AppIcon";
-import Button from "./ui/Button";
 import resumefile from "../assets/resume/Ratnakar_Singh_Parihar.pdf";
 
 const ResumePopup = ({ isOpen, onClose }) => {
@@ -37,7 +54,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
   const [deviceType, setDeviceType] = useState({
     isMobile: false,
     isTablet: false,
-    isDesktop: false
+    isDesktop: false,
   });
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [pdfLoaded, setPdfLoaded] = useState(false);
@@ -47,8 +64,6 @@ const ResumePopup = ({ isOpen, onClose }) => {
   const [downloadProgress, setDownloadProgress] = useState(0);
   const [isPrinting, setIsPrinting] = useState(false);
   const [showTooltip, setShowTooltip] = useState(null);
-  const [darkMode, setDarkMode] = useState(false);
-  const [showShareMenu, setShowShareMenu] = useState(false);
   const [copied, setCopied] = useState(false);
   const [showStats, setShowStats] = useState(false);
 
@@ -65,13 +80,13 @@ const ResumePopup = ({ isOpen, onClose }) => {
       setDeviceType({
         isMobile: width < 768,
         isTablet: width >= 768 && width < 1024,
-        isDesktop: width >= 1024
+        isDesktop: width >= 1024,
       });
     };
 
     checkDevice();
-    window.addEventListener('resize', checkDevice);
-    return () => window.removeEventListener('resize', checkDevice);
+    window.addEventListener("resize", checkDevice);
+    return () => window.removeEventListener("resize", checkDevice);
   }, []);
 
   // Event Handlers and Effects
@@ -103,11 +118,11 @@ const ResumePopup = ({ isOpen, onClose }) => {
     };
 
     document.addEventListener("keydown", handleEscape);
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
 
     if (isOpen) {
       document.body.style.overflow = "hidden";
-      
+
       // Simulate PDF loading
       const timer = setTimeout(() => {
         setPdfLoaded(true);
@@ -119,7 +134,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
 
     return () => {
       document.removeEventListener("keydown", handleEscape);
-      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
       document.body.style.overflow = "unset";
       setShowMobileMenu(false);
       setScale(1);
@@ -147,14 +162,14 @@ const ResumePopup = ({ isOpen, onClose }) => {
 
   // Zoom Functions
   const handleZoomIn = useCallback(() => {
-    setScale(prev => {
+    setScale((prev) => {
       const newScale = Math.min(prev + 0.1, 3);
       return Math.round(newScale * 10) / 10;
     });
   }, []);
 
   const handleZoomOut = useCallback(() => {
-    setScale(prev => {
+    setScale((prev) => {
       const newScale = Math.max(prev - 0.1, 0.3);
       return Math.round(newScale * 10) / 10;
     });
@@ -174,13 +189,13 @@ const ResumePopup = ({ isOpen, onClose }) => {
   // Navigation
   const handleNextPage = useCallback(() => {
     if (currentPage < totalPages) {
-      setCurrentPage(prev => prev + 1);
+      setCurrentPage((prev) => prev + 1);
     }
   }, [currentPage, totalPages]);
 
   const handlePrevPage = useCallback(() => {
     if (currentPage > 1) {
-      setCurrentPage(prev => prev - 1);
+      setCurrentPage((prev) => prev - 1);
     }
   }, [currentPage]);
 
@@ -188,7 +203,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
   const handleDownload = useCallback(() => {
     setDownloadProgress(0);
     const interval = setInterval(() => {
-      setDownloadProgress(prev => {
+      setDownloadProgress((prev) => {
         if (prev >= 95) {
           clearInterval(interval);
           return 95;
@@ -200,7 +215,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
     setTimeout(() => {
       clearInterval(interval);
       setDownloadProgress(100);
-      
+
       const link = document.createElement("a");
       link.href = resumefile;
       link.download = "Ratnakar_Singh_Parihar_Resume.pdf";
@@ -215,7 +230,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
   const handlePrint = useCallback(() => {
     setIsPrinting(true);
     const printWindow = window.open(resumefile, "_blank");
-    
+
     setTimeout(() => {
       if (printWindow) {
         printWindow.focus();
@@ -238,12 +253,12 @@ const ResumePopup = ({ isOpen, onClose }) => {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: 'Ratnakar Singh Parihar - Resume',
-          text: 'Check out my professional resume',
+          title: "Ratnakar Singh Parihar - Resume",
+          text: "Check out my professional resume",
           url: window.location.href,
         });
       } catch (err) {
-        console.log('Error sharing:', err);
+        console.log("Error sharing:", err);
       }
     } else {
       navigator.clipboard.writeText(window.location.href);
@@ -254,49 +269,45 @@ const ResumePopup = ({ isOpen, onClose }) => {
 
   // Tabs Configuration
   const tabs = [
-    { 
-      id: "preview", 
-      label: "PDF Preview", 
-      icon: FileText, 
+    {
+      id: "preview",
+      label: "PDF Preview",
+      icon: FileText,
       mobileLabel: "PDF",
-      color: "from-blue-500 to-blue-600"
+      color: "from-blue-500 to-blue-600",
     },
-    { 
-      id: "details", 
-      label: "Detailed View", 
-      icon: Eye, 
+    {
+      id: "details",
+      label: "Detailed View",
+      icon: Eye,
       mobileLabel: "Details",
-      color: "from-purple-500 to-purple-600"
+      color: "from-purple-500 to-purple-600",
     },
-    { 
-      id: "stats", 
-      label: "Statistics", 
-      icon: BarChart3, 
+    {
+      id: "stats",
+      label: "Statistics",
+      icon: BarChart3,
       mobileLabel: "Stats",
-      color: "from-emerald-500 to-emerald-600"
+      color: "from-emerald-500 to-emerald-600",
     },
   ];
 
   // Data
   const skills = {
-    "Frontend": [
+    Frontend: [
       { name: "React.js", level: 95, icon: Code },
-      { name: "Next.js", level: 90, icon: Code },
-      // { name: "TypeScript", level: 85, icon: Code },
       { name: "JavaScript", level: 95, icon: Code },
       { name: "HTML5", level: 98, icon: Code },
       { name: "CSS3", level: 95, icon: Code },
-      { name: "Tailwind CSS", level: 90, icon: Palette },
-      { name: "Material-UI", level: 85, icon: Palette }
+      { name: "Tailwind CSS", level: 90, icon: Code },
     ],
-    "Backend": [
+    Backend: [
       { name: "Node.js", level: 88, icon: Database },
       { name: "Express.js", level: 85, icon: Database },
       { name: "MongoDB", level: 82, icon: Database },
       { name: "REST APIs", level: 90, icon: Cloud },
       { name: "JWT Auth", level: 85, icon: Shield },
       { name: "Socket.io", level: 80, icon: Cpu },
-      { name: "Redis", level: 75, icon: Database }
     ],
     "Tools & DevOps": [
       { name: "Git", level: 90, icon: GitBranch },
@@ -304,80 +315,137 @@ const ResumePopup = ({ isOpen, onClose }) => {
       { name: "VS Code", level: 98, icon: Code },
       { name: "Postman", level: 85, icon: Cloud },
       { name: "Vercel", level: 80, icon: Cloud },
-      // { name: "Netlify", level: 80, icon: Cloud },
-      // { name: "Docker", level: 70, icon: Package },
-      // { name: "AWS", level: 65, icon: Cloud }
-    ]
+      { name: "Netlify", level: 80, icon: Cloud },
+    ],
   };
 
   const experience = [
     {
-      title: "Full-Stack Developer",
-      company: "PortfolioStudio",
-      period: "Jun 2023 - Present",
+      title: "Freelance Full-Stack Developer",
+      company: "Independent Client Projects",
+      period: "Aug 2025 - Sep 2025",
       location: "Remote",
-      type: "Full-time",
+      type: "Freelance",
       achievements: [
-        "Developed and maintained 15+ responsive web applications using React and Node.js",
-        "Improved application performance by 40% through code optimization techniques",
-        "Implemented modern UI/UX designs that increased user engagement by 60%",
-        "Collaborated with cross-functional teams using Agile methodologies"
+        "Developed responsive web applications for small business clients using the MERN stack",
+        "Built modern UI interfaces with React and Tailwind CSS to improve user experience",
+        "Integrated REST APIs and optimized application performance",
+        "Delivered client requirements within deadlines and provided post-deployment support",
       ],
-      tech: ["React", "Node.js", "MongoDB", "AWS", "Docker"]
+      tech: ["React", "Node.js", "Express", "MongoDB", "Tailwind"],
     },
     {
-      title: "Frontend Developer",
-      company: "TechCorp Solutions",
-      period: "Jan 2023 - May 2023",
-      location: "Remote",
-      type: "Contract",
+      title: "Hands-On Full-Stack Development Practice",
+      company: "Personal & Learning Projects",
+      period: "2024 - Present",
+      location: "Self-Learning",
+      type: "Hands-On Experience",
       achievements: [
-        "Built responsive user interfaces for 10+ client projects",
-        "Optimized web applications for performance achieving 95+ Lighthouse scores",
-        "Worked with REST APIs and implemented state management solutions",
-        "Participated in code reviews and contributed to team knowledge sharing"
+        "Built 10+ full-stack projects including booking systems, authentication apps, and dashboards",
+        "Implemented secure authentication using JWT and role-based access control",
+        "Integrated payment gateway (Razorpay) and real-time features using Socket.io",
+        "Focused on clean UI design and scalable backend architecture",
       ],
-      tech: ["React",  "Tailwind"]
-    }
+      tech: ["React", "Node.js", "Express", "MongoDB", "Tailwind", "JWT"],
+    },
   ];
 
   const education = [
     {
       degree: "Bachelor of Technology in Computer Science",
       institution: "Graphic Era Hill University",
-      period: "2021 - 2025",
+      period: "2022 - 2026",
       details: "Specialized in Web Development and Data Structures",
-      gpa: "CGPA: 8.5/10",
-      courses: ["Web Technologies", "Data Structures", "Algorithms", "Database Systems"]
-    }
+      gpa: "CGPA: 8.01/10",
+      courses: [
+        "Web Technologies",
+        "Data Structures",
+        "Algorithms",
+        "Database Systems",
+      ],
+    },
   ];
 
   const certifications = [
-    { name: "AWS Certified Cloud Practitioner", issuer: "Amazon", year: "2024", icon: Award },
-    { name: "MongoDB Certified Developer", issuer: "MongoDB", year: "2024", icon: Database },
-    { name: "Google Cloud Digital Leader", issuer: "Google", year: "2023", icon: Cloud },
-    { name: "Microsoft Azure Fundamentals", issuer: "Microsoft", year: "2023", icon: Cloud }
-  ];
-
-  const awards = [
-    { title: "Best Project Award", issuer: "University Hackathon", year: "2024", icon: Award },
-    { title: "Outstanding Performance", issuer: "PortfolioStudio", year: "2023", icon: StarIcon },
-    { title: "Coding Competition Winner", issuer: "GeeksforGeeks", year: "2023", icon: Zap }
+    {
+      name: "Problem Solving (Basic)",
+      issuer: "HackerRank",
+      year: "2025",
+      icon: Award,
+    },
+    {
+      name: "Problem Solving (Intermediate)",
+      issuer: "HackerRank",
+      year: "2025",
+      icon: Award,
+    },
+    {
+      name: "JavaScript (Basic)",
+      issuer: "HackerRank",
+      year: "2025",
+      icon: Code,
+    },
+    {
+      name: "React (Basic)",
+      issuer: "HackerRank",
+      year: "2025",
+      icon: Code,
+    },
+    {
+      name: "Frontend Development (React)",
+      issuer: "HackerRank",
+      year: "2025",
+      icon: Code,
+    },
+    {
+      name: "45 Days Coding Challenge",
+      issuer: "Coding Thinker",
+      year: "2025",
+      icon: Award,
+    },
   ];
 
   const stats = {
     coding: [
-      { label: "LeetCode Problems", value: "260+", icon: Code, color: "text-blue-500" },
-      // { label: "GitHub Contributions", value: "1500+", icon: GitBranch, color: "text-green-500" },
-      { label: "Projects Completed", value: "8+", icon: Briefcase, color: "text-purple-500" },
-      { label: "Years Experience", value: "Fresher", icon: Calendar, color: "text-amber-500" }
+      {
+        label: "Projects Completed",
+        value: "8+",
+        icon: Briefcase,
+        color: "text-purple-500",
+      },
+      {
+        label: "Hands-on Experience",
+        value: "2+ Years Learning & Projects",
+        icon: Calendar,
+        color: "text-amber-500",
+      },
     ],
     performance: [
-      { label: "Code Quality", value: "95%", icon: Star, color: "text-emerald-500" },
-      { label: "Project Delivery", value: "100%", icon: CheckCircle, color: "text-green-500" },
-      { label: "Client Satisfaction", value: "98%", icon: Heart, color: "text-red-500" },
-      { label: "Bug Resolution", value: "99%", icon: Shield, color: "text-blue-500" }
-    ]
+      {
+        label: "Code Quality",
+        value: "88%",
+        icon: Star,
+        color: "text-emerald-500",
+      },
+      {
+        label: "Project Delivery",
+        value: "100%",
+        icon: CheckCircle,
+        color: "text-green-500",
+      },
+      {
+        label: "Client Satisfaction",
+        value: "90%",
+        icon: Heart,
+        color: "text-red-500",
+      },
+      {
+        label: "Bug Resolution",
+        value: "80%",
+        icon: Shield,
+        color: "text-blue-500",
+      },
+    ],
   };
 
   const zoomLevels = [0.5, 0.75, 1, 1.25, 1.5, 2, 3];
@@ -385,40 +453,38 @@ const ResumePopup = ({ isOpen, onClose }) => {
   // Animation Variants
   const backdropVariants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
       transition: {
         duration: 0.3,
-        ease: "easeInOut"
-      }
+        ease: "easeInOut",
+      },
     },
     exit: {
       opacity: 0,
       transition: {
         duration: 0.2,
-        ease: "easeIn"
-      }
-    }
+        ease: "easeIn",
+      },
+    },
   };
 
   const modalVariants = {
-    hidden: { 
+    hidden: {
       opacity: 0,
       scale: 0.95,
       y: 20,
-      rotateX: 5
     },
-    visible: { 
+    visible: {
       opacity: 1,
       scale: 1,
       y: 0,
-      rotateX: 0,
       transition: {
         type: "spring",
         damping: 25,
         stiffness: 400,
-        mass: 0.8
-      }
+        mass: 0.8,
+      },
     },
     exit: {
       opacity: 0,
@@ -426,9 +492,9 @@ const ResumePopup = ({ isOpen, onClose }) => {
       y: 20,
       transition: {
         duration: 0.2,
-        ease: "easeIn"
-      }
-    }
+        ease: "easeIn",
+      },
+    },
   };
 
   // Component for Skill Progress Bar
@@ -469,7 +535,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
     >
       {/* Timeline indicator */}
       <div className="absolute -left-3 top-6 w-6 h-6 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 border-4 border-white dark:border-gray-800" />
-      
+
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-4">
         <div className="flex-1">
           <div className="flex items-center gap-3 mb-2">
@@ -491,7 +557,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
               </div>
             </div>
           </div>
-          
+
           <div className="flex flex-wrap gap-2 mt-3">
             {exp.tech.map((tech, i) => (
               <span
@@ -503,7 +569,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
             ))}
           </div>
         </div>
-        
+
         <div className="flex flex-col items-end gap-2">
           <span className="px-3 py-1.5 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-700 dark:text-blue-300 text-sm font-bold rounded-full">
             {exp.period}
@@ -513,7 +579,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
           </span>
         </div>
       </div>
-      
+
       <ul className="space-y-3">
         {exp.achievements.map((achievement, i) => (
           <motion.li
@@ -548,7 +614,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
             <div className="absolute inset-0 bg-gradient-to-br from-black/95 via-gray-900/95 to-black/95" />
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/30 via-transparent to-purple-900/30" />
             <div className="absolute inset-0 backdrop-blur-xl" />
-            <div 
+            <div
               className="absolute inset-0 cursor-pointer"
               onClick={onClose}
             />
@@ -563,10 +629,11 @@ const ResumePopup = ({ isOpen, onClose }) => {
               animate="visible"
               exit="exit"
               className={`relative bg-gradient-to-br from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 w-full h-screen sm:h-auto sm:max-h-[95vh] sm:max-w-7xl overflow-hidden border-0 sm:border border-gray-200/50 dark:border-gray-700/50 ${
-                deviceType.isMobile ? 'rounded-none' : 'rounded-3xl'
+                deviceType.isMobile ? "rounded-none" : "rounded-3xl"
               }`}
               style={{
-                boxShadow: "0 32px 64px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1)",
+                boxShadow:
+                  "0 32px 64px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1)",
               }}
               onClick={(e) => e.stopPropagation()}
             >
@@ -578,7 +645,11 @@ const ResumePopup = ({ isOpen, onClose }) => {
                     {/* Animated Logo */}
                     <motion.div
                       animate={{ rotate: [0, 360] }}
-                      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                      transition={{
+                        duration: 20,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
                       className="relative flex-shrink-0"
                     >
                       <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 via-blue-600 to-purple-600 flex items-center justify-center shadow-lg shadow-blue-500/30">
@@ -610,18 +681,24 @@ const ResumePopup = ({ isOpen, onClose }) => {
                           ) : (
                             <Laptop className="w-3 h-3" />
                           )}
-                          {deviceType.isMobile ? "Mobile" : deviceType.isTablet ? "Tablet" : "Desktop"}
+                          {deviceType.isMobile
+                            ? "Mobile"
+                            : deviceType.isTablet
+                              ? "Tablet"
+                              : "Desktop"}
                         </motion.span>
                       </div>
-                      
+
                       <div className="flex items-center gap-3">
                         <p className="text-sm text-gray-600 dark:text-gray-400 truncate">
                           Ratnakar Singh Parihar • Full-Stack Developer
                         </p>
                         <div className="flex items-center gap-1">
-                          <div className={`w-2 h-2 rounded-full ${pdfLoaded ? 'bg-green-500 animate-pulse' : 'bg-yellow-500'}`} />
+                          <div
+                            className={`w-2 h-2 rounded-full ${pdfLoaded ? "bg-green-500 animate-pulse" : "bg-yellow-500"}`}
+                          />
                           <span className="text-xs text-gray-500">
-                            {pdfLoaded ? 'Online' : 'Loading...'}
+                            {pdfLoaded ? "Online" : "Loading..."}
                           </span>
                         </div>
                       </div>
@@ -668,12 +745,12 @@ const ResumePopup = ({ isOpen, onClose }) => {
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       whileTap={{ scale: 0.9 }}
                       onClick={handleShare}
-                      onMouseEnter={() => showTooltipDelayed('share')}
+                      onMouseEnter={() => showTooltipDelayed("share")}
                       onMouseLeave={hideTooltip}
                       className="relative p-2.5 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-600 dark:text-blue-400 hover:from-blue-100 hover:to-blue-200 dark:hover:from-blue-800/40 dark:hover:to-blue-700/40 transition-all"
                     >
                       <Share2 className="w-5 h-5" />
-                      {showTooltip === 'share' && (
+                      {showTooltip === "share" && (
                         <div className="absolute top-full right-0 mt-2 px-3 py-2 bg-gray-900 text-white text-xs font-medium rounded-lg whitespace-nowrap z-50">
                           Share Resume
                         </div>
@@ -731,7 +808,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                             className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold transition-all ${
                               isActive
                                 ? `bg-gradient-to-r ${tab.color} text-white shadow-lg`
-                                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
+                                : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
                             }`}
                           >
                             <IconComponent className="w-4 h-4" />
@@ -755,7 +832,9 @@ const ResumePopup = ({ isOpen, onClose }) => {
                   >
                     <div className="p-4 space-y-4">
                       <div className="flex items-center justify-between">
-                        <h3 className="font-bold text-gray-900 dark:text-white">Quick Actions</h3>
+                        <h3 className="font-bold text-gray-900 dark:text-white">
+                          Quick Actions
+                        </h3>
                         <button
                           onClick={() => setShowMobileMenu(false)}
                           className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
@@ -767,7 +846,9 @@ const ResumePopup = ({ isOpen, onClose }) => {
                       {activeTab === "preview" && (
                         <div className="space-y-3">
                           <div className="flex items-center justify-between px-3 py-2.5 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl">
-                            <span className="text-sm font-medium">Zoom Level</span>
+                            <span className="text-sm font-medium">
+                              Zoom Level
+                            </span>
                             <span className="text-lg font-bold text-blue-600 dark:text-blue-400">
                               {Math.round(scale * 100)}%
                             </span>
@@ -783,7 +864,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                               onClick={handleResetZoom}
                               className="p-3 bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-600 dark:text-blue-400 rounded-xl text-sm font-medium col-span-2"
                             >
-                              Reset Zoom
+                              Reset
                             </button>
                             <button
                               onClick={handleZoomIn}
@@ -820,7 +901,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                             </div>
                           )}
                         </button>
-                        
+
                         <button
                           onClick={handlePrint}
                           className="w-full flex items-center gap-3 px-3 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl"
@@ -830,14 +911,18 @@ const ResumePopup = ({ isOpen, onClose }) => {
                           {isPrinting && (
                             <motion.div
                               animate={{ rotate: 360 }}
-                              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                              transition={{
+                                duration: 1,
+                                repeat: Infinity,
+                                ease: "linear",
+                              }}
                               className="ml-auto"
                             >
                               <RefreshCw className="w-4 h-4" />
                             </motion.div>
                           )}
                         </button>
-                        
+
                         <button
                           onClick={handleFullscreen}
                           className="w-full flex items-center gap-3 px-3 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl"
@@ -847,7 +932,11 @@ const ResumePopup = ({ isOpen, onClose }) => {
                           ) : (
                             <Maximize2 className="w-4 h-4" />
                           )}
-                          <span>{isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'}</span>
+                          <span>
+                            {isFullscreen
+                              ? "Exit Fullscreen"
+                              : "Enter Fullscreen"}
+                          </span>
                         </button>
 
                         <button
@@ -867,11 +956,11 @@ const ResumePopup = ({ isOpen, onClose }) => {
               <div
                 className="overflow-y-auto"
                 style={{
-                  maxHeight: deviceType.isMobile 
-                    ? "calc(100vh - 180px)" 
-                    : deviceType.isTablet 
-                    ? "calc(95vh - 140px)" 
-                    : "calc(95vh - 120px)"
+                  maxHeight: deviceType.isMobile
+                    ? "calc(100vh - 180px)"
+                    : deviceType.isTablet
+                      ? "calc(95vh - 140px)"
+                      : "calc(95vh - 120px)",
                 }}
               >
                 {/* PDF Preview Tab */}
@@ -901,7 +990,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                                 Reset
                               </button>
                             </div>
-                            
+
                             <div className="flex items-center gap-2">
                               <motion.button
                                 whileHover={{ scale: 1.1 }}
@@ -911,14 +1000,16 @@ const ResumePopup = ({ isOpen, onClose }) => {
                               >
                                 <ZoomOut className="w-4 h-4" />
                               </motion.button>
-                              
+
                               <div className="relative">
                                 <select
                                   value={scale}
-                                  onChange={(e) => setScale(parseFloat(e.target.value))}
+                                  onChange={(e) =>
+                                    setScale(parseFloat(e.target.value))
+                                  }
                                   className="appearance-none w-24 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-sm font-semibold text-gray-800 dark:text-gray-200 px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 >
-                                  {zoomLevels.map(level => (
+                                  {zoomLevels.map((level) => (
                                     <option key={level} value={level}>
                                       {Math.round(level * 100)}%
                                     </option>
@@ -926,7 +1017,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                                 </select>
                                 <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 pointer-events-none text-gray-500" />
                               </div>
-                              
+
                               <motion.button
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
@@ -956,7 +1047,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                                 >
                                   <ChevronUp className="w-4 h-4" />
                                 </motion.button>
-                                
+
                                 <div className="text-center">
                                   <div className="text-sm font-bold text-gray-800 dark:text-gray-200">
                                     Page {currentPage}
@@ -965,7 +1056,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                                     of {totalPages}
                                   </div>
                                 </div>
-                                
+
                                 <motion.button
                                   whileHover={{ scale: 1.1 }}
                                   whileTap={{ scale: 0.9 }}
@@ -1022,10 +1113,10 @@ const ResumePopup = ({ isOpen, onClose }) => {
                         <div
                           className="mx-auto overflow-auto"
                           style={{
-                            maxWidth: '794px',
+                            maxWidth: "794px",
                             transform: `scale(${scale})`,
-                            transformOrigin: 'top center',
-                            minHeight: deviceType.isMobile ? '500px' : '700px'
+                            transformOrigin: "top center",
+                            minHeight: deviceType.isMobile ? "500px" : "700px",
                           }}
                         >
                           <iframe
@@ -1055,7 +1146,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                               <span>Updated: Jan 2024</span>
                             </div>
                           </div>
-                          
+
                           <div className="flex items-center gap-3">
                             <div className="flex items-center gap-2">
                               <div className="p-1.5 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
@@ -1093,7 +1184,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                             Full-Stack Developer & Problem Solver
                           </h2>
                         </div>
-                        
+
                         <div className="flex flex-wrap justify-center gap-3">
                           {stats.coding.map((stat, idx) => (
                             <motion.div
@@ -1104,7 +1195,11 @@ const ResumePopup = ({ isOpen, onClose }) => {
                               whileHover={{ scale: 1.05, y: -5 }}
                               className="text-center px-4 py-3 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl border border-gray-200/50 dark:border-gray-700/50 shadow-lg"
                             >
-                              <div className={`text-2xl font-bold ${stat.color}`}>{stat.value}</div>
+                              <div
+                                className={`text-2xl font-bold ${stat.color}`}
+                              >
+                                {stat.value}
+                              </div>
                               <div className="text-xs font-medium text-gray-600 dark:text-gray-400 mt-1">
                                 {stat.label}
                               </div>
@@ -1122,7 +1217,9 @@ const ResumePopup = ({ isOpen, onClose }) => {
                       >
                         <div className="flex items-center justify-center gap-3 px-4 py-3 bg-gray-50 dark:bg-gray-800/50 rounded-xl">
                           <Mail className="w-5 h-5" />
-                          <span className="truncate">ratnakarsinghparihar9399@gmail.com</span>
+                          <span className="truncate">
+                            ratnakarsinghparihar9399@gmail.com
+                          </span>
                         </div>
                         <div className="flex items-center justify-center gap-3 px-4 py-3 bg-gray-50 dark:bg-gray-800/50 rounded-xl">
                           <Phone className="w-5 h-5" />
@@ -1154,10 +1251,13 @@ const ResumePopup = ({ isOpen, onClose }) => {
                             </h3>
                           </div>
                           <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                            Final year Computer Science student with expertise in MERN stack development.
-                            Built 8+ production applications with focus on performance, scalability, and
-                            user experience. Strong problem-solving skills with 260+ LeetCode solutions.
-                            Passionate about clean code and modern web technologies.
+                            Full Stack MERN Developer specializing in building
+                            secure, scalable, and production-ready web
+                            applications. Experienced in designing RESTful APIs
+                            with JWT-based authentication and developing
+                            responsive, high-performance frontend interfaces.
+                            Strong foundation in Data Structures, DBMS, and
+                            modern backend architecture.
                           </p>
                         </motion.section>
 
@@ -1201,21 +1301,23 @@ const ResumePopup = ({ isOpen, onClose }) => {
                           </div>
 
                           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {Object.entries(skills).map(([category, skillList], idx) => (
-                              <div
-                                key={idx}
-                                className="bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-6 border border-gray-200/50 dark:border-gray-700/50 shadow-lg"
-                              >
-                                <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-4">
-                                  {category}
-                                </h4>
-                                <div className="space-y-4">
-                                  {skillList.map((skill, i) => (
-                                    <SkillProgress key={i} skill={skill} />
-                                  ))}
+                            {Object.entries(skills).map(
+                              ([category, skillList], idx) => (
+                                <div
+                                  key={idx}
+                                  className="bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-6 border border-gray-200/50 dark:border-gray-700/50 shadow-lg"
+                                >
+                                  <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-4">
+                                    {category}
+                                  </h4>
+                                  <div className="space-y-4">
+                                    {skillList.map((skill, i) => (
+                                      <SkillProgress key={i} skill={skill} />
+                                    ))}
+                                  </div>
                                 </div>
-                              </div>
-                            ))}
+                              ),
+                            )}
                           </div>
                         </motion.section>
                       </div>
@@ -1255,7 +1357,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                             <p className="text-gray-600 dark:text-gray-300 text-sm mt-4">
                               {education[0].details}
                             </p>
-                            
+
                             <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
                               <h5 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                                 Key Courses:
@@ -1335,7 +1437,10 @@ const ResumePopup = ({ isOpen, onClose }) => {
                             <motion.button
                               whileHover={{ scale: 1.02 }}
                               whileTap={{ scale: 0.98 }}
-                              onClick={() => window.location.href = "mailto:ratnakarsinghparihar9399@gmail.com"}
+                              onClick={() =>
+                                (window.location.href =
+                                  "mailto:ratnakarsinghparihar9399@gmail.com")
+                              }
                               className="w-full flex items-center justify-center gap-3 px-6 py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:shadow-lg transition-shadow"
                             >
                               <Mail className="w-5 h-5" />
@@ -1344,7 +1449,12 @@ const ResumePopup = ({ isOpen, onClose }) => {
                             <motion.button
                               whileHover={{ scale: 1.02 }}
                               whileTap={{ scale: 0.98 }}
-                              onClick={() => window.open('https://ratnakarsinghparihar.vercel.app', '_blank')}
+                              onClick={() =>
+                                window.open(
+                                  "https://ratnakarsinghparihar.vercel.app",
+                                  "_blank",
+                                )
+                              }
                               className="w-full flex items-center justify-center gap-3 px-6 py-3.5 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-semibold rounded-xl hover:border-blue-400 dark:hover:border-blue-600 transition-colors"
                             >
                               <ExternalLink className="w-5 h-5" />
@@ -1370,7 +1480,8 @@ const ResumePopup = ({ isOpen, onClose }) => {
                           Resume Analytics
                         </h2>
                         <p className="text-gray-600 dark:text-gray-400 mt-3">
-                          Detailed statistics and insights about my professional journey
+                          Detailed statistics and insights about my professional
+                          journey
                         </p>
                       </motion.div>
 
@@ -1385,29 +1496,35 @@ const ResumePopup = ({ isOpen, onClose }) => {
                             className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 shadow-lg"
                           >
                             <div className="flex items-center justify-between mb-4">
-                              <div className={`p-3 rounded-xl ${stat.color.replace('text', 'bg')}/10`}>
-                                <stat.icon className={`w-6 h-6 ${stat.color}`} />
+                              <div
+                                className={`p-3 rounded-xl ${stat.color.replace("text", "bg")}/10`}
+                              >
+                                <stat.icon
+                                  className={`w-6 h-6 ${stat.color}`}
+                                />
                               </div>
                               <div className="text-right">
                                 <div className="text-3xl font-bold text-gray-900 dark:text-white">
                                   {stat.value}
                                 </div>
-                                <div className="text-sm text-gray-500">{stat.label}</div>
+                                <div className="text-sm text-gray-500">
+                                  {stat.label}
+                                </div>
                               </div>
                             </div>
                             <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                               <motion.div
                                 initial={{ width: 0 }}
-                                animate={{ width: `${Math.random() * 80 + 20}%` }}
+                                animate={{
+                                  width: `${Math.random() * 80 + 20}%`,
+                                }}
                                 transition={{ duration: 1, delay: 0.5 }}
-                                className={`h-full ${stat.color.replace('text', 'bg')} rounded-full`}
+                                className={`h-full ${stat.color.replace("text", "bg")} rounded-full`}
                               />
                             </div>
                           </motion.div>
                         ))}
                       </div>
-
-                      {/* Additional stats visualization would go here */}
                     </div>
                   </div>
                 )}
@@ -1417,7 +1534,9 @@ const ResumePopup = ({ isOpen, onClose }) => {
               <div className="sticky bottom-0 border-t border-gray-200/50 dark:border-gray-700/50 bg-gradient-to-b from-white/95 to-white/90 dark:from-gray-900/95 dark:to-gray-900/90 backdrop-blur-xl p-4">
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
-                    <div className={`p-1.5 rounded-lg ${pdfLoaded ? 'bg-green-100 dark:bg-green-900/30' : 'bg-yellow-100 dark:bg-yellow-900/30'}`}>
+                    <div
+                      className={`p-1.5 rounded-lg ${pdfLoaded ? "bg-green-100 dark:bg-green-900/30" : "bg-yellow-100 dark:bg-yellow-900/30"}`}
+                    >
                       {pdfLoaded ? (
                         <CheckCircle className="w-4 h-4 text-green-600 dark:text-green-400" />
                       ) : (
@@ -1427,9 +1546,8 @@ const ResumePopup = ({ isOpen, onClose }) => {
                     <div className="text-sm">
                       <span className="font-medium text-gray-700 dark:text-gray-300">
                         {activeTab === "preview"
-                          ? `PDF ${pdfLoaded ? 'Ready' : 'Loading...'} • Page ${currentPage}/${totalPages}`
-                          : 'Detailed View Mode'
-                        }
+                          ? `PDF ${pdfLoaded ? "Ready" : "Loading..."} • Page ${currentPage}/${totalPages}`
+                          : "Detailed View Mode"}
                       </span>
                       <div className="text-xs text-gray-500">
                         Last updated: Jan 2024 • v2.1.0
@@ -1465,7 +1583,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                         <Download className="w-4 h-4" />
                         <span className="hidden sm:inline">Download</span>
                       </motion.button>
-                      
+
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -1475,7 +1593,11 @@ const ResumePopup = ({ isOpen, onClose }) => {
                         {isPrinting ? (
                           <motion.div
                             animate={{ rotate: 360 }}
-                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                            transition={{
+                              duration: 1,
+                              repeat: Infinity,
+                              ease: "linear",
+                            }}
                           >
                             <RefreshCw className="w-4 h-4" />
                           </motion.div>
@@ -1484,7 +1606,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                         )}
                         <span className="hidden sm:inline">Print</span>
                       </motion.button>
-                      
+
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
