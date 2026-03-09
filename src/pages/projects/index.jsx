@@ -323,8 +323,9 @@ const Projects = () => {
 
       impact: "300+ Lives Positively Impacted",
 
-      liveUrl: "",
-      githubUrl: "",
+      liveUrl: "https://jeevandaancare.vercel.app/",
+      githubUrl:
+        "https://github.com/Ratnakar-Singh-parihar-123/Blood-Organ-Donations-",
 
       features: [
         "Real-time donor-recipient matching using Socket.io",
