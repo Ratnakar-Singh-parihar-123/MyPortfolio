@@ -2542,64 +2542,6 @@ const Header = ({ className = "" }) => {
           <div className="h-24" />
         </div>
       </div>
-
-      {/* Mobile Bottom Navigation */}
-      {windowWidth < breakpoints.lg && !isMenuOpen && (
-        <div className="fixed bottom-0 left-0 right-0 z-40 lg:hidden">
-          <div className="absolute inset-0 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-t border-gray-200/50 dark:border-gray-800/50" />
-          <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />
-
-          <div className="relative flex items-center justify-around px-2 py-2">
-            {navigationItems.map((item, index) => {
-              const isActive = activeSection === item.path;
-              return (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => handleNavClick(item.path, item.name)}
-                  className="flex flex-col items-center justify-center flex-1 py-1 group"
-                >
-                  <div
-                    className={`p-2 rounded-xl transition-all duration-200 ${
-                      isActive
-                        ? `bg-gradient-to-r ${item.gradient} text-white scale-110 shadow-md`
-                        : "text-gray-600 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                    }`}
-                  >
-                    <Icon name={item.icon} size={22} />
-                  </div>
-                  <span
-                    className={`text-[10px] mt-1 font-medium ${
-                      isActive
-                        ? "text-gray-900 dark:text-white"
-                        : "text-gray-500 dark:text-gray-500"
-                    }`}
-                  >
-                    {item.name}
-                  </span>
-                </Link>
-              );
-            })}
-
-            {/* Menu Toggle Button */}
-            <button
-              onClick={toggleMenu}
-              className="flex flex-col items-center justify-center flex-1 py-1 group"
-            >
-              <div
-                className={`p-2 rounded-xl transition-all duration-200 ${"text-gray-600 dark:text-gray-400 group-hover:text-purple-500 dark:group-hover:text-purple-400"}`}
-              >
-                <Icon name="Menu" size={22} />
-              </div>
-              <span className="text-[10px] mt-1 font-medium text-gray-500 dark:text-gray-500">
-                Menu
-              </span>
-            </button>
-          </div>
-
-          <div className="h-[env(safe-area-inset-bottom)] bg-white/90 dark:bg-gray-900/90" />
-        </div>
-      )}
     </>
   );
 };
