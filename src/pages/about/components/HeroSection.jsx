@@ -106,31 +106,38 @@ const HeroSection = () => {
         />
       </div>
 
-      <div className="container relative z-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div className="relative container z-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto mt-10 overflow-hidden">
+        {/* Animated Background */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute w-[500px] h-[500px] bg-blue-500/20 blur-3xl rounded-full -top-40 -left-40 animate-pulse"></div>
+          <div className="absolute w-[500px] h-[500px] bg-purple-500/20 blur-3xl rounded-full -bottom-40 -right-40 animate-pulse"></div>
+        </div>
+
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-          {/* Left Content */}
+          {/* LEFT CONTENT */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.8 }}
             className="text-center lg:text-left space-y-8"
           >
             {/* Welcome Badge */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              className="inline-flex items-center gap-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700 px-5 py-3 rounded-full shadow-lg"
+              transition={{ delay: 0.2 }}
+              className="inline-flex items-center gap-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur border px-5 py-3 rounded-full shadow-lg"
             >
               <motion.div
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
                 className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center"
               >
-                <span className="text-white">👋</span>
+                👋
               </motion.div>
+
               <div>
-                <p className="text-sm font-medium text-gray-600 dark:text-gray-300">
+                <p className="text-sm text-gray-600 dark:text-gray-300">
                   Hello there! I'm
                 </p>
                 <p className="text-lg font-bold text-gray-900 dark:text-white">
@@ -139,110 +146,67 @@ const HeroSection = () => {
               </div>
             </motion.div>
 
-            {/* Main Heading */}
+            {/* HEADING */}
             <div className="space-y-4">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.6 }}
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
+                transition={{ delay: 0.3 }}
+                className="text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight"
               >
                 <span className="block text-gray-900 dark:text-white">
                   Crafting
                 </span>
-                <span className="relative inline-block">
-                  <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                    Digital Magic
-                  </span>
-                  <motion.span
-                    animate={{ width: ["0%", "100%", "0%"] }}
-                    transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
-                    className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
-                  />
+
+                <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(168,85,247,0.6)]">
+                  Digital Magic
                 </span>
+
                 <span className="block text-gray-900 dark:text-white">
                   With Code
                 </span>
               </motion.h1>
 
               <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.6 }}
-                className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto lg:mx-0"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="text-xl text-gray-600 dark:text-gray-300"
               >
-                Full-Stack Developer • Mern Stack Dev.. • Problem Solver
+                Full-Stack Developer • MERN Stack • Problem Solver
               </motion.p>
             </div>
 
-            {/* Description */}
+            {/* DESCRIPTION */}
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="text-lg text-gray-500 dark:text-gray-400 leading-relaxed max-w-2xl mx-auto lg:mx-0"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="text-lg text-gray-500 dark:text-gray-400 leading-relaxed max-w-xl"
             >
-              I specialize in building modern, responsive web applications using
-              the{" "}
-              <span className="font-semibold text-blue-600 dark:text-blue-400">
-                MERN stack
-              </span>
-              . Passionate about creating seamless user experiences and scalable
-              solutions that make an impact.
+              I specialize in building modern web applications using
+              <span className="font-semibold text-blue-500"> MERN Stack </span>
+              and crafting beautiful UI experiences that users love.
             </motion.p>
 
-            {/* Stats Grid */}
-            {/* <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.6 }}
-              className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-md mx-auto lg:mx-0"
-            >
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.8 + index * 0.1, duration: 0.4 }}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 rounded-2xl p-4 text-center hover:shadow-xl transition-all duration-300"
-                >
-                  <div className="flex justify-center mb-2">
-                    <div className="p-2 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-lg">
-                      <Icon name={stat.icon} size={20} className="text-blue-600 dark:text-blue-400" />
-                    </div>
-                  </div>
-                  <div className="text-2xl font-bold text-gray-900 dark:text-white mb-1">{stat.value}</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">{stat.label}</div>
-                </motion.div>
-              ))}
-            </motion.div> */}
-
-            {/* CTA Buttons */}
+            {/* BUTTONS */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9, duration: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
+              {/* PROJECT BUTTON */}
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => scrollToSection("projects")}
-                className="group relative bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300 overflow-hidden"
+                className="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-xl hover:shadow-purple-500/40 transition"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-                <span className="relative flex items-center justify-center gap-3">
-                  <Icon name="FolderKanban" size={22} />
-                  View My Projects
-                  <Icon
-                    name="ArrowRight"
-                    size={18}
-                    className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"
-                  />
-                </span>
+                View My Projects
               </motion.button>
 
+              {/* CONTACT BUTTON */}
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -252,114 +216,77 @@ const HeroSection = () => {
                     "_blank",
                   )
                 }
-                className="group bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-2 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white px-8 py-4 rounded-xl font-semibold text-lg hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-300"
+                className="bg-white/70 dark:bg-gray-800 border px-8 py-4 rounded-xl font-semibold hover:border-blue-500 transition"
               >
-                <span className="flex items-center justify-center gap-3">
-                  <Icon
-                    name="MessageSquare"
-                    size={22}
-                    className="text-blue-600 dark:text-blue-400"
-                  />
-                  Get In Touch
-                  <Icon
-                    name="ExternalLink"
-                    size={16}
-                    className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"
-                  />
-                </span>
+                Get In Touch
               </motion.button>
             </motion.div>
-
-            {/* Tech Stack */}
-            {/* <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1, duration: 0.6 }}
-              className="pt-6"
-            >
-              <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 font-medium">Tech Stack I Love:</p>
-              <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
-                {techStack.map((tech, index) => (
-                  <motion.span
-                    key={tech}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 1.1 + index * 0.05, type: "spring", stiffness: 200 }}
-                    whileHover={{ scale: 1.1, y: -3 }}
-                    className="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 hover:border-blue-500 dark:hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 hover:shadow-md transition-all"
-                  >
-                    {tech}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div> */}
           </motion.div>
 
-          {/* Right Side - Profile */}
+          {/* RIGHT SIDE */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, rotateY: -20 }}
-            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
             className="relative flex justify-center lg:justify-end"
           >
-            {/* Main Profile Container */}
             <div className="relative w-full max-w-md">
-              {/* Floating Elements */}
-              {!isMobile && (
-                <>
-                  <motion.div
-                    animate={{ y: [0, -20, 0] }}
-                    transition={{ duration: 4, repeat: Infinity }}
-                    className="absolute -top-6 -left-6 w-20 h-20 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-2xl border border-blue-200/20 dark:border-blue-500/10 backdrop-blur-sm flex items-center justify-center"
-                  >
-                    <Icon
-                      name="Sparkles"
-                      size={24}
-                      className="text-blue-500 dark:text-blue-400"
-                    />
-                  </motion.div>
-                  <motion.div
-                    animate={{ y: [0, 20, 0] }}
-                    transition={{ duration: 5, repeat: Infinity, delay: 1 }}
-                    className="absolute -bottom-6 -right-6 w-16 h-16 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-2xl border border-purple-200/20 dark:border-purple-500/10 backdrop-blur-sm flex items-center justify-center"
-                  >
-                    <Icon
-                      name="Code"
-                      size={20}
-                      className="text-purple-500 dark:text-purple-400"
-                    />
-                  </motion.div>
-                </>
-              )}
+              {/* FLOATING ICONS */}
 
-              {/* Profile Image Container */}
               <motion.div
-                whileHover={{ scale: 1.02 }}
+                animate={{ y: [0, -20, 0] }}
+                transition={{ duration: 4, repeat: Infinity }}
+                className="absolute -top-8 -left-8 bg-white/20 backdrop-blur p-4 rounded-xl"
+              >
+                ⚛️
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [0, 20, 0] }}
+                transition={{ duration: 5, repeat: Infinity }}
+                className="absolute -bottom-8 -right-8 bg-white/20 backdrop-blur p-4 rounded-xl"
+              >
+                🟢
+              </motion.div>
+
+              <motion.div
+                animate={{ x: [0, 10, 0] }}
+                transition={{ duration: 6, repeat: Infinity }}
+                className="absolute top-1/2 -right-10 bg-white/20 backdrop-blur p-4 rounded-xl"
+              >
+                🍃
+              </motion.div>
+
+              {/* PROFILE IMAGE */}
+              <motion.div
+                whileHover={{ scale: 1.05, rotate: 1 }}
+                transition={{ type: "spring", stiffness: 200 }}
                 className="relative rounded-3xl overflow-hidden shadow-2xl"
               >
-                {/* Gradient Border */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-3xl opacity-30 blur-xl"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-3xl opacity-40 blur-xl"></div>
 
-                {/* Image */}
-                <div className="relative rounded-3xl overflow-hidden border-8 border-white dark:border-gray-900 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
+                <div className="relative rounded-3xl overflow-hidden border-8 border-white dark:border-gray-900">
                   <Image
                     src={AboutImg}
-                    alt="Ratnakar Singh Parihar - Full Stack Developer"
-                    className="w-full h-[500px] sm:h-[600px] object-cover object-center"
+                    alt="Ratnakar Singh Parihar"
+                    className="w-full h-[500px] sm:h-[600px] object-cover"
                   />
 
-                  {/* Overlay Gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
-
-                  {/* Interactive Badge */}
-                  {/*  */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                 </div>
               </motion.div>
             </div>
           </motion.div>
         </div>
 
-        {/* Bottom Elements */}
+        {/* SCROLL INDICATOR */}
+        <motion.div
+          animate={{ y: [0, 15, 0] }}
+          transition={{ repeat: Infinity, duration: 1.5 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-gray-400 text-2xl"
+        >
+          ↓
+        </motion.div>
       </div>
     </section>
   );

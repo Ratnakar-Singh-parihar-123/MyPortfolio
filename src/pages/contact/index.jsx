@@ -83,7 +83,7 @@ const ContactPage = () => {
       <section className="pt-16 pb-12 bg-gradient-to-b from-primary/10 via-background to-background mt-5">
         <div className="container-brand text-center max-w-2xl mx-auto">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-medium mb-5">
+          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-medium mt-7">
             <Icon name="MessageCircle" size={16} />
             <span>Let’s Connect</span>
           </div>

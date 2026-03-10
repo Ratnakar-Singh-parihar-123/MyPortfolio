@@ -163,7 +163,7 @@ const Education = () => {
 
       <div className="max-w-7xl mx-auto pt-4">
         {/* Header Section */}
-        <div className="text-center mb-16">
+        <div className="text-center mt-9">
           <div className="inline-block relative mb-6">
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg blur opacity-25"></div>
             <h1

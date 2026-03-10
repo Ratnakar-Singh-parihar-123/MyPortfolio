@@ -94,7 +94,7 @@ const About = () => {
             <div className="text-center">
               <div className="flex flex-wrap justify-center gap-6">
                 {[
-                  { name: "Home", href: "/homepage" },
+                  { name: "Home", href: "/" },
                   { name: "Skills", href: "/skills" },
                   { name: "Projects", href: "/projects" },
                   { name: "Achievements", href: "/achievements" },
