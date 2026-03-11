@@ -1992,7 +1992,7 @@ const Header = ({ className = "" }) => {
     {
       name: "Instagram",
       icon: "Instagram",
-      url: "https://instagram.com",
+      url: "https://www.instagram.com/krishna_singh_pratihar/",
       bgColor: "bg-gradient-to-r from-pink-500 to-purple-600",
       hoverColor: "hover:from-pink-600 hover:to-purple-700",
     },
@@ -2003,13 +2003,13 @@ const Header = ({ className = "" }) => {
     //   bgColor: "bg-[#FF0000]",
     //   hoverColor: "hover:bg-[#FF0000]",
     // },
-    {
-      name: "Discord",
-      icon: "MessageCircle",
-      url: "https://discord.com",
-      bgColor: "bg-[#5865F2]",
-      hoverColor: "hover:bg-[#5865F2]",
-    },
+    // {
+    //   name: "Discord",
+    //   icon: "MessageCircle",
+    //   url: "https://discord.com",
+    //   bgColor: "bg-[#5865F2]",
+    //   hoverColor: "hover:bg-[#5865F2]",
+    // },
   ];
 
   // Initialize GSAP animations
@@ -2464,7 +2464,9 @@ const Header = ({ className = "" }) => {
               </div>
 
               <div>
-                <h3 className="text-white font-bold text-lg">Ratnakar Singh</h3>
+                <h3 className="text-white font-bold text-lg">
+                  Ratnakar Singh Parihar
+                </h3>
                 <p className="text-white/90 text-sm">Full Stack Developer</p>
                 <span className="inline-block mt-2 text-xs bg-white/20 text-white px-2 py-1 rounded-full">
                   ✨ Available for work
