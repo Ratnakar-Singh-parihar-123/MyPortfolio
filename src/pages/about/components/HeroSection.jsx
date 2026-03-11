@@ -345,11 +345,11 @@ const HeroSection = () => {
             <div className="relative w-full max-w-lg">
               {/* Floating Tech Icons */}
               {[
-                { icon: "⚛️", delay: 0, top: -10, left: -10, rotate: 0 },
-                { icon: "🟢", delay: 1, bottom: -10, right: -10, rotate: 15 },
-                { icon: "🍃", delay: 2, top: "30%", right: -30, rotate: -10 },
-                { icon: "🔷", delay: 1.5, bottom: "20%", left: -30, rotate: 5 },
-                { icon: "▲", delay: 2.5, top: "50%", left: -40, rotate: -5 },
+                // { icon: "⚛️", delay: 0, top: -10, left: -10, rotate: 0 },
+                // { icon: "🟢", delay: 1, bottom: -10, right: -10, rotate: 15 },
+                // { icon: "🍃", delay: 2, top: "30%", right: -30, rotate: -10 },
+                // { icon: "🔷", delay: 1.5, bottom: "20%", left: -30, rotate: 5 },
+                // { icon: "▲", delay: 2.5, top: "50%", left: -40, rotate: -5 },
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -382,7 +382,7 @@ const HeroSection = () => {
                 className="relative"
               >
                 {/* Animated Gradient Border */}
-                <motion.div
+                {/* <motion.div
                   animate={{
                     rotate: [0, 360],
                   }}
@@ -392,7 +392,7 @@ const HeroSection = () => {
                     ease: "linear",
                   }}
                   className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-[2rem] opacity-75 blur-md"
-                />
+                /> */}
 
                 <motion.div
                   whileHover={{ scale: 1.02 }}
@@ -446,7 +446,7 @@ const HeroSection = () => {
               </motion.div>
 
               {/* Stats Cards */}
-              <motion.div
+              {/* <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 2 }}
@@ -471,7 +471,7 @@ const HeroSection = () => {
                     </motion.div>
                   ))}
                 </div>
-              </motion.div>
+              </motion.div> */}
             </div>
           </motion.div>
         </div>
