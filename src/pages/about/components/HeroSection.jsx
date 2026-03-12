@@ -152,7 +152,8 @@ const HeroSection = () => {
                 className="text-blue-600 dark:text-blue-400"
               />
               <p className="text-lg text-gray-600 dark:text-gray-400">
-                Full-Stack Developer | MERN Stack Expert
+                Full-Stack MERN Developer | Building Modern, Scalable Web
+                Applications
               </p>
             </motion.div>
 
