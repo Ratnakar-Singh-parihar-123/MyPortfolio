@@ -137,7 +137,7 @@ const HeroSection = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 pt-16 md:pt-20 lg:pt-0"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 pt-24 md:pt-28 lg:pt-32"
     >
       {/* Simple & Elegant Background Design */}
       <div className="absolute inset-0 z-0">
@@ -193,7 +193,7 @@ const HeroSection = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 lg:py-16 mt-7">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pb-12 md:pb-16 lg:pb-20 pt-7">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16 xl:gap-20">
           {/* Left Column - Text Content */}
           <motion.div
@@ -376,54 +376,55 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
-              className="flex flex-col sm:flex-row gap-4 pt-4"
+              className="flex flex-col sm:flex-row gap-5 pt-6"
             >
+              {/* CONTACT BUTTON */}
               <Link to="/contact" className="w-full sm:w-auto">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="relative group"
                 >
-                  <motion.div
-                    animate={{
-                      backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                    }}
-                    transition={{ duration: 5, repeat: Infinity }}
-                    className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-300"
-                    style={{ backgroundSize: "200% 200%" }}
-                  />
-                  <Button
-                    variant="gradient"
-                    size="lg"
-                    iconName="MessageCircle"
-                    className="relative w-full sm:w-auto px-8 py-4 text-base rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-xl transition-all duration-300"
-                  >
+                  {/* Glow */}
+                  <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-xl blur opacity-70 group-hover:opacity-100 transition duration-300"></div>
+
+                  <button className="relative flex items-center justify-center gap-3 px-8 py-4 w-full sm:w-auto rounded-xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white font-semibold shadow-xl hover:shadow-2xl transition-all duration-300">
+                    {/* Icon */}
+                    <motion.span
+                      animate={{ rotate: [0, 10, -10, 0] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      💬
+                    </motion.span>
                     Let's Connect
-                  </Button>
+                  </button>
                 </motion.div>
               </Link>
 
+              {/* RESUME BUTTON */}
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full sm:w-auto group"
+                className="relative group w-full sm:w-auto"
               >
-                <Button
-                  variant="outline"
-                  size="lg"
-                  iconName="FileText"
-                  className="w-full sm:w-auto px-8 py-4 text-base rounded-xl border-2 border-gray-300 dark:border-gray-600 hover:border-transparent relative overflow-hidden transition-all duration-300"
+                {/* Border Animation */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-xl opacity-70 group-hover:opacity-100 transition duration-300"></div>
+
+                <button
                   onClick={() => setIsPopupOpen(true)}
+                  className="relative flex items-center justify-center gap-3 px-8 py-4 w-full sm:w-auto rounded-xl bg-white dark:bg-black text-gray-800 dark:text-white font-semibold backdrop-blur-lg border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
                 >
-                  <span className="relative z-10 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent group-hover:text-white transition-colors">
-                    View Resume
-                  </span>
+                  {/* Shine Effect */}
+                  <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 animate-[shine_2s_infinite]"></span>
+                  {/* Icon */}
                   <motion.span
-                    animate={{ x: ["0%", "200%"] }}
+                    animate={{ y: [0, -3, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
-                    className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 -z-0"
-                  />
-                </Button>
+                  >
+                    📄
+                  </motion.span>
+                  View Resume
+                </button>
               </motion.div>
             </motion.div>
 
@@ -597,13 +598,13 @@ const HeroSection = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1.2 }}
-                    className="absolute bottom-4 sm:bottom-8 left-4 sm:left-8 right-4 sm:right-8"
+                    className="absolute bottom-2 sm:bottom-4 md:bottom-6 lg:bottom-10 left-4 sm:left-8 right-4 sm:right-8"
                   >
                     <div className="text-white space-y-2">
                       <motion.p
                         animate={{ opacity: [0.7, 1, 0.7] }}
                         transition={{ duration: 2, repeat: Infinity }}
-                        className="text-sm text-white/90 flex items-center gap-2"
+                        className="text-xs sm:text-sm text-white/90 flex items-center gap-2"
                       >
                         <span className="relative flex h-2 w-2">
                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -616,7 +617,7 @@ const HeroSection = () => {
                         initial={{ width: 0 }}
                         animate={{ width: "100%" }}
                         transition={{ delay: 1.5, duration: 1 }}
-                        className="h-0.5 bg-gradient-to-r from-blue-400 to-purple-400"
+                        className="h-[2px] bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"
                       />
                     </div>
                   </motion.div>
@@ -641,49 +642,87 @@ const HeroSection = () => {
 
       {/* Enhanced Scroll Down Indicator */}
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2, duration: 0.8 }}
-        className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.8 }}
+        className="absolute top-16 sm:top-20 w-full overflow-hidden z-10 flex justify-center"
       >
-        <motion.button
-          onClick={handleScrollDown}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          className="flex flex-col items-center gap-2 group"
-          aria-label="Scroll down"
-        >
-          <motion.span
-            animate={{ opacity: [0.5, 1, 0.5] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-purple-500 transition-all duration-300"
-          >
-            Scroll to explore
-          </motion.span>
+        <div className="relative w-full max-w-7xl overflow-hidden rounded-xl bg-white/40 dark:bg-black/40 backdrop-blur-xl border border-white/20 shadow-lg py-4">
+          {/* Fade Edges */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white dark:from-black to-transparent z-10"></div>
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white dark:from-black to-transparent z-10"></div>
 
+          {/* Scrolling Content */}
           <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="relative"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{
+              duration: 22,
+              ease: "linear",
+              repeat: Infinity,
+            }}
+            className="flex items-center gap-12 whitespace-nowrap text-sm sm:text-base md:text-lg font-semibold tracking-wide px-6"
           >
-            <div className="w-6 h-10 rounded-full border-2 border-gray-300 dark:border-gray-600 group-hover:border-blue-400 transition-colors duration-300 flex justify-center">
-              <motion.div
-                animate={{ y: [0, 12, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-                className="w-1.5 h-2 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full mt-2"
-              />
-            </div>
+            {/* Item */}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">
+              🚀 Building Modern Web Experiences
+            </span>
 
-            {/* Ripple Effect */}
-            <motion.div
-              animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="absolute inset-0 rounded-full border-2 border-blue-400/30"
-            />
+            <span className="text-gray-400">✦</span>
+
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
+              💻 MERN Stack Developer
+            </span>
+
+            <span className="text-gray-400">✦</span>
+
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-500">
+              ⚛ React • Node.js • MongoDB
+            </span>
+
+            <span className="text-gray-400">✦</span>
+
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-emerald-500">
+              📧 ratnakarsinghparihar9399@gmail.com
+            </span>
+
+            <span className="text-gray-400">✦</span>
+
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
+              📞 9399741051
+            </span>
+
+            {/* Duplicate for seamless infinite scroll */}
+
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">
+              🚀 Building Modern Web Experiences
+            </span>
+
+            <span className="text-gray-400">✦</span>
+
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
+              💻 MERN Stack Developer
+            </span>
+
+            <span className="text-gray-400">✦</span>
+
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-500">
+              ⚛ React • Node.js • MongoDB
+            </span>
+
+            <span className="text-gray-400">✦</span>
+
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-emerald-500">
+              📧 ratnakarsinghparihar9399@gmail.com
+            </span>
+
+            <span className="text-gray-400">✦</span>
+
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
+              📞 9399741051
+            </span>
           </motion.div>
-        </motion.button>
+        </div>
       </motion.div>
-
       {/* Resume Popup */}
       <ResumePopup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
     </section>

@@ -1833,6 +1833,7 @@
 
 // export default Header;
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -2405,18 +2406,39 @@ const Header = ({ className = "" }) => {
               {/* Mobile Menu Button */}
               <button
                 onClick={toggleMenu}
-                className="lg:hidden p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                aria-label="Toggle menu"
+                className="lg:hidden w-11 h-11 rounded-xl
+    bg-white/20 dark:bg-gray-900/20
+    backdrop-blur-md
+    border border-white/30 dark:border-gray-700/30
+    hover:bg-white/30 dark:hover:bg-gray-800/30
+    hover:border-white/50 dark:hover:border-gray-600/50
+    shadow-lg
+    transition-all duration-200
+    flex items-center justify-center
+    group"
+                aria-label={isMenuOpen ? "Close menu" : "Open menu"}
               >
                 <div className="relative w-5 h-5">
                   <span
-                    className={`absolute left-0 block w-5 h-0.5 bg-current transform transition-all duration-300 ${isMenuOpen ? "rotate-45 top-2" : "rotate-0 top-0"}`}
+                    className={`absolute left-1/2 -translate-x-1/2 block w-5 h-0.5 
+        bg-gray-800 dark:bg-gray-200
+        rounded-full
+        transform transition-all duration-200
+        ${isMenuOpen ? "rotate-45 top-2.5" : "rotate-0 top-1"}`}
                   />
                   <span
-                    className={`absolute left-0 block w-5 h-0.5 bg-current transition-all duration-300 top-2 ${isMenuOpen ? "opacity-0" : "opacity-100"}`}
+                    className={`absolute left-1/2 -translate-x-1/2 block w-5 h-0.5 
+        bg-gray-800 dark:bg-gray-200
+        rounded-full
+        transition-all duration-200 top-2.5
+        ${isMenuOpen ? "opacity-0" : "opacity-100"}`}
                   />
                   <span
-                    className={`absolute left-0 block w-5 h-0.5 bg-current transform transition-all duration-300 ${isMenuOpen ? "-rotate-45 top-2" : "rotate-0 top-4"}`}
+                    className={`absolute left-1/2 -translate-x-1/2 block w-5 h-0.5 
+        bg-gray-800 dark:bg-gray-200
+        rounded-full
+        transform transition-all duration-200
+        ${isMenuOpen ? "-rotate-45 top-2.5" : "rotate-0 top-4"}`}
                   />
                 </div>
               </button>
@@ -2426,124 +2448,357 @@ const Header = ({ className = "" }) => {
       </header>
 
       {/* Mobile Menu - FIXED visibility */}
-      <div
-        className="fixed inset-0 z-[100] lg:hidden"
-        style={{ display: isMenuOpen ? "block" : "none" }}
-      >
-        {/* Backdrop */}
-        <div
-          ref={menuOverlayRef}
-          className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-          onClick={closeMenu}
-          style={{ opacity: 0 }}
-        />
+      <AnimatePresence mode="wait">
+        {isMenuOpen && (
+          <motion.div
+            className="fixed inset-0 z-[100] lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            {/* Backdrop with blur effect */}
+            <motion.div
+              className="absolute inset-0 bg-black/40 backdrop-blur-md"
+              onClick={closeMenu}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            />
 
-        {/* Menu Panel */}
-        <div
-          ref={menuPanelRef}
-          className="absolute inset-y-0 right-0 w-full max-w-sm bg-white dark:bg-gray-900 shadow-2xl overflow-y-auto"
-          style={{ x: "100%", visibility: "visible" }}
-        >
-          {/* Profile Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 sticky top-0 z-10">
-            <div className="flex items-center space-x-4">
-              <div className="relative">
-                <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center overflow-hidden">
-                  <img
-                    src={logoImg}
-                    alt="Profile"
-                    className="w-14 h-14 object-cover rounded-xl"
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.parentElement.innerHTML =
-                        '<div class="w-full h-full flex items-center justify-center text-white font-bold text-2xl">R</div>';
-                    }}
-                  />
+            {/* Menu Panel */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{
+                type: "spring",
+                damping: 30,
+                stiffness: 300,
+                mass: 0.8,
+              }}
+              className="absolute inset-y-0 right-0 w-full max-w-sm 
+          bg-gradient-to-b from-white to-gray-50 
+          dark:from-gray-900 dark:to-gray-950
+          shadow-2xl overflow-y-auto"
+            >
+              {/* Decorative Header Gradient */}
+              <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-blue-500/5 to-transparent pointer-events-none" />
+
+              {/* Close Button - Floating with glass effect */}
+              <motion.button
+                onClick={closeMenu}
+                className="absolute top-4 right-4 p-2.5 rounded-xl 
+            bg-white/90 dark:bg-gray-800/90 
+            backdrop-blur-sm border border-gray-200 dark:border-gray-700
+            shadow-lg hover:shadow-xl z-10
+            hover:scale-110 active:scale-95 transition-all duration-200
+            group"
+                whileTap={{ scale: 0.9 }}
+                whileHover={{ rotate: 90 }}
+              >
+                <Icon
+                  name="X"
+                  size={20}
+                  className="text-gray-600 dark:text-gray-300 
+              group-hover:text-gray-900 dark:group-hover:text-white
+              transition-colors"
+                />
+              </motion.button>
+
+              {/* Profile Section - Enhanced with glass morphism */}
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="relative overflow-hidden"
+              >
+                {/* Animated gradient background */}
+                <motion.div
+                  animate={{
+                    background: [
+                      "linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899)",
+                      "linear-gradient(45deg, #8b5cf6, #ec4899, #3b82f6)",
+                      "linear-gradient(45deg, #ec4899, #3b82f6, #8b5cf6)",
+                    ],
+                  }}
+                  transition={{ duration: 5, repeat: Infinity }}
+                  className="absolute inset-0 opacity-90"
+                />
+
+                {/* Pattern overlay */}
+                <div
+                  className="absolute inset-0 opacity-20"
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+                  }}
+                />
+
+                {/* Content */}
+                <div className="relative p-6 pb-8">
+                  <div className="flex items-center gap-4">
+                    {/* Animated Avatar Container */}
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      className="relative"
+                    >
+                      {/* Glow effect */}
+                      <motion.div
+                        animate={{
+                          scale: [1, 1.2, 1],
+                          opacity: [0.5, 0.8, 0.5],
+                        }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                        className="absolute -inset-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-2xl blur-md"
+                      />
+
+                      {/* Avatar */}
+                      <div className="relative w-20 h-20 bg-white/20 backdrop-blur-xl rounded-2xl overflow-hidden border-2 border-white/30 shadow-xl">
+                        {logoImg ? (
+                          <img
+                            src={logoImg}
+                            alt="Profile"
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center text-white font-bold text-3xl">
+                            R
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Online status with pulse */}
+                      <motion.div
+                        animate={{ scale: [1, 1.2, 1] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                        className="absolute -bottom-1 -right-1 w-5 h-5 
+                    bg-green-500 border-2 border-white rounded-full"
+                      />
+                    </motion.div>
+
+                    {/* User Info */}
+                    <div className="flex-1">
+                      <motion.h3
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.2 }}
+                        className="text-white font-bold text-xl"
+                      >
+                        Ratnakar Singh
+                      </motion.h3>
+
+                      <motion.p
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.25 }}
+                        className="text-white/90 text-sm"
+                      >
+                        MERN Stack Developer
+                      </motion.p>
+
+                      <motion.span
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.3 }}
+                        className="inline-block mt-3 text-xs 
+                    bg-white/20 backdrop-blur-md
+                    text-white px-3 py-1.5 rounded-full
+                    border border-white/30"
+                      >
+                        ✨ Available for work
+                      </motion.span>
+                    </div>
+                  </div>
                 </div>
-                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white" />
-              </div>
+              </motion.div>
 
-              <div>
-                <h3 className="text-white font-bold text-lg">
-                  Ratnakar Singh Parihar
-                </h3>
-                <p className="text-white/90 text-sm">Full Stack Developer</p>
-                <span className="inline-block mt-2 text-xs bg-white/20 text-white px-2 py-1 rounded-full">
-                  ✨ Available for work
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Navigation Items */}
-          <div className="p-4 space-y-1">
-            {navigationItems.map((item, index) => (
-              <NavItem key={item.path} item={item} index={index} isMobile />
-            ))}
-          </div>
-
-          {/* Secondary Items */}
-          <div className="p-4 border-t border-gray-200 dark:border-gray-800">
-            <h4 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase mb-3">
-              More
-            </h4>
-            <div className="space-y-2">
-              {secondaryItems.map((item, index) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => handleNavClick(item.path, item.name)}
-                  className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                >
-                  <div
-                    className={`p-2 rounded-lg bg-gradient-to-br ${item.gradient} text-white`}
+              {/* Navigation Items - Main */}
+              <div className="p-5 space-y-1">
+                {navigationItems.map((item, index) => (
+                  <motion.div
+                    key={item.path}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 + index * 0.05 }}
                   >
-                    <Icon name={item.icon} size={18} />
-                  </div>
-                  <div className="flex-1">
-                    <p className="font-medium text-gray-900 dark:text-white">
-                      {item.name}
-                    </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">
-                      {item.desc}
-                    </p>
-                  </div>
-                  {item.isNew && (
-                    <span className="text-xs px-2 py-1 bg-red-500 text-white rounded-full">
-                      NEW
-                    </span>
-                  )}
-                </Link>
-              ))}
-            </div>
-          </div>
+                    <Link
+                      to={item.path}
+                      onClick={() => handleNavClick(item.path, item.name)}
+                      className="flex items-center gap-3 p-3 rounded-xl
+                  hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100
+                  dark:hover:from-gray-800 dark:hover:to-gray-900
+                  transition-all duration-200 group relative overflow-hidden"
+                    >
+                      {/* Hover background effect */}
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5"
+                        initial={{ x: "-100%" }}
+                        whileHover={{ x: 0 }}
+                        transition={{ duration: 0.3 }}
+                      />
 
-          {/* Social Links */}
-          <div className="p-4 border-t border-gray-200 dark:border-gray-800">
-            <h4 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase mb-3">
-              Connect
-            </h4>
-            <div className="grid grid-cols-3 gap-2">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={social.name}
-                  ref={(el) => (socialLinksRef.current[index] = el)}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={closeMenu}
-                  className={`p-3 rounded-xl text-white ${social.bgColor} ${social.hoverColor} transition-all duration-200 hover:scale-105 text-center`}
+                      {/* Icon with gradient */}
+                      <div
+                        className={`relative p-2.5 rounded-xl bg-gradient-to-br ${item.gradient} 
+                    text-white shadow-lg group-hover:scale-110 
+                    group-hover:rotate-3 transition-all duration-300`}
+                      >
+                        <Icon name={item.icon} size={18} />
+                      </div>
+
+                      {/* Label */}
+                      <span
+                        className="relative font-medium text-gray-700 dark:text-gray-200 
+                  group-hover:text-gray-900 dark:group-hover:text-white
+                  transition-colors"
+                      >
+                        {item.name}
+                      </span>
+
+                      {/* Active indicator */}
+                      {location.pathname === item.path && (
+                        <motion.div
+                          layoutId="activeNav"
+                          className="absolute left-0 w-1 h-8 bg-gradient-to-b from-blue-500 to-purple-500 rounded-r-full"
+                        />
+                      )}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Secondary Items */}
+              {secondaryItems?.length > 0 && (
+                <div className="p-5 border-t border-gray-200 dark:border-gray-800">
+                  <motion.h4
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                    className="text-xs font-semibold text-gray-500 
+                dark:text-gray-400 uppercase mb-4 tracking-wider"
+                  >
+                    More
+                  </motion.h4>
+
+                  <div className="space-y-2">
+                    {secondaryItems.map((item, index) => (
+                      <motion.div
+                        key={item.path}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.35 + index * 0.05 }}
+                      >
+                        <Link
+                          to={item.path}
+                          onClick={() => handleNavClick(item.path, item.name)}
+                          className="flex items-center gap-3 p-3 rounded-xl
+                      hover:bg-gray-100 dark:hover:bg-gray-800
+                      transition-all duration-200 group"
+                        >
+                          {/* Icon */}
+                          <div
+                            className={`p-2 rounded-lg bg-gradient-to-br ${item.gradient} text-white
+                        group-hover:scale-110 transition-transform duration-200`}
+                          >
+                            <Icon name={item.icon} size={16} />
+                          </div>
+
+                          {/* Content */}
+                          <div className="flex-1">
+                            <p className="font-medium text-gray-900 dark:text-white text-sm">
+                              {item.name}
+                            </p>
+                            {item.desc && (
+                              <p className="text-xs text-gray-500 dark:text-gray-400">
+                                {item.desc}
+                              </p>
+                            )}
+                          </div>
+
+                          {/* New badge */}
+                          {item.isNew && (
+                            <motion.span
+                              animate={{ scale: [1, 1.1, 1] }}
+                              transition={{ duration: 1, repeat: Infinity }}
+                              className="text-xs px-2 py-1
+                          bg-gradient-to-r from-red-500 to-pink-500
+                          text-white rounded-full font-medium"
+                            >
+                              NEW
+                            </motion.span>
+                          )}
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Social Links */}
+              <div className="p-5 border-t border-gray-200 dark:border-gray-800">
+                <motion.h4
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.4 }}
+                  className="text-xs font-semibold text-gray-500 
+              dark:text-gray-400 uppercase mb-4 tracking-wider"
                 >
-                  <Icon name={social.icon} size={20} className="mx-auto" />
-                </a>
-              ))}
-            </div>
-          </div>
+                  Connect
+                </motion.h4>
 
-          {/* Bottom Padding for scroll */}
-          <div className="h-24" />
-        </div>
-      </div>
+                <div className="grid grid-cols-4 gap-2">
+                  {socialLinks.map((social, index) => (
+                    <motion.div
+                      key={social.name}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.45 + index * 0.05 }}
+                      whileHover={{ y: -3 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <a
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={closeMenu}
+                        className={`flex items-center justify-center p-3 rounded-xl 
+                    ${social.bgColor} text-white
+                    hover:shadow-xl transition-all duration-200
+                    relative overflow-hidden group`}
+                      >
+                        {/* Shine effect */}
+                        <motion.div
+                          className="absolute inset-0 bg-white/20"
+                          initial={{ x: "-100%" }}
+                          whileHover={{ x: "100%" }}
+                          transition={{ duration: 0.5 }}
+                        />
+                        <Icon name={social.icon} size={18} />
+                      </a>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Footer with copyright */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="p-5 text-center"
+              >
+                <p className="text-xs text-gray-400">
+                  © 2024 Ratnakar Singh Parihar
+                </p>
+              </motion.div>
+
+              {/* Bottom padding for scroll */}
+              <div className="h-10" />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
