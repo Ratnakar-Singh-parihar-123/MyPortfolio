@@ -2390,7 +2390,7 @@ const Header = ({ className = "" }) => {
                     iconName="Download"
                     className="border-2 hover:border-blue-500"
                   >
-                    Resume
+                    CV
                   </Button>
                 </a>
 
@@ -2588,7 +2588,7 @@ const Header = ({ className = "" }) => {
                         transition={{ delay: 0.2 }}
                         className="text-white font-bold text-xl"
                       >
-                        Ratnakar Singh
+                        Ratnakar Singh Parihar
                       </motion.h3>
 
                       <motion.p
@@ -2597,7 +2597,7 @@ const Header = ({ className = "" }) => {
                         transition={{ delay: 0.25 }}
                         className="text-white/90 text-sm"
                       >
-                        MERN Stack Developer
+                        Full Stack MERN Developer
                       </motion.p>
 
                       <motion.span
@@ -2792,7 +2792,7 @@ const Header = ({ className = "" }) => {
                 className="p-5 text-center"
               >
                 <p className="text-xs text-gray-400">
-                  © 2024 Ratnakar Singh Parihar
+                  © 2026 Ratnakar Singh Parihar
                 </p>
               </motion.div>
 

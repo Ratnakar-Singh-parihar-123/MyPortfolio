@@ -70,6 +70,8 @@ import portfolio5 from "../../assets/projectsImg/portfolioImg/portfolio5.png";
 import portfolio6 from "../../assets/projectsImg/portfolioImg/portfolio6.png";
 import portfolio7 from "../../assets/projectsImg/portfolioImg/portfolio7.png";
 import portfolio8 from "../../assets/projectsImg/portfolioImg/portfolio8.png";
+import portfolio18 from "../../assets/projectsImg/portfolioImg/portfolio8.png";
+import portfolio19 from "../../assets/projectsImg/portfolioImg/portfolio8.png";
 import portfolio9 from "../../assets/projectsImg/portfolioImg/portfolio9.png";
 import portfolio10 from "../../assets/projectsImg/portfolioImg/portfolio10.png";
 import portfolio11 from "../../assets/projectsImg/portfolioImg/portfolio11.png";
@@ -77,6 +79,8 @@ import portfolio12 from "../../assets/projectsImg/portfolioImg/portfolio12.png";
 import portfolio13 from "../../assets/projectsImg/portfolioImg/portfolio13.png";
 import portfolio14 from "../../assets/projectsImg/portfolioImg/portfolio14.png";
 import portfolio15 from "../../assets/projectsImg/portfolioImg/portfolio15.png";
+import portfolio16 from "../../assets/projectsImg/portfolioImg/portfolio15.png";
+import portfolio17 from "../../assets/projectsImg/portfolioImg/portfolio15.png";
 
 import VSBP1 from "../../assets/projectsImg/VSBPImg/VSBP1.png";
 import VSBP2 from "../../assets/projectsImg/VSBPImg/VSBP2.png";
@@ -438,6 +442,8 @@ const Projects = () => {
         portfolio6,
         portfolio7,
         portfolio8,
+        portfolio18,
+        portfolio19,
         portfolio9,
         portfolio10,
         portfolio11,
@@ -445,6 +451,8 @@ const Projects = () => {
         portfolio13,
         portfolio14,
         portfolio15,
+        portfolio16,
+        portfolio17,
       ],
       technologies: ["React", "Tailwind CSS", "Framer Motion"],
       complexity: "Intermediate",
@@ -511,7 +519,7 @@ Demo credentials for admin access:
       rating: 4.8,
       impact:
         "Improved understanding of real-world authentication flows and admin panel management",
-      liveUrl: "https://tiffin-delivery-app.vercel.app/",
+      liveUrl: "https://tiffin-delievery.vercel.app/",
       githubUrl: "https://github.com/your-username/tiffin-delivery",
       features: [
         "User login & signup functionality",
