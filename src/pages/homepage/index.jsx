@@ -8,7 +8,7 @@ import CertificatesSection from "./components/TestimonialSection";
 import CTASection from "./components/CTASection";
 import FloatingActionButton from "./components/FloatingActionButton";
 import WhyHireMe from "./components/WhyHireMe";
-// import ReaalSections from './components/VideoModel';
+// import ReaalSections from "./components/VideoModel";
 
 const Homepage = () => {
   useEffect(() => {
@@ -108,7 +108,7 @@ const Homepage = () => {
       <main className="relative">
         {/* Hero Section */}
         <HeroSection />
-        {/* <WhyHireMe /> */}
+        <WhyHireMe />
 
         {/* // reel sections  */}
         {/* <ReaalSections /> */}
