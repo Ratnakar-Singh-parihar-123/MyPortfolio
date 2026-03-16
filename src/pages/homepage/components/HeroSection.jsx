@@ -144,15 +144,6 @@ const HeroSection = () => {
         {/* Soft Gradient Base */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-transparent to-purple-50/30 dark:from-blue-950/20 dark:via-transparent dark:to-purple-950/20" />
 
-        {/* Minimal Grid Pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]"
-          style={{
-            backgroundImage: `linear-gradient(to right, #6366f1 1px, transparent 1px), linear-gradient(to bottom, #6366f1 1px, transparent 1px)`,
-            backgroundSize: "40px 40px",
-          }}
-        />
-
         {/* Single Large Gradient Orb */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-pink-500/5 rounded-full blur-3xl" />
 
@@ -164,7 +155,7 @@ const HeroSection = () => {
         <div className="absolute top-20 right-20 w-32 h-32 border border-blue-500/10 rounded-full" />
         <div className="absolute bottom-20 left-20 w-40 h-40 border border-purple-500/10 rounded-full" />
 
-        {/* Very Subtle Particle Effect (only a few) */}
+        {/* Subtle Particles */}
         <div className="absolute inset-0 overflow-hidden">
           {[...Array(8)].map((_, i) => (
             <motion.div
@@ -241,28 +232,33 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20, rotateX: -15 }}
                 animate={{ opacity: 1, y: 0, rotateX: 0 }}
                 transition={{ delay: 0.4, type: "spring" }}
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-tight"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight"
                 style={{ transformStyle: "preserve-3d" }}
               >
+                {/* First Name */}
                 <motion.span
                   animate={{
                     textShadow: [
                       "0 0 0 rgba(0,0,0,0)",
-                      "0 10px 20px rgba(0,0,0,0.1)",
+                      "0 8px 16px rgba(0,0,0,0.15)",
                       "0 0 0 rgba(0,0,0,0)",
                     ],
                   }}
                   transition={{ duration: 3, repeat: Infinity }}
                   className="block text-gray-900 dark:text-white"
+                  style={{ fontFamily: "'Dancing Script', cursive" }}
                 >
                   Ratnakar Singh
                 </motion.span>
+
+                {/* Last Name Gradient */}
                 <motion.span
                   animate={{
                     backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
                   }}
                   transition={{ duration: 8, repeat: Infinity }}
                   className="block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent bg-[length:200%]"
+                  style={{ fontFamily: "'Dancing Script', cursive" }}
                 >
                   Parihar
                 </motion.span>
