@@ -205,10 +205,11 @@ const WhyHireMe = () => {
                     ,
                   </div>
                   <div>
-                    <span className="text-purple-400">expertise</span>: [
-                    <span className="text-yellow-400">'React'</span>,{" "}
-                    <span className="text-yellow-400">'Node.js'</span>,{" "}
-                    <span className="text-yellow-400">'TypeScript'</span>],
+                    <span className="text-purple-400">Experience</span>: [
+                    <span className="text-yellow-400">
+                      'Fresher with 2+ Years Practical Experience'
+                    </span>
+                    ],
                   </div>
                   <div>
                     <span className="text-purple-400">approach</span>: {"{"}
