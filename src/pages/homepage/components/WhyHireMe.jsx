@@ -154,9 +154,10 @@ const WhyHireMe = () => {
           </h2>
 
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            I build modern, responsive, and scalable web applications that
-            deliver exceptional user experiences. With a focus on clean code and
-            performance optimization, I bring ideas to life.
+            I design and develop modern web & mobile applications using the MERN
+            stack and React Native, focusing on scalability, performance, and
+            exceptional user experience. I transform ideas into impactful,
+            real-world digital solutions with clean and efficient code.
           </p>
         </motion.div>
 

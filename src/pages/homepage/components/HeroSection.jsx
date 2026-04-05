@@ -31,42 +31,42 @@ const HeroSection = () => {
 
   const taglines = [
     {
-      text: "MERN Stack Developer Building Modern & Scalable Web Applications",
+      text: "MERN & React Native Developer Building Scalable Web & Mobile Apps",
       emoji: "",
       icon: "Rocket",
       color: "from-blue-500 to-cyan-400",
       gradient: "bg-gradient-to-r from-blue-500 to-cyan-400",
     },
     {
-      text: "Transforming Ideas into Real-World Full-Stack Solutions",
+      text: "Transforming Ideas into Real-World Full-Stack & Mobile Solutions",
       emoji: "",
       icon: "Lightbulb",
       color: "from-purple-500 to-pink-400",
       gradient: "bg-gradient-to-r from-purple-500 to-pink-400",
     },
     {
-      text: "Creating Clean Frontends with Powerful Backend Logic",
+      text: "Creating Clean Web & Mobile UIs with Powerful Backend Logic",
       emoji: "",
       icon: "Settings",
       color: "from-emerald-500 to-green-400",
       gradient: "bg-gradient-to-r from-emerald-500 to-green-400",
     },
     {
-      text: "React Interfaces Powered by Node.js & MongoDB",
+      text: "React & React Native Interfaces Powered by Node.js & MongoDB",
       emoji: "",
-      icon: "Atom",
+      icon: "Smartphone", // 🔥 better for mobile vibe
       color: "from-orange-500 to-yellow-400",
       gradient: "bg-gradient-to-r from-orange-500 to-yellow-400",
     },
     {
-      text: "Focused on Performance, Scalability & Great User Experience",
+      text: "Building High-Performance Apps with Great UX Across Web & Mobile",
       emoji: "",
       icon: "Target",
       color: "from-indigo-500 to-purple-400",
       gradient: "bg-gradient-to-r from-indigo-500 to-purple-400",
     },
     {
-      text: "Passionate Developer Learning, Building & Growing Every Day",
+      text: "Passionate Developer Exploring Web & Mobile Technologies Every Day",
       emoji: "",
       icon: "TrendingUp",
       color: "from-red-500 to-orange-400",
@@ -343,12 +343,12 @@ const HeroSection = () => {
             >
               <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
                 <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-                  Full Stack Developer
+                  Full Stack & React Native Developer
                 </span>{" "}
-                passionate about crafting{" "}
+                passionate about building{" "}
                 <span className="relative inline-block">
                   <span className="relative z-10 font-semibold text-purple-600 dark:text-purple-400">
-                    innovative solutions
+                    scalable web & mobile applications
                   </span>
                   <motion.span
                     animate={{ width: ["0%", "100%", "0%"] }}
@@ -356,15 +356,22 @@ const HeroSection = () => {
                     className="absolute bottom-0 left-0 h-0.5 bg-purple-400"
                   />
                 </span>{" "}
-                that make a difference. I transform complex problems into
-                elegant, user-friendly applications with clean code and modern
-                architecture.
+                that deliver real-world impact. I specialize in transforming
+                complex ideas into seamless, user-friendly experiences using
+                modern technologies and clean, maintainable code.
+              </p>
+
+              <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
+                From responsive frontend interfaces to robust backend systems
+                and cross-platform mobile apps, I focus on performance,
+                scalability, and intuitive design to create products that users
+                love.
               </p>
 
               {/* Draggable Skills Component */}
               {/* <div className="mt-6">
-                <DraggableSkills />
-              </div> */}
+    <DraggableSkills />
+  </div> */}
             </motion.div>
 
             {/* Enhanced CTA Buttons */}
@@ -462,7 +469,6 @@ const HeroSection = () => {
               ))}
             </motion.div>
           </motion.div>
-
           {/* Right Column - Enhanced Image Section */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
@@ -650,71 +656,84 @@ const HeroSection = () => {
 
           {/* Scrolling Content */}
           <motion.div
-            animate={{ x: ["0%", "-50%"] }}
+            animate={{ x: ["0%", "-70%"] }}
             transition={{
-              duration: 22,
+              duration: 20,
               ease: "linear",
               repeat: Infinity,
             }}
-            className="flex items-center gap-12 whitespace-nowrap text-sm sm:text-base md:text-lg font-semibold tracking-wide px-6"
+            className="flex items-center gap-10 whitespace-nowrap text-sm sm:text-base md:text-lg font-semibold tracking-wide px-6"
           >
-            {/* Item */}
+            {/* Items */}
+
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">
-              🚀 Building Modern Web Experiences
+              🚀 Crafting Modern Web Experiences
             </span>
 
-            <span className="text-gray-400">✦</span>
+            <span className="text-gray-500">•</span>
 
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
               💻 MERN Stack Developer
             </span>
 
-            <span className="text-gray-400">✦</span>
+            <span className="text-gray-500">•</span>
 
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-500">
-              ⚛ React • Node.js • MongoDB
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-blue-500">
+              📱 React Native Developer
             </span>
 
-            <span className="text-gray-400">✦</span>
+            <span className="text-gray-500">•</span>
+
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-500">
+              ⚛ React • Node.js • Express.js • MongoDB • MySQL
+            </span>
+
+            <span className="text-gray-500">•</span>
 
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-emerald-500">
               📧 ratnakarsinghparihar9399@gmail.com
             </span>
 
-            <span className="text-gray-400">✦</span>
+            <span className="text-gray-500">•</span>
 
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
-              📞 9399741051
+              📞+91 93997-41051
             </span>
 
-            {/* Duplicate for seamless infinite scroll */}
+            {/* Duplicate for seamless loop */}
 
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">
-              🚀 Building Modern Web Experiences
+              🚀 Crafting Modern Web Experiences
             </span>
 
-            <span className="text-gray-400">✦</span>
+            <span className="text-gray-500">•</span>
 
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
               💻 MERN Stack Developer
             </span>
 
-            <span className="text-gray-400">✦</span>
+            <span className="text-gray-500">•</span>
 
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-500">
-              ⚛ React • Node.js • MongoDB
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-blue-500">
+              📱 React Native Developer
             </span>
 
-            <span className="text-gray-400">✦</span>
+            <span className="text-gray-500">•</span>
+
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-500">
+              ⚛ React • Node.js • Express.js • MongoDB • MySQL
+            </span>
+
+            <span className="text-gray-500">•</span>
 
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-emerald-500">
               📧 ratnakarsinghparihar9399@gmail.com
             </span>
 
-            <span className="text-gray-400">✦</span>
+            <span className="text-gray-500">•</span>
 
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
-              📞 9399741051
+              📞+91 93997-41051
             </span>
           </motion.div>
         </div>

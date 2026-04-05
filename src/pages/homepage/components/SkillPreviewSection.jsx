@@ -39,6 +39,12 @@ const SkillPreviewSection = () => {
         },
         { name: "React", level: 88, icon: "Layout", color: "text-cyan-500" },
         {
+          name: "React Native",
+          level: 88,
+          icon: "Smartphone",
+          color: "text-cyan-500",
+        },
+        {
           name: "Tailwind CSS",
           level: 92,
           icon: "Wind",
@@ -96,6 +102,12 @@ const SkillPreviewSection = () => {
         },
         { name: "Render", level: 78, icon: "Server", color: "text-blue-600" },
         { name: "VS Code", level: 95, icon: "Code", color: "text-blue-500" },
+        {
+          name: "Android Studio",
+          level: 85,
+          icon: "Smartphone",
+          color: "text-green-500",
+        },
       ],
     },
     {

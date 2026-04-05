@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { color, motion } from "framer-motion";
 import Header from "../../components/ui/Header";
 import Icon from "../../components/AppIcon";
 
@@ -65,6 +65,12 @@ const Skills = () => {
           name: "React.js",
           level: 85,
           icon: "Atom",
+          color: "from-cyan-500 to-blue-500",
+        },
+        {
+          name: "React Native Development",
+          level: 80,
+          icon: "Smartphone",
           color: "from-cyan-500 to-blue-500",
         },
         {

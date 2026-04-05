@@ -239,10 +239,11 @@ const HeroSection = () => {
               <div className="absolute -left-4 top-1/2 -translate-y-1/2 w-1 h-12 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"></div>
               <p className="text-xl text-gray-700 dark:text-gray-300 pl-4 leading-relaxed">
                 <span className="font-semibold text-blue-600 dark:text-blue-400">
-                  Full-Stack MERN Developer
+                  Full Stack & React Native Developer
                 </span>{" "}
-                crafting scalable web applications with modern architecture and
-                exceptional user experiences.
+                crafting high-performance web and mobile applications that
+                combine modern architecture, intuitive design, and exceptional
+                user experiences.
               </p>
             </motion.div>
 
@@ -253,9 +254,11 @@ const HeroSection = () => {
               transition={{ delay: 0.7 }}
               className="text-gray-500 dark:text-gray-400 leading-relaxed max-w-xl"
             >
-              I transform complex problems into elegant solutions using the MERN
-              stack. With a focus on clean code and performance optimization, I
-              deliver applications that users love.
+              I craft high-quality web and mobile applications using the MERN
+              stack and React Native, turning complex problems into seamless,
+              user-friendly solutions. My focus on clean architecture,
+              performance, and scalability ensures applications that truly
+              delight users.
             </motion.p>
 
             <motion.div

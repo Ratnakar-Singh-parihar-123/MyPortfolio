@@ -1343,29 +1343,29 @@
 //               50% { background-position: 0 0; }
 //               100% { background-position: 100% 0; }
 //             }
-            
+
 //             .modal-open {
 //               overflow: hidden;
 //             }
-            
+
 //             .scrollbar-thin::-webkit-scrollbar {
 //               width: 4px;
 //               height: 4px;
 //             }
-            
+
 //             .scrollbar-thin::-webkit-scrollbar-track {
 //               background: transparent;
 //             }
-            
+
 //             .scrollbar-thin::-webkit-scrollbar-thumb {
 //               background: #d1d5db;
 //               border-radius: 4px;
 //             }
-            
+
 //             .dark .scrollbar-thin::-webkit-scrollbar-thumb {
 //               background: #4b5563;
 //             }
-            
+
 //             .scrollbar-hide::-webkit-scrollbar {
 //               display: none;
 //             }
@@ -1377,8 +1377,6 @@
 // };
 
 // export default ProjectModal;
-
-
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Icon from "../../../components/AppIcon";
@@ -1386,894 +1384,1208 @@ import Image from "../../../components/AppImage";
 import Button from "../../../components/ui/Button";
 
 const ProjectModal = ({ project, isOpen, onClose }) => {
-  // All hooks MUST be at the top before any conditional logic
+  // State
   const [activeTab, setActiveTab] = useState("overview");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  const [isAnimating, setIsAnimating] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [isFullscreen, setIsFullscreen] = useState(false);
   const [showGallery, setShowGallery] = useState(false);
-  const [showTechGlow, setShowTechGlow] = useState(false);
   const [touchStart, setTouchStart] = useState(null);
-  const [touchEnd, setTouchEnd] = useState(null);
-  
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  // Refs
   const modalRef = useRef(null);
-  const imageContainerRef = useRef(null);
   const contentRef = useRef(null);
-  const galleryRef = useRef(null);
-  const tabsRef = useRef([]);
-  const scrollTimeoutRef = useRef(null);
 
-  // Check for mobile device
+  // Detect if it's a mobile app project
+  const isMobileApp =
+    project?.type === "mobile-app" ||
+    project?.platforms ||
+    project?.isMobileApp;
+
+  // Check mobile device
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-
-    return () => {
-      window.removeEventListener('resize', checkMobile);
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-    };
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Fix scroll locking issue - only hide overflow on body
+  // Lock body scroll
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
+      document.body.style.paddingRight = `${window.innerWidth - document.documentElement.clientWidth}px`;
+    } else {
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
     }
-
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
     };
   }, [isOpen]);
 
-  // Reset states when project changes
+  // Reset states
   useEffect(() => {
     if (project) {
       setCurrentImageIndex(0);
       setActiveTab("overview");
       setIsLoading(true);
+      setImageLoaded(false);
       setShowGallery(false);
       setIsFullscreen(false);
-      setShowTechGlow(false);
-      
-      // Reset scroll position
-      if (contentRef.current) {
-        contentRef.current.scrollTop = 0;
-      }
+      if (contentRef.current) contentRef.current.scrollTop = 0;
     }
   }, [project]);
 
-  // Handle keyboard navigation
+  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (!isOpen || !project) return;
-
-      switch (e.key) {
-        case "Escape":
-          e.preventDefault();
-          if (isFullscreen) {
-            setIsFullscreen(false);
-          } else {
-            onClose();
-          }
-          break;
-        case "ArrowLeft":
-          e.preventDefault();
-          prevImage();
-          break;
-        case "ArrowRight":
-          e.preventDefault();
-          nextImage();
-          break;
-        case "f":
-        case "F":
-          e.preventDefault();
-          if (hasGallery) {
-            toggleFullscreen();
-          }
-          break;
-        case "g":
-        case "G":
-          e.preventDefault();
-          if (hasGallery && project.gallery?.length > 1) {
-            setShowGallery(!showGallery);
-          }
-          break;
-        default:
-          break;
-      }
+      if (!isOpen) return;
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft" && !showGallery) handlePrevImage();
+      if (e.key === "ArrowRight" && !showGallery) handleNextImage();
+      if (e.key === "f" && !isMobileApp && hasGallery)
+        setIsFullscreen(!isFullscreen);
     };
-
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, project, onClose, isFullscreen, showGallery]);
+  }, [isOpen, showGallery, isFullscreen, isMobileApp]);
 
-  // Smooth image transitions
-  const nextImage = useCallback(() => {
-    if (!project?.gallery || project.gallery.length <= 1 || isAnimating) return;
+  // Image navigation
+  const handleNextImage = useCallback(() => {
+    if (!project?.gallery?.length) return;
+    setImageLoaded(false);
+    setIsLoading(true);
+    setCurrentImageIndex((prev) => (prev + 1) % project.gallery.length);
+  }, [project]);
 
-    setIsAnimating(true);
-    setCurrentImageIndex((prev) => {
-      const nextIndex = (prev + 1) % project.gallery.length;
-      return nextIndex;
-    });
+  const handlePrevImage = useCallback(() => {
+    if (!project?.gallery?.length) return;
+    setImageLoaded(false);
+    setIsLoading(true);
+    setCurrentImageIndex((prev) =>
+      prev === 0 ? project.gallery.length - 1 : prev - 1,
+    );
+  }, [project]);
 
-    setTimeout(() => setIsAnimating(false), 400);
-  }, [project, isAnimating]);
+  // Touch handlers
+  const handleTouchStart = (e) => setTouchStart(e.touches[0].clientX);
+  const handleTouchEnd = (e) => {
+    if (!touchStart) return;
+    const diff = touchStart - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? handleNextImage() : handlePrevImage();
+    }
+    setTouchStart(null);
+  };
 
-  const prevImage = useCallback(() => {
-    if (!project?.gallery || project.gallery.length <= 1 || isAnimating) return;
-
-    setIsAnimating(true);
-    setCurrentImageIndex((prev) => {
-      const nextIndex = prev === 0 ? project.gallery.length - 1 : prev - 1;
-      return nextIndex;
-    });
-
-    setTimeout(() => setIsAnimating(false), 400);
-  }, [project, isAnimating]);
-
-  // Click outside to close
-  const handleBackdropClick = useCallback((e) => {
+  // Click outside
+  const handleBackdropClick = (e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
       onClose();
     }
-  }, [onClose]);
+  };
 
-  // Tech glow effect
-  useEffect(() => {
-    if (activeTab === 'technical') {
-      const timer = setTimeout(() => setShowTechGlow(true), 300);
-      return () => {
-        clearTimeout(timer);
-        setShowTechGlow(false);
-      };
-    }
-  }, [activeTab]);
-
-  // Enhanced fullscreen toggle
-  const toggleFullscreen = useCallback(() => {
-    if (!isFullscreen) {
-      try {
-        if (modalRef.current?.requestFullscreen) {
-          modalRef.current.requestFullscreen();
-        }
-      } catch (error) {
-        console.log("Fullscreen error:", error);
-      }
-    } else {
-      try {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        }
-      } catch (error) {
-        console.log("Exit fullscreen error:", error);
-      }
-    }
-  }, [isFullscreen]);
-
-  // Handle fullscreen change
-  useEffect(() => {
-    const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement);
-    };
-
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
-  }, []);
-
-  // Early return should come AFTER all hooks
   if (!project) return null;
 
-  // Touch handling functions - defined after hooks but before render
-  const minSwipeDistance = 50;
+  const hasGallery = project.gallery?.length > 0;
+  const currentImage = hasGallery
+    ? project.gallery[currentImageIndex]
+    : project.image;
 
-  const onTouchStart = (e) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const onTouchMove = (e) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    if (isLeftSwipe) {
-      nextImage();
-    } else if (isRightSwipe) {
-      prevImage();
-    }
-  };
-
-  // Enhanced tabs data
   const tabs = [
     {
       id: "overview",
       label: "Overview",
       icon: "Eye",
-      gradient: "linear-gradient(135deg, #3b82f6, #8b5cf6)",
-      glow: "rgba(59, 130, 246, 0.2)"
+      color: "blue",
+      gradient: "from-blue-500 to-blue-600",
     },
     {
       id: "technical",
-      label: "Technical",
+      label: isMobileApp ? "Tech" : "Technical",
       icon: "Cpu",
-      gradient: "linear-gradient(135deg, #8b5cf6, #ec4899)",
-      glow: "rgba(139, 92, 246, 0.3)"
+      color: "purple",
+      gradient: "from-purple-500 to-purple-600",
     },
     {
       id: "features",
       label: "Features",
       icon: "Layers",
-      gradient: "linear-gradient(135deg, #10b981, #06b6d4)",
-      glow: "rgba(16, 185, 129, 0.2)"
+      color: "emerald",
+      gradient: "from-emerald-500 to-emerald-600",
     },
     {
       id: "impact",
       label: "Impact",
       icon: "TrendingUp",
-      gradient: "linear-gradient(135deg, #f59e0b, #ef4444)",
-      glow: "rgba(245, 158, 11, 0.2)"
+      color: "orange",
+      gradient: "from-orange-500 to-orange-600",
     },
   ];
 
-  const hasGallery = project?.gallery && project.gallery.length > 0;
-  const currentImage = hasGallery
-    ? project.gallery[currentImageIndex]
-    : project?.image;
+  // ========== PHONE MODAL RENDER (For Mobile Apps) ==========
+  if (isMobileApp) {
+    return (
+      <AnimatePresence mode="wait">
+        {isOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="absolute inset-0 bg-gradient-to-br from-black/90 via-black/80 to-black/90 backdrop-blur-xl"
+              onClick={handleBackdropClick}
+            />
 
-  const handleImageLoad = () => {
-    setIsLoading(false);
-  };
+            {/* Phone Frame */}
+            <motion.div
+              ref={modalRef}
+              initial={{ opacity: 0, scale: 0.8, y: 100 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8, y: 100 }}
+              transition={{ type: "spring", damping: 20, stiffness: 300 }}
+              className="relative w-full max-w-[400px] h-[750px] sm:max-w-[380px] sm:h-[700px]"
+            >
+              {/* Phone Outer Frame */}
+              <div className="relative w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-[3rem] shadow-2xl shadow-black/50 p-2">
+                {/* Phone Inner Screen */}
+                <div className="relative w-full h-full bg-gradient-to-br from-gray-900 to-black rounded-[2.5rem] overflow-hidden flex flex-col">
+                  {/* Dynamic Island */}
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[120px] h-[35px] bg-black rounded-b-2xl z-30 flex items-center justify-center gap-1.5">
+                    <div className="w-2 h-2 rounded-full bg-emerald-500/90 animate-pulse shadow-lg shadow-emerald-500/50" />
+                    <div className="w-12 h-3 bg-gray-800 rounded-full" />
+                  </div>
 
-  const getProgressPercentage = () => {
-    if (!hasGallery || project.gallery.length === 0) return 0;
-    return ((currentImageIndex + 1) / project.gallery.length) * 100;
-  };
+                  {/* Status Bar */}
+                  <div className="absolute top-2 left-0 right-0 px-6 py-1 flex justify-between text-white/70 text-[11px] font-medium z-20">
+                    <span className="font-semibold">9:41</span>
+                    <div className="flex gap-1.5">
+                      <Icon name="Signal" size={11} className="text-white/70" />
+                      <Icon name="Wifi" size={11} className="text-white/70" />
+                      <Icon
+                        name="Battery"
+                        size={13}
+                        className="text-white/70"
+                      />
+                    </div>
+                  </div>
 
-  // Animation variants
-  const modalVariants = {
-    hidden: {
-      opacity: 0,
-      scale: 0.95,
-      y: isMobile ? 30 : 0,
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        damping: 25,
-        stiffness: 300,
-        mass: 0.8
-      }
-    },
-    exit: {
-      opacity: 0,
-      scale: 0.95,
-      y: isMobile ? 30 : 0,
-      transition: { duration: 0.2 }
-    }
-  };
-
-  const backdropVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut"
-      }
-    },
-    exit: {
-      opacity: 0,
-      transition: {
-        duration: 0.2,
-        ease: "easeIn"
-      }
-    }
-  };
-
-  return (
-    <AnimatePresence mode="wait">
-      {isOpen && (
-        <>
-          {/* Enhanced Backdrop */}
-          <motion.div
-            variants={backdropVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className="fixed inset-0 z-50"
-            onClick={handleBackdropClick}
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-gray-900/95 to-black/90"></div>
-            <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/20 via-transparent to-purple-900/20"></div>
-            <div className="absolute inset-0 backdrop-blur-md" />
-          </motion.div>
-
-          {/* Modal Container - Mobile optimized */}
-          <div className="fixed inset-0 z-50 overflow-y-auto touch-auto">
-            <div className="min-h-full flex items-start justify-center p-0 sm:p-2 md:p-4">
-              <motion.div
-                ref={modalRef}
-                variants={modalVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                className="relative w-full h-full sm:h-auto sm:max-h-[95vh] sm:max-w-6xl bg-gradient-to-br from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 rounded-none sm:rounded-2xl shadow-2xl shadow-black/30 overflow-hidden border-0 sm:border border-white/10 dark:border-gray-700/30"
-                style={{
-                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)"
-                }}
-              >
-                {/* Header */}
-                <div className="sticky top-0 z-50 bg-gradient-to-b from-white/95 via-white/90 to-white/85 dark:from-gray-900/95 dark:via-gray-900/90 dark:to-gray-900/85 backdrop-blur-xl border-b border-white/20 dark:border-gray-700/30 px-4 py-3 sm:px-6 sm:py-4">
-                  <div className="flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-3 min-w-0 flex-1">
-                      {/* Project Icon */}
-                      <div className="relative flex-shrink-0">
-                        <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 dark:from-blue-600 dark:via-blue-700 dark:to-blue-800 flex items-center justify-center shadow-lg">
-                          <Icon name="FolderKanban" size={isMobile ? 18 : 20} className="text-white" />
-                        </div>
-                      </div>
-
-                      {/* Project Title */}
-                      <div className="flex-1 min-w-0">
-                        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white truncate">
-                          {project?.title}
-                        </h2>
-                        <div className="flex items-center gap-1.5 mt-0.5">
-                          <span className="text-xs sm:text-sm font-medium text-blue-600 dark:text-blue-400 truncate">
-                            {project?.category}
-                          </span>
-                          {project?.complexity && (
-                            <>
-                              <span className="text-gray-400 hidden sm:inline">•</span>
-                              <span className={`text-xs px-2 py-0.5 rounded-full font-semibold ${project.complexity === "Advanced"
-                                  ? "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300"
-                                  : project.complexity === "Intermediate"
-                                    ? "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300"
-                                    : "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300"
-                                }`}>
+                  {/* Header */}
+                  <div className="flex-shrink-0 pt-12 px-5 pb-4 border-b border-white/10 bg-gradient-to-b from-white/5 to-transparent">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3 flex-1 min-w-0">
+                        <motion.div
+                          whileHover={{ scale: 1.05, rotate: 5 }}
+                          className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-xl shadow-purple-500/30 flex-shrink-0"
+                        >
+                          <Icon
+                            name={project.iconName || "Smartphone"}
+                            size={20}
+                            className="text-white"
+                          />
+                        </motion.div>
+                        <div className="flex-1 min-w-0">
+                          <h2 className="text-base font-bold text-white truncate">
+                            {project.title}
+                          </h2>
+                          <div className="flex items-center gap-2 mt-0.5">
+                            <p className="text-[11px] text-blue-400 font-medium">
+                              {project.category}
+                            </p>
+                            {project.complexity && (
+                              <span
+                                className={`text-[9px] px-1.5 py-0.5 rounded-full font-medium ${
+                                  project.complexity === "Advanced"
+                                    ? "bg-red-500/20 text-red-400"
+                                    : project.complexity === "Intermediate"
+                                      ? "bg-yellow-500/20 text-yellow-400"
+                                      : "bg-green-500/20 text-green-400"
+                                }`}
+                              >
                                 {project.complexity}
                               </span>
-                            </>
-                          )}
+                            )}
+                          </div>
                         </div>
                       </div>
+                      <motion.button
+                        whileHover={{ scale: 1.1, rotate: 90 }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={onClose}
+                        className="p-2 hover:bg-white/10 rounded-full transition"
+                      >
+                        <Icon name="X" size={18} className="text-white/70" />
+                      </motion.button>
                     </div>
-
-                    {/* Close Button */}
-                    <button
-                      onClick={onClose}
-                      className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex-shrink-0"
-                      aria-label="Close"
-                    >
-                      <Icon
-                        name="X"
-                        size={20}
-                        className="text-gray-600 dark:text-gray-400"
-                      />
-                    </button>
                   </div>
-                </div>
 
-                {/* Main Content - Mobile optimized layout */}
-                <div className="flex flex-col lg:flex-row h-[calc(100vh-4rem)] sm:h-auto">
-                  {/* Left Column - Gallery */}
-                  <div className={`lg:w-1/2 p-4 sm:p-5 border-b lg:border-b-0 lg:border-r border-gray-200/20 dark:border-gray-700/20 ${showGallery ? 'lg:flex lg:flex-col' : ''}`}>
-                    <div className={`space-y-4 ${showGallery ? 'flex-1 flex flex-col' : ''}`}>
-                      {/* Gallery Controls */}
-                      {hasGallery && (
-                        <div className="flex items-center justify-between mb-2">
-                          <div className="text-xs text-gray-500 dark:text-gray-400">
-                            {!isMobile && "Press "}
-                            <kbd className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs mx-1">F</kbd>
-                            {!isMobile && " for fullscreen"}
-                          </div>
-                          {hasGallery && project.gallery.length > 1 && (
-                            <Button
-                              variant="ghost"
-                              size="xs"
-                              iconName={showGallery ? "X" : "Grid3x3"}
-                              onClick={() => setShowGallery(!showGallery)}
-                              className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
-                            >
-                              {showGallery ? "Close" : "Grid"}
-                            </Button>
-                          )}
-                        </div>
-                      )}
-
-                      {/* Image Gallery */}
-                      {showGallery ? (
-                        // Grid Gallery View
-                        <div ref={galleryRef} className="flex-1 overflow-y-auto">
-                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 auto-rows-max">
-                            {project.gallery.map((img, index) => (
-                              <button
-                                key={index}
-                                onClick={() => {
-                                  setCurrentImageIndex(index);
-                                  setShowGallery(false);
-                                }}
-                                className={`relative aspect-square rounded-lg overflow-hidden ${currentImageIndex === index
-                                    ? "ring-2 ring-blue-500"
-                                    : "ring-1 ring-gray-200 dark:ring-gray-700"
-                                  }`}
-                              >
-                                <Image
-                                  src={img}
-                                  alt={`Gallery image ${index + 1}`}
-                                  className="w-full h-full object-cover"
-                                />
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-                      ) : (
-                        // Single Image View with touch support
-                        <div 
-                          className="relative rounded-xl sm:rounded-lg overflow-hidden bg-gradient-to-br from-gray-100/50 via-gray-200/30 to-gray-100/50 dark:from-gray-800/50 dark:via-gray-900/30 dark:to-gray-800/50"
-                          onTouchStart={onTouchStart}
-                          onTouchMove={onTouchMove}
-                          onTouchEnd={onTouchEnd}
+                  {/* Scrollable Content */}
+                  <div className="flex-1 overflow-y-auto custom-scroll">
+                    {/* App Screenshots */}
+                    {hasGallery && (
+                      <div className="border-b border-white/10">
+                        <div
+                          className="relative bg-black/30"
+                          onTouchStart={handleTouchStart}
+                          onTouchEnd={handleTouchEnd}
                         >
-                          {/* Loading Animation */}
-                          {isLoading && (
-                            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
-                              <div className="w-12 h-12 border-3 border-blue-500/20 border-t-blue-500 rounded-full animate-spin"></div>
+                          {(isLoading || !imageLoaded) && (
+                            <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-10">
+                              <div className="relative">
+                                <div className="w-10 h-10 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                  <div className="w-6 h-6 border-2 border-purple-500 border-t-transparent rounded-full animate-spin" />
+                                </div>
+                              </div>
                             </div>
                           )}
+                          <img
+                            src={currentImage}
+                            alt={project.title}
+                            className="w-full h-72 object-cover transition-all duration-500"
+                            onLoad={() => {
+                              setIsLoading(false);
+                              setImageLoaded(true);
+                            }}
+                            style={{ display: isLoading ? "none" : "block" }}
+                          />
 
-                          {/* Main Image */}
-                          <div className="relative">
-                            <Image
-                              src={currentImage}
-                              alt={`${project?.title} - Image ${currentImageIndex + 1}`}
-                              className={`w-full h-48 sm:h-56 md:h-64 object-cover transition-all duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'
-                                }`}
-                              onLoad={handleImageLoad}
-                            />
+                          {/* Gradient Overlay */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
 
-                            {/* Gradient Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
-                          </div>
-
-                          {/* Gallery Navigation - Only show on mobile if multiple images */}
-                          {hasGallery && project.gallery.length > 1 && (
+                          {project.gallery.length > 1 && (
                             <>
-                              {/* Navigation Arrows - Hidden on mobile touch devices */}
-                              {!isMobile && (
-                                <>
-                                  <button
-                                    onClick={prevImage}
-                                    className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/60 backdrop-blur-sm rounded-full flex items-center justify-center transition-all hover:bg-black/70"
-                                    aria-label="Previous image"
-                                  >
-                                    <Icon
-                                      name="ChevronLeft"
-                                      size={18}
-                                      className="text-white"
-                                    />
-                                  </button>
-
-                                  <button
-                                    onClick={nextImage}
-                                    className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/60 backdrop-blur-sm rounded-full flex items-center justify-center transition-all hover:bg-black/70"
-                                    aria-label="Next image"
-                                  >
-                                    <Icon
-                                      name="ChevronRight"
-                                      size={18}
-                                      className="text-white"
-                                    />
-                                  </button>
-                                </>
-                              )}
-
-                              {/* Progress Indicator */}
-                              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-800/30">
-                                <div 
-                                  className="h-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300"
-                                  style={{ width: `${getProgressPercentage()}%` }}
+                              <motion.button
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                                onClick={handlePrevImage}
+                                className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/60 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/80 transition-all z-20"
+                              >
+                                <Icon
+                                  name="ChevronLeft"
+                                  size={16}
+                                  className="text-white"
                                 />
-                              </div>
-
-                              {/* Image Counter - Mobile friendly */}
-                              <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-sm text-white text-xs px-2 py-1 rounded flex items-center gap-1.5">
-                                <Icon name="Image" size={12} className="text-blue-300" />
+                              </motion.button>
+                              <motion.button
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                                onClick={handleNextImage}
+                                className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/60 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/80 transition-all z-20"
+                              >
+                                <Icon
+                                  name="ChevronRight"
+                                  size={16}
+                                  className="text-white"
+                                />
+                              </motion.button>
+                              <div className="absolute bottom-3 left-3 bg-black/70 backdrop-blur-md text-white text-[10px] px-2.5 py-1 rounded-full flex items-center gap-1.5 z-20">
+                                <Icon
+                                  name="Image"
+                                  size={10}
+                                  className="text-blue-400"
+                                />
                                 <span className="font-medium">
-                                  {currentImageIndex + 1} / {project.gallery.length}
+                                  {currentImageIndex + 1}/
+                                  {project.gallery.length}
                                 </span>
                               </div>
-
-                              {/* Fullscreen Button */}
-                              {!isMobile && (
-                                <button
-                                  onClick={toggleFullscreen}
-                                  className="absolute bottom-2 right-2 bg-black/60 backdrop-blur-sm text-white p-1.5 rounded hover:bg-black/70 transition-colors"
-                                  aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
-                                >
-                                  <Icon
-                                    name={isFullscreen ? "Minimize2" : "Maximize2"}
-                                    size={16}
-                                  />
-                                </button>
-                              )}
                             </>
                           )}
                         </div>
-                      )}
+                      </div>
+                    )}
 
-                      {/* Thumbnail Rail - Mobile optimized */}
-                      {hasGallery && project.gallery.length > 1 && !showGallery && !isMobile && (
-                        <div className="space-y-2">
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs font-medium text-gray-700 dark:text-gray-300">
-                              Gallery Preview
-                            </span>
-                            <span className="text-xs text-gray-500 dark:text-gray-400">
-                              {project.gallery.length} images
-                            </span>
-                          </div>
-                          <div className="flex gap-1.5 overflow-x-auto pb-2">
-                            {project.gallery.map((img, index) => (
-                              <button
-                                key={index}
-                                onClick={() => setCurrentImageIndex(index)}
-                                className={`relative flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden transition-all ${currentImageIndex === index
-                                    ? "ring-2 ring-blue-500 scale-105"
-                                    : "ring-1 ring-gray-200 dark:ring-gray-700 opacity-80 hover:opacity-100"
-                                  }`}
-                              >
-                                <Image
-                                  src={img}
-                                  alt={`Thumbnail ${index + 1}`}
-                                  className="w-full h-full object-cover"
-                                />
-                              </button>
+                    {/* Content */}
+                    <div className="p-5 space-y-5">
+                      {/* Rating & Platform */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-1.5">
+                          <div className="flex gap-0.5">
+                            {[...Array(5)].map((_, i) => (
+                              <Icon
+                                key={i}
+                                name="Star"
+                                size={14}
+                                className={
+                                  i < (project.rating || 0)
+                                    ? "text-yellow-500 fill-yellow-500"
+                                    : "text-gray-600"
+                                }
+                              />
                             ))}
                           </div>
+                          <span className="text-xs font-semibold text-white/80 ml-1">
+                            {project.rating}
+                          </span>
                         </div>
-                      )}
+                        <div className="flex gap-1.5">
+                          {project.platforms?.map((platform, idx) => (
+                            <span
+                              key={idx}
+                              className="text-[10px] px-2 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white/80 font-medium"
+                            >
+                              {platform}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
 
-                      {/* Quick Stats - Mobile optimized */}
-                      <div className="grid grid-cols-3 gap-2">
-                        {project?.duration && (
-                          <div className="p-2 bg-gradient-to-br from-white/50 to-white/30 dark:from-gray-800/50 dark:to-gray-900/30 rounded-lg border border-white/20 dark:border-gray-700/30">
-                            <div className="flex items-center gap-1.5">
-                              <Icon name="Calendar" size={14} className="text-blue-500" />
-                              <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Duration</span>
-                            </div>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white mt-0.5">
+                      {/* Description */}
+                      <p className="text-xs text-white/70 leading-relaxed">
+                        {project.description}
+                      </p>
+
+                      {/* Tech Stack */}
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.technologies?.slice(0, 4).map((tech, idx) => (
+                          <span
+                            key={idx}
+                            className="text-[9px] px-2 py-1 bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 rounded-full font-medium"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                        {project.technologies?.length > 4 && (
+                          <span className="text-[9px] px-2 py-1 bg-white/10 text-white/60 rounded-full">
+                            +{project.technologies.length - 4}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Quick Stats */}
+                      <div className="grid grid-cols-3 gap-2.5">
+                        {project.duration && (
+                          <motion.div
+                            whileHover={{ scale: 1.02, y: -2 }}
+                            className="text-center p-2.5 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10"
+                          >
+                            <Icon
+                              name="Calendar"
+                              size={16}
+                              className="mx-auto mb-1.5 text-blue-400"
+                            />
+                            <p className="text-[9px] text-white/50">Duration</p>
+                            <p className="text-[11px] font-bold text-white/90">
                               {project.duration}
                             </p>
-                          </div>
+                          </motion.div>
                         )}
-                        {project?.teamSize && (
-                          <div className="p-2 bg-gradient-to-br from-white/50 to-white/30 dark:from-gray-800/50 dark:to-gray-900/30 rounded-lg border border-white/20 dark:border-gray-700/30">
-                            <div className="flex items-center gap-1.5">
-                              <Icon name="Users" size={14} className="text-emerald-500" />
-                              <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Team</span>
-                            </div>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white mt-0.5">
+                        {project.teamSize && (
+                          <motion.div
+                            whileHover={{ scale: 1.02, y: -2 }}
+                            className="text-center p-2.5 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10"
+                          >
+                            <Icon
+                              name="Users"
+                              size={16}
+                              className="mx-auto mb-1.5 text-green-400"
+                            />
+                            <p className="text-[9px] text-white/50">Team</p>
+                            <p className="text-[11px] font-bold text-white/90">
                               {project.teamSize}
                             </p>
-                          </div>
+                          </motion.div>
                         )}
-                        {project?.status && (
-                          <div className="p-2 bg-gradient-to-br from-white/50 to-white/30 dark:from-gray-800/50 dark:to-gray-900/30 rounded-lg border border-white/20 dark:border-gray-700/30">
-                            <div className="flex items-center gap-1.5">
-                              <Icon name="CheckCircle" size={14} className="text-amber-500" />
-                              <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Status</span>
-                            </div>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white mt-0.5">
-                              {project.status}
+                        {project.downloads && (
+                          <motion.div
+                            whileHover={{ scale: 1.02, y: -2 }}
+                            className="text-center p-2.5 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10"
+                          >
+                            <Icon
+                              name="Download"
+                              size={16}
+                              className="mx-auto mb-1.5 text-purple-400"
+                            />
+                            <p className="text-[9px] text-white/50">
+                              Downloads
                             </p>
-                          </div>
+                            <p className="text-[11px] font-bold text-white/90">
+                              {project.downloads}
+                            </p>
+                          </motion.div>
                         )}
                       </div>
 
-                      {/* Action Buttons - Mobile optimized */}
-                      <div className="flex flex-col sm:grid sm:grid-cols-2 gap-2">
-                        {project?.liveUrl && (
-                          <Button
-                            variant="default"
-                            size={isMobile ? "sm" : "md"}
-                            iconName="ExternalLink"
-                            iconPosition="left"
-                            className="w-full"
-                            onClick={() => window.open(project.liveUrl, "_blank")}
+                      {/* Action Buttons */}
+                      <div className="flex gap-2.5 pt-2">
+                        {project.liveUrl && (
+                          <motion.div
+                            whileHover={{ scale: 1.02 }}
+                            className="flex-1"
                           >
-                            Live Demo
-                          </Button>
+                            <Button
+                              variant="default"
+                              size="sm"
+                              iconName="ExternalLink"
+                              className="w-full text-xs bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600"
+                              onClick={() =>
+                                window.open(project.liveUrl, "_blank")
+                              }
+                            >
+                              Open App
+                            </Button>
+                          </motion.div>
                         )}
-                        {project?.githubUrl && (
-                          <Button
-                            variant="outline"
-                            size={isMobile ? "sm" : "md"}
-                            iconName="Github"
-                            iconPosition="left"
-                            className="w-full"
-                            onClick={() => window.open(project.githubUrl, "_blank")}
+                        {project.githubUrl && (
+                          <motion.div
+                            whileHover={{ scale: 1.02 }}
+                            className="flex-1"
                           >
-                            Source Code
-                          </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              iconName="Github"
+                              className="w-full text-xs border-white/20 hover:bg-white/10"
+                              onClick={() =>
+                                window.open(project.githubUrl, "_blank")
+                              }
+                            >
+                              Code
+                            </Button>
+                          </motion.div>
                         )}
                       </div>
-                    </div>
-                  </div>
 
-                  {/* Right Column - Content with improved mobile scrolling */}
-                  <div className="lg:w-1/2 flex flex-col flex-1 min-h-0">
-                    {/* Tabs Navigation - Mobile optimized */}
-                    <div className="sticky top-0 z-20 bg-gradient-to-b from-white/95 to-white/90 dark:from-gray-900/95 dark:to-gray-900/90 border-b border-gray-200/30 dark:border-gray-700/30">
-                      <div className="flex overflow-x-auto scrollbar-hide px-2">
-                        {tabs.map((tab, index) => (
+                      {/* Tabs */}
+                      <div className="flex gap-1.5 pt-3 border-t border-white/10">
+                        {tabs.map((tab) => (
                           <button
                             key={tab.id}
-                            ref={el => tabsRef.current[index] = el}
                             onClick={() => setActiveTab(tab.id)}
-                            className={`flex-1 min-w-0 flex flex-col items-center px-3 py-2.5 transition-all duration-200 ${activeTab === tab.id
-                                ? "text-gray-900 dark:text-white"
-                                : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
-                              }`}
+                            className={`flex-1 py-2.5 text-[10px] font-semibold rounded-xl transition-all duration-200 ${
+                              activeTab === tab.id
+                                ? `bg-gradient-to-r ${tab.gradient} text-white shadow-lg`
+                                : "text-white/50 hover:text-white/70 hover:bg-white/5"
+                            }`}
                           >
-                            <div className="relative flex items-center gap-1.5 sm:gap-2 z-10">
-                              <Icon
-                                name={tab.icon}
-                                size={isMobile ? 16 : 18}
-                                className={activeTab === tab.id ? '' : 'opacity-70'}
-                              />
-                              <span className={`text-xs sm:text-sm font-medium whitespace-nowrap ${activeTab === tab.id ? '' : 'opacity-80'
-                                }`}>
-                                {isMobile ? tab.label.substring(0, 3) : tab.label}
-                              </span>
-                            </div>
-
-                            {/* Active indicator */}
-                            <div className="relative mt-1.5 h-0.5 w-full rounded-full overflow-hidden">
-                              <div 
-                                className="h-full transition-all duration-300"
-                                style={{ 
-                                  background: tab.gradient,
-                                  width: activeTab === tab.id ? "100%" : "0%",
-                                  opacity: activeTab === tab.id ? 1 : 0
-                                }}
-                              />
+                            <div className="flex items-center justify-center gap-1.5">
+                              <Icon name={tab.icon} size={12} />
+                              <span>{tab.label}</span>
                             </div>
                           </button>
                         ))}
                       </div>
+
+                      {/* Tab Content */}
+                      <div className="space-y-4">
+                        {activeTab === "overview" && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="space-y-4"
+                          >
+                            <p className="text-xs text-white/70 leading-relaxed">
+                              {project.fullDescription || project.description}
+                            </p>
+                            {project.impact && (
+                              <div className="p-3.5 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl border border-blue-500/20">
+                                <div className="flex items-start gap-2.5">
+                                  <div className="w-6 h-6 rounded-lg bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                                    <Icon
+                                      name="Target"
+                                      size={12}
+                                      className="text-blue-400"
+                                    />
+                                  </div>
+                                  <div>
+                                    <p className="text-[11px] font-semibold text-blue-400 mb-1">
+                                      Impact
+                                    </p>
+                                    <p className="text-[11px] text-white/70">
+                                      {project.impact}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </motion.div>
+                        )}
+
+                        {activeTab === "technical" && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="space-y-4"
+                          >
+                            <div>
+                              <h4 className="text-[11px] font-semibold text-purple-400 mb-2.5 flex items-center gap-1.5">
+                                <Icon name="Code" size={12} />
+                                Tech Stack
+                              </h4>
+                              <div className="flex flex-wrap gap-1.5">
+                                {project.technologies?.map((tech, idx) => (
+                                  <span
+                                    key={idx}
+                                    className="text-[10px] px-2.5 py-1.5 bg-white/10 rounded-lg text-white/80 font-medium"
+                                  >
+                                    {tech}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                            {project.challenges?.map((challenge, idx) => (
+                              <div
+                                key={idx}
+                                className="p-3 bg-white/5 rounded-xl"
+                              >
+                                <p className="text-[10px] mb-2 text-white/70">
+                                  <span className="font-semibold text-red-400">
+                                    Challenge:
+                                  </span>{" "}
+                                  {challenge.problem}
+                                </p>
+                                <p className="text-[10px] text-white/70">
+                                  <span className="font-semibold text-green-400">
+                                    Solution:
+                                  </span>{" "}
+                                  {challenge.solution}
+                                </p>
+                              </div>
+                            ))}
+                          </motion.div>
+                        )}
+
+                        {activeTab === "features" && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="space-y-2.5"
+                          >
+                            {project.features?.map((feature, idx) => (
+                              <div
+                                key={idx}
+                                className="flex items-start gap-2.5 p-2.5 bg-white/5 rounded-xl"
+                              >
+                                <Icon
+                                  name="CheckCircle"
+                                  size={14}
+                                  className="text-emerald-400 mt-0.5 flex-shrink-0"
+                                />
+                                <span className="text-[11px] text-white/80">
+                                  {feature}
+                                </span>
+                              </div>
+                            ))}
+                          </motion.div>
+                        )}
+
+                        {activeTab === "impact" && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="space-y-4"
+                          >
+                            {project.metrics?.map((metric, idx) => (
+                              <div
+                                key={idx}
+                                className="text-center p-3 bg-gradient-to-br from-orange-500/10 to-amber-500/10 rounded-xl border border-orange-500/20"
+                              >
+                                <div className="text-xl font-bold text-white">
+                                  {metric.value}
+                                </div>
+                                <div className="text-[10px] text-white/60 mt-1">
+                                  {metric.label}
+                                </div>
+                              </div>
+                            ))}
+                            {project.learnings?.map((learning, idx) => (
+                              <div
+                                key={idx}
+                                className="flex items-start gap-2.5 p-2.5 bg-white/5 rounded-xl"
+                              >
+                                <Icon
+                                  name="Lightbulb"
+                                  size={14}
+                                  className="text-yellow-400 mt-0.5 flex-shrink-0"
+                                />
+                                <span className="text-[11px] text-white/80">
+                                  {learning}
+                                </span>
+                              </div>
+                            ))}
+                          </motion.div>
+                        )}
+                      </div>
                     </div>
+                  </div>
 
-                    {/* Tab Content - Mobile optimized scrolling */}
-                    <div
-                      ref={contentRef}
-                      className="flex-1 overflow-y-auto p-4 sm:p-5 md:p-6"
-                      style={{
-                        WebkitOverflowScrolling: 'touch',
-                        scrollBehavior: 'smooth'
-                      }}
-                    >
-                      <AnimatePresence mode="wait">
-                        <motion.div
-                          key={activeTab}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -10 }}
-                          transition={{
-                            duration: 0.2,
-                            ease: "easeInOut"
-                          }}
-                          className="space-y-5"
+                  {/* Home Indicator */}
+                  <div className="flex-shrink-0 py-3 flex justify-center">
+                    <div className="w-36 h-1 bg-white/20 rounded-full" />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    );
+  }
+
+  // ========== REGULAR MODAL RENDER (For Web/Other Projects) ==========
+  return (
+    <AnimatePresence mode="wait">
+      {isOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="absolute inset-0 bg-gradient-to-br from-black/90 via-black/80 to-black/90 backdrop-blur-md"
+            onClick={handleBackdropClick}
+          />
+
+          {/* Regular Modal */}
+          <motion.div
+            ref={modalRef}
+            initial={{ opacity: 0, scale: 0.9, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 30 }}
+            transition={{ type: "spring", damping: 25, stiffness: 400 }}
+            className="relative w-full max-w-6xl max-h-[90vh] bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+          >
+            {/* Header */}
+            <div className="flex-shrink-0 px-6 py-5 border-b border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4 flex-1 min-w-0">
+                  <motion.div
+                    whileHover={{ scale: 1.05, rotate: 5 }}
+                    className="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg flex-shrink-0"
+                  >
+                    <Icon
+                      name={project.iconName || "FolderKanban"}
+                      size={24}
+                      className="text-white"
+                    />
+                  </motion.div>
+                  <div className="flex-1 min-w-0">
+                    <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white truncate">
+                      {project.title}
+                    </h2>
+                    <div className="flex items-center gap-2 mt-1 flex-wrap">
+                      <span className="text-sm text-blue-600 dark:text-blue-400 font-medium">
+                        {project.category}
+                      </span>
+                      {project.complexity && (
+                        <span
+                          className={`text-xs px-2 py-0.5 rounded-full font-semibold ${
+                            project.complexity === "Advanced"
+                              ? "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
+                              : project.complexity === "Intermediate"
+                                ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400"
+                                : "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
+                          }`}
                         >
-                          {/* Overview Tab */}
-                          {activeTab === "overview" && (
-                            <>
-                              <div className="space-y-4">
-                                <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
-                                  Project Overview
-                                </h3>
-                                <div className="prose prose-sm dark:prose-invert max-w-none">
-                                  <p className="text-sm sm:text-base leading-relaxed text-gray-600 dark:text-gray-300 whitespace-pre-line">
-                                    {project?.fullDescription || project?.description}
-                                  </p>
-                                </div>
-                              </div>
-
-                              {project?.impact && (
-                                <div className="p-4 bg-gradient-to-br from-blue-50/50 to-white/50 dark:from-blue-900/10 dark:to-gray-900/10 rounded-xl border border-blue-100/50 dark:border-blue-800/20">
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-400 flex items-center justify-center flex-shrink-0">
-                                      <Icon name="Target" size={20} className="text-white" />
-                                    </div>
-                                    <div>
-                                      <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-1">
-                                        Project Impact
-                                      </h4>
-                                      <p className="text-sm text-gray-600 dark:text-gray-300">
-                                        {project.impact}
-                                      </p>
-                                    </div>
-                                  </div>
-                                </div>
-                              )}
-                            </>
-                          )}
-
-                          {/* Technical Tab */}
-                          {activeTab === "technical" && (
-                            <>
-                              <div className="space-y-4">
-                                <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
-                                  Technology Stack
-                                </h3>
-                                
-                                {showTechGlow && (
-                                  <div className="absolute inset-0 pointer-events-none opacity-10 bg-purple-500/20" />
-                                )}
-
-                                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5">
-                                  {project?.technologies?.map((tech, index) => (
-                                    <div
-                                      key={index}
-                                      className="p-3 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg border border-gray-200/50 dark:border-gray-700/50"
-                                    >
-                                      <div className="flex flex-col items-center text-center gap-1.5">
-                                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-100 to-purple-50 dark:from-purple-900/30 dark:to-gray-900 flex items-center justify-center">
-                                          <Icon name="Code" size={18} className="text-purple-600 dark:text-purple-400" />
-                                        </div>
-                                        <span className="text-xs sm:text-sm font-medium text-gray-900 dark:text-white truncate w-full">
-                                          {tech}
-                                        </span>
-                                      </div>
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
-
-                              {project?.challenges && project.challenges.length > 0 && (
-                                <div className="space-y-4 pt-4">
-                                  <h4 className="text-base font-semibold text-gray-900 dark:text-white">
-                                    Technical Challenges
-                                  </h4>
-                                  <div className="space-y-3">
-                                    {project.challenges.map((challenge, index) => (
-                                      <div
-                                        key={index}
-                                        className="p-4 bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-xl border border-gray-200 dark:border-gray-700"
-                                      >
-                                        <div className="flex items-start gap-3">
-                                          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-100 to-amber-50 dark:from-amber-900/30 dark:to-gray-900 flex items-center justify-center flex-shrink-0">
-                                            <Icon name="AlertCircle" size={16} className="text-amber-600 dark:text-amber-400" />
-                                          </div>
-                                          <div className="flex-1">
-                                            <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
-                                              <span className="font-semibold text-gray-900 dark:text-white">Challenge: </span>
-                                              {challenge.problem}
-                                            </p>
-                                            <p className="text-sm text-gray-600 dark:text-gray-300">
-                                              <span className="font-semibold text-gray-900 dark:text-white">Solution: </span>
-                                              {challenge.solution}
-                                            </p>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    ))}
-                                  </div>
-                                </div>
-                              )}
-                            </>
-                          )}
-
-                          {/* Features Tab */}
-                          {activeTab === "features" && project?.features && (
-                            <>
-                              <div className="space-y-4">
-                                <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
-                                  Key Features
-                                </h3>
-
-                                <div className="space-y-3">
-                                  {project.features.map((feature, index) => (
-                                    <div
-                                      key={index}
-                                      className="p-4 bg-gradient-to-br from-emerald-50/50 to-white/50 dark:from-emerald-900/10 dark:to-gray-900/10 rounded-xl border border-emerald-100/50 dark:border-emerald-800/20"
-                                    >
-                                      <div className="flex items-start gap-3">
-                                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-400 flex items-center justify-center flex-shrink-0">
-                                          <Icon name="CheckCircle" size={16} className="text-white" />
-                                        </div>
-                                        <div className="flex-1">
-                                          <p className="text-sm font-medium text-gray-900 dark:text-white">
-                                            {feature}
-                                          </p>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
-                            </>
-                          )}
-
-                          {/* Impact Tab */}
-                          {activeTab === "impact" && (
-                            <>
-                              <div className="space-y-4">
-                                <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
-                                  Impact & Results
-                                </h3>
-
-                                {project?.metrics && project.metrics.length > 0 && (
-                                  <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
-                                    {project.metrics.map((metric, index) => (
-                                      <div
-                                        key={index}
-                                        className="p-4 bg-gradient-to-br from-amber-50/50 to-white/50 dark:from-amber-900/10 dark:to-gray-900/10 rounded-xl border border-amber-100/50 dark:border-amber-800/20 text-center"
-                                      >
-                                        <div className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-1">
-                                          {metric.value}
-                                        </div>
-                                        <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">
-                                          {metric.label}
-                                        </div>
-                                      </div>
-                                    ))}
-                                  </div>
-                                )}
-
-                                {project?.learnings && project.learnings.length > 0 && (
-                                  <div className="space-y-3 pt-4">
-                                    <h4 className="text-base font-semibold text-gray-900 dark:text-white">
-                                      Key Learnings
-                                    </h4>
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                      {project.learnings.map((learning, index) => (
-                                        <div
-                                          key={index}
-                                          className="p-3 bg-gradient-to-br from-blue-50/50 to-white/50 dark:from-blue-900/10 dark:to-gray-900/10 rounded-lg border border-blue-100/50 dark:border-blue-800/20"
-                                        >
-                                          <div className="flex items-start gap-2">
-                                            <div className="w-6 h-6 rounded-md bg-gradient-to-br from-blue-500 to-blue-400 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                              <Icon name="Lightbulb" size={12} className="text-white" />
-                                            </div>
-                                            <p className="text-sm text-gray-700 dark:text-gray-300">
-                                              {learning}
-                                            </p>
-                                          </div>
-                                        </div>
-                                      ))}
-                                    </div>
-                                  </div>
-                                )}
-                              </div>
-                            </>
-                          )}
-                        </motion.div>
-                      </AnimatePresence>
+                          {project.complexity}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>
-              </motion.div>
+                <motion.button
+                  whileHover={{ scale: 1.1, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={onClose}
+                  className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition"
+                >
+                  <Icon name="X" size={20} className="text-gray-500" />
+                </motion.button>
+              </div>
             </div>
-          </div>
-        </>
+
+            {/* Content */}
+            <div className="flex-1 overflow-y-auto custom-scroll">
+              {/* Gallery Section */}
+              {hasGallery && (
+                <div className="border-b border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50">
+                  <div
+                    className="relative"
+                    onTouchStart={handleTouchStart}
+                    onTouchEnd={handleTouchEnd}
+                  >
+                    {(isLoading || !imageLoaded) && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800 z-10">
+                        <div className="relative">
+                          <div className="w-12 h-12 border-3 border-blue-500 border-t-transparent rounded-full animate-spin" />
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-8 h-8 border-3 border-purple-500 border-t-transparent rounded-full animate-spin" />
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                    <img
+                      src={currentImage}
+                      alt={project.title}
+                      className="w-full h-[400px] object-cover transition-all duration-500"
+                      onLoad={() => {
+                        setIsLoading(false);
+                        setImageLoaded(true);
+                      }}
+                      style={{ display: isLoading ? "none" : "block" }}
+                    />
+
+                    {project.gallery.length > 1 && (
+                      <>
+                        <motion.button
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                          onClick={handlePrevImage}
+                          className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 backdrop-blur-sm rounded-full flex items-center justify-center transition-all"
+                        >
+                          <Icon
+                            name="ChevronLeft"
+                            size={24}
+                            className="text-white"
+                          />
+                        </motion.button>
+                        <motion.button
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                          onClick={handleNextImage}
+                          className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 backdrop-blur-sm rounded-full flex items-center justify-center transition-all"
+                        >
+                          <Icon
+                            name="ChevronRight"
+                            size={24}
+                            className="text-white"
+                          />
+                        </motion.button>
+                        <div className="absolute bottom-4 left-4 bg-black/70 backdrop-blur-md text-white text-sm px-3 py-1.5 rounded-full flex items-center gap-2">
+                          <Icon
+                            name="Image"
+                            size={14}
+                            className="text-blue-400"
+                          />
+                          <span className="font-medium">
+                            {currentImageIndex + 1}/{project.gallery.length}
+                          </span>
+                        </div>
+                        <motion.button
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                          onClick={() => setIsFullscreen(!isFullscreen)}
+                          className="absolute bottom-4 right-4 bg-black/70 backdrop-blur-md text-white p-2 rounded-full hover:bg-black/80 transition-all"
+                        >
+                          <Icon
+                            name={isFullscreen ? "Minimize2" : "Maximize2"}
+                            size={18}
+                          />
+                        </motion.button>
+                      </>
+                    )}
+                  </div>
+
+                  {/* Thumbnail Strip */}
+                  {project.gallery.length > 1 && !isMobile && (
+                    <div className="p-3 overflow-x-auto">
+                      <div className="flex gap-2 justify-center">
+                        {project.gallery.map((img, idx) => (
+                          <motion.button
+                            key={idx}
+                            whileHover={{ scale: 1.05, y: -2 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => {
+                              setImageLoaded(false);
+                              setIsLoading(true);
+                              setCurrentImageIndex(idx);
+                            }}
+                            className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden transition-all ${
+                              currentImageIndex === idx
+                                ? "ring-2 ring-blue-500 shadow-lg shadow-blue-500/30"
+                                : "ring-1 ring-gray-200 dark:ring-gray-700 opacity-70 hover:opacity-100"
+                            }`}
+                          >
+                            <img
+                              src={img}
+                              alt={`Thumb ${idx + 1}`}
+                              className="w-full h-full object-cover"
+                            />
+                          </motion.button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Stats Cards */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-6 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800/50 dark:to-gray-800/30">
+                {project.duration && (
+                  <motion.div
+                    whileHover={{ y: -2 }}
+                    className="text-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-sm"
+                  >
+                    <Icon
+                      name="Calendar"
+                      size={22}
+                      className="mx-auto mb-2 text-blue-500"
+                    />
+                    <p className="text-xs text-gray-500">Duration</p>
+                    <p className="text-sm font-bold text-gray-900 dark:text-white mt-1">
+                      {project.duration}
+                    </p>
+                  </motion.div>
+                )}
+                {project.teamSize && (
+                  <motion.div
+                    whileHover={{ y: -2 }}
+                    className="text-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-sm"
+                  >
+                    <Icon
+                      name="Users"
+                      size={22}
+                      className="mx-auto mb-2 text-green-500"
+                    />
+                    <p className="text-xs text-gray-500">Team Size</p>
+                    <p className="text-sm font-bold text-gray-900 dark:text-white mt-1">
+                      {project.teamSize}
+                    </p>
+                  </motion.div>
+                )}
+                {project.rating && (
+                  <motion.div
+                    whileHover={{ y: -2 }}
+                    className="text-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-sm"
+                  >
+                    <Icon
+                      name="Star"
+                      size={22}
+                      className="mx-auto mb-2 text-yellow-500"
+                    />
+                    <p className="text-xs text-gray-500">Rating</p>
+                    <p className="text-sm font-bold text-gray-900 dark:text-white mt-1">
+                      {project.rating}/5.0
+                    </p>
+                  </motion.div>
+                )}
+                {project.status && (
+                  <motion.div
+                    whileHover={{ y: -2 }}
+                    className="text-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-sm"
+                  >
+                    <Icon
+                      name="CheckCircle"
+                      size={22}
+                      className="mx-auto mb-2 text-purple-500"
+                    />
+                    <p className="text-xs text-gray-500">Status</p>
+                    <p className="text-sm font-bold text-gray-900 dark:text-white mt-1">
+                      {project.status}
+                    </p>
+                  </motion.div>
+                )}
+              </div>
+
+              {/* Action Buttons */}
+              {(project.liveUrl || project.githubUrl) && (
+                <div className="flex flex-col sm:flex-row gap-3 p-6 border-b border-gray-200 dark:border-gray-800">
+                  {project.liveUrl && (
+                    <motion.div whileHover={{ scale: 1.02 }} className="flex-1">
+                      <Button
+                        variant="default"
+                        size="md"
+                        iconName="ExternalLink"
+                        className="w-full"
+                        onClick={() => window.open(project.liveUrl, "_blank")}
+                      >
+                        Live Demo
+                      </Button>
+                    </motion.div>
+                  )}
+                  {project.githubUrl && (
+                    <motion.div whileHover={{ scale: 1.02 }} className="flex-1">
+                      <Button
+                        variant="outline"
+                        size="md"
+                        iconName="Github"
+                        className="w-full"
+                        onClick={() => window.open(project.githubUrl, "_blank")}
+                      >
+                        Source Code
+                      </Button>
+                    </motion.div>
+                  )}
+                </div>
+              )}
+
+              {/* Tabs */}
+              <div className="flex border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 sticky top-0 z-10">
+                {tabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`flex-1 py-4 text-sm font-medium transition-all relative ${
+                      activeTab === tab.id
+                        ? `text-${tab.color}-600 dark:text-${tab.color}-400`
+                        : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
+                    }`}
+                  >
+                    <div className="flex items-center justify-center gap-2">
+                      <Icon name={tab.icon} size={18} />
+                      <span className="hidden sm:inline">{tab.label}</span>
+                      <span className="sm:hidden">
+                        {tab.label.substring(0, 3)}
+                      </span>
+                    </div>
+                    {activeTab === tab.id && (
+                      <motion.div
+                        layoutId="activeTab"
+                        className={`absolute bottom-0 left-0 right-0 h-0.5 bg-${tab.color}-500`}
+                        transition={{
+                          type: "spring",
+                          bounce: 0.2,
+                          duration: 0.6,
+                        }}
+                      />
+                    )}
+                  </button>
+                ))}
+              </div>
+
+              {/* Tab Content */}
+              <div ref={contentRef} className="p-6 space-y-6">
+                {/* Overview Tab */}
+                {activeTab === "overview" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="space-y-5"
+                  >
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                        About This Project
+                      </h3>
+                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                        {project.fullDescription || project.description}
+                      </p>
+                    </div>
+                    {project.impact && (
+                      <div className="p-5 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl border border-blue-100 dark:border-blue-800/30">
+                        <div className="flex gap-3">
+                          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center flex-shrink-0 shadow-lg">
+                            <Icon
+                              name="Target"
+                              size={20}
+                              className="text-white"
+                            />
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900 dark:text-white mb-1">
+                              Project Impact
+                            </h4>
+                            <p className="text-sm text-gray-600 dark:text-gray-300">
+                              {project.impact}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </motion.div>
+                )}
+
+                {/* Technical Tab */}
+                {activeTab === "technical" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="space-y-5"
+                  >
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                        Technology Stack
+                      </h3>
+                      <div className="flex flex-wrap gap-2">
+                        {project.technologies?.map((tech, idx) => (
+                          <motion.span
+                            key={idx}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: idx * 0.05 }}
+                            whileHover={{ scale: 1.05, y: -2 }}
+                            className="px-3 py-2 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 text-purple-700 dark:text-purple-300 rounded-lg text-sm font-medium shadow-sm"
+                          >
+                            {tech}
+                          </motion.span>
+                        ))}
+                      </div>
+                    </div>
+                    {project.challenges?.map((challenge, idx) => (
+                      <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: idx * 0.1 }}
+                        className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700"
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className="w-8 h-8 rounded-lg bg-red-100 dark:bg-red-900/30 flex items-center justify-center flex-shrink-0">
+                            <Icon
+                              name="AlertCircle"
+                              size={16}
+                              className="text-red-600 dark:text-red-400"
+                            />
+                          </div>
+                          <div className="flex-1">
+                            <p className="text-sm mb-2">
+                              <span className="font-semibold text-red-600 dark:text-red-400">
+                                Challenge:
+                              </span>{" "}
+                              {challenge.problem}
+                            </p>
+                            <p className="text-sm">
+                              <span className="font-semibold text-green-600 dark:text-green-400">
+                                Solution:
+                              </span>{" "}
+                              {challenge.solution}
+                            </p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                )}
+
+                {/* Features Tab */}
+                {activeTab === "features" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="space-y-3"
+                  >
+                    {project.features?.map((feature, idx) => (
+                      <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: idx * 0.05 }}
+                        whileHover={{ x: 5 }}
+                        className="flex items-start gap-3 p-4 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-xl border border-emerald-100 dark:border-emerald-800/30"
+                      >
+                        <div className="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center flex-shrink-0 shadow-md">
+                          <Icon
+                            name="CheckCircle"
+                            size={16}
+                            className="text-white"
+                          />
+                        </div>
+                        <span className="text-gray-700 dark:text-gray-300">
+                          {feature}
+                        </span>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                )}
+
+                {/* Impact Tab */}
+                {activeTab === "impact" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="space-y-5"
+                  >
+                    {project.metrics?.length > 0 && (
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                          Key Metrics
+                        </h3>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                          {project.metrics.map((metric, idx) => (
+                            <motion.div
+                              key={idx}
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: idx * 0.1 }}
+                              whileHover={{ scale: 1.05 }}
+                              className="p-4 bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/10 dark:to-amber-900/10 rounded-xl text-center border border-orange-100 dark:border-orange-800/30"
+                            >
+                              <div className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent">
+                                {metric.value}
+                              </div>
+                              <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                                {metric.label}
+                              </div>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    {project.learnings?.length > 0 && (
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                          Key Learnings
+                        </h3>
+                        <div className="space-y-2">
+                          {project.learnings.map((learning, idx) => (
+                            <motion.div
+                              key={idx}
+                              initial={{ opacity: 0, x: -20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: idx * 0.05 }}
+                              className="flex items-start gap-2 p-3 bg-blue-50 dark:bg-blue-900/10 rounded-lg"
+                            >
+                              <Icon
+                                name="Lightbulb"
+                                size={18}
+                                className="text-yellow-500 flex-shrink-0 mt-0.5"
+                              />
+                              <span className="text-sm text-gray-700 dark:text-gray-300">
+                                {learning}
+                              </span>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    {project.testimonial && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="p-6 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-800/50 rounded-xl relative overflow-hidden"
+                      >
+                        <Icon
+                          name="Quote"
+                          size="40"
+                          className="text-gray-300 dark:text-gray-600 absolute top-4 left-4"
+                        />
+                        <div className="relative z-10 pt-8">
+                          <p className="text-sm italic text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                            "{project.testimonial.content}"
+                          </p>
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center shadow-lg">
+                              <Icon
+                                name="User"
+                                size={18}
+                                className="text-white"
+                              />
+                            </div>
+                            <div>
+                              <p className="font-semibold text-gray-900 dark:text-white">
+                                {project.testimonial.author}
+                              </p>
+                              <p className="text-xs text-gray-500">
+                                {project.testimonial.role}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </motion.div>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        </div>
       )}
     </AnimatePresence>
   );

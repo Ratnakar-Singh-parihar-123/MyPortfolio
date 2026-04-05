@@ -48,6 +48,7 @@ const TimelineSection = () => {
       achievements: ["Created LocalKart", "Built YammiVerse", "Deployments"],
       technologies: [
         "React.js",
+        "React Native",
         "Node.js",
         "Express.js",
         "MongoDB",

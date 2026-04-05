@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import Icon from '../../../components/AppIcon';
-import Image from '../../../components/AppImage';
-import Button from '../../../components/ui/Button';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import Icon from "../../../components/AppIcon";
+import Image from "../../../components/AppImage";
+import Button from "../../../components/ui/Button";
 
 const ProjectCard = ({ project, onViewDetails, index }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -24,7 +24,7 @@ const ProjectCard = ({ project, onViewDetails, index }) => {
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        
+
         {/* Live Demo Badge */}
         {project?.liveUrl && (
           <div className="absolute top-4 right-4">
@@ -36,9 +36,11 @@ const ProjectCard = ({ project, onViewDetails, index }) => {
         )}
 
         {/* Quick Actions */}
-        <div className={`absolute bottom-4 left-4 right-4 flex space-x-2 transition-all duration-300 ${
-          isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-        }`}>
+        <div
+          className={`absolute bottom-4 left-4 right-4 flex space-x-2 transition-all duration-300 ${
+            isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}
+        >
           {project?.liveUrl && (
             <Button
               variant="secondary"
@@ -48,7 +50,7 @@ const ProjectCard = ({ project, onViewDetails, index }) => {
               className="flex-1 bg-background/90 backdrop-blur-sm"
               onClick={(e) => {
                 e?.stopPropagation();
-                window.open(project?.liveUrl, '_blank');
+                window.open(project?.liveUrl, "_blank");
               }}
             >
               Live Demo
@@ -62,7 +64,7 @@ const ProjectCard = ({ project, onViewDetails, index }) => {
               className="bg-background/90 backdrop-blur-sm border-border/50"
               onClick={(e) => {
                 e?.stopPropagation();
-                window.open(project?.githubUrl, '_blank');
+                window.open(project?.githubUrl, "_blank");
               }}
             />
           )}
@@ -84,7 +86,7 @@ const ProjectCard = ({ project, onViewDetails, index }) => {
                 key={i}
                 name="Star"
                 size={14}
-                className={i < project?.rating ? 'fill-current' : 'opacity-30'}
+                className={i < project?.rating ? "fill-current" : "opacity-30"}
               />
             ))}
           </div>
@@ -144,10 +146,15 @@ const ProjectCard = ({ project, onViewDetails, index }) => {
       </div>
       {/* Complexity Badge */}
       <div className="absolute top-4 left-4">
-        <div className={`px-2 py-1 rounded-full text-xs font-medium ${
-          project?.complexity === 'Advanced' ?'bg-destructive/10 text-destructive border border-destructive/20'
-            : project?.complexity === 'Intermediate' ?'bg-warning/10 text-warning border border-warning/20' :'bg-success/10 text-success border border-success/20'
-        }`}>
+        <div
+          className={`px-2 py-1 rounded-full text-xs font-medium ${
+            project?.complexity === "Advanced"
+              ? "bg-destructive/10 text-destructive border border-destructive/20"
+              : project?.complexity === "Intermediate"
+                ? "bg-warning/10 text-warning border border-warning/20"
+                : "bg-success/10 text-success border border-success/20"
+          }`}
+        >
           {project?.complexity}
         </div>
       </div>

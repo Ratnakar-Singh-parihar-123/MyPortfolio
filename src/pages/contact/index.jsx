@@ -270,30 +270,33 @@ const ContactPage = () => {
                   {/* FAQs */}
                   <div className="space-y-4 text-sm sm:text-base">
                     {/* Q1 */}
-                    <div className="p-3 rounded-lg bg-muted/40 hover:bg-muted/60 transition-all">
-                      <p className="font-medium text-foreground mb-1">
+                    <div className="p-4 rounded-xl bg-muted/40 hover:bg-muted/60 transition-all duration-300">
+                      <p className="font-semibold text-foreground mb-1">
                         🕒 What’s your typical project timeline?
                       </p>
                       <p className="text-muted-foreground leading-relaxed">
-                        Usually{" "}
+                        Timelines usually range between{" "}
                         <span className="font-medium text-foreground">
-                          4–10 weeks
-                        </span>
-                        , depending on project scope and complexity.
+                          3–8 weeks
+                        </span>{" "}
+                        depending on the project’s scope, complexity, and
+                        required features.
                       </p>
                     </div>
 
                     {/* Q2 */}
-                    <div className="p-3 rounded-lg bg-muted/40 hover:bg-muted/60 transition-all">
-                      <p className="font-medium text-foreground mb-1">
-                        💻 What technologies do you use?
+                    <div className="p-4 rounded-xl bg-muted/40 hover:bg-muted/60 transition-all duration-300">
+                      <p className="font-semibold text-foreground mb-1">
+                        💻 What technologies do you work with?
                       </p>
                       <p className="text-muted-foreground leading-relaxed">
-                        Mostly{" "}
+                        I primarily work with{" "}
                         <span className="font-medium text-foreground">
-                          React, Node.js, Express.js, and Tailwind CSS
+                          React, Node.js, Express.js, MongoDB, and React Native
                         </span>{" "}
-                        — plus tools like MongoDB, Socket.io, and Framer Motion.
+                        to build scalable web and mobile applications, along
+                        with tools like Tailwind CSS, Socket.io, and Framer
+                        Motion for enhanced UI and real-time features.
                       </p>
                     </div>
                   </div>
@@ -355,8 +358,9 @@ const ContactPage = () => {
                 </h3>
 
                 <p className="text-sm text-muted-foreground mt-1 max-w-xs">
-                  Entry-Level Full-Stack Developer focused on building scalable
-                  web applications using the MERN stack and modern technologies.
+                  Full Stack & React Native Developer passionate about creating
+                  scalable web and mobile applications with modern technologies,
+                  clean code, and great user experiences.
                 </p>
               </div>
             </div>

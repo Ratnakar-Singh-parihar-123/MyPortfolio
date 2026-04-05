@@ -46,9 +46,11 @@ const CTASection = () => {
             Let’s Build Something Great Together 🚀
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
-            I’m a final-year Computer Science student and an aspiring MERN Stack
-            Developer passionate about creating meaningful digital experiences.
-            Whether it’s a small idea or a big vision — let’s make it real!
+            I’m a final-year Computer Science student and an aspiring Full Stack
+            & React Native Developer, passionate about building impactful web
+            and mobile applications. I transform ideas—big or small—into
+            seamless, user-friendly experiences with clean code and modern
+            architecture.
           </p>
         </motion.div>
 
@@ -89,12 +91,16 @@ const CTASection = () => {
           className="bg-gradient-brand text-white rounded-2xl shadow-2xl p-10 text-center max-w-3xl mx-auto"
         >
           <h3 className="text-2xl md:text-3xl font-bold mb-4">
-            Open to internship, full-time, and freelance opportunities in web development. 💼
+            Open to Internship, Full-Time, and Freelance Opportunities 💼
           </h3>
+
           <p className="text-white/90 mb-6 max-w-2xl mx-auto leading-relaxed">
-            I’m currently looking for opportunities to apply my MERN stack
-            skills in real-world projects. If you’re hiring or have something
-            exciting in mind — I’d love to connect and contribute!
+            I’m a passionate Full Stack & React Native Developer, excited to
+            contribute to projects that make a real impact. From building
+            responsive web apps to cross-platform mobile solutions, I bring
+            clean code, scalable architecture, and innovative ideas to the
+            table. If you’re looking for someone driven and collaborative —
+            let’s connect!
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -105,7 +111,8 @@ const CTASection = () => {
               iconPosition="left"
               className="bg-white text-primary hover:bg-white/90"
               onClick={() =>
-                (window.location.href = "mailto:ratnakarsinghparihar9399@gmail.com")
+                (window.location.href =
+                  "mailto:ratnakarsinghparihar9399@gmail.com")
               }
             >
               Send a Message

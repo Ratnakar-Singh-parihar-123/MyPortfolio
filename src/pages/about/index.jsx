@@ -52,8 +52,9 @@ const About = () => {
                 Ratnakar Singh Parihar<span className="text-primary">.</span>
               </h3>
               <p className="text-background/80 text-sm leading-relaxed max-w-xs">
-                Crafting modern and scalable web applications with the MERN
-                stack while constantly learning and improving as a developer.
+                Building modern, high-performance web and mobile applications
+                with the MERN stack and React Native, constantly evolving my
+                skills to deliver clean, efficient, and user-friendly solutions.
               </p>
 
               {/* Social Icons */}
