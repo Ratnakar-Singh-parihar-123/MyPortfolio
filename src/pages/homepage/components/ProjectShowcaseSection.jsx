@@ -526,9 +526,9 @@ const ProjectShowcaseSection = () => {
             </div>
           )}
 
-          {/* Mobile Apps */}
+          {/* Mobile Apps - Responsive Grid */}
           {activeTab === "apps" && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-6 xl:gap-8 justify-items-center">
               {mobileApps.map((app, index) => (
                 <MobileAppCard
                   key={app.id}
@@ -579,7 +579,7 @@ const ProjectShowcaseSection = () => {
   );
 };
 
-// Mobile App Card Component
+// Mobile App Card Component - Fully Responsive
 const MobileAppCard = ({ app, index, onClick }) => {
   const IconComponent = app.icon;
 
@@ -591,16 +591,16 @@ const MobileAppCard = ({ app, index, onClick }) => {
       viewport={{ once: true, margin: "-50px" }}
       whileHover={{ y: -8 }}
       onClick={onClick}
-      className="group cursor-pointer"
+      className="group cursor-pointer w-full max-w-[280px] mx-auto"
     >
       <div className="flex flex-col items-center">
-        {/* Phone Mockup */}
-        <div className="relative w-[260px] md:w-[280px]">
+        {/* Phone Mockup - Responsive */}
+        <div className="relative w-[220px] sm:w-[240px] md:w-[260px] lg:w-[240px] xl:w-[260px]">
           {/* Phone Frame */}
           <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-[2rem] p-1.5 shadow-2xl">
             <div className="relative bg-black rounded-[1.75rem] overflow-hidden">
               {/* Dynamic Island */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100px] h-[32px] bg-black rounded-b-xl z-10 flex items-center justify-center gap-1">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90px] h-[28px] bg-black rounded-b-xl z-10 flex items-center justify-center gap-1">
                 <div className="w-1.5 h-1.5 rounded-full bg-green-500/50 animate-pulse" />
               </div>
 
@@ -616,50 +616,50 @@ const MobileAppCard = ({ app, index, onClick }) => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 {/* Status Bar */}
-                <div className="absolute top-2 left-0 right-0 px-5 py-1 flex justify-between text-white/70 text-[9px] font-medium">
+                <div className="absolute top-1.5 left-0 right-0 px-4 py-0.5 flex justify-between text-white/70 text-[8px] font-medium">
                   <span>9:41</span>
                   <div className="flex items-center gap-0.5">
-                    <Signal className="w-2.5 h-2.5" />
-                    <Wifi className="w-2.5 h-2.5" />
-                    <Battery className="w-3.5 h-2.5" />
+                    <Signal className="w-2 h-2" />
+                    <Wifi className="w-2 h-2" />
+                    <Battery className="w-3 h-2" />
                   </div>
                 </div>
 
                 {/* App Icon Overlay on Hover */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110">
                   <div
-                    className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${app.iconBg} flex items-center justify-center shadow-2xl`}
+                    className={`w-12 h-12 rounded-xl bg-gradient-to-br ${app.iconBg} flex items-center justify-center shadow-2xl`}
                   >
-                    <IconComponent className="w-7 h-7 text-white" />
+                    <IconComponent className="w-6 h-6 text-white" />
                   </div>
                 </div>
               </div>
 
               {/* Home Indicator */}
-              <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-28 h-0.5 bg-white/30 rounded-full" />
+              <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-24 h-0.5 bg-white/30 rounded-full" />
             </div>
 
             {/* Side Buttons */}
-            <div className="absolute left-0 top-20 -translate-x-[1.5px] w-0.5 h-7 bg-gray-700 rounded-l-full" />
-            <div className="absolute left-0 top-28 -translate-x-[1.5px] w-0.5 h-11 bg-gray-700 rounded-l-full" />
-            <div className="absolute right-0 top-24 translate-x-[1.5px] w-0.5 h-14 bg-gray-700 rounded-r-full" />
+            <div className="absolute left-0 top-16 -translate-x-[1.5px] w-0.5 h-5 bg-gray-700 rounded-l-full" />
+            <div className="absolute left-0 top-24 -translate-x-[1.5px] w-0.5 h-9 bg-gray-700 rounded-l-full" />
+            <div className="absolute right-0 top-20 translate-x-[1.5px] w-0.5 h-10 bg-gray-700 rounded-r-full" />
           </div>
         </div>
 
-        {/* Card Content Below Phone */}
-        <div className="mt-5 text-center max-w-[260px]">
+        {/* Card Content Below Phone - Responsive */}
+        <div className="mt-4 text-center w-full">
           <div className="flex items-center justify-center gap-2 mb-2">
             <div
-              className={`w-10 h-10 rounded-xl bg-gradient-to-br ${app.iconBg} flex items-center justify-center shadow-md`}
+              className={`w-8 h-8 rounded-lg bg-gradient-to-br ${app.iconBg} flex items-center justify-center shadow-md`}
             >
-              <IconComponent className="w-5 h-5 text-white" />
+              <IconComponent className="w-4 h-4 text-white" />
             </div>
-            <h3 className="text-base font-bold text-foreground group-hover:text-primary transition-colors">
+            <h3 className="text-sm sm:text-base font-bold text-foreground group-hover:text-primary transition-colors">
               {app.title}
             </h3>
           </div>
 
-          <p className="text-xs text-muted-foreground line-clamp-2">
+          <p className="text-[11px] sm:text-xs text-muted-foreground line-clamp-2 px-2">
             {app.shortDescription}
           </p>
 
@@ -668,15 +668,19 @@ const MobileAppCard = ({ app, index, onClick }) => {
               <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
               <span className="text-xs font-medium">{app.rating}</span>
             </div>
-            <span className="text-xs text-muted-foreground">•</span>
-            <span className="text-xs text-muted-foreground">{app.status}</span>
+            <span className="text-[10px] sm:text-xs text-muted-foreground">
+              •
+            </span>
+            <span className="text-[10px] sm:text-xs text-muted-foreground">
+              {app.status}
+            </span>
           </div>
 
-          <div className="flex items-center justify-center gap-1.5 mt-2">
+          <div className="flex items-center justify-center gap-1.5 mt-2 flex-wrap">
             {app.platforms.map((platform, idx) => (
               <span
                 key={idx}
-                className="flex items-center gap-0.5 px-2 py-0.5 text-[10px] bg-muted rounded-full"
+                className="flex items-center gap-0.5 px-1.5 py-0.5 text-[9px] bg-muted rounded-full"
               >
                 {platform === "iOS" ? (
                   <Apple className="w-2.5 h-2.5" />
@@ -688,7 +692,7 @@ const MobileAppCard = ({ app, index, onClick }) => {
             ))}
           </div>
 
-          <div className="mt-3 text-primary text-xs font-medium flex items-center justify-center gap-1">
+          <div className="mt-2 text-primary text-[11px] font-medium flex items-center justify-center gap-1">
             <span>Tap to explore</span>
             <ChevronRight className="w-3 h-3" />
           </div>
@@ -698,12 +702,22 @@ const MobileAppCard = ({ app, index, onClick }) => {
   );
 };
 
-// App Modal Component
+// App Modal Component - Fully Responsive
 const AppModal = ({ app, onClose, openDownloadLink, getAppImage }) => {
   const IconComponent = app.icon;
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -712,190 +726,219 @@ const AppModal = ({ app, onClose, openDownloadLink, getAppImage }) => {
         className="absolute inset-0 bg-black/80 backdrop-blur-md"
       />
       <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        initial={{ opacity: 0, scale: 0.9, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        exit={{ opacity: 0, scale: 0.9, y: 20 }}
         transition={{ type: "spring", damping: 25 }}
-        className="relative bg-gradient-to-br from-card to-muted rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto"
+        className="relative bg-white dark:bg-gray-900 rounded-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col"
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="sticky top-4 right-4 z-20 w-8 h-8 rounded-full bg-black/50 flex items-center justify-center hover:bg-black/70 transition-colors backdrop-blur-sm float-right m-4"
+          className="absolute top-3 right-3 z-30 w-8 h-8 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center transition-all backdrop-blur-sm"
         >
           <X className="w-4 h-4 text-white" />
         </button>
 
-        <div className="p-6 md:p-8 pt-0">
-          <div className="flex flex-col lg:flex-row gap-8">
-            {/* Left Side - Phone Mockup */}
-            <div className="lg:w-[300px] flex-shrink-0">
-              <div className="flex justify-center">
-                {/* Phone Frame */}
-                <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-[2rem] p-1.5 shadow-2xl">
-                  <div className="relative bg-black rounded-[1.75rem] overflow-hidden">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100px] h-[32px] bg-black rounded-b-xl z-10 flex items-center justify-center gap-1">
-                      <div className="w-1.5 h-1.5 rounded-full bg-green-500/50" />
-                    </div>
-
-                    <div
-                      className="relative w-[280px]"
-                      style={{ aspectRatio: "9/19" }}
-                    >
-                      <img
-                        src={getAppImage(app.imageKey)}
-                        alt={app.title}
-                        className="w-full h-full object-cover"
-                      />
-
-                      <div className="absolute top-2 left-0 right-0 px-5 py-1 flex justify-between text-white/70 text-[9px] font-medium">
-                        <span>9:41</span>
-                        <div className="flex items-center gap-0.5">
-                          <Signal className="w-2.5 h-2.5" />
-                          <Wifi className="w-2.5 h-2.5" />
-                          <Battery className="w-3.5 h-2.5" />
+        {/* Scrollable Content */}
+        <div className="flex-1 overflow-y-auto">
+          <div className="p-4 sm:p-6 md:p-8">
+            {/* Responsive Layout */}
+            <div className="flex flex-col lg:flex-row gap-6 md:gap-8">
+              {/* Left Side - Phone Mockup */}
+              <div className="lg:w-[320px] xl:w-[360px] flex-shrink-0">
+                <div className="sticky top-4 flex flex-col items-center">
+                  {/* Phone Frame */}
+                  <div className="relative w-[260px] sm:w-[280px] md:w-[300px] lg:w-[280px] xl:w-[300px]">
+                    <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-[2rem] p-1.5 shadow-2xl">
+                      <div className="relative bg-black rounded-[1.75rem] overflow-hidden">
+                        {/* Dynamic Island */}
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100px] h-[32px] bg-black rounded-b-xl z-10 flex items-center justify-center gap-1">
+                          <div className="w-1.5 h-1.5 rounded-full bg-green-500/50 animate-pulse" />
+                          <div className="w-10 h-2.5 bg-gray-800 rounded-full" />
                         </div>
+
+                        {/* Status Bar */}
+                        <div className="absolute top-2 left-0 right-0 px-5 py-1 flex justify-between text-white/70 text-[9px] font-medium z-10">
+                          <span className="font-semibold">9:41</span>
+                          <div className="flex items-center gap-1">
+                            <Signal className="w-2.5 h-2.5" />
+                            <Wifi className="w-2.5 h-2.5" />
+                            <Battery className="w-3.5 h-2.5" />
+                          </div>
+                        </div>
+
+                        {/* App Screenshot */}
+                        <div
+                          className="relative w-full"
+                          style={{ aspectRatio: "9/19" }}
+                        >
+                          <img
+                            src={getAppImage(app.imageKey)}
+                            alt={app.title}
+                            className="w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                        </div>
+
+                        {/* Home Indicator */}
+                        <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-28 h-0.5 bg-white/30 rounded-full" />
                       </div>
 
-                      <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-28 h-0.5 bg-white/30 rounded-full" />
+                      {/* Side Buttons */}
+                      <div className="absolute left-0 top-20 -translate-x-[1.5px] w-0.5 h-7 bg-gray-700 rounded-l-full" />
+                      <div className="absolute left-0 top-28 -translate-x-[1.5px] w-0.5 h-11 bg-gray-700 rounded-l-full" />
+                      <div className="absolute right-0 top-24 translate-x-[1.5px] w-0.5 h-14 bg-gray-700 rounded-r-full" />
                     </div>
+                  </div>
 
-                    <div className="absolute left-0 top-20 -translate-x-[1.5px] w-0.5 h-7 bg-gray-700 rounded-l-full" />
-                    <div className="absolute left-0 top-28 -translate-x-[1.5px] w-0.5 h-11 bg-gray-700 rounded-l-full" />
-                    <div className="absolute right-0 top-24 translate-x-[1.5px] w-0.5 h-14 bg-gray-700 rounded-r-full" />
+                  {/* Download Buttons */}
+                  <div className="mt-6 w-full max-w-[280px] space-y-2">
+                    {app.platforms.includes("iOS") && (
+                      <button
+                        onClick={() => openDownloadLink("#")}
+                        className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-black text-white hover:bg-gray-800 transition-all duration-300 group"
+                      >
+                        <Apple className="w-4 h-4" />
+                        <div className="text-left">
+                          <div className="text-[9px] opacity-80">
+                            Download on the
+                          </div>
+                          <div className="text-xs font-semibold">App Store</div>
+                        </div>
+                      </button>
+                    )}
+                    {app.platforms.includes("Android") && (
+                      <button
+                        onClick={() => openDownloadLink("#")}
+                        className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-green-600 text-white hover:bg-green-700 transition-all duration-300 group"
+                      >
+                        <Cpu className="w-4 h-4" />
+                        <div className="text-left">
+                          <div className="text-[9px] opacity-80">GET IT ON</div>
+                          <div className="text-xs font-semibold">
+                            Google Play
+                          </div>
+                        </div>
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
 
-              {/* Download Buttons */}
-              <div className="mt-6 space-y-2">
-                {app.platforms.includes("iOS") && (
-                  <button
-                    onClick={() => openDownloadLink("#")}
-                    className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-black text-white hover:bg-gray-800 transition-all duration-300 group"
+              {/* Right Side - App Details */}
+              <div className="flex-1 min-w-0">
+                {/* App Header */}
+                <div className="flex items-center gap-4 mb-6">
+                  <div
+                    className={`w-14 h-14 rounded-xl bg-gradient-to-br ${app.iconBg} flex items-center justify-center shadow-xl flex-shrink-0`}
                   >
-                    <Apple className="w-4 h-4" />
-                    <div className="text-left">
-                      <div className="text-[9px] opacity-80">
-                        Download on the
-                      </div>
-                      <div className="text-xs font-semibold">App Store</div>
-                    </div>
-                  </button>
-                )}
-                {app.platforms.includes("Android") && (
-                  <button
-                    onClick={() => openDownloadLink("#")}
-                    className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-green-600 text-white hover:bg-green-700 transition-all duration-300 group"
-                  >
-                    <Cpu className="w-4 h-4" />
-                    <div className="text-left">
-                      <div className="text-[9px] opacity-80">GET IT ON</div>
-                      <div className="text-xs font-semibold">Google Play</div>
-                    </div>
-                  </button>
-                )}
-              </div>
-            </div>
+                    <IconComponent className="w-7 h-7 text-white" />
+                  </div>
+                  <div className="min-w-0">
+                    <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white truncate">
+                      {app.title}
+                    </h2>
+                    <p className="text-primary text-sm font-medium truncate">
+                      {app.tagline}
+                    </p>
+                  </div>
+                </div>
 
-            {/* Right Side - App Details */}
-            <div className="flex-1">
-              {/* App Header */}
-              <div className="flex items-center gap-4 mb-6">
-                <div
-                  className={`w-14 h-14 rounded-xl bg-gradient-to-br ${app.iconBg} flex items-center justify-center shadow-xl`}
-                >
-                  <IconComponent className="w-7 h-7 text-white" />
-                </div>
-                <div>
-                  <h2 className="text-xl md:text-2xl font-bold text-foreground">
-                    {app.title}
-                  </h2>
-                  <p className="text-primary text-sm font-medium">
-                    {app.tagline}
-                  </p>
-                </div>
-              </div>
-
-              {/* Rating & Platforms */}
-              <div className="flex items-center flex-wrap gap-4 mb-6">
-                <div className="flex items-center gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`w-4 h-4 ${i < Math.floor(app.rating) ? "fill-amber-500 text-amber-500" : "text-gray-300"}`}
-                    />
-                  ))}
-                  <span className="ml-2 text-base font-bold">{app.rating}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  {app.platforms.map((platform, idx) => (
-                    <span
-                      key={idx}
-                      className="flex items-center gap-1 px-2 py-1 text-xs bg-muted rounded-full"
-                    >
-                      {platform === "iOS" ? (
-                        <Apple className="w-3 h-3" />
-                      ) : (
-                        <Cpu className="w-3 h-3" />
-                      )}
-                      {platform}
+                {/* Rating & Platforms */}
+                <div className="flex flex-wrap items-center gap-4 mb-6">
+                  <div className="flex items-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`w-4 h-4 ${
+                          i < Math.floor(app.rating)
+                            ? "fill-amber-500 text-amber-500"
+                            : "text-gray-300 dark:text-gray-600"
+                        }`}
+                      />
+                    ))}
+                    <span className="ml-2 text-base font-bold text-gray-900 dark:text-white">
+                      {app.rating}
                     </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Description */}
-              <div className="mb-6">
-                <h3 className="text-lg font-semibold mb-3">About This App</h3>
-                <div className="text-muted-foreground leading-relaxed text-sm space-y-2">
-                  {app.fullDescription.split("\n\n").map((para, idx) => (
-                    <p key={idx}>{para}</p>
-                  ))}
-                </div>
-              </div>
-
-              {/* Key Features */}
-              <div className="mb-6">
-                <h3 className="text-lg font-semibold mb-3">Key Features</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  {app.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-start gap-2">
-                      <CheckCircle className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="text-xs text-muted-foreground">
-                        {feature}
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    {app.platforms.map((platform, idx) => (
+                      <span
+                        key={idx}
+                        className="flex items-center gap-1 px-2 py-1 text-xs bg-gray-100 dark:bg-gray-800 rounded-full text-gray-700 dark:text-gray-300"
+                      >
+                        {platform === "iOS" ? (
+                          <Apple className="w-3 h-3" />
+                        ) : (
+                          <Cpu className="w-3 h-3" />
+                        )}
+                        {platform}
                       </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Tech Stack */}
-              <div className="mb-6">
-                <h3 className="text-lg font-semibold mb-3">Tech Stack</h3>
-                <div className="flex flex-wrap gap-2">
-                  {app.technologies.map((tech, idx) => (
-                    <span
-                      key={idx}
-                      className="px-2 py-1 text-xs bg-primary/10 text-primary rounded-lg"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Metrics */}
-              <div className="grid grid-cols-3 gap-3 p-4 rounded-xl bg-muted/50">
-                {app.metrics.map((metric, idx) => (
-                  <div key={idx} className="text-center">
-                    <metric.icon className="w-5 h-5 text-primary mx-auto mb-1" />
-                    <div className="text-base font-bold">{metric.value}</div>
-                    <div className="text-[10px] text-muted-foreground">
-                      {metric.label}
-                    </div>
+                    ))}
                   </div>
-                ))}
+                </div>
+
+                {/* Description */}
+                <div className="mb-6">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                    About This App
+                  </h3>
+                  <div className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm space-y-2">
+                    {app.fullDescription.split("\n\n").map((para, idx) => (
+                      <p key={idx}>{para}</p>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Key Features */}
+                <div className="mb-6">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                    Key Features
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {app.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-start gap-2">
+                        <CheckCircle className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
+                        <span className="text-xs text-gray-600 dark:text-gray-300">
+                          {feature}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Tech Stack */}
+                <div className="mb-6">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                    Tech Stack
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {app.technologies.map((tech, idx) => (
+                      <span
+                        key={idx}
+                        className="px-2 py-1 text-xs bg-primary/10 text-primary rounded-lg"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Metrics */}
+                <div className="grid grid-cols-3 gap-3 p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50">
+                  {app.metrics.map((metric, idx) => (
+                    <div key={idx} className="text-center">
+                      <metric.icon className="w-5 h-5 text-primary mx-auto mb-1" />
+                      <div className="text-base font-bold text-gray-900 dark:text-white">
+                        {metric.value}
+                      </div>
+                      <div className="text-[10px] text-gray-500 dark:text-gray-400">
+                        {metric.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
