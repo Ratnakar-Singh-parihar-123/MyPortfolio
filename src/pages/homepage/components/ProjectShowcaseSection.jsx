@@ -234,7 +234,7 @@ const mobileApps = [
   {
     id: 2,
     title: "ParkEasy",
-    tagline: "Car Parking Booking App",
+    tagline: "Smart Parking, Simplified",
     shortDescription:
       "A smart parking app with real-time availability, location-based search, and seamless booking with secure payments.",
     fullDescription:

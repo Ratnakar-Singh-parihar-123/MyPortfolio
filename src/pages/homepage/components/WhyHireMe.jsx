@@ -208,7 +208,7 @@ const WhyHireMe = () => {
                   <div>
                     <span className="text-purple-400">Experience</span>: [
                     <span className="text-yellow-400">
-                      'Fresher with 2+ Years Practical Experience'
+                      'Fresher with 1+ Years Practical Experience'
                     </span>
                     ],
                   </div>

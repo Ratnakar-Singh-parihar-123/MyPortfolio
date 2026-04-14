@@ -704,7 +704,8 @@ const ResumePopup = ({ isOpen, onClose }) => {
 
                       <div className="flex items-center gap-3">
                         <p className="text-sm text-gray-600 dark:text-gray-400 truncate">
-                          Ratnakar Singh Parihar • Full-Stack Developer
+                          Ratnakar Singh Parihar • Full Stack (MERN) & React
+                          Native Developer
                         </p>
                         <div className="flex items-center gap-1">
                           <div
@@ -1194,7 +1195,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                             Ratnakar Singh Parihar
                           </h1>
                           <h2 className="text-xl sm:text-2xl text-blue-600 dark:text-blue-400 font-semibold mt-2">
-                            Full-Stack Developer & Problem Solver
+                            Full Stack & React Native Developer • Problem Solver
                           </h2>
                         </div>
 
@@ -1264,13 +1265,18 @@ const ResumePopup = ({ isOpen, onClose }) => {
                             </h3>
                           </div>
                           <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                            Full Stack MERN Developer specializing in building
-                            secure, scalable, and production-ready web
-                            applications. Experienced in designing RESTful APIs
-                            with JWT-based authentication and developing
-                            responsive, high-performance frontend interfaces.
-                            Strong foundation in Data Structures, DBMS, and
-                            modern backend architecture.
+                            Full Stack MERN & React Native Developer
+                            specializing in building secure, scalable, and
+                            production-ready web and mobile applications.
+                            Experienced in developing cross-platform mobile apps
+                            using React Native and designing robust RESTful APIs
+                            with JWT-based authentication. Skilled in creating
+                            responsive, high-performance user interfaces with a
+                            strong focus on user experience and clean
+                            architecture. Solid understanding of Data
+                            Structures, DBMS, and modern backend systems, with
+                            hands-on experience in integrating real-time
+                            features, third-party APIs, and cloud services.
                           </p>
                         </motion.section>
 
