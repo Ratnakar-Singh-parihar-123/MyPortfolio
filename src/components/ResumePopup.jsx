@@ -323,7 +323,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
     {
       title: "Freelance Full-Stack Developer",
       company: "Independent Client Projects",
-      period: "Aug 2025 - Sep 2025",
+      period: "Aug 2025 - Present",
       location: "Remote",
       type: "Freelance",
       achievements: [
@@ -335,18 +335,31 @@ const ResumePopup = ({ isOpen, onClose }) => {
       tech: ["React", "Node.js", "Express", "MongoDB", "Tailwind"],
     },
     {
-      title: "Hands-On Full-Stack Development Practice",
-      company: "Personal & Learning Projects",
-      period: "2024 - Present",
-      location: "Self-Learning",
+      title: "Full-Stack & Mobile App Development",
+      company: "Self-Driven Projects",
+      period: "2025 - Present",
+      location: "Remote",
       type: "Hands-On Experience",
       achievements: [
-        "Built 10+ full-stack projects including booking systems, authentication apps, and dashboards",
-        "Implemented secure authentication using JWT and role-based access control",
-        "Integrated payment gateway (Razorpay) and real-time features using Socket.io",
-        "Focused on clean UI design and scalable backend architecture",
+        "Developed 5+ production-ready web and mobile applications including booking systems, dashboards, and real-time apps",
+        "Built cross-platform mobile apps using React Native with Expo, including APK generation and deployment",
+        "Implemented secure authentication using JWT and role-based access control (User/Admin)",
+        "Integrated third-party services such as Razorpay for payments and Socket.io for real-time communication",
+        "Designed scalable REST APIs and optimized MongoDB queries for performance",
+        "Focused on clean UI/UX with responsive design and maintainable code architecture",
       ],
-      tech: ["React", "Node.js", "Express", "MongoDB", "Tailwind", "JWT"],
+      tech: [
+        "React.js",
+        "React Native",
+        "Expo",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "Tailwind CSS",
+        "JWT",
+        "Socket.io",
+        "Razorpay",
+      ],
     },
   ];
 
@@ -409,13 +422,13 @@ const ResumePopup = ({ isOpen, onClose }) => {
     coding: [
       {
         label: "Projects Completed",
-        value: "8+",
+        value: "9+",
         icon: Briefcase,
         color: "text-purple-500",
       },
       {
         label: "Hands-on Experience",
-        value: "2+ Years Learning & Projects",
+        value: "1+ Years Learning & Projects",
         icon: Calendar,
         color: "text-amber-500",
       },
@@ -1143,7 +1156,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                             </div>
                             <div className="hidden sm:flex items-center gap-2 text-sm text-gray-500">
                               <Clock className="w-4 h-4" />
-                              <span>Updated: Jan 2024</span>
+                              <span>Updated: 2026</span>
                             </div>
                           </div>
 
@@ -1550,7 +1563,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                           : "Detailed View Mode"}
                       </span>
                       <div className="text-xs text-gray-500">
-                        Last updated: Jan 2024 • v2.1.0
+                        Last updated: Jan 2026
                       </div>
                     </div>
                   </div>

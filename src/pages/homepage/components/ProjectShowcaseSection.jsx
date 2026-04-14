@@ -227,14 +227,14 @@ const mobileApps = [
     ],
     metrics: [
       { icon: Download, value: "Soon", label: "Downloads" },
-      { icon: Star, value: "4.8", label: "Expected Rating" },
+      // { icon: Star, value: "4.8", label: "Expected Rating" },
       { icon: Shield, value: "24/7", label: "Emergency Support" },
     ],
   },
   {
     id: 2,
     title: "ParkEasy",
-    tagline: "Smart Parking, Simplified",
+    tagline: "Car Parking Booking App",
     shortDescription:
       "A smart parking app with real-time availability, location-based search, and seamless booking with secure payments.",
     fullDescription:
@@ -243,9 +243,11 @@ const mobileApps = [
     iconBg: "from-blue-500 to-indigo-600",
     icon: Car,
     platforms: ["iOS", "Android"],
-    status: "Coming Soon",
-    rating: 4.7,
-    technologies: ["React Native", "Node.js", "Express.js", "MongoDB"],
+    status: "Live • Updates Coming Soon",
+    androidUrl:
+      "https://github.com/Ratnakar-Singh-parihar-123/ParkEasy/releases/download/v1.0/application-2b19fc59-78f1-4a7e-91b1-c437d35ac120.apk",
+    // rating: 4.7,
+    technologies: ["React Native", "CSS", "Node.js", "Express.js", "MongoDB"],
     features: [
       "Location-based nearby parking search",
       "Real-time parking slot availability",
@@ -793,31 +795,42 @@ const AppModal = ({ app, onClose, openDownloadLink, getAppImage }) => {
                   </div>
 
                   {/* Download Buttons */}
-                  <div className="mt-6 w-full max-w-[280px] space-y-2">
-                    {app.platforms.includes("iOS") && (
+                  <div className="mt-6 w-full max-w-[280px] space-y-3">
+                    {/* iOS Button */}
+                    {app.iosUrl && (
                       <button
-                        onClick={() => openDownloadLink("#")}
-                        className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-black text-white hover:bg-gray-800 transition-all duration-300 group"
+                        onClick={() => openDownloadLink(app.iosUrl)}
+                        className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-2xl
+      bg-black text-white hover:scale-[1.02] hover:bg-gray-900 transition-all duration-300 shadow-md"
                       >
-                        <Apple className="w-4 h-4" />
-                        <div className="text-left">
-                          <div className="text-[9px] opacity-80">
+                        <Apple className="w-5 h-5" />
+                        <div className="text-left leading-tight">
+                          <div className="text-[10px] opacity-70">
                             Download on the
                           </div>
-                          <div className="text-xs font-semibold">App Store</div>
+                          <div className="text-sm font-semibold">App Store</div>
                         </div>
                       </button>
                     )}
-                    {app.platforms.includes("Android") && (
+
+                    {/* Android / APK Button */}
+                    {app.androidUrl && (
                       <button
-                        onClick={() => openDownloadLink("#")}
-                        className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-green-600 text-white hover:bg-green-700 transition-all duration-300 group"
+                        onClick={() => openDownloadLink(app.androidUrl)}
+                        className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-2xl
+      bg-gradient-to-r from-green-600 to-emerald-600 text-white
+      hover:scale-[1.02] hover:from-green-700 hover:to-emerald-700
+      transition-all duration-300 shadow-md"
                       >
-                        <Cpu className="w-4 h-4" />
-                        <div className="text-left">
-                          <div className="text-[9px] opacity-80">GET IT ON</div>
-                          <div className="text-xs font-semibold">
-                            Google Play
+                        <Cpu className="w-5 h-5" />
+                        <div className="text-left leading-tight">
+                          <div className="text-[10px] opacity-80">
+                            GET IT ON
+                          </div>
+                          <div className="text-sm font-semibold">
+                            {app.status === "Live"
+                              ? "Google Play / APK"
+                              : "Download APK"}
                           </div>
                         </div>
                       </button>

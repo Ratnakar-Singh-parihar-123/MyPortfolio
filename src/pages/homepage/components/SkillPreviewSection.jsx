@@ -152,14 +152,14 @@ const SkillPreviewSection = () => {
   const overallStats = [
     {
       label: "Fresher with ,Years Practical Experience",
-      value: "2+",
+      value: "1+",
       icon: ClockIcon,
       color: "text-blue-500",
       bgColor: "bg-blue-500/10",
     },
     {
       label: "Projects Completed",
-      value: "8+",
+      value: "9+",
       icon: Layers,
       color: "text-green-500",
       bgColor: "bg-green-500/10",

@@ -304,7 +304,7 @@ const Skills = () => {
           </h1>
 
           <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
-            Skilled in 15+ technologies with 2+ years of hands-on experience,
+            Skilled in 15+ technologies with 1+ years of hands-on experience,
             gained through building real-world projects and continuously
             expanding my development expertise.
           </p>
@@ -320,13 +320,13 @@ const Skills = () => {
               },
               {
                 label: "Projects Built",
-                value: "8+",
+                value: "9+",
                 icon: "FolderOpen",
                 color: "from-purple-500 to-pink-500",
               },
               {
                 label: "Hands-on Experience",
-                value: "2+ Years",
+                value: "1+ Years",
                 icon: "Clock",
                 color: "from-orange-500 to-red-500",
               },
@@ -733,7 +733,7 @@ const Skills = () => {
             {[
               { value: "8+", label: "Projects" },
               { value: "15+", label: "Technologies" },
-              { value: "2+ years,Hands-on", label: "Experience" },
+              { value: "1+ years,Hands-on", label: "Experience" },
               { value: "24/7", label: "Available" },
             ].map((stat, index) => (
               <div key={index} className="text-center">

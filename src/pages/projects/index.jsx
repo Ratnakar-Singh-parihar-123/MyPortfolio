@@ -549,16 +549,17 @@ const mobileAppsData = [
     image: parkingapp,
     gallery: [parkingapp],
 
-    technologies: ["React Native", "Node.js", "Express.js", "MongoDB"],
+    technologies: ["React Native", "CSS", "Node.js", "Express.js", "MongoDB"],
 
     platforms: ["iOS", "Android"],
     complexity: "Intermediate",
-    duration: "3 months",
+    duration: "2 months",
     teamSize: "1",
 
     impact: "Optimizes parking management and reduces search time",
-    liveUrl: "",
-    githubUrl: "",
+    liveUrl:
+      "https://github.com/Ratnakar-Singh-parihar-123/ParkEasy/releases/download/v1.0/application-2b19fc59-78f1-4a7e-91b1-c437d35ac120.apk",
+    githubUrl: "https://github.com/Ratnakar-Singh-parihar-123/ParkEasy",
     status: "Planned",
     featured: true,
 

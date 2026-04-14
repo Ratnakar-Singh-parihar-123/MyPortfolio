@@ -101,7 +101,7 @@ const HeroSection = () => {
 
   const stats = [
     {
-      value: "8+",
+      value: "9+",
       label: "Projects Completed",
       icon: "Briefcase",
       color: "text-purple-500",
@@ -109,7 +109,7 @@ const HeroSection = () => {
       borderColor: "border-purple-200 dark:border-purple-800",
     },
     {
-      value: "2+",
+      value: "1+",
       label: "Hands-on Experience",
       icon: "Award",
       color: "text-indigo-500",

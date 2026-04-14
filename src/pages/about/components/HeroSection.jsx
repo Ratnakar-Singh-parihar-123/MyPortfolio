@@ -418,7 +418,7 @@ const HeroSection = () => {
                   <div className="grid grid-cols-3 gap-3 mt-6">
                     <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
                       <div className="text-lg font-bold text-gray-900 dark:text-white">
-                        8+
+                        9+
                       </div>
                       <div className="text-xs text-gray-500 dark:text-gray-400">
                         Projects
@@ -427,7 +427,7 @@ const HeroSection = () => {
 
                     <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
                       <div className="text-lg font-bold text-gray-900 dark:text-white">
-                        2+
+                        1+
                       </div>
                       <div className="text-xs text-gray-500 dark:text-gray-400">
                         Years Practice
