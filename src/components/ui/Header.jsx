@@ -1367,7 +1367,7 @@ const Header = ({ className = "" }) => {
               </div>
 
               {/* Search Footer with Keyboard Shortcuts */}
-              <div className="p-3 sm:p-4 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/50">
+              {/* <div className="p-3 sm:p-4 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/50">
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500">
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-2">
@@ -1403,7 +1403,7 @@ const Header = ({ className = "" }) => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </motion.div>
           </motion.div>
         )}
