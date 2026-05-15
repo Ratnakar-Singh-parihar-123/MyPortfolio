@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Icon from "../../../components/AppIcon";
 import Image from "../../../components/AppImage";
-import AboutImg from "../../../assets/about/about.jpeg";
+import AboutImg from "../../../assets/heroImg/hero.jpeg";
 import {
   Sparkles,
   ArrowRight,
@@ -89,7 +89,7 @@ const HeroSection = () => {
   const stats = [
     { value: "8+", label: "Projects", icon: Briefcase, color: "text-blue-500" },
     {
-      value: "2+",
+      value: "1+",
       label: "Years Practical Experience",
       icon: Calendar,
       color: "text-purple-500",
@@ -410,7 +410,7 @@ const HeroSection = () => {
                     </h3>
 
                     <p className="text-sm text-blue-600 dark:text-blue-400 mt-1">
-                      MERN Stack Developer
+                      Full-Stack Developer
                     </p>
                   </div>
 
@@ -446,21 +446,21 @@ const HeroSection = () => {
 
                   {/* Buttons */}
                   <div className="flex gap-3 mt-6 pb-6">
-                    <button
+                    {/* <button
                       onClick={() => scrollToSection("contact")}
                       className="flex-1 px-4 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl text-sm font-medium hover:shadow-lg transition-all duration-300"
                     >
                       Hire Me
-                    </button>
+                    </button> */}
 
-                    <a
+                    {/* <a
                       href="https://github.com/Ratnakar-Singh-parihar-123"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="px-4 py-2.5 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300"
                     >
                       <Github className="w-4 h-4" />
-                    </a>
+                    </a> */}
                   </div>
                 </div>
               </div>

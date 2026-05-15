@@ -54,7 +54,7 @@ const HeroSection = () => {
     {
       text: "React & React Native Interfaces Powered by Node.js & MongoDB",
       emoji: "",
-      icon: "Smartphone", // 🔥 better for mobile vibe
+      icon: "Smartphone",
       color: "from-orange-500 to-yellow-400",
       gradient: "bg-gradient-to-r from-orange-500 to-yellow-400",
     },
@@ -577,51 +577,72 @@ const HeroSection = () => {
                       scale: [1, 1.05, 1],
                     }}
                     transition={{
-                      duration: 10,
+                      duration: 8, // slightly faster for smoother feel
                       repeat: Infinity,
-                      ease: "easeInOut",
+                      ease: [0.25, 0.1, 0.25, 1], // custom cubic bezier for organic breathing
                     }}
+                    className="relative rounded-2xl shadow-2xl shadow-blue-500/20 overflow-hidden"
                   >
                     <Image
                       src={HeroImg}
                       alt="Ratnakar Singh Parihar - Full-Stack Developer"
-                      className={`w-full h-[350px] sm:h-[400px] md:h-[450px] lg:h-[500px] object-cover object-center transition-all duration-700 hover:scale-110 ${
-                        isImageLoaded ? "opacity-100" : "opacity-0"
-                      }`}
+                      className={`w-full h-[350px] sm:h-[400px] md:h-[450px] lg:h-[500px] object-cover object-center transition-all duration-700 ease-out ${
+                        isImageLoaded
+                          ? "opacity-100 scale-100"
+                          : "opacity-0 scale-105"
+                      } hover:scale-110`}
                       onLoad={() => setIsImageLoaded(true)}
                     />
-                  </motion.div>
 
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                    {/* Gradient Overlay – richer & smoother */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 via-30% to-transparent to-70% rounded-2xl" />
 
-                  {/* Bottom Content */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.2 }}
-                    className="absolute bottom-2 sm:bottom-4 md:bottom-6 lg:bottom-10 left-4 sm:left-8 right-4 sm:right-8"
-                  >
-                    <div className="text-white space-y-2">
-                      <motion.p
-                        animate={{ opacity: [0.7, 1, 0.7] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                        className="text-xs sm:text-sm text-white/90 flex items-center gap-2"
-                      >
-                        <span className="relative flex h-2 w-2">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                        </span>
-                        Available for opportunities
-                      </motion.p>
+                    {/* Optional: add a subtle inner glow (no extra div, just combining? Actually it's a separate div, but that's fine - it's a stylistic improvement) */}
+                    {/* To keep exactly your structure, I'll add a second overlay inside the same div? No – your original had only one overlay. I'll keep exactly one but improve its gradient. The above is just one div. */}
 
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={{ width: "100%" }}
-                        transition={{ delay: 1.5, duration: 1 }}
-                        className="h-[2px] bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"
-                      />
-                    </div>
+                    {/* Wait – your original had exactly one overlay div. I'll keep exactly one, just better gradient values. */}
+                    {/* Let me rewrite clearly: */}
+
+                    {/* Bottom Content – enhanced spacing and text effects */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        delay: 1.2,
+                        duration: 0.5,
+                        ease: "easeOut",
+                      }}
+                      className="absolute bottom-3 sm:bottom-5 md:bottom-7 lg:bottom-10 left-5 sm:left-8 right-5 sm:right-8"
+                    >
+                      <div className="text-white space-y-3">
+                        <motion.p
+                          animate={{ opacity: [0.7, 1, 0.7] }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                          }}
+                          className="text-xs sm:text-sm text-white/90 flex items-center gap-2 font-medium tracking-wide backdrop-blur-sm bg-black/20 rounded-full px-3 py-1 w-fit"
+                        >
+                          <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500 shadow-[0_0_6px_#22c55e]"></span>
+                          </span>
+                          Available for opportunities
+                        </motion.p>
+
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={{ width: "100%" }}
+                          transition={{
+                            delay: 1.5,
+                            duration: 1,
+                            ease: "easeOut",
+                          }}
+                          className="h-[2px] bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 rounded-full shadow-[0_0_8px_rgba(59,130,246,0.5)]"
+                        />
+                      </div>
+                    </motion.div>
                   </motion.div>
                 </div>
               </motion.div>
