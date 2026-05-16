@@ -109,7 +109,7 @@ const HeroSection = () => {
       borderColor: "border-purple-200 dark:border-purple-800",
     },
     {
-      value: "1+",
+      value: "1+ Year",
       label: "Hands-on Experience",
       icon: "Award",
       color: "text-indigo-500",
@@ -137,7 +137,7 @@ const HeroSection = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 pt-24 md:pt-28 lg:pt-32"
+      className="relative flex items-center justify-center min-h-screen pt-24 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 md:pt-28 lg:pt-32"
     >
       {/* Simple & Elegant Background Design */}
       <div className="absolute inset-0 z-0">
@@ -152,8 +152,8 @@ const HeroSection = () => {
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent" />
 
         {/* Minimal Floating Elements */}
-        <div className="absolute top-20 right-20 w-32 h-32 border border-blue-500/10 rounded-full" />
-        <div className="absolute bottom-20 left-20 w-40 h-40 border border-purple-500/10 rounded-full" />
+        <div className="absolute w-32 h-32 border rounded-full top-20 right-20 border-blue-500/10" />
+        <div className="absolute w-40 h-40 border rounded-full bottom-20 left-20 border-purple-500/10" />
 
         {/* Subtle Particles */}
         <div className="absolute inset-0 overflow-hidden">
@@ -179,19 +179,19 @@ const HeroSection = () => {
         </div>
 
         {/* Clean Vignette Effect */}
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white dark:from-gray-950 dark:via-transparent dark:to-gray-950 opacity-50" />
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-white dark:from-gray-950 dark:via-transparent dark:to-gray-950 opacity-50" />
+        <div className="absolute inset-0 opacity-50 bg-gradient-to-t from-white via-transparent to-white dark:from-gray-950 dark:via-transparent dark:to-gray-950" />
+        <div className="absolute inset-0 opacity-50 bg-gradient-to-r from-white via-transparent to-white dark:from-gray-950 dark:via-transparent dark:to-gray-950" />
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pb-12 md:pb-16 lg:pb-20 pt-7">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16 xl:gap-20">
+      <div className="container relative z-10 px-4 pb-12 mx-auto sm:px-6 lg:px-8 md:pb-16 lg:pb-20 pt-7">
+        <div className="flex flex-col items-center justify-between gap-8 lg:flex-row lg:gap-16 xl:gap-20">
           {/* Left Column - Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
-            className="text-center lg:text-left w-full lg:w-1/2 space-y-6 lg:space-y-8"
+            className="w-full space-y-6 text-center lg:text-left lg:w-1/2 lg:space-y-8"
           >
             {/* Enhanced Welcome Badge */}
             <motion.div
@@ -201,11 +201,11 @@ const HeroSection = () => {
               whileHover={{ scale: 1.05 }}
               className="inline-flex items-center gap-3 px-5 py-2.5 bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-full border border-gray-200 dark:border-gray-700 shadow-lg mx-auto lg:mx-0 group cursor-pointer"
             >
-              <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+              <span className="relative flex w-3 h-3">
+                <span className="absolute inline-flex w-full h-full bg-green-400 rounded-full opacity-75 animate-ping"></span>
+                <span className="relative inline-flex w-3 h-3 bg-green-500 rounded-full"></span>
               </span>
-              <span className="text-sm font-medium bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent group-hover:from-purple-600 group-hover:to-pink-600 transition-all">
+              <span className="text-sm font-medium text-transparent transition-all bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text group-hover:from-purple-600 group-hover:to-pink-600">
                 Open to Full-Time & Internship Opportunities
               </span>
               <motion.span
@@ -232,7 +232,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20, rotateX: -15 }}
                 animate={{ opacity: 1, y: 0, rotateX: 0 }}
                 transition={{ delay: 0.4, type: "spring" }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight"
+                className="text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl md:text-5xl lg:text-6xl"
                 style={{ transformStyle: "preserve-3d" }}
               >
                 {/* First Name */}
@@ -274,7 +274,7 @@ const HeroSection = () => {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -30, scale: 0.9 }}
                   transition={{ duration: 0.6, type: "spring" }}
-                  className="flex items-center justify-center lg:justify-start gap-4"
+                  className="flex items-center justify-center gap-4 lg:justify-start"
                 >
                   <motion.div
                     animate={{
@@ -282,7 +282,7 @@ const HeroSection = () => {
                       scale: [1, 1.2, 1],
                     }}
                     transition={{ duration: 2, repeat: Infinity }}
-                    className="text-3xl sm:text-4xl bg-gradient-to-br from-blue-500 to-purple-500 p-3 rounded-2xl shadow-lg"
+                    className="p-3 text-3xl shadow-lg sm:text-4xl bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl"
                   >
                     {taglines[currentTagline].emoji}
                   </motion.div>
@@ -305,12 +305,12 @@ const HeroSection = () => {
               </AnimatePresence>
 
               {/* Enhanced Tagline Indicators */}
-              <div className="flex justify-center lg:justify-start gap-2 mt-4">
+              <div className="flex justify-center gap-2 mt-4 lg:justify-start">
                 {taglines.map((tagline, index) => (
                   <motion.button
                     key={index}
                     onClick={() => setCurrentTagline(index)}
-                    className="group relative"
+                    className="relative group"
                     whileHover={{ scale: 1.2 }}
                     whileTap={{ scale: 0.9 }}
                     aria-label={`Show tagline ${index + 1}`}
@@ -341,7 +341,7 @@ const HeroSection = () => {
               transition={{ delay: 0.6 }}
               className="space-y-4"
             >
-              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              <p className="max-w-2xl mx-auto text-base leading-relaxed text-gray-600 sm:text-lg dark:text-gray-300 lg:mx-0">
                 <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
                   Full Stack & React Native Developer
                 </span>{" "}
@@ -361,17 +361,12 @@ const HeroSection = () => {
                 modern technologies and clean, maintainable code.
               </p>
 
-              <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
+              <p className="max-w-2xl mx-auto text-sm text-gray-500 sm:text-base dark:text-gray-400 lg:mx-0">
                 From responsive frontend interfaces to robust backend systems
                 and cross-platform mobile apps, I focus on performance,
                 scalability, and intuitive design to create products that users
                 love.
               </p>
-
-              {/* Draggable Skills Component */}
-              {/* <div className="mt-6">
-    <DraggableSkills />
-  </div> */}
             </motion.div>
 
             {/* Enhanced CTA Buttons */}
@@ -379,7 +374,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
-              className="flex flex-col sm:flex-row gap-5 pt-6"
+              className="flex flex-col gap-5 pt-6 sm:flex-row"
             >
               {/* CONTACT BUTTON */}
               <Link to="/contact" className="w-full sm:w-auto">
@@ -389,9 +384,9 @@ const HeroSection = () => {
                   className="relative group"
                 >
                   {/* Glow */}
-                  <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-xl blur opacity-70 group-hover:opacity-100 transition duration-300"></div>
+                  <div className="absolute transition duration-300 -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-xl blur opacity-70 group-hover:opacity-100"></div>
 
-                  <button className="relative flex items-center justify-center gap-3 px-8 py-4 w-full sm:w-auto rounded-xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white font-semibold shadow-xl hover:shadow-2xl transition-all duration-300">
+                  <button className="relative flex items-center justify-center w-full gap-3 px-8 py-4 font-semibold text-white transition-all duration-300 shadow-xl sm:w-auto rounded-xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:shadow-2xl">
                     {/* Icon */}
                     <motion.span
                       animate={{ rotate: [0, 10, -10, 0] }}
@@ -408,14 +403,14 @@ const HeroSection = () => {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative group w-full sm:w-auto"
+                className="relative w-full group sm:w-auto"
               >
                 {/* Border Animation */}
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-xl opacity-70 group-hover:opacity-100 transition duration-300"></div>
 
                 <button
                   onClick={() => setIsPopupOpen(true)}
-                  className="relative flex items-center justify-center gap-3 px-8 py-4 w-full sm:w-auto rounded-xl bg-white dark:bg-black text-gray-800 dark:text-white font-semibold backdrop-blur-lg border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+                  className="relative flex items-center justify-center w-full gap-3 px-8 py-4 overflow-hidden font-semibold text-gray-800 transition-all duration-300 bg-white border shadow-lg sm:w-auto rounded-xl dark:bg-black dark:text-white backdrop-blur-lg border-white/20 hover:shadow-xl"
                 >
                   {/* Shine Effect */}
                   <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 animate-[shine_2s_infinite]"></span>
@@ -436,7 +431,7 @@ const HeroSection = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}
-              className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8"
+              className="grid grid-cols-2 gap-4 pt-8 sm:grid-cols-4"
             >
               {stats.map((stat, index) => (
                 <motion.div
@@ -461,7 +456,7 @@ const HeroSection = () => {
                     >
                       {stat.value}
                     </div>
-                    <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-medium leading-tight">
+                    <div className="text-xs font-medium leading-tight text-gray-600 sm:text-sm dark:text-gray-400">
                       {stat.label}
                     </div>
                   </div>
@@ -474,7 +469,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3, type: "spring" }}
-            className="relative w-full lg:w-1/2 flex justify-center mt-12 lg:mt-0"
+            className="relative flex justify-center w-full mt-12 lg:w-1/2 lg:mt-0"
           >
             <div className="relative max-w-sm sm:max-w-md md:max-w-lg">
               {/* Enhanced Glow Effects */}
@@ -489,7 +484,7 @@ const HeroSection = () => {
                   repeat: Infinity,
                   ease: "linear",
                 }}
-                className="absolute -inset-10 bg-gradient-conic from-blue-600 via-purple-600 to-pink-600 rounded-full blur-3xl"
+                className="absolute rounded-full -inset-10 bg-gradient-conic from-blue-600 via-purple-600 to-pink-600 blur-3xl"
               />
 
               <motion.div
@@ -517,7 +512,7 @@ const HeroSection = () => {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="absolute -top-8 -right-8 w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full blur-xl opacity-60"
+                className="absolute w-20 h-20 rounded-full -top-8 -right-8 bg-gradient-to-br from-yellow-400 to-orange-400 blur-xl opacity-60"
               />
               <motion.div
                 animate={{
@@ -530,7 +525,7 @@ const HeroSection = () => {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="absolute -bottom-8 -left-8 w-20 h-20 bg-gradient-to-tr from-blue-400 to-indigo-400 rounded-full blur-xl opacity-60"
+                className="absolute w-20 h-20 rounded-full -bottom-8 -left-8 bg-gradient-to-tr from-blue-400 to-indigo-400 blur-xl opacity-60"
               />
 
               {/* Main Image Container */}
@@ -554,7 +549,7 @@ const HeroSection = () => {
                 />
 
                 {/* Inner Container */}
-                <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-white dark:bg-gray-900">
+                <div className="relative overflow-hidden bg-white rounded-2xl sm:rounded-3xl dark:bg-gray-900">
                   {/* Image Skeleton Loader */}
                   {!isImageLoaded && (
                     <motion.div
@@ -566,7 +561,7 @@ const HeroSection = () => {
                         repeat: Infinity,
                         ease: "linear",
                       }}
-                      className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 dark:from-gray-700 dark:via-gray-800 dark:to-gray-700 rounded-2xl sm:rounded-3xl z-10"
+                      className="absolute inset-0 z-10 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 dark:from-gray-700 dark:via-gray-800 dark:to-gray-700 rounded-2xl sm:rounded-3xl"
                       style={{ backgroundSize: "200% 100%" }}
                     />
                   )}
@@ -581,7 +576,7 @@ const HeroSection = () => {
                       repeat: Infinity,
                       ease: [0.25, 0.1, 0.25, 1], // custom cubic bezier for organic breathing
                     }}
-                    className="relative rounded-2xl shadow-2xl shadow-blue-500/20 overflow-hidden"
+                    className="relative overflow-hidden shadow-2xl rounded-2xl shadow-blue-500/20"
                   >
                     <Image
                       src={HeroImg}
@@ -614,7 +609,7 @@ const HeroSection = () => {
                       }}
                       className="absolute bottom-3 sm:bottom-5 md:bottom-7 lg:bottom-10 left-5 sm:left-8 right-5 sm:right-8"
                     >
-                      <div className="text-white space-y-3">
+                      <div className="space-y-3 text-white">
                         <motion.p
                           animate={{ opacity: [0.7, 1, 0.7] }}
                           transition={{
@@ -622,10 +617,10 @@ const HeroSection = () => {
                             repeat: Infinity,
                             ease: "easeInOut",
                           }}
-                          className="text-xs sm:text-sm text-white/90 flex items-center gap-2 font-medium tracking-wide backdrop-blur-sm bg-black/20 rounded-full px-3 py-1 w-fit"
+                          className="flex items-center gap-2 px-3 py-1 text-xs font-medium tracking-wide rounded-full sm:text-sm text-white/90 backdrop-blur-sm bg-black/20 w-fit"
                         >
-                          <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                          <span className="relative flex w-2 h-2">
+                            <span className="absolute inline-flex w-full h-full bg-green-400 rounded-full opacity-75 animate-ping"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500 shadow-[0_0_6px_#22c55e]"></span>
                           </span>
                           Available for opportunities
@@ -648,7 +643,7 @@ const HeroSection = () => {
               </motion.div>
 
               {/* Animated Dots Pattern */}
-              <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 sm:w-80 h-64 sm:h-80">
+              <div className="absolute w-64 h-64 -translate-x-1/2 -translate-y-1/2 -z-10 top-1/2 left-1/2 sm:w-80 sm:h-80">
                 <div
                   className="absolute inset-0 opacity-20 dark:opacity-30"
                   style={{
@@ -668,12 +663,12 @@ const HeroSection = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.8 }}
-        className="absolute top-16 sm:top-20 w-full overflow-hidden z-10 flex justify-center"
+        className="absolute z-10 flex justify-center w-full overflow-hidden top-16 sm:top-20"
       >
-        <div className="relative w-full max-w-7xl overflow-hidden rounded-xl bg-white/40 dark:bg-black/40 backdrop-blur-xl border border-white/20 shadow-lg py-4">
+        <div className="relative w-full py-4 overflow-hidden border shadow-lg max-w-7xl rounded-xl bg-white/40 dark:bg-black/40 backdrop-blur-xl border-white/20">
           {/* Fade Edges */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white dark:from-black to-transparent z-10"></div>
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white dark:from-black to-transparent z-10"></div>
+          <div className="absolute inset-y-0 left-0 z-10 w-24 pointer-events-none bg-gradient-to-r from-white dark:from-black to-transparent"></div>
+          <div className="absolute inset-y-0 right-0 z-10 w-24 pointer-events-none bg-gradient-to-l from-white dark:from-black to-transparent"></div>
 
           {/* Scrolling Content */}
           <motion.div
@@ -683,7 +678,7 @@ const HeroSection = () => {
               ease: "linear",
               repeat: Infinity,
             }}
-            className="flex items-center gap-10 whitespace-nowrap text-sm sm:text-base md:text-lg font-semibold tracking-wide px-6"
+            className="flex items-center gap-10 px-6 text-sm font-semibold tracking-wide whitespace-nowrap sm:text-base md:text-lg"
           >
             {/* Items */}
 
