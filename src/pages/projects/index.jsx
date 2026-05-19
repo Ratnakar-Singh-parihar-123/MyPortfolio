@@ -695,23 +695,23 @@ const Projects = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-28 pb-16 bg-gradient-to-b from-primary/5 via-background to-background">
+      <section className="pb-16 pt-28 bg-gradient-to-b from-primary/5 via-background to-background">
         <div className="container-brand">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="text-center max-w-4xl mx-auto"
+            className="max-w-4xl mx-auto text-center"
           >
             <div className="flex items-center justify-center mb-6">
-              <div className="w-20 h-20 bg-gradient-to-br from-primary/20 to-primary/5 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg">
+              <div className="flex items-center justify-center w-20 h-20 shadow-lg bg-gradient-to-br from-primary/20 to-primary/5 backdrop-blur-sm rounded-2xl">
                 <Icon name="FolderKanban" size={36} className="text-primary" />
               </div>
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight mb-5">
+            <h1 className="mb-5 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl text-foreground">
               My <span className="text-gradient-brand">Project Portfolio</span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10 max-w-3xl mx-auto">
+            <p className="max-w-3xl mx-auto mb-10 text-lg leading-relaxed md:text-xl text-muted-foreground">
               Explore my journey through full-stack applications, React
               projects, HTML/CSS websites, and cross-platform mobile apps for
               iOS & Android.
@@ -747,13 +747,13 @@ const Projects = () => {
                   placeholder="Search projects by title, technology, industry, or features..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-12 py-4 text-base bg-card border border-border rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all shadow-sm"
+                  className="w-full py-4 pl-12 pr-12 text-base transition-all border shadow-sm bg-card border-border rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50"
                 />
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                <Search className="absolute w-5 h-5 -translate-y-1/2 left-4 top-1/2 text-muted-foreground" />
                 {searchQuery && (
                   <button
                     onClick={clearSearch}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 p-1 hover:bg-muted rounded-full transition-colors"
+                    className="absolute p-1 transition-colors -translate-y-1/2 rounded-full right-4 top-1/2 hover:bg-muted"
                   >
                     <X className="w-4 h-4 text-muted-foreground hover:text-foreground" />
                   </button>
@@ -779,12 +779,12 @@ const Projects = () => {
 
           {/* Category Tabs */}
           <div className="mb-10">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+            <div className="flex flex-col items-start justify-between gap-4 mb-6 sm:flex-row sm:items-center">
               <div>
                 <h2 className="text-2xl font-bold text-foreground">
                   Browse by Category
                 </h2>
-                <p className="text-muted-foreground mt-1">
+                <p className="mt-1 text-muted-foreground">
                   Filter projects based on technology stack
                 </p>
               </div>
@@ -829,7 +829,7 @@ const Projects = () => {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="bg-card border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                className="px-3 py-2 text-sm border rounded-lg bg-card border-border focus:outline-none focus:ring-2 focus:ring-primary"
               >
                 <option value="category">Category</option>
                 <option value="recent">Most Recent</option>
@@ -840,7 +840,7 @@ const Projects = () => {
           </div>
 
           {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filteredProjects.map((project, index) =>
               project.projectType === "mobile" ? (
                 <MobileAppPhoneCard
@@ -865,15 +865,15 @@ const Projects = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-center py-16 bg-card rounded-2xl border border-border"
+              className="py-16 text-center border bg-card rounded-2xl border-border"
             >
-              <div className="w-24 h-24 bg-gradient-to-br from-primary/5 to-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="flex items-center justify-center w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary/5 to-primary/10">
                 <Search size={32} className="text-primary" />
               </div>
-              <h3 className="text-xl font-semibold text-foreground mb-2">
+              <h3 className="mb-2 text-xl font-semibold text-foreground">
                 No Projects Found
               </h3>
-              <p className="text-muted-foreground mb-6 max-w-md mx-auto">
+              <p className="max-w-md mx-auto mb-6 text-muted-foreground">
                 {searchQuery
                   ? `No projects matching "${searchQuery}". Try a different search term.`
                   : "No projects in this category. Try selecting a different category."}
@@ -911,19 +911,19 @@ const Projects = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="mb-12 text-center"
           >
-            <h2 className="text-3xl font-bold text-foreground mb-3">
+            <h2 className="mb-3 text-3xl font-bold text-foreground">
               By the Numbers
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <p className="max-w-2xl mx-auto text-muted-foreground">
               A quick look at my project portfolio across different technologies
             </p>
           </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-background p-6 rounded-2xl border border-border shadow-sm">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="p-6 border shadow-sm bg-background rounded-2xl border-border">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10">
                   <Icon name="Layers" size={24} className="text-primary" />
                 </div>
                 <div>
@@ -938,9 +938,9 @@ const Projects = () => {
                 and authentication
               </p>
             </div>
-            <div className="bg-background p-6 rounded-2xl border border-border shadow-sm">
+            <div className="p-6 border shadow-sm bg-background rounded-2xl border-border">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center">
+                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-blue-500/10">
                   <Icon name="React" size={24} className="text-blue-500" />
                 </div>
                 <div>
@@ -955,9 +955,9 @@ const Projects = () => {
                 design, and interactive features
               </p>
             </div>
-            <div className="bg-background p-6 rounded-2xl border border-border shadow-sm">
+            <div className="p-6 border shadow-sm bg-background rounded-2xl border-border">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center">
+                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-emerald-500/10">
                   <Icon name="Code" size={24} className="text-emerald-500" />
                 </div>
                 <div>
@@ -972,9 +972,9 @@ const Projects = () => {
                 clean design
               </p>
             </div>
-            <div className="bg-background p-6 rounded-2xl border border-border shadow-sm">
+            <div className="p-6 border shadow-sm bg-background rounded-2xl border-border">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center">
+                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-purple-500/10">
                   <Icon
                     name="Smartphone"
                     size={24}
@@ -1008,21 +1008,21 @@ const Projects = () => {
             className="max-w-3xl mx-auto text-center"
           >
             <div className="flex items-center justify-center mb-6">
-              <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center">
+              <div className="flex items-center justify-center w-14 h-14 bg-primary/10 rounded-2xl">
                 <Icon name="Rocket" size={30} className="text-primary" />
               </div>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-snug text-foreground">
+            <h2 className="mb-4 text-3xl font-bold leading-snug md:text-4xl text-foreground">
               Ready to Build Something{" "}
               <span className="text-gradient-brand">Amazing?</span>
             </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-10">
+            <p className="max-w-2xl mx-auto mb-10 text-lg text-muted-foreground">
               From full-stack web applications to React Native mobile apps and
               modern websites, I'm always excited to collaborate and transform
               ideas into scalable, user-friendly, and impactful digital
               solutions.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button
                 variant="default"
                 size="lg"
@@ -1092,16 +1092,16 @@ const MobileAppPhoneCard = ({ app, onViewDetails, index }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => onViewDetails(app)}
-      className="group cursor-pointer"
+      className="cursor-pointer group"
     >
-      <div className="relative h-full bg-gradient-to-br from-card to-card/80 rounded-2xl overflow-hidden border border-border hover:border-primary/40 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 p-4">
+      <div className="relative h-full p-4 overflow-hidden transition-all duration-300 border bg-gradient-to-br from-card to-card/80 rounded-2xl border-border hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1">
         {/* Compact Layout */}
         <div className="flex gap-4">
           {/* Smaller Phone Mockup */}
           <div className="flex-shrink-0">
             <div className="relative w-[140px]">
-              <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-1 shadow-xl">
-                <div className="relative bg-black rounded-xl overflow-hidden">
+              <div className="relative p-1 shadow-xl bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl">
+                <div className="relative overflow-hidden bg-black rounded-xl">
                   {/* Dynamic Island */}
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60px] h-[25px] bg-black rounded-b-lg z-10 flex items-center justify-center">
                     <div className="w-1 h-1 rounded-full bg-green-400/60" />
@@ -1115,11 +1115,11 @@ const MobileAppPhoneCard = ({ app, onViewDetails, index }) => {
                     <img
                       src={app.image}
                       alt={app.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                     />
 
                     {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 transition-opacity duration-300 opacity-0 bg-gradient-to-t from-black/50 via-transparent to-transparent group-hover:opacity-100" />
 
                     {/* Status Bar */}
                     <div className="absolute top-1 left-0 right-0 px-3 py-0.5 flex justify-between text-white/60 text-[7px] font-medium">
@@ -1151,7 +1151,7 @@ const MobileAppPhoneCard = ({ app, onViewDetails, index }) => {
                     </div>
 
                     {/* App Icon Overlay */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110">
+                    <div className="absolute transition-all duration-300 transform -translate-x-1/2 -translate-y-1/2 opacity-0 top-1/2 left-1/2 group-hover:opacity-100 group-hover:scale-110">
                       <div
                         className={`w-10 h-10 rounded-xl bg-gradient-to-br ${app.iconColor} flex items-center justify-center shadow-lg`}
                       >
@@ -1190,7 +1190,7 @@ const MobileAppPhoneCard = ({ app, onViewDetails, index }) => {
                 />
               </div>
               <div className="min-w-0">
-                <h3 className="text-base font-bold text-foreground group-hover:text-primary transition-colors truncate">
+                <h3 className="text-base font-bold truncate transition-colors text-foreground group-hover:text-primary">
                   {app.title}
                 </h3>
                 <p className="text-[10px] text-muted-foreground truncate">
