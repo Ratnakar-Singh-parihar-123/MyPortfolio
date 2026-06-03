@@ -448,6 +448,14 @@ const Header = ({ className = "" }) => {
       isNew: false,
       stats: "B.Tech CSE",
     },
+    // {
+    //   name: "Experience",
+    //   path: "",
+    //   icon: "Briefcase",
+    //   gradient: "from-sky-500 to-blue-500",
+    //   description: "My professional journey",
+    //   color: "#0EA5E9",
+    // },
   ];
 
   const socialLinks = [
@@ -804,15 +812,15 @@ const Header = ({ className = "" }) => {
   const Logo = () => (
     <div
       ref={logoRef}
-      className="flex items-center space-x-3 group cursor-pointer"
+      className="flex items-center space-x-3 cursor-pointer group"
     >
       <div className="relative w-10 h-10 sm:w-12 sm:h-12">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
-        <div className="relative w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl shadow-lg overflow-hidden">
+        <div className="absolute inset-0 transition-opacity duration-300 opacity-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl blur-md group-hover:opacity-50" />
+        <div className="relative w-full h-full overflow-hidden shadow-lg bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl">
           <img
             src={logoImg}
             alt="RSP"
-            className="w-full h-full object-cover"
+            className="object-cover w-full h-full"
             onError={(e) => {
               e.target.onerror = null;
               e.target.parentElement.innerHTML =
@@ -823,7 +831,7 @@ const Header = ({ className = "" }) => {
       </div>
 
       <div className="flex flex-col">
-        <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+        <span className="text-lg font-bold text-transparent sm:text-xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
           R.S.P
         </span>
         <span
@@ -892,14 +900,14 @@ const Header = ({ className = "" }) => {
       >
         <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-20">
             <Link to="/" onClick={() => handleNavClick("/", "Home")}>
               <Logo />
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-1">
+            <nav className="items-center hidden space-x-1 lg:flex">
               {navigationItems.map((item, index) => (
                 <NavItem key={item.path} item={item} index={index} />
               ))}
@@ -916,10 +924,10 @@ const Header = ({ className = "" }) => {
                   onMouseLeave={() =>
                     windowWidth >= breakpoints.lg && setActiveDropdown(null)
                   }
-                  className="flex items-center space-x-1 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                  className="flex items-center px-3 py-2 space-x-1 text-gray-700 transition-colors rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
                 >
                   <Icon name="MoreHorizontal" size={18} />
-                  <span className="hidden xl:inline text-sm">More</span>
+                  <span className="hidden text-sm xl:inline">More</span>
                   <Icon
                     name="ChevronDown"
                     size={14}
@@ -929,7 +937,7 @@ const Header = ({ className = "" }) => {
 
                 {activeDropdown === "more" && (
                   <div
-                    className="absolute top-full right-0 mt-2 w-64 bg-white dark:bg-gray-900 rounded-xl shadow-xl border border-gray-200 dark:border-gray-800 overflow-hidden"
+                    className="absolute right-0 w-64 mt-2 overflow-hidden bg-white border border-gray-200 shadow-xl top-full dark:bg-gray-900 rounded-xl dark:border-gray-800"
                     onMouseEnter={() =>
                       windowWidth >= breakpoints.lg && setActiveDropdown("more")
                     }
@@ -943,7 +951,7 @@ const Header = ({ className = "" }) => {
                           key={item.path}
                           to={item.path}
                           onClick={() => handleNavClick(item.path, item.name)}
-                          className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group"
+                          className="flex items-center p-3 space-x-3 transition-colors rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 group"
                         >
                           <div
                             className={`p-2 rounded-lg bg-gradient-to-br ${item.gradient} text-white`}
@@ -951,7 +959,7 @@ const Header = ({ className = "" }) => {
                             <Icon name={item.icon} size={16} />
                           </div>
                           <div className="flex-1">
-                            <p className="font-medium text-gray-900 dark:text-white text-sm">
+                            <p className="text-sm font-medium text-gray-900 dark:text-white">
                               {item.name}
                             </p>
                             <p className="text-xs text-gray-500 dark:text-gray-400">
@@ -967,11 +975,11 @@ const Header = ({ className = "" }) => {
                       ))}
                     </div>
 
-                    <div className="border-t border-gray-200 dark:border-gray-800 p-3">
+                    <div className="p-3 border-t border-gray-200 dark:border-gray-800">
                       <a
                         href={resumefile}
                         download="Ratnakar_Singh_Parihar_Resume.pdf"
-                        className="flex items-center justify-center space-x-2 text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 transition-colors"
+                        className="flex items-center justify-center space-x-2 text-sm text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400"
                       >
                         <Icon name="Download" size={16} />
                         <span>Download Resume</span>
@@ -989,7 +997,7 @@ const Header = ({ className = "" }) => {
                 onClick={openSearch}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
+                className="p-2 text-gray-700 transition-all duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
                 aria-label="Search"
               >
                 <Icon name="Search" size={20} />
@@ -998,7 +1006,7 @@ const Header = ({ className = "" }) => {
               <ThemeToggle />
 
               {/* Desktop Actions */}
-              <div className="hidden md:flex items-center space-x-2">
+              <div className="items-center hidden space-x-2 md:flex">
                 <div className="flex items-center space-x-1">
                   {socialLinks.slice(0, 3).map((social) => (
                     <a
@@ -1043,16 +1051,7 @@ const Header = ({ className = "" }) => {
               {/* Mobile Menu Button */}
               <button
                 onClick={toggleMenu}
-                className="lg:hidden w-11 h-11 rounded-xl
-    bg-white/20 dark:bg-gray-900/20
-    backdrop-blur-md
-    border border-white/30 dark:border-gray-700/30
-    hover:bg-white/30 dark:hover:bg-gray-800/30
-    hover:border-white/50 dark:hover:border-gray-600/50
-    shadow-lg
-    transition-all duration-200
-    flex items-center justify-center
-    group"
+                className="flex items-center justify-center transition-all duration-200 border shadow-lg lg:hidden w-11 h-11 rounded-xl bg-white/20 dark:bg-gray-900/20 backdrop-blur-md border-white/30 dark:border-gray-700/30 hover:bg-white/30 dark:hover:bg-gray-800/30 hover:border-white/50 dark:hover:border-gray-600/50 group"
                 aria-label={isMenuOpen ? "Close menu" : "Open menu"}
               >
                 <div className="relative w-5 h-5">
@@ -1109,18 +1108,18 @@ const Header = ({ className = "" }) => {
               animate={{ scale: 1, y: 0, opacity: 1 }}
               exit={{ scale: 0.95, y: -30, opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="relative w-full max-w-3xl mx-4 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-gray-200/50 dark:border-gray-800/50"
+              className="relative w-full max-w-3xl mx-4 overflow-hidden bg-white border shadow-2xl dark:bg-gray-900 rounded-2xl border-gray-200/50 dark:border-gray-800/50"
             >
               {/* Decorative Gradient Header */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />
 
               {/* Search Header */}
-              <div className="p-4 sm:p-5 border-b border-gray-200 dark:border-gray-800">
+              <div className="p-4 border-b border-gray-200 sm:p-5 dark:border-gray-800">
                 <div className="relative">
                   <Icon
                     name="Search"
                     size={20}
-                    className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                    className="absolute text-gray-400 -translate-y-1/2 left-3 sm:left-4 top-1/2"
                   />
                   <input
                     ref={searchInputRef}
@@ -1128,13 +1127,13 @@ const Header = ({ className = "" }) => {
                     placeholder="Search projects, skills, pages..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 sm:pl-12 pr-10 sm:pr-12 py-3 sm:py-4 bg-gray-100 dark:bg-gray-800 rounded-xl sm:rounded-2xl text-gray-900 dark:text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-base sm:text-lg"
+                    className="w-full py-3 pl-10 pr-10 text-base text-gray-900 transition-all bg-gray-100 sm:pl-12 sm:pr-12 sm:py-4 dark:bg-gray-800 rounded-xl sm:rounded-2xl dark:text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 sm:text-lg"
                     autoFocus
                   />
                   {searchQuery && (
                     <button
                       onClick={() => setSearchQuery("")}
-                      className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full transition-colors"
+                      className="absolute p-1 transition-colors -translate-y-1/2 rounded-full right-3 sm:right-4 top-1/2 hover:bg-gray-200 dark:hover:bg-gray-700"
                     >
                       <Icon name="X" size={18} className="text-gray-400" />
                     </button>
@@ -1143,13 +1142,13 @@ const Header = ({ className = "" }) => {
 
                 {/* Search Stats */}
                 <div className="flex items-center justify-between mt-3">
-                  <p className="text-xs sm:text-sm text-gray-500">
+                  <p className="text-xs text-gray-500 sm:text-sm">
                     <span className="font-semibold text-blue-600 dark:text-blue-400">
                       {searchResults.length}
                     </span>{" "}
                     result{searchResults.length !== 1 ? "s" : ""} found
                   </p>
-                  <p className="text-xs text-gray-400 hidden sm:block">
+                  <p className="hidden text-xs text-gray-400 sm:block">
                     {searchQuery && `Searching for "${searchQuery}"`}
                   </p>
                 </div>
@@ -1161,7 +1160,7 @@ const Header = ({ className = "" }) => {
                 className="max-h-[50vh] sm:max-h-[55vh] md:max-h-[60vh] overflow-y-auto custom-scrollbar"
               >
                 {searchResults.length > 0 ? (
-                  <div className="p-3 sm:p-4 space-y-6">
+                  <div className="p-3 space-y-6 sm:p-4">
                     {Object.entries(groupedResults).map(([category, items]) => (
                       <motion.div
                         key={category}
@@ -1181,10 +1180,10 @@ const Header = ({ className = "" }) => {
                               className="text-white"
                             />
                           </div>
-                          <h3 className="text-xs sm:text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                          <h3 className="text-xs font-semibold tracking-wider text-gray-500 uppercase sm:text-sm dark:text-gray-400">
                             {category}
                           </h3>
-                          <span className="text-xs text-gray-400 ml-auto">
+                          <span className="ml-auto text-xs text-gray-400">
                             {items.length} item{items.length !== 1 ? "s" : ""}
                           </span>
                         </div>
@@ -1227,8 +1226,8 @@ const Header = ({ className = "" }) => {
 
                                   {/* Content */}
                                   <div className="flex-1 min-w-0">
-                                    <div className="flex items-center gap-2 flex-wrap">
-                                      <p className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
+                                    <div className="flex flex-wrap items-center gap-2">
+                                      <p className="text-sm font-semibold text-gray-900 dark:text-white sm:text-base">
                                         {result.title}
                                       </p>
                                       {result.isNew && (
@@ -1240,7 +1239,7 @@ const Header = ({ className = "" }) => {
                                     <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 line-clamp-1 mt-0.5">
                                       {result.description}
                                     </p>
-                                    <div className="flex items-center gap-2 mt-2 flex-wrap">
+                                    <div className="flex flex-wrap items-center gap-2 mt-2">
                                       <span className="text-[10px] sm:text-xs px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded-full text-gray-600 dark:text-gray-400">
                                         {result.category}
                                       </span>
@@ -1282,15 +1281,15 @@ const Header = ({ className = "" }) => {
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="text-center py-12 sm:py-16 px-4"
+                    className="px-4 py-12 text-center sm:py-16"
                   >
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 sm:mb-6 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 rounded-full flex items-center justify-center">
+                    <div className="flex items-center justify-center w-20 h-20 mx-auto mb-4 rounded-full sm:w-24 sm:h-24 sm:mb-6 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700">
                       <Icon name="Search" size={32} className="text-gray-400" />
                     </div>
-                    <h3 className="text-lg sm:text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                    <h3 className="mb-2 text-lg font-semibold text-gray-700 sm:text-xl dark:text-gray-300">
                       No results found
                     </h3>
-                    <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400 mb-4">
+                    <p className="mb-4 text-sm text-gray-500 sm:text-base dark:text-gray-400">
                       We couldn't find anything matching "
                       <span className="font-medium text-blue-600 dark:text-blue-400">
                         {searchQuery}
@@ -1322,25 +1321,25 @@ const Header = ({ className = "" }) => {
                     animate={{ opacity: 1 }}
                     className="py-8 sm:py-12"
                   >
-                    <div className="text-center mb-6">
-                      <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 rounded-full flex items-center justify-center">
+                    <div className="mb-6 text-center">
+                      <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full sm:w-20 sm:h-20 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30">
                         <Icon
                           name="Search"
                           size={28}
                           className="text-blue-500"
                         />
                       </div>
-                      <h3 className="text-base sm:text-lg font-semibold text-gray-700 dark:text-gray-300">
+                      <h3 className="text-base font-semibold text-gray-700 sm:text-lg dark:text-gray-300">
                         What are you looking for?
                       </h3>
-                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">
+                      <p className="mt-1 text-xs text-gray-500 sm:text-sm dark:text-gray-400">
                         Try searching for pages, projects, or skills
                       </p>
                     </div>
 
                     {/* Quick Suggestions */}
                     <div className="px-4 sm:px-6">
-                      <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-3 text-center">
+                      <p className="mb-3 text-xs font-medium text-center text-gray-500 dark:text-gray-400">
                         Popular searches
                       </p>
                       <div className="flex flex-wrap justify-center gap-2">
@@ -1367,8 +1366,8 @@ const Header = ({ className = "" }) => {
               </div>
 
               {/* Search Footer with Keyboard Shortcuts */}
-              {/* <div className="p-3 sm:p-4 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/50">
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500">
+              {/* <div className="p-3 border-t border-gray-200 sm:p-4 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/50">
+                <div className="flex flex-col items-center justify-between gap-3 text-xs text-gray-500 sm:flex-row">
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-2">
                       <div className="flex items-center gap-1">
@@ -1442,13 +1441,10 @@ const Header = ({ className = "" }) => {
                 stiffness: 300,
                 mass: 0.8,
               }}
-              className="absolute inset-y-0 right-0 w-full max-w-sm 
-          bg-gradient-to-b from-white to-gray-50 
-          dark:from-gray-900 dark:to-gray-950
-          shadow-2xl overflow-y-auto"
+              className="absolute inset-y-0 right-0 w-full max-w-sm overflow-y-auto shadow-2xl bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-950"
             >
               {/* Decorative Header Gradient */}
-              <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-blue-500/5 to-transparent pointer-events-none" />
+              <div className="absolute top-0 left-0 right-0 h-32 pointer-events-none bg-gradient-to-b from-blue-500/5 to-transparent" />
 
               {/* Close Button - Floating with glass effect */}
               <motion.button
@@ -1465,9 +1461,7 @@ const Header = ({ className = "" }) => {
                 <Icon
                   name="X"
                   size={20}
-                  className="text-gray-600 dark:text-gray-300 
-              group-hover:text-gray-900 dark:group-hover:text-white
-              transition-colors"
+                  className="text-gray-600 transition-colors dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white"
                 />
               </motion.button>
 
@@ -1518,15 +1512,15 @@ const Header = ({ className = "" }) => {
                       />
 
                       {/* Avatar */}
-                      <div className="relative w-20 h-20 bg-white/20 backdrop-blur-xl rounded-2xl overflow-hidden border-2 border-white/30 shadow-xl">
+                      <div className="relative w-20 h-20 overflow-hidden border-2 shadow-xl bg-white/20 backdrop-blur-xl rounded-2xl border-white/30">
                         {logoImg ? (
                           <img
                             src={logoImg}
                             alt="Profile"
-                            className="w-full h-full object-cover"
+                            className="object-cover w-full h-full"
                           />
                         ) : (
-                          <div className="w-full h-full flex items-center justify-center text-white font-bold text-3xl">
+                          <div className="flex items-center justify-center w-full h-full text-3xl font-bold text-white">
                             R
                           </div>
                         )}
@@ -1536,8 +1530,7 @@ const Header = ({ className = "" }) => {
                       <motion.div
                         animate={{ scale: [1, 1.2, 1] }}
                         transition={{ duration: 1.5, repeat: Infinity }}
-                        className="absolute -bottom-1 -right-1 w-5 h-5 
-                    bg-green-500 border-2 border-white rounded-full"
+                        className="absolute w-5 h-5 bg-green-500 border-2 border-white rounded-full -bottom-1 -right-1"
                       />
                     </motion.div>
 
@@ -1547,7 +1540,7 @@ const Header = ({ className = "" }) => {
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="text-white font-bold text-xl"
+                        className="text-xl font-bold text-white"
                       >
                         Ratnakar Singh Parihar
                       </motion.h3>
@@ -1556,7 +1549,7 @@ const Header = ({ className = "" }) => {
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.25 }}
-                        className="text-white/90 text-sm"
+                        className="text-sm text-white/90"
                       >
                         Full Stack MERN Developer
                       </motion.p>
@@ -1589,10 +1582,7 @@ const Header = ({ className = "" }) => {
                     <Link
                       to={item.path}
                       onClick={() => handleNavClick(item.path, item.name)}
-                      className="flex items-center gap-3 p-3 rounded-xl
-                  hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100
-                  dark:hover:from-gray-800 dark:hover:to-gray-900
-                  transition-all duration-200 group relative overflow-hidden"
+                      className="relative flex items-center gap-3 p-3 overflow-hidden transition-all duration-200 rounded-xl hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-800 dark:hover:to-gray-900 group"
                     >
                       {/* Hover background effect */}
                       <motion.div
@@ -1612,11 +1602,7 @@ const Header = ({ className = "" }) => {
                       </div>
 
                       {/* Label */}
-                      <span
-                        className="relative font-medium text-gray-700 dark:text-gray-200 
-                  group-hover:text-gray-900 dark:group-hover:text-white
-                  transition-colors"
-                      >
+                      <span className="relative font-medium text-gray-700 transition-colors dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">
                         {item.name}
                       </span>
 
@@ -1624,7 +1610,7 @@ const Header = ({ className = "" }) => {
                       {location.pathname === item.path && (
                         <motion.div
                           layoutId="activeNav"
-                          className="absolute left-0 w-1 h-8 bg-gradient-to-b from-blue-500 to-purple-500 rounded-r-full"
+                          className="absolute left-0 w-1 h-8 rounded-r-full bg-gradient-to-b from-blue-500 to-purple-500"
                         />
                       )}
                     </Link>
@@ -1639,8 +1625,7 @@ const Header = ({ className = "" }) => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3 }}
-                    className="text-xs font-semibold text-gray-500 
-                dark:text-gray-400 uppercase mb-4 tracking-wider"
+                    className="mb-4 text-xs font-semibold tracking-wider text-gray-500 uppercase dark:text-gray-400"
                   >
                     More
                   </motion.h4>
@@ -1656,9 +1641,7 @@ const Header = ({ className = "" }) => {
                         <Link
                           to={item.path}
                           onClick={() => handleNavClick(item.path, item.name)}
-                          className="flex items-center gap-3 p-3 rounded-xl
-                      hover:bg-gray-100 dark:hover:bg-gray-800
-                      transition-all duration-200 group"
+                          className="flex items-center gap-3 p-3 transition-all duration-200 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 group"
                         >
                           {/* Icon */}
                           <div
@@ -1670,7 +1653,7 @@ const Header = ({ className = "" }) => {
 
                           {/* Content */}
                           <div className="flex-1">
-                            <p className="font-medium text-gray-900 dark:text-white text-sm">
+                            <p className="text-sm font-medium text-gray-900 dark:text-white">
                               {item.name}
                             </p>
                             {item.desc && (
@@ -1685,9 +1668,7 @@ const Header = ({ className = "" }) => {
                             <motion.span
                               animate={{ scale: [1, 1.1, 1] }}
                               transition={{ duration: 1, repeat: Infinity }}
-                              className="text-xs px-2 py-1
-                          bg-gradient-to-r from-red-500 to-pink-500
-                          text-white rounded-full font-medium"
+                              className="px-2 py-1 text-xs font-medium text-white rounded-full bg-gradient-to-r from-red-500 to-pink-500"
                             >
                               NEW
                             </motion.span>
@@ -1705,8 +1686,7 @@ const Header = ({ className = "" }) => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.4 }}
-                  className="text-xs font-semibold text-gray-500 
-              dark:text-gray-400 uppercase mb-4 tracking-wider"
+                  className="mb-4 text-xs font-semibold tracking-wider text-gray-500 uppercase dark:text-gray-400"
                 >
                   Connect
                 </motion.h4>
