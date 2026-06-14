@@ -22,7 +22,6 @@ import SchooleImg from "../../assets/schoolImg/schoolImg.webp";
 const Education = () => {
   const [darkMode, setDarkMode] = useState(false);
 
-  // Listen for dark mode changes from Header
   useEffect(() => {
     const handleThemeChange = (e) => {
       setDarkMode(e.detail.isDark);
@@ -30,7 +29,6 @@ const Education = () => {
 
     window.addEventListener("themeChange", handleThemeChange);
 
-    // Initial check
     if (document.documentElement.classList.contains("dark")) {
       setDarkMode(true);
     }
@@ -38,7 +36,6 @@ const Education = () => {
     return () => window.removeEventListener("themeChange", handleThemeChange);
   }, []);
 
-  // Education timeline data
   const educationTimeline = [
     {
       id: 1,
@@ -46,22 +43,22 @@ const Education = () => {
       location: "Bhopal, Madhya Pradesh",
       degree: "Bachelor of Technology (B.Tech)",
       field: "Computer Science & Engineering",
-      duration: "2022 - Present",
-      status: "Final Year Student | Entry-Level Developer (Graduating 2026)",
+      duration: "2022 - 2026",
+      status: "B.Tech Graduate 2026 | Full Stack Developer",
       description:
-        "Currently pursuing final year with focus on software development, algorithms, and computer science fundamentals.",
+        "Completed Bachelor of Technology in Computer Science & Engineering with focus on software development, web technologies, data structures, algorithms, and full-stack application development.",
       achievements: [
-        "Active participant in coding competitions",
-        "Course projects in full-stack development",
-        "Technical club member",
-        "Academic projects in web technologies",
+        "Built multiple full-stack MERN projects",
+        "Developed responsive web applications using React.js",
+        "Participated in coding and technical events",
+        "Completed academic and personal software projects",
       ],
       courses: [
-        "Data Structures",
-        "Algorithms",
-        "Database Management",
-        "Web Development",
+        "Data Structures & Algorithms",
+        "Database Management Systems",
+        "Operating Systems",
         "Computer Networks",
+        "Web Development",
       ],
       type: "college",
       image:
@@ -106,39 +103,38 @@ const Education = () => {
     },
   ];
 
-  // Academic milestones
   const milestones = [
     {
       title: "Started Engineering Journey",
       year: "2022",
       description: "Began B.Tech in Computer Science",
-      icon: <GraduationCap className="h-6 w-6" />,
+      icon: <GraduationCap className="w-5 h-5" />,
       color: "from-blue-500 to-cyan-500",
     },
     {
       title: "Science Stream Selection",
       year: "2020",
       description: "Chose PCM for 11th & 12th",
-      icon: <BookOpen className="h-6 w-6" />,
+      icon: <BookOpen className="w-5 h-5" />,
       color: "from-green-500 to-emerald-500",
     },
     {
-      title: "Current Status",
+      title: "Current Focus",
       year: "Present",
-      description: "Final Year B.Tech Student",
-      icon: <Target className="h-6 w-6" />,
+      description: "B.Tech Graduate (2026) | Full Stack Developer ",
+      icon: <Target className="w-5 h-5" />,
       color: "from-purple-500 to-pink-500",
     },
     {
-      title: "Future Goal",
-      year: "2026",
-      description: "Graduation & Career Launch",
-      icon: <Flag className="h-6 w-6" />,
+      title: "Career Milestone",
+      year: "2026 - Present",
+      description:
+        "Full Stack Developer Intern at BinaryLogix Technologies LLP, contributing to modern web applications and strengthening industry-level development skills.",
+      icon: <Flag className="w-5 h-5" />,
       color: "from-orange-500 to-red-500",
     },
   ];
 
-  // Skills developed during education
   const developedSkills = [
     { skill: "Problem Solving", level: 95, category: "Analytical" },
     { skill: "Logical Thinking", level: 90, category: "Analytical" },
@@ -153,7 +149,7 @@ const Education = () => {
   return (
     <section
       id="education"
-      className={`min-h-screen py-16 px-4 md:px-8 transition-all duration-300 ${
+      className={`min-h-screen py-10 px-4 md:px-6 transition-all duration-300 ${
         darkMode
           ? "bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white"
           : "bg-gradient-to-b from-blue-50 via-white to-gray-50 text-gray-800"
@@ -161,24 +157,23 @@ const Education = () => {
     >
       <Header />
 
-      <div className="max-w-7xl mx-auto pt-4">
-        {/* Header Section */}
-        <div className="text-center mt-9">
-          <div className="inline-block relative mb-6">
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg blur opacity-25"></div>
+      <div className="max-w-6xl pt-2 mx-auto">
+        {/* Header Section - More Compact */}
+        <div className="mt-6 mb-10 text-center">
+          <div className="relative inline-block mb-4">
             <h1
-              className={`text-4xl md:text-6xl font-bold relative ${
+              className={`text-3xl md:text-5xl font-bold relative ${
                 darkMode ? "text-white" : "text-gray-800"
               }`}
             >
               Academic{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
                 Journey
               </span>
             </h1>
           </div>
           <p
-            className={`text-xl max-w-3xl mx-auto mb-8 ${
+            className={`text-base max-w-2xl mx-auto mb-6 ${
               darkMode ? "text-gray-300" : "text-gray-600"
             }`}
           >
@@ -186,38 +181,37 @@ const Education = () => {
             continuous learning and skill development
           </p>
 
-          {/* Current Status Badge */}
+          {/* Current Status Badge - Smaller */}
           <div
-            className={`inline-flex items-center px-6 py-3 rounded-full shadow-lg ${
+            className={`inline-flex items-center px-4 py-2 rounded-full shadow-md ${
               darkMode
                 ? "bg-gradient-to-r from-blue-900/30 to-purple-900/30 border border-blue-700/30"
                 : "bg-gradient-to-r from-blue-100 to-purple-100 border border-blue-200"
             }`}
           >
             <div
-              className={`p-2 rounded-full mr-3 ${
+              className={`p-1.5 rounded-full mr-2 ${
                 darkMode ? "bg-blue-800/50" : "bg-white"
               }`}
             >
               <Target
-                className={`h-5 w-5 ${darkMode ? "text-blue-400" : "text-blue-600"}`}
+                className={`h-4 w-4 ${darkMode ? "text-blue-400" : "text-blue-600"}`}
               />
             </div>
             <div>
-              <span className="font-bold">Current Status:</span>
+              <span className="text-sm font-bold">Current Status:</span>
               <span
-                className={`ml-2 ${darkMode ? "text-blue-300" : "text-blue-700"}`}
+                className={`ml-1 text-sm ${darkMode ? "text-blue-300" : "text-blue-700"}`}
               >
-                Final Year B.Tech Student in Bhopal
+                B.Tech Computer Science Graduate • Full Stack Developer
               </span>
             </div>
           </div>
         </div>
 
-        {/* Timeline Section */}
-        <div className="relative mb-20">
-          {/* Timeline line */}
-          <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 h-full w-1">
+        {/* Timeline Section - Compact Cards */}
+        <div className="relative mb-16">
+          <div className="absolute w-1 h-full transform left-4 md:left-1/2 md:-translate-x-1/2">
             <div
               className={`h-full w-0.5 ${
                 darkMode
@@ -230,73 +224,70 @@ const Education = () => {
           {educationTimeline.map((item, index) => (
             <div
               key={item.id}
-              className={`relative mb-12 md:mb-16 ${
+              className={`relative mb-8 ${
                 index % 2 === 0
                   ? "md:pr-1/2 md:pl-0 md:text-right"
                   : "md:pl-1/2 md:pr-0"
               }`}
             >
-              {/* Timeline dot */}
               <div
-                className={`absolute left-3 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 rounded-full z-10 ${
+                className={`absolute left-3 md:left-1/2 transform md:-translate-x-1/2 w-3 h-3 rounded-full z-10 ${
                   item.type === "college"
-                    ? "bg-blue-500 ring-4 ring-blue-500/20"
-                    : "bg-green-500 ring-4 ring-green-500/20"
+                    ? "bg-blue-500 ring-3 ring-blue-500/20"
+                    : "bg-green-500 ring-3 ring-green-500/20"
                 }`}
               ></div>
 
               <div
-                className={`ml-12 md:ml-0 ${
-                  index % 2 === 0 ? "md:pr-12" : "md:pl-12"
+                className={`ml-10 md:ml-0 ${
+                  index % 2 === 0 ? "md:pr-8" : "md:pl-8"
                 }`}
               >
                 <div
-                  className={`group rounded-2xl overflow-hidden shadow-xl transition-all duration-500 transform hover:-translate-y-2 ${
+                  className={`group rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 ${
                     darkMode
                       ? "bg-gray-800/50 border border-gray-700"
                       : "bg-white border border-gray-100"
                   }`}
                 >
                   <div className="md:flex">
-                    {/* Image Section */}
+                    {/* Image Section - Smaller */}
                     <div
-                      className={`md:w-2/5 h-48 md:h-auto relative overflow-hidden ${
+                      className={`md:w-2/5 h-32 md:h-auto relative overflow-hidden ${
                         item.type === "college"
                           ? "bg-gradient-to-br from-blue-500/10 to-purple-500/10"
                           : "bg-gradient-to-br from-green-500/10 to-emerald-500/10"
                       }`}
                     >
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10"></div>
+                      <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/20 to-transparent"></div>
                       <img
                         src={item.image}
                         alt={item.institution}
-                        className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
+                        className="object-cover object-center w-full h-full transition-transform duration-500 group-hover:scale-105"
                       />
-                      <div className="absolute bottom-4 left-4 z-20">
+                      <div className="absolute z-20 bottom-2 left-2">
                         <div
-                          className={`px-3 py-1 rounded-full backdrop-blur-sm ${
+                          className={`px-2 py-0.5 rounded-full backdrop-blur-sm text-xs ${
                             darkMode
                               ? "bg-black/40 text-white"
                               : "bg-white/80 text-gray-800"
                           }`}
                         >
-                          <span className="text-sm font-medium">
-                            {item.type === "college" ? "College" : "School"}
-                          </span>
+                          {item.type === "college" ? "College" : "School"}
                         </div>
                       </div>
                     </div>
 
-                    {/* Content Section */}
-                    <div className="md:w-3/5 p-6">
-                      <div className="flex flex-col md:flex-row md:items-start justify-between mb-4">
+                    {/* Content Section - Tighter Padding */}
+                    <div className="p-4 md:w-3/5">
+                      <div className="flex flex-col gap-2 mb-3 md:flex-row md:justify-between md:items-start">
                         <div>
-                          <h3 className="text-2xl font-bold mb-2">
+                          <h3 className="mb-1 text-xl font-bold">
                             {item.institution}
                           </h3>
-                          <div className="flex items-center flex-wrap gap-3 mb-3">
+                          <div className="flex flex-wrap gap-2">
                             <span
-                              className={`inline-flex items-center px-3 py-1 rounded-full text-sm ${
+                              className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs ${
                                 darkMode
                                   ? item.type === "college"
                                     ? "bg-blue-900/30 text-blue-300"
@@ -306,17 +297,17 @@ const Education = () => {
                                     : "bg-green-100 text-green-700"
                               }`}
                             >
-                              <MapPin className="h-3 w-3 mr-1" />
+                              <MapPin className="w-3 h-3 mr-1" />
                               {item.location}
                             </span>
                             <span
-                              className={`inline-flex items-center px-3 py-1 rounded-full text-sm ${
+                              className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs ${
                                 darkMode
                                   ? "bg-gray-700 text-gray-300"
                                   : "bg-gray-100 text-gray-700"
                               }`}
                             >
-                              <Calendar className="h-3 w-3 mr-1" />
+                              <Calendar className="w-3 h-3 mr-1" />
                               {item.duration}
                             </span>
                           </div>
@@ -324,7 +315,7 @@ const Education = () => {
 
                         {item.status && (
                           <div
-                            className={`px-3 py-1 rounded-lg ${
+                            className={`px-2 py-1 rounded-md text-xs whitespace-nowrap ${
                               darkMode
                                 ? "bg-gradient-to-r from-blue-900/40 to-purple-900/40"
                                 : "bg-gradient-to-r from-blue-100 to-purple-100"
@@ -339,20 +330,19 @@ const Education = () => {
                         )}
                       </div>
 
-                      {/* Degree/Stream */}
                       {(item.degree || item.stream || item.grade) && (
-                        <div className="mb-4">
+                        <div className="mb-2">
                           <h4
-                            className={`font-semibold mb-2 flex items-center ${
+                            className={`font-semibold text-sm mb-1 flex items-center ${
                               darkMode ? "text-blue-400" : "text-blue-600"
                             }`}
                           >
-                            <GraduationCap className="h-5 w-5 mr-2" />
+                            <GraduationCap className="w-4 h-4 mr-1" />
                             {item.degree || item.stream || item.grade}
                           </h4>
                           {item.field && (
                             <p
-                              className={`text-sm ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                              className={`text-xs ${darkMode ? "text-gray-400" : "text-gray-600"}`}
                             >
                               {item.field}
                             </p>
@@ -361,28 +351,29 @@ const Education = () => {
                       )}
 
                       <p
-                        className={`mb-4 ${darkMode ? "text-gray-300" : "text-gray-600"}`}
+                        className={`text-sm mb-3 leading-relaxed ${
+                          darkMode ? "text-gray-300" : "text-gray-600"
+                        }`}
                       >
                         {item.description}
                       </p>
 
-                      {/* Courses/Focus Areas */}
                       {(item.courses || item.focus) && (
-                        <div className="mb-4">
+                        <div className="mb-3">
                           <h4
-                            className={`font-semibold mb-2 flex items-center ${
+                            className={`font-semibold text-xs mb-1.5 flex items-center ${
                               darkMode ? "text-gray-200" : "text-gray-700"
                             }`}
                           >
-                            <BookMarked className="h-4 w-4 mr-2" />
+                            <BookMarked className="w-3 h-3 mr-1" />
                             Key{" "}
                             {item.type === "college" ? "Courses" : "Subjects"}
                           </h4>
-                          <div className="flex flex-wrap gap-2">
+                          <div className="flex flex-wrap gap-1.5">
                             {(item.courses || item.focus).map((course, idx) => (
                               <span
                                 key={idx}
-                                className={`px-3 py-1 rounded-full text-sm ${
+                                className={`px-2 py-0.5 rounded-full text-xs ${
                                   darkMode
                                     ? item.type === "college"
                                       ? "bg-blue-900/30 text-blue-300"
@@ -399,22 +390,24 @@ const Education = () => {
                         </div>
                       )}
 
-                      {/* Achievements */}
                       {item.achievements && (
                         <div>
                           <h4
-                            className={`font-semibold mb-2 flex items-center ${
+                            className={`font-semibold text-xs mb-1.5 flex items-center ${
                               darkMode ? "text-gray-200" : "text-gray-700"
                             }`}
                           >
-                            <Trophy className="h-4 w-4 mr-2" />
-                            Achievements & Highlights
+                            <Trophy className="w-3 h-3 mr-1" />
+                            Achievements
                           </h4>
-                          <ul className="space-y-1">
+                          <ul className="space-y-0.5">
                             {item.achievements.map((achievement, idx) => (
-                              <li key={idx} className="flex items-start">
+                              <li
+                                key={idx}
+                                className="flex items-start text-xs"
+                              >
                                 <ChevronRight
-                                  className={`h-4 w-4 mt-1 mr-2 flex-shrink-0 ${
+                                  className={`h-3 w-3 mt-0.5 mr-1 flex-shrink-0 ${
                                     darkMode ? "text-blue-400" : "text-blue-600"
                                   }`}
                                 />
@@ -438,37 +431,37 @@ const Education = () => {
           ))}
         </div>
 
-        {/* Milestones Section */}
-        <div className="mb-20">
+        {/* Milestones Section - Smaller Cards */}
+        <div className="mb-16">
           <h2
-            className={`text-3xl md:text-4xl font-bold text-center mb-12 ${
+            className={`text-2xl md:text-3xl font-bold text-center mb-8 ${
               darkMode ? "text-white" : "text-gray-800"
             }`}
           >
             Academic{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
               Milestones
             </span>
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {milestones.map((milestone, index) => (
               <div
                 key={index}
-                className={`relative rounded-2xl p-6 overflow-hidden group transition-all duration-500 hover:scale-105 ${
+                className={`relative rounded-xl p-4 overflow-hidden group transition-all duration-300 hover:scale-105 ${
                   darkMode ? "bg-gray-800/50" : "bg-white"
-                } shadow-lg`}
+                } shadow-md`}
               >
                 <div
-                  className={`absolute top-0 right-0 w-24 h-24 rounded-full -mr-12 -mt-12 opacity-20 bg-gradient-to-br ${milestone.color}`}
+                  className={`absolute top-0 right-0 w-20 h-20 rounded-full -mr-10 -mt-10 opacity-20 bg-gradient-to-br ${milestone.color}`}
                 ></div>
                 <div
-                  className={`absolute bottom-0 left-0 w-24 h-24 rounded-full -ml-12 -mb-12 opacity-20 bg-gradient-to-tr ${milestone.color}`}
+                  className={`absolute bottom-0 left-0 w-20 h-20 rounded-full -ml-10 -mb-10 opacity-20 bg-gradient-to-tr ${milestone.color}`}
                 ></div>
 
                 <div className="relative">
                   <div
-                    className={`inline-flex p-3 rounded-xl mb-4 ${
+                    className={`inline-flex p-2 rounded-lg mb-3 ${
                       darkMode
                         ? "bg-gray-700/50 text-white"
                         : "bg-gradient-to-br from-gray-50 to-white text-gray-800"
@@ -477,11 +470,15 @@ const Education = () => {
                     {milestone.icon}
                   </div>
 
-                  <div className="text-3xl font-bold mb-2">
+                  <div className="mb-1 text-2xl font-bold">
                     {milestone.year}
                   </div>
-                  <h3 className="text-lg font-bold mb-2">{milestone.title}</h3>
-                  <p className={darkMode ? "text-gray-300" : "text-gray-600"}>
+                  <h3 className="mb-1 text-base font-bold">
+                    {milestone.title}
+                  </h3>
+                  <p
+                    className={`text-xs ${darkMode ? "text-gray-300" : "text-gray-600"}`}
+                  >
                     {milestone.description}
                   </p>
                 </div>
@@ -490,38 +487,38 @@ const Education = () => {
           </div>
         </div>
 
-        {/* Skills Developed Section */}
+        {/* Skills Section - More Compact */}
         <div
-          className={`rounded-2xl p-8 ${
+          className={`rounded-xl p-6 ${
             darkMode
               ? "bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700"
               : "bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-100"
           }`}
         >
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <div className="mb-8 text-center">
+            <h2 className="mb-2 text-2xl font-bold md:text-3xl">
               Skills{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
                 Developed
               </span>
             </h2>
             <p
-              className={`text-lg ${darkMode ? "text-gray-300" : "text-gray-600"}`}
+              className={`text-sm ${darkMode ? "text-gray-300" : "text-gray-600"}`}
             >
               Key competencies gained through my academic journey
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div>
-              <h3 className="text-2xl font-bold mb-6">Skill Proficiency</h3>
-              <div className="space-y-6">
+              <h3 className="mb-4 text-xl font-bold">Skill Proficiency</h3>
+              <div className="space-y-4">
                 {developedSkills.map((skill, index) => (
                   <div key={index}>
                     <div className="flex justify-between mb-1">
-                      <span className="font-medium">{skill.skill}</span>
+                      <span className="text-sm font-medium">{skill.skill}</span>
                       <span
-                        className={`font-bold ${
+                        className={`text-sm font-bold ${
                           skill.category === "Analytical"
                             ? "text-blue-600"
                             : skill.category === "Technical"
@@ -535,7 +532,7 @@ const Education = () => {
                       </span>
                     </div>
                     <div
-                      className={`h-2 rounded-full overflow-hidden ${
+                      className={`h-1.5 rounded-full overflow-hidden ${
                         darkMode ? "bg-gray-700" : "bg-gray-200"
                       }`}
                     >
@@ -552,7 +549,7 @@ const Education = () => {
                         style={{ width: `${skill.level}%` }}
                       ></div>
                     </div>
-                    <div className="text-xs mt-1 opacity-70">
+                    <div className="mt-0.5 text-xs opacity-70">
                       {skill.category}
                     </div>
                   </div>
@@ -562,64 +559,87 @@ const Education = () => {
 
             <div>
               <div
-                className={`rounded-xl p-6 h-full ${
+                className={`rounded-lg p-5 h-full ${
                   darkMode ? "bg-gray-800/30" : "bg-white/50"
                 }`}
               >
-                <h3 className="text-2xl font-bold mb-6">Academic Focus</h3>
+                <h3 className="mb-4 text-xl font-bold">Academic Highlights</h3>
 
-                <div className="space-y-6">
+                <div className="space-y-4">
                   <div>
-                    <h4 className="font-bold mb-3 flex items-center">
-                      <Users className="h-5 w-5 mr-2 text-blue-500" />
-                      College Experience
+                    <h4 className="flex items-center mb-2 text-sm font-bold">
+                      <Users className="w-4 h-4 mr-1 text-blue-500" />
+                      University Journey
                     </h4>
-                    <ul className="space-y-2">
+
+                    <ul className="space-y-1.5 text-sm">
                       <li className="flex items-center">
-                        <Star className="h-4 w-4 mr-2 text-yellow-500" />
-                        <span>Final Year B.Tech Student</span>
+                        <Star className="w-3 h-3 mr-2 text-yellow-500" />
+                        <span>B.Tech CSE Graduate (2026)</span>
                       </li>
+
                       <li className="flex items-center">
-                        <Star className="h-4 w-4 mr-2 text-yellow-500" />
-                        <span>Computer Science Focus</span>
+                        <Star className="w-3 h-3 mr-2 text-yellow-500" />
+                        <span>Strong Foundation in Computer Science</span>
                       </li>
+
                       <li className="flex items-center">
-                        <Star className="h-4 w-4 mr-2 text-yellow-500" />
-                        <span>Practical Project Experience</span>
+                        <Star className="w-3 h-3 mr-2 text-yellow-500" />
+                        <span>Hands-on MERN Stack Development</span>
+                      </li>
+
+                      <li className="flex items-center">
+                        <Star className="w-3 h-3 mr-2 text-yellow-500" />
+                        <span>15+ Academic & Personal Projects</span>
                       </li>
                     </ul>
                   </div>
 
                   <div>
-                    <h4 className="font-bold mb-3 flex items-center">
-                      <BookOpen className="h-5 w-5 mr-2 text-green-500" />
-                      School Foundation
+                    <h4 className="flex items-center mb-2 text-sm font-bold">
+                      <BookOpen className="w-4 h-4 mr-1 text-green-500" />
+                      Core Learning Areas
                     </h4>
-                    <ul className="space-y-2">
+
+                    <ul className="space-y-1.5 text-sm">
                       <li className="flex items-center">
-                        <ChevronRight className="h-4 w-4 mr-2 text-green-500" />
-                        <span>Science Stream (PCM)</span>
+                        <ChevronRight className="w-3 h-3 mr-2 text-green-500" />
+                        <span>Data Structures & Algorithms</span>
                       </li>
+
                       <li className="flex items-center">
-                        <ChevronRight className="h-4 w-4 mr-2 text-green-500" />
-                        <span>Strong Mathematics Base</span>
+                        <ChevronRight className="w-3 h-3 mr-2 text-green-500" />
+                        <span>Database Management Systems</span>
                       </li>
+
                       <li className="flex items-center">
-                        <ChevronRight className="h-4 w-4 mr-2 text-green-500" />
-                        <span>Analytical Thinking Development</span>
+                        <ChevronRight className="w-3 h-3 mr-2 text-green-500" />
+                        <span>Operating Systems & Computer Networks</span>
+                      </li>
+
+                      <li className="flex items-center">
+                        <ChevronRight className="w-3 h-3 mr-2 text-green-500" />
+                        <span>Full Stack Web Development</span>
                       </li>
                     </ul>
                   </div>
 
                   <div>
-                    <h4 className="font-bold mb-3 flex items-center">
-                      <Target className="h-5 w-5 mr-2 text-purple-500" />
-                      Future Goals
+                    <h4 className="flex items-center mb-2 text-sm font-bold">
+                      <Target className="w-4 h-4 mr-1 text-purple-500" />
+                      Career Objective
                     </h4>
-                    <p className={darkMode ? "text-gray-300" : "text-gray-600"}>
-                      Leveraging my academic foundation to build a successful
-                      career in software development, with focus on creating
-                      innovative solutions and continuous learning.
+
+                    <p
+                      className={`text-sm ${
+                        darkMode ? "text-gray-300" : "text-gray-600"
+                      }`}
+                    >
+                      Seeking opportunities as a Full Stack Developer where I
+                      can apply my expertise in React.js, Node.js, Express.js,
+                      and MongoDB to build scalable applications while
+                      continuously learning modern technologies and industry
+                      best practices.
                     </p>
                   </div>
                 </div>
@@ -628,58 +648,75 @@ const Education = () => {
           </div>
         </div>
 
-        {/* Final Note */}
+        {/* Final Note - More Compact */}
         <div
-          className={`mt-16 text-center rounded-2xl p-8 ${
+          className={`mt-12 text-center rounded-xl p-6 ${
             darkMode
               ? "bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-800/30"
               : "bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200"
           }`}
         >
-          <div className="max-w-3xl mx-auto">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">
-              Education as a Foundation for Innovation
+          <div className="max-w-2xl mx-auto">
+            <h3 className="mb-2 text-xl font-bold md:text-2xl">
+              Building the Future Through Technology
             </h3>
+
             <p
-              className={`text-lg mb-6 ${
+              className={`text-sm mb-4 ${
                 darkMode ? "text-gray-300" : "text-gray-700"
               }`}
             >
-              My academic journey has provided me with a strong foundation in
-              analytical thinking, problem-solving, and technical skills. From
-              school science streams to college engineering courses, each phase
-              has contributed to my development as a software developer.
+              My journey from academic learning to real-world development has
+              equipped me with strong problem-solving abilities, software
+              engineering principles, and hands-on experience in building modern
+              web applications. As a B.Tech Computer Science graduate, I am
+              passionate about creating impactful digital solutions and
+              continuously expanding my technical expertise.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+
+            <div className="flex flex-wrap justify-center gap-3">
               <div
-                className={`inline-flex items-center px-4 py-2 rounded-full ${
+                className={`inline-flex items-center px-3 py-1 rounded-full text-xs ${
                   darkMode
                     ? "bg-gray-700 text-gray-300"
                     : "bg-white text-gray-700"
                 }`}
               >
-                <Clock className="h-4 w-4 mr-2" />
-                Ongoing Learning
+                <p className="w-3 h-3 mr-1" />
+                Full Stack Developer
               </div>
+
               <div
-                className={`inline-flex items-center px-4 py-2 rounded-full ${
+                className={`inline-flex items-center px-3 py-1 rounded-full text-xs ${
                   darkMode
                     ? "bg-gray-700 text-gray-300"
                     : "bg-white text-gray-700"
                 }`}
               >
-                <Target className="h-4 w-4 mr-2" />
-                Career Focused
+                <Target className="w-3 h-3 mr-1" />
+                Career Ready
               </div>
+
               <div
-                className={`inline-flex items-center px-4 py-2 rounded-full ${
+                className={`inline-flex items-center px-3 py-1 rounded-full text-xs ${
                   darkMode
                     ? "bg-gray-700 text-gray-300"
                     : "bg-white text-gray-700"
                 }`}
               >
-                <BookOpen className="h-4 w-4 mr-2" />
-                Continuous Growth
+                <p className="w-3 h-3 mr-1" />
+                Growth Mindset
+              </div>
+
+              <div
+                className={`inline-flex items-center px-3 py-1 rounded-full text-xs ${
+                  darkMode
+                    ? "bg-gray-700 text-gray-300"
+                    : "bg-white text-gray-700"
+                }`}
+              >
+                <p className="w-3 h-3 mr-1" />
+                Open to Opportunities
               </div>
             </div>
           </div>

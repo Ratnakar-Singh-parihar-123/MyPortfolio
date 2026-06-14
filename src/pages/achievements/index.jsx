@@ -10,6 +10,7 @@ import reactBasic from "../../assets/caritificatesImg/React Basic.png";
 import frontendRect from "../../assets/caritificatesImg/frontend React.png";
 import javaScriptBasic from "../../assets/caritificatesImg/javascript basic.png";
 import codingThinker from "../../assets/caritificatesImg/coding-thinker-certificates.png";
+import javaDsaCertificate from "../../assets/caritificatesImg/javaDsaWeb.jpeg";
 
 //codingThinker logo
 import codingThinkerLogo from "../../assets/brandLogos/coding-thinker-logo.png";
@@ -105,7 +106,7 @@ const AchievementsPage = () => {
     {
       title: "45 Days Coding Challenge",
       issuer: "Coding Thinker",
-      date: "30-08-2025",
+      date: "2025",
       image: codingThinker,
       description:
         "Actively participated in the '45 Days Coding Challenge' organized by Coding Thinker from 14th July 2025, demonstrating consistent effort, enthusiasm, and dedication towards learning Coding, Data Structures, and Algorithms while engaging and growing with the community.",
@@ -121,6 +122,26 @@ const AchievementsPage = () => {
       ],
       category: "challenge",
       color: "from-green-500 to-emerald-500",
+    },
+    {
+      title: "Java + DSA + Web Development",
+      issuer: "Coding Thinker",
+      date: "2026",
+      image: javaDsaCertificate,
+      description:
+        "Successfully completed intensive training in Java Programming, Data Structures & Algorithms, and Web Development at Coding Thinker. Developed strong problem-solving abilities and practical development skills through hands-on learning and projects.",
+      link: "",
+      badge: codingThinkerLogo,
+      skills: [
+        "Java",
+        "Data Structures",
+        "Algorithms",
+        "Problem Solving",
+        "Web Development",
+        "Programming Fundamentals",
+      ],
+      category: "challenge",
+      color: "from-orange-500 to-red-500",
     },
   ];
 
@@ -153,34 +174,35 @@ const AchievementsPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       <Header />
 
       {/* Hero Section with Stats */}
       <section className="relative pt-32 pb-20 overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
+        {/* Enhanced Background Pattern */}
+        <div className="absolute inset-0 opacity-30">
           <div
             className="absolute inset-0"
             style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
               backgroundSize: "60px 60px",
             }}
           />
         </div>
 
-        {/* Gradient Orbs */}
-        <div className="absolute top-20 left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse animation-delay-2000" />
+        {/* Animated Gradient Orbs */}
+        <div className="absolute rounded-full top-20 -left-32 w-96 h-96 bg-blue-500/20 blur-3xl animate-pulse" />
+        <div className="absolute rounded-full bottom-20 -right-32 w-96 h-96 bg-purple-500/20 blur-3xl animate-pulse animation-delay-2000" />
+        <div className="absolute rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/5 blur-3xl animate-pulse" />
 
-        <div className="relative z-10 container-brand text-center">
+        <div className="relative z-10 text-center container-brand">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="max-w-3xl mx-auto"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 rounded-full mb-6 border border-blue-200 dark:border-blue-800">
+            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-blue-200 rounded-full shadow-lg bg-gradient-to-r from-blue-100/80 to-purple-100/80 dark:from-blue-900/40 dark:to-purple-900/40 dark:border-blue-800/50 backdrop-blur-sm">
               <Icon
                 name="Award"
                 size={16}
@@ -191,35 +213,42 @@ const AchievementsPage = () => {
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <h1 className="mb-6 text-5xl font-bold tracking-tight md:text-6xl lg:text-7xl">
               My{" "}
-              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+              <span className="text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text">
                 Achievements
               </span>
             </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <p className="max-w-2xl mx-auto text-lg leading-relaxed text-slate-600 dark:text-slate-300">
               Certificates and recognitions that reflect my learning journey,
               dedication, and expertise in web development.
             </p>
           </motion.div>
 
-          {/* Stats Grid */}
+          {/* Stats Grid with Icons and Glassmorphism */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 max-w-4xl mx-auto"
+            className="grid max-w-4xl grid-cols-2 gap-5 mx-auto mt-16 md:grid-cols-4"
           >
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                whileHover={{ y: -5, scale: 1.05 }}
-                className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700"
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                className="relative p-6 transition-all duration-300 border shadow-xl group bg-white/70 dark:bg-slate-800/70 backdrop-blur-md border-slate-200 dark:border-slate-700 rounded-2xl hover:shadow-2xl"
               >
-                <div className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
+                <div className="absolute inset-0 transition-all duration-500 bg-gradient-to-br from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/5 group-hover:via-purple-500/5 group-hover:to-pink-500/5 rounded-2xl" />
+                <Icon
+                  name={stat.icon}
+                  size={24}
+                  className="mx-auto mb-3 text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text"
+                />
+                <div className="text-3xl font-bold text-transparent bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300 bg-clip-text">
                   {stat.value}
                 </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">
+                <div className="mt-1 text-sm font-medium text-slate-600 dark:text-slate-300">
                   {stat.label}
                 </div>
               </motion.div>
@@ -228,8 +257,8 @@ const AchievementsPage = () => {
         </div>
       </section>
 
-      {/* Filter Section */}
-      <section className="py-8 border-y border-gray-200 dark:border-gray-800 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm sticky top-20 z-40">
+      {/* Filter Section (Commented as per original) */}
+      {/* <section className="sticky z-40 py-8 border-gray-200 border-y dark:border-gray-800 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm top-20">
         <div className="container-brand">
           <div className="flex flex-wrap items-center justify-center gap-3">
             {categories.map((cat) => (
@@ -250,10 +279,10 @@ const AchievementsPage = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Achievements Grid */}
-      <section className="py-16">
+      <section className="py-20">
         <div className="container-brand">
           <AnimatePresence mode="wait">
             <motion.div
@@ -261,8 +290,8 @@ const AchievementsPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              transition={{ duration: 0.4 }}
+              className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
             >
               {filteredAchievements.map((item, index) => (
                 <motion.div
@@ -273,21 +302,24 @@ const AchievementsPage = () => {
                   viewport={{ once: true }}
                   onHoverStart={() => setHoveredCard(index)}
                   onHoverEnd={() => setHoveredCard(null)}
-                  className="group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-200 dark:border-gray-700"
+                  className="relative overflow-hidden transition-all duration-500 bg-white border shadow-xl group dark:bg-slate-800/90 backdrop-blur-sm border-slate-200 dark:border-slate-700 rounded-2xl hover:shadow-2xl hover:-translate-y-2"
                 >
+                  {/* Animated Gradient Border */}
+                  <div className="absolute inset-0 transition-all duration-700 pointer-events-none bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 rounded-2xl" />
+
                   {/* Image Container */}
-                  <div className="relative h-48 overflow-hidden">
+                  <div className="relative h-56 overflow-hidden">
                     <div
-                      className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500`}
+                      className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-30 transition-opacity duration-700`}
                     />
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
+                      className="object-cover object-center w-full h-full transition-transform duration-1000 group-hover:scale-110"
                     />
 
-                    {/* Issuer Badge */}
-                    <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1.5">
+                    {/* Issuer Badge with Glass Effect */}
+                    <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md text-white text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg">
                       <img
                         src={item.badge}
                         alt={item.issuer}
@@ -297,51 +329,51 @@ const AchievementsPage = () => {
                     </div>
 
                     {/* Date Badge */}
-                    <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-sm text-white text-xs px-3 py-1.5 rounded-full">
+                    <div className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-md text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg">
                       {item.date}
                     </div>
                   </div>
 
                   {/* Content */}
                   <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text transition-all">
+                    <h3 className="mb-3 text-xl font-bold transition-all duration-300 text-slate-900 dark:text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text">
                       {item.title}
                     </h3>
 
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
+                    <p className="mb-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300 line-clamp-2">
                       {item.description}
                     </p>
 
                     {/* Skills Tags */}
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex flex-wrap gap-2 mb-5">
                       {item.skills.slice(0, 3).map((skill, idx) => (
                         <span
                           key={idx}
-                          className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-full"
+                          className="px-2.5 py-1 text-xs font-medium text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-700/70 rounded-full transition-all group-hover:shadow-sm"
                         >
                           {skill}
                         </span>
                       ))}
                       {item.skills.length > 3 && (
-                        <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-full">
+                        <span className="px-2.5 py-1 text-xs font-medium text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-700/70 rounded-full">
                           +{item.skills.length - 3}
                         </span>
                       )}
                     </div>
 
-                    {/* View Button */}
+                    {/* Modern View Button */}
                     <button
                       onClick={() => setSelectedCertificate(item)}
-                      className="inline-flex items-center justify-between w-full group/btn relative overflow-hidden rounded-xl bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 p-[2px] hover:from-blue-600 hover:to-purple-600 transition-all duration-300"
+                      className="group/btn relative w-full inline-flex items-center justify-between overflow-hidden rounded-xl bg-gradient-to-r from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-800 p-[1.5px] hover:from-blue-500 hover:to-purple-600 transition-all duration-500"
                     >
-                      <div className="flex items-center justify-between w-full bg-white dark:bg-gray-800 rounded-xl px-4 py-2.5 group-hover/btn:bg-transparent transition-all">
-                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover/btn:text-white">
+                      <div className="relative flex items-center justify-between w-full bg-white dark:bg-slate-800 rounded-xl px-4 py-2.5 transition-all duration-500 group-hover/btn:bg-gradient-to-r group-hover/btn:from-blue-500/10 group-hover/btn:to-purple-600/10">
+                        <span className="text-sm font-semibold text-slate-700 dark:text-slate-200 group-hover/btn:text-transparent group-hover/btn:bg-gradient-to-r group-hover/btn:from-blue-600 group-hover/btn:to-purple-600 group-hover/btn:bg-clip-text">
                           View Certificate
                         </span>
                         <Icon
                           name="ExternalLink"
                           size={16}
-                          className="text-gray-500 group-hover/btn:text-white group-hover/btn:translate-x-1 transition-all"
+                          className="transition-all duration-300 text-slate-500 group-hover/btn:translate-x-1 group-hover/btn:text-purple-600"
                         />
                       </div>
                     </button>
@@ -349,7 +381,7 @@ const AchievementsPage = () => {
 
                   {/* Hover Glow Effect */}
                   <div
-                    className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none`}
+                    className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none rounded-2xl`}
                   />
                 </motion.div>
               ))}
@@ -358,102 +390,107 @@ const AchievementsPage = () => {
         </div>
       </section>
 
-      {/* Certificate Modal */}
+      {/* Enhanced Certificate Modal */}
       <AnimatePresence>
         {selectedCertificate && (
           <motion.div
-            className="fixed inset-0 bg-black/80 backdrop-blur-xl flex items-center justify-center z-50 p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedCertificate(null)}
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="bg-white dark:bg-gray-800 rounded-3xl max-w-3xl w-full shadow-2xl overflow-hidden"
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.3, type: "spring", damping: 25 }}
               onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-4xl overflow-hidden bg-white shadow-2xl dark:bg-slate-900 rounded-3xl"
             >
-              {/* Modal Header */}
-              <div className="relative h-64 bg-gradient-to-br from-blue-600 to-purple-600">
-                <img
-                  src={selectedCertificate.image}
-                  alt={selectedCertificate.title}
-                  className="w-full h-full object-contain object-center"
-                />
-                <button
-                  onClick={() => setSelectedCertificate(null)}
-                  className="absolute top-4 right-4 w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-all"
-                >
-                  <Icon name="X" size={20} />
-                </button>
-              </div>
+              {/* Modal Gradient Background */}
+              <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5" />
 
-              {/* Modal Content */}
-              <div className="p-8">
-                <div className="flex items-center gap-3 mb-4">
+              <div className="relative grid md:grid-cols-2">
+                {/* Left Side Image */}
+                <div className="relative flex items-center justify-center p-6 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900">
                   <img
-                    src={selectedCertificate.badge}
-                    alt={selectedCertificate.issuer}
-                    className="w-10 h-10 rounded-full border-2 border-gray-200 dark:border-gray-700"
+                    src={selectedCertificate.image}
+                    alt={selectedCertificate.title}
+                    className="object-contain w-full h-auto max-h-[320px] md:max-h-[400px] rounded-xl shadow-2xl transform transition-all duration-500 hover:scale-105"
                   />
-                  <div>
-                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                      {selectedCertificate.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {selectedCertificate.issuer} • {selectedCertificate.date}
-                    </p>
-                  </div>
                 </div>
 
-                <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-                  {selectedCertificate.description}
-                </p>
-
-                {/* Skills Section */}
-                <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
-                    Skills Verified:
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedCertificate.skills.map((skill, idx) => (
-                      <span
-                        key={idx}
-                        className="px-3 py-1.5 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-700 dark:text-blue-300 text-sm rounded-full"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex gap-4">
-                  {selectedCertificate.link ? (
-                    <a
-                      href={selectedCertificate.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl hover:shadow-lg hover:shadow-blue-600/30 transition-all"
-                    >
-                      <Icon name="ShieldCheck" size={18} />
-                      <span>Verify Certificate</span>
-                    </a>
-                  ) : (
-                    <div className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-6 py-3 rounded-xl cursor-not-allowed">
-                      <Icon name="ShieldCheck" size={18} />
-                      <span>Verification Link Unavailable</span>
-                    </div>
-                  )}
+                {/* Right Side Content */}
+                <div className="relative p-8">
                   <button
                     onClick={() => setSelectedCertificate(null)}
-                    className="px-6 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-all"
+                    className="absolute p-2 transition-all rounded-xl top-5 right-5 hover:bg-slate-100 dark:hover:bg-slate-800 hover:scale-110"
                   >
-                    Close
+                    <Icon name="X" size={20} className="text-slate-500" />
                   </button>
+
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="p-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10">
+                      <img
+                        src={selectedCertificate.badge}
+                        alt=""
+                        className="rounded-full shadow-lg w-14 h-14 ring-2 ring-blue-500/30"
+                      />
+                    </div>
+
+                    <div>
+                      <h2 className="text-2xl font-bold text-transparent bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-200 bg-clip-text">
+                        {selectedCertificate.title}
+                      </h2>
+
+                      <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                        {selectedCertificate.issuer} •{" "}
+                        {selectedCertificate.date}
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className="mb-6 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                    {selectedCertificate.description}
+                  </p>
+
+                  <div className="mb-8">
+                    <h4 className="mb-3 font-semibold text-slate-900 dark:text-white">
+                      Skills Covered
+                    </h4>
+
+                    <div className="flex flex-wrap gap-2">
+                      {selectedCertificate.skills.map((skill, index) => (
+                        <span
+                          key={index}
+                          className="px-3 py-1.5 text-sm font-medium rounded-full bg-gradient-to-r from-blue-50 to-purple-50 text-blue-700 dark:from-blue-500/10 dark:to-purple-500/10 dark:text-blue-300 shadow-sm"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3 mt-auto">
+                    {selectedCertificate.link && (
+                      <a
+                        href={selectedCertificate.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 py-3 text-sm font-semibold text-center text-white transition-all duration-300 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:scale-[1.02] hover:shadow-xl"
+                      >
+                        Verify Certificate
+                      </a>
+                    )}
+
+                    <button
+                      onClick={() => setSelectedCertificate(null)}
+                      className="px-6 py-3 text-sm font-semibold transition-all duration-300 border rounded-xl border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800 hover:shadow-md"
+                    >
+                      Close
+                    </button>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -461,11 +498,11 @@ const AchievementsPage = () => {
         )}
       </AnimatePresence>
 
-      {/* CTA Section */}
-      <section className="relative py-20 overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
-          <div className="absolute inset-0 bg-black/20" />
+      {/* Enhanced CTA Section */}
+      <section className="relative py-24 overflow-hidden">
+        {/* Animated Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 animate-gradient-xy">
+          <div className="absolute inset-0 bg-black/30" />
           <div
             className="absolute inset-0 opacity-20"
             style={{
@@ -480,37 +517,59 @@ const AchievementsPage = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="relative z-10 max-w-2xl mx-auto text-center text-white px-4"
+          className="relative z-10 max-w-2xl px-4 mx-auto text-center text-white"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
             Ready to See These Skills in Action?
           </h2>
-          <p className="text-white/90 mb-8 text-lg">
+          <p className="mb-8 text-lg leading-relaxed text-white/90">
             Explore my projects where I've applied these technologies and earned
             these certifications in real-world applications.
           </p>
-          <a
+          <motion.a
             href="/projects"
-            className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center gap-2 px-8 py-4 font-semibold text-blue-600 transition-all duration-300 bg-white rounded-xl hover:shadow-2xl hover:shadow-white/20"
           >
             <Icon name="FolderOpen" size={18} />
             View My Projects
-          </a>
+          </motion.a>
         </motion.div>
       </section>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
-        <div className="container-brand text-center">
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+      <footer className="py-12 border-t bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border-slate-200 dark:border-slate-800">
+        <div className="text-center container-brand">
+          <p className="text-sm text-slate-600 dark:text-slate-400">
             © {new Date().getFullYear()} Ratnakar Singh Parihar. All rights
             reserved.
           </p>
-          <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">
+          <p className="mt-2 text-xs text-slate-500 dark:text-slate-500">
             Built with ❤️ using React, Tailwind CSS & Framer Motion
           </p>
         </div>
       </footer>
+
+      {/* Custom keyframes for gradient animation */}
+      <style>{`
+        @keyframes gradient-xy {
+          0%,
+          100% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+        }
+        .animate-gradient-xy {
+          background-size: 200% 200%;
+          animation: gradient-xy 10s ease infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+      `}</style>
     </div>
   );
 };

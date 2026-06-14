@@ -331,7 +331,7 @@
 
 // //           {/* Modal Container */}
 // //           <div className="fixed inset-0 z-50 overflow-y-auto">
-// //             <div className="min-h-full flex items-start sm:items-center justify-center p-0 sm:p-2 md:p-4">
+// //             <div className="flex items-start justify-center min-h-full p-0 sm:items-center sm:p-2 md:p-4">
 // //               <motion.div
 // //                 ref={modalRef}
 // //                 variants={modalVariants}
@@ -344,9 +344,9 @@
 // //                 }}
 // //               >
 // //                 {/* Header with glass morphism effect */}
-// //                 <div className="sticky top-0 z-50 bg-gradient-to-b from-white/90 via-white/80 to-white/70 dark:from-gray-900/90 dark:via-gray-900/80 dark:to-gray-900/70 backdrop-blur-xl border-b border-white/20 dark:border-gray-700/30 px-4 py-3 sm:px-8 sm:py-5">
+// //                 <div className="sticky top-0 z-50 px-4 py-3 border-b bg-gradient-to-b from-white/90 via-white/80 to-white/70 dark:from-gray-900/90 dark:via-gray-900/80 dark:to-gray-900/70 backdrop-blur-xl border-white/20 dark:border-gray-700/30 sm:px-8 sm:py-5">
 // //                   <div className="flex items-center justify-between gap-2 sm:gap-4">
-// //                     <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+// //                     <div className="flex items-center min-w-0 gap-3 sm:gap-4">
 // //                       {/* Animated Project Icon */}
 // //                       <motion.div
 // //                         className="relative flex-shrink-0"
@@ -360,7 +360,7 @@
 // //                           repeatDelay: 5
 // //                         }}
 // //                       >
-// //                         <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 dark:from-blue-600 dark:via-blue-700 dark:to-blue-800 flex items-center justify-center shadow-lg shadow-blue-500/30">
+// //                         <div className="relative flex items-center justify-center w-10 h-10 shadow-lg sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 dark:from-blue-600 dark:via-blue-700 dark:to-blue-800 shadow-blue-500/30">
 // //                           <Icon name="FolderKanban" size={isMobile ? 18 : 22} className="text-white" />
 // //                           {/* Pulsing glow effect */}
 // //                           <motion.div
@@ -375,7 +375,7 @@
 // //                         </div>
 // //                         {/* Floating particles */}
 // //                         <motion.div
-// //                           className="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 bg-gradient-to-br from-blue-400 to-blue-300 rounded-full flex items-center justify-center shadow-lg shadow-blue-400/50"
+// //                           className="absolute flex items-center justify-center w-4 h-4 rounded-full shadow-lg -top-1 -right-1 sm:w-5 sm:h-5 bg-gradient-to-br from-blue-400 to-blue-300 shadow-blue-400/50"
 // //                           animate={{
 // //                             y: [0, -4, 0],
 // //                             rotate: [0, 360]
@@ -403,7 +403,7 @@
 // //                           initial={{ opacity: 0, x: -20 }}
 // //                           animate={{ opacity: 1, x: 0 }}
 // //                           transition={{ delay: 0.2 }}
-// //                           className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-200 dark:to-white bg-clip-text text-transparent truncate"
+// //                           className="text-lg font-bold text-transparent truncate sm:text-xl md:text-2xl lg:text-3xl bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-200 dark:to-white bg-clip-text"
 // //                         >
 // //                           {project?.title}
 // //                         </motion.h2>
@@ -413,12 +413,12 @@
 // //                           transition={{ delay: 0.3 }}
 // //                           className="flex flex-wrap items-center gap-1 sm:gap-2 mt-0.5"
 // //                         >
-// //                           <span className="text-xs sm:text-sm font-medium bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent truncate">
+// //                           <span className="text-xs font-medium text-transparent truncate sm:text-sm bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text">
 // //                             {project?.category}
 // //                           </span>
 // //                           {project?.complexity && (
 // //                             <>
-// //                               <span className="text-gray-400 hidden sm:inline">•</span>
+// //                               <span className="hidden text-gray-400 sm:inline">•</span>
 // //                               <motion.span
 // //                                 initial={{ scale: 0.8 }}
 // //                                 animate={{ scale: 1 }}
@@ -446,14 +446,14 @@
 // //                       whileHover={{ scale: 1.1, rotate: 90 }}
 // //                       whileTap={{ scale: 0.9 }}
 // //                       onClick={onClose}
-// //                       className="group relative w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 flex items-center justify-center rounded-lg sm:rounded-xl hover:bg-white/20 dark:hover:bg-gray-800/50 transition-all duration-200 backdrop-blur-sm flex-shrink-0"
+// //                       className="relative flex items-center justify-center flex-shrink-0 w-8 h-8 transition-all duration-200 rounded-lg group sm:w-10 sm:h-10 md:w-11 md:h-11 sm:rounded-xl hover:bg-white/20 dark:hover:bg-gray-800/50 backdrop-blur-sm"
 // //                       aria-label="Close"
 // //                     >
-// //                       <div className="absolute inset-0 bg-gradient-to-br from-gray-200/50 to-gray-300/50 dark:from-gray-800/50 dark:to-gray-700/50 rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+// //                       <div className="absolute inset-0 transition-opacity rounded-lg opacity-0 bg-gradient-to-br from-gray-200/50 to-gray-300/50 dark:from-gray-800/50 dark:to-gray-700/50 sm:rounded-xl group-hover:opacity-100" />
 // //                       <Icon
 // //                         name="X"
 // //                         size={isMobile ? 18 : 20}
-// //                         className="relative text-gray-600 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors"
+// //                         className="relative text-gray-600 transition-colors dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200"
 // //                       />
 // //                     </motion.button>
 // //                   </div>
@@ -504,7 +504,7 @@
 // //                       {showGallery ? (
 // //                         // Grid Gallery View
 // //                         <div className="flex-1 overflow-y-auto">
-// //                           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 auto-rows-max">
+// //                           <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 auto-rows-max">
 // //                             {project.gallery.map((img, index) => (
 // //                               <motion.button
 // //                                 key={index}
@@ -526,10 +526,10 @@
 // //                                 <Image
 // //                                   src={img}
 // //                                   alt={`Gallery image ${index + 1}`}
-// //                                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+// //                                   className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
 // //                                 />
-// //                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-// //                                 <div className="absolute bottom-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+// //                                 <div className="absolute inset-0 transition-opacity opacity-0 bg-gradient-to-t from-black/60 via-transparent to-transparent group-hover:opacity-100" />
+// //                                 <div className="absolute px-2 py-1 text-xs text-white transition-opacity rounded opacity-0 bottom-2 left-2 bg-black/60 group-hover:opacity-100">
 // //                                   View
 // //                                 </div>
 // //                               </motion.button>
@@ -540,7 +540,7 @@
 // //                         // Single Image View
 // //                         <div
 // //                           ref={imageContainerRef}
-// //                           className="relative rounded-xl sm:rounded-2xl xl:rounded-3xl overflow-hidden bg-gradient-to-br from-gray-100/50 via-gray-200/30 to-gray-100/50 dark:from-gray-800/50 dark:via-gray-900/30 dark:to-gray-800/50 shadow-2xl shadow-black/10"
+// //                           className="relative overflow-hidden shadow-2xl rounded-xl sm:rounded-2xl xl:rounded-3xl bg-gradient-to-br from-gray-100/50 via-gray-200/30 to-gray-100/50 dark:from-gray-800/50 dark:via-gray-900/30 dark:to-gray-800/50 shadow-black/10"
 // //                           onTouchStart={handleTouchStart}
 // //                           onTouchMove={handleTouchMove}
 // //                           onTouchEnd={handleTouchEnd}
@@ -549,7 +549,7 @@
 // //                           {isLoading && (
 // //                             <div className="absolute inset-0 flex items-center justify-center">
 // //                               <div className="relative">
-// //                                 <div className="w-14 h-14 sm:w-20 sm:h-20 border-4 border-blue-500/20 border-t-blue-500 border-r-blue-400 rounded-full animate-spin"></div>
+// //                                 <div className="border-4 rounded-full w-14 h-14 sm:w-20 sm:h-20 border-blue-500/20 border-t-blue-500 border-r-blue-400 animate-spin"></div>
 // //                                 <div className="absolute inset-0 flex items-center justify-center">
 // //                                   <motion.div
 // //                                     animate={{ rotate: 360 }}
@@ -595,7 +595,7 @@
 // //                               {[...Array(5)].map((_, i) => (
 // //                                 <motion.div
 // //                                   key={i}
-// //                                   className="absolute w-1 h-1 bg-white/30 rounded-full"
+// //                                   className="absolute w-1 h-1 rounded-full bg-white/30"
 // //                                   initial={{
 // //                                     x: Math.random() * 100 + '%',
 // //                                     y: Math.random() * 100 + '%',
@@ -626,16 +626,16 @@
 // //                                 whileHover={{ scale: 1.1 }}
 // //                                 whileTap={{ scale: 0.9 }}
 // //                                 onClick={prevImage}
-// //                                 className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 group"
+// //                                 className="absolute -translate-y-1/2 left-2 sm:left-4 top-1/2 group"
 // //                                 aria-label="Previous image"
 // //                               >
 // //                                 <div className="relative">
-// //                                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-md group-hover:blur-lg transition-all"></div>
-// //                                   <div className="relative w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-black/70 backdrop-blur-md rounded-full flex items-center justify-center transition-all group-hover:bg-black/80">
+// //                                   <div className="absolute inset-0 transition-all rounded-full bg-gradient-to-r from-blue-500 to-purple-500 blur-md group-hover:blur-lg"></div>
+// //                                   <div className="relative flex items-center justify-center w-8 h-8 transition-all rounded-full sm:w-10 sm:h-10 md:w-12 md:h-12 bg-black/70 backdrop-blur-md group-hover:bg-black/80">
 // //                                     <Icon
 // //                                       name="ChevronLeft"
 // //                                       size={isMobile ? 18 : 24}
-// //                                       className="text-white group-hover:text-blue-300 transition-colors"
+// //                                       className="text-white transition-colors group-hover:text-blue-300"
 // //                                     />
 // //                                   </div>
 // //                                 </div>
@@ -648,16 +648,16 @@
 // //                                 whileHover={{ scale: 1.1 }}
 // //                                 whileTap={{ scale: 0.9 }}
 // //                                 onClick={nextImage}
-// //                                 className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 group"
+// //                                 className="absolute -translate-y-1/2 right-2 sm:right-4 top-1/2 group"
 // //                                 aria-label="Next image"
 // //                               >
 // //                                 <div className="relative">
-// //                                   <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full blur-md group-hover:blur-lg transition-all"></div>
-// //                                   <div className="relative w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-black/70 backdrop-blur-md rounded-full flex items-center justify-center transition-all group-hover:bg-black/80">
+// //                                   <div className="absolute inset-0 transition-all rounded-full bg-gradient-to-r from-purple-500 to-blue-500 blur-md group-hover:blur-lg"></div>
+// //                                   <div className="relative flex items-center justify-center w-8 h-8 transition-all rounded-full sm:w-10 sm:h-10 md:w-12 md:h-12 bg-black/70 backdrop-blur-md group-hover:bg-black/80">
 // //                                     <Icon
 // //                                       name="ChevronRight"
 // //                                       size={isMobile ? 18 : 24}
-// //                                       className="text-white group-hover:text-blue-300 transition-colors"
+// //                                       className="text-white transition-colors group-hover:text-blue-300"
 // //                                     />
 // //                                   </div>
 // //                                 </div>
@@ -707,7 +707,7 @@
 // //                                 whileHover={{ scale: 1.1 }}
 // //                                 whileTap={{ scale: 0.9 }}
 // //                                 onClick={() => setIsFullscreen(!isFullscreen)}
-// //                                 className="absolute bottom-2 sm:bottom-4 right-2 sm:right-4 bg-black/60 backdrop-blur-md text-white p-2 rounded-lg border border-white/10 hover:bg-black/70 transition-colors"
+// //                                 className="absolute p-2 text-white transition-colors border rounded-lg bottom-2 sm:bottom-4 right-2 sm:right-4 bg-black/60 backdrop-blur-md border-white/10 hover:bg-black/70"
 // //                                 aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
 // //                               >
 // //                                 <Icon
@@ -726,7 +726,7 @@
 // //                           <div className="flex items-center justify-between">
 // //                             <div className="flex items-center gap-2">
 // //                               <Icon name="GalleryVertical" size={16} className="text-gray-500" />
-// //                               <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
+// //                               <span className="text-xs font-medium text-gray-700 sm:text-sm dark:text-gray-300">
 // //                                 Scroll Gallery
 // //                               </span>
 // //                             </div>
@@ -749,7 +749,7 @@
 // //                                 <Image
 // //                                   src={img}
 // //                                   alt={`Thumbnail ${index + 1}`}
-// //                                   className="w-full h-full object-cover"
+// //                                   className="object-cover w-full h-full"
 // //                                 />
 // //                                 {currentImageIndex === index && (
 // //                                   <div className="absolute inset-0 bg-blue-500/20 backdrop-blur-[1px]" />
@@ -771,14 +771,14 @@
 // //                             initial={{ opacity: 0, y: 20 }}
 // //                             animate={{ opacity: 1, y: 0 }}
 // //                             transition={{ delay: 0.8 }}
-// //                             className="group p-2 sm:p-3 bg-gradient-to-br from-white/50 to-white/30 dark:from-gray-800/50 dark:to-gray-900/30 rounded-xl sm:rounded-2xl border border-white/20 dark:border-gray-700/30 hover:border-blue-500/20 dark:hover:border-blue-500/20 backdrop-blur-sm hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300"
+// //                             className="p-2 transition-all duration-300 border group sm:p-3 bg-gradient-to-br from-white/50 to-white/30 dark:from-gray-800/50 dark:to-gray-900/30 rounded-xl sm:rounded-2xl border-white/20 dark:border-gray-700/30 hover:border-blue-500/20 dark:hover:border-blue-500/20 backdrop-blur-sm hover:shadow-lg hover:shadow-blue-500/10"
 // //                           >
 // //                             <div className="flex items-center gap-1 sm:gap-2">
 // //                               <motion.div
 // //                                 animate={{ rotate: [0, 360] }}
 // //                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
 // //                               >
-// //                                 <Icon name="Calendar" size={isMobile ? 14 : 18} className="text-blue-500 group-hover:scale-110 transition-transform" />
+// //                                 <Icon name="Calendar" size={isMobile ? 14 : 18} className="text-blue-500 transition-transform group-hover:scale-110" />
 // //                               </motion.div>
 // //                               <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Duration</span>
 // //                             </div>
@@ -792,14 +792,14 @@
 // //                             initial={{ opacity: 0, y: 20 }}
 // //                             animate={{ opacity: 1, y: 0 }}
 // //                             transition={{ delay: 0.9 }}
-// //                             className="group p-2 sm:p-3 bg-gradient-to-br from-white/50 to-white/30 dark:from-gray-800/50 dark:to-gray-900/30 rounded-xl sm:rounded-2xl border border-white/20 dark:border-gray-700/30 hover:border-emerald-500/20 dark:hover:border-emerald-500/20 backdrop-blur-sm hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300"
+// //                             className="p-2 transition-all duration-300 border group sm:p-3 bg-gradient-to-br from-white/50 to-white/30 dark:from-gray-800/50 dark:to-gray-900/30 rounded-xl sm:rounded-2xl border-white/20 dark:border-gray-700/30 hover:border-emerald-500/20 dark:hover:border-emerald-500/20 backdrop-blur-sm hover:shadow-lg hover:shadow-emerald-500/10"
 // //                           >
 // //                             <div className="flex items-center gap-1 sm:gap-2">
 // //                               <motion.div
 // //                                 animate={{ scale: [1, 1.1, 1] }}
 // //                                 transition={{ duration: 2, repeat: Infinity }}
 // //                               >
-// //                                 <Icon name="Users" size={isMobile ? 14 : 18} className="text-emerald-500 group-hover:scale-110 transition-transform" />
+// //                                 <Icon name="Users" size={isMobile ? 14 : 18} className="transition-transform text-emerald-500 group-hover:scale-110" />
 // //                               </motion.div>
 // //                               <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Team</span>
 // //                             </div>
@@ -813,19 +813,19 @@
 // //                             initial={{ opacity: 0, y: 20 }}
 // //                             animate={{ opacity: 1, y: 0 }}
 // //                             transition={{ delay: 1 }}
-// //                             className="group p-2 sm:p-3 bg-gradient-to-br from-white/50 to-white/30 dark:from-gray-800/50 dark:to-gray-900/30 rounded-xl sm:rounded-2xl border border-white/20 dark:border-gray-700/30 hover:border-amber-500/20 dark:hover:border-amber-500/20 backdrop-blur-sm hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-300"
+// //                             className="p-2 transition-all duration-300 border group sm:p-3 bg-gradient-to-br from-white/50 to-white/30 dark:from-gray-800/50 dark:to-gray-900/30 rounded-xl sm:rounded-2xl border-white/20 dark:border-gray-700/30 hover:border-amber-500/20 dark:hover:border-amber-500/20 backdrop-blur-sm hover:shadow-lg hover:shadow-amber-500/10"
 // //                           >
 // //                             <div className="flex items-center gap-1 sm:gap-2">
 // //                               <motion.div
 // //                                 animate={{ rotate: [0, 180, 0] }}
 // //                                 transition={{ duration: 3, repeat: Infinity }}
 // //                               >
-// //                                 <Icon name="Star" size={isMobile ? 14 : 18} className="text-amber-500 group-hover:scale-110 transition-transform" />
+// //                                 <Icon name="Star" size={isMobile ? 14 : 18} className="transition-transform text-amber-500 group-hover:scale-110" />
 // //                               </motion.div>
 // //                               <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Rating</span>
 // //                             </div>
 // //                             <div className="flex items-center gap-1 mt-0.5 sm:mt-1">
-// //                               <p className="text-sm font-bold bg-gradient-to-r from-amber-600 to-amber-400 dark:from-amber-400 dark:to-amber-300 bg-clip-text text-transparent">
+// //                               <p className="text-sm font-bold text-transparent bg-gradient-to-r from-amber-600 to-amber-400 dark:from-amber-400 dark:to-amber-300 bg-clip-text">
 // //                                 {project.rating}/5
 // //                               </p>
 // //                               <div className="flex ml-1">
@@ -848,7 +848,7 @@
 // //                         initial={{ opacity: 0 }}
 // //                         animate={{ opacity: 1 }}
 // //                         transition={{ delay: 1.1 }}
-// //                         className="flex flex-col sm:grid sm:grid-cols-2 gap-2 sm:gap-3"
+// //                         className="flex flex-col gap-2 sm:grid sm:grid-cols-2 sm:gap-3"
 // //                       >
 // //                         {project?.liveUrl && (
 // //                           <Button
@@ -856,7 +856,7 @@
 // //                             size={isMobile ? "md" : "lg"}
 // //                             iconName="ExternalLink"
 // //                             iconPosition="left"
-// //                             className="group relative bg-gradient-to-r from-blue-600 via-blue-500 to-blue-600 hover:from-blue-700 hover:via-blue-600 hover:to-blue-700 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 w-full overflow-hidden"
+// //                             className="relative w-full overflow-hidden shadow-lg group bg-gradient-to-r from-blue-600 via-blue-500 to-blue-600 hover:from-blue-700 hover:via-blue-600 hover:to-blue-700 shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40"
 // //                             onClick={() => window.open(project.liveUrl, "_blank")}
 // //                           >
 // //                             {/* Animated background */}
@@ -887,7 +887,7 @@
 // //                             size={isMobile ? "md" : "lg"}
 // //                             iconName="Github"
 // //                             iconPosition="left"
-// //                             className="group relative border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm hover:shadow-lg w-full overflow-hidden"
+// //                             className="relative w-full overflow-hidden border-gray-300 group dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm hover:shadow-lg"
 // //                             onClick={() => window.open(project.githubUrl, "_blank")}
 // //                           >
 // //                             <span className="relative font-semibold truncate">Source Code</span>
@@ -905,9 +905,9 @@
 // //                   </motion.div>
 
 // //                   {/* Right Column - Content */}
-// //                   <div className="lg:w-1/2 flex flex-col">
+// //                   <div className="flex flex-col lg:w-1/2">
 // //                     {/* Tabs Navigation with animated indicators */}
-// //                     <div className="sticky top-0 z-20 bg-gradient-to-b from-white/95 to-white/90 dark:from-gray-900/95 dark:to-gray-900/90 backdrop-blur-xl border-b border-gray-200/30 dark:border-gray-700/30">
+// //                     <div className="sticky top-0 z-20 border-b bg-gradient-to-b from-white/95 to-white/90 dark:from-gray-900/95 dark:to-gray-900/90 backdrop-blur-xl border-gray-200/30 dark:border-gray-700/30">
 // //                       <div className="flex overflow-x-auto scrollbar-hide">
 // //                         {tabs.map((tab) => (
 // //                           <motion.button
@@ -991,7 +991,7 @@
 // //                                   initial={{ opacity: 0, y: 10 }}
 // //                                   animate={{ opacity: 1, y: 0 }}
 // //                                   transition={{ delay: 0.1 }}
-// //                                   className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent"
+// //                                   className="text-xl font-bold text-transparent sm:text-2xl bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text"
 // //                                 >
 // //                                   Project Overview
 // //                                 </motion.h3>
@@ -999,9 +999,9 @@
 // //                                   initial={{ opacity: 0 }}
 // //                                   animate={{ opacity: 1 }}
 // //                                   transition={{ delay: 0.2 }}
-// //                                   className="prose prose-sm dark:prose-invert max-w-none"
+// //                                   className="prose-sm prose dark:prose-invert max-w-none"
 // //                                 >
-// //                                   <p className="text-sm sm:text-base leading-relaxed text-gray-600 dark:text-gray-300 whitespace-pre-line">
+// //                                   <p className="text-sm leading-relaxed text-gray-600 whitespace-pre-line sm:text-base dark:text-gray-300">
 // //                                     {project?.fullDescription}
 // //                                   </p>
 // //                                 </motion.div>
@@ -1012,17 +1012,17 @@
 // //                                   initial={{ opacity: 0, y: 20 }}
 // //                                   animate={{ opacity: 1, y: 0 }}
 // //                                   transition={{ delay: 0.3 }}
-// //                                   className="p-4 sm:p-5 bg-gradient-to-br from-blue-50/50 to-white/50 dark:from-blue-900/20 dark:to-gray-900/20 rounded-xl sm:rounded-2xl border border-blue-100/50 dark:border-blue-800/20 backdrop-blur-sm"
+// //                                   className="p-4 border sm:p-5 bg-gradient-to-br from-blue-50/50 to-white/50 dark:from-blue-900/20 dark:to-gray-900/20 rounded-xl sm:rounded-2xl border-blue-100/50 dark:border-blue-800/20 backdrop-blur-sm"
 // //                                 >
 // //                                   <div className="flex items-start gap-3">
-// //                                     <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-400 flex items-center justify-center flex-shrink-0">
+// //                                     <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-400">
 // //                                       <Icon name="Target" size={20} className="text-white" />
 // //                                     </div>
 // //                                     <div>
-// //                                       <h4 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-1">
+// //                                       <h4 className="mb-1 text-base font-semibold text-gray-900 sm:text-lg dark:text-white">
 // //                                         Project Impact
 // //                                       </h4>
-// //                                       <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">
+// //                                       <p className="text-sm text-gray-600 sm:text-base dark:text-gray-300">
 // //                                         {project.impact}
 // //                                       </p>
 // //                                     </div>
@@ -1040,7 +1040,7 @@
 // //                                   initial={{ opacity: 0, y: 10 }}
 // //                                   animate={{ opacity: 1, y: 0 }}
 // //                                   transition={{ delay: 0.1 }}
-// //                                   className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-purple-600 to-purple-400 dark:from-purple-400 dark:to-purple-300 bg-clip-text text-transparent"
+// //                                   className="text-xl font-bold text-transparent sm:text-2xl bg-gradient-to-r from-purple-600 to-purple-400 dark:from-purple-400 dark:to-purple-300 bg-clip-text"
 // //                                 >
 // //                                   Technology Stack
 // //                                 </motion.h3>
@@ -1048,7 +1048,7 @@
 // //                                   initial={{ opacity: 0 }}
 // //                                   animate={{ opacity: 1 }}
 // //                                   transition={{ delay: 0.2 }}
-// //                                   className="text-sm sm:text-base text-gray-600 dark:text-gray-300"
+// //                                   className="text-sm text-gray-600 sm:text-base dark:text-gray-300"
 // //                                 >
 // //                                   Built using modern technologies and frameworks
 // //                                 </motion.p>
@@ -1072,9 +1072,9 @@
 // //                                     }}
 // //                                     className="group"
 // //                                   >
-// //                                     <div className="p-3 sm:p-4 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-xl sm:rounded-2xl border border-gray-200/50 dark:border-gray-700/50 group-hover:border-purple-200 dark:group-hover:border-purple-700/50 shadow-sm group-hover:shadow-lg group-hover:shadow-purple-500/10 transition-all duration-300">
+// //                                     <div className="p-3 transition-all duration-300 border shadow-sm sm:p-4 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-xl sm:rounded-2xl border-gray-200/50 dark:border-gray-700/50 group-hover:border-purple-200 dark:group-hover:border-purple-700/50 group-hover:shadow-lg group-hover:shadow-purple-500/10">
 // //                                       <div className="flex flex-col items-center text-center gap-1.5 sm:gap-2">
-// //                                         <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br from-purple-100 to-purple-50 dark:from-purple-900/30 dark:to-gray-900 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+// //                                         <div className="flex items-center justify-center w-10 h-10 transition-transform duration-300 rounded-lg sm:w-12 sm:h-12 bg-gradient-to-br from-purple-100 to-purple-50 dark:from-purple-900/30 dark:to-gray-900 group-hover:scale-110">
 // //                                           <motion.div
 // //                                             animate={{ rotate: [0, 360] }}
 // //                                             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -1082,7 +1082,7 @@
 // //                                             <Icon name="Code" size={isMobile ? 18 : 22} className="text-purple-600 dark:text-purple-400" />
 // //                                           </motion.div>
 // //                                         </div>
-// //                                         <span className="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white truncate w-full">
+// //                                         <span className="w-full text-xs font-semibold text-gray-900 truncate sm:text-sm dark:text-white">
 // //                                           {tech}
 // //                                         </span>
 // //                                       </div>
@@ -1098,7 +1098,7 @@
 // //                                   transition={{ delay: 0.5 }}
 // //                                   className="mt-6 space-y-4"
 // //                                 >
-// //                                   <h4 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
+// //                                   <h4 className="text-lg font-semibold text-gray-900 sm:text-xl dark:text-white">
 // //                                     Technical Challenges
 // //                                   </h4>
 // //                                   <div className="space-y-3">
@@ -1108,20 +1108,20 @@
 // //                                         initial={{ opacity: 0, x: -20 }}
 // //                                         animate={{ opacity: 1, x: 0 }}
 // //                                         transition={{ delay: 0.6 + index * 0.1 }}
-// //                                         className="p-4 bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-xl border border-gray-200 dark:border-gray-700"
+// //                                         className="p-4 border border-gray-200 bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-xl dark:border-gray-700"
 // //                                       >
 // //                                         <div className="flex items-start gap-3">
 // //                                           <div className="flex-shrink-0">
-// //                                             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-100 to-amber-50 dark:from-amber-900/30 dark:to-gray-900 flex items-center justify-center">
+// //                                             <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-amber-100 to-amber-50 dark:from-amber-900/30 dark:to-gray-900">
 // //                                               <Icon name="AlertCircle" size={16} className="text-amber-600 dark:text-amber-400" />
 // //                                             </div>
 // //                                           </div>
 // //                                           <div className="flex-1">
-// //                                             <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-2">
+// //                                             <p className="mb-2 text-sm text-gray-600 sm:text-base dark:text-gray-300">
 // //                                               <span className="font-semibold text-gray-900 dark:text-white">Challenge: </span>
 // //                                               {challenge.problem}
 // //                                             </p>
-// //                                             <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">
+// //                                             <p className="text-sm text-gray-600 sm:text-base dark:text-gray-300">
 // //                                               <span className="font-semibold text-gray-900 dark:text-white">Solution: </span>
 // //                                               {challenge.solution}
 // //                                             </p>
@@ -1143,7 +1143,7 @@
 // //                                   initial={{ opacity: 0, y: 10 }}
 // //                                   animate={{ opacity: 1, y: 0 }}
 // //                                   transition={{ delay: 0.1 }}
-// //                                   className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-400 dark:from-emerald-400 dark:to-emerald-300 bg-clip-text text-transparent"
+// //                                   className="text-xl font-bold text-transparent sm:text-2xl bg-gradient-to-r from-emerald-600 to-emerald-400 dark:from-emerald-400 dark:to-emerald-300 bg-clip-text"
 // //                                 >
 // //                                   Key Features
 // //                                 </motion.h3>
@@ -1151,7 +1151,7 @@
 // //                                   initial={{ opacity: 0 }}
 // //                                   animate={{ opacity: 1 }}
 // //                                   transition={{ delay: 0.2 }}
-// //                                   className="text-sm sm:text-base text-gray-600 dark:text-gray-300"
+// //                                   className="text-sm text-gray-600 sm:text-base dark:text-gray-300"
 // //                                 >
 // //                                   Core functionalities and capabilities
 // //                                 </motion.p>
@@ -1171,7 +1171,7 @@
 // //                                     whileHover={{ x: 5 }}
 // //                                     className="group"
 // //                                   >
-// //                                     <div className="p-4 sm:p-5 bg-gradient-to-br from-emerald-50/50 to-white/50 dark:from-emerald-900/10 dark:to-gray-900/10 rounded-xl sm:rounded-2xl border border-emerald-100/50 dark:border-emerald-800/20 hover:border-emerald-200 dark:hover:border-emerald-700/30 transition-colors backdrop-blur-sm">
+// //                                     <div className="p-4 transition-colors border sm:p-5 bg-gradient-to-br from-emerald-50/50 to-white/50 dark:from-emerald-900/10 dark:to-gray-900/10 rounded-xl sm:rounded-2xl border-emerald-100/50 dark:border-emerald-800/20 hover:border-emerald-200 dark:hover:border-emerald-700/30 backdrop-blur-sm">
 // //                                       <div className="flex items-start gap-3 sm:gap-4">
 // //                                         <motion.div
 // //                                           className="flex-shrink-0"
@@ -1185,12 +1185,12 @@
 // //                                             repeatDelay: 2
 // //                                           }}
 // //                                         >
-// //                                           <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-400 flex items-center justify-center shadow-lg shadow-emerald-500/30">
+// //                                           <div className="flex items-center justify-center w-10 h-10 rounded-lg shadow-lg bg-gradient-to-br from-emerald-500 to-emerald-400 shadow-emerald-500/30">
 // //                                             <Icon name="CheckCircle" size={20} className="text-white" />
 // //                                           </div>
 // //                                         </motion.div>
 // //                                         <div className="flex-1">
-// //                                           <p className="text-sm sm:text-base font-medium text-gray-900 dark:text-white">
+// //                                           <p className="text-sm font-medium text-gray-900 sm:text-base dark:text-white">
 // //                                             {feature}
 // //                                           </p>
 // //                                         </div>
@@ -1198,7 +1198,7 @@
 // //                                           initial={{ opacity: 0, x: -10 }}
 // //                                           animate={{ opacity: 1, x: 0 }}
 // //                                           transition={{ delay: 0.5 + index * 0.1 }}
-// //                                           className="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity"
+// //                                           className="flex-shrink-0 transition-opacity opacity-0 group-hover:opacity-100"
 // //                                         >
 // //                                           <Icon name="ArrowRight" size={20} className="text-emerald-500" />
 // //                                         </motion.div>
@@ -1218,7 +1218,7 @@
 // //                                   initial={{ opacity: 0, y: 10 }}
 // //                                   animate={{ opacity: 1, y: 0 }}
 // //                                   transition={{ delay: 0.1 }}
-// //                                   className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-amber-600 to-amber-400 dark:from-amber-400 dark:to-amber-300 bg-clip-text text-transparent"
+// //                                   className="text-xl font-bold text-transparent sm:text-2xl bg-gradient-to-r from-amber-600 to-amber-400 dark:from-amber-400 dark:to-amber-300 bg-clip-text"
 // //                                 >
 // //                                   Impact & Results
 // //                                 </motion.h3>
@@ -1229,7 +1229,7 @@
 // //                                   initial={{ opacity: 0 }}
 // //                                   animate={{ opacity: 1 }}
 // //                                   transition={{ delay: 0.2 }}
-// //                                   className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4"
+// //                                   className="grid grid-cols-2 gap-3 lg:grid-cols-3 sm:gap-4"
 // //                                 >
 // //                                   {project.metrics.map((metric, index) => (
 // //                                     <motion.div
@@ -1242,14 +1242,14 @@
 // //                                         stiffness: 200
 // //                                       }}
 // //                                       whileHover={{ scale: 1.05 }}
-// //                                       className="p-4 sm:p-5 bg-gradient-to-br from-amber-50/50 to-white/50 dark:from-amber-900/10 dark:to-gray-900/10 rounded-xl sm:rounded-2xl border border-amber-100/50 dark:border-amber-800/20 text-center backdrop-blur-sm"
+// //                                       className="p-4 text-center border sm:p-5 bg-gradient-to-br from-amber-50/50 to-white/50 dark:from-amber-900/10 dark:to-gray-900/10 rounded-xl sm:rounded-2xl border-amber-100/50 dark:border-amber-800/20 backdrop-blur-sm"
 // //                                     >
-// //                                       <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-amber-600 to-amber-400 bg-clip-text text-transparent mb-2">
+// //                                       <div className="mb-2 text-2xl font-bold text-transparent sm:text-3xl md:text-4xl bg-gradient-to-r from-amber-600 to-amber-400 bg-clip-text">
 // //                                         {metric.value}
 // //                                       </div>
 // //                                       <div className="flex items-center justify-center gap-2">
 // //                                         <Icon name={metric.icon} size={16} className="text-amber-500" />
-// //                                         <div className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 truncate">
+// //                                         <div className="text-xs font-medium text-gray-700 truncate sm:text-sm dark:text-gray-300">
 // //                                           {metric.label}
 // //                                         </div>
 // //                                       </div>
@@ -1265,18 +1265,18 @@
 // //                                   transition={{ delay: 0.6 }}
 // //                                   className="mt-6"
 // //                                 >
-// //                                   <div className="p-5 sm:p-6 bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg relative overflow-hidden"
+// //                                   <div className="relative p-5 overflow-hidden border border-gray-200 shadow-lg sm:p-6 bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl dark:border-gray-700"
 // //                                   >
 // //                                     {/* Quote marks */}
-// //                                     <div className="absolute top-4 left-4 text-5xl text-blue-500/10 font-serif">"</div>
-// //                                     <div className="absolute bottom-4 right-4 text-5xl text-blue-500/10 font-serif">"</div>
+// //                                     <div className="absolute font-serif text-5xl top-4 left-4 text-blue-500/10">"</div>
+// //                                     <div className="absolute font-serif text-5xl bottom-4 right-4 text-blue-500/10">"</div>
 
 // //                                     <div className="relative z-10">
-// //                                       <p className="text-base sm:text-lg italic text-gray-700 dark:text-gray-300 mb-4">
+// //                                       <p className="mb-4 text-base italic text-gray-700 sm:text-lg dark:text-gray-300">
 // //                                         "{project.testimonial.content}"
 // //                                       </p>
 // //                                       <div className="flex items-center gap-3">
-// //                                         <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
+// //                                         <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500">
 // //                                           <Icon name="User" size={20} className="text-white" />
 // //                                         </div>
 // //                                         <div>
@@ -1300,17 +1300,17 @@
 // //                                   transition={{ delay: 0.7 }}
 // //                                   className="mt-6 space-y-4"
 // //                                 >
-// //                                   <h4 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
+// //                                   <h4 className="text-lg font-semibold text-gray-900 sm:text-xl dark:text-white">
 // //                                     Key Learnings
 // //                                   </h4>
-// //                                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+// //                                   <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
 // //                                     {project.learnings.map((learning, index) => (
 // //                                       <motion.div
 // //                                         key={index}
 // //                                         initial={{ opacity: 0, scale: 0.9 }}
 // //                                         animate={{ opacity: 1, scale: 1 }}
 // //                                         transition={{ delay: 0.8 + index * 0.1 }}
-// //                                         className="p-3 sm:p-4 bg-gradient-to-br from-blue-50/50 to-white/50 dark:from-blue-900/10 dark:to-gray-900/10 rounded-xl border border-blue-100/50 dark:border-blue-800/20"
+// //                                         className="p-3 border sm:p-4 bg-gradient-to-br from-blue-50/50 to-white/50 dark:from-blue-900/10 dark:to-gray-900/10 rounded-xl border-blue-100/50 dark:border-blue-800/20"
 // //                                       >
 // //                                         <div className="flex items-start gap-2">
 // //                                           <div className="w-6 h-6 rounded-md bg-gradient-to-br from-blue-500 to-blue-400 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -1558,7 +1558,7 @@
 //                 <div className="relative w-full h-full bg-gradient-to-br from-gray-900 to-black rounded-[2.5rem] overflow-hidden flex flex-col">
 //                   {/* Dynamic Island */}
 //                   <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[120px] h-[35px] bg-black rounded-b-2xl z-30 flex items-center justify-center gap-1.5">
-//                     <div className="w-2 h-2 rounded-full bg-emerald-500/90 animate-pulse shadow-lg shadow-emerald-500/50" />
+//                     <div className="w-2 h-2 rounded-full shadow-lg bg-emerald-500/90 animate-pulse shadow-emerald-500/50" />
 //                     <div className="w-12 h-3 bg-gray-800 rounded-full" />
 //                   </div>
 
@@ -1577,12 +1577,12 @@
 //                   </div>
 
 //                   {/* Header */}
-//                   <div className="flex-shrink-0 pt-12 px-5 pb-4 border-b border-white/10 bg-gradient-to-b from-white/5 to-transparent">
+//                   <div className="flex-shrink-0 px-5 pt-12 pb-4 border-b border-white/10 bg-gradient-to-b from-white/5 to-transparent">
 //                     <div className="flex items-center justify-between">
-//                       <div className="flex items-center gap-3 flex-1 min-w-0">
+//                       <div className="flex items-center flex-1 min-w-0 gap-3">
 //                         <motion.div
 //                           whileHover={{ scale: 1.05, rotate: 5 }}
-//                           className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-xl shadow-purple-500/30 flex-shrink-0"
+//                           className="flex items-center justify-center flex-shrink-0 w-12 h-12 shadow-xl rounded-2xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 shadow-purple-500/30"
 //                         >
 //                           <Icon
 //                             name={project.iconName || "Smartphone"}
@@ -1618,7 +1618,7 @@
 //                         whileHover={{ scale: 1.1, rotate: 90 }}
 //                         whileTap={{ scale: 0.9 }}
 //                         onClick={onClose}
-//                         className="p-2 hover:bg-white/10 rounded-full transition"
+//                         className="p-2 transition rounded-full hover:bg-white/10"
 //                       >
 //                         <Icon name="X" size={18} className="text-white/70" />
 //                       </motion.button>
@@ -1636,11 +1636,11 @@
 //                           onTouchEnd={handleTouchEnd}
 //                         >
 //                           {(isLoading || !imageLoaded) && (
-//                             <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-10">
+//                             <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/50 backdrop-blur-sm">
 //                               <div className="relative">
-//                                 <div className="w-10 h-10 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+//                                 <div className="w-10 h-10 border-2 border-blue-500 rounded-full border-t-transparent animate-spin" />
 //                                 <div className="absolute inset-0 flex items-center justify-center">
-//                                   <div className="w-6 h-6 border-2 border-purple-500 border-t-transparent rounded-full animate-spin" />
+//                                   <div className="w-6 h-6 border-2 border-purple-500 rounded-full border-t-transparent animate-spin" />
 //                                 </div>
 //                               </div>
 //                             </div>
@@ -1648,7 +1648,7 @@
 //                           <img
 //                             src={currentImage}
 //                             alt={project.title}
-//                             className="w-full h-72 object-cover transition-all duration-500"
+//                             className="object-cover w-full transition-all duration-500 h-72"
 //                             onLoad={() => {
 //                               setIsLoading(false);
 //                               setImageLoaded(true);
@@ -1657,7 +1657,7 @@
 //                           />
 
 //                           {/* Gradient Overlay */}
-//                           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+//                           <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
 //                           {project.gallery.length > 1 && (
 //                             <>
@@ -1665,7 +1665,7 @@
 //                                 whileHover={{ scale: 1.1 }}
 //                                 whileTap={{ scale: 0.9 }}
 //                                 onClick={handlePrevImage}
-//                                 className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/60 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/80 transition-all z-20"
+//                                 className="absolute z-20 flex items-center justify-center w-8 h-8 transition-all -translate-y-1/2 rounded-full left-2 top-1/2 bg-black/60 backdrop-blur-sm hover:bg-black/80"
 //                               >
 //                                 <Icon
 //                                   name="ChevronLeft"
@@ -1677,7 +1677,7 @@
 //                                 whileHover={{ scale: 1.1 }}
 //                                 whileTap={{ scale: 0.9 }}
 //                                 onClick={handleNextImage}
-//                                 className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/60 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/80 transition-all z-20"
+//                                 className="absolute z-20 flex items-center justify-center w-8 h-8 transition-all -translate-y-1/2 rounded-full right-2 top-1/2 bg-black/60 backdrop-blur-sm hover:bg-black/80"
 //                               >
 //                                 <Icon
 //                                   name="ChevronRight"
@@ -1721,7 +1721,7 @@
 //                               />
 //                             ))}
 //                           </div>
-//                           <span className="text-xs font-semibold text-white/80 ml-1">
+//                           <span className="ml-1 text-xs font-semibold text-white/80">
 //                             {project.rating}
 //                           </span>
 //                         </div>
@@ -1738,7 +1738,7 @@
 //                       </div>
 
 //                       {/* Description */}
-//                       <p className="text-xs text-white/70 leading-relaxed">
+//                       <p className="text-xs leading-relaxed text-white/70">
 //                         {project.description}
 //                       </p>
 
@@ -1881,13 +1881,13 @@
 //                             animate={{ opacity: 1, y: 0 }}
 //                             className="space-y-4"
 //                           >
-//                             <p className="text-xs text-white/70 leading-relaxed">
+//                             <p className="text-xs leading-relaxed text-white/70">
 //                               {project.fullDescription || project.description}
 //                             </p>
 //                             {project.impact && (
 //                               <div className="p-3.5 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl border border-blue-500/20">
 //                                 <div className="flex items-start gap-2.5">
-//                                   <div className="w-6 h-6 rounded-lg bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+//                                   <div className="flex items-center justify-center flex-shrink-0 w-6 h-6 rounded-lg bg-blue-500/20">
 //                                     <Icon
 //                                       name="Target"
 //                                       size={12}
@@ -1985,7 +1985,7 @@
 //                             {project.metrics?.map((metric, idx) => (
 //                               <div
 //                                 key={idx}
-//                                 className="text-center p-3 bg-gradient-to-br from-orange-500/10 to-amber-500/10 rounded-xl border border-orange-500/20"
+//                                 className="p-3 text-center border bg-gradient-to-br from-orange-500/10 to-amber-500/10 rounded-xl border-orange-500/20"
 //                               >
 //                                 <div className="text-xl font-bold text-white">
 //                                   {metric.value}
@@ -2017,8 +2017,8 @@
 //                   </div>
 
 //                   {/* Home Indicator */}
-//                   <div className="flex-shrink-0 py-3 flex justify-center">
-//                     <div className="w-36 h-1 bg-white/20 rounded-full" />
+//                   <div className="flex justify-center flex-shrink-0 py-3">
+//                     <div className="h-1 rounded-full w-36 bg-white/20" />
 //                   </div>
 //                 </div>
 //               </div>
@@ -2056,10 +2056,10 @@
 //             {/* Header */}
 //             <div className="flex-shrink-0 px-6 py-5 border-b border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm">
 //               <div className="flex items-center justify-between">
-//                 <div className="flex items-center gap-4 flex-1 min-w-0">
+//                 <div className="flex items-center flex-1 min-w-0 gap-4">
 //                   <motion.div
 //                     whileHover={{ scale: 1.05, rotate: 5 }}
-//                     className="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg flex-shrink-0"
+//                     className="flex items-center justify-center flex-shrink-0 shadow-lg w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500"
 //                   >
 //                     <Icon
 //                       name={project.iconName || "FolderKanban"}
@@ -2068,11 +2068,11 @@
 //                     />
 //                   </motion.div>
 //                   <div className="flex-1 min-w-0">
-//                     <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white truncate">
+//                     <h2 className="text-xl font-bold text-gray-900 truncate sm:text-2xl dark:text-white">
 //                       {project.title}
 //                     </h2>
-//                     <div className="flex items-center gap-2 mt-1 flex-wrap">
-//                       <span className="text-sm text-blue-600 dark:text-blue-400 font-medium">
+//                     <div className="flex flex-wrap items-center gap-2 mt-1">
+//                       <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
 //                         {project.category}
 //                       </span>
 //                       {project.complexity && (
@@ -2095,7 +2095,7 @@
 //                   whileHover={{ scale: 1.1, rotate: 90 }}
 //                   whileTap={{ scale: 0.9 }}
 //                   onClick={onClose}
-//                   className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition"
+//                   className="p-2 transition rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
 //                 >
 //                   <Icon name="X" size={20} className="text-gray-500" />
 //                 </motion.button>
@@ -2113,11 +2113,11 @@
 //                     onTouchEnd={handleTouchEnd}
 //                   >
 //                     {(isLoading || !imageLoaded) && (
-//                       <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800 z-10">
+//                       <div className="absolute inset-0 z-10 flex items-center justify-center bg-gray-100 dark:bg-gray-800">
 //                         <div className="relative">
-//                           <div className="w-12 h-12 border-3 border-blue-500 border-t-transparent rounded-full animate-spin" />
+//                           <div className="w-12 h-12 border-blue-500 rounded-full border-3 border-t-transparent animate-spin" />
 //                           <div className="absolute inset-0 flex items-center justify-center">
-//                             <div className="w-8 h-8 border-3 border-purple-500 border-t-transparent rounded-full animate-spin" />
+//                             <div className="w-8 h-8 border-purple-500 rounded-full border-3 border-t-transparent animate-spin" />
 //                           </div>
 //                         </div>
 //                       </div>
@@ -2139,7 +2139,7 @@
 //                           whileHover={{ scale: 1.1 }}
 //                           whileTap={{ scale: 0.9 }}
 //                           onClick={handlePrevImage}
-//                           className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 backdrop-blur-sm rounded-full flex items-center justify-center transition-all"
+//                           className="absolute flex items-center justify-center w-10 h-10 transition-all -translate-y-1/2 rounded-full left-4 top-1/2 bg-black/50 hover:bg-black/70 backdrop-blur-sm"
 //                         >
 //                           <Icon
 //                             name="ChevronLeft"
@@ -2151,7 +2151,7 @@
 //                           whileHover={{ scale: 1.1 }}
 //                           whileTap={{ scale: 0.9 }}
 //                           onClick={handleNextImage}
-//                           className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 backdrop-blur-sm rounded-full flex items-center justify-center transition-all"
+//                           className="absolute flex items-center justify-center w-10 h-10 transition-all -translate-y-1/2 rounded-full right-4 top-1/2 bg-black/50 hover:bg-black/70 backdrop-blur-sm"
 //                         >
 //                           <Icon
 //                             name="ChevronRight"
@@ -2173,7 +2173,7 @@
 //                           whileHover={{ scale: 1.1 }}
 //                           whileTap={{ scale: 0.9 }}
 //                           onClick={() => setIsFullscreen(!isFullscreen)}
-//                           className="absolute bottom-4 right-4 bg-black/70 backdrop-blur-md text-white p-2 rounded-full hover:bg-black/80 transition-all"
+//                           className="absolute p-2 text-white transition-all rounded-full bottom-4 right-4 bg-black/70 backdrop-blur-md hover:bg-black/80"
 //                         >
 //                           <Icon
 //                             name={isFullscreen ? "Minimize2" : "Maximize2"}
@@ -2187,7 +2187,7 @@
 //                   {/* Thumbnail Strip */}
 //                   {project.gallery.length > 1 && !isMobile && (
 //                     <div className="p-3 overflow-x-auto">
-//                       <div className="flex gap-2 justify-center">
+//                       <div className="flex justify-center gap-2">
 //                         {project.gallery.map((img, idx) => (
 //                           <motion.button
 //                             key={idx}
@@ -2207,7 +2207,7 @@
 //                             <img
 //                               src={img}
 //                               alt={`Thumb ${idx + 1}`}
-//                               className="w-full h-full object-cover"
+//                               className="object-cover w-full h-full"
 //                             />
 //                           </motion.button>
 //                         ))}
@@ -2218,11 +2218,11 @@
 //               )}
 
 //               {/* Stats Cards */}
-//               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-6 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800/50 dark:to-gray-800/30">
+//               <div className="grid grid-cols-2 gap-4 p-6 sm:grid-cols-4 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800/50 dark:to-gray-800/30">
 //                 {project.duration && (
 //                   <motion.div
 //                     whileHover={{ y: -2 }}
-//                     className="text-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-sm"
+//                     className="p-3 text-center bg-white shadow-sm dark:bg-gray-800 rounded-xl"
 //                   >
 //                     <Icon
 //                       name="Calendar"
@@ -2230,7 +2230,7 @@
 //                       className="mx-auto mb-2 text-blue-500"
 //                     />
 //                     <p className="text-xs text-gray-500">Duration</p>
-//                     <p className="text-sm font-bold text-gray-900 dark:text-white mt-1">
+//                     <p className="mt-1 text-sm font-bold text-gray-900 dark:text-white">
 //                       {project.duration}
 //                     </p>
 //                   </motion.div>
@@ -2238,7 +2238,7 @@
 //                 {project.teamSize && (
 //                   <motion.div
 //                     whileHover={{ y: -2 }}
-//                     className="text-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-sm"
+//                     className="p-3 text-center bg-white shadow-sm dark:bg-gray-800 rounded-xl"
 //                   >
 //                     <Icon
 //                       name="Users"
@@ -2246,7 +2246,7 @@
 //                       className="mx-auto mb-2 text-green-500"
 //                     />
 //                     <p className="text-xs text-gray-500">Team Size</p>
-//                     <p className="text-sm font-bold text-gray-900 dark:text-white mt-1">
+//                     <p className="mt-1 text-sm font-bold text-gray-900 dark:text-white">
 //                       {project.teamSize}
 //                     </p>
 //                   </motion.div>
@@ -2254,7 +2254,7 @@
 //                 {project.rating && (
 //                   <motion.div
 //                     whileHover={{ y: -2 }}
-//                     className="text-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-sm"
+//                     className="p-3 text-center bg-white shadow-sm dark:bg-gray-800 rounded-xl"
 //                   >
 //                     <Icon
 //                       name="Star"
@@ -2262,7 +2262,7 @@
 //                       className="mx-auto mb-2 text-yellow-500"
 //                     />
 //                     <p className="text-xs text-gray-500">Rating</p>
-//                     <p className="text-sm font-bold text-gray-900 dark:text-white mt-1">
+//                     <p className="mt-1 text-sm font-bold text-gray-900 dark:text-white">
 //                       {project.rating}/5.0
 //                     </p>
 //                   </motion.div>
@@ -2270,7 +2270,7 @@
 //                 {project.status && (
 //                   <motion.div
 //                     whileHover={{ y: -2 }}
-//                     className="text-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-sm"
+//                     className="p-3 text-center bg-white shadow-sm dark:bg-gray-800 rounded-xl"
 //                   >
 //                     <Icon
 //                       name="CheckCircle"
@@ -2278,7 +2278,7 @@
 //                       className="mx-auto mb-2 text-purple-500"
 //                     />
 //                     <p className="text-xs text-gray-500">Status</p>
-//                     <p className="text-sm font-bold text-gray-900 dark:text-white mt-1">
+//                     <p className="mt-1 text-sm font-bold text-gray-900 dark:text-white">
 //                       {project.status}
 //                     </p>
 //                   </motion.div>
@@ -2287,7 +2287,7 @@
 
 //               {/* Action Buttons */}
 //               {(project.liveUrl || project.githubUrl) && (
-//                 <div className="flex flex-col sm:flex-row gap-3 p-6 border-b border-gray-200 dark:border-gray-800">
+//                 <div className="flex flex-col gap-3 p-6 border-b border-gray-200 sm:flex-row dark:border-gray-800">
 //                   {project.liveUrl && (
 //                     <motion.div whileHover={{ scale: 1.02 }} className="flex-1">
 //                       <Button
@@ -2318,7 +2318,7 @@
 //               )}
 
 //               {/* Tabs */}
-//               <div className="flex border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 sticky top-0 z-10">
+//               <div className="sticky top-0 z-10 flex bg-white border-b border-gray-200 dark:border-gray-800 dark:bg-gray-900">
 //                 {tabs.map((tab) => (
 //                   <button
 //                     key={tab.id}
@@ -2361,17 +2361,17 @@
 //                     className="space-y-5"
 //                   >
 //                     <div>
-//                       <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+//                       <h3 className="mb-3 text-lg font-semibold text-gray-900 dark:text-white">
 //                         About This Project
 //                       </h3>
-//                       <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+//                       <p className="leading-relaxed text-gray-600 dark:text-gray-300">
 //                         {project.fullDescription || project.description}
 //                       </p>
 //                     </div>
 //                     {project.impact && (
-//                       <div className="p-5 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl border border-blue-100 dark:border-blue-800/30">
+//                       <div className="p-5 border border-blue-100 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl dark:border-blue-800/30">
 //                         <div className="flex gap-3">
-//                           <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center flex-shrink-0 shadow-lg">
+//                           <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 rounded-lg shadow-lg bg-gradient-to-br from-blue-500 to-blue-600">
 //                             <Icon
 //                               name="Target"
 //                               size={20}
@@ -2379,7 +2379,7 @@
 //                             />
 //                           </div>
 //                           <div>
-//                             <h4 className="font-semibold text-gray-900 dark:text-white mb-1">
+//                             <h4 className="mb-1 font-semibold text-gray-900 dark:text-white">
 //                               Project Impact
 //                             </h4>
 //                             <p className="text-sm text-gray-600 dark:text-gray-300">
@@ -2400,7 +2400,7 @@
 //                     className="space-y-5"
 //                   >
 //                     <div>
-//                       <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+//                       <h3 className="mb-3 text-lg font-semibold text-gray-900 dark:text-white">
 //                         Technology Stack
 //                       </h3>
 //                       <div className="flex flex-wrap gap-2">
@@ -2411,7 +2411,7 @@
 //                             animate={{ opacity: 1, scale: 1 }}
 //                             transition={{ delay: idx * 0.05 }}
 //                             whileHover={{ scale: 1.05, y: -2 }}
-//                             className="px-3 py-2 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 text-purple-700 dark:text-purple-300 rounded-lg text-sm font-medium shadow-sm"
+//                             className="px-3 py-2 text-sm font-medium text-purple-700 rounded-lg shadow-sm bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 dark:text-purple-300"
 //                           >
 //                             {tech}
 //                           </motion.span>
@@ -2424,10 +2424,10 @@
 //                         initial={{ opacity: 0, x: -20 }}
 //                         animate={{ opacity: 1, x: 0 }}
 //                         transition={{ delay: idx * 0.1 }}
-//                         className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700"
+//                         className="p-4 border border-gray-200 bg-gray-50 dark:bg-gray-800/50 rounded-xl dark:border-gray-700"
 //                       >
 //                         <div className="flex items-start gap-3">
-//                           <div className="w-8 h-8 rounded-lg bg-red-100 dark:bg-red-900/30 flex items-center justify-center flex-shrink-0">
+//                           <div className="flex items-center justify-center flex-shrink-0 w-8 h-8 bg-red-100 rounded-lg dark:bg-red-900/30">
 //                             <Icon
 //                               name="AlertCircle"
 //                               size={16}
@@ -2435,7 +2435,7 @@
 //                             />
 //                           </div>
 //                           <div className="flex-1">
-//                             <p className="text-sm mb-2">
+//                             <p className="mb-2 text-sm">
 //                               <span className="font-semibold text-red-600 dark:text-red-400">
 //                                 Challenge:
 //                               </span>{" "}
@@ -2468,9 +2468,9 @@
 //                         animate={{ opacity: 1, x: 0 }}
 //                         transition={{ delay: idx * 0.05 }}
 //                         whileHover={{ x: 5 }}
-//                         className="flex items-start gap-3 p-4 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-xl border border-emerald-100 dark:border-emerald-800/30"
+//                         className="flex items-start gap-3 p-4 border bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-xl border-emerald-100 dark:border-emerald-800/30"
 //                       >
-//                         <div className="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center flex-shrink-0 shadow-md">
+//                         <div className="flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-lg shadow-md bg-emerald-500">
 //                           <Icon
 //                             name="CheckCircle"
 //                             size={16}
@@ -2494,10 +2494,10 @@
 //                   >
 //                     {project.metrics?.length > 0 && (
 //                       <div>
-//                         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+//                         <h3 className="mb-3 text-lg font-semibold text-gray-900 dark:text-white">
 //                           Key Metrics
 //                         </h3>
-//                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+//                         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
 //                           {project.metrics.map((metric, idx) => (
 //                             <motion.div
 //                               key={idx}
@@ -2505,12 +2505,12 @@
 //                               animate={{ opacity: 1, scale: 1 }}
 //                               transition={{ delay: idx * 0.1 }}
 //                               whileHover={{ scale: 1.05 }}
-//                               className="p-4 bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/10 dark:to-amber-900/10 rounded-xl text-center border border-orange-100 dark:border-orange-800/30"
+//                               className="p-4 text-center border border-orange-100 bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/10 dark:to-amber-900/10 rounded-xl dark:border-orange-800/30"
 //                             >
-//                               <div className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent">
+//                               <div className="text-2xl font-bold text-transparent bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text">
 //                                 {metric.value}
 //                               </div>
-//                               <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+//                               <div className="mt-1 text-xs text-gray-600 dark:text-gray-400">
 //                                 {metric.label}
 //                               </div>
 //                             </motion.div>
@@ -2520,7 +2520,7 @@
 //                     )}
 //                     {project.learnings?.length > 0 && (
 //                       <div>
-//                         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+//                         <h3 className="mb-3 text-lg font-semibold text-gray-900 dark:text-white">
 //                           Key Learnings
 //                         </h3>
 //                         <div className="space-y-2">
@@ -2530,7 +2530,7 @@
 //                               initial={{ opacity: 0, x: -20 }}
 //                               animate={{ opacity: 1, x: 0 }}
 //                               transition={{ delay: idx * 0.05 }}
-//                               className="flex items-start gap-2 p-3 bg-blue-50 dark:bg-blue-900/10 rounded-lg"
+//                               className="flex items-start gap-2 p-3 rounded-lg bg-blue-50 dark:bg-blue-900/10"
 //                             >
 //                               <Icon
 //                                 name="Lightbulb"
@@ -2549,19 +2549,19 @@
 //                       <motion.div
 //                         initial={{ opacity: 0, y: 20 }}
 //                         animate={{ opacity: 1, y: 0 }}
-//                         className="p-6 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-800/50 rounded-xl relative overflow-hidden"
+//                         className="relative p-6 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-800/50 rounded-xl"
 //                       >
 //                         <Icon
 //                           name="Quote"
 //                           size="40"
-//                           className="text-gray-300 dark:text-gray-600 absolute top-4 left-4"
+//                           className="absolute text-gray-300 dark:text-gray-600 top-4 left-4"
 //                         />
 //                         <div className="relative z-10 pt-8">
-//                           <p className="text-sm italic text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+//                           <p className="mb-4 text-sm italic leading-relaxed text-gray-600 dark:text-gray-300">
 //                             "{project.testimonial.content}"
 //                           </p>
 //                           <div className="flex items-center gap-3">
-//                             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center shadow-lg">
+//                             <div className="flex items-center justify-center w-10 h-10 rounded-full shadow-lg bg-gradient-to-br from-blue-500 to-purple-500">
 //                               <Icon
 //                                 name="User"
 //                                 size={18}
@@ -2592,40 +2592,30 @@
 // };
 
 // export default ProjectModal;
-
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Icon from "../../../components/AppIcon";
-import Image from "../../../components/AppImage";
 import Button from "../../../components/ui/Button";
 
 const ProjectModal = ({ project, isOpen, onClose }) => {
-  // State
+  // ========== STATE ==========
   const [activeTab, setActiveTab] = useState("overview");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [showGallery, setShowGallery] = useState(false);
   const [touchStart, setTouchStart] = useState(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
   const [isAutoSliding, setIsAutoSliding] = useState(true);
   const [userInteracted, setUserInteracted] = useState(false);
 
-  // Refs
+  // ========== REFS ==========
   const modalRef = useRef(null);
   const contentRef = useRef(null);
-  const galleryRef = useRef(null);
   const autoSlideInterval = useRef(null);
   const restartTimeout = useRef(null);
 
-  // Detect if it's a mobile app project
-  const isMobileApp =
-    project?.type === "mobile-app" ||
-    project?.platforms ||
-    project?.isMobileApp;
-
-  // Check mobile device
+  // ========== DETECT MOBILE ==========
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
@@ -2633,11 +2623,13 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Lock body scroll
+  // ========== BODY SCROLL LOCK ==========
   useEffect(() => {
     if (isOpen) {
+      const scrollbarWidth =
+        window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = "hidden";
-      document.body.style.paddingRight = `${window.innerWidth - document.documentElement.clientWidth}px`;
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
     } else {
       document.body.style.overflow = "";
       document.body.style.paddingRight = "";
@@ -2648,23 +2640,20 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
     };
   }, [isOpen]);
 
-  // Reset states when project changes
+  // ========== RESET ON PROJECT CHANGE ==========
   useEffect(() => {
     if (project) {
       setCurrentImageIndex(0);
       setActiveTab("overview");
       setIsLoading(true);
       setImageLoaded(false);
-      setShowGallery(false);
-      setIsFullscreen(false);
       setIsAutoSliding(true);
       setUserInteracted(false);
       if (contentRef.current) contentRef.current.scrollTop = 0;
-      if (galleryRef.current) galleryRef.current.scrollTop = 0;
     }
   }, [project]);
 
-  // Cleanup timeouts on unmount
+  // ========== CLEANUP TIMERS ==========
   useEffect(() => {
     return () => {
       if (autoSlideInterval.current) clearInterval(autoSlideInterval.current);
@@ -2672,85 +2661,64 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
     };
   }, []);
 
-  // Auto-slide functionality - FIXED: No scroll interference
+  // ========== AUTO-SLIDE LOGIC ==========
   useEffect(() => {
     const hasGallery = project?.gallery?.length > 1;
-
-    if (
-      isOpen &&
-      hasGallery &&
-      isAutoSliding &&
-      !showGallery &&
-      !userInteracted
-    ) {
+    if (isOpen && hasGallery && isAutoSliding && !userInteracted) {
       autoSlideInterval.current = setInterval(() => {
         setCurrentImageIndex((prev) => {
-          const nextIndex = (prev + 1) % project.gallery.length;
+          const next = (prev + 1) % project.gallery.length;
           setImageLoaded(false);
           setIsLoading(true);
-          return nextIndex;
+          return next;
         });
-      }, 3000); // 3 seconds for better UX
+      }, 4000);
     }
-
     return () => {
-      if (autoSlideInterval.current) {
-        clearInterval(autoSlideInterval.current);
-      }
+      if (autoSlideInterval.current) clearInterval(autoSlideInterval.current);
     };
-  }, [
-    isOpen,
-    project?.gallery?.length,
-    isAutoSliding,
-    showGallery,
-    userInteracted,
-  ]);
+  }, [isOpen, project?.gallery?.length, isAutoSliding, userInteracted]);
 
-  // Stop auto-slide on user interaction without affecting scroll
   const stopAutoSlide = useCallback(() => {
     if (!userInteracted) {
       setUserInteracted(true);
       setIsAutoSliding(false);
-
-      if (autoSlideInterval.current) {
-        clearInterval(autoSlideInterval.current);
-        autoSlideInterval.current = null;
-      }
-
-      // Restart auto-slide after 10 seconds of inactivity
+      if (autoSlideInterval.current) clearInterval(autoSlideInterval.current);
       if (restartTimeout.current) clearTimeout(restartTimeout.current);
       restartTimeout.current = setTimeout(() => {
-        if (isOpen && project?.gallery?.length > 1 && !showGallery) {
+        if (isOpen && project?.gallery?.length > 1) {
           setUserInteracted(false);
           setIsAutoSliding(true);
         }
-      }, 1000);
+      }, 10000);
     }
-  }, [userInteracted, isOpen, project?.gallery?.length, showGallery]);
+  }, [userInteracted, isOpen, project?.gallery?.length]);
 
-  // Keyboard navigation
+  // ========== KEYBOARD NAVIGATION ==========
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (!isOpen) return;
       if (e.key === "Escape") onClose();
-      if (e.key === "ArrowLeft" && !showGallery) {
+      if (e.key === "ArrowLeft") {
         e.preventDefault();
         stopAutoSlide();
         handlePrevImage();
       }
-      if (e.key === "ArrowRight" && !showGallery) {
+      if (e.key === "ArrowRight") {
         e.preventDefault();
         stopAutoSlide();
         handleNextImage();
       }
-      if (e.key === "f" && !isMobileApp && hasGallery)
-        setIsFullscreen(!isFullscreen);
+      if (e.key === "f" && project?.gallery?.length > 0) {
+        e.preventDefault();
+        setIsFullscreen((prev) => !prev);
+      }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, showGallery, isFullscreen, isMobileApp]);
+  }, [isOpen, project?.gallery?.length]);
 
-  // Image navigation - FIXED: No scroll jumping
+  // ========== IMAGE NAVIGATION ==========
   const handleNextImage = useCallback(() => {
     if (!project?.gallery?.length) return;
     stopAutoSlide();
@@ -2769,20 +2737,16 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
     );
   }, [project, stopAutoSlide]);
 
-  // Touch handlers for swipe - FIXED: No scroll interference
+  // ========== TOUCH SWIPE ==========
   const handleTouchStart = (e) => {
     stopAutoSlide();
     setTouchStart(e.touches[0].clientX);
   };
-
   const handleTouchMove = (e) => {
     if (!touchStart) return;
     const diff = Math.abs(touchStart - e.touches[0].clientX);
-    if (diff > 10) {
-      e.preventDefault();
-    }
+    if (diff > 10) e.preventDefault();
   };
-
   const handleTouchEnd = (e) => {
     if (!touchStart) return;
     const diff = touchStart - e.changedTouches[0].clientX;
@@ -2793,11 +2757,9 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
     setTouchStart(null);
   };
 
-  // Click outside
+  // ========== CLICK OUTSIDE ==========
   const handleBackdropClick = (e) => {
-    if (modalRef.current && !modalRef.current.contains(e.target)) {
-      onClose();
-    }
+    if (modalRef.current && !modalRef.current.contains(e.target)) onClose();
   };
 
   if (!project) return null;
@@ -2808,681 +2770,63 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
     : project.image;
 
   const tabs = [
-    {
-      id: "overview",
-      label: "Overview",
-      icon: "Eye",
-      color: "blue",
-      gradient: "from-blue-500 to-blue-600",
-    },
-    {
-      id: "technical",
-      label: isMobileApp ? "Tech" : "Technical",
-      icon: "Cpu",
-      color: "purple",
-      gradient: "from-purple-500 to-purple-600",
-    },
-    {
-      id: "features",
-      label: "Features",
-      icon: "Layers",
-      color: "emerald",
-      gradient: "from-emerald-500 to-emerald-600",
-    },
-    {
-      id: "impact",
-      label: "Impact",
-      icon: "TrendingUp",
-      color: "orange",
-      gradient: "from-orange-500 to-orange-600",
-    },
+    { id: "overview", label: "Overview", icon: "Eye", color: "blue" },
+    { id: "technical", label: "Technical", icon: "Cpu", color: "purple" },
+    { id: "features", label: "Features", icon: "Layers", color: "emerald" },
+    { id: "impact", label: "Impact", icon: "TrendingUp", color: "orange" },
   ];
 
-  // ========== PHONE MODAL RENDER (For Mobile Apps) ==========
-  if (isMobileApp) {
-    return (
-      <AnimatePresence mode="wait">
-        {isOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6">
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="absolute inset-0 bg-gradient-to-br from-black/90 via-black/80 to-black/90 backdrop-blur-xl"
-              onClick={handleBackdropClick}
-            />
-
-            {/* Phone Frame */}
-            <motion.div
-              ref={modalRef}
-              initial={{ opacity: 0, scale: 0.8, y: 100 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.8, y: 100 }}
-              transition={{ type: "spring", damping: 20, stiffness: 300 }}
-              className="relative w-full max-w-[min(400px,95vw)] h-[min(750px,90vh)] sm:max-w-[380px] sm:h-[700px]"
-            >
-              {/* Phone Outer Frame */}
-              <div className="relative w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-[2.5rem] sm:rounded-[3rem] shadow-2xl shadow-black/50 p-1.5 sm:p-2">
-                {/* Phone Inner Screen */}
-                <div className="relative w-full h-full bg-gradient-to-br from-gray-900 to-black rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden flex flex-col">
-                  {/* Dynamic Island */}
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100px] sm:w-[120px] h-[30px] sm:h-[35px] bg-black rounded-b-2xl z-30 flex items-center justify-center gap-1 sm:gap-1.5">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-500/90 animate-pulse shadow-lg shadow-emerald-500/50" />
-                    <div className="w-10 sm:w-12 h-2.5 sm:h-3 bg-gray-800 rounded-full" />
-                  </div>
-
-                  {/* Status Bar */}
-                  <div className="absolute top-1.5 sm:top-2 left-0 right-0 px-4 sm:px-6 py-1 flex justify-between text-white/70 text-[9px] sm:text-[11px] font-medium z-20">
-                    <span className="font-semibold">9:41</span>
-                    <div className="flex gap-1 sm:gap-1.5">
-                      <Icon
-                        name="Signal"
-                        size={9}
-                        className="sm:w-3 sm:h-3 text-white/70"
-                      />
-                      <Icon
-                        name="Wifi"
-                        size={9}
-                        className="sm:w-3 sm:h-3 text-white/70"
-                      />
-                      <Icon
-                        name="Battery"
-                        size={11}
-                        className="sm:w-3.5 sm:h-3.5 text-white/70"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Header */}
-                  <div className="flex-shrink-0 pt-10 sm:pt-12 px-3 sm:px-5 pb-3 sm:pb-4 border-b border-white/10 bg-gradient-to-b from-white/5 to-transparent z-20">
-                    <div className="flex items-center justify-between gap-2">
-                      <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
-                        <motion.div
-                          whileHover={{ scale: 1.05, rotate: 5 }}
-                          className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-xl shadow-purple-500/30 flex-shrink-0"
-                        >
-                          <Icon
-                            name={project.iconName || "Smartphone"}
-                            size={16}
-                            className="sm:w-5 sm:h-5 text-white"
-                          />
-                        </motion.div>
-                        <div className="flex-1 min-w-0">
-                          <h2 className="text-sm sm:text-base font-bold text-white truncate">
-                            {project.title}
-                          </h2>
-                          <div className="flex items-center gap-1.5 sm:gap-2 mt-0.5 flex-wrap">
-                            <p className="text-[9px] sm:text-[11px] text-blue-400 font-medium truncate">
-                              {project.category}
-                            </p>
-                            {project.complexity && (
-                              <span
-                                className={`text-[7px] sm:text-[9px] px-1.5 py-0.5 rounded-full font-medium ${
-                                  project.complexity === "Advanced"
-                                    ? "bg-red-500/20 text-red-400"
-                                    : project.complexity === "Intermediate"
-                                      ? "bg-yellow-500/20 text-yellow-400"
-                                      : "bg-green-500/20 text-green-400"
-                                }`}
-                              >
-                                {project.complexity}
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                      <motion.button
-                        whileHover={{ scale: 1.1, rotate: 90 }}
-                        whileTap={{ scale: 0.9 }}
-                        onClick={onClose}
-                        className="p-1.5 sm:p-2 hover:bg-white/10 rounded-full transition flex-shrink-0"
-                      >
-                        <Icon
-                          name="X"
-                          size={14}
-                          className="sm:w-4.5 sm:h-4.5 text-white/70"
-                        />
-                      </motion.button>
-                    </div>
-                  </div>
-
-                  {/* Scrollable Content - FIXED: Separate scroll from image gallery */}
-                  <div
-                    ref={contentRef}
-                    className="flex-1 overflow-y-auto overflow-x-hidden custom-scroll"
-                    style={{ overscrollBehavior: "contain" }}
-                  >
-                    {/* App Screenshots Gallery - FIXED: No scroll jump */}
-                    {hasGallery && (
-                      <div
-                        ref={galleryRef}
-                        className="border-b border-white/10"
-                        onTouchStart={handleTouchStart}
-                        onTouchMove={handleTouchMove}
-                        onTouchEnd={handleTouchEnd}
-                      >
-                        <div className="relative bg-black/30">
-                          {/* Auto-slide indicator */}
-                          {isAutoSliding &&
-                            project.gallery.length > 1 &&
-                            !userInteracted && (
-                              <div className="absolute top-2 right-2 z-30 bg-black/60 backdrop-blur-sm rounded-full px-2 py-0.5 text-[8px] text-white/70 flex items-center gap-1">
-                                <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                                Auto
-                              </div>
-                            )}
-
-                          {/* Loading State */}
-                          {(isLoading || !imageLoaded) && (
-                            <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-10">
-                              <div className="relative">
-                                <div className="w-8 h-8 sm:w-10 sm:h-10 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
-                                <div className="absolute inset-0 flex items-center justify-center">
-                                  <div className="w-5 h-5 sm:w-6 sm:h-6 border-2 border-purple-500 border-t-transparent rounded-full animate-spin" />
-                                </div>
-                              </div>
-                            </div>
-                          )}
-
-                          {/* Image - FIXED: Stable size, no scroll jump */}
-                          <div className="relative w-full aspect-video bg-gradient-to-br from-gray-800 to-gray-900">
-                            <img
-                              src={currentImage}
-                              alt={project.title}
-                              className="w-full h-full object-contain transition-opacity duration-300"
-                              onLoad={() => {
-                                setIsLoading(false);
-                                setImageLoaded(true);
-                              }}
-                              style={{
-                                display: isLoading ? "none" : "block",
-                                opacity: imageLoaded ? 1 : 0,
-                              }}
-                            />
-                          </div>
-
-                          {/* Gradient Overlay */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
-
-                          {/* Navigation Arrows */}
-                          {project.gallery.length > 1 && (
-                            <>
-                              <motion.button
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.9 }}
-                                onClick={handlePrevImage}
-                                className="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-8 sm:h-8 bg-black/60 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/80 transition-all z-20"
-                              >
-                                <Icon
-                                  name="ChevronLeft"
-                                  size={14}
-                                  className="sm:w-4 sm:h-4 text-white"
-                                />
-                              </motion.button>
-                              <motion.button
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.9 }}
-                                onClick={handleNextImage}
-                                className="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-8 sm:h-8 bg-black/60 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/80 transition-all z-20"
-                              >
-                                <Icon
-                                  name="ChevronRight"
-                                  size={14}
-                                  className="sm:w-4 sm:h-4 text-white"
-                                />
-                              </motion.button>
-
-                              {/* Image Counter */}
-                              <div className="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 bg-black/70 backdrop-blur-md text-white text-[9px] sm:text-[10px] px-2 py-1 sm:px-2.5 sm:py-1 rounded-full flex items-center gap-1 sm:gap-1.5 z-20">
-                                <Icon
-                                  name="Image"
-                                  size={8}
-                                  className="sm:w-2.5 sm:h-2.5 text-blue-400"
-                                />
-                                <span className="font-medium">
-                                  {currentImageIndex + 1}/
-                                  {project.gallery.length}
-                                </span>
-                              </div>
-                            </>
-                          )}
-                        </div>
-
-                        {/* Thumbnail Strip */}
-                        {project.gallery.length > 1 && (
-                          <div className="py-2 sm:py-3 px-2 sm:px-3 overflow-x-auto">
-                            <div className="flex gap-1.5 sm:gap-2 justify-center">
-                              {project.gallery.map((img, idx) => (
-                                <motion.button
-                                  key={idx}
-                                  whileHover={{ scale: 1.05 }}
-                                  whileTap={{ scale: 0.95 }}
-                                  onClick={() => {
-                                    stopAutoSlide();
-                                    setImageLoaded(false);
-                                    setIsLoading(true);
-                                    setCurrentImageIndex(idx);
-                                  }}
-                                  className={`flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-lg overflow-hidden transition-all ${
-                                    currentImageIndex === idx
-                                      ? "ring-2 ring-blue-500 shadow-lg shadow-blue-500/30"
-                                      : "ring-1 ring-white/20 opacity-60 hover:opacity-100"
-                                  }`}
-                                >
-                                  <img
-                                    src={img}
-                                    alt={`Thumb ${idx + 1}`}
-                                    className="w-full h-full object-cover"
-                                  />
-                                </motion.button>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    )}
-
-                    {/* Content - Rest of the content */}
-                    <div className="p-3 sm:p-5 space-y-3 sm:space-y-5">
-                      {/* Rating & Platform */}
-                      <div className="flex items-center justify-between flex-wrap gap-2">
-                        <div className="flex items-center gap-1 sm:gap-1.5">
-                          <div className="flex gap-0.5">
-                            {[...Array(5)].map((_, i) => (
-                              <Icon
-                                key={i}
-                                name="Star"
-                                size={12}
-                                className={`sm:w-3.5 sm:h-3.5 ${
-                                  i < (project.rating || 0)
-                                    ? "text-yellow-500 fill-yellow-500"
-                                    : "text-gray-600"
-                                }`}
-                              />
-                            ))}
-                          </div>
-                          <span className="text-[10px] sm:text-xs font-semibold text-white/80 ml-0.5">
-                            {project.rating}
-                          </span>
-                        </div>
-                        <div className="flex gap-1 sm:gap-1.5 flex-wrap">
-                          {project.platforms
-                            ?.slice(0, 2)
-                            .map((platform, idx) => (
-                              <span
-                                key={idx}
-                                className="text-[8px] sm:text-[10px] px-1.5 py-0.5 sm:px-2 sm:py-1 bg-white/10 backdrop-blur-sm rounded-full text-white/80 font-medium"
-                              >
-                                {platform}
-                              </span>
-                            ))}
-                        </div>
-                      </div>
-
-                      {/* Description */}
-                      <p className="text-[10px] sm:text-xs text-white/70 leading-relaxed">
-                        {project.description}
-                      </p>
-
-                      {/* Tech Stack */}
-                      <div className="flex flex-wrap gap-1 sm:gap-1.5">
-                        {project.technologies?.slice(0, 4).map((tech, idx) => (
-                          <span
-                            key={idx}
-                            className="text-[8px] sm:text-[9px] px-1.5 py-0.5 sm:px-2 sm:py-1 bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 rounded-full font-medium"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                        {project.technologies?.length > 4 && (
-                          <span className="text-[8px] sm:text-[9px] px-1.5 py-0.5 sm:px-2 sm:py-1 bg-white/10 text-white/60 rounded-full">
-                            +{project.technologies.length - 4}
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Quick Stats */}
-                      <div className="grid grid-cols-3 gap-1.5 sm:gap-2.5">
-                        {project.duration && (
-                          <motion.div
-                            whileHover={{ scale: 1.02, y: -2 }}
-                            className="text-center p-1.5 sm:p-2.5 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10"
-                          >
-                            <Icon
-                              name="Calendar"
-                              size={14}
-                              className="sm:w-4 sm:h-4 mx-auto mb-1 sm:mb-1.5 text-blue-400"
-                            />
-                            <p className="text-[7px] sm:text-[9px] text-white/50">
-                              Duration
-                            </p>
-                            <p className="text-[9px] sm:text-[11px] font-bold text-white/90 truncate">
-                              {project.duration}
-                            </p>
-                          </motion.div>
-                        )}
-                        {project.teamSize && (
-                          <motion.div
-                            whileHover={{ scale: 1.02, y: -2 }}
-                            className="text-center p-1.5 sm:p-2.5 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10"
-                          >
-                            <Icon
-                              name="Users"
-                              size={14}
-                              className="sm:w-4 sm:h-4 mx-auto mb-1 sm:mb-1.5 text-green-400"
-                            />
-                            <p className="text-[7px] sm:text-[9px] text-white/50">
-                              Team
-                            </p>
-                            <p className="text-[9px] sm:text-[11px] font-bold text-white/90">
-                              {project.teamSize}
-                            </p>
-                          </motion.div>
-                        )}
-                        {project.downloads && (
-                          <motion.div
-                            whileHover={{ scale: 1.02, y: -2 }}
-                            className="text-center p-1.5 sm:p-2.5 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10"
-                          >
-                            <Icon
-                              name="Download"
-                              size={14}
-                              className="sm:w-4 sm:h-4 mx-auto mb-1 sm:mb-1.5 text-purple-400"
-                            />
-                            <p className="text-[7px] sm:text-[9px] text-white/50">
-                              Downloads
-                            </p>
-                            <p className="text-[9px] sm:text-[11px] font-bold text-white/90">
-                              {project.downloads}
-                            </p>
-                          </motion.div>
-                        )}
-                      </div>
-
-                      {/* Action Buttons */}
-                      <div className="flex gap-2 sm:gap-2.5 pt-1 sm:pt-2">
-                        {project.liveUrl && (
-                          <motion.div
-                            whileHover={{ scale: 1.02 }}
-                            className="flex-1"
-                          >
-                            <Button
-                              variant="default"
-                              size="xs"
-                              iconName="ExternalLink"
-                              className="w-full text-[10px] sm:text-xs py-1.5 sm:py-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600"
-                              onClick={() =>
-                                window.open(project.liveUrl, "_blank")
-                              }
-                            >
-                              Open App
-                            </Button>
-                          </motion.div>
-                        )}
-                        {project.githubUrl && (
-                          <motion.div
-                            whileHover={{ scale: 1.02 }}
-                            className="flex-1"
-                          >
-                            <Button
-                              variant="outline"
-                              size="xs"
-                              iconName="Github"
-                              className="w-full text-[10px] sm:text-xs py-1.5 sm:py-2 border-white/20 hover:bg-white/10"
-                              onClick={() =>
-                                window.open(project.githubUrl, "_blank")
-                              }
-                            >
-                              Code
-                            </Button>
-                          </motion.div>
-                        )}
-                      </div>
-
-                      {/* Tabs */}
-                      <div className="flex gap-1 sm:gap-1.5 pt-2 sm:pt-3 border-t border-white/10">
-                        {tabs.map((tab) => (
-                          <button
-                            key={tab.id}
-                            onClick={() => setActiveTab(tab.id)}
-                            className={`flex-1 py-1.5 sm:py-2.5 text-[8px] sm:text-[10px] font-semibold rounded-lg sm:rounded-xl transition-all duration-200 ${
-                              activeTab === tab.id
-                                ? `bg-gradient-to-r ${tab.gradient} text-white shadow-lg`
-                                : "text-white/50 hover:text-white/70 hover:bg-white/5"
-                            }`}
-                          >
-                            <div className="flex items-center justify-center gap-1 sm:gap-1.5">
-                              <Icon
-                                name={tab.icon}
-                                size={10}
-                                className="sm:w-3 sm:h-3"
-                              />
-                              <span className="hidden xs:inline">
-                                {tab.label}
-                              </span>
-                              <span className="xs:hidden">
-                                {tab.label.substring(0, 3)}
-                              </span>
-                            </div>
-                          </button>
-                        ))}
-                      </div>
-
-                      {/* Tab Content */}
-                      <div className="space-y-3 sm:space-y-4 pb-2">
-                        {activeTab === "overview" && (
-                          <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="space-y-3 sm:space-y-4"
-                          >
-                            <p className="text-[10px] sm:text-xs text-white/70 leading-relaxed">
-                              {project.fullDescription || project.description}
-                            </p>
-                            {project.impact && (
-                              <div className="p-2.5 sm:p-3.5 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl border border-blue-500/20">
-                                <div className="flex items-start gap-2 sm:gap-2.5">
-                                  <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-lg bg-blue-500/20 flex items-center justify-center flex-shrink-0">
-                                    <Icon
-                                      name="Target"
-                                      size={10}
-                                      className="sm:w-3 sm:h-3 text-blue-400"
-                                    />
-                                  </div>
-                                  <div>
-                                    <p className="text-[9px] sm:text-[11px] font-semibold text-blue-400 mb-0.5">
-                                      Impact
-                                    </p>
-                                    <p className="text-[9px] sm:text-[11px] text-white/70">
-                                      {project.impact}
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            )}
-                          </motion.div>
-                        )}
-
-                        {activeTab === "technical" && (
-                          <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="space-y-3 sm:space-y-4"
-                          >
-                            <div>
-                              <h4 className="text-[9px] sm:text-[11px] font-semibold text-purple-400 mb-2 flex items-center gap-1 sm:gap-1.5">
-                                <Icon
-                                  name="Code"
-                                  size={10}
-                                  className="sm:w-2.5 sm:h-2.5"
-                                />
-                                Tech Stack
-                              </h4>
-                              <div className="flex flex-wrap gap-1 sm:gap-1.5">
-                                {project.technologies?.map((tech, idx) => (
-                                  <span
-                                    key={idx}
-                                    className="text-[8px] sm:text-[10px] px-1.5 py-1 sm:px-2.5 sm:py-1.5 bg-white/10 rounded-lg text-white/80 font-medium"
-                                  >
-                                    {tech}
-                                  </span>
-                                ))}
-                              </div>
-                            </div>
-                            {project.challenges?.map((challenge, idx) => (
-                              <div
-                                key={idx}
-                                className="p-2.5 sm:p-3 bg-white/5 rounded-xl"
-                              >
-                                <p className="text-[9px] sm:text-[10px] mb-1.5 text-white/70">
-                                  <span className="font-semibold text-red-400">
-                                    Challenge:
-                                  </span>{" "}
-                                  {challenge.problem}
-                                </p>
-                                <p className="text-[9px] sm:text-[10px] text-white/70">
-                                  <span className="font-semibold text-green-400">
-                                    Solution:
-                                  </span>{" "}
-                                  {challenge.solution}
-                                </p>
-                              </div>
-                            ))}
-                          </motion.div>
-                        )}
-
-                        {activeTab === "features" && (
-                          <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="space-y-2 sm:space-y-2.5"
-                          >
-                            {project.features
-                              ?.slice(0, 5)
-                              .map((feature, idx) => (
-                                <div
-                                  key={idx}
-                                  className="flex items-start gap-2 sm:gap-2.5 p-2 sm:p-2.5 bg-white/5 rounded-xl"
-                                >
-                                  <Icon
-                                    name="CheckCircle"
-                                    size={12}
-                                    className="sm:w-3.5 sm:h-3.5 text-emerald-400 mt-0.5 flex-shrink-0"
-                                  />
-                                  <span className="text-[9px] sm:text-[11px] text-white/80">
-                                    {feature}
-                                  </span>
-                                </div>
-                              ))}
-                          </motion.div>
-                        )}
-
-                        {activeTab === "impact" && (
-                          <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="space-y-3 sm:space-y-4"
-                          >
-                            {project.metrics?.slice(0, 3).map((metric, idx) => (
-                              <div
-                                key={idx}
-                                className="text-center p-2.5 sm:p-3 bg-gradient-to-br from-orange-500/10 to-amber-500/10 rounded-xl border border-orange-500/20"
-                              >
-                                <div className="text-base sm:text-xl font-bold text-white">
-                                  {metric.value}
-                                </div>
-                                <div className="text-[8px] sm:text-[10px] text-white/60 mt-0.5">
-                                  {metric.label}
-                                </div>
-                              </div>
-                            ))}
-                            {project.learnings
-                              ?.slice(0, 3)
-                              .map((learning, idx) => (
-                                <div
-                                  key={idx}
-                                  className="flex items-start gap-2 sm:gap-2.5 p-2 sm:p-2.5 bg-white/5 rounded-xl"
-                                >
-                                  <Icon
-                                    name="Lightbulb"
-                                    size={12}
-                                    className="sm:w-3.5 sm:h-3.5 text-yellow-400 mt-0.5 flex-shrink-0"
-                                  />
-                                  <span className="text-[9px] sm:text-[11px] text-white/80">
-                                    {learning}
-                                  </span>
-                                </div>
-                              ))}
-                          </motion.div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Home Indicator */}
-                  <div className="flex-shrink-0 py-2 sm:py-3 flex justify-center">
-                    <div className="w-24 sm:w-36 h-1 bg-white/20 rounded-full" />
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
-    );
-  }
-
-  // ========== REGULAR MODAL RENDER (For Web/Other Projects) ==========
+  // ========== RENDER ==========
   return (
     <AnimatePresence mode="wait">
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6">
-          {/* Backdrop */}
+          {/* Premium Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="absolute inset-0 bg-gradient-to-br from-black/90 via-black/80 to-black/90 backdrop-blur-md"
+            className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/70 to-black/80 backdrop-blur-md"
             onClick={handleBackdropClick}
           />
 
-          {/* Regular Modal */}
+          {/* Modal Container */}
           <motion.div
             ref={modalRef}
-            initial={{ opacity: 0, scale: 0.9, y: 30 }}
+            initial={{ opacity: 0, scale: 0.96, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 30 }}
-            transition={{ type: "spring", damping: 25, stiffness: 400 }}
-            className="relative w-full max-w-6xl max-h-[90vh] bg-white dark:bg-gray-900 rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+            exit={{ opacity: 0, scale: 0.96, y: 30 }}
+            transition={{ type: "spring", damping: 28, stiffness: 380 }}
+            className="relative w-full max-w-5xl max-h-[90vh] bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden flex flex-col ring-1 ring-black/5 dark:ring-white/10"
           >
-            {/* Header */}
-            <div className="flex-shrink-0 px-4 sm:px-6 py-3 sm:py-5 border-b border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm z-20">
-              <div className="flex items-center justify-between gap-2 sm:gap-4">
-                <div className="flex items-center gap-2 sm:gap-4 flex-1 min-w-0">
+            {/* Header with Glassmorphism */}
+            <div className="flex-shrink-0 px-5 py-4 border-b border-gray-100 sm:px-7 sm:py-5 dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl">
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center flex-1 min-w-0 gap-4">
+                  {/* Animated Icon Container */}
                   <motion.div
                     whileHover={{ scale: 1.05, rotate: 5 }}
-                    className="w-10 h-10 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg flex-shrink-0"
+                    transition={{ type: "spring", stiffness: 400 }}
+                    className="flex items-center justify-center flex-shrink-0 w-12 h-12 shadow-lg sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 shadow-blue-500/30"
                   >
                     <Icon
                       name={project.iconName || "FolderKanban"}
-                      size={18}
-                      className="sm:w-6 sm:h-6 text-white"
+                      size={22}
+                      className="text-white sm:w-6 sm:h-6"
                     />
                   </motion.div>
                   <div className="flex-1 min-w-0">
-                    <h2 className="text-base sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white truncate">
+                    <h2 className="text-xl font-bold text-gray-900 truncate sm:text-2xl dark:text-white">
                       {project.title}
                     </h2>
-                    <div className="flex items-center gap-1.5 sm:gap-2 mt-0.5 flex-wrap">
-                      <span className="text-xs sm:text-sm text-blue-600 dark:text-blue-400 font-medium">
+                    <div className="flex flex-wrap items-center gap-2 mt-1">
+                      <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
                         {project.category}
                       </span>
                       {project.complexity && (
                         <span
-                          className={`text-[10px] sm:text-xs px-1.5 py-0.5 sm:px-2 sm:py-0.5 rounded-full font-semibold ${
+                          className={`text-xs px-2.5 py-0.5 rounded-full font-semibold shadow-sm ${
                             project.complexity === "Advanced"
                               ? "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
                               : project.complexity === "Intermediate"
@@ -3500,26 +2844,22 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={onClose}
-                  className="p-1.5 sm:p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition flex-shrink-0"
+                  className="p-2 transition-all rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
                 >
-                  <Icon
-                    name="X"
-                    size={16}
-                    className="sm:w-5 sm:h-5 text-gray-500"
-                  />
+                  <Icon name="X" size={20} className="text-gray-500" />
                 </motion.button>
               </div>
             </div>
 
-            {/* Content with separate scroll */}
+            {/* Scrollable Content */}
             <div
               ref={contentRef}
               className="flex-1 overflow-y-auto custom-scroll"
               style={{ overscrollBehavior: "contain" }}
             >
-              {/* Gallery Section - FIXED: Stable image container */}
+              {/* Gallery Section */}
               {hasGallery && (
-                <div className="border-b border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50">
+                <div className="border-b border-gray-100 dark:border-gray-800 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900/30 dark:to-gray-900">
                   <div
                     className="relative"
                     onTouchStart={handleTouchStart}
@@ -3530,30 +2870,30 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                     {isAutoSliding &&
                       project.gallery.length > 1 &&
                       !userInteracted && (
-                        <div className="absolute top-2 right-2 z-30 bg-black/60 backdrop-blur-sm rounded-full px-2 py-1 text-[10px] text-white/80 flex items-center gap-1.5">
-                          <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                          Auto-sliding
+                        <div className="absolute top-4 right-4 z-30 bg-black/60 backdrop-blur-md rounded-full px-3 py-1 text-[11px] text-white/90 flex items-center gap-2 shadow-lg">
+                          <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse shadow-sm" />
+                          Auto-slide
                         </div>
                       )}
 
                     {/* Loading State */}
                     {(isLoading || !imageLoaded) && (
-                      <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800 z-10">
+                      <div className="absolute inset-0 z-10 flex items-center justify-center bg-gray-100/80 dark:bg-gray-800/80 backdrop-blur-sm">
                         <div className="relative">
-                          <div className="w-8 h-8 sm:w-12 sm:h-12 border-2 sm:border-3 border-blue-500 border-t-transparent rounded-full animate-spin" />
+                          <div className="w-10 h-10 border-blue-500 rounded-full border-3 border-t-transparent animate-spin" />
                           <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="w-5 h-5 sm:w-8 sm:h-8 border-2 sm:border-3 border-purple-500 border-t-transparent rounded-full animate-spin" />
+                            <div className="w-4 h-4 bg-blue-500 rounded-full animate-ping" />
                           </div>
                         </div>
                       </div>
                     )}
 
-                    {/* Image - FIXED: Fixed height, no jump */}
-                    <div className="relative w-full h-[300px] sm:h-[400px] bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
+                    {/* Image Container */}
+                    <div className="relative w-full h-[320px] sm:h-[440px] bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
                       <img
                         src={currentImage}
                         alt={project.title}
-                        className="w-full h-full object-contain transition-opacity duration-300"
+                        className="object-contain w-full h-full transition-opacity duration-500"
                         onLoad={() => {
                           setIsLoading(false);
                           setImageLoaded(true);
@@ -3565,69 +2905,70 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                       />
                     </div>
 
-                    {/* Navigation Controls */}
+                    {/* Navigation Arrows */}
                     {project.gallery.length > 1 && (
                       <>
                         <motion.button
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
                           onClick={handlePrevImage}
-                          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 bg-black/50 hover:bg-black/70 backdrop-blur-sm rounded-full flex items-center justify-center transition-all z-20"
+                          className="absolute z-20 flex items-center justify-center w-10 h-10 transition-all -translate-y-1/2 rounded-full shadow-lg left-4 top-1/2 bg-black/60 backdrop-blur-md hover:bg-black/80"
                         >
                           <Icon
                             name="ChevronLeft"
-                            size={18}
-                            className="sm:w-6 sm:h-6 text-white"
+                            size={22}
+                            className="text-white"
                           />
                         </motion.button>
                         <motion.button
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
                           onClick={handleNextImage}
-                          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 bg-black/50 hover:bg-black/70 backdrop-blur-sm rounded-full flex items-center justify-center transition-all z-20"
+                          className="absolute z-20 flex items-center justify-center w-10 h-10 transition-all -translate-y-1/2 rounded-full shadow-lg right-4 top-1/2 bg-black/60 backdrop-blur-md hover:bg-black/80"
                         >
                           <Icon
                             name="ChevronRight"
-                            size={18}
-                            className="sm:w-6 sm:h-6 text-white"
+                            size={22}
+                            className="text-white"
                           />
                         </motion.button>
 
-                        <div className="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 bg-black/70 backdrop-blur-md text-white text-xs sm:text-sm px-2 py-1 sm:px-3 sm:py-1.5 rounded-full flex items-center gap-1 sm:gap-2 z-20">
+                        {/* Counter Badge */}
+                        <div className="absolute bottom-4 left-4 bg-black/70 backdrop-blur-md text-white text-sm px-3 py-1.5 rounded-full flex items-center gap-2 shadow-md">
                           <Icon
                             name="Image"
-                            size={12}
-                            className="sm:w-4 sm:h-4 text-blue-400"
+                            size={14}
+                            className="text-blue-400"
                           />
                           <span className="font-medium">
-                            {currentImageIndex + 1}/{project.gallery.length}
+                            {currentImageIndex + 1} / {project.gallery.length}
                           </span>
                         </div>
 
+                        {/* Fullscreen Toggle */}
                         <motion.button
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
                           onClick={() => setIsFullscreen(!isFullscreen)}
-                          className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 bg-black/70 backdrop-blur-md text-white p-1.5 sm:p-2 rounded-full hover:bg-black/80 transition-all z-20"
+                          className="absolute p-2 text-white transition-all rounded-full shadow-md bottom-4 right-4 bg-black/70 backdrop-blur-md hover:bg-black/80"
                         >
                           <Icon
                             name={isFullscreen ? "Minimize2" : "Maximize2"}
-                            size={14}
-                            className="sm:w-4 sm:h-4"
+                            size={16}
                           />
                         </motion.button>
                       </>
                     )}
                   </div>
 
-                  {/* Thumbnail Strip */}
+                  {/* Thumbnails - Modern Scroll */}
                   {project.gallery.length > 1 && !isMobile && (
-                    <div className="py-2 sm:py-3 px-2 sm:px-4 overflow-x-auto">
-                      <div className="flex gap-1.5 sm:gap-2 justify-center">
+                    <div className="px-5 py-4 overflow-x-auto scrollbar-thin">
+                      <div className="flex justify-center gap-3">
                         {project.gallery.map((img, idx) => (
                           <motion.button
                             key={idx}
-                            whileHover={{ scale: 1.05, y: -2 }}
+                            whileHover={{ scale: 1.05, y: -3 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={() => {
                               stopAutoSlide();
@@ -3635,16 +2976,16 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                               setIsLoading(true);
                               setCurrentImageIndex(idx);
                             }}
-                            className={`flex-shrink-0 w-12 h-12 sm:w-16 sm:h-16 rounded-lg overflow-hidden transition-all ${
+                            className={`flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden transition-all duration-300 ${
                               currentImageIndex === idx
-                                ? "ring-2 ring-blue-500 shadow-lg shadow-blue-500/30"
-                                : "ring-1 ring-gray-200 dark:ring-gray-700 opacity-70 hover:opacity-100"
+                                ? "ring-2 ring-blue-500 shadow-lg shadow-blue-500/30 scale-105"
+                                : "ring-1 ring-gray-200 dark:ring-gray-700 opacity-70 hover:opacity-100 hover:ring-gray-300"
                             }`}
                           >
                             <img
                               src={img}
                               alt={`Thumb ${idx + 1}`}
-                              className="w-full h-full object-cover"
+                              className="object-cover w-full h-full"
                             />
                           </motion.button>
                         ))}
@@ -3654,145 +2995,157 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                 </div>
               )}
 
-              {/* Stats Cards */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 p-4 sm:p-6 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800/50 dark:to-gray-800/30">
-                {project.duration && (
-                  <motion.div
-                    whileHover={{ y: -2 }}
-                    className="text-center p-2 sm:p-3 bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl shadow-sm"
-                  >
-                    <Icon
-                      name="Calendar"
-                      size={16}
-                      className="sm:w-5 sm:h-5 mx-auto mb-1 sm:mb-2 text-blue-500"
-                    />
-                    <p className="text-[10px] sm:text-xs text-gray-500">
-                      Duration
-                    </p>
-                    <p className="text-[11px] sm:text-sm font-bold text-gray-900 dark:text-white mt-0.5 sm:mt-1 truncate">
-                      {project.duration}
-                    </p>
-                  </motion.div>
-                )}
-                {project.teamSize && (
-                  <motion.div
-                    whileHover={{ y: -2 }}
-                    className="text-center p-2 sm:p-3 bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl shadow-sm"
-                  >
-                    <Icon
-                      name="Users"
-                      size={16}
-                      className="sm:w-5 sm:h-5 mx-auto mb-1 sm:mb-2 text-green-500"
-                    />
-                    <p className="text-[10px] sm:text-xs text-gray-500">
-                      Team Size
-                    </p>
-                    <p className="text-[11px] sm:text-sm font-bold text-gray-900 dark:text-white mt-0.5 sm:mt-1">
-                      {project.teamSize}
-                    </p>
-                  </motion.div>
-                )}
-                {project.rating && (
-                  <motion.div
-                    whileHover={{ y: -2 }}
-                    className="text-center p-2 sm:p-3 bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl shadow-sm"
-                  >
-                    <Icon
-                      name="Star"
-                      size={16}
-                      className="sm:w-5 sm:h-5 mx-auto mb-1 sm:mb-2 text-yellow-500"
-                    />
-                    <p className="text-[10px] sm:text-xs text-gray-500">
-                      Rating
-                    </p>
-                    <p className="text-[11px] sm:text-sm font-bold text-gray-900 dark:text-white mt-0.5 sm:mt-1">
-                      {project.rating}/5.0
-                    </p>
-                  </motion.div>
-                )}
-                {project.status && (
-                  <motion.div
-                    whileHover={{ y: -2 }}
-                    className="text-center p-2 sm:p-3 bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl shadow-sm"
-                  >
-                    <Icon
-                      name="CheckCircle"
-                      size={16}
-                      className="sm:w-5 sm:h-5 mx-auto mb-1 sm:mb-2 text-purple-500"
-                    />
-                    <p className="text-[10px] sm:text-xs text-gray-500">
-                      Status
-                    </p>
-                    <p className="text-[11px] sm:text-sm font-bold text-gray-900 dark:text-white mt-0.5 sm:mt-1 truncate">
-                      {project.status}
-                    </p>
-                  </motion.div>
-                )}
-              </div>
-
-              {/* Action Buttons */}
-              {(project.liveUrl || project.githubUrl) && (
-                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 p-4 sm:p-6 border-b border-gray-200 dark:border-gray-800">
-                  {project.liveUrl && (
-                    <motion.div whileHover={{ scale: 1.02 }} className="flex-1">
-                      <Button
-                        variant="default"
-                        size="sm"
-                        iconName="ExternalLink"
-                        className="w-full text-sm"
-                        onClick={() => window.open(project.liveUrl, "_blank")}
-                      >
-                        Live Demo
-                      </Button>
-                    </motion.div>
+              {/* Stats Cards - Glass Design */}
+              {(project.duration ||
+                project.teamSize ||
+                project.rating ||
+                project.status ||
+                project.platforms) && (
+                <div className="grid grid-cols-2 gap-4 p-5 sm:grid-cols-4 sm:p-7 bg-gradient-to-r from-gray-50/80 to-gray-100/50 dark:from-gray-800/30 dark:to-gray-800/10">
+                  {project.duration && (
+                    <div className="p-3 text-center transition-all duration-300 bg-white shadow-md dark:bg-gray-800/80 rounded-xl hover:shadow-lg hover:-translate-y-1">
+                      <Icon
+                        name="Calendar"
+                        size={20}
+                        className="mx-auto mb-2 text-blue-500"
+                      />
+                      <p className="text-xs font-medium text-gray-500">
+                        Duration
+                      </p>
+                      <p className="mt-1 text-sm font-bold text-gray-900 dark:text-white">
+                        {project.duration}
+                      </p>
+                    </div>
                   )}
-                  {project.githubUrl && (
-                    <motion.div whileHover={{ scale: 1.02 }} className="flex-1">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        iconName="Github"
-                        className="w-full text-sm"
-                        onClick={() => window.open(project.githubUrl, "_blank")}
-                      >
-                        Source Code
-                      </Button>
-                    </motion.div>
+                  {project.teamSize && (
+                    <div className="p-3 text-center transition-all duration-300 bg-white shadow-md dark:bg-gray-800/80 rounded-xl hover:shadow-lg hover:-translate-y-1">
+                      <Icon
+                        name="Users"
+                        size={20}
+                        className="mx-auto mb-2 text-green-500"
+                      />
+                      <p className="text-xs font-medium text-gray-500">Team</p>
+                      <p className="mt-1 text-sm font-bold text-gray-900 dark:text-white">
+                        {project.teamSize}
+                      </p>
+                    </div>
+                  )}
+                  {project.rating && (
+                    <div className="p-3 text-center transition-all duration-300 bg-white shadow-md dark:bg-gray-800/80 rounded-xl hover:shadow-lg hover:-translate-y-1">
+                      <Icon
+                        name="Star"
+                        size={20}
+                        className="mx-auto mb-2 text-yellow-500"
+                      />
+                      <p className="text-xs font-medium text-gray-500">
+                        Rating
+                      </p>
+                      <p className="mt-1 text-sm font-bold text-gray-900 dark:text-white">
+                        {project.rating}/5.0
+                      </p>
+                    </div>
+                  )}
+                  {project.status && (
+                    <div className="p-3 text-center transition-all duration-300 bg-white shadow-md dark:bg-gray-800/80 rounded-xl hover:shadow-lg hover:-translate-y-1">
+                      <Icon
+                        name="CheckCircle"
+                        size={20}
+                        className="mx-auto mb-2 text-purple-500"
+                      />
+                      <p className="text-xs font-medium text-gray-500">
+                        Status
+                      </p>
+                      <p className="mt-1 text-sm font-bold text-gray-900 truncate dark:text-white">
+                        {project.status}
+                      </p>
+                    </div>
+                  )}
+                  {project.platforms && project.platforms.length > 0 && (
+                    <div className="col-span-2 p-3 text-center transition-all duration-300 bg-white shadow-md dark:bg-gray-800/80 rounded-xl sm:col-span-1 hover:shadow-lg hover:-translate-y-1">
+                      <Icon
+                        name="Smartphone"
+                        size={20}
+                        className="mx-auto mb-2 text-indigo-500"
+                      />
+                      <p className="text-xs font-medium text-gray-500">
+                        Platforms
+                      </p>
+                      <p className="mt-1 text-sm font-bold text-gray-900 truncate dark:text-white">
+                        {project.platforms.join(", ")}
+                      </p>
+                    </div>
                   )}
                 </div>
               )}
 
-              {/* Tabs */}
-              <div className="flex overflow-x-auto border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 sticky top-0 z-10">
+              {/* Action Buttons - Enhanced */}
+              {(project.liveUrl ||
+                project.githubUrl ||
+                project.downloadUrl) && (
+                <div className="flex flex-col gap-3 p-5 border-b border-gray-100 sm:flex-row sm:p-7 dark:border-gray-800">
+                  {project.liveUrl && (
+                    <Button
+                      variant="default"
+                      size="md"
+                      iconName="ExternalLink"
+                      className="w-full shadow-md sm:flex-1 hover:shadow-lg"
+                      onClick={() => window.open(project.liveUrl, "_blank")}
+                    >
+                      Live Demo
+                    </Button>
+                  )}
+                  {project.downloadUrl && (
+                    <Button
+                      variant="default"
+                      size="md"
+                      iconName="Download"
+                      className="w-full shadow-md sm:flex-1 bg-gradient-to-r from-green-600 to-emerald-600 hover:shadow-lg"
+                      onClick={() => window.open(project.downloadUrl, "_blank")}
+                    >
+                      Download App
+                    </Button>
+                  )}
+                  {project.githubUrl && (
+                    <Button
+                      variant="outline"
+                      size="md"
+                      iconName="Github"
+                      className="w-full border-gray-300 shadow-md sm:flex-1 dark:border-gray-600 hover:shadow-lg"
+                      onClick={() => window.open(project.githubUrl, "_blank")}
+                    >
+                      Source Code
+                    </Button>
+                  )}
+                </div>
+              )}
+
+              {/* Tabs - Modern Indicator */}
+              <div className="sticky top-0 z-10 flex bg-white border-b border-gray-100 dark:border-gray-800 dark:bg-gray-900">
                 {tabs.map((tab) => (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`flex-1 min-w-[70px] sm:min-w-0 py-2.5 sm:py-4 text-[11px] sm:text-sm font-medium transition-all relative ${
+                    className={`flex-1 py-4 text-sm font-semibold transition-all relative ${
                       activeTab === tab.id
                         ? `text-${tab.color}-600 dark:text-${tab.color}-400`
                         : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
                     }`}
                   >
-                    <div className="flex items-center justify-center gap-1 sm:gap-2">
-                      <Icon
-                        name={tab.icon}
-                        size={14}
-                        className="sm:w-4.5 sm:h-4.5"
-                      />
-                      <span className="hidden xs:inline">{tab.label}</span>
-                      <span className="xs:hidden">
+                    <div className="flex items-center justify-center gap-2">
+                      <Icon name={tab.icon} size={18} />
+                      <span className="hidden sm:inline">{tab.label}</span>
+                      <span className="sm:hidden">
                         {tab.label.substring(0, 3)}
                       </span>
                     </div>
                     {activeTab === tab.id && (
                       <motion.div
                         layoutId="activeTab"
-                        className={`absolute bottom-0 left-0 right-0 h-0.5 bg-${tab.color}-500`}
+                        className={`absolute bottom-0 left-0 right-0 h-0.5 bg-${tab.color}-500 rounded-full`}
                         transition={{
                           type: "spring",
                           bounce: 0.2,
-                          duration: 0.6,
+                          duration: 0.5,
                         }}
                       />
                     )}
@@ -3800,38 +3153,40 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                 ))}
               </div>
 
-              {/* Tab Content */}
-              <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
-                {/* Overview Tab */}
+              {/* Tab Content - Improved Cards */}
+              <div className="p-6 space-y-6 sm:p-7">
+                {/* Overview */}
                 {activeTab === "overview" && (
                   <motion.div
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="space-y-4 sm:space-y-5"
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.2 }}
+                    className="space-y-5"
                   >
                     <div>
-                      <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
+                      <h3 className="mb-3 text-xl font-bold text-gray-900 dark:text-white">
                         About This Project
                       </h3>
-                      <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                      <p className="text-base leading-relaxed text-gray-700 dark:text-gray-300">
                         {project.fullDescription || project.description}
                       </p>
                     </div>
                     {project.impact && (
-                      <div className="p-3 sm:p-5 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl border border-blue-100 dark:border-blue-800/30">
-                        <div className="flex gap-2 sm:gap-3">
-                          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center flex-shrink-0 shadow-lg">
+                      <div className="p-5 border-l-4 border-blue-500 shadow-md bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl">
+                        <div className="flex gap-4">
+                          <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 bg-blue-500 rounded-lg shadow-md">
                             <Icon
                               name="Target"
-                              size={16}
-                              className="sm:w-5 sm:h-5 text-white"
+                              size={20}
+                              className="text-white"
                             />
                           </div>
                           <div>
-                            <h4 className="text-sm sm:text-base font-semibold text-gray-900 dark:text-white mb-0.5 sm:mb-1">
-                              Project Impact
+                            <h4 className="mb-1 text-lg font-semibold text-gray-900 dark:text-white">
+                              Impact
                             </h4>
-                            <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">
+                            <p className="text-gray-700 dark:text-gray-300">
                               {project.impact}
                             </p>
                           </div>
@@ -3841,193 +3196,150 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                   </motion.div>
                 )}
 
-                {/* Technical Tab */}
+                {/* Technical */}
                 {activeTab === "technical" && (
                   <motion.div
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="space-y-4 sm:space-y-5"
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.2 }}
+                    className="space-y-6"
                   >
                     <div>
-                      <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
-                        Technology Stack
+                      <h3 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
+                        Tech Stack
                       </h3>
-                      <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                      <div className="flex flex-wrap gap-3">
                         {project.technologies?.map((tech, idx) => (
-                          <motion.span
+                          <span
                             key={idx}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: idx * 0.05 }}
-                            whileHover={{ scale: 1.05, y: -2 }}
-                            className="px-2 py-1 sm:px-3 sm:py-2 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 text-purple-700 dark:text-purple-300 rounded-lg text-[11px] sm:text-sm font-medium shadow-sm"
+                            className="px-4 py-2 text-sm font-semibold text-purple-700 transition-all shadow-sm rounded-xl bg-purple-50 dark:bg-purple-900/30 dark:text-purple-300 hover:shadow-md"
                           >
                             {tech}
-                          </motion.span>
+                          </span>
                         ))}
                       </div>
                     </div>
                     {project.challenges?.map((challenge, idx) => (
-                      <motion.div
+                      <div
                         key={idx}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: idx * 0.1 }}
-                        className="p-3 sm:p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700"
+                        className="p-5 border border-gray-100 shadow-sm rounded-xl bg-gray-50 dark:bg-gray-800/50 dark:border-gray-700"
                       >
-                        <div className="flex items-start gap-2 sm:gap-3">
-                          <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg bg-red-100 dark:bg-red-900/30 flex items-center justify-center flex-shrink-0">
-                            <Icon
-                              name="AlertCircle"
-                              size={12}
-                              className="sm:w-4 sm:h-4 text-red-600 dark:text-red-400"
-                            />
+                        <div className="flex gap-4">
+                          <div className="flex-shrink-0">
+                            <div className="flex items-center justify-center w-10 h-10 bg-red-100 rounded-lg dark:bg-red-900/30">
+                              <Icon
+                                name="AlertCircle"
+                                size={20}
+                                className="text-red-600 dark:text-red-400"
+                              />
+                            </div>
                           </div>
-                          <div className="flex-1">
-                            <p className="text-xs sm:text-sm mb-1 sm:mb-2">
-                              <span className="font-semibold text-red-600 dark:text-red-400">
+                          <div className="flex-1 space-y-2">
+                            <p className="text-base">
+                              <span className="font-bold text-red-600 dark:text-red-400">
                                 Challenge:
                               </span>{" "}
                               {challenge.problem}
                             </p>
-                            <p className="text-xs sm:text-sm">
-                              <span className="font-semibold text-green-600 dark:text-green-400">
+                            <p className="text-base">
+                              <span className="font-bold text-green-600 dark:text-green-400">
                                 Solution:
                               </span>{" "}
                               {challenge.solution}
                             </p>
                           </div>
                         </div>
-                      </motion.div>
+                      </div>
                     ))}
                   </motion.div>
                 )}
 
-                {/* Features Tab */}
+                {/* Features */}
                 {activeTab === "features" && (
                   <motion.div
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="space-y-2 sm:space-y-3"
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.2 }}
+                    className="space-y-3"
                   >
                     {project.features?.map((feature, idx) => (
-                      <motion.div
+                      <div
                         key={idx}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: idx * 0.05 }}
-                        whileHover={{ x: 5 }}
-                        className="flex items-start gap-2 sm:gap-3 p-2.5 sm:p-4 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-xl border border-emerald-100 dark:border-emerald-800/30"
+                        className="flex items-start gap-4 p-4 transition-all rounded-xl bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 hover:shadow-md"
                       >
-                        <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg bg-emerald-500 flex items-center justify-center flex-shrink-0 shadow-md">
-                          <Icon
-                            name="CheckCircle"
-                            size={12}
-                            className="sm:w-4 sm:h-4 text-white"
-                          />
+                        <div className="flex-shrink-0">
+                          <div className="flex items-center justify-center w-8 h-8 rounded-lg shadow-sm bg-emerald-500">
+                            <Icon
+                              name="CheckCircle"
+                              size={16}
+                              className="text-white"
+                            />
+                          </div>
                         </div>
-                        <span className="text-xs sm:text-sm text-gray-700 dark:text-gray-300">
+                        <span className="text-base font-medium text-gray-800 dark:text-gray-200">
                           {feature}
                         </span>
-                      </motion.div>
+                      </div>
                     ))}
                   </motion.div>
                 )}
 
-                {/* Impact Tab */}
+                {/* Impact */}
                 {activeTab === "impact" && (
                   <motion.div
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="space-y-4 sm:space-y-5"
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.2 }}
+                    className="space-y-6"
                   >
                     {project.metrics?.length > 0 && (
                       <div>
-                        <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
+                        <h3 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
                           Key Metrics
                         </h3>
-                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4">
+                        <div className="grid grid-cols-2 gap-4">
                           {project.metrics.map((metric, idx) => (
-                            <motion.div
+                            <div
                               key={idx}
-                              initial={{ opacity: 0, scale: 0.8 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              transition={{ delay: idx * 0.1 }}
-                              whileHover={{ scale: 1.05 }}
-                              className="p-2.5 sm:p-4 bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/10 dark:to-amber-900/10 rounded-xl text-center border border-orange-100 dark:border-orange-800/30"
+                              className="p-4 text-center transition-all shadow-md rounded-xl bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 hover:scale-105"
                             >
-                              <div className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent">
+                              <div className="text-2xl font-extrabold text-transparent bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text">
                                 {metric.value}
                               </div>
-                              <div className="text-[10px] sm:text-xs text-gray-600 dark:text-gray-400 mt-0.5 sm:mt-1">
+                              <div className="mt-1 text-sm font-medium text-gray-600 dark:text-gray-400">
                                 {metric.label}
                               </div>
-                            </motion.div>
+                            </div>
                           ))}
                         </div>
                       </div>
                     )}
                     {project.learnings?.length > 0 && (
                       <div>
-                        <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
-                          Key Learnings
+                        <h3 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
+                          Learnings
                         </h3>
-                        <div className="space-y-1.5 sm:space-y-2">
+                        <div className="space-y-3">
                           {project.learnings.map((learning, idx) => (
-                            <motion.div
+                            <div
                               key={idx}
-                              initial={{ opacity: 0, x: -20 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: idx * 0.05 }}
-                              className="flex items-start gap-2 p-2.5 sm:p-3 bg-blue-50 dark:bg-blue-900/10 rounded-lg"
+                              className="flex items-start gap-3 p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20"
                             >
                               <Icon
                                 name="Lightbulb"
-                                size={14}
-                                className="sm:w-4.5 sm:h-4.5 text-yellow-500 flex-shrink-0 mt-0.5"
+                                size={20}
+                                className="text-yellow-500 flex-shrink-0 mt-0.5"
                               />
-                              <span className="text-xs sm:text-sm text-gray-700 dark:text-gray-300">
+                              <span className="text-base text-gray-700 dark:text-gray-300">
                                 {learning}
                               </span>
-                            </motion.div>
+                            </div>
                           ))}
                         </div>
                       </div>
-                    )}
-                    {project.testimonial && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="p-4 sm:p-6 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-800/50 rounded-xl relative overflow-hidden"
-                      >
-                        <Icon
-                          name="Quote"
-                          size="24"
-                          className="sm:w-10 sm:h-10 text-gray-300 dark:text-gray-600 absolute top-2 left-2 sm:top-4 sm:left-4"
-                        />
-                        <div className="relative z-10 pt-6 sm:pt-8">
-                          <p className="text-xs sm:text-sm italic text-gray-600 dark:text-gray-300 mb-3 sm:mb-4 leading-relaxed">
-                            "{project.testimonial.content}"
-                          </p>
-                          <div className="flex items-center gap-2 sm:gap-3">
-                            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center shadow-lg">
-                              <Icon
-                                name="User"
-                                size={14}
-                                className="sm:w-4.5 sm:h-4.5 text-white"
-                              />
-                            </div>
-                            <div>
-                              <p className="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white">
-                                {project.testimonial.author}
-                              </p>
-                              <p className="text-[10px] sm:text-xs text-gray-500">
-                                {project.testimonial.role}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </motion.div>
                     )}
                   </motion.div>
                 )}
