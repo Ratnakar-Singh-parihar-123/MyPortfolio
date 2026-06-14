@@ -226,7 +226,7 @@ const Experience = () => {
     {
       title: "Deployment & Maintenance",
       icon: <Rocket className="w-5 h-5" />,
-      desc: "",
+      desc: "Production deployment",
     },
   ];
 
@@ -296,7 +296,7 @@ const Experience = () => {
   return (
     <section
       id="experience"
-      className={`min-h-screen py-16 md:py-24 px-5 sm:px-8 lg:px-12 transition-all duration-300 ${
+      className={`min-h-screen py-12 sm:py-16 md:py-24 px-4 sm:px-6 lg:px-12 transition-all duration-300 overflow-x-hidden ${
         darkMode
           ? "bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white"
           : "bg-gradient-to-b from-gray-50 via-white to-gray-50 text-gray-800"
@@ -305,23 +305,22 @@ const Experience = () => {
       <Header />
 
       <div className="relative max-w-6xl mx-auto">
-        {/* Subtle background decoration */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Subtle background decoration - hidden on mobile for performance */}
+        <div className="absolute inset-0 hidden overflow-hidden pointer-events-none sm:block">
           <div className="absolute rounded-full top-40 -left-20 w-72 h-72 mix-blend-multiply filter blur-3xl opacity-5 animate-pulse"></div>
           <div className="absolute bg-purple-500 rounded-full bottom-20 -right-20 w-80 h-80 mix-blend-multiply filter blur-3xl opacity-5 animate-pulse"></div>
         </div>
 
-        {/* Header Section */}
+        {/* Header Section - Responsive text sizes */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="relative mb-20 text-center md:mb-28"
+          className="relative mb-12 text-center sm:mb-16 md:mb-28"
         >
           <div className="relative inline-block">
-            <div className="absolute rounded-full opacity-20"></div>
             <h1
-              className={`relative text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight ${
+              className={`relative text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight ${
                 darkMode ? "text-white" : "text-gray-800"
               }`}
             >
@@ -331,9 +330,9 @@ const Experience = () => {
               </span>
             </h1>
           </div>
-          <div className="max-w-3xl px-4 mx-auto mt-6">
+          <div className="max-w-3xl px-3 mx-auto mt-4 sm:mt-6">
             <p
-              className={`text-lg sm:text-xl md:text-2xl leading-relaxed ${
+              className={`text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed ${
                 darkMode ? "text-gray-300" : "text-gray-600"
               }`}
             >
@@ -343,18 +342,18 @@ const Experience = () => {
           </div>
         </motion.div>
 
-        {/* Professional Timeline Section */}
+        {/* Professional Timeline Section - FULLY RESPONSIVE FIX */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
           variants={staggerContainer}
-          className="mb-28 md:mb-36"
+          className="mb-20 sm:mb-28 md:mb-36"
         >
-          <div className="mb-16 text-center">
+          <div className="mb-10 text-center sm:mb-16">
             <motion.h2
               variants={fadeUp}
-              className="text-3xl font-bold md:text-4xl lg:text-5xl"
+              className="text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl"
             >
               Work{" "}
               <span className="text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
@@ -363,43 +362,43 @@ const Experience = () => {
             </motion.h2>
             <motion.p
               variants={fadeUp}
-              className={`mt-4 text-base md:text-lg ${darkMode ? "text-gray-300" : "text-gray-600"}`}
+              className={`mt-2 sm:mt-4 text-sm sm:text-base md:text-lg ${darkMode ? "text-gray-300" : "text-gray-600"}`}
             >
               My professional growth path
             </motion.p>
           </div>
 
           <div className="relative">
-            {/* Timeline line with gradient glow */}
-            <div className="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 rounded-full shadow-lg"></div>
-            <div className="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 w-1.5 h-full bg-gradient-to-b from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-sm"></div>
+            {/* Timeline line - responsive positioning */}
+            <div className="absolute left-5 xs:left-6 md:left-1/2 transform md:-translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 rounded-full shadow-lg"></div>
+            <div className="absolute left-5 xs:left-6 md:left-1/2 transform md:-translate-x-1/2 w-1.5 h-full bg-gradient-to-b from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-sm"></div>
 
             {professionalExperiences.map((exp, idx) => (
               <motion.div
                 key={idx}
                 variants={fadeUp}
-                className={`relative flex flex-col md:flex-row gap-10 mb-16 ${
+                className={`relative flex flex-col md:flex-row gap-6 sm:gap-10 mb-12 sm:mb-16 ${
                   idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 }`}
               >
-                {/* Timeline dot with enhanced styling */}
-                <div className="absolute z-20 flex items-center justify-center w-12 h-12 transform -translate-x-1/2 rounded-full shadow-lg left-6 md:left-1/2 bg-gradient-to-r from-blue-500 to-purple-500 shadow-blue-500/30">
+                {/* Timeline dot - responsive position */}
+                <div className="absolute z-20 flex items-center justify-center w-10 h-10 transform -translate-x-1/2 rounded-full shadow-lg xs:w-12 xs:h-12 left-5 xs:left-6 md:left-1/2 bg-gradient-to-r from-blue-500 to-purple-500 shadow-blue-500/30">
                   {exp.current && (
                     <span className="absolute flex w-full h-full">
                       <span className="absolute inline-flex w-full h-full bg-green-400 rounded-full opacity-75 animate-ping"></span>
                     </span>
                   )}
-                  <div className="flex items-center justify-center w-10 h-10 text-sm font-bold text-gray-900 bg-white rounded-full shadow-inner dark:bg-gray-900 dark:text-white">
+                  <div className="flex items-center justify-center w-8 h-8 text-xs font-bold text-gray-900 bg-white rounded-full shadow-inner xs:w-10 xs:h-10 xs:text-sm dark:bg-gray-900 dark:text-white">
                     {exp.logoInitial}
                   </div>
                 </div>
 
-                {/* Card with improved design */}
+                {/* Card - dynamic margin for different screen sizes */}
                 <div
-                  className={`ml-16 md:ml-0 w-full md:w-5/12 ${idx % 2 === 0 ? "md:pr-8" : "md:pl-8"}`}
+                  className={`ml-12 xs:ml-14 sm:ml-16 md:ml-0 w-full md:w-5/12 ${idx % 2 === 0 ? "md:pr-8" : "md:pl-8"}`}
                 >
                   <div
-                    className={`group relative rounded-2xl p-6 transition-all duration-500 hover:-translate-y-2 ${
+                    className={`group relative rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 transition-all duration-500 hover:-translate-y-2 ${
                       darkMode
                         ? "bg-gray-800/80 backdrop-blur-sm border border-gray-700/50 hover:border-blue-500/40"
                         : "bg-white/90 backdrop-blur-sm border border-gray-200/80 hover:border-blue-300/50"
@@ -409,65 +408,71 @@ const Experience = () => {
                     <div className="absolute inset-0 transition-opacity duration-700 opacity-0 pointer-events-none group-hover:opacity-100 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10"></div>
 
                     {exp.current && (
-                      <div className="absolute z-10 top-4 right-4">
-                        <span className="relative px-3 py-1 text-xs font-bold text-white rounded-full shadow-lg bg-gradient-to-r from-green-500 to-emerald-500">
+                      <div className="absolute z-10 top-3 right-3 sm:top-4 sm:right-4">
+                        <span className="relative px-2 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs font-bold text-white rounded-full shadow-lg bg-gradient-to-r from-green-500 to-emerald-500">
                           <span className="absolute inset-0 bg-green-500 rounded-full opacity-50 animate-ping"></span>
                           <span className="relative">Current</span>
                         </span>
                       </div>
                     )}
 
-                    <div className="flex items-start gap-4 mb-5">
+                    <div className="flex items-start gap-3 mb-3 sm:gap-4 sm:mb-5">
                       <div
-                        className={`p-3 rounded-xl bg-gradient-to-r ${exp.color} bg-opacity-10 shadow-md ${
+                        className={`p-2 sm:p-3 rounded-lg sm:rounded-xl bg-gradient-to-r ${exp.color} bg-opacity-10 shadow-md ${
                           darkMode ? "bg-gray-700/80" : "bg-gray-100"
                         }`}
                       >
                         {exp.icon}
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold tracking-tight md:text-2xl">
+                        <h3 className="text-lg font-bold tracking-tight break-words sm:text-xl md:text-2xl">
                           {exp.company}
                         </h3>
-                        <p className="mt-1 text-base font-semibold text-blue-600 dark:text-blue-400">
+                        <p className="mt-0.5 sm:mt-1 text-sm sm:text-base font-semibold text-blue-600 dark:text-blue-400 break-words">
                           {exp.role}
                         </p>
                       </div>
                     </div>
 
-                    <div className="flex flex-wrap gap-4 mb-5 text-sm text-gray-500 dark:text-gray-400">
-                      <span className="flex items-center gap-1.5 bg-gray-100 dark:bg-gray-800/50 px-2.5 py-1 rounded-full">
-                        <Calendar className="w-3.5 h-3.5" /> {exp.duration}
+                    <div className="flex flex-wrap gap-2 mb-3 text-xs text-gray-500 sm:gap-4 sm:mb-5 sm:text-sm dark:text-gray-400">
+                      <span className="flex items-center gap-1 bg-gray-100 dark:bg-gray-800/50 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full">
+                        <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5" />{" "}
+                        <span className="text-[11px] sm:text-xs">
+                          {exp.duration}
+                        </span>
                       </span>
-                      <span className="flex items-center gap-1.5 bg-gray-100 dark:bg-gray-800/50 px-2.5 py-1 rounded-full">
-                        <Pin className="w-3.5 h-3.5" /> {exp.location}
+                      <span className="flex items-center gap-1 bg-gray-100 dark:bg-gray-800/50 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full">
+                        <Pin className="w-3 h-3 sm:w-3.5 sm:h-3.5" />{" "}
+                        <span className="text-[11px] sm:text-xs">
+                          {exp.location}
+                        </span>
                       </span>
                     </div>
 
                     <p
-                      className={`text-base mb-5 leading-relaxed border-l-3 border-blue-500 pl-4 ${
+                      className={`text-sm sm:text-base mb-4 sm:mb-5 leading-relaxed border-l-2 sm:border-l-3 border-blue-500 pl-3 sm:pl-4 ${
                         darkMode ? "text-gray-300" : "text-gray-700"
                       }`}
                     >
                       {exp.description}
                     </p>
 
-                    <div className="mb-5">
-                      <h4 className="mb-3 text-xs font-semibold tracking-wider text-gray-500 uppercase dark:text-gray-400">
+                    <div className="mb-4 sm:mb-5">
+                      <h4 className="mb-2 sm:mb-3 text-[10px] sm:text-xs font-semibold tracking-wider text-gray-500 uppercase dark:text-gray-400">
                         Key Responsibilities
                       </h4>
-                      <ul className="space-y-2">
+                      <ul className="space-y-1.5 sm:space-y-2">
                         {exp.responsibilities.slice(0, 3).map((resp, i) => (
                           <li
                             key={i}
-                            className="flex items-start text-sm group/resp"
+                            className="flex items-start text-xs sm:text-sm group/resp"
                           >
-                            <ChevronRight className="w-4 h-4 mt-0.5 mr-2 text-blue-500 flex-shrink-0 transition-transform group-hover/resp:translate-x-0.5" />
-                            <span>{resp}</span>
+                            <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4 mt-0.5 mr-1.5 sm:mr-2 text-blue-500 flex-shrink-0 transition-transform group-hover/resp:translate-x-0.5" />
+                            <span className="break-words">{resp}</span>
                           </li>
                         ))}
                         {exp.responsibilities.length > 3 && (
-                          <li className="mt-1 text-sm font-medium text-blue-500">
+                          <li className="mt-1 text-xs font-medium text-blue-500 sm:text-sm">
                             +{exp.responsibilities.length - 3} more
                             responsibilities
                           </li>
@@ -475,11 +480,11 @@ const Experience = () => {
                       </ul>
                     </div>
 
-                    <div className="flex flex-wrap gap-2 pt-2 border-t border-gray-200 dark:border-gray-700/50">
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-2 sm:pt-3 border-t border-gray-200 dark:border-gray-700/50">
                       {exp.techStack.slice(0, 4).map((tech, i) => (
                         <span
                           key={i}
-                          className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all hover:scale-105 ${
+                          className={`px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg text-[10px] sm:text-xs font-medium transition-all hover:scale-105 ${
                             darkMode
                               ? "bg-gray-700/80 text-gray-300 hover:bg-gray-600"
                               : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -489,7 +494,7 @@ const Experience = () => {
                         </span>
                       ))}
                       {exp.techStack.length > 4 && (
-                        <span className="px-2.5 py-1 rounded-lg text-xs font-medium bg-gray-200 dark:bg-gray-700">
+                        <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg text-[10px] sm:text-xs font-medium bg-gray-200 dark:bg-gray-700">
                           +{exp.techStack.length - 4}
                         </span>
                       )}
@@ -501,33 +506,33 @@ const Experience = () => {
           </div>
         </motion.div>
 
-        {/* Career Journey Timeline - Enhanced */}
+        {/* Career Journey Timeline - Responsive */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-28 md:mb-36"
+          className="mb-20 sm:mb-28 md:mb-36"
         >
-          <div className="mb-16 text-center">
-            <h2 className="text-3xl font-bold md:text-4xl lg:text-5xl">
+          <div className="mb-10 text-center sm:mb-16">
+            <h2 className="text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl">
               Career{" "}
               <span className="text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
                 Journey
               </span>
             </h2>
             <p
-              className={`mt-4 text-base md:text-lg ${darkMode ? "text-gray-300" : "text-gray-600"}`}
+              className={`mt-2 sm:mt-4 text-sm sm:text-base md:text-lg ${darkMode ? "text-gray-300" : "text-gray-600"}`}
             >
               From freelancing to professional developer
             </p>
           </div>
-          <div className="relative flex flex-col items-center justify-between gap-8 md:flex-row md:gap-6">
+          <div className="relative flex flex-col items-center justify-between gap-8 md:flex-row md:gap-4 lg:gap-6">
             {careerJourney.map((step, idx) => (
               <React.Fragment key={idx}>
-                <div className="relative flex flex-col items-center w-full text-center md:w-1/3 group">
+                <div className="relative flex flex-col items-center w-full px-4 text-center md:w-1/3 group">
                   <div
-                    className={`relative w-16 h-16 rounded-full flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110 ${
+                    className={`relative w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-3 sm:mb-4 transition-all duration-300 group-hover:scale-110 ${
                       step.status === "current"
                         ? "bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg shadow-purple-500/30"
                         : "bg-gradient-to-r from-blue-500 to-cyan-500 shadow-md shadow-blue-500/20"
@@ -538,52 +543,54 @@ const Experience = () => {
                       <span className="absolute inset-0 bg-purple-500 rounded-full animate-ping opacity-40"></span>
                     )}
                   </div>
-                  <h3 className="text-xl font-bold">{step.step}</h3>
-                  <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                  <h3 className="text-lg font-bold break-words sm:text-xl">
+                    {step.step}
+                  </h3>
+                  <p className="mt-1 text-xs text-gray-500 sm:text-sm dark:text-gray-400">
                     {step.period}
                   </p>
                   <p
-                    className={`text-sm mt-3 max-w-xs px-3 ${darkMode ? "text-gray-400" : "text-gray-500"}`}
+                    className={`text-xs sm:text-sm mt-2 sm:mt-3 max-w-xs px-2 ${darkMode ? "text-gray-400" : "text-gray-500"}`}
                   >
                     {step.description}
                   </p>
                 </div>
                 {idx < careerJourney.length - 1 && (
-                  <ArrowRight className="hidden w-8 h-8 text-blue-400 transition-opacity opacity-40 md:block group-hover:opacity-70" />
+                  <ArrowRight className="hidden w-6 h-6 text-blue-400 transition-opacity md:block lg:w-8 lg:h-8 opacity-40 group-hover:opacity-70" />
                 )}
               </React.Fragment>
             ))}
           </div>
         </motion.div>
 
-        {/* Tech Stack Used Professionally - Enhanced Cards */}
+        {/* Tech Stack Used Professionally - Responsive Grid */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={staggerContainer}
-          className="mb-28 md:mb-36"
+          className="mb-20 sm:mb-28 md:mb-36"
         >
-          <div className="mb-16 text-center">
-            <h2 className="text-3xl font-bold md:text-4xl lg:text-5xl">
+          <div className="mb-10 text-center sm:mb-16">
+            <h2 className="text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl">
               Tech Stack{" "}
               <span className="text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
                 Professionally
               </span>
             </h2>
             <p
-              className={`mt-4 text-base md:text-lg ${darkMode ? "text-gray-300" : "text-gray-600"}`}
+              className={`mt-2 sm:mt-4 text-sm sm:text-base md:text-lg ${darkMode ? "text-gray-300" : "text-gray-600"}`}
             >
               Technologies I use daily in production
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-5">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
             {professionalTechStack.map((tech, idx) => (
               <motion.div
                 key={idx}
                 variants={fadeUp}
-                whileHover={{ y: -6, scale: 1.02 }}
-                className={`group relative rounded-xl p-5 text-center transition-all duration-300 ${
+                whileHover={{ y: -4, scale: 1.02 }}
+                className={`group relative rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 text-center transition-all duration-300 ${
                   darkMode
                     ? "bg-gray-800/60 border border-gray-700/50 hover:border-blue-500/50"
                     : "bg-white/80 border border-gray-200/80 hover:border-blue-300/50"
@@ -591,14 +598,14 @@ const Experience = () => {
               >
                 <div className="absolute inset-0 transition-all duration-500 bg-gradient-to-br from-blue-500/0 to-purple-500/0 group-hover:from-blue-500/5 group-hover:to-purple-500/5"></div>
                 <div className="relative z-10">
-                  <div className="inline-block mb-3 text-4xl transition-transform group-hover:scale-110">
+                  <div className="inline-block mb-2 text-3xl transition-transform sm:mb-3 sm:text-4xl group-hover:scale-110">
                     {tech.icon}
                   </div>
-                  <div className="mb-3 text-base font-semibold">
+                  <div className="mb-2 text-sm font-semibold break-words sm:mb-3 sm:text-base">
                     {tech.name}
                   </div>
                   <div
-                    className={`w-full h-1.5 rounded-full bg-gradient-to-r ${tech.color} transform origin-left transition-transform group-hover:scale-x-110`}
+                    className={`w-full h-1 sm:h-1.5 rounded-full bg-gradient-to-r ${tech.color} transform origin-left transition-transform group-hover:scale-x-110`}
                   ></div>
                 </div>
               </motion.div>
@@ -606,50 +613,50 @@ const Experience = () => {
           </div>
         </motion.div>
 
-        {/* Key Responsibilities Cards - Enhanced Grid */}
+        {/* Key Responsibilities Cards - Responsive Grid */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={staggerContainer}
-          className="mb-28 md:mb-36"
+          className="mb-20 sm:mb-28 md:mb-36"
         >
-          <div className="mb-16 text-center">
-            <h2 className="text-3xl font-bold md:text-4xl lg:text-5xl">
+          <div className="mb-10 text-center sm:mb-16">
+            <h2 className="text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl">
               Key{" "}
               <span className="text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
                 Responsibilities
               </span>
             </h2>
             <p
-              className={`mt-4 text-base md:text-lg ${darkMode ? "text-gray-300" : "text-gray-600"}`}
+              className={`mt-2 sm:mt-4 text-sm sm:text-base md:text-lg ${darkMode ? "text-gray-300" : "text-gray-600"}`}
             >
               Core competencies across my roles
             </p>
           </div>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 sm:gap-5 md:gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {keyResponsibilities.map((resp, idx) => (
               <motion.div
                 key={idx}
                 variants={fadeUp}
-                whileHover={{ y: -8 }}
-                className={`group relative rounded-xl p-6 transition-all duration-300 ${
+                whileHover={{ y: -6 }}
+                className={`group relative rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 transition-all duration-300 ${
                   darkMode
                     ? "bg-gray-800/60 border border-gray-700/50 hover:border-blue-500/40"
                     : "bg-white/80 border border-gray-200/80 hover:border-blue-300/40"
                 } shadow-md hover:shadow-xl overflow-hidden`}
               >
                 <div className="absolute inset-0 transition-all duration-500 bg-gradient-to-br from-blue-500/0 to-purple-500/0 group-hover:from-blue-500/5 group-hover:to-purple-500/5"></div>
-                <div className="relative flex items-start gap-3 mb-3">
-                  <div className="p-2.5 text-white rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 shadow-md group-hover:scale-110 transition-transform">
+                <div className="relative flex items-start gap-2 mb-2 sm:gap-3 sm:mb-3">
+                  <div className="p-1.5 sm:p-2 md:p-2.5 text-white rounded-lg sm:rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 shadow-md group-hover:scale-110 transition-transform">
                     {resp.icon}
                   </div>
-                  <h3 className="text-lg font-bold leading-tight">
+                  <h3 className="text-base font-bold leading-tight break-words sm:text-lg">
                     {resp.title}
                   </h3>
                 </div>
                 <p
-                  className={`relative text-sm leading-relaxed mt-2 pl-1 ${darkMode ? "text-gray-400" : "text-gray-500"}`}
+                  className={`relative text-xs sm:text-sm leading-relaxed mt-1 sm:mt-2 pl-1 ${darkMode ? "text-gray-400" : "text-gray-500"}`}
                 >
                   {resp.desc}
                 </p>
@@ -658,79 +665,81 @@ const Experience = () => {
           </div>
         </motion.div>
 
-        {/* Professional Achievements - Redesigned Section */}
+        {/* Professional Achievements - Responsive Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-28 md:mb-36"
+          className="mb-20 sm:mb-28 md:mb-36"
         >
           <div
-            className={`relative rounded-2xl p-8 md:p-10 transition-all duration-300 overflow-hidden ${
+            className={`relative rounded-xl sm:rounded-2xl p-5 sm:p-7 md:p-10 transition-all duration-300 overflow-hidden ${
               darkMode
                 ? "bg-gradient-to-br from-gray-800/90 to-gray-900/90 border border-gray-700/50"
                 : "bg-gradient-to-br from-blue-50/90 to-purple-50/90 border border-blue-100/80"
             } shadow-xl`}
           >
-            {/* Decorative elements */}
-            <div className="absolute top-0 right-0 w-40 h-40 -mt-20 -mr-20 rounded-full bg-gradient-to-bl from-blue-500/10 to-purple-500/10 blur-2xl"></div>
-            <div className="absolute bottom-0 left-0 w-40 h-40 -mb-20 -ml-20 rounded-full bg-gradient-to-tr from-blue-500/10 to-purple-500/10 blur-2xl"></div>
+            {/* Decorative elements - hidden on mobile */}
+            <div className="absolute top-0 right-0 hidden w-32 h-32 -mt-16 -mr-16 rounded-full bg-gradient-to-bl from-blue-500/10 to-purple-500/10 blur-2xl sm:block"></div>
+            <div className="absolute bottom-0 left-0 hidden w-32 h-32 -mb-16 -ml-16 rounded-full bg-gradient-to-tr from-blue-500/10 to-purple-500/10 blur-2xl sm:block"></div>
 
-            <div className="relative flex flex-col items-center justify-between gap-6 md:flex-row">
-              <div>
-                <h3 className="text-2xl font-bold text-transparent md:text-3xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
+            <div className="relative flex flex-col items-center justify-between gap-4 sm:flex-row sm:gap-6">
+              <div className="text-center sm:text-left">
+                <h3 className="text-xl font-bold text-transparent sm:text-2xl md:text-3xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
                   Professional Achievements
                 </h3>
                 <p
-                  className={`text-base mt-2 ${darkMode ? "text-gray-300" : "text-gray-600"}`}
+                  className={`text-sm sm:text-base mt-1 sm:mt-2 ${darkMode ? "text-gray-300" : "text-gray-600"}`}
                 >
                   Milestones I'm proud of
                 </p>
               </div>
-              <Award className="text-blue-500 w-14 h-14 opacity-80 drop-shadow-lg" />
+              <Award className="w-10 h-10 text-blue-500 sm:w-12 sm:h-12 md:w-14 md:h-14 opacity-80 drop-shadow-lg" />
             </div>
-            <div className="grid grid-cols-1 gap-4 mt-8 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-3 mt-6 sm:gap-4 sm:mt-8 md:grid-cols-2">
               {professionalAchievements.map((achievement, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, x: -10 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.05 }}
-                  className="flex items-start gap-3 p-2 transition-all rounded-lg hover:bg-white/20 dark:hover:bg-white/5"
+                  className="flex items-start gap-2 sm:gap-3 p-1.5 sm:p-2 transition-all rounded-lg hover:bg-white/20 dark:hover:bg-white/5"
                 >
-                  <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                  <span className="text-base font-medium">{achievement}</span>
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm font-medium break-words sm:text-base">
+                    {achievement}
+                  </span>
                 </motion.div>
               ))}
             </div>
           </div>
         </motion.div>
 
-        {/* Final CTA - Enhanced */}
+        {/* Final CTA - Fully Responsive */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className={`relative rounded-2xl p-10 md:p-14 lg:p-16 text-center overflow-hidden ${
+          className={`relative rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 lg:p-16 text-center overflow-hidden ${
             darkMode
               ? "bg-gradient-to-r from-blue-900/40 to-purple-900/40 border border-blue-800/50 backdrop-blur-sm"
               : "bg-gradient-to-r from-blue-600 to-indigo-600 text-white"
           } shadow-2xl`}
         >
-          {/* Animated background particles */}
-          <div className="absolute inset-0 opacity-30">
-            <div className="absolute top-0 left-0 w-32 h-32 bg-white rounded-full filter blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-0 right-0 w-40 h-40 delay-1000 bg-purple-300 rounded-full filter blur-3xl animate-pulse"></div>
+          {/* Animated background particles - simplified for mobile */}
+          <div className="absolute inset-0 opacity-20 sm:opacity-30">
+            <div className="absolute top-0 left-0 w-24 h-24 bg-white rounded-full sm:w-32 sm:h-32 filter blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-0 right-0 delay-1000 bg-purple-300 rounded-full w-28 h-28 sm:w-40 sm:h-40 filter blur-3xl animate-pulse"></div>
           </div>
 
           <div className="relative z-10">
-            <h3 className="mb-6 text-3xl font-bold md:text-4xl lg:text-5xl">
+            <h3 className="px-2 mb-4 text-2xl font-bold sm:mb-6 sm:text-3xl md:text-4xl lg:text-5xl">
               Ready to Build Something Amazing?
             </h3>
             <p
-              className={`text-lg md:text-xl lg:text-2xl mb-10 max-w-3xl mx-auto leading-relaxed ${
+              className={`text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 md:mb-10 max-w-3xl mx-auto leading-relaxed px-3 ${
                 darkMode ? "text-gray-200" : "text-blue-100"
               }`}
             >
@@ -738,25 +747,25 @@ const Experience = () => {
               problem-solving skills, I'm equipped to tackle complex challenges
               and deliver efficient solutions.
             </p>
-            <div className="flex flex-col justify-center gap-5 sm:flex-row md:gap-6">
+            <div className="flex flex-col justify-center gap-3 px-4 sm:flex-row sm:gap-5 md:gap-6 sm:px-0">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
-                className={`group relative px-8 py-3.5 rounded-xl font-bold text-base md:text-lg transition-all overflow-hidden ${
+                className={`group relative w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3.5 rounded-xl font-bold text-sm sm:text-base md:text-lg transition-all overflow-hidden ${
                   darkMode
                     ? "bg-white text-blue-600 hover:bg-gray-100 shadow-lg"
                     : "bg-white text-blue-600 hover:bg-gray-50 shadow-lg"
                 }`}
               >
-                <span className="relative z-10 flex items-center gap-2">
+                <span className="relative z-10 flex items-center justify-center gap-2">
                   View My Projects
-                  <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                  <ExternalLink className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-0.5 transition-transform" />
                 </span>
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
-                className={`group px-8 py-3.5 rounded-xl font-bold text-base md:text-lg transition-all ${
+                className={`group w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3.5 rounded-xl font-bold text-sm sm:text-base md:text-lg transition-all ${
                   darkMode
                     ? "bg-blue-700 hover:bg-blue-600 text-white shadow-lg"
                     : "bg-blue-700 hover:bg-blue-600 text-white shadow-lg"
