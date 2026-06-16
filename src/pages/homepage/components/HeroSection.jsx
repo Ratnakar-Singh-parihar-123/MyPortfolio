@@ -881,89 +881,90 @@ const HeroSection = () => {
       ref={containerRef}
       className="relative flex items-center justify-center min-h-screen pt-24 overflow-hidden bg-gradient-to-br from-slate-50/90 via-white to-slate-100/90 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 md:pt-28 lg:pt-32"
     >
-      {/* ---------- Refined Background Design ---------- */}
-      <div className="absolute inset-0 z-0">
+      {/* ---------- Optimized Background Design ---------- */}
+      <div className="absolute inset-0 z-0 will-change-transform">
         {/* Softer base gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-transparent to-purple-50/30 dark:from-blue-950/20 dark:via-transparent dark:to-purple-950/20" />
 
-        {/* Elegant floating orbs with organic motion */}
+        {/* Elegant floating orbs – fewer, smoother */}
         <motion.div
           animate={{
-            scale: [1, 1.15, 1],
-            x: [0, 30, 0],
-            y: [0, -25, 0],
+            scale: [1, 1.1, 1],
+            x: [0, 20, 0],
+            y: [0, -15, 0],
           }}
           transition={{
-            duration: 14,
+            duration: 12,
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute top-1/4 left-1/4 w-[700px] h-[700px] rounded-full bg-gradient-to-r from-blue-400/15 via-purple-400/15 to-pink-400/15 blur-3xl"
+          className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-gradient-to-r from-blue-400/15 via-purple-400/15 to-pink-400/15 blur-3xl will-change-transform"
         />
         <motion.div
           animate={{
-            scale: [1, 1.2, 1],
-            x: [0, -35, 0],
-            y: [0, 30, 0],
+            scale: [1, 1.1, 1],
+            x: [0, -20, 0],
+            y: [0, 20, 0],
           }}
           transition={{
-            duration: 18,
+            duration: 15,
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute bottom-1/4 right-1/4 w-[800px] h-[800px] rounded-full bg-gradient-to-r from-purple-400/15 via-pink-400/15 to-blue-400/15 blur-3xl"
+          className="absolute bottom-1/4 right-1/4 w-[700px] h-[700px] rounded-full bg-gradient-to-r from-purple-400/15 via-pink-400/15 to-blue-400/15 blur-3xl will-change-transform"
         />
 
         {/* Geometric accents – subtle & refined */}
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
-          className="absolute border-2 rounded-full top-20 right-20 w-28 h-28 border-blue-500/10"
+          className="absolute border-2 rounded-full top-20 right-20 w-28 h-28 border-blue-500/10 will-change-transform"
         />
         <motion.div
           animate={{ rotate: -360 }}
           transition={{ duration: 55, repeat: Infinity, ease: "linear" }}
-          className="absolute border-2 rounded-full bottom-20 left-20 w-36 h-36 border-purple-500/10"
+          className="absolute border-2 rounded-full bottom-20 left-20 w-36 h-36 border-purple-500/10 will-change-transform"
         />
 
-        {/* Minimal floating dots with glow */}
+        {/* Minimal floating dots with glow – fewer */}
         <motion.div
-          animate={{ y: [0, -20, 0], x: [0, 20, 0] }}
-          transition={{ duration: 9, repeat: Infinity }}
-          className="absolute w-3 h-3 rounded-full top-1/3 left-10 bg-blue-500/20 blur-sm"
+          animate={{ y: [0, -15, 0], x: [0, 15, 0] }}
+          transition={{ duration: 8, repeat: Infinity }}
+          className="absolute w-3 h-3 rounded-full top-1/3 left-10 bg-blue-500/20 blur-sm will-change-transform"
         />
         <motion.div
-          animate={{ y: [0, 20, 0], x: [0, -20, 0] }}
-          transition={{ duration: 11, repeat: Infinity }}
-          className="absolute w-4 h-4 rounded-full bottom-1/3 right-10 bg-purple-500/20 blur-sm"
+          animate={{ y: [0, 15, 0], x: [0, -15, 0] }}
+          transition={{ duration: 10, repeat: Infinity }}
+          className="absolute w-4 h-4 rounded-full bottom-1/3 right-10 bg-purple-500/20 blur-sm will-change-transform"
         />
 
-        {/* Particle system – more ethereal */}
+        {/* Particle system – reduced count for performance */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(15)].map((_, i) => (
+          {[...Array(8)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 rounded-full bg-gradient-to-r from-blue-400/40 to-purple-400/40"
+              className="absolute w-1 h-1 rounded-full bg-gradient-to-r from-blue-400/40 to-purple-400/40 will-change-transform"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
               }}
               animate={{
-                y: [0, -40, 0],
-                opacity: [0, 0.5, 0],
+                y: [0, -30, 0],
+                opacity: [0, 0.4, 0],
               }}
               transition={{
-                duration: 5 + Math.random() * 7,
+                duration: 5 + Math.random() * 5,
                 repeat: Infinity,
-                delay: i * 0.7,
+                delay: i * 0.8,
+                ease: "easeInOut",
               }}
             />
           ))}
         </div>
 
-        {/* Soft vignette */}
-        <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-white/40 dark:from-gray-950/40 dark:via-transparent dark:to-gray-950/40" />
-        <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-transparent to-white/30 dark:from-gray-950/30 dark:via-transparent dark:to-gray-950/30" />
+        {/* Soft vignette – static for performance */}
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-white/40 via-transparent to-white/40 dark:from-gray-950/40 dark:via-transparent dark:to-gray-950/40" />
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-white/30 via-transparent to-white/30 dark:from-gray-950/30 dark:via-transparent dark:to-gray-950/30" />
       </div>
 
       {/* Main Content */}
@@ -982,7 +983,7 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, type: "spring" }}
               whileHover={{ scale: 1.05 }}
-              className="inline-flex items-center gap-3 px-5 py-2.5 bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl rounded-full border border-gray-200/40 dark:border-gray-700/40 shadow-2xl shadow-blue-500/10 mx-auto lg:mx-0 group cursor-pointer"
+              className="inline-flex items-center gap-3 px-5 py-2.5 bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl rounded-full border border-gray-200/40 dark:border-gray-700/40 shadow-2xl shadow-blue-500/10 mx-auto lg:mx-0 group cursor-pointer will-change-transform"
             >
               <span className="relative flex w-3 h-3">
                 <span className="absolute inline-flex w-full h-full bg-green-400 rounded-full opacity-75 animate-ping"></span>
@@ -994,7 +995,7 @@ const HeroSection = () => {
               <motion.span
                 animate={{ x: [0, 6, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
-                className="text-blue-500 group-hover:text-purple-500"
+                className="text-blue-500 group-hover:text-purple-500 will-change-transform"
               >
                 →
               </motion.span>
@@ -1015,7 +1016,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20, rotateX: -15 }}
                 animate={{ opacity: 1, y: 0, rotateX: 0 }}
                 transition={{ delay: 0.4, type: "spring", stiffness: 100 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight will-change-transform"
                 style={{ transformStyle: "preserve-3d" }}
               >
                 <motion.span
@@ -1027,7 +1028,7 @@ const HeroSection = () => {
                     ],
                   }}
                   transition={{ duration: 3.5, repeat: Infinity }}
-                  className="block text-gray-900 dark:text-white"
+                  className="block text-gray-900 dark:text-white will-change-transform"
                   style={{ fontFamily: "'Dancing Script', cursive" }}
                 >
                   Ratnakar Singh Parihar
@@ -1054,7 +1055,7 @@ const HeroSection = () => {
                   <motion.span
                     animate={{ width: ["0%", "100%", "0%"] }}
                     transition={{ duration: 3.5, repeat: Infinity }}
-                    className="absolute bottom-0 left-0 h-0.5 bg-purple-400/80"
+                    className="absolute bottom-0 left-0 h-0.5 bg-purple-400/80 will-change-transform"
                   />
                 </span>{" "}
                 through modern technologies, clean architecture, and efficient
@@ -1081,13 +1082,14 @@ const HeroSection = () => {
                 <motion.div
                   whileHover={{ scale: 1.06, y: -3 }}
                   whileTap={{ scale: 0.95 }}
-                  className="relative group"
+                  className="relative group will-change-transform"
                 >
                   <div className="absolute transition duration-300 -inset-1 rounded-xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 blur opacity-70 group-hover:opacity-100" />
-                  <button className="relative flex items-center justify-center w-full gap-3 px-8 py-4 font-semibold text-white transition-all duration-300 shadow-2xl sm:w-auto rounded-xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] hover:scale-[1.02]">
+                  <button className="relative flex items-center justify-center w-full gap-3 px-8 py-4 font-semibold text-white transition-all duration-300 shadow-2xl sm:w-auto rounded-xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] hover:scale-[1.02] will-change-transform">
                     <motion.span
                       animate={{ rotate: [0, 8, -8, 0] }}
                       transition={{ duration: 2, repeat: Infinity }}
+                      className="will-change-transform"
                     >
                       💬
                     </motion.span>
@@ -1099,17 +1101,18 @@ const HeroSection = () => {
               <motion.div
                 whileHover={{ scale: 1.06, y: -3 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative w-full group sm:w-auto"
+                className="relative w-full group sm:w-auto will-change-transform"
               >
                 <div className="absolute transition duration-300 -inset-1 rounded-xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 blur opacity-70 group-hover:opacity-100" />
                 <button
                   onClick={() => setIsPopupOpen(true)}
-                  className="relative flex items-center justify-center w-full gap-3 px-8 py-4 overflow-hidden font-semibold text-gray-800 transition-all duration-300 bg-white border shadow-2xl sm:w-auto rounded-xl dark:bg-black dark:text-white border-white/20 backdrop-blur-lg hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] hover:scale-[1.02]"
+                  className="relative flex items-center justify-center w-full gap-3 px-8 py-4 overflow-hidden font-semibold text-gray-800 transition-all duration-300 bg-white border shadow-2xl sm:w-auto rounded-xl dark:bg-black dark:text-white border-white/20 backdrop-blur-lg hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] hover:scale-[1.02] will-change-transform"
                 >
                   <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 animate-[shine_2s_infinite]" />
                   <motion.span
                     animate={{ y: [0, -3, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
+                    className="will-change-transform"
                   >
                     📄
                   </motion.span>
@@ -1132,17 +1135,17 @@ const HeroSection = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1 + index * 0.1, type: "spring" }}
                   whileHover={{ y: -8, scale: 1.05 }}
-                  className={`p-4 rounded-2xl border ${stat.borderColor} ${stat.bgColor} hover:shadow-2xl transition-all duration-300 cursor-default group relative overflow-hidden backdrop-blur-sm`}
+                  className={`p-4 rounded-2xl border ${stat.borderColor} ${stat.bgColor} hover:shadow-2xl transition-all duration-300 cursor-default group relative overflow-hidden backdrop-blur-sm will-change-transform`}
                 >
                   <motion.div
                     initial={{ scale: 0 }}
                     whileHover={{ scale: 4 }}
                     transition={{ duration: 0.6 }}
-                    className={`absolute inset-0 ${stat.bgColor} opacity-0 group-hover:opacity-100 transition-opacity`}
+                    className={`absolute inset-0 ${stat.bgColor} opacity-0 group-hover:opacity-100 transition-opacity will-change-transform`}
                   />
                   <div className="relative z-10">
                     <div
-                      className={`text-2xl md:text-3xl font-bold ${stat.color} mb-1 group-hover:scale-110 transition-transform`}
+                      className={`text-2xl md:text-3xl font-bold ${stat.color} mb-1 group-hover:scale-110 transition-transform will-change-transform`}
                     >
                       {stat.value}
                     </div>
@@ -1163,66 +1166,66 @@ const HeroSection = () => {
             className="relative flex justify-center w-full mt-12 lg:w-1/2 lg:mt-0"
           >
             <div className="relative max-w-sm sm:max-w-md md:max-w-lg">
-              {/* Glow orbs – more organic and layered */}
+              {/* Glow orbs – more organic and layered, but fewer for performance */}
               <motion.div
                 animate={{
-                  scale: [1, 1.2, 1],
+                  scale: [1, 1.15, 1],
                   rotate: [0, 180, 360],
-                  opacity: [0.3, 0.6, 0.3],
+                  opacity: [0.3, 0.5, 0.3],
                 }}
                 transition={{
-                  duration: 14,
+                  duration: 12,
                   repeat: Infinity,
                   ease: "linear",
                 }}
-                className="absolute rounded-full -inset-16 bg-gradient-conic from-blue-600/30 via-purple-600/30 to-pink-600/30 blur-3xl"
+                className="absolute rounded-full -inset-16 bg-gradient-conic from-blue-600/30 via-purple-600/30 to-pink-600/30 blur-3xl will-change-transform"
               />
               <motion.div
                 animate={{
                   scale: [1, 1.1, 1],
-                  opacity: [0.2, 0.4, 0.2],
+                  opacity: [0.2, 0.35, 0.2],
                 }}
                 transition={{
                   duration: 8,
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="absolute -inset-10 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-pink-600/20 rounded-3xl blur-2xl"
+                className="absolute -inset-10 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-pink-600/20 rounded-3xl blur-2xl will-change-transform"
               />
 
               {/* Floating accent orbs with different colors */}
               <motion.div
                 animate={{
-                  y: [0, -30, 0],
-                  x: [0, 20, 0],
+                  y: [0, -25, 0],
+                  x: [0, 15, 0],
                   rotate: [0, 360],
-                }}
-                transition={{
-                  duration: 10,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute w-20 h-20 rounded-full -top-8 -right-8 bg-gradient-to-br from-yellow-400/50 to-orange-400/50 blur-xl"
-              />
-              <motion.div
-                animate={{
-                  y: [0, 30, 0],
-                  x: [0, -20, 0],
-                  rotate: [360, 0],
                 }}
                 transition={{
                   duration: 9,
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="absolute w-20 h-20 rounded-full -bottom-8 -left-8 bg-gradient-to-tr from-blue-400/50 to-indigo-400/50 blur-xl"
+                className="absolute w-20 h-20 rounded-full -top-8 -right-8 bg-gradient-to-br from-yellow-400/50 to-orange-400/50 blur-xl will-change-transform"
+              />
+              <motion.div
+                animate={{
+                  y: [0, 25, 0],
+                  x: [0, -15, 0],
+                  rotate: [360, 0],
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute w-20 h-20 rounded-full -bottom-8 -left-8 bg-gradient-to-tr from-blue-400/50 to-indigo-400/50 blur-xl will-change-transform"
               />
 
               {/* Main Image Container – premium border glow */}
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
-                className="relative p-1 overflow-hidden shadow-2xl rounded-3xl sm:rounded-4xl bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 shadow-blue-500/30"
+                className="relative p-1 overflow-hidden shadow-2xl rounded-3xl sm:rounded-4xl bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 shadow-blue-500/30 will-change-transform"
               >
                 <motion.div
                   animate={{
@@ -1233,7 +1236,7 @@ const HeroSection = () => {
                     repeat: Infinity,
                     ease: "linear",
                   }}
-                  className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-70"
+                  className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-70 will-change-transform"
                   style={{ backgroundSize: "200% 200%" }}
                 />
 
@@ -1249,7 +1252,7 @@ const HeroSection = () => {
                         repeat: Infinity,
                         ease: "linear",
                       }}
-                      className="absolute inset-0 z-10 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 dark:from-gray-700 dark:via-gray-800 dark:to-gray-700 rounded-2xl sm:rounded-3xl"
+                      className="absolute inset-0 z-10 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 dark:from-gray-700 dark:via-gray-800 dark:to-gray-700 rounded-2xl sm:rounded-3xl will-change-transform"
                       style={{ backgroundSize: "200% 100%" }}
                     />
                   )}
@@ -1257,23 +1260,23 @@ const HeroSection = () => {
                   {/* Image with breathing animation */}
                   <motion.div
                     animate={{
-                      scale: [1, 1.05, 1],
+                      scale: [1, 1.04, 1],
                     }}
                     transition={{
-                      duration: 10,
+                      duration: 9,
                       repeat: Infinity,
                       ease: [0.25, 0.1, 0.25, 1],
                     }}
-                    className="relative overflow-hidden shadow-2xl rounded-2xl shadow-blue-500/20"
+                    className="relative overflow-hidden shadow-2xl rounded-2xl shadow-blue-500/20 will-change-transform"
                   >
                     <Image
                       src={HeroImg}
                       alt="Ratnakar Singh Parihar - Full-Stack Developer"
-                      className={`w-full h-[35s0px] sm:h-[400px] md:h-[450px] lg:h-[500px] object-cover object-center transition-all duration-700 ease-out ${
+                      className={`w-full h-[350px] sm:h-[400px] md:h-[450px] lg:h-[500px] object-cover object-center transition-all duration-700 ease-out ${
                         isImageLoaded
                           ? "opacity-100 scale-100"
                           : "opacity-0 scale-105"
-                      } hover:scale-110`}
+                      } hover:scale-110 will-change-transform`}
                       onLoad={() => setIsImageLoaded(true)}
                     />
 
@@ -1299,7 +1302,7 @@ const HeroSection = () => {
                             repeat: Infinity,
                             ease: "easeInOut",
                           }}
-                          className="flex items-center gap-2 px-3 py-1 text-xs font-medium tracking-wide border rounded-full shadow-lg sm:text-sm text-white/90 backdrop-blur-sm bg-black/30 w-fit border-white/20"
+                          className="flex items-center gap-2 px-3 py-1 text-xs font-medium tracking-wide border rounded-full shadow-lg sm:text-sm text-white/90 backdrop-blur-sm bg-black/30 w-fit border-white/20 will-change-transform"
                         >
                           <span className="relative flex w-2 h-2">
                             <span className="absolute inline-flex w-full h-full bg-green-400 rounded-full opacity-75 animate-ping"></span>
@@ -1316,7 +1319,7 @@ const HeroSection = () => {
                             duration: 1,
                             ease: "easeOut",
                           }}
-                          className="h-[2px] bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 rounded-full shadow-[0_0_16px_rgba(59,130,246,0.5)]"
+                          className="h-[2px] bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 rounded-full shadow-[0_0_16px_rgba(59,130,246,0.5)] will-change-transform"
                         />
                       </div>
                     </motion.div>
@@ -1325,7 +1328,7 @@ const HeroSection = () => {
               </motion.div>
 
               {/* Subtle background dots – refined */}
-              <div className="absolute -translate-x-1/2 -translate-y-1/2 w-80 h-80 -z-10 top-1/2 left-1/2 sm:w-96 sm:h-96">
+              <div className="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-none w-80 h-80 -z-10 top-1/2 left-1/2 sm:w-96 sm:h-96">
                 <div
                   className="absolute inset-0 opacity-25 dark:opacity-30"
                   style={{
@@ -1340,7 +1343,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Enhanced Scroll Down Indicator – cleaner glassmorphism */}
+      {/* Enhanced Scroll Down Indicator – smoother animation */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -1352,13 +1355,13 @@ const HeroSection = () => {
           <div className="absolute inset-y-0 right-0 z-10 w-24 pointer-events-none bg-gradient-to-l from-white/40 dark:from-black/40 to-transparent"></div>
 
           <motion.div
-            animate={{ x: ["0%", "-70%"] }}
+            animate={{ x: ["0%", "-65%"] }}
             transition={{
-              duration: 24,
+              duration: 28,
               ease: "linear",
               repeat: Infinity,
             }}
-            className="flex items-center gap-10 px-6 text-sm font-semibold tracking-wide whitespace-nowrap sm:text-base md:text-lg"
+            className="flex items-center gap-10 px-6 text-sm font-semibold tracking-wide whitespace-nowrap sm:text-base md:text-lg will-change-transform"
           >
             {/* Items – vibrant gradient text */}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">

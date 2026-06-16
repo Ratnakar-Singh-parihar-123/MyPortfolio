@@ -149,14 +149,14 @@ const Experience = () => {
     },
   ];
 
-  // Career journey steps
+  // Career journey steps – now with logo images
   const careerJourney = [
     {
       step: "Freelancing",
       period: "2024 – Present",
       description:
         "Started independent client projects, building real-world applications",
-      icon: <Briefcase className="w-4 h-4" />,
+      logo: Freelancers,
       status: "completed",
     },
     {
@@ -164,33 +164,20 @@ const Experience = () => {
       period: "Nov 2025 – Jan 2026",
       description:
         "MERN Stack Internship – gained professional team experience",
-      icon: <Server className="w-4 h-4" />,
+      logo: SkyInfoGroup,
       status: "completed",
     },
     {
       step: "BinaryLogix Technologies",
       period: "Feb 2026 – Present",
       description: "Full Stack Developer – current professional role",
-      icon: <Building2 className="w-4 h-4" />,
+      logo: Binarylogix,
       status: "current",
     },
   ];
 
-  // Tech stack professionally used
-  const professionalTechStack = [
-    { name: "React.js", icon: "⚛️", color: "from-cyan-500 to-blue-500" },
-    { name: "React Native", icon: "📱", color: "from-blue-500 to-indigo-500" },
-    { name: "JavaScript", icon: "📜", color: "from-yellow-500 to-amber-500" },
-    { name: "Node.js", icon: "🟢", color: "from-green-500 to-emerald-500" },
-    { name: "Express.js", icon: "⚡", color: "from-gray-500 to-slate-500" },
-    { name: "MongoDB", icon: "🍃", color: "from-green-600 to-teal-600" },
-    { name: "Git", icon: "🐙", color: "from-orange-500 to-red-500" },
-    { name: "GitHub", icon: "🐱", color: "from-purple-500 to-pink-500" },
-    { name: "REST APIs", icon: "🔌", color: "from-blue-400 to-purple-400" },
-    { name: "Tailwind CSS", icon: "🌀", color: "from-sky-500 to-blue-500" },
-  ];
+  // Tech stack professionally used (commented out)
 
-  // Key responsibilities cards (overall)
   const keyResponsibilities = [
     {
       title: "Full Stack Web Development",
@@ -234,7 +221,6 @@ const Experience = () => {
     },
   ];
 
-  // Professional achievements
   const professionalAchievements = [
     "Successfully completed MERN Stack Internship at Sky Info Group",
     "Working as Full Stack Developer at BinaryLogix Technologies",
@@ -242,45 +228,6 @@ const Experience = () => {
     "Delivered 3+ client projects as freelancer",
     "460+ DSA Problems Solved across LeetCode & GFG",
     "Built reusable component libraries for production",
-  ];
-
-  const skillCategories = [
-    {
-      category: "Frontend Mastery",
-      skills: [
-        { name: "React.js", level: 90, icon: "⚛️" },
-        { name: "JavaScript ES6+", level: 95, icon: "📜" },
-        { name: "HTML5/CSS3", level: 98, icon: "🎨" },
-        { name: "Tailwind CSS", level: 92, icon: "🌀" },
-        { name: "Responsive Design", level: 94, icon: "📱" },
-        { name: "React Native", level: 85, icon: "📱" },
-      ],
-      icon: <Code className="w-4 h-4 md:h-4 md:w-4" />,
-    },
-    {
-      category: "Backend & Databases",
-      skills: [
-        { name: "Node.js", level: 88, icon: "🟢" },
-        { name: "Express.js", level: 89, icon: "⚡" },
-        { name: "REST APIs", level: 92, icon: "🔌" },
-        { name: "MongoDB", level: 86, icon: "🍃" },
-        { name: "Authentication", level: 88, icon: "🔐" },
-        { name: "Server Logic", level: 87, icon: "⚙️" },
-      ],
-      icon: <Database className="w-4 h-4 md:h-4 md:w-4" />,
-    },
-    {
-      category: "Tools & Practices",
-      skills: [
-        { name: "Git & GitHub", level: 92, icon: "🐙" },
-        { name: "Vercel", level: 88, icon: "▲" },
-        { name: "VS Code", level: 96, icon: "💻" },
-        { name: "Problem Solving", level: 89, icon: "🧩" },
-        { name: "Debugging", level: 91, icon: "🐛" },
-        { name: "Code Optimization", level: 87, icon: "🚀" },
-      ],
-      icon: <Zap className="w-4 h-4 md:h-4 md:w-4" />,
-    },
   ];
 
   // Animation variants
@@ -300,7 +247,7 @@ const Experience = () => {
   return (
     <section
       id="experience"
-      className={`min-h-screen py-6 sm:py-8 md:py-12 lg:py-16 px-3 sm:px-6 lg:px-10 xl:px-14 transition-all duration-300 overflow-x-hidden ${
+      className={`min-h-screen pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-6 sm:pb-8 md:pb-12 lg:pb-16 px-3 sm:px-6 lg:px-10 xl:px-14 transition-all duration-300 overflow-x-hidden ${
         darkMode
           ? "bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white"
           : "bg-gradient-to-b from-gray-50 via-white to-gray-50 text-gray-800"
@@ -309,18 +256,18 @@ const Experience = () => {
       <Header />
 
       <div className="relative max-w-5xl mx-auto">
-        {/* Subtle background decoration - hidden on mobile for performance */}
+        {/* Background decoration */}
         <div className="absolute inset-0 hidden overflow-hidden pointer-events-none sm:block">
           <div className="absolute rounded-full top-40 -left-20 w-72 h-72 mix-blend-multiply filter blur-3xl opacity-5 animate-pulse"></div>
           <div className="absolute bg-purple-500 rounded-full bottom-20 -right-20 w-80 h-80 mix-blend-multiply filter blur-3xl opacity-5 animate-pulse"></div>
         </div>
 
-        {/* Header Section - Responsive text sizes, slightly reduced */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="relative mb-6 text-center sm:mb-8 md:mb-12 lg:mb-20"
+          className="relative mb-8 text-center sm:mb-10 md:mb-14 lg:mb-20"
         >
           <div className="relative inline-block">
             <h1
@@ -346,7 +293,7 @@ const Experience = () => {
           </div>
         </motion.div>
 
-        {/* Professional Timeline Section - Compact */}
+        {/* Professional Timeline */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -375,7 +322,7 @@ const Experience = () => {
           </div>
 
           <div className="relative">
-            {/* Timeline line - responsive positioning */}
+            {/* Timeline line */}
             <div className="absolute left-3 xs:left-4 sm:left-5 md:left-1/2 transform md:-translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 rounded-full shadow-lg"></div>
             <div className="absolute w-1 h-full transform rounded-full left-3 xs:left-4 sm:left-5 md:left-1/2 md:-translate-x-1/2 bg-gradient-to-b from-blue-500/20 via-purple-500/20 to-pink-500/20 blur-sm"></div>
 
@@ -387,14 +334,14 @@ const Experience = () => {
                   idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 }`}
               >
-                {/* Timeline dot - compact */}
-                <div className="absolute z-20 flex items-center justify-center transform -translate-x-1/2 rounded-full shadow-lg w-7 h-7 xs:w-8 xs:h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 left-3 xs:left-4 sm:left-5 md:left-1/2 bg-gradient-to-r from-blue-500 to-purple-500 shadow-blue-500/30">
+                {/* Timeline dot */}
+                <div className="absolute z-20 flex items-center justify-center w-8 h-8 transform -translate-x-1/2 rounded-full shadow-lg xs:w-9 xs:h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 left-3 xs:left-4 sm:left-5 md:left-1/2 bg-gradient-to-r from-blue-500 to-purple-500 shadow-blue-500/30">
                   {exp.current && (
                     <span className="absolute flex w-full h-full">
                       <span className="absolute inline-flex w-full h-full bg-green-400 rounded-full opacity-75 animate-ping"></span>
                     </span>
                   )}
-                  <div className="flex items-center justify-center w-5 h-5 overflow-hidden bg-white rounded-full shadow-inner xs:w-6 xs:h-6 sm:w-7 sm:h-7">
+                  <div className="flex items-center justify-center w-6 h-6 overflow-hidden bg-white rounded-full shadow-inner xs:w-7 xs:h-7 sm:w-8 sm:h-8">
                     <img
                       src={exp.logo}
                       alt={exp.company}
@@ -403,36 +350,35 @@ const Experience = () => {
                   </div>
                 </div>
 
-                {/* Card - reduced padding and margins */}
+                {/* Card */}
                 <div
-                  className={`ml-8 xs:ml-9 sm:ml-10 md:ml-0 ${idx % 2 === 0 ? "md:pr-3 lg:pr-6" : "md:pl-3 lg:pl-6"}`}
+                  className={`ml-10 xs:ml-11 sm:ml-12 md:ml-0 ${idx % 2 === 0 ? "md:pr-3 lg:pr-6" : "md:pl-3 lg:pl-6"}`}
                 >
                   <div
-                    className={`group relative rounded-xl sm:rounded-2xl p-3 sm:p-3.5 md:p-4 lg:p-5 transition-all duration-300 hover:-translate-y-1 ${
+                    className={`group relative rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 transition-all duration-300 hover:-translate-y-1 ${
                       darkMode
-                        ? "bg-gray-800/80 backdrop-blur-sm border border-gray-700/50 hover:border-blue-500/40"
-                        : "bg-white/90 backdrop-blur-sm border border-gray-200/80 hover:border-blue-300/50"
-                    } shadow-md hover:shadow-lg overflow-hidden`}
+                        ? "bg-gray-800/70 backdrop-blur-sm border border-gray-700/50 hover:border-blue-500/40"
+                        : "bg-white/80 backdrop-blur-sm border border-gray-200/60 hover:border-blue-300/40"
+                    } shadow-md hover:shadow-xl overflow-hidden`}
                   >
-                    {/* Animated gradient border on hover */}
                     <div className="absolute inset-0 transition-opacity duration-700 opacity-0 pointer-events-none group-hover:opacity-100 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10"></div>
 
                     {exp.current && (
-                      <div className="absolute z-10 top-2 right-2 sm:top-2.5 sm:right-2.5">
-                        <span className="relative px-1.5 sm:px-2 py-0.5 sm:py-0.5 text-[8px] xs:text-[9px] sm:text-[10px] font-bold text-white rounded-full shadow-lg bg-gradient-to-r from-green-500 to-emerald-500">
+                      <div className="absolute z-10 top-2 right-2 sm:top-3 sm:right-3">
+                        <span className="relative px-2 sm:px-3 py-0.5 sm:py-1 text-[8px] xs:text-[9px] sm:text-[10px] font-bold text-white rounded-full shadow-lg bg-gradient-to-r from-green-500 to-emerald-500">
                           <span className="absolute inset-0 bg-green-500 rounded-full opacity-50 animate-ping"></span>
                           <span className="relative">Current</span>
                         </span>
                       </div>
                     )}
 
-                    <div className="flex items-start gap-2 mb-1.5 sm:gap-3 sm:mb-2 md:mb-3">
-                      <div
-                        className={`p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-gradient-to-r ${exp.color} bg-opacity-10 shadow-md ${
-                          darkMode ? "bg-gray-700/80" : "bg-gray-100"
-                        }`}
-                      >
-                        {exp.icon}
+                    <div className="flex items-start gap-3 mb-2 sm:gap-4 sm:mb-3">
+                      <div className="flex-shrink-0 w-10 h-10 overflow-hidden border border-gray-200 shadow-md sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-xl dark:border-gray-700">
+                        <img
+                          src={exp.logo}
+                          alt={exp.company}
+                          className="object-cover w-full h-full"
+                        />
                       </div>
                       <div className="flex-1 min-w-0">
                         <h3 className="text-sm font-bold tracking-tight break-words sm:text-base md:text-lg">
@@ -444,14 +390,14 @@ const Experience = () => {
                       </div>
                     </div>
 
-                    <div className="flex flex-wrap gap-1 sm:gap-1.5 mb-1.5 sm:mb-2 md:mb-3 text-[9px] xs:text-xs text-gray-500 dark:text-gray-400">
-                      <span className="flex items-center gap-0.5 sm:gap-1 bg-gray-100 dark:bg-gray-800/50 px-1.5 sm:px-2 py-0.5 rounded-full">
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-3 text-[9px] xs:text-xs text-gray-500 dark:text-gray-400">
+                      <span className="flex items-center gap-0.5 sm:gap-1 bg-gray-100 dark:bg-gray-800/50 px-2 py-0.5 rounded-full">
                         <Calendar className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                         <span className="text-[8px] xs:text-[9px] sm:text-[10px]">
                           {exp.duration}
                         </span>
                       </span>
-                      <span className="flex items-center gap-0.5 sm:gap-1 bg-gray-100 dark:bg-gray-800/50 px-1.5 sm:px-2 py-0.5 rounded-full">
+                      <span className="flex items-center gap-0.5 sm:gap-1 bg-gray-100 dark:bg-gray-800/50 px-2 py-0.5 rounded-full">
                         <Pin className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                         <span className="text-[8px] xs:text-[9px] sm:text-[10px]">
                           {exp.location}
@@ -516,7 +462,7 @@ const Experience = () => {
           </div>
         </motion.div>
 
-        {/* Career Journey Timeline - Compact */}
+        {/* Career Journey Timeline – now with company logos */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -539,32 +485,37 @@ const Experience = () => {
               From freelancing to professional developer
             </p>
           </div>
-          <div className="relative flex flex-col items-center justify-between gap-4 sm:gap-6 md:flex-row md:gap-2 lg:gap-4">
+
+          <div className="relative flex flex-col items-center justify-between gap-6 sm:gap-8 md:flex-row md:gap-4 lg:gap-6">
             {careerJourney.map((step, idx) => (
               <React.Fragment key={idx}>
                 <div className="relative flex flex-col items-center w-full px-2 text-center md:w-1/3 group">
                   <div
-                    className={`relative w-10 h-10 xs:w-11 xs:h-11 sm:w-12 sm:h-12 md:w-13 md:h-13 lg:w-14 lg:h-14 rounded-full flex items-center justify-center mb-1.5 sm:mb-2 md:mb-3 transition-all duration-300 group-hover:scale-105 ${
+                    className={`relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mb-3 sm:mb-4 transition-all duration-300 group-hover:scale-110 group-hover:shadow-2xl ${
                       step.status === "current"
                         ? "bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg shadow-purple-500/30"
                         : "bg-gradient-to-r from-blue-500 to-cyan-500 shadow-md shadow-blue-500/20"
-                    } text-white`}
+                    } p-1`}
                   >
-                    <div className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5">
-                      {step.icon}
+                    <div className="w-full h-full overflow-hidden bg-white rounded-full dark:bg-gray-800">
+                      <img
+                        src={step.logo}
+                        alt={step.step}
+                        className="object-cover w-full h-full"
+                      />
                     </div>
                     {step.status === "current" && (
                       <span className="absolute inset-0 bg-purple-500 rounded-full animate-ping opacity-40"></span>
                     )}
                   </div>
-                  <h3 className="text-xs font-bold break-words sm:text-sm md:text-base lg:text-lg">
+                  <h3 className="text-sm font-bold break-words sm:text-base md:text-lg lg:text-xl">
                     {step.step}
                   </h3>
-                  <p className="mt-0.5 text-[9px] xs:text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">
+                  <p className="mt-0.5 text-[10px] xs:text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                     {step.period}
                   </p>
                   <p
-                    className={`text-[9px] xs:text-[10px] sm:text-xs mt-1 sm:mt-1.5 max-w-xs px-1 ${
+                    className={`text-[10px] xs:text-xs sm:text-sm mt-1 sm:mt-2 max-w-xs px-1 ${
                       darkMode ? "text-gray-400" : "text-gray-500"
                     }`}
                   >
@@ -572,66 +523,14 @@ const Experience = () => {
                   </p>
                 </div>
                 {idx < careerJourney.length - 1 && (
-                  <ArrowRight className="hidden w-4 h-4 text-blue-400 transition-opacity sm:w-5 sm:h-5 md:w-6 md:h-6 md:block opacity-40 group-hover:opacity-70" />
+                  <ArrowRight className="hidden w-5 h-5 text-blue-400 transition-opacity sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 md:block opacity-40 group-hover:opacity-70" />
                 )}
               </React.Fragment>
             ))}
           </div>
         </motion.div>
 
-        {/* Tech Stack Used Professionally - Compact Grid */}
-        {/* <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerContainer}
-          className="mb-12 sm:mb-16 md:mb-20 lg:mb-28"
-        >
-          <div className="mb-6 text-center sm:mb-8 md:mb-10">
-            <h2 className="text-xl font-bold sm:text-2xl md:text-3xl lg:text-4xl">
-              Tech Stack{" "}
-              <span className="text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
-                Professionally
-              </span>
-            </h2>
-            <p
-              className={`mt-1 sm:mt-2 text-xs sm:text-sm md:text-base ${
-                darkMode ? "text-gray-300" : "text-gray-600"
-              }`}
-            >
-              Technologies I use daily in production
-            </p>
-          </div>
-          <div className="grid grid-cols-2 gap-2 sm:gap-2.5 md:gap-3 lg:gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-            {professionalTechStack.map((tech, idx) => (
-              <motion.div
-                key={idx}
-                variants={fadeUp}
-                whileHover={{ y: -2, scale: 1.02 }}
-                className={`group relative rounded-lg sm:rounded-xl p-2 sm:p-2.5 md:p-3 lg:p-4 text-center transition-all duration-300 ${
-                  darkMode
-                    ? "bg-gray-800/60 border border-gray-700/50 hover:border-blue-500/50"
-                    : "bg-white/80 border border-gray-200/80 hover:border-blue-300/50"
-                } shadow-sm hover:shadow-md overflow-hidden`}
-              >
-                <div className="absolute inset-0 transition-all duration-500 bg-gradient-to-br from-blue-500/0 to-purple-500/0 group-hover:from-blue-500/5 group-hover:to-purple-500/5"></div>
-                <div className="relative z-10">
-                  <div className="inline-block mb-1 text-xl transition-transform sm:text-2xl md:text-3xl group-hover:scale-110">
-                    {tech.icon}
-                  </div>
-                  <div className="mb-1 text-[9px] xs:text-[10px] sm:text-xs md:text-sm font-semibold break-words">
-                    {tech.name}
-                  </div>
-                  <div
-                    className={`w-full h-0.5 sm:h-1 rounded-full bg-gradient-to-r ${tech.color} transform origin-left transition-transform group-hover:scale-x-110`}
-                  ></div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div> */}
-
-        {/* Key Responsibilities Cards - Compact Grid */}
+        {/* Key Responsibilities */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -654,29 +553,29 @@ const Experience = () => {
               Core competencies across my roles
             </p>
           </div>
-          <div className="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-3 sm:gap-4 md:gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {keyResponsibilities.map((resp, idx) => (
               <motion.div
                 key={idx}
                 variants={fadeUp}
-                whileHover={{ y: -4 }}
-                className={`group relative rounded-lg sm:rounded-xl p-2.5 sm:p-3 md:p-4 transition-all duration-300 ${
+                whileHover={{ y: -6 }}
+                className={`group relative rounded-xl p-3 sm:p-4 md:p-5 transition-all duration-300 ${
                   darkMode
                     ? "bg-gray-800/60 border border-gray-700/50 hover:border-blue-500/40"
                     : "bg-white/80 border border-gray-200/80 hover:border-blue-300/40"
-                } shadow-sm hover:shadow-md overflow-hidden`}
+                } shadow-sm hover:shadow-xl overflow-hidden`}
               >
                 <div className="absolute inset-0 transition-all duration-500 bg-gradient-to-br from-blue-500/0 to-purple-500/0 group-hover:from-blue-500/5 group-hover:to-purple-500/5"></div>
-                <div className="relative flex items-start gap-1.5 sm:gap-2 mb-1 sm:mb-1.5">
-                  <div className="p-1.5 sm:p-2 text-white rounded-lg sm:rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 shadow-md group-hover:scale-105 transition-transform">
+                <div className="relative flex items-start gap-2 mb-1 sm:gap-3 sm:mb-2">
+                  <div className="p-2 sm:p-2.5 text-white rounded-lg sm:rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 shadow-md group-hover:scale-110 transition-transform">
                     {resp.icon}
                   </div>
-                  <h3 className="text-xs font-bold leading-tight break-words sm:text-sm md:text-base">
+                  <h3 className="text-sm font-bold leading-tight break-words sm:text-base md:text-lg">
                     {resp.title}
                   </h3>
                 </div>
                 <p
-                  className={`relative text-[9px] xs:text-[10px] sm:text-xs leading-relaxed pl-0.5 ${
+                  className={`relative text-[10px] xs:text-xs sm:text-sm leading-relaxed pl-0.5 ${
                     darkMode ? "text-gray-400" : "text-gray-500"
                   }`}
                 >
@@ -687,7 +586,7 @@ const Experience = () => {
           </div>
         </motion.div>
 
-        {/* Professional Achievements - Compact */}
+        {/* Professional Achievements */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -696,19 +595,18 @@ const Experience = () => {
           className="mb-12 sm:mb-16 md:mb-20 lg:mb-28"
         >
           <div
-            className={`relative rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 transition-all duration-300 overflow-hidden ${
+            className={`relative rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 lg:p-10 transition-all duration-300 overflow-hidden ${
               darkMode
                 ? "bg-gradient-to-br from-gray-800/90 to-gray-900/90 border border-gray-700/50"
                 : "bg-gradient-to-br from-blue-50/90 to-purple-50/90 border border-blue-100/80"
-            } shadow-lg`}
+            } shadow-xl`}
           >
-            {/* Decorative elements - hidden on mobile */}
-            <div className="absolute top-0 right-0 hidden w-24 h-24 -mt-12 -mr-12 rounded-full bg-gradient-to-bl from-blue-500/10 to-purple-500/10 blur-2xl sm:block"></div>
-            <div className="absolute bottom-0 left-0 hidden w-24 h-24 -mb-12 -ml-12 rounded-full bg-gradient-to-tr from-blue-500/10 to-purple-500/10 blur-2xl sm:block"></div>
+            <div className="absolute top-0 right-0 hidden w-32 h-32 -mt-16 -mr-16 rounded-full bg-gradient-to-bl from-blue-500/10 to-purple-500/10 blur-2xl sm:block"></div>
+            <div className="absolute bottom-0 left-0 hidden w-32 h-32 -mb-16 -ml-16 rounded-full bg-gradient-to-tr from-blue-500/10 to-purple-500/10 blur-2xl sm:block"></div>
 
-            <div className="relative flex flex-col items-center justify-between gap-1 sm:gap-2 md:gap-3 sm:flex-row sm:gap-4">
+            <div className="relative flex flex-col items-center justify-between gap-2 sm:gap-3 md:gap-4 sm:flex-row">
               <div className="text-center sm:text-left">
-                <h3 className="text-base font-bold text-transparent sm:text-lg md:text-xl lg:text-2xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
+                <h3 className="text-lg font-bold text-transparent sm:text-xl md:text-2xl lg:text-3xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
                   Professional Achievements
                 </h3>
                 <p
@@ -719,18 +617,18 @@ const Experience = () => {
                   Milestones I'm proud of
                 </p>
               </div>
-              <Award className="w-6 h-6 text-blue-500 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 opacity-80 drop-shadow-lg" />
+              <Award className="w-8 h-8 text-blue-500 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 opacity-80 drop-shadow-lg" />
             </div>
-            <div className="grid grid-cols-1 gap-1.5 mt-3 sm:gap-2 md:gap-3 sm:mt-4 md:mt-6 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-2 mt-4 sm:gap-3 md:gap-4 sm:mt-6 md:mt-8 md:grid-cols-2">
               {professionalAchievements.map((achievement, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, x: -10 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.05 }}
-                  className="flex items-start gap-1.5 sm:gap-2 p-1 sm:p-1.5 transition-all rounded-lg hover:bg-white/20 dark:hover:bg-white/5"
+                  className="flex items-start gap-2 sm:gap-3 p-1.5 sm:p-2 transition-all rounded-lg hover:bg-white/20 dark:hover:bg-white/5"
                 >
-                  <CheckCircle className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-green-500 flex-shrink-0 mt-0.5" />
                   <span className="text-[9px] xs:text-[10px] sm:text-xs md:text-sm font-medium break-words">
                     {achievement}
                   </span>
@@ -740,30 +638,29 @@ const Experience = () => {
           </div>
         </motion.div>
 
-        {/* Final CTA - Compact */}
+        {/* Final CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className={`relative rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 lg:p-10 text-center overflow-hidden ${
+          className={`relative rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 lg:p-14 text-center overflow-hidden ${
             darkMode
               ? "bg-gradient-to-r from-blue-900/40 to-purple-900/40 border border-blue-800/50 backdrop-blur-sm"
               : "bg-gradient-to-r from-blue-600 to-indigo-600 text-white"
           } shadow-2xl`}
         >
-          {/* Animated background particles - simplified for mobile */}
           <div className="absolute inset-0 opacity-20 sm:opacity-30">
-            <div className="absolute top-0 left-0 w-12 h-12 bg-white rounded-full sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 filter blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-0 right-0 w-16 h-16 delay-1000 bg-purple-300 rounded-full sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 filter blur-3xl animate-pulse"></div>
+            <div className="absolute top-0 left-0 w-16 h-16 bg-white rounded-full sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 filter blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-0 right-0 w-20 h-20 delay-1000 bg-purple-300 rounded-full sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-40 lg:h-40 filter blur-3xl animate-pulse"></div>
           </div>
 
           <div className="relative z-10">
-            <h3 className="px-1 mb-2 text-lg font-bold sm:mb-3 md:mb-4 sm:text-xl md:text-2xl lg:text-3xl">
+            <h3 className="px-1 mb-3 text-xl font-bold sm:mb-4 md:mb-6 sm:text-2xl md:text-3xl lg:text-4xl">
               Ready to Build Something Amazing?
             </h3>
             <p
-              className={`text-sm sm:text-base md:text-lg lg:text-xl mb-3 sm:mb-4 md:mb-6 max-w-2xl mx-auto leading-relaxed px-1 ${
+              className={`text-sm sm:text-base md:text-lg lg:text-xl mb-4 sm:mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed px-1 ${
                 darkMode ? "text-gray-200" : "text-blue-100"
               }`}
             >
@@ -771,12 +668,12 @@ const Experience = () => {
               problem-solving skills, I'm equipped to tackle complex challenges
               and deliver efficient solutions.
             </p>
-            <div className="flex flex-col justify-center gap-2 px-1 sm:gap-3 md:gap-4 sm:px-2 sm:flex-row">
+            <div className="flex flex-col justify-center gap-3 px-1 sm:gap-4 md:gap-5 sm:px-2 sm:flex-row">
               <Link to="/projects">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
-                  className={`group relative w-full sm:w-auto px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-xl font-bold text-xs sm:text-sm md:text-base transition-all overflow-hidden ${
+                  className={`group relative w-full sm:w-auto px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 rounded-xl font-bold text-xs sm:text-sm md:text-base transition-all overflow-hidden ${
                     darkMode
                       ? "bg-white text-blue-600 hover:bg-gray-100 shadow-lg"
                       : "bg-white text-blue-600 hover:bg-gray-50 shadow-lg"
@@ -792,7 +689,7 @@ const Experience = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
-                  className={`group w-full sm:w-auto px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-xl font-bold text-xs sm:text-sm md:text-base transition-all ${
+                  className={`group w-full sm:w-auto px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 rounded-xl font-bold text-xs sm:text-sm md:text-base transition-all ${
                     darkMode
                       ? "bg-blue-700 hover:bg-blue-600 text-white shadow-lg"
                       : "bg-blue-700 hover:bg-blue-600 text-white shadow-lg"

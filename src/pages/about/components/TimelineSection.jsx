@@ -45,6 +45,83 @@ const TimelineSection = () => {
       image:
         "https://media.licdn.com/dms/image/v2/C511BAQFoeRqNJ3j_sw/company-background_10000/company-background_10000/0/1584491150389/ies_university_cover?e=2147483647&v=beta&t=sIBh9oqB6PY6yuI8VyOM-VS9i9KiPJiBp3gNlUFcBrY",
     },
+    {
+      id: 4,
+      year: "2019-2022",
+      title: "Saraswati Higher Secondary school Nagod (PCM)",
+      institution: "SHSS , Nagod",
+      icon: "School",
+      color: "success",
+      description: "PCM major & early interest in tech.",
+      achievements: ["PCM Excellence", "Competitions"],
+      technologies: ["", ""],
+      image: schoolImg,
+    },
+    {
+      id: 2,
+      year: "2023",
+      title: "Full Stack Level Up",
+      institution: "Self-Learning",
+      icon: "Code2",
+      color: "accent",
+      description: "Built real projects and refined full-stack logic.",
+      achievements: ["Created LocalKart", "Built YammiVerse", "Deployments"],
+      technologies: [
+        "React.js",
+        "React Native",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "JavaScript",
+        "HTML5",
+        "CSS3",
+        "Tailwind CSS",
+        "Socket.IO",
+        "Git & GitHub",
+      ],
+      image:
+        "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=1000&q=80",
+    },
+    {
+      id: 3,
+      year: "2022",
+      title: "Frontend Foundations",
+      institution: "Online Learning",
+      icon: "Monitor",
+      color: "warning",
+      description: "Learned UI/UX and frontend core fundamentals.",
+      achievements: ["Portfolio site", "DOM mastery", "CSS Grid & Flex"],
+      technologies: ["HTML", "CSS", "JavaScript", "React", "Tailwind"],
+      image:
+        "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1000&q=80",
+    },
+    {
+      id: 5,
+      year: "2026",
+      title: "React Native Development",
+      institution: "Self Learning / Projects",
+      icon: "Smartphone",
+      color: "success",
+      description:
+        "Built cross-platform mobile applications with real-world features using React Native and modern backend technologies.",
+      achievements: [
+        "Developed ParkEasy parking app",
+        "Implemented authentication & role-based access",
+        "Integrated REST APIs and real-time features",
+        "APK build & deployment using Expo (EAS)",
+      ],
+      technologies: [
+        "React Native",
+        "Expo",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "JWT Auth",
+        "Socket.io",
+      ],
+      image:
+        "https://www.brahmaait.com/wp-content/uploads/2018/08/react-native.jpg",
+    },
   ];
 
   const toggle = (id) => {

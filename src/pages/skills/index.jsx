@@ -321,7 +321,7 @@ const Skills = () => {
               },
               {
                 label: "Projects Built",
-                value: "9+",
+                value: "8+",
                 icon: "FolderOpen",
                 color: "from-purple-500 to-pink-500",
               },
