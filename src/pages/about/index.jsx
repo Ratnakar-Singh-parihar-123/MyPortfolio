@@ -42,23 +42,23 @@ const About = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="bg-foreground text-background py-12 mt-20 border-t border-border/30"
+        className="py-12 mt-20 border-t bg-foreground text-background border-border/30"
       >
         <div className="container-brand">
-          <div className="grid md:grid-cols-3 gap-10 items-center">
+          <div className="grid items-center gap-10 md:grid-cols-3">
             {/* Brand Section */}
             <div>
-              <h3 className="text-2xl font-bold mb-3 tracking-tight">
+              <h3 className="mb-3 text-2xl font-bold tracking-tight">
                 Ratnakar Singh Parihar<span className="text-primary">.</span>
               </h3>
-              <p className="text-background/80 text-sm leading-relaxed max-w-xs">
+              <p className="max-w-xs text-sm leading-relaxed text-background/80">
                 Building modern, high-performance web and mobile applications
                 with the MERN stack and React Native, constantly evolving my
                 skills to deliver clean, efficient, and user-friendly solutions.
               </p>
 
               {/* Social Icons */}
-              <div className="flex space-x-4 mt-5">
+              <div className="flex mt-5 space-x-4">
                 {[
                   {
                     name: "Github",
@@ -78,7 +78,7 @@ const About = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 rounded-md bg-background/10 hover:bg-background/20 transition-all duration-300"
+                    className="p-2 transition-all duration-300 rounded-md bg-background/10 hover:bg-background/20"
                     aria-label={social.name}
                   >
                     <Icon
@@ -104,7 +104,7 @@ const About = () => {
                   <a
                     key={i}
                     href={link.href}
-                    className="text-background/70 hover:text-primary text-sm font-medium transition-colors duration-200"
+                    className="text-sm font-medium transition-colors duration-200 text-background/70 hover:text-primary"
                   >
                     {link.name}
                   </a>
@@ -114,14 +114,14 @@ const About = () => {
 
             {/* Copyright */}
             <div className="text-center md:text-right">
-              <p className="text-background/70 text-sm">
+              <p className="text-sm text-background/70">
                 © {new Date().getFullYear()}{" "}
                 <span className="font-semibold text-background">
                   Ratnakar Singh Parihar
                 </span>
                 . All rights reserved.
               </p>
-              <p className="text-xs text-background/50 mt-1">
+              <p className="mt-1 text-xs text-background/50">
                 Built with ❤️ using React & Tailwind CSS
               </p>
             </div>
