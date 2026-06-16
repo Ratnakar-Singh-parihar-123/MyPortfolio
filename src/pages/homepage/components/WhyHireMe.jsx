@@ -32,7 +32,8 @@ const WhyHireMe = () => {
       textColor: "text-blue-500",
       borderColor: "border-blue-500/20",
       metrics: "100% Code Coverage",
-      experience: "2+ Fresher with 2+ Years Practical Experience",
+      experience:
+        "1+ Years of Development Journey Through Training, Internships & Real-World Projects",
     },
     {
       icon: CommandLineIcon,
@@ -107,45 +108,45 @@ const WhyHireMe = () => {
   ];
 
   return (
-    <section className="relative py-24 bg-background overflow-hidden">
+    <section className="relative py-24 overflow-hidden bg-background">
       {/* Animated Background Elements - Matching Project Section */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/4 left-1/4 w-40 h-40 bg-blue-500/10 rounded-full blur-2xl animate-pulse"></div>
-        <div className="absolute bottom-1/3 right-1/3 w-60 h-60 bg-pink-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute rounded-full -top-40 -right-40 w-80 h-80 bg-primary/5 blur-3xl"></div>
+        <div className="absolute rounded-full -bottom-40 -left-40 w-80 h-80 bg-purple-500/5 blur-3xl"></div>
+        <div className="absolute w-40 h-40 rounded-full top-1/4 left-1/4 bg-blue-500/10 blur-2xl animate-pulse"></div>
+        <div className="absolute delay-1000 rounded-full bottom-1/3 right-1/3 w-60 h-60 bg-pink-500/10 blur-3xl animate-pulse"></div>
       </div>
 
-      <div className="container-brand relative z-10">
+      <div className="relative z-10 container-brand">
         {/* Header Section - Matching Project Section Style */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="mb-16 text-center"
         >
           <div className="inline-flex items-center justify-center gap-3 mb-4">
             <div className="relative">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+              <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10">
                 <LightBulbIcon className="w-6 h-6 text-primary" />
               </div>
               <motion.div
-                className="absolute -top-1 -right-1 w-4 h-4 bg-primary rounded-full"
+                className="absolute w-4 h-4 rounded-full -top-1 -right-1 bg-primary"
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
             </div>
-            <span className="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">
+            <span className="px-3 py-1 text-sm font-semibold rounded-full text-primary bg-primary/10">
               WHY WORK WITH ME
             </span>
           </div>
 
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 tracking-tight">
+          <h2 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl text-foreground">
             Hire
             <span className="relative ml-4">
               <span className="relative z-10">Me</span>
               <motion.span
-                className="absolute bottom-2 left-0 right-0 h-3 bg-primary/20 -rotate-1"
+                className="absolute left-0 right-0 h-3 bottom-2 bg-primary/20 -rotate-1"
                 initial={{ width: 0 }}
                 whileInView={{ width: "100%" }}
                 transition={{ duration: 1, delay: 0.3 }}
@@ -153,7 +154,7 @@ const WhyHireMe = () => {
             </span>
           </h2>
 
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="max-w-3xl mx-auto text-lg leading-relaxed text-muted-foreground">
             I design and develop modern web & mobile applications using the MERN
             stack and React Native, focusing on scalability, performance, and
             exceptional user experience. I transform ideas into impactful,
@@ -170,16 +171,16 @@ const WhyHireMe = () => {
         >
           <div className="relative group">
             {/* Glow Effect */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="absolute transition-opacity duration-500 opacity-0 -inset-1 bg-gradient-to-r from-primary/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-xl group-hover:opacity-100"></div>
 
             {/* Code Block */}
-            <div className="relative bg-card border border-border/50 rounded-2xl p-6 font-mono text-sm shadow-xl overflow-hidden">
+            <div className="relative p-6 overflow-hidden font-mono text-sm border shadow-xl bg-card border-border/50 rounded-2xl">
               {/* Window Controls */}
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                <span className="text-xs text-muted-foreground ml-2">
+                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                <span className="ml-2 text-xs text-muted-foreground">
                   developer.ts
                 </span>
               </div>
@@ -208,7 +209,7 @@ const WhyHireMe = () => {
                   <div>
                     <span className="text-purple-400">Experience</span>: [
                     <span className="text-yellow-400">
-                      'Fresher with 1+ Years Practical Experience'
+                      1+ Years of Learning, Internship & Project Experience
                     </span>
                     ],
                   </div>
@@ -230,7 +231,7 @@ const WhyHireMe = () => {
                 <div>{"}"}</div>
 
                 {/* Output Line */}
-                <div className="mt-4 pt-4 border-t border-border/50">
+                <div className="pt-4 mt-4 border-t border-border/50">
                   <span className="text-gray-500">// Output: </span>
                   <span className="text-green-400">
                     "Ready to build amazing things together!"
@@ -239,14 +240,14 @@ const WhyHireMe = () => {
               </div>
 
               {/* Decorative Elements */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl"></div>
-              <div className="absolute bottom-0 left-0 w-32 h-32 bg-purple-500/5 rounded-full blur-2xl"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-primary/5 blur-2xl"></div>
+              <div className="absolute bottom-0 left-0 w-32 h-32 rounded-full bg-purple-500/5 blur-2xl"></div>
             </div>
           </div>
         </motion.div>
 
         {/* Skills Grid - Matching Project Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+        <div className="grid grid-cols-1 gap-6 mb-20 md:grid-cols-2 lg:grid-cols-3">
           {skills.map((skill, index) => (
             <motion.div
               key={index}
@@ -256,10 +257,10 @@ const WhyHireMe = () => {
               viewport={{ once: true }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              className="group relative cursor-pointer"
+              className="relative cursor-pointer group"
             >
               {/* Card Container */}
-              <div className="relative bg-gradient-to-b from-card to-card/80 border border-border/50 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 h-full hover:-translate-y-2">
+              <div className="relative h-full overflow-hidden transition-all duration-500 border shadow-lg bg-gradient-to-b from-card to-card/80 border-border/50 rounded-2xl hover:shadow-2xl hover:-translate-y-2">
                 {/* Glow Effect */}
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${skill.color.replace("from-", "from-").replace("to-", "to-")}/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
@@ -275,19 +276,19 @@ const WhyHireMe = () => {
                       className={`w-full h-full ${skill.textColor}`}
                     />
                     <motion.div
-                      className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full"
+                      className="absolute w-3 h-3 bg-green-500 rounded-full -top-1 -right-1"
                       animate={{ scale: [1, 1.2, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
                     />
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                  <h3 className="mb-3 text-xl font-bold transition-colors duration-300 text-foreground group-hover:text-primary">
                     {skill.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                  <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
                     {skill.description}
                   </p>
 
@@ -301,7 +302,7 @@ const WhyHireMe = () => {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <p className="text-sm text-foreground/80 mb-4 leading-relaxed border-l-2 border-primary pl-3">
+                    <p className="pl-3 mb-4 text-sm leading-relaxed border-l-2 text-foreground/80 border-primary">
                       {skill.fullDescription}
                     </p>
                   </motion.div>
@@ -322,7 +323,7 @@ const WhyHireMe = () => {
 
                   {/* Progress Indicator */}
                   <div className="relative pt-2">
-                    <div className="h-1 bg-muted/30 rounded-full overflow-hidden">
+                    <div className="h-1 overflow-hidden rounded-full bg-muted/30">
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: "100%" }}

@@ -254,7 +254,7 @@ const Skills = () => {
         </linearGradient>
       </defs>
       <div className="absolute inset-0 flex items-center justify-center">
-        <span className="text-xs sm:text-sm font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+        <span className="text-xs font-bold text-transparent sm:text-sm bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
           {level}%
         </span>
       </div>
@@ -267,50 +267,51 @@ const Skills = () => {
       <Header />
 
       {/* Hero Section with Parallax */}
-      <section className="relative pt-24 pb-16 sm:pt-28 sm:pb-20 overflow-hidden">
+      <section className="relative pt-24 pb-16 overflow-hidden sm:pt-28 sm:pb-20">
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-r from-pink-500/10 to-orange-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+          <div className="absolute rounded-full -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-blue-500/10 to-purple-500/10 blur-3xl animate-pulse" />
+          <div className="absolute delay-1000 rounded-full -bottom-40 -left-40 w-80 h-80 bg-gradient-to-r from-pink-500/10 to-orange-500/10 blur-3xl animate-pulse" />
         </div>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center"
+          className="relative max-w-4xl px-4 mx-auto text-center sm:px-6"
         >
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
-            className="inline-flex items-center space-x-2 px-3 py-1 sm:px-4 sm:py-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full mb-4 sm:mb-6"
+            className="inline-flex items-center px-3 py-1 mb-4 space-x-2 rounded-full sm:px-4 sm:py-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 sm:mb-6"
           >
             <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-pulse" />
-            <span className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">
+            <span className="text-xs font-medium text-gray-600 sm:text-sm dark:text-gray-400">
               My Technical Expertise
             </span>
           </motion.div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 sm:mb-6">
-            <span className="bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+          <h1 className="mb-4 text-3xl font-black sm:text-4xl md:text-5xl lg:text-6xl sm:mb-6">
+            <span className="text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text">
               Skills &
             </span>
             <br />
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <span className="text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text">
               Technologies
             </span>
           </h1>
 
-          <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
-            Skilled in 15+ technologies with 1+ years of hands-on experience,
-            gained through building real-world projects and continuously
-            expanding my development expertise.
+          <p className="max-w-2xl mx-auto text-sm leading-relaxed text-gray-600 sm:text-base md:text-lg dark:text-gray-400">
+            Skilled in 15+ technologies with 1+ years of practical development
+            experience, gained through professional training, internships, and
+            building real-world web and mobile applications while continuously
+            enhancing my technical expertise.
           </p>
 
           {/* Stats Cards */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-8 sm:mt-12 max-w-2xl mx-auto">
+          <div className="grid max-w-2xl grid-cols-2 gap-3 mx-auto mt-8 sm:grid-cols-4 sm:gap-4 sm:mt-12">
             {[
               {
                 label: "Technologies Worked With",
@@ -325,7 +326,7 @@ const Skills = () => {
                 color: "from-purple-500 to-pink-500",
               },
               {
-                label: "Hands-on Experience",
+                label: "Learning & Industry Experience",
                 value: "1+ Years",
                 icon: "Clock",
                 color: "from-orange-500 to-red-500",
@@ -344,8 +345,8 @@ const Skills = () => {
                 transition={{ delay: 0.3 + index * 0.1 }}
                 className="relative group"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 rounded-xl transform group-hover:scale-105 transition-transform duration-300" />
-                <div className="relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-gray-200/50 dark:border-gray-700/50 text-center">
+                <div className="absolute inset-0 transition-transform duration-300 transform bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 rounded-xl group-hover:scale-105" />
+                <div className="relative p-3 text-center border bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm sm:p-4 rounded-xl border-gray-200/50 dark:border-gray-700/50">
                   <div
                     className={`inline-flex p-2 rounded-lg bg-gradient-to-br ${stat.color} bg-opacity-10 mb-2`}
                   >
@@ -355,7 +356,7 @@ const Skills = () => {
                       className="text-gray-700 dark:text-gray-300"
                     />
                   </div>
-                  <p className="text-lg sm:text-xl font-bold bg-gradient-to-br from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+                  <p className="text-lg font-bold text-transparent sm:text-xl bg-gradient-to-br from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text">
                     {stat.value}
                   </p>
                   <p className="text-[10px] sm:text-xs text-gray-600 dark:text-gray-400 mt-0.5">
@@ -369,10 +370,10 @@ const Skills = () => {
       </section>
 
       {/* Category Filter - Mobile Optimized */}
-      <section className="py-4 sm:py-6 sticky top-14 sm:top-16 md:top-20 z-30 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-800/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <section className="sticky z-30 py-4 border-b sm:py-6 top-14 sm:top-16 md:top-20 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-gray-200/50 dark:border-gray-800/50">
+        <div className="px-4 mx-auto max-w-7xl sm:px-6">
           <div className="flex items-center justify-between sm:justify-center">
-            <div className="flex items-center space-x-1 sm:space-x-2 overflow-x-auto pb-1 custom-scrollbar flex-1 sm:flex-none">
+            <div className="flex items-center flex-1 pb-1 space-x-1 overflow-x-auto sm:space-x-2 custom-scrollbar sm:flex-none">
               {skillCategories.map((category) => (
                 <motion.button
                   key={category.id}
@@ -393,7 +394,7 @@ const Skills = () => {
                   {activeFilter === category.id && (
                     <motion.div
                       layoutId="activeFilter"
-                      className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-lg sm:rounded-xl"
+                      className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 sm:rounded-xl"
                       transition={{
                         type: "spring",
                         bounce: 0.2,
@@ -415,7 +416,7 @@ const Skills = () => {
             </div>
 
             {/* Mobile filter indicator */}
-            <span className="sm:hidden text-xs text-gray-500 dark:text-gray-400 ml-2">
+            <span className="ml-2 text-xs text-gray-500 sm:hidden dark:text-gray-400">
               {filteredSkills.length} sections
             </span>
           </div>
@@ -424,8 +425,8 @@ const Skills = () => {
 
       {/* Skills Grid */}
       <section className="py-8 sm:py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+        <div className="px-4 mx-auto max-w-7xl sm:px-6">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 sm:gap-6 lg:gap-8">
             {filteredSkills.map((section, index) => (
               <motion.div
                 key={section.id}
@@ -433,7 +434,7 @@ const Skills = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true, margin: "-50px" }}
-                className="group relative"
+                className="relative group"
               >
                 {/* Card Background with Gradient Border */}
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-transparent via-gray-200 to-transparent dark:via-gray-700 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur" />
@@ -456,10 +457,10 @@ const Skills = () => {
                             size={windowWidth < 640 ? 20 : 24}
                             className="text-white"
                           />
-                          <div className="absolute inset-0 bg-white/20 rounded-lg sm:rounded-xl animate-pulse opacity-0 group-hover:opacity-100" />
+                          <div className="absolute inset-0 rounded-lg opacity-0 bg-white/20 sm:rounded-xl animate-pulse group-hover:opacity-100" />
                         </div>
                         <div>
-                          <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 dark:text-white">
+                          <h2 className="text-lg font-bold text-gray-900 sm:text-xl lg:text-2xl dark:text-white">
                             {section.title}
                           </h2>
                           <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-0.5">
@@ -478,7 +479,7 @@ const Skills = () => {
                     </div>
 
                     {/* Description */}
-                    <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
+                    <p className="mb-4 text-xs leading-relaxed text-gray-600 sm:text-sm dark:text-gray-400 sm:mb-6">
                       {section.description}
                     </p>
 
@@ -492,10 +493,10 @@ const Skills = () => {
                           transition={{ delay: i * 0.05 }}
                           viewport={{ once: true }}
                           whileHover={{ scale: 1.05, y: -2 }}
-                          className="group/skill relative"
+                          className="relative group/skill"
                         >
-                          <div className="absolute inset-0 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 rounded-lg transform group-hover/skill:scale-105 transition-transform duration-300" />
-                          <div className="relative bg-white dark:bg-gray-800 p-2 sm:p-3 rounded-lg border border-gray-200/50 dark:border-gray-700/50">
+                          <div className="absolute inset-0 transition-transform duration-300 transform rounded-lg bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 group-hover/skill:scale-105" />
+                          <div className="relative p-2 bg-white border rounded-lg dark:bg-gray-800 sm:p-3 border-gray-200/50 dark:border-gray-700/50">
                             <div className="flex items-center space-x-2 sm:space-x-3">
                               {/* Icon */}
                               <div
@@ -511,7 +512,7 @@ const Skills = () => {
                               {/* Skill Info */}
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center justify-between">
-                                  <p className="text-xs sm:text-sm font-medium text-gray-900 dark:text-white truncate">
+                                  <p className="text-xs font-medium text-gray-900 truncate sm:text-sm dark:text-white">
                                     {skill.name}
                                   </p>
                                   <span className="text-[10px] sm:text-xs font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -520,7 +521,7 @@ const Skills = () => {
                                 </div>
 
                                 {/* Progress Bar */}
-                                <div className="relative w-full h-1 bg-gray-200 dark:bg-gray-700 rounded-full mt-1 overflow-hidden">
+                                <div className="relative w-full h-1 mt-1 overflow-hidden bg-gray-200 rounded-full dark:bg-gray-700">
                                   <motion.div
                                     initial={{ width: 0 }}
                                     whileInView={{ width: `${skill.level}%` }}
@@ -537,7 +538,7 @@ const Skills = () => {
                             {/* Hover Tooltip */}
                             <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-[8px] rounded opacity-0 group-hover/skill:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none z-20">
                               Proficiency: {skill.level}%
-                              <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-900" />
+                              <div className="absolute -mt-1 transform -translate-x-1/2 border-4 border-transparent top-full left-1/2 border-t-gray-900" />
                             </div>
                           </div>
                         </motion.div>
@@ -545,12 +546,12 @@ const Skills = () => {
                     </div>
 
                     {/* Additional Info */}
-                    <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-200/50 dark:border-gray-800/50">
+                    <div className="pt-4 mt-4 border-t sm:mt-6 sm:pt-6 border-gray-200/50 dark:border-gray-800/50">
                       <div className="flex items-center justify-between text-xs sm:text-sm">
                         <span className="text-gray-500 dark:text-gray-400">
                           Last updated: 2024
                         </span>
-                        <button className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium transition-colors">
+                        <button className="font-medium text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
                           View projects →
                         </button>
                       </div>
@@ -566,12 +567,12 @@ const Skills = () => {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-center py-16"
+              className="py-16 text-center"
             >
-              <div className="inline-flex p-4 bg-gray-100 dark:bg-gray-800 rounded-full mb-4">
+              <div className="inline-flex p-4 mb-4 bg-gray-100 rounded-full dark:bg-gray-800">
                 <Icon name="Search" size={32} className="text-gray-400" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+              <h3 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">
                 No skills found
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
@@ -584,30 +585,30 @@ const Skills = () => {
 
       {/* Learning Path Section */}
       <section className="py-12 sm:py-16 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="px-4 mx-auto max-w-7xl sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center mb-8 sm:mb-12"
+            className="mb-8 text-center sm:mb-12"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-4">
-              <span className="bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+            <h2 className="mb-4 text-2xl font-black sm:text-3xl md:text-4xl">
+              <span className="text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text">
                 Current Learning
               </span>
               <br />
-              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+              <span className="text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text">
                 Path
               </span>
             </h2>
-            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <p className="max-w-2xl mx-auto text-sm text-gray-600 sm:text-base dark:text-gray-400">
               Always learning and improving. Here's what I'm currently focusing
               on
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6">
             {[
               {
                 name: "React Native",
@@ -637,11 +638,11 @@ const Skills = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group relative"
+                className="relative group"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-xl transform group-hover:scale-105 transition-transform duration-300" />
-                <div className="relative bg-white dark:bg-gray-900 p-4 sm:p-5 rounded-xl border border-gray-200/50 dark:border-gray-700/50">
-                  <div className="flex items-center space-x-3 mb-3">
+                <div className="absolute inset-0 transition-transform duration-300 transform bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-xl group-hover:scale-105" />
+                <div className="relative p-4 bg-white border dark:bg-gray-900 sm:p-5 rounded-xl border-gray-200/50 dark:border-gray-700/50">
+                  <div className="flex items-center mb-3 space-x-3">
                     <div
                       className={`p-2 rounded-lg bg-gradient-to-br ${item.color} bg-opacity-10`}
                     >
@@ -652,7 +653,7 @@ const Skills = () => {
                       />
                     </div>
                     <div>
-                      <h3 className="font-bold text-gray-900 dark:text-white text-sm sm:text-base">
+                      <h3 className="text-sm font-bold text-gray-900 dark:text-white sm:text-base">
                         {item.name}
                       </h3>
                       <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">
@@ -666,7 +667,7 @@ const Skills = () => {
                       <span className="text-gray-600 dark:text-gray-400">
                         Progress
                       </span>
-                      <span className="font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                      <span className="font-bold text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
                         {item.progress}%
                       </span>
                     </div>
@@ -687,7 +688,7 @@ const Skills = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-16 sm:py-20 overflow-hidden">
+      <section className="relative py-16 overflow-hidden sm:py-20">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
           <div className="absolute inset-0 bg-black/20" />
           <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%23ffffff%22 fill-opacity=%220.1%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]" />
@@ -698,30 +699,30 @@ const Skills = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="relative max-w-3xl mx-auto text-center px-4 sm:px-6 text-white"
+          className="relative max-w-3xl px-4 mx-auto text-center text-white sm:px-6"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-4">
+          <h2 className="mb-4 text-2xl font-black sm:text-3xl md:text-4xl">
             Ready to see these skills in action?
           </h2>
-          <p className="text-sm sm:text-base md:text-lg text-white/90 mb-6 sm:mb-8 max-w-2xl mx-auto">
+          <p className="max-w-2xl mx-auto mb-6 text-sm sm:text-base md:text-lg text-white/90 sm:mb-8">
             Explore my projects where I've implemented these technologies to
             build real-world, production-ready applications.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
             <a
               href="/projects"
-              className="group relative inline-flex items-center space-x-2 px-6 sm:px-8 py-3 sm:py-4 bg-white text-blue-600 font-semibold rounded-xl hover:bg-white/90 transition-all duration-300 hover:scale-105 shadow-2xl w-full sm:w-auto justify-center"
+              className="relative inline-flex items-center justify-center w-full px-6 py-3 space-x-2 font-semibold text-blue-600 transition-all duration-300 bg-white shadow-2xl group sm:px-8 sm:py-4 rounded-xl hover:bg-white/90 hover:scale-105 sm:w-auto"
             >
               <span>View My Projects</span>
               <Icon
                 name="ArrowRight"
                 size={18}
-                className="group-hover:translate-x-1 transition-transform"
+                className="transition-transform group-hover:translate-x-1"
               />
             </a>
             <a
               href="/contact"
-              className="group relative inline-flex items-center space-x-2 px-6 sm:px-8 py-3 sm:py-4 bg-white/20 text-white font-semibold rounded-xl hover:bg-white/30 transition-all duration-300 hover:scale-105 backdrop-blur-sm border border-white/30 w-full sm:w-auto justify-center"
+              className="relative inline-flex items-center justify-center w-full px-6 py-3 space-x-2 font-semibold text-white transition-all duration-300 border group sm:px-8 sm:py-4 bg-white/20 rounded-xl hover:bg-white/30 hover:scale-105 backdrop-blur-sm border-white/30 sm:w-auto"
             >
               <Icon name="Mail" size={18} />
               <span>Get In Touch</span>
@@ -729,15 +730,16 @@ const Skills = () => {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 sm:mt-12">
+          <div className="grid grid-cols-2 gap-4 mt-8 sm:grid-cols-4 sm:mt-12">
             {[
               { value: "8+", label: "Projects" },
               { value: "15+", label: "Technologies" },
-              { value: "1+ years,Hands-on", label: "Experience" },
+              // { value: "1+ years,Hands-on", label: "Experience" },
+              { value: "1+ Years", label: "Learning & Industry Experience" },
               { value: "24/7", label: "Available" },
             ].map((stat, index) => (
               <div key={index} className="text-center">
-                <p className="text-xl sm:text-2xl font-black text-white">
+                <p className="text-xl font-black text-white sm:text-2xl">
                   {stat.value}
                 </p>
                 <p className="text-xs sm:text-sm text-white/80 mt-0.5">
@@ -750,16 +752,16 @@ const Skills = () => {
       </section>
 
       {/* Footer */}
-      <footer className="relative py-8 sm:py-10 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+      <footer className="relative py-8 bg-white border-t border-gray-200 sm:py-10 dark:border-gray-800 dark:bg-gray-900">
+        <div className="px-4 mx-auto max-w-7xl sm:px-6">
+          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xs sm:text-sm">
+              <div className="flex items-center justify-center w-6 h-6 rounded-lg sm:w-8 sm:h-8 bg-gradient-to-br from-blue-500 to-purple-600">
+                <span className="text-xs font-bold text-white sm:text-sm">
                   R
                 </span>
               </div>
-              <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+              <span className="text-xs text-gray-600 sm:text-sm dark:text-gray-400">
                 © {new Date().getFullYear()} Ratnakar Singh Parihar
               </span>
             </div>
@@ -777,7 +779,7 @@ const Skills = () => {
                   href={social.url}
                   target=""
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg text-gray-500 hover:text-white hover:bg-gray-900 dark:text-gray-400 dark:hover:bg-white dark:hover:text-black transition-all duration-300"
+                  className="p-2 text-gray-500 transition-all duration-300 rounded-lg hover:text-white hover:bg-gray-900 dark:text-gray-400 dark:hover:bg-white dark:hover:text-black"
                 >
                   <Icon name={social.name} size={18} />
                 </a>

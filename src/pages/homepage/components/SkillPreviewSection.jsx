@@ -151,15 +151,15 @@ const SkillPreviewSection = () => {
 
   const overallStats = [
     {
-      label: "Fresher with ,Years Practical Experience",
-      value: "1+",
+      label: "Learning & Industry Experience",
+      value: "1+ Years",
       icon: ClockIcon,
       color: "text-blue-500",
       bgColor: "bg-blue-500/10",
     },
     {
       label: "Projects Completed",
-      value: "9+",
+      value: "8+",
       icon: Layers,
       color: "text-green-500",
       bgColor: "bg-green-500/10",
@@ -181,45 +181,45 @@ const SkillPreviewSection = () => {
   ];
 
   return (
-    <section className="relative py-24 bg-background overflow-hidden">
+    <section className="relative py-24 overflow-hidden bg-background">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/4 left-1/4 w-40 h-40 bg-blue-500/10 rounded-full blur-2xl animate-pulse"></div>
-        <div className="absolute bottom-1/3 right-1/3 w-60 h-60 bg-pink-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute rounded-full -top-40 -right-40 w-80 h-80 bg-primary/5 blur-3xl"></div>
+        <div className="absolute rounded-full -bottom-40 -left-40 w-80 h-80 bg-purple-500/5 blur-3xl"></div>
+        <div className="absolute w-40 h-40 rounded-full top-1/4 left-1/4 bg-blue-500/10 blur-2xl animate-pulse"></div>
+        <div className="absolute delay-1000 rounded-full bottom-1/3 right-1/3 w-60 h-60 bg-pink-500/10 blur-3xl animate-pulse"></div>
       </div>
 
-      <div className="container-brand relative z-10">
+      <div className="relative z-10 container-brand">
         {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="mb-16 text-center"
         >
           <div className="inline-flex items-center justify-center gap-3 mb-4">
             <div className="relative">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+              <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10">
                 <Cpu className="w-6 h-6 text-primary" />
               </div>
               <motion.div
-                className="absolute -top-1 -right-1 w-4 h-4 bg-primary rounded-full"
+                className="absolute w-4 h-4 rounded-full -top-1 -right-1 bg-primary"
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
             </div>
-            <span className="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">
+            <span className="px-3 py-1 text-sm font-semibold rounded-full text-primary bg-primary/10">
               TECHNICAL EXPERTISE
             </span>
           </div>
 
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 tracking-tight">
+          <h2 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl text-foreground">
             Skills &
             <span className="relative ml-4">
               <span className="relative z-10">Proficiencies</span>
               <motion.span
-                className="absolute bottom-2 left-0 right-0 h-3 bg-primary/20 -rotate-1"
+                className="absolute left-0 right-0 h-3 bottom-2 bg-primary/20 -rotate-1"
                 initial={{ width: 0 }}
                 whileInView={{ width: "100%" }}
                 transition={{ duration: 1, delay: 0.3 }}
@@ -227,7 +227,7 @@ const SkillPreviewSection = () => {
             </span>
           </h2>
 
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="max-w-3xl mx-auto text-lg leading-relaxed text-muted-foreground">
             A comprehensive skill set spanning the full development lifecycle,
             from user experience design to scalable backend architecture.
           </p>
@@ -238,22 +238,22 @@ const SkillPreviewSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16"
+          className="grid grid-cols-2 gap-4 mb-16 lg:grid-cols-4"
         >
           {overallStats.map((stat, index) => (
             <motion.div
               key={index}
               whileHover={{ y: -5 }}
-              className="group relative"
+              className="relative group"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
-              <div className="relative p-6 rounded-2xl bg-card/50 border border-border/50 backdrop-blur-sm hover:shadow-xl transition-all duration-300">
+              <div className="absolute inset-0 transition-opacity duration-500 opacity-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 group-hover:opacity-100 rounded-2xl"></div>
+              <div className="relative p-6 transition-all duration-300 border rounded-2xl bg-card/50 border-border/50 backdrop-blur-sm hover:shadow-xl">
                 <div
                   className={`w-12 h-12 rounded-xl ${stat.bgColor} flex items-center justify-center mb-4`}
                 >
                   <stat.icon className={`w-6 h-6 ${stat.color}`} />
                 </div>
-                <div className="text-2xl font-bold text-foreground mb-1">
+                <div className="mb-1 text-2xl font-bold text-foreground">
                   {stat.value}
                 </div>
                 <div className="text-sm text-muted-foreground">
@@ -265,7 +265,7 @@ const SkillPreviewSection = () => {
         </motion.div>
 
         {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+        <div className="grid grid-cols-1 gap-6 mb-20 md:grid-cols-2 lg:grid-cols-4">
           {skillCategories?.map((category, categoryIndex) => (
             <motion.div
               key={category?.title}
@@ -275,10 +275,10 @@ const SkillPreviewSection = () => {
               viewport={{ once: true }}
               onMouseEnter={() => setHoveredCategory(categoryIndex)}
               onMouseLeave={() => setHoveredCategory(null)}
-              className="group relative cursor-pointer"
+              className="relative cursor-pointer group"
             >
               {/* Card Container */}
-              <div className="relative bg-gradient-to-b from-card to-card/80 border border-border/50 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 h-full hover:-translate-y-2">
+              <div className="relative h-full overflow-hidden transition-all duration-500 border shadow-lg bg-gradient-to-b from-card to-card/80 border-border/50 rounded-2xl hover:shadow-2xl hover:-translate-y-2">
                 {/* Glow Effect */}
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${category.gradientFrom.replace("from-", "from-")} ${category.gradientTo.replace("to-", "to-")}/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
@@ -287,7 +287,7 @@ const SkillPreviewSection = () => {
                 {/* Content */}
                 <div className="p-6">
                   {/* Category Header */}
-                  <div className="flex items-center space-x-3 mb-6">
+                  <div className="flex items-center mb-6 space-x-3">
                     <div
                       className={`w-12 h-12 ${category.bgColor} rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200 relative`}
                     >
@@ -297,13 +297,13 @@ const SkillPreviewSection = () => {
                         className={category?.color}
                       />
                       <motion.div
-                        className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full"
+                        className="absolute w-3 h-3 bg-green-500 rounded-full -top-1 -right-1"
                         animate={{ scale: [1, 1.2, 1] }}
                         transition={{ duration: 2, repeat: Infinity }}
                       />
                     </div>
                     <div>
-                      <h3 className="font-bold text-foreground text-lg group-hover:text-primary transition-colors duration-300">
+                      <h3 className="text-lg font-bold transition-colors duration-300 text-foreground group-hover:text-primary">
                         {category?.title}
                       </h3>
                       <p className="text-xs text-muted-foreground">
@@ -378,7 +378,7 @@ const SkillPreviewSection = () => {
                   </div>
 
                   {/* Footer with category stats */}
-                  <div className="mt-6 pt-4 border-t border-border/50">
+                  <div className="pt-4 mt-6 border-t border-border/50">
                     <div className="flex items-center justify-between text-xs">
                       <div className="flex items-center gap-1">
                         <Zap className="w-3 h-3 text-primary" />
@@ -395,7 +395,7 @@ const SkillPreviewSection = () => {
                       </div>
                       <motion.a
                         href="/skills"
-                        className="inline-flex items-center gap-1 text-primary hover:text-primary/80 transition-colors duration-200 font-medium"
+                        className="inline-flex items-center gap-1 font-medium transition-colors duration-200 text-primary hover:text-primary/80"
                         whileHover={{ x: 3 }}
                       >
                         <span>Explore</span>
@@ -423,40 +423,40 @@ const SkillPreviewSection = () => {
           className="relative"
         >
           {/* Glow Effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-2xl opacity-50"></div>
+          <div className="absolute inset-0 opacity-50 bg-gradient-to-r from-primary/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-2xl"></div>
 
-          <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 dark:from-gray-950 dark:to-gray-900 rounded-3xl p-12 text-white text-center border border-white/10 overflow-hidden">
+          <div className="relative p-12 overflow-hidden text-center text-white border bg-gradient-to-br from-gray-900 to-gray-800 dark:from-gray-950 dark:to-gray-900 rounded-3xl border-white/10">
             {/* Animated Background */}
             <div className="absolute inset-0 overflow-hidden">
-              <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/20 rounded-full blur-3xl"></div>
-              <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl"></div>
+              <div className="absolute rounded-full -top-40 -right-40 w-80 h-80 bg-primary/20 blur-3xl"></div>
+              <div className="absolute rounded-full -bottom-40 -left-40 w-80 h-80 bg-purple-500/20 blur-3xl"></div>
             </div>
 
             <div className="relative z-10">
               <div className="inline-flex items-center justify-center gap-2 mb-6">
                 <Sparkles className="w-5 h-5 text-yellow-400" />
-                <span className="text-sm font-semibold text-primary-300 bg-white/10 px-3 py-1 rounded-full">
+                <span className="px-3 py-1 text-sm font-semibold rounded-full text-primary-300 bg-white/10">
                   OPEN FOR OPPORTUNITIES
                 </span>
               </div>
 
-              <h3 className="text-3xl md:text-4xl font-bold mb-4">
+              <h3 className="mb-4 text-3xl font-bold md:text-4xl">
                 Let's Build Something Amazing Together!
               </h3>
 
-              <p className="text-white/80 mb-8 max-w-2xl mx-auto text-lg">
+              <p className="max-w-2xl mx-auto mb-8 text-lg text-white/80">
                 I'm a passionate full-stack developer with expertise in modern
                 web technologies. If you have an idea or project in mind, I'd
                 love to collaborate and bring it to life with clean code and
                 creative design.
               </p>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-4">
+              <div className="flex flex-col items-center justify-center space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
                 <motion.a
                   href="/contact"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="group relative inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 overflow-hidden"
+                  className="relative inline-flex items-center gap-2 px-8 py-4 overflow-hidden font-semibold text-gray-900 transition-all duration-300 bg-white group rounded-xl hover:shadow-xl"
                 >
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-200 to-transparent"
@@ -477,7 +477,7 @@ const SkillPreviewSection = () => {
                   href="/skills"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-2 border-2 border-white/30 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all duration-300"
+                  className="inline-flex items-center gap-2 px-8 py-4 font-semibold text-white transition-all duration-300 border-2 border-white/30 rounded-xl hover:bg-white/10"
                 >
                   <Icon name="Code" size={18} />
                   <span>View All Skills</span>
@@ -485,7 +485,7 @@ const SkillPreviewSection = () => {
               </div>
 
               {/* Trust Indicators */}
-              <div className="flex items-center justify-center gap-6 mt-8 pt-8 border-t border-white/10">
+              <div className="flex items-center justify-center gap-6 pt-8 mt-8 border-t border-white/10">
                 <div className="flex items-center gap-2">
                   <Shield className="w-4 h-4 text-green-400" />
                   <span className="text-sm text-white/60">8+ Projects</span>

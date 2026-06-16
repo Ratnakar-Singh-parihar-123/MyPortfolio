@@ -88,9 +88,10 @@ const HeroSection = () => {
 
   const stats = [
     { value: "8+", label: "Projects", icon: Briefcase, color: "text-blue-500" },
+
     {
       value: "1+",
-      label: "Years Practical Experience",
+      label: "Years of Learning & Industry Experience",
       icon: Calendar,
       color: "text-purple-500",
     },
@@ -104,7 +105,7 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 overflow-hidden">
+    <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
       {/* Interactive Background Grid */}
       {/* Simple Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-950 dark:to-black"></div>
@@ -116,7 +117,7 @@ const HeroSection = () => {
             x: mousePosition.x * 0.02,
             y: mousePosition.y * 0.02,
           }}
-          className="absolute -top-40 -right-40 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"
+          className="absolute rounded-full -top-40 -right-40 w-96 h-96 bg-blue-500/20 blur-3xl"
         />
 
         <motion.div
@@ -124,14 +125,14 @@ const HeroSection = () => {
             x: mousePosition.x * -0.02,
             y: mousePosition.y * -0.02,
           }}
-          className="absolute -bottom-40 -left-40 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"
+          className="absolute rounded-full -bottom-40 -left-40 w-96 h-96 bg-purple-500/20 blur-3xl"
         />
 
         {/* Floating Particles */}
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-blue-500/30 rounded-full"
+            className="absolute w-1 h-1 rounded-full bg-blue-500/30"
             initial={{
               x: Math.random() * window.innerWidth,
               y: Math.random() * window.innerHeight,
@@ -149,8 +150,8 @@ const HeroSection = () => {
         ))}
       </div>
 
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl min-h-screen flex items-center py-20">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full">
+      <div className="container relative flex items-center min-h-screen px-4 py-20 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+        <div className="grid items-center w-full gap-12 lg:grid-cols-2 lg:gap-16">
           {/* LEFT CONTENT - Enhanced Premium Design */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -166,17 +167,17 @@ const HeroSection = () => {
               className="inline-flex items-center gap-3"
             >
               <div className="relative">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
+                <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-500">
                   <Sparkles className="w-6 h-6 text-white" />
                 </div>
                 <motion.div
-                  className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-gray-900"
+                  className="absolute w-4 h-4 bg-green-500 border-2 border-white rounded-full -top-1 -right-1 dark:border-gray-900"
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
               </div>
               <div>
-                <span className="text-sm font-semibold text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/30 px-4 py-2 rounded-full">
+                <span className="px-4 py-2 text-sm font-semibold text-blue-600 bg-blue-100 rounded-full dark:text-blue-400 dark:bg-blue-900/30">
                   OPEN FOR OPPORTUNITIES
                 </span>
               </div>
@@ -188,7 +189,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="text-5xl sm:text-6xl lg:text-7xl text-gray-900 dark:text-white"
+                className="text-5xl text-gray-900 sm:text-6xl lg:text-7xl dark:text-white"
                 style={{ fontFamily: "'Dancing Script', cursive" }}
               >
                 Ratnakar Singh
@@ -219,9 +220,9 @@ const HeroSection = () => {
                 <span className="text-sm"> Bhopal, Madhya Pradesh ,India</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                <span className="relative flex w-2 h-2">
+                  <span className="absolute inline-flex w-full h-full bg-green-400 rounded-full opacity-75 animate-ping"></span>
+                  <span className="relative inline-flex w-2 h-2 bg-green-500 rounded-full"></span>
                 </span>
                 <span className="text-sm text-gray-600 dark:text-gray-400">
                   Available for work
@@ -236,8 +237,8 @@ const HeroSection = () => {
               transition={{ delay: 0.6 }}
               className="relative"
             >
-              <div className="absolute -left-4 top-1/2 -translate-y-1/2 w-1 h-12 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"></div>
-              <p className="text-xl text-gray-700 dark:text-gray-300 pl-4 leading-relaxed">
+              <div className="absolute w-1 h-12 -translate-y-1/2 rounded-full -left-4 top-1/2 bg-gradient-to-b from-blue-500 to-purple-500"></div>
+              <p className="pl-4 text-xl leading-relaxed text-gray-700 dark:text-gray-300">
                 <span className="font-semibold text-blue-600 dark:text-blue-400">
                   Full Stack & React Native Developer
                 </span>{" "}
@@ -252,7 +253,7 @@ const HeroSection = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7 }}
-              className="text-gray-500 dark:text-gray-400 leading-relaxed max-w-xl"
+              className="max-w-xl leading-relaxed text-gray-500 dark:text-gray-400"
             >
               I craft high-quality web and mobile applications using the MERN
               stack and React Native, turning complex problems into seamless,
@@ -265,13 +266,13 @@ const HeroSection = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.9 }}
-              className="flex flex-col sm:flex-row gap-4 pt-4"
+              className="flex flex-col gap-4 pt-4 sm:flex-row"
             >
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => scrollToSection("projects")}
-                className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+                className="relative px-8 py-4 overflow-hidden font-semibold text-white transition-all duration-300 shadow-lg group bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl hover:shadow-xl"
               >
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
@@ -287,7 +288,7 @@ const HeroSection = () => {
                 <span className="relative flex items-center gap-2">
                   <Briefcase className="w-5 h-5" />
                   View Projects
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </span>
               </motion.button>
 
@@ -296,7 +297,7 @@ const HeroSection = () => {
                 download
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group px-8 py-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-xl font-semibold border-2 border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-300 flex items-center justify-center gap-2"
+                className="flex items-center justify-center gap-2 px-8 py-4 font-semibold text-gray-900 transition-all duration-300 bg-white border-2 border-gray-200 group dark:bg-gray-800 dark:text-white rounded-xl dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500"
               >
                 <Download className="w-5 h-5 group-hover:translate-y-0.5 transition-transform" />
                 Download Resume
@@ -325,7 +326,7 @@ const HeroSection = () => {
                     <link.icon className="w-5 h-5" />
                   </a>
                   {/* Tooltip */}
-                  <span className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                  <span className="absolute px-2 py-1 text-xs text-white transition-opacity duration-300 -translate-x-1/2 bg-gray-900 rounded opacity-0 -top-8 left-1/2 group-hover:opacity-100 whitespace-nowrap">
                     {link.name}
                   </span>
                 </motion.div>
@@ -337,13 +338,13 @@ const HeroSection = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.1 }}
-              className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6"
+              className="grid grid-cols-2 gap-4 pt-6 sm:grid-cols-4"
             >
               {stats.map((stat, index) => (
                 <motion.div
                   key={index}
                   whileHover={{ y: -2 }}
-                  className="text-center p-3 rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700"
+                  className="p-3 text-center border border-gray-200 rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm dark:border-gray-700"
                 >
                   <stat.icon className={`w-5 h-5 ${stat.color} mx-auto mb-1`} />
                   <div className="text-lg font-bold text-gray-900 dark:text-white">
@@ -366,16 +367,16 @@ const HeroSection = () => {
           >
             <div className="relative w-full max-w-md">
               {/* Profile Card */}
-              <div className="relative bg-white dark:bg-gray-900 rounded-3xl shadow-xl overflow-hidden border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500">
+              <div className="relative overflow-hidden transition-all duration-500 bg-white border border-gray-200 shadow-xl dark:bg-gray-900 rounded-3xl dark:border-gray-700 hover:shadow-2xl">
                 {/* Gradient Header */}
                 <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600"></div>
 
                 {/* Profile Image */}
-                <div className="relative pt-20 px-6">
+                <div className="relative px-6 pt-20">
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     transition={{ type: "spring", stiffness: 300 }}
-                    className="relative w-32 h-32 mx-auto rounded-2xl overflow-hidden ring-4 ring-white dark:ring-gray-900 shadow-lg"
+                    className="relative w-32 h-32 mx-auto overflow-hidden shadow-lg rounded-2xl ring-4 ring-white dark:ring-gray-900"
                   >
                     {!isImageLoaded && (
                       <motion.div
@@ -401,7 +402,7 @@ const HeroSection = () => {
                   </motion.div>
 
                   {/* Profile Info */}
-                  <div className="text-center mt-5">
+                  <div className="mt-5 text-center">
                     <h3
                       className="text-2xl font-semibold text-gray-900 dark:text-white"
                       style={{ fontFamily: "'Dancing Script', cursive" }}
@@ -409,14 +410,14 @@ const HeroSection = () => {
                       Ratnakar Singh Parihar
                     </h3>
 
-                    <p className="text-sm text-blue-600 dark:text-blue-400 mt-1">
+                    <p className="mt-1 text-sm text-blue-600 dark:text-blue-400">
                       Full-Stack Developer
                     </p>
                   </div>
 
                   {/* Stats */}
                   <div className="grid grid-cols-3 gap-3 mt-6">
-                    <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                    <div className="p-3 text-center bg-gray-50 dark:bg-gray-800 rounded-xl">
                       <div className="text-lg font-bold text-gray-900 dark:text-white">
                         9+
                       </div>
@@ -425,16 +426,16 @@ const HeroSection = () => {
                       </div>
                     </div>
 
-                    <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                    <div className="p-3 text-center bg-gray-50 dark:bg-gray-800 rounded-xl">
                       <div className="text-lg font-bold text-gray-900 dark:text-white">
-                        1+
+                        1+ Years
                       </div>
                       <div className="text-xs text-gray-500 dark:text-gray-400">
-                        Years Practice
+                        of Learning & Industry Experience
                       </div>
                     </div>
 
-                    <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                    <div className="p-3 text-center bg-gray-50 dark:bg-gray-800 rounded-xl">
                       <div className="text-lg font-bold text-gray-900 dark:text-white">
                         15+
                       </div>
@@ -445,7 +446,7 @@ const HeroSection = () => {
                   </div>
 
                   {/* Buttons */}
-                  <div className="flex gap-3 mt-6 pb-6">
+                  <div className="flex gap-3 pb-6 mt-6">
                     {/* <button
                       onClick={() => scrollToSection("contact")}
                       className="flex-1 px-4 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl text-sm font-medium hover:shadow-lg transition-all duration-300"

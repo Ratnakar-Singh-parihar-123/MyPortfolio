@@ -422,13 +422,13 @@ const ResumePopup = ({ isOpen, onClose }) => {
     coding: [
       {
         label: "Projects Completed",
-        value: "9+",
+        value: "8+",
         icon: Briefcase,
         color: "text-purple-500",
       },
       {
-        label: "Hands-on Experience",
-        value: "1+ Years Learning & Projects",
+        label: "Learning & Development Journey",
+        value: "1+ Years",
         icon: Calendar,
         color: "text-amber-500",
       },
@@ -526,12 +526,12 @@ const ResumePopup = ({ isOpen, onClose }) => {
             {skill.level}%
           </span>
         </div>
-        <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+        <div className="h-2 overflow-hidden bg-gray-200 rounded-full dark:bg-gray-700">
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: `${skill.level}%` }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full"
+            className="h-full rounded-full bg-gradient-to-r from-blue-500 to-blue-600"
           />
         </div>
       </div>
@@ -544,23 +544,23 @@ const ResumePopup = ({ isOpen, onClose }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
-      className="group relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300 hover:shadow-xl"
+      className="relative p-6 transition-all duration-300 border border-gray-200 group bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-xl"
     >
       {/* Timeline indicator */}
-      <div className="absolute -left-3 top-6 w-6 h-6 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 border-4 border-white dark:border-gray-800" />
+      <div className="absolute w-6 h-6 border-4 border-white rounded-full -left-3 top-6 bg-gradient-to-r from-blue-500 to-purple-500 dark:border-gray-800" />
 
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-4">
+      <div className="flex flex-col gap-4 mb-4 sm:flex-row sm:justify-between sm:items-start">
         <div className="flex-1">
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg">
+            <div className="p-2 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600">
               <Briefcase className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h4 className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              <h4 className="text-lg font-bold text-gray-900 transition-colors dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
                 {exp.title}
               </h4>
               <div className="flex items-center gap-2 mt-1">
-                <span className="text-blue-600 dark:text-blue-400 font-semibold">
+                <span className="font-semibold text-blue-600 dark:text-blue-400">
                   {exp.company}
                 </span>
                 <span className="text-gray-400">•</span>
@@ -575,7 +575,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
             {exp.tech.map((tech, i) => (
               <span
                 key={i}
-                className="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-medium rounded-full border border-blue-200 dark:border-blue-800"
+                className="px-3 py-1 text-xs font-medium text-blue-700 border border-blue-200 rounded-full bg-blue-50 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800"
               >
                 {tech}
               </span>
@@ -587,7 +587,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
           <span className="px-3 py-1.5 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-700 dark:text-blue-300 text-sm font-bold rounded-full">
             {exp.period}
           </span>
-          <span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-xs font-medium rounded">
+          <span className="px-2 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded dark:bg-gray-800 dark:text-gray-400">
             {exp.type}
           </span>
         </div>
@@ -634,7 +634,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
           </motion.div>
 
           {/* Main Modal */}
-          <div className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
+          <div className="fixed inset-0 z-50 flex items-start justify-center p-0 overflow-y-auto sm:items-center sm:p-4">
             <motion.div
               ref={modalRef}
               variants={modalVariants}
@@ -651,10 +651,10 @@ const ResumePopup = ({ isOpen, onClose }) => {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Premium Header */}
-              <div className="sticky top-0 z-40 bg-gradient-to-b from-white/98 via-white/96 to-white/94 dark:from-gray-900/98 dark:via-gray-900/96 dark:to-gray-900/94 backdrop-blur-xl border-b border-gray-200/30 dark:border-gray-700/30 px-4 py-4 sm:px-6 sm:py-5">
+              <div className="sticky top-0 z-40 px-4 py-4 border-b bg-gradient-to-b from-white/98 via-white/96 to-white/94 dark:from-gray-900/98 dark:via-gray-900/96 dark:to-gray-900/94 backdrop-blur-xl border-gray-200/30 dark:border-gray-700/30 sm:px-6 sm:py-5">
                 <div className="flex items-center justify-between gap-4">
                   {/* Left Section */}
-                  <div className="flex items-center gap-3 min-w-0 flex-1">
+                  <div className="flex items-center flex-1 min-w-0 gap-3">
                     {/* Animated Logo */}
                     <motion.div
                       animate={{ rotate: [0, 360] }}
@@ -665,11 +665,11 @@ const ResumePopup = ({ isOpen, onClose }) => {
                       }}
                       className="relative flex-shrink-0"
                     >
-                      <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 via-blue-600 to-purple-600 flex items-center justify-center shadow-lg shadow-blue-500/30">
+                      <div className="flex items-center justify-center w-12 h-12 shadow-lg rounded-2xl bg-gradient-to-br from-blue-500 via-blue-600 to-purple-600 shadow-blue-500/30">
                         <FileText className="w-6 h-6 text-white" />
                       </div>
                       <motion.div
-                        className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-gradient-to-br from-blue-400 to-purple-400 flex items-center justify-center shadow-lg"
+                        className="absolute flex items-center justify-center w-5 h-5 rounded-full shadow-lg -top-1 -right-1 bg-gradient-to-br from-blue-400 to-purple-400"
                         animate={{ scale: [1, 1.2, 1] }}
                         transition={{ duration: 2, repeat: Infinity }}
                       >
@@ -678,9 +678,9 @@ const ResumePopup = ({ isOpen, onClose }) => {
                     </motion.div>
 
                     {/* Title and Info */}
-                    <div className="min-w-0 flex-1">
+                    <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
-                        <h2 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent truncate">
+                        <h2 className="text-xl font-bold text-transparent truncate sm:text-2xl bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text">
                           Interactive Resume
                         </h2>
                         <motion.span
@@ -703,7 +703,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                       </div>
 
                       <div className="flex items-center gap-3">
-                        <p className="text-sm text-gray-600 dark:text-gray-400 truncate">
+                        <p className="text-sm text-gray-600 truncate dark:text-gray-400">
                           Ratnakar Singh Parihar • Full Stack (MERN) & React
                           Native Developer
                         </p>
@@ -765,7 +765,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                     >
                       <Share2 className="w-5 h-5" />
                       {showTooltip === "share" && (
-                        <div className="absolute top-full right-0 mt-2 px-3 py-2 bg-gray-900 text-white text-xs font-medium rounded-lg whitespace-nowrap z-50">
+                        <div className="absolute right-0 z-50 px-3 py-2 mt-2 text-xs font-medium text-white bg-gray-900 rounded-lg top-full whitespace-nowrap">
                           Share Resume
                         </div>
                       )}
@@ -773,7 +773,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                         <motion.div
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
-                          className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-green-500 flex items-center justify-center"
+                          className="absolute flex items-center justify-center w-5 h-5 bg-green-500 rounded-full -top-1 -right-1"
                         >
                           <Check className="w-3 h-3 text-white" />
                         </motion.div>
@@ -842,7 +842,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                     initial={{ opacity: 0, y: -10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                    className="absolute top-20 right-4 z-50 w-72 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden"
+                    className="absolute z-50 overflow-hidden bg-white border border-gray-200 shadow-2xl top-20 right-4 w-72 dark:bg-gray-800 rounded-2xl dark:border-gray-700"
                   >
                     <div className="p-4 space-y-4">
                       <div className="flex items-center justify-between">
@@ -851,7 +851,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                         </h3>
                         <button
                           onClick={() => setShowMobileMenu(false)}
-                          className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                          className="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
                         >
                           <X className="w-4 h-4" />
                         </button>
@@ -870,43 +870,43 @@ const ResumePopup = ({ isOpen, onClose }) => {
                           <div className="grid grid-cols-4 gap-2">
                             <button
                               onClick={handleZoomOut}
-                              className="p-3 bg-gray-100 dark:bg-gray-700 rounded-xl flex items-center justify-center"
+                              className="flex items-center justify-center p-3 bg-gray-100 dark:bg-gray-700 rounded-xl"
                             >
                               <ZoomOut className="w-4 h-4" />
                             </button>
                             <button
                               onClick={handleResetZoom}
-                              className="p-3 bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-600 dark:text-blue-400 rounded-xl text-sm font-medium col-span-2"
+                              className="col-span-2 p-3 text-sm font-medium text-blue-600 bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-900/30 dark:to-blue-800/30 dark:text-blue-400 rounded-xl"
                             >
                               Reset
                             </button>
                             <button
                               onClick={handleZoomIn}
-                              className="p-3 bg-gray-100 dark:bg-gray-700 rounded-xl flex items-center justify-center"
+                              className="flex items-center justify-center p-3 bg-gray-100 dark:bg-gray-700 rounded-xl"
                             >
                               <ZoomIn className="w-4 h-4" />
                             </button>
                           </div>
                           <button
                             onClick={handleZoomFit}
-                            className="w-full p-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl text-sm font-medium"
+                            className="w-full p-3 text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl"
                           >
                             Fit to Screen
                           </button>
                         </div>
                       )}
 
-                      <div className="border-t border-gray-200 dark:border-gray-700 pt-3 space-y-2">
+                      <div className="pt-3 space-y-2 border-t border-gray-200 dark:border-gray-700">
                         <button
                           onClick={handleDownload}
-                          className="w-full flex items-center justify-between px-3 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl group"
+                          className="flex items-center justify-between w-full px-3 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl group"
                         >
                           <div className="flex items-center gap-3">
                             <Download className="w-4 h-4" />
                             <span>Download PDF</span>
                           </div>
                           {downloadProgress > 0 && (
-                            <div className="w-16 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                            <div className="w-16 h-2 overflow-hidden bg-gray-200 rounded-full dark:bg-gray-700">
                               <motion.div
                                 className="h-full bg-gradient-to-r from-green-500 to-emerald-500"
                                 initial={{ width: 0 }}
@@ -918,7 +918,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
 
                         <button
                           onClick={handlePrint}
-                          className="w-full flex items-center gap-3 px-3 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl"
+                          className="flex items-center w-full gap-3 px-3 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl"
                         >
                           <Printer className="w-4 h-4" />
                           <span>Print Resume</span>
@@ -939,7 +939,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
 
                         <button
                           onClick={handleFullscreen}
-                          className="w-full flex items-center gap-3 px-3 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl"
+                          className="flex items-center w-full gap-3 px-3 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl"
                         >
                           {isFullscreen ? (
                             <Minimize2 className="w-4 h-4" />
@@ -955,7 +955,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
 
                         <button
                           onClick={() => setShowStats(!showStats)}
-                          className="w-full flex items-center gap-3 px-3 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl"
+                          className="flex items-center w-full gap-3 px-3 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl"
                         >
                           <BarChart3 className="w-4 h-4" />
                           <span>View Statistics</span>
@@ -982,16 +982,16 @@ const ResumePopup = ({ isOpen, onClose }) => {
                   <div className="p-2 sm:p-4 bg-gradient-to-b from-gray-50 to-gray-100/50 dark:from-gray-800 dark:to-gray-900/50">
                     <div
                       ref={pdfContainerRef}
-                      className="relative bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50"
+                      className="relative overflow-hidden bg-white border shadow-2xl dark:bg-gray-900 rounded-2xl border-gray-200/50 dark:border-gray-700/50"
                     >
                       {/* Enhanced Floating Controls */}
                       {!deviceType.isMobile && (
-                        <div className="absolute top-6 right-6 z-20 flex flex-col gap-3">
+                        <div className="absolute z-20 flex flex-col gap-3 top-6 right-6">
                           {/* Zoom Controls */}
                           <motion.div
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
-                            className="flex flex-col bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl rounded-2xl shadow-2xl p-3 border border-gray-200/50 dark:border-gray-700/50"
+                            className="flex flex-col p-3 border shadow-2xl bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl rounded-2xl border-gray-200/50 dark:border-gray-700/50"
                           >
                             <div className="flex items-center justify-between mb-2">
                               <span className="text-xs font-semibold text-gray-600 dark:text-gray-400">
@@ -999,7 +999,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                               </span>
                               <button
                                 onClick={handleResetZoom}
-                                className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600"
+                                className="px-2 py-1 text-xs bg-gray-100 rounded-lg dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600"
                               >
                                 Reset
                               </button>
@@ -1021,7 +1021,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                                   onChange={(e) =>
                                     setScale(parseFloat(e.target.value))
                                   }
-                                  className="appearance-none w-24 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-sm font-semibold text-gray-800 dark:text-gray-200 px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                  className="w-24 px-3 py-2 text-sm font-semibold text-gray-800 bg-white border border-gray-300 appearance-none dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 >
                                   {zoomLevels.map((level) => (
                                     <option key={level} value={level}>
@@ -1029,7 +1029,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                                     </option>
                                   ))}
                                 </select>
-                                <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 pointer-events-none text-gray-500" />
+                                <ChevronDown className="absolute w-4 h-4 text-gray-500 transform -translate-y-1/2 pointer-events-none right-3 top-1/2" />
                               </div>
 
                               <motion.button
@@ -1049,7 +1049,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                               initial={{ opacity: 0, x: 20 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: 0.1 }}
-                              className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl rounded-2xl shadow-2xl p-3 border border-gray-200/50 dark:border-gray-700/50"
+                              className="p-3 border shadow-2xl bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl rounded-2xl border-gray-200/50 dark:border-gray-700/50"
                             >
                               <div className="flex items-center justify-between gap-3">
                                 <motion.button
@@ -1088,15 +1088,15 @@ const ResumePopup = ({ isOpen, onClose }) => {
 
                       {/* Mobile PDF Controls */}
                       {deviceType.isMobile && (
-                        <div className="absolute top-4 left-4 right-4 z-10 flex items-center justify-between">
-                          <div className="flex items-center gap-2 bg-black/80 backdrop-blur-xl rounded-full px-4 py-2">
+                        <div className="absolute z-10 flex items-center justify-between top-4 left-4 right-4">
+                          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/80 backdrop-blur-xl">
                             <button
                               onClick={handleZoomOut}
                               className="p-1.5 text-white"
                             >
                               <ZoomOut className="w-4 h-4" />
                             </button>
-                            <span className="text-sm font-bold text-white px-2">
+                            <span className="px-2 text-sm font-bold text-white">
                               {Math.round(scale * 100)}%
                             </span>
                             <button
@@ -1144,8 +1144,8 @@ const ResumePopup = ({ isOpen, onClose }) => {
                       </div>
 
                       {/* Bottom Info Bar */}
-                      <div className="border-t border-gray-200 dark:border-gray-800 p-4 bg-gradient-to-r from-gray-50 to-gray-100/50 dark:from-gray-800 dark:to-gray-900/50">
-                        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                      <div className="p-4 border-t border-gray-200 dark:border-gray-800 bg-gradient-to-r from-gray-50 to-gray-100/50 dark:from-gray-800 dark:to-gray-900/50">
+                        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
                           <div className="flex items-center gap-4">
                             <div className="flex items-center gap-2">
                               <div className="p-1.5 bg-green-100 dark:bg-green-900/30 rounded-lg">
@@ -1155,7 +1155,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                                 Secure Document
                               </span>
                             </div>
-                            <div className="hidden sm:flex items-center gap-2 text-sm text-gray-500">
+                            <div className="items-center hidden gap-2 text-sm text-gray-500 sm:flex">
                               <Clock className="w-4 h-4" />
                               <span>Updated: 2026</span>
                             </div>
@@ -1182,19 +1182,19 @@ const ResumePopup = ({ isOpen, onClose }) => {
 
                 {/* Detailed View Tab */}
                 {activeTab === "details" && (
-                  <div className="p-4 sm:p-6 md:p-8 bg-white dark:bg-gray-900">
+                  <div className="p-4 bg-white sm:p-6 md:p-8 dark:bg-gray-900">
                     {/* Enhanced Header */}
-                    <div className="text-center mb-10 pb-8 border-b border-gray-200/50 dark:border-gray-800/50">
+                    <div className="pb-8 mb-10 text-center border-b border-gray-200/50 dark:border-gray-800/50">
                       <motion.div
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-8"
+                        className="flex flex-col gap-6 mb-8 sm:flex-row sm:items-center sm:justify-between"
                       >
                         <div className="text-left">
-                          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-200 dark:to-white bg-clip-text text-transparent">
+                          <h1 className="text-3xl font-bold text-transparent sm:text-4xl md:text-5xl bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-200 dark:to-white bg-clip-text">
                             Ratnakar Singh Parihar
                           </h1>
-                          <h2 className="text-xl sm:text-2xl text-blue-600 dark:text-blue-400 font-semibold mt-2">
+                          <h2 className="mt-2 text-xl font-semibold text-blue-600 sm:text-2xl dark:text-blue-400">
                             Full Stack & React Native Developer • Problem Solver
                           </h2>
                         </div>
@@ -1207,14 +1207,14 @@ const ResumePopup = ({ isOpen, onClose }) => {
                               animate={{ opacity: 1, scale: 1 }}
                               transition={{ delay: idx * 0.1 }}
                               whileHover={{ scale: 1.05, y: -5 }}
-                              className="text-center px-4 py-3 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl border border-gray-200/50 dark:border-gray-700/50 shadow-lg"
+                              className="px-4 py-3 text-center border shadow-lg bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl border-gray-200/50 dark:border-gray-700/50"
                             >
                               <div
                                 className={`text-2xl font-bold ${stat.color}`}
                               >
                                 {stat.value}
                               </div>
-                              <div className="text-xs font-medium text-gray-600 dark:text-gray-400 mt-1">
+                              <div className="mt-1 text-xs font-medium text-gray-600 dark:text-gray-400">
                                 {stat.label}
                               </div>
                             </motion.div>
@@ -1227,7 +1227,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.3 }}
-                        className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-gray-600 dark:text-gray-400"
+                        className="grid grid-cols-1 gap-4 text-sm text-gray-600 sm:grid-cols-3 dark:text-gray-400"
                       >
                         <div className="flex items-center justify-center gap-3 px-4 py-3 bg-gray-50 dark:bg-gray-800/50 rounded-xl">
                           <Mail className="w-5 h-5" />
@@ -1247,9 +1247,9 @@ const ResumePopup = ({ isOpen, onClose }) => {
                     </div>
 
                     {/* Main Content Grid */}
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
                       {/* Left Column - Main Content */}
-                      <div className="lg:col-span-2 space-y-8">
+                      <div className="space-y-8 lg:col-span-2">
                         {/* Summary */}
                         <motion.section
                           initial={{ opacity: 0, y: 20 }}
@@ -1257,14 +1257,14 @@ const ResumePopup = ({ isOpen, onClose }) => {
                           className="space-y-4"
                         >
                           <div className="flex items-center gap-4">
-                            <div className="p-3 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg">
+                            <div className="p-3 shadow-lg bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl">
                               <User className="w-6 h-6 text-white" />
                             </div>
                             <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
                               Professional Summary
                             </h3>
                           </div>
-                          <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                          <p className="text-lg leading-relaxed text-gray-600 dark:text-gray-300">
                             Full Stack MERN & React Native Developer
                             specializing in building secure, scalable, and
                             production-ready web and mobile applications.
@@ -1288,7 +1288,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                           className="space-y-6"
                         >
                           <div className="flex items-center gap-4">
-                            <div className="p-3 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg">
+                            <div className="p-3 shadow-lg bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl">
                               <Briefcase className="w-6 h-6 text-white" />
                             </div>
                             <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -1296,7 +1296,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                             </h3>
                           </div>
 
-                          <div className="relative pl-6 border-l-2 border-blue-200 dark:border-blue-800 ml-3">
+                          <div className="relative pl-6 ml-3 border-l-2 border-blue-200 dark:border-blue-800">
                             {experience.map((exp, idx) => (
                               <ExperienceCard key={idx} exp={exp} index={idx} />
                             ))}
@@ -1311,7 +1311,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                           className="space-y-6"
                         >
                           <div className="flex items-center gap-4">
-                            <div className="p-3 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg">
+                            <div className="p-3 shadow-lg bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl">
                               <Code className="w-6 h-6 text-white" />
                             </div>
                             <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -1319,14 +1319,14 @@ const ResumePopup = ({ isOpen, onClose }) => {
                             </h3>
                           </div>
 
-                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                             {Object.entries(skills).map(
                               ([category, skillList], idx) => (
                                 <div
                                   key={idx}
-                                  className="bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-6 border border-gray-200/50 dark:border-gray-700/50 shadow-lg"
+                                  className="p-6 border shadow-lg bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl border-gray-200/50 dark:border-gray-700/50"
                                 >
-                                  <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-4">
+                                  <h4 className="mb-4 text-lg font-bold text-gray-900 dark:text-white">
                                     {category}
                                   </h4>
                                   <div className="space-y-4">
@@ -1358,34 +1358,34 @@ const ResumePopup = ({ isOpen, onClose }) => {
                             </h3>
                           </div>
 
-                          <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-6 border border-gray-200/50 dark:border-gray-700/50 shadow-lg">
-                            <h4 className="font-bold text-lg text-gray-900 dark:text-white">
+                          <div className="p-6 border shadow-lg bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl border-gray-200/50 dark:border-gray-700/50">
+                            <h4 className="text-lg font-bold text-gray-900 dark:text-white">
                               {education[0].degree}
                             </h4>
-                            <p className="text-blue-600 dark:text-blue-400 text-sm mt-2 font-medium">
+                            <p className="mt-2 text-sm font-medium text-blue-600 dark:text-blue-400">
                               {education[0].institution}
                             </p>
-                            <div className="flex justify-between items-center mt-4">
-                              <span className="text-gray-500 dark:text-gray-400 text-sm">
+                            <div className="flex items-center justify-between mt-4">
+                              <span className="text-sm text-gray-500 dark:text-gray-400">
                                 {education[0].period}
                               </span>
                               <span className="px-3 py-1.5 bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30 text-green-800 dark:text-green-300 font-bold rounded-full">
                                 {education[0].gpa}
                               </span>
                             </div>
-                            <p className="text-gray-600 dark:text-gray-300 text-sm mt-4">
+                            <p className="mt-4 text-sm text-gray-600 dark:text-gray-300">
                               {education[0].details}
                             </p>
 
-                            <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-                              <h5 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                            <div className="pt-4 mt-4 border-t border-gray-200 dark:border-gray-700">
+                              <h5 className="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
                                 Key Courses:
                               </h5>
                               <div className="flex flex-wrap gap-2">
                                 {education[0].courses.map((course, i) => (
                                   <span
                                     key={i}
-                                    className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs font-medium rounded-full"
+                                    className="px-3 py-1 text-xs font-medium text-gray-700 bg-gray-100 rounded-full dark:bg-gray-800 dark:text-gray-300"
                                   >
                                     {course}
                                   </span>
@@ -1418,9 +1418,9 @@ const ResumePopup = ({ isOpen, onClose }) => {
                                 <motion.div
                                   key={idx}
                                   whileHover={{ x: 5 }}
-                                  className="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 border border-gray-200/50 dark:border-gray-700/50 rounded-xl hover:border-blue-300 dark:hover:border-blue-700 transition-colors"
+                                  className="flex items-center gap-4 p-4 transition-colors bg-white border dark:bg-gray-800 border-gray-200/50 dark:border-gray-700/50 rounded-xl hover:border-blue-300 dark:hover:border-blue-700"
                                 >
-                                  <div className="p-2 bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/30 dark:to-blue-800/30 rounded-lg">
+                                  <div className="p-2 rounded-lg bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/30 dark:to-blue-800/30">
                                     <IconComponent className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                                   </div>
                                   <div className="flex-1">
@@ -1431,7 +1431,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                                       <span className="text-xs text-gray-500 dark:text-gray-400">
                                         {cert.issuer}
                                       </span>
-                                      <span className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded">
+                                      <span className="px-2 py-1 text-xs text-gray-600 bg-gray-100 rounded dark:bg-gray-700 dark:text-gray-400">
                                         {cert.year}
                                       </span>
                                     </div>
@@ -1447,9 +1447,9 @@ const ResumePopup = ({ isOpen, onClose }) => {
                           initial={{ opacity: 0, x: 20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.2 }}
-                          className="bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 dark:from-blue-900/20 dark:via-purple-900/20 dark:to-pink-900/20 rounded-2xl p-6 border border-blue-200/50 dark:border-blue-800/50"
+                          className="p-6 border bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 dark:from-blue-900/20 dark:via-purple-900/20 dark:to-pink-900/20 rounded-2xl border-blue-200/50 dark:border-blue-800/50"
                         >
-                          <h3 className="font-bold text-xl text-gray-900 dark:text-white mb-4">
+                          <h3 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
                             Get in Touch
                           </h3>
                           <div className="space-y-3">
@@ -1493,18 +1493,18 @@ const ResumePopup = ({ isOpen, onClose }) => {
                       <motion.div
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-center mb-12"
+                        className="mb-12 text-center"
                       >
-                        <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                        <h2 className="text-3xl font-bold text-transparent sm:text-4xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text">
                           Resume Analytics
                         </h2>
-                        <p className="text-gray-600 dark:text-gray-400 mt-3">
+                        <p className="mt-3 text-gray-600 dark:text-gray-400">
                           Detailed statistics and insights about my professional
                           journey
                         </p>
                       </motion.div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                      <div className="grid grid-cols-1 gap-6 mb-12 md:grid-cols-2 lg:grid-cols-3">
                         {stats.coding.map((stat, idx) => (
                           <motion.div
                             key={idx}
@@ -1512,7 +1512,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: idx * 0.1 }}
                             whileHover={{ y: -5 }}
-                            className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 shadow-lg"
+                            className="p-6 bg-white border border-gray-200 shadow-lg dark:bg-gray-800 rounded-2xl dark:border-gray-700"
                           >
                             <div className="flex items-center justify-between mb-4">
                               <div
@@ -1531,7 +1531,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                                 </div>
                               </div>
                             </div>
-                            <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                            <div className="h-2 overflow-hidden bg-gray-200 rounded-full dark:bg-gray-700">
                               <motion.div
                                 initial={{ width: 0 }}
                                 animate={{
@@ -1550,8 +1550,8 @@ const ResumePopup = ({ isOpen, onClose }) => {
               </div>
 
               {/* Enhanced Footer */}
-              <div className="sticky bottom-0 border-t border-gray-200/50 dark:border-gray-700/50 bg-gradient-to-b from-white/95 to-white/90 dark:from-gray-900/95 dark:to-gray-900/90 backdrop-blur-xl p-4">
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="sticky bottom-0 p-4 border-t border-gray-200/50 dark:border-gray-700/50 bg-gradient-to-b from-white/95 to-white/90 dark:from-gray-900/95 dark:to-gray-900/90 backdrop-blur-xl">
+                <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
                   <div className="flex items-center gap-3">
                     <div
                       className={`p-1.5 rounded-lg ${pdfLoaded ? "bg-green-100 dark:bg-green-900/30" : "bg-yellow-100 dark:bg-yellow-900/30"}`}
@@ -1578,7 +1578,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                     {/* Progress Indicator for Download */}
                     {downloadProgress > 0 && downloadProgress < 100 && (
                       <div className="flex items-center gap-2">
-                        <div className="w-32 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                        <div className="w-32 h-2 overflow-hidden bg-gray-200 rounded-full dark:bg-gray-700">
                           <motion.div
                             className="h-full bg-gradient-to-r from-green-500 to-emerald-500"
                             initial={{ width: 0 }}

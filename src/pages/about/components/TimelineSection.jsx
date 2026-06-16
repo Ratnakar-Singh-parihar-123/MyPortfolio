@@ -20,99 +20,30 @@ const TimelineSection = () => {
 
   const timeline = [
     {
-      id: 4,
-      year: "2019-2022",
-      title: "Saraswati Higher Secondary school Nagod (PCM)",
-      institution: "SHSS , Nagod",
-      icon: "School",
-      color: "success",
-      description: "PCM major & early interest in tech.",
-      achievements: ["PCM Excellence", "Competitions"],
-      technologies: ["", ""],
-      image: schoolImg,
-    },
-    {
       id: 1,
-      year: "2025",
+      year: "2022-2026",
       title: "B.Tech – Computer Science Engineering",
       institution: "IES University, Bhopal",
       icon: "GraduationCap",
       color: "primary",
       description:
-        "Final year specialization in MERN stack & scalable systems.",
+        "Completed B.Tech in Computer Science Engineering with specialization in MERN stack, full-stack development, and scalable web applications.",
       achievements: [
-        "Built advanced MERN projects",
-        "Created animation systems",
-        "Mastered Auth, JWT, APIs",
+        "Built advanced MERN stack projects",
+        "Developed full-stack applications",
+        "Mastered Authentication, JWT & REST APIs",
       ],
-      technologies: [""],
-      image:
-        "https://media.licdn.com/dms/image/v2/C511BAQFoeRqNJ3j_sw/company-background_10000/company-background_10000/0/1584491150389/ies_university_cover?e=2147483647&v=beta&t=sIBh9oqB6PY6yuI8VyOM-VS9i9KiPJiBp3gNlUFcBrY",
-    },
-    {
-      id: 2,
-      year: "2023",
-      title: "Full Stack Level Up",
-      institution: "Self-Learning",
-      icon: "Code2",
-      color: "accent",
-      description: "Built real projects and refined full-stack logic.",
-      achievements: ["Created LocalKart", "Built YammiVerse", "Deployments"],
       technologies: [
         "React.js",
-        "React Native",
         "Node.js",
         "Express.js",
         "MongoDB",
         "JavaScript",
-        "HTML5",
-        "CSS3",
-        "Tailwind CSS",
-        "Socket.IO",
-        "Git & GitHub",
+        "REST APIs",
+        "JWT",
       ],
       image:
-        "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=1000&q=80",
-    },
-    {
-      id: 3,
-      year: "2022",
-      title: "Frontend Foundations",
-      institution: "Online Learning",
-      icon: "Monitor",
-      color: "warning",
-      description: "Learned UI/UX and frontend core fundamentals.",
-      achievements: ["Portfolio site", "DOM mastery", "CSS Grid & Flex"],
-      technologies: ["HTML", "CSS", "JavaScript", "React", "Tailwind"],
-      image:
-        "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1000&q=80",
-    },
-    {
-      id: 5,
-      year: "2026",
-      title: "React Native Development",
-      institution: "Self Learning / Projects",
-      icon: "Smartphone",
-      color: "success",
-      description:
-        "Built cross-platform mobile applications with real-world features using React Native and modern backend technologies.",
-      achievements: [
-        "Developed ParkEasy parking app",
-        "Implemented authentication & role-based access",
-        "Integrated REST APIs and real-time features",
-        "APK build & deployment using Expo (EAS)",
-      ],
-      technologies: [
-        "React Native",
-        "Expo",
-        "Node.js",
-        "Express.js",
-        "MongoDB",
-        "JWT Auth",
-        "Socket.io",
-      ],
-      image:
-        "https://www.brahmaait.com/wp-content/uploads/2018/08/react-native.jpg",
+        "https://media.licdn.com/dms/image/v2/C511BAQFoeRqNJ3j_sw/company-background_10000/company-background_10000/0/1584491150389/ies_university_cover?e=2147483647&v=beta&t=sIBh9oqB6PY6yuI8VyOM-VS9i9KiPJiBp3gNlUFcBrY",
     },
   ];
 
@@ -121,7 +52,7 @@ const TimelineSection = () => {
   };
 
   return (
-    <section className="py-32 relative overflow-hidden">
+    <section className="relative py-32 overflow-hidden">
       {/* ✨ Floating Particles Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute w-96 h-96 bg-primary/10 blur-[120px] rounded-full top-10 left-10 animate-pulse"></div>
@@ -131,18 +62,18 @@ const TimelineSection = () => {
       {/* Subtle cyber grid */}
       <div className="absolute inset-0 opacity-[0.07] bg-[linear-gradient(90deg,#fff1_1px,transparent_1px),linear-gradient(#fff1_1px,transparent_1px)] bg-[size:60px_60px]" />
 
-      <div className="container-brand relative z-10">
+      <div className="relative z-10 container-brand">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-24"
+          className="mb-24 text-center"
         >
           <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(0,150,255,0.4)]">
             My Learning Timeline
           </h1>
-          <p className="mt-4 text-muted-foreground text-lg">
+          <p className="mt-4 text-lg text-muted-foreground">
             A premium futuristic timeline showcasing skills, growth &
             achievements
           </p>
@@ -182,14 +113,14 @@ const TimelineSection = () => {
                     <motion.div
                       whileHover={{ y: -10, scale: 1.03 }}
                       transition={{ type: "spring", stiffness: 200 }}
-                      className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl cursor-pointer group"
+                      className="relative p-8 border shadow-2xl cursor-pointer bg-white/5 backdrop-blur-xl border-white/10 rounded-2xl group"
                       onClick={() => toggle(item.id)}
                     >
                       {/* Soft glow */}
-                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-10 transition-all"></div>
+                      <div className="absolute inset-0 transition-all opacity-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent group-hover:opacity-10"></div>
 
                       {/* Header */}
-                      <div className="flex justify-between items-start mb-5">
+                      <div className="flex items-start justify-between mb-5">
                         <div className="flex items-center gap-4">
                           <div
                             className={`w-14 h-14 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center`}
@@ -216,7 +147,7 @@ const TimelineSection = () => {
                         />
                       </div>
 
-                      <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                      <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
                         {item.description}
                       </p>
 
@@ -225,7 +156,7 @@ const TimelineSection = () => {
                         {item.technologies.map((tech, t) => (
                           <span
                             key={t}
-                            className="px-3 py-1 bg-white/10 rounded-full text-xs backdrop-blur-sm"
+                            className="px-3 py-1 text-xs rounded-full bg-white/10 backdrop-blur-sm"
                           >
                             {tech}
                           </span>
@@ -240,14 +171,14 @@ const TimelineSection = () => {
                             animate={{ opacity: 1, height: "auto" }}
                             exit={{ opacity: 0, height: 0 }}
                             transition={{ duration: 0.45 }}
-                            className="border-t border-white/10 pt-6"
+                            className="pt-6 border-t border-white/10"
                           >
                             <Image
                               src={item.image}
-                              className="w-full h-56 object-cover rounded-xl mb-4"
+                              className="object-cover w-full h-56 mb-4 rounded-xl"
                             />
 
-                            <h4 className="font-semibold mb-2">Highlights</h4>
+                            <h4 className="mb-2 font-semibold">Highlights</h4>
                             <ul className="space-y-2">
                               {item.achievements.map((ach, a) => (
                                 <li
