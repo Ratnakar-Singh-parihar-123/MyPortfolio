@@ -843,7 +843,7 @@ const Header = ({ className = "" }) => {
           R.S.P
         </span>
         <span
-          className="text-sm text-gray-600 dark:text-gray-400"
+          className="text-xs text-gray-600 sm:text-sm dark:text-gray-400 whitespace-nowrap"
           style={{ fontFamily: "'Dancing Script', cursive" }}
         >
           Ratnakar Singh Parihar
