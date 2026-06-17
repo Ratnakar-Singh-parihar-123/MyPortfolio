@@ -62,7 +62,7 @@ const Experience = () => {
     {
       company: "BinaryLogix Technologies LLP",
       role: "Full Stack Developer",
-      duration: "Feb 2026 – Present",
+      duration: "Jun 2026 – Present",
       location: "Bhopal, MP",
       type: "Full-time",
       current: true,
