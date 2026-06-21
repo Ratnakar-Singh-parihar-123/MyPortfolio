@@ -7,8 +7,7 @@ const LocationMap = () => {
   const [mapLoaded, setMapLoaded] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const address =
-    "26 Lala Lajpat Rai Colony, Prabhat Petrol Pump, Bhopal, Madhya Pradesh, India";
+  const address = " Bhopal, Madhya Pradesh, India";
 
   const handleMapLoad = () => setMapLoaded(true);
 
@@ -20,7 +19,7 @@ const LocationMap = () => {
   };
 
   const locationDetails = {
-    city: "26 Lala Lajpat Rai Colony, Prabhat Petrol Pump, Bhopal, Madhya Pradesh, India",
+    city: "Bhopal, Madhya Pradesh, India",
     area: "Open to Entry-Level, Internship & Full-Time Opportunities",
     description:
       "Based in Bhopal, Madhya Pradesh. As an entry-level MERN stack developer, I'm eager to contribute to real-world projects, learn from experienced teams, and grow as a full-stack developer.",

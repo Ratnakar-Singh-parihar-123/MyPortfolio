@@ -611,11 +611,11 @@ const Skills = () => {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6">
             {[
               {
-                name: "React Native",
-                icon: "Smartphone",
-                progress: 60,
+                name: "System Design",
+                icon: "Server",
+                progress: 65,
                 color: "from-cyan-500 to-blue-500",
-                description: "Cross-platform mobile apps",
+                description: "Scalable architecture & APIs",
               },
               {
                 name: "DSA Practice",
@@ -641,6 +641,7 @@ const Skills = () => {
                 className="relative group"
               >
                 <div className="absolute inset-0 transition-transform duration-300 transform bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-xl group-hover:scale-105" />
+
                 <div className="relative p-4 bg-white border dark:bg-gray-900 sm:p-5 rounded-xl border-gray-200/50 dark:border-gray-700/50">
                   <div className="flex items-center mb-3 space-x-3">
                     <div
@@ -652,6 +653,7 @@ const Skills = () => {
                         className={`bg-gradient-to-br ${item.color} bg-clip-text text-transparent`}
                       />
                     </div>
+
                     <div>
                       <h3 className="text-sm font-bold text-gray-900 dark:text-white sm:text-base">
                         {item.name}
@@ -671,6 +673,7 @@ const Skills = () => {
                         {item.progress}%
                       </span>
                     </div>
+
                     <div className="relative w-full h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
