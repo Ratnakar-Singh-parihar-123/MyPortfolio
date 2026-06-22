@@ -89,13 +89,13 @@ const ScheduleMeet = ({ open, setOpen }) => {
         <div className="relative px-6 pt-6 pb-4 border-b border-gray-100">
           <button
             onClick={handleClose}
-            className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors text-gray-500 hover:text-gray-700"
+            className="absolute flex items-center justify-center text-gray-500 transition-colors bg-gray-100 rounded-full top-4 right-4 w-9 h-9 hover:bg-gray-200 hover:text-gray-700"
           >
             <X size={18} />
           </button>
 
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-500 flex items-center justify-center text-white shadow-lg shadow-blue-500/25">
+            <div className="flex items-center justify-center w-10 h-10 text-white shadow-lg rounded-xl bg-gradient-to-br from-blue-500 to-indigo-500 shadow-blue-500/25">
               <Video size={20} />
             </div>
             <div>
@@ -149,7 +149,7 @@ const ScheduleMeet = ({ open, setOpen }) => {
                 <input
                   type="text"
                   placeholder="Enter your full name"
-                  className="w-full border border-gray-200 rounded-xl pl-11 pr-4 py-3 text-sm focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all placeholder:text-gray-400"
+                  className="w-full py-3 pr-4 text-sm text-black transition-all border border-gray-200 rounded-xl pl-11 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 placeholder:text-gray-400"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
@@ -169,7 +169,7 @@ const ScheduleMeet = ({ open, setOpen }) => {
                 <input
                   type="email"
                   placeholder="your@email.com"
-                  className="w-full border border-gray-200 rounded-xl pl-11 pr-4 py-3 text-sm focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all placeholder:text-gray-400"
+                  className="w-full py-3 pr-4 text-sm text-black transition-all border border-gray-200 rounded-xl pl-11 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 placeholder:text-gray-400"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -189,7 +189,7 @@ const ScheduleMeet = ({ open, setOpen }) => {
                 <select
                   value={meetingType}
                   onChange={(e) => setMeetingType(e.target.value)}
-                  className="w-full border border-gray-200 rounded-xl pl-11 pr-10 py-3 text-sm appearance-none focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all bg-white text-gray-700"
+                  className="w-full py-3 pr-10 text-sm text-gray-700 transition-all bg-white border border-gray-200 appearance-none rounded-xl pl-11 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
                 >
                   {Object.entries(meetingTypes).map(([key, { label }]) => (
                     <option key={key} value={key}>
@@ -202,7 +202,7 @@ const ScheduleMeet = ({ open, setOpen }) => {
                 </div>
               </div>
               {/* Type badge */}
-              <div className="mt-2 flex items-center gap-2">
+              <div className="flex items-center gap-2 mt-2">
                 <span className="text-lg">{currentType.icon}</span>
                 <span className="text-sm text-gray-600">
                   {currentType.label}
@@ -224,11 +224,11 @@ const ScheduleMeet = ({ open, setOpen }) => {
                 <div className="relative">
                   <Calendar
                     size={18}
-                    className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
+                    className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 "
                   />
                   <input
                     type="date"
-                    className="w-full border border-gray-200 rounded-xl pl-11 pr-3 py-3 text-sm focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all"
+                    className="w-full py-3 pr-3 text-sm text-black transition-all border border-gray-200 rounded-xl pl-11 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                     min={new Date().toISOString().split("T")[0]}
@@ -246,7 +246,7 @@ const ScheduleMeet = ({ open, setOpen }) => {
                   />
                   <input
                     type="time"
-                    className="w-full border border-gray-200 rounded-xl pl-11 pr-3 py-3 text-sm focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all"
+                    className="w-full py-3 pr-3 text-sm text-black transition-all border border-gray-200 rounded-xl pl-11 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
                     value={time}
                     onChange={(e) => setTime(e.target.value)}
                   />
@@ -256,7 +256,7 @@ const ScheduleMeet = ({ open, setOpen }) => {
 
             {/* Duration hint */}
             <div className="flex items-center gap-2.5 bg-blue-50/70 rounded-xl px-4 py-3 border border-blue-100/50">
-              <Clock size={16} className="text-blue-600 flex-shrink-0" />
+              <Clock size={16} className="flex-shrink-0 text-blue-600" />
               <span className="text-sm text-blue-700">
                 Meeting duration: <strong>30 minutes</strong>
               </span>
@@ -266,13 +266,13 @@ const ScheduleMeet = ({ open, setOpen }) => {
             <div className="flex gap-3 pt-2">
               <button
                 onClick={handleClose}
-                className="flex-1 border border-gray-200 text-gray-600 px-4 py-3 rounded-xl hover:bg-gray-50 transition-all text-sm font-medium"
+                className="flex-1 px-4 py-3 text-sm font-medium text-gray-600 transition-all border border-gray-200 rounded-xl hover:bg-gray-50"
               >
                 Cancel
               </button>
               <button
                 onClick={handleScheduleMeet}
-                className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-3 rounded-xl hover:shadow-lg hover:shadow-blue-500/30 transition-all text-sm font-medium flex items-center justify-center gap-2 group"
+                className="flex items-center justify-center flex-1 gap-2 px-4 py-3 text-sm font-medium text-white transition-all bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl hover:shadow-lg hover:shadow-blue-500/30 group"
               >
                 <span>Continue</span>
                 <ArrowRight
@@ -318,16 +318,16 @@ const ScheduleMeet = ({ open, setOpen }) => {
               <h3 className="text-xl font-bold text-gray-900">
                 Meeting Scheduled! 🎉
               </h3>
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="mt-1 text-sm text-gray-500">
                 Your Google Meet link is ready. Join using the button below.
               </p>
             </div>
 
             {/* Meet Link Card */}
-            <div className="bg-gray-50/80 rounded-2xl p-4 border border-gray-100/80">
+            <div className="p-4 border bg-gray-50/80 rounded-2xl border-gray-100/80">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center">
+                  <div className="flex items-center justify-center w-8 h-8 bg-blue-100 rounded-lg">
                     <Video size={16} className="text-blue-600" />
                   </div>
                   <span className="text-sm font-medium text-gray-700">
@@ -343,7 +343,7 @@ const ScheduleMeet = ({ open, setOpen }) => {
                 </button>
               </div>
               <div className="mt-2.5 p-3 bg-white rounded-xl border border-gray-200 flex items-center justify-between">
-                <code className="text-sm text-gray-600 font-mono truncate">
+                <code className="font-mono text-sm text-gray-600 truncate">
                   meet.google.com/abc-defg-hij
                 </code>
                 <a
@@ -359,7 +359,7 @@ const ScheduleMeet = ({ open, setOpen }) => {
             <div className="bg-gray-50/80 rounded-2xl p-4 border border-gray-100/80 space-y-2.5">
               <div className="flex items-center justify-between text-sm">
                 <span className="text-gray-500">Date</span>
-                <span className="text-gray-800 font-medium">
+                <span className="font-medium text-gray-800">
                   {date &&
                     new Date(date).toLocaleDateString("en-US", {
                       weekday: "short",
@@ -371,14 +371,14 @@ const ScheduleMeet = ({ open, setOpen }) => {
               </div>
               <div className="flex items-center justify-between text-sm">
                 <span className="text-gray-500">Time</span>
-                <span className="text-gray-800 font-medium">
+                <span className="font-medium text-gray-800">
                   {time}{" "}
-                  <span className="text-gray-400 font-normal">(IST)</span>
+                  <span className="font-normal text-gray-400">(IST)</span>
                 </span>
               </div>
               <div className="flex items-center justify-between text-sm">
                 <span className="text-gray-500">Duration</span>
-                <span className="text-gray-800 font-medium">30 minutes</span>
+                <span className="font-medium text-gray-800">30 minutes</span>
               </div>
               <div className="flex items-center justify-between text-sm">
                 <span className="text-gray-500">Attendee</span>
@@ -386,7 +386,7 @@ const ScheduleMeet = ({ open, setOpen }) => {
                   {email}
                 </span>
               </div>
-              <div className="flex items-center justify-between text-sm pt-1 border-t border-gray-200/60">
+              <div className="flex items-center justify-between pt-1 text-sm border-t border-gray-200/60">
                 <span className="text-gray-500">Type</span>
                 <span className="text-gray-800 font-medium flex items-center gap-1.5">
                   <span>{currentType.icon}</span>
@@ -399,14 +399,14 @@ const ScheduleMeet = ({ open, setOpen }) => {
             <div className="flex gap-3">
               <a
                 href="#"
-                className="flex-1 border border-gray-200 text-gray-600 px-4 py-3 rounded-xl hover:bg-gray-50 transition-all text-sm font-medium flex items-center justify-center gap-2"
+                className="flex items-center justify-center flex-1 gap-2 px-4 py-3 text-sm font-medium text-gray-600 transition-all border border-gray-200 rounded-xl hover:bg-gray-50"
               >
                 <CalendarCheck size={16} />
                 Add to Calendar
               </a>
               <button
                 onClick={handleClose}
-                className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-3 rounded-xl hover:shadow-lg hover:shadow-blue-500/30 transition-all text-sm font-medium flex items-center justify-center gap-2"
+                className="flex items-center justify-center flex-1 gap-2 px-4 py-3 text-sm font-medium text-white transition-all bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl hover:shadow-lg hover:shadow-blue-500/30"
               >
                 Done
                 <CheckCircle size={16} />

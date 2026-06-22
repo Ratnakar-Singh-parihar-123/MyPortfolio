@@ -343,6 +343,71 @@ const searchData = [
     icon: "Github",
     externalUrl: "https://github.com/Ratnakar-Singh-parihar-123",
   },
+  // Experience Page
+  {
+    id: "experience-1",
+    title: "Experience",
+    path: "/experience",
+    category: "Page",
+    description:
+      "My professional experience, internships, and development journey",
+    keywords: [
+      "experience",
+      "internship",
+      "work",
+      "career",
+      "professional",
+      "developer",
+    ],
+    icon: "Briefcase",
+  },
+
+  {
+    id: "experience-fullstack",
+    title: "Full Stack Developer",
+    path: "/experience",
+    category: "Experience",
+    description:
+      "Worked on MERN stack applications, REST APIs, authentication systems, database management, and responsive user interfaces.",
+    keywords: [
+      "full stack",
+      "mern",
+      "react",
+      "node",
+      "mongodb",
+      "express",
+      "developer",
+    ],
+    icon: "Code2",
+  },
+
+  {
+    id: "experience-reactnative",
+    title: "React Native Developer",
+    path: "/experience",
+    category: "Experience",
+    description:
+      "Built cross-platform mobile applications using React Native, integrated APIs, managed state, and optimized app performance.",
+    keywords: [
+      "react native",
+      "mobile app",
+      "android",
+      "ios",
+      "cross platform",
+    ],
+    icon: "Smartphone",
+  },
+
+  {
+    id: "experience-freelance",
+    title: "Freelance Projects",
+    path: "/experience",
+    category: "Experience",
+    description:
+      "Developed custom websites, business applications, portfolios, and e-commerce solutions for clients.",
+    keywords: ["freelance", "client", "website", "business", "ecommerce"],
+    icon: "Laptop",
+  },
 ];
 
 const Header = ({ className = "" }) => {
