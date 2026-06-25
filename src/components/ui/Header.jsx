@@ -521,6 +521,14 @@ const Header = ({ className = "" }) => {
       description: "Get in touch",
       color: "#0EA5E9",
     },
+    // {
+    //   name: "Experience",
+    //   path: "/experience",
+    //   icon: "Briefcase",
+    //   gradient: "from-sky-500 to-blue-500",
+    //   description: "My professional journey",
+    //   color: "#0EA5E9",
+    // },
   ];
 
   const socialLinks = [
@@ -959,11 +967,10 @@ const Header = ({ className = "" }) => {
         ref={headerRef}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl shadow-lg"
+            ? "bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg"
             : "bg-transparent"
         } ${className}`}
       >
-        {/* Top gradient bar */}
         <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />
 
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -1430,6 +1437,45 @@ const Header = ({ className = "" }) => {
                   </motion.div>
                 )}
               </div>
+
+              {/* Search Footer with Keyboard Shortcuts */}
+              {/* <div className="p-3 border-t border-gray-200 sm:p-4 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/50">
+                <div className="flex flex-col items-center justify-between gap-3 text-xs text-gray-500 sm:flex-row">
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1">
+                        <kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded text-[10px] sm:text-xs font-mono shadow-sm">
+                          ↑
+                        </kbd>
+                        <kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded text-[10px] sm:text-xs font-mono shadow-sm">
+                          ↓
+                        </kbd>
+                      </div>
+                      <span>Navigate</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded text-[10px] sm:text-xs font-mono shadow-sm">
+                        Enter
+                      </kbd>
+                      <span>Select</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
+                      <kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded text-[10px] sm:text-xs font-mono shadow-sm">
+                        Esc
+                      </kbd>
+                      <span>Close</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded text-[10px] sm:text-xs font-mono shadow-sm">
+                        ⌘K
+                      </kbd>
+                      <span className="hidden sm:inline">Search</span>
+                    </div>
+                  </div>
+                </div>
+              </div> */}
             </motion.div>
           </motion.div>
         )}
