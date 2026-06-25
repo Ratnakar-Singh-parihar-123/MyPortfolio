@@ -143,6 +143,18 @@ const HeroSection = () => {
     return () => clearInterval(interval);
   }, [taglines.length]);
 
+  // --- 🔥 FIX: Control body scroll when popup is open ---
+  useEffect(() => {
+    if (isPopupOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isPopupOpen]);
+
   // --- Handlers ---
   const handlePopupOpen = useCallback(() => setIsPopupOpen(true), []);
   const handlePopupClose = useCallback(() => setIsPopupOpen(false), []);
