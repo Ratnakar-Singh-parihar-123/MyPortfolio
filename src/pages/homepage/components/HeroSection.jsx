@@ -241,7 +241,7 @@ const HeroSection = () => {
       </div>
 
       {/* ===== MAIN CONTENT ===== */}
-      <div className="relative z-10 w-full px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:px-8 sm:py-16 md:py-20 lg:py-24">
+      <div className="relative z-10 w-full px-4 pt-20 pb-12 mx-auto max-w-7xl sm:px-6 sm:pt-24 md:pt-28 lg:px-8 lg:pt-24 sm:pb-16 md:pb-20 lg:pb-24">
         <div className="flex flex-col items-center justify-between gap-12 lg:flex-row lg:gap-16 xl:gap-20">
           {/* ===== LEFT COLUMN ===== */}
           <motion.div
