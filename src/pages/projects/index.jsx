@@ -486,7 +486,7 @@ const webProjects = [
     // teamSize: "1",
     rating: 4,
     liveUrl: "https://tiffin-delievery.vercel.app/",
-    githubUrl: "https://github.com/your-username/tiffin-delivery",
+    githubUrl: "https://github.com/Ratnakar-Singh-parihar-123/tiffin-delivery",
     features: [
       "User login/signup",
       "Form validation",

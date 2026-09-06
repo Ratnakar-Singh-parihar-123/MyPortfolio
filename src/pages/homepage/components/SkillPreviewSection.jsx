@@ -333,8 +333,8 @@ const SkillPreviewSection = () => {
                         <div className="flex items-center justify-between mb-2">
                           <div className="flex items-center space-x-2">
                             <Icon
-                              name={skill?.icon}
-                              size={14}
+                              name={skill?.name || skill?.icon}
+                              size={16}
                               className={`${skill.color || "text-muted-foreground"} group-hover/skill:scale-110 transition-transform duration-200`}
                             />
                             <span className="text-sm font-medium text-foreground">

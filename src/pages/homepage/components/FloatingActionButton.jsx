@@ -28,7 +28,7 @@ const FloatingActionButton = () => {
     },
     {
       icon: "Linkedin",
-      href: "https://linkedin.com/in/ratnakar-singh-parihar",
+      href: "https://www.linkedin.com/in/ratnakar-singh-parihar-a87528260/",
       color: "from-blue-500 to-blue-700",
       shadow: "shadow-blue-500/20",
       ariaLabel: "LinkedIn profile",

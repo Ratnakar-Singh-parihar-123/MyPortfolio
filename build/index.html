@@ -1,84 +1,151 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- ✅ Basic Meta Tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="I'm Ratnakar Singh Parihar — a Full-Stack Developer crafting modern web experiences using React, Node.js, and Tailwind CSS."
-    />
-    <meta name="theme-color" content="#0f172a" />
 
-    <!-- ✅ Title -->
-    <title>Ratnakar Singh Parihar | Full-Stack Developer Portfolio</title>
+<head>
 
-    <!-- ✅ Favicon & Icons -->
-    <link rel="icon" type="image/png" href="/assets/favicon-BO-HyT_L.ico" />
-    <link rel="apple-touch-icon" href="/logo192.png" />
-    <link rel="manifest" href="/manifest.json" />
+  <!-- =========================================
+  BASIC META
+  ========================================== -->
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- ✅ SEO & Social Sharing -->
-    <meta property="og:title" content="Ratnakar Singh Parihar | Full-Stack Developer" />
-    <meta
-      property="og:description"
-      content="Explore my portfolio of modern web projects built using React, Node.js, and the MERN stack."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ratnakarparihar.dev" />
-    <meta property="og:image" content="https://your-image-link-or-banner.png" />
+  <!-- =========================================
+  SEO META
+  ========================================== -->
+  <title>Ratnakar Singh Parihar | Full Stack Developer</title>
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Ratnakar Singh Parihar | Full-Stack Developer" />
-    <meta
-      name="twitter:description"
-      content="Building interactive, responsive, and modern web experiences."
-    />
-    <meta name="twitter:image" content="https://your-image-link-or-banner.png" />
+  <meta name="description"
+    content="Portfolio of Ratnakar Singh Parihar — Full Stack Developer specializing in building scalable web and mobile applications using React, React Native, Node.js,Express.js,MongoDB, and modern technologies." />
 
-    <!-- ✅ Font Preload for Performance -->
-    <link
-      rel="preconnect"
-      href="https://fonts.googleapis.com"
-    />
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
+  <meta name="keywords"
+    content="Ratnakar Singh Parihar, Full Stack Developer, React Developer, React Native Developer, Full Stack Developer, Mobile App Developer, Portfolio, JavaScript Developer" />
 
-    <!-- ✅ Optional: Smooth Scroll & Transition -->
-    <style>
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        margin: 0;
-        font-family: "Inter", sans-serif;
-        background-color: #0f172a;
-        color: #f8fafc;
-      }
-    </style>
+  <meta name="author" content="Ratnakar Singh Parihar" />
+  <meta name="robots" content="index, follow" />
 
-    <!-- ✅ Rocket.js or Any Analytics (deferred for performance) -->
-    <script
-      type="module"
-      defer
-      src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fportfolios9824back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"
-    ></script>
-    <script type="module" crossorigin src="/assets/index-CEgdZov4.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-B42Y5RIG.css">
-  </head>
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://ratnakarsinghparihar.vercel.app" />
 
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+  <!-- =========================================
+  THEME COLOR
+  ========================================== -->
+  <meta name="theme-color" content="#020617" />
 
-    <div id="root" class="dhiwise-code"></div>
+  <!-- =========================================
+  FAVICON
+  ========================================== -->
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/logo192.png" />
+  <link rel="manifest" href="/manifest.json" />
 
-    <!-- ✅ Main React Script -->
-  </body>
+  <!-- =========================================
+  OPEN GRAPH (Social Media Share)
+  ========================================== -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Ratnakar Portfolio" />
+  <meta property="og:title" content="Ratnakar Singh Parihar | Full Stack Developer" />
+  <meta property="og:description"
+    content="Explore modern web and mobile applications built using React, React Native, Node.js, MongoDB, and Tailwind CSS." />
+  <meta property="og:url" content="https://ratnakarsinghparihar.vercel.app" />
+  <meta property="og:image" content="https://ratnakarsinghparihar.vercel.app/PortfolioBannerHome.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- =========================================
+  TWITTER CARD
+  ========================================== -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ratnakar Singh Parihar | Full Stack Developer" />
+  <meta name="twitter:description"
+    content="Building scalable web & mobile apps using React, React Native, Node.js, MongoDB, and Tailwind CSS." />
+  <meta name="twitter:image" content="https://ratnakarsinghparihar.vercel.app/PortfolioBannerHome.png" />
+
+  <!-- =========================================
+  FONTS
+  ========================================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    as="style">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Dancing+Script:wght@600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- =========================================
+  BASE CSS
+  ========================================== -->
+  <style>
+    :root {
+      --bg: #020617;
+      --text: #f8fafc;
+      --accent: #38bdf8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+
+  <!-- =========================================
+  STRUCTURED DATA (SEO)
+  ========================================== -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Ratnakar Singh Parihar",
+  "url": "https://ratnakarsinghparihar.vercel.app",
+  "image": "https://ratnakarsinghparihar.vercel.app/profile.jpg",
+  "jobTitle": "Full Stack & React Native Developer",
+  "sameAs": [
+    "https://github.com/Ratnakar-Singh-parihar-123",
+    "https://www.linkedin.com/in/ratnakar-singh-parihar-a87528260/"
+  ],
+  "knowsAbout": [
+    "React",
+    "React Native",
+    "Node.js",
+    "MongoDB",
+    "Express.js",
+    "JavaScript",
+    "Tailwind CSS",
+    "Full Stack Development",
+    "Mobile App Development"
+  ]
+}
+</script>
+
+  <script type="module" crossorigin src="/assets/index-CDXBGN9Q.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-Bvs7TzFr.css">
+</head>
+
+<body>
+
+  <!-- =========================================
+  REACT ROOT
+  ========================================== -->
+  <div id="root"></div>
+
+  <!-- =========================================
+  MAIN SCRIPT
+  ========================================== -->
+
+</body>
+
 </html>

@@ -16,7 +16,7 @@ const CTASection = () => {
       icon: "Linkedin",
       label: "LinkedIn",
       value: "Let's Connect Professionally",
-      href: "https://linkedin.com/in/ratnakar-singh-parihar",
+      href: "https://www.linkedin.com/in/ratnakar-singh-parihar-a87528260/",
       description: "Let's grow and learn together 🚀",
     },
     {

@@ -9,14 +9,14 @@ import Icon from "../../components/AppIcon";
 const About = () => {
   useEffect(() => {
     // Set page title
-    document.title = "About - PortfolioStudio | The Digital Craftsperson";
+    document.title = "About | Ratnakar Singh Parihar - Full-Stack Developer";
 
     // Set meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute(
         "content",
-        "Discover the story behind The Digital Craftsperson - my journey, philosophy, and approach to creating meaningful digital experiences through thoughtful design and technical excellence.",
+        "Learn more about Ratnakar Singh Parihar — Full-Stack & React Native Developer. Discover my journey, technical background, and passion for building scalable web & mobile apps.",
       );
     }
 
@@ -66,7 +66,7 @@ const About = () => {
                   },
                   {
                     name: "Linkedin",
-                    href: "https://linkedin.com/in/ratnakar-singh-parihar",
+                    href: "https://www.linkedin.com/in/ratnakar-singh-parihar-a87528260/",
                   },
                   {
                     name: "Mail",

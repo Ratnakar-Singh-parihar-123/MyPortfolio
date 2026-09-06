@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { color, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Header from "../../components/ui/Header";
 import Icon from "../../components/AppIcon";
 
@@ -198,7 +198,7 @@ const Skills = () => {
     },
     {
       name: "Linkedin",
-      url: "https://www.linkedin.com/in/ratnakarsinghparihar/",
+      url: "https://www.linkedin.com/in/ratnakar-singh-parihar-a87528260/",
     },
     {
       name: "Twitter",
@@ -503,9 +503,9 @@ const Skills = () => {
                                 className={`p-1.5 sm:p-2 rounded-md bg-gradient-to-br ${skill.color} bg-opacity-10`}
                               >
                                 <Icon
-                                  name={skill.icon}
-                                  size={windowWidth < 640 ? 12 : 14}
-                                  className={`bg-gradient-to-br ${skill.color} bg-clip-text text-transparent`}
+                                  name={skill.name || skill.icon}
+                                  size={windowWidth < 640 ? 14 : 18}
+                                  className="text-primary group-hover/skill:scale-110 transition-transform"
                                 />
                               </div>
 

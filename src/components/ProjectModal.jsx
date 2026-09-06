@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Icon from './AppIcon';
 import Image from './AppImage';
 import Button from './ui/Button';
 
 const ProjectModal = ({ project, isOpen, onClose }) => {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      const handleKeyDown = (e) => {
+        if (e.key === 'Escape') onClose();
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.body.style.overflow = '';
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    }
+  }, [isOpen, onClose]);
+
   if (!project) return null;
 
   const modalVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
+    hidden: { opacity: 0, scale: 0.9, y: 20 },
     visible: { 
       opacity: 1, 
       scale: 1,
+      y: 0,
       transition: {
         duration: 0.3,
         ease: "easeOut"
@@ -19,7 +34,8 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
     },
     exit: { 
       opacity: 0, 
-      scale: 0.8,
+      scale: 0.9,
+      y: 20,
       transition: {
         duration: 0.2,
         ease: "easeIn"

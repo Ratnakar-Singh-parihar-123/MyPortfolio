@@ -122,6 +122,32 @@ const TimelineSection = () => {
       image:
         "https://www.brahmaait.com/wp-content/uploads/2018/08/react-native.jpg",
     },
+    {
+      id: 6,
+      year: "2026",
+      title: "System Design & Architecture",
+      institution: "Self-Learning & Advanced Practice",
+      icon: "Cpu",
+      color: "primary",
+      description:
+        "Studying distributed system concepts, microservices architecture, API design, caching, load balancing, and database scaling strategies for high-availability applications.",
+      achievements: [
+        "Mastered RESTful & Microservices architecture patterns",
+        "Studied caching with Redis & database indexing",
+        "Explored scalability, load balancing & fault tolerance",
+        "Applied modular design patterns to full-stack projects",
+      ],
+      technologies: [
+        "System Architecture",
+        "Microservices",
+        "REST APIs",
+        "Caching & Redis",
+        "Database Scaling",
+        "Load Balancing",
+      ],
+      image:
+        "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1000&q=80",
+    },
   ];
 
   const toggle = (id) => {

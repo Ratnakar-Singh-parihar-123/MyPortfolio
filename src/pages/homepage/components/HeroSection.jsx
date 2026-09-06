@@ -8,11 +8,18 @@ import React, {
 import {
   motion,
   AnimatePresence,
-  useScroll,
-  useTransform,
   useMotionValue,
   useSpring,
 } from "framer-motion";
+import {
+  ArrowRight,
+  FileText,
+  Github,
+  Linkedin,
+  Twitter,
+  Mail,
+  Terminal,
+} from "lucide-react";
 import Image from "../../../components/AppImage";
 import { Link } from "react-router-dom";
 import ResumePopup from "../../../components/ResumePopup";
@@ -26,7 +33,7 @@ const HeroSection = () => {
   const imageRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Detect mobile for performance adjustments
+  // Detect mobile viewport
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
@@ -34,19 +41,7 @@ const HeroSection = () => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // --- Scroll parallax (disabled on mobile) ---
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
-  const y = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["0%", isMobile ? "0%" : "25%"],
-  );
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.7, 0]);
-
-  // --- 3D tilt (only on non‑touch devices) ---
+  // 3D tilt effect for desktop profile image card
   const rotateX = useMotionValue(0);
   const rotateY = useMotionValue(0);
   const springConfig = { damping: 25, stiffness: 150 };
@@ -74,335 +69,286 @@ const HeroSection = () => {
     rotateY.set(0);
   }, [rotateX, rotateY]);
 
-  // --- Memoized data ---
+  // Memoized tagline data
   const taglines = useMemo(
     () => [
-      {
-        text: "MERN & React Native Developer — Scalable Web & Mobile Apps",
-        color: "from-blue-400 to-cyan-300",
-      },
-      {
-        text: "Transforming Ideas into Full-Stack & Mobile Solutions",
-        color: "from-purple-400 to-pink-300",
-      },
-      {
-        text: "Clean Web & Mobile UIs with Powerful Backend Logic",
-        color: "from-emerald-400 to-green-300",
-      },
-      {
-        text: "React & React Native Interfaces Powered by Node.js & MongoDB",
-        color: "from-orange-400 to-yellow-300",
-      },
-      {
-        text: "High-Performance Apps with Great UX Across Web & Mobile",
-        color: "from-indigo-400 to-purple-300",
-      },
-      {
-        text: "Passionate Developer Exploring Web & Mobile Tech Every Day",
-        color: "from-rose-400 to-orange-300",
-      },
+      "MERN & React Native Developer — Scalable Web & Mobile Apps",
+      "Transforming Ideas into Full-Stack & Mobile Solutions",
+      "Clean Web & Mobile UIs with Powerful Backend Logic",
+      "React & React Native Interfaces Powered by Node.js & MongoDB",
+      "High-Performance Apps with Great UX Across Web & Mobile",
+      "Passionate Developer Exploring Web & Mobile Tech Every Day",
+    ],
+    [],
+  );
+
+  // Core tech stack items
+  const techStack = useMemo(
+    () => [
+      { name: "React.js", color: "text-cyan-500 bg-cyan-500/10 border-cyan-500/20" },
+      { name: "Node.js", color: "text-emerald-500 bg-emerald-500/10 border-emerald-500/20" },
+      { name: "React Native", color: "text-blue-500 bg-blue-500/10 border-blue-500/20" },
+      { name: "MongoDB", color: "text-green-600 bg-green-600/10 border-green-600/20" },
+      { name: "Express.js", color: "text-purple-500 bg-purple-500/10 border-purple-500/20" },
+      { name: "Tailwind CSS", color: "text-teal-500 bg-teal-500/10 border-teal-500/20" },
     ],
     [],
   );
 
   const stats = useMemo(
     () => [
+      { value: 8, suffix: "+", label: "Projects Built", color: "text-blue-600 dark:text-blue-400" },
+      { value: 300, suffix: "+", label: "DSA Problems Solved", color: "text-emerald-600 dark:text-emerald-400" },
+      { value: 15, suffix: "+", label: "Tech Stack", color: "text-purple-600 dark:text-purple-400" },
+      { value: 1, suffix: "+ Yrs", label: "Industry & Practice", color: "text-amber-600 dark:text-amber-400" },
+    ],
+    [],
+  );
+
+  const socialLinks = useMemo(
+    () => [
       {
-        value: 8,
-        label: "Projects Completed",
-        color: "text-purple-500",
-        icon: "🚀",
+        name: "GitHub",
+        url: "https://github.com/Ratnakar-Singh-parihar-123",
+        icon: Github,
       },
       {
-        value: 1,
-        label: "Years of Experience",
-        color: "text-indigo-500",
-        icon: "📅",
+        name: "LinkedIn",
+        url: "https://www.linkedin.com/in/ratnakar-singh-parihar-a87528260/",
+        icon: Linkedin,
       },
       {
-        value: 15,
-        label: "Technologies Mastered",
-        color: "text-emerald-500",
-        icon: "⚛️",
+        name: "Twitter",
+        url: "https://x.com/RatnakarSi85551",
+        icon: Twitter,
       },
       {
-        value: "∞",
-        label: "Passion for Code",
-        color: "text-rose-500",
-        icon: "❤️",
+        name: "Email",
+        url: "mailto:ratnakarsinghparihar9399@gmail.com",
+        icon: Mail,
       },
     ],
     [],
   );
 
-  // --- Auto-rotate tagline ---
+  // Auto-rotate tagline
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTagline((prev) => (prev + 1) % taglines.length);
-    }, 4500);
+    }, 4000);
     return () => clearInterval(interval);
   }, [taglines.length]);
 
-  // --- 🔥 FIX: Control body scroll when popup is open ---
+  // Lock scroll when resume modal opens
   useEffect(() => {
-    if (isPopupOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = isPopupOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [isPopupOpen]);
 
-  // --- Handlers ---
   const handlePopupOpen = useCallback(() => setIsPopupOpen(true), []);
   const handlePopupClose = useCallback(() => setIsPopupOpen(false), []);
-  const handleImageLoad = useCallback(() => setIsImageLoaded(true), []);
-
-  // --- Limit background shapes on mobile ---
-  const shapeCount = isMobile ? 4 : 8;
 
   return (
     <section
       ref={containerRef}
-      className="relative flex items-center justify-center w-full min-h-screen overflow-x-hidden no-scrollbar bg-gradient-to-br from-slate-100 via-white to-slate-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950"
-      style={{ WebkitOverflowScrolling: "touch" }}
+      className="relative w-full min-h-screen pt-28 pb-16 lg:pt-36 lg:pb-24 flex items-center justify-center overflow-x-hidden bg-background"
     >
-      {/* ===== ANIMATED BACKGROUND (lighter on mobile) ===== */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        {/* Main gradient orbs - reduced blur on mobile */}
-        <motion.div
-          animate={
-            !isMobile
-              ? { scale: [1, 1.2, 1], x: [0, 40, 0], y: [0, -30, 0] }
-              : {}
-          }
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className={`absolute top-1/4 left-[5%] rounded-full bg-gradient-to-r from-blue-400/15 via-purple-400/15 to-pink-400/15 will-change-transform ${
-            isMobile
-              ? "w-[300px] h-[300px] blur-2xl"
-              : "w-[500px] h-[500px] blur-3xl"
-          }`}
-        />
-        <motion.div
-          animate={
-            !isMobile
-              ? { scale: [1, 1.2, 1], x: [0, -40, 0], y: [0, 30, 0] }
-              : {}
-          }
-          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-          className={`absolute bottom-1/4 right-[5%] rounded-full bg-gradient-to-r from-purple-400/15 via-pink-400/15 to-blue-400/15 will-change-transform ${
-            isMobile
-              ? "w-[350px] h-[350px] blur-2xl"
-              : "w-[600px] h-[600px] blur-3xl"
-          }`}
-        />
+      {/* Background Subtle Elements */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        {/* Subtle gradient glowing spots */}
+        <div className="absolute top-1/4 left-10 w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-blue-500/10 dark:bg-blue-600/15 blur-3xl" />
+        <div className="absolute bottom-1/4 right-10 w-80 h-80 sm:w-96 sm:h-96 rounded-full bg-purple-500/10 dark:bg-purple-600/15 blur-3xl" />
 
-        {/* Floating geometric shapes - fewer on mobile */}
-        {[...Array(shapeCount)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute border rounded-full border-blue-500/10 dark:border-blue-400/10 will-change-transform"
-            style={{
-              width: isMobile
-                ? 10 + Math.random() * 30
-                : 20 + Math.random() * 60,
-              height: isMobile
-                ? 10 + Math.random() * 30
-                : 20 + Math.random() * 60,
-              left: Math.random() * 90 + 5 + "%",
-              top: Math.random() * 90 + 5 + "%",
-            }}
-            animate={{
-              y: [0, -30 - Math.random() * 30, 0],
-              x: [0, Math.random() * 20 - 10, 0],
-              rotate: [0, 360],
-            }}
-            transition={{
-              duration: 8 + Math.random() * 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.3,
-            }}
-          />
-        ))}
-
-        {/* Grid pattern (subtle) - hidden on mobile for performance */}
-        {!isMobile && (
-          <div
-            className="absolute inset-0 opacity-[0.03] dark:opacity-[0.06]"
-            style={{
-              backgroundImage: `radial-gradient(circle at 1px 1px, #000 1px, transparent 0)`,
-              backgroundSize: "40px 40px",
-            }}
-          />
-        )}
+        {/* Ambient Grid Pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.025] dark:opacity-[0.05]"
+          style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
+            backgroundSize: "32px 32px",
+          }}
+        />
       </div>
 
-      {/* ===== MAIN CONTENT ===== */}
-      <div className="relative z-10 w-full px-4 pt-20 pb-12 mx-auto max-w-7xl sm:px-6 sm:pt-24 md:pt-28 lg:px-8 lg:pt-24 sm:pb-16 md:pb-20 lg:pb-24">
-        <div className="flex flex-col items-center justify-between gap-12 lg:flex-row lg:gap-16 xl:gap-20">
-          {/* ===== LEFT COLUMN ===== */}
+      {/* Main Container */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          {/* LEFT COLUMN — Hero Content */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="w-full lg:w-[55%] space-y-5 text-center lg:text-left"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6"
           >
-            {/* Badge with pulse */}
+            {/* Status Badge */}
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15, duration: 0.5 }}
-              whileHover={{ scale: 1.02 }}
-              className="inline-flex items-center gap-3 px-5 py-2.5 mx-auto lg:mx-0 bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl rounded-full border border-gray-200/40 dark:border-gray-700/40 shadow-lg shadow-blue-500/5 cursor-default"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.1, duration: 0.4 }}
+              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-blue-500/20 bg-blue-500/5 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs sm:text-sm font-medium shadow-sm backdrop-blur-sm"
             >
-              <span className="relative flex w-2.5 h-2.5">
-                <span className="absolute inline-flex w-full h-full bg-green-400 rounded-full opacity-75 animate-ping" />
-                <span className="relative inline-flex w-2.5 h-2.5 bg-green-500 rounded-full shadow-[0_0_12px_rgba(34,197,94,0.8)]" />
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
               </span>
-              <span className="text-xs font-semibold text-transparent sm:text-sm bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-                Open to Full-Time & Internship Opportunities
-              </span>
-              <motion.span
-                animate={{ x: [0, 5, 0] }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="text-sm text-blue-500"
-              >
-                →
-              </motion.span>
+              <span>Available for Full-Time & Internship Roles</span>
             </motion.div>
 
-            {/* Heading with gradient text */}
-            <div>
-              <motion.p
+            {/* Main Headline */}
+            <div className="space-y-2 w-full">
+              <motion.span
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.25 }}
-                className="text-sm font-medium text-transparent sm:text-base bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"
+                transition={{ delay: 0.2 }}
+                className="text-sm sm:text-base font-semibold tracking-wide text-muted-foreground uppercase"
               >
-                👋 Hello, I'm
-              </motion.p>
+                Full Stack & React Native Developer
+              </motion.span>
+
               <motion.h1
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.35, duration: 0.6, ease: "easeOut" }}
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-[1.05] tracking-tight"
-                style={{ fontFamily: "'Dancing Script', cursive" }}
+                transition={{ delay: 0.25, duration: 0.5 }}
+                className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-foreground leading-[1.1]"
               >
-                <span className="text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text">
-                  Ratnakar Singh Parihar
+                Ratnakar Singh <br className="hidden sm:inline" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400">
+                  Parihar
                 </span>
               </motion.h1>
             </div>
 
-            {/* Tagline rotator with smoother crossfade */}
-            <div className="overflow-hidden h-9 sm:h-10 md:h-11">
+            {/* Dynamic Tagline Rotator */}
+            <div className="min-h-[2.5rem] flex items-center justify-center lg:justify-start w-full">
               <AnimatePresence mode="wait">
                 <motion.p
                   key={currentTagline}
-                  initial={{ opacity: 0, y: 15 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                  className={`text-base sm:text-lg md:text-xl font-semibold bg-gradient-to-r ${taglines[currentTagline].color} bg-clip-text text-transparent`}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.4 }}
+                  className="text-base sm:text-lg md:text-xl font-medium text-blue-600 dark:text-blue-400"
                 >
-                  {taglines[currentTagline].text}
+                  {taglines[currentTagline]}
                 </motion.p>
               </AnimatePresence>
             </div>
 
-            {/* Description with animated underline */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.5 }}
-              className="space-y-3"
+              transition={{ delay: 0.35, duration: 0.5 }}
+              className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl"
             >
-              <p className="max-w-2xl mx-auto text-sm leading-relaxed text-gray-700 sm:text-base dark:text-gray-300 lg:mx-0">
-                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-                  Full Stack & React Native Developer
-                </span>{" "}
-                passionate about crafting{" "}
-                <span className="relative inline-block">
-                  <span className="relative z-10 font-semibold text-purple-600 dark:text-purple-400">
-                    scalable and high‑performance digital solutions
-                  </span>
-                  <motion.span
-                    animate={{ width: ["0%", "100%", "0%"] }}
-                    transition={{
-                      duration: 5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                    className="absolute bottom-0 left-0 h-0.5 bg-purple-400/60"
-                  />
-                </span>{" "}
-                through modern technologies, clean architecture, and efficient
-                code.
-              </p>
-              <p className="max-w-2xl mx-auto text-sm text-gray-500 sm:text-base dark:text-gray-400 lg:mx-0">
-                With expertise in <strong>MERN Stack</strong> and{" "}
-                <strong>React Native</strong>, I build responsive UIs, secure
-                backends, REST APIs, and cross‑platform mobile apps focused on
-                performance and exceptional user experience.
-              </p>
+              Passionate developer specializing in building modern web applications with the{" "}
+              <strong className="text-foreground font-semibold">MERN Stack</strong> and cross-platform mobile applications using{" "}
+              <strong className="text-foreground font-semibold">React Native</strong>. Focused on clean code, REST APIs, scalable architecture, and user-centric interfaces.
+            </motion.p>
+
+            {/* Tech Stack Pills */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-1"
+            >
+              {techStack.map((tech) => (
+                <span
+                  key={tech.name}
+                  className={`px-3 py-1 text-xs font-semibold rounded-lg border backdrop-blur-sm ${tech.color}`}
+                >
+                  {tech.name}
+                </span>
+              ))}
             </motion.div>
 
-            {/* CTA Buttons with glow effects */}
+            {/* CTA Buttons & Social Links */}
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.65, duration: 0.5 }}
-              className="flex flex-col items-center gap-4 pt-2 sm:flex-row"
+              transition={{ delay: 0.45, duration: 0.5 }}
+              className="flex flex-col sm:flex-row items-center gap-4 w-full pt-2 sm:w-auto"
             >
               <Link to="/contact" className="w-full sm:w-auto">
-                <motion.button
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="relative w-full sm:w-auto px-9 py-3.5 font-bold text-white rounded-xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 shadow-xl shadow-blue-500/25 hover:shadow-[0_0_40px_rgba(59,130,246,0.4)] transition-all duration-300 flex items-center justify-center gap-2.5 text-sm sm:text-base"
+                <button
+                  type="button"
+                  className="w-full sm:w-auto px-7 py-3.5 rounded-xl font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/35 transition-all duration-200 flex items-center justify-center gap-2 text-sm sm:text-base group"
                 >
-                  <span>💬</span>
-                  Let's Connect
-                </motion.button>
+                  <span>Let's Connect</span>
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </button>
               </Link>
 
-              <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
+              <button
+                type="button"
                 onClick={handlePopupOpen}
-                className="relative w-full sm:w-auto px-9 py-3.5 font-bold text-gray-800 dark:text-white bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/60 dark:border-gray-700/60 rounded-xl shadow-lg hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all duration-300 flex items-center justify-center gap-2.5 overflow-hidden group text-sm sm:text-base"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-xl font-semibold text-foreground bg-card hover:bg-muted border border-border shadow-sm hover:shadow transition-all duration-200 flex items-center justify-center gap-2 text-sm sm:text-base"
               >
-                <span className="absolute inset-0 transition duration-500 -skew-x-12 opacity-0 group-hover:opacity-100 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                <span>📄</span>
-                View Resume
-              </motion.button>
+                <FileText className="w-4 h-4 text-blue-500" />
+                <span>View Resume</span>
+              </button>
             </motion.div>
 
-            {/* Stats with animated counters */}
+            {/* Social Icons Bar */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.8, duration: 0.5 }}
-              className="grid grid-cols-2 gap-3 pt-6 sm:grid-cols-4"
+              transition={{ delay: 0.5 }}
+              className="flex items-center gap-3 pt-2"
             >
-              {stats.map((stat, idx) => (
-                <StatCard key={stat.label} stat={stat} index={idx} />
+              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mr-1">
+                Connect:
+              </span>
+              {socialLinks.map((social) => {
+                const IconComponent = social.icon;
+                return (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.name}
+                    className="p-2.5 rounded-lg border border-border/60 bg-card/80 text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-muted transition-all duration-200"
+                  >
+                    <IconComponent className="w-4 h-4" />
+                  </a>
+                );
+              })}
+            </motion.div>
+
+            {/* Stats Row */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.55, duration: 0.5 }}
+              className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full pt-6"
+            >
+              {stats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="p-3.5 rounded-xl border border-border/60 bg-card/60 backdrop-blur-sm text-center lg:text-left transition-all hover:border-border"
+                >
+                  <div className={`text-2xl font-extrabold ${stat.color}`}>
+                    {stat.value}{stat.suffix}
+                  </div>
+                  <div className="text-xs text-muted-foreground font-medium mt-0.5">
+                    {stat.label}
+                  </div>
+                </div>
               ))}
             </motion.div>
+
           </motion.div>
 
-          {/* ===== RIGHT COLUMN – IMAGE with 3D tilt (desktop only) ===== */}
+          {/* RIGHT COLUMN — Profile Card & Visual Container */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="w-full lg:w-[40%] flex justify-center mt-6 lg:mt-0"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            className="lg:col-span-5 flex justify-center w-full"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             ref={imageRef}
@@ -413,173 +359,64 @@ const HeroSection = () => {
                 rotateY: isMobile ? 0 : springRotateY,
                 transformPerspective: isMobile ? "none" : 1000,
               }}
-              transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              className="relative w-full max-w-xs sm:max-w-sm md:max-w-md"
+              className="relative w-full max-w-sm sm:max-w-md"
             >
-              {/* Glow rings - reduced on mobile */}
-              {!isMobile && (
-                <>
-                  <motion.div
-                    animate={{ scale: [1, 1.08, 1], rotate: [0, 180, 360] }}
-                    transition={{
-                      duration: 18,
-                      repeat: Infinity,
-                      ease: "linear",
-                    }}
-                    className="absolute rounded-full -inset-8 bg-gradient-conic from-blue-600/10 via-purple-600/10 to-pink-600/10 blur-2xl will-change-transform"
-                  />
-                  <motion.div
-                    animate={{
-                      scale: [1, 1.05, 1],
-                      opacity: [0.15, 0.25, 0.15],
-                    }}
-                    transition={{
-                      duration: 12,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                    className="absolute -inset-4 rounded-2xl bg-gradient-to-r from-blue-600/5 via-purple-600/5 to-pink-600/5 blur-xl"
-                  />
-                </>
-              )}
-
-              {/* Image container */}
-              <div className="relative p-[3px] shadow-2xl rounded-2xl bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 shadow-blue-500/20">
-                <div className="relative overflow-hidden bg-white rounded-xl dark:bg-gray-900">
-                  {!isImageLoaded && (
-                    <motion.div
-                      animate={{ backgroundPosition: ["200% 0", "-200% 0"] }}
-                      transition={{
-                        duration: 1.6,
-                        repeat: Infinity,
-                        ease: "linear",
-                      }}
-                      className="absolute inset-0 z-10 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 dark:from-gray-700 dark:via-gray-800 dark:to-gray-700 rounded-xl"
-                      style={{ backgroundSize: "200% 100%" }}
+              {/* Outer Decorative Gradient Border Card */}
+              <div className="relative p-1 rounded-3xl bg-gradient-to-br from-blue-600/30 via-purple-600/30 to-pink-600/30 shadow-2xl shadow-blue-500/10">
+                <div className="relative overflow-hidden rounded-[22px] bg-card border border-border p-3 sm:p-4">
+                  
+                  {/* Photo Container */}
+                  <div className="relative overflow-hidden rounded-2xl bg-muted aspect-[4/5] w-full">
+                    <Image
+                      src={HeroImg}
+                      alt="Ratnakar Singh Parihar"
+                      className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105"
+                      onLoad={() => setIsImageLoaded(true)}
                     />
-                  )}
-                  <Image
-                    src={HeroImg}
-                    alt="Ratnakar Singh Parihar – Full-Stack Developer"
-                    className={`w-full h-[400px] sm:h-[500px] md:h-[540px] lg:h-[530px] xl:h-[550px] object-cover object-center transition-all duration-700 ${
-                      isImageLoaded
-                        ? "opacity-100 scale-100"
-                        : "opacity-0 scale-105"
-                    }`}
-                    onLoad={handleImageLoad}
-                  />
-                  {/* Gradient overlay at bottom */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 via-30% to-transparent to-70% rounded-xl" />
-                  {/* Bottom decorative line */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1, duration: 0.5 }}
-                    className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-5 sm:left-7 right-5 sm:right-7"
-                  >
-                    <div className="h-[2px] bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 rounded-full shadow-[0_0_12px_rgba(59,130,246,0.3)]" />
-                  </motion.div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                    
+                    {/* Bottom Floating Identity Overlay */}
+                    <div className="absolute bottom-4 left-4 right-4 text-white">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-xs font-semibold text-blue-300 uppercase tracking-wider">Full-Stack Engineer</p>
+                          <h3 className="text-lg font-bold">Ratnakar Singh Parihar</h3>
+                        </div>
+                        <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-[11px] font-medium backdrop-blur-md">
+                          🟢 Active
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Code Card Widget */}
+                  <div className="mt-3 p-3 rounded-xl bg-slate-900 text-slate-200 font-mono text-xs border border-slate-800 shadow-inner space-y-1">
+                    <div className="flex items-center justify-between text-[11px] text-slate-400 pb-1 border-b border-slate-800">
+                      <span className="flex items-center gap-1.5">
+                        <Terminal className="w-3.5 h-3.5 text-blue-400" />
+                        developer.config.ts
+                      </span>
+                      <span className="text-emerald-400">● MERN / Mobile</span>
+                    </div>
+                    <p className="pt-1"><span className="text-purple-400">const</span> <span className="text-blue-400">developer</span> = &#123;</p>
+                    <p className="pl-4"><span className="text-slate-400">name:</span> <span className="text-amber-300">"Ratnakar Singh Parihar"</span>,</p>
+                    <p className="pl-4"><span className="text-slate-400">focus:</span> [<span className="text-emerald-300">"Web Apps"</span>, <span className="text-emerald-300">"Mobile Apps"</span>],</p>
+                    <p className="pl-4"><span className="text-slate-400">status:</span> <span className="text-cyan-300">"Ready for Opportunities"</span></p>
+                    <p>&#125;;</p>
+                  </div>
+
                 </div>
               </div>
 
-              {/* Dot pattern behind - hidden on mobile */}
-              {!isMobile && (
-                <div className="absolute w-64 h-64 -translate-x-1/2 -translate-y-1/2 pointer-events-none -z-10 top-1/2 left-1/2 sm:w-72 sm:h-72">
-                  <div
-                    className="absolute inset-0 opacity-10 dark:opacity-15"
-                    style={{
-                      backgroundImage:
-                        "radial-gradient(circle, rgba(59,130,246,0.15) 1px, transparent 1px)",
-                      backgroundSize: "28px 28px",
-                    }}
-                  />
-                </div>
-              )}
             </motion.div>
           </motion.div>
+
         </div>
       </div>
 
-      {/* ===== SCROLL DOWN INDICATOR ===== */}
-      <motion.div
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.4, duration: 0.6 }}
-        className="absolute z-10 hidden -translate-x-1/2 bottom-24 sm:bottom-28 left-1/2 md:block"
-      >
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-1 text-gray-400 dark:text-gray-500"
-        >
-          <span className="text-[10px] tracking-widest uppercase">Scroll</span>
-          <svg
-            width="22"
-            height="22"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M7 13l5 5 5-5" />
-            <path d="M7 6l5 5 5-5" />
-          </svg>
-        </motion.div>
-      </motion.div>
-
-      {/* ===== RESUME POPUP ===== */}
+      {/* Resume Modal */}
       <ResumePopup isOpen={isPopupOpen} onClose={handlePopupClose} />
     </section>
-  );
-};
-
-// ─── Stat Card with smooth RAF counter ──────────────────────────────────
-const StatCard = ({ stat, index }) => {
-  const [count, setCount] = useState(0);
-  const isNumeric = typeof stat.value === "number";
-  const target = isNumeric ? stat.value : 0;
-  const isInfinity = stat.value === "∞";
-  const frameRef = useRef();
-
-  useEffect(() => {
-    if (!isNumeric || isInfinity) return;
-    let startTime = performance.now();
-    const duration = 1500;
-    const animate = (time) => {
-      const elapsed = time - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
-      setCount(Math.floor(eased * target));
-      if (progress < 1) {
-        frameRef.current = requestAnimationFrame(animate);
-      }
-    };
-    frameRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(frameRef.current);
-  }, [target, isNumeric, isInfinity]);
-
-  const displayValue = isInfinity ? "∞" : isNumeric ? count : stat.value;
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 15 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.9 + index * 0.06, duration: 0.4 }}
-      whileHover={{ y: -5, scale: 1.04 }}
-      className="p-3.5 rounded-xl border border-gray-200/40 dark:border-gray-700/40 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm transition-all duration-300 cursor-default group shadow-sm hover:shadow-md"
-    >
-      <div
-        className={`text-xl sm:text-2xl font-bold ${stat.color} mb-0.5 group-hover:scale-110 transition-transform`}
-      >
-        {displayValue}
-      </div>
-      <div className="text-[10px] sm:text-xs font-medium text-gray-600 dark:text-gray-400 leading-tight flex items-center gap-1">
-        <span>{stat.icon}</span>
-        {stat.label}
-      </div>
-    </motion.div>
   );
 };
 

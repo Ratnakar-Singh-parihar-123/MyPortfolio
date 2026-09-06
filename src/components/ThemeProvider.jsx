@@ -13,25 +13,23 @@ export const useTheme = () => {
 };
 
 export const ThemeProvider = ({ children }) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    if (typeof window !== "undefined") {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) {
+        return savedTheme === "dark";
+      }
+      return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+    return false;
+  });
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    // Check localStorage for saved theme preference
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      setIsDarkMode(savedTheme === "dark");
-    } else {
-      // Check system preference
-      setIsDarkMode(window.matchMedia("(prefers-color-scheme: dark)").matches);
-    }
   }, []);
 
   useEffect(() => {
-    if (!mounted) return;
-
-    // Apply theme to document
     const root = document.documentElement;
     if (isDarkMode) {
       root.classList.add("dark");
@@ -41,9 +39,13 @@ export const ThemeProvider = ({ children }) => {
       root.classList.remove("dark");
     }
 
-    // Save to localStorage
     localStorage.setItem("theme", isDarkMode ? "dark" : "light");
-  }, [isDarkMode, mounted]);
+
+    // Dispatch custom event so any listener updates instantly
+    window.dispatchEvent(
+      new CustomEvent("themeChange", { detail: { isDark: isDarkMode } })
+    );
+  }, [isDarkMode]);
 
   const toggleTheme = () => {
     setIsDarkMode((prev) => !prev);
@@ -64,44 +66,14 @@ export const ThemeToggle = ({
 }) => {
   const { isDarkMode, toggleTheme, mounted } = useTheme();
 
-  if (!mounted) return null;
+  if (!mounted) {
+    return (
+      <div className={`h-8 w-14 rounded-full bg-muted/50 border border-border animate-pulse ${className}`} />
+    );
+  }
 
-  // Size configurations
-  const sizes = {
-    sm: {
-      button: "h-7 w-12",
-      circle: "w-5 h-5",
-      icon: 14,
-      translate: "translate-x-6",
-    },
-    md: {
-      button: "h-8 w-14",
-      circle: "w-6 h-6",
-      icon: 16,
-      translate: "translate-x-7",
-    },
-    lg: {
-      button: "h-10 w-18",
-      circle: "w-8 h-8",
-      icon: 20,
-      translate: "translate-x-9",
-    },
-  };
-
-  const currentSize = sizes[size];
-
-  // Icon components
   const SunIcon = () => (
-    <svg
-      width={currentSize.icon}
-      height={currentSize.icon}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="12" r="5" />
       <line x1="12" y1="1" x2="12" y2="3" />
       <line x1="12" y1="21" x2="12" y2="23" />
@@ -115,60 +87,55 @@ export const ThemeToggle = ({
   );
 
   const MoonIcon = () => (
-    <svg
-      width={currentSize.icon}
-      height={currentSize.icon}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
     </svg>
   );
 
-  // Default variant - Clean and modern
-  if (variant === "default") {
-    return (
-      <motion.button
-        onClick={toggleTheme}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className={`relative inline-flex items-center ${currentSize.button} rounded-full transition-all duration-300 ${
+  return (
+    <motion.button
+      onClick={toggleTheme}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      className={`relative inline-flex items-center h-8 w-14 rounded-full p-1 border transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-500/40 ${
+        isDarkMode
+          ? "bg-slate-900 border-indigo-500/40 shadow-inner shadow-indigo-950/60"
+          : "bg-amber-50 border-amber-300/80 shadow-inner shadow-amber-200/40"
+      } ${className}`}
+      aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+    >
+      {/* Background track icons */}
+      <span className="absolute left-1.5 top-1/2 -translate-y-1/2 text-[10px] select-none opacity-70">
+        🌙
+      </span>
+      <span className="absolute right-1.5 top-1/2 -translate-y-1/2 text-[10px] select-none opacity-70">
+        ☀️
+      </span>
+
+      {/* Sliding handle */}
+      <motion.div
+        layout
+        transition={{ type: "spring", stiffness: 600, damping: 35 }}
+        className={`relative z-10 flex items-center justify-center w-6 h-6 rounded-full shadow-md ${
           isDarkMode
-            ? "bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg shadow-purple-500/30"
-            : "bg-gradient-to-r from-amber-400 to-orange-400 shadow-lg shadow-amber-500/30"
-        } ${className}`}
-        aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+            ? "ml-auto bg-gradient-to-br from-indigo-500 to-purple-600 text-white"
+            : "ml-0 bg-gradient-to-br from-amber-400 to-orange-500 text-white"
+        }`}
       >
-        {/* Sliding circle */}
-        <motion.div
-          layout
-          transition={{ type: "spring", stiffness: 500, damping: 35 }}
-          className={`
-            flex items-center justify-center
-            ${currentSize.circle} rounded-full bg-white shadow-md
-            ${isDarkMode ? "ml-auto mr-1" : "ml-1"}
-          `}
-        >
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={isDarkMode ? "dark" : "light"}
-              initial={{ rotate: -30, scale: 0 }}
-              animate={{ rotate: 0, scale: 1 }}
-              exit={{ rotate: 30, scale: 0 }}
-              transition={{ duration: 0.2 }}
-              className={isDarkMode ? "text-indigo-600" : "text-amber-500"}
-            >
-              {isDarkMode ? <MoonIcon /> : <SunIcon />}
-            </motion.div>
-          </AnimatePresence>
-        </motion.div>
-      </motion.button>
-    );
-  }
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={isDarkMode ? "dark" : "light"}
+            initial={{ rotate: -45, scale: 0.5, opacity: 0 }}
+            animate={{ rotate: 0, scale: 1, opacity: 1 }}
+            exit={{ rotate: 45, scale: 0.5, opacity: 0 }}
+            transition={{ duration: 0.15 }}
+          >
+            {isDarkMode ? <MoonIcon /> : <SunIcon />}
+          </motion.div>
+        </AnimatePresence>
+      </motion.div>
+    </motion.button>
+  );
 
   // Minimal variant - Just a circle with icon
   if (variant === "minimal") {

@@ -648,6 +648,7 @@ const Header = ({ className = "" }) => {
 
   const openSearch = () => {
     setIsSearchOpen(true);
+    document.body.style.overflow = "hidden";
     setTimeout(() => {
       searchInputRef.current?.focus();
     }, 100);
@@ -655,6 +656,7 @@ const Header = ({ className = "" }) => {
 
   const closeSearch = () => {
     setIsSearchOpen(false);
+    document.body.style.overflow = "";
     setSearchQuery("");
     setSearchResults([]);
     setSelectedIndex(-1);
@@ -831,14 +833,20 @@ const Header = ({ className = "" }) => {
   };
 
   const closeMenu = () => {
-    menuTimeline.current?.reverse().then(() => {
+    if (menuTimeline.current) {
+      menuTimeline.current.eventCallback("onReverseComplete", () => {
+        setIsMenuOpen(false);
+        document.body.style.overflow = "";
+        if (menuOverlayRef.current && menuPanelRef.current) {
+          gsap.set(menuOverlayRef.current, { display: "none" });
+          gsap.set(menuPanelRef.current, { display: "none" });
+        }
+      });
+      menuTimeline.current.reverse();
+    } else {
       setIsMenuOpen(false);
       document.body.style.overflow = "";
-      if (menuOverlayRef.current && menuPanelRef.current) {
-        gsap.set(menuOverlayRef.current, { display: "none" });
-        gsap.set(menuPanelRef.current, { display: "none" });
-      }
-    });
+    }
   };
 
   const toggleMenu = () => {
@@ -1439,7 +1447,7 @@ const Header = ({ className = "" }) => {
               </div>
 
               {/* Search Footer with Keyboard Shortcuts */}
-              {/* <div className="p-3 border-t border-gray-200 sm:p-4 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/50">
+              <div className="p-3 border-t border-gray-200 sm:p-4 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/50">
                 <div className="flex flex-col items-center justify-between gap-3 text-xs text-gray-500 sm:flex-row">
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-2">
@@ -1475,7 +1483,7 @@ const Header = ({ className = "" }) => {
                     </div>
                   </div>
                 </div>
-              </div> */}
+              </div>
             </motion.div>
           </motion.div>
         )}

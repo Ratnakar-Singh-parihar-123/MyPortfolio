@@ -280,75 +280,64 @@ const Education = () => {
 
                     {/* Content Section - Tighter Padding */}
                     <div className="p-4 md:w-3/5">
-                      <div className="flex flex-col gap-2 mb-3 md:flex-row md:justify-between md:items-start">
-                        <div>
-                          <h3 className="mb-1 text-xl font-bold">
-                            {item.institution}
-                          </h3>
-                          <div className="flex flex-wrap gap-2">
-                            <span
-                              className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs ${
-                                darkMode
-                                  ? item.type === "college"
-                                    ? "bg-blue-900/30 text-blue-300"
-                                    : "bg-green-900/30 text-green-300"
-                                  : item.type === "college"
-                                    ? "bg-blue-100 text-blue-700"
-                                    : "bg-green-100 text-green-700"
-                              }`}
-                            >
-                              <MapPin className="w-3 h-3 mr-1" />
-                              {item.location}
-                            </span>
-                            <span
-                              className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs ${
-                                darkMode
-                                  ? "bg-gray-700 text-gray-300"
-                                  : "bg-gray-100 text-gray-700"
-                              }`}
-                            >
-                              <Calendar className="w-3 h-3 mr-1" />
-                              {item.duration}
-                            </span>
-                          </div>
-                        </div>
+                      {/* Visual Hierarchy: Degree -> Institution -> Duration -> Details */}
+                      <div className="mb-3">
+                        <h3 className={`text-xl font-bold flex items-center gap-1.5 ${
+                          darkMode ? "text-white" : "text-gray-900"
+                        }`}>
+                          <GraduationCap className="w-5 h-5 text-blue-500 shrink-0" />
+                          <span>{item.degree || item.stream || item.grade}</span>
+                        </h3>
+                        {item.field && (
+                          <p className={`text-xs font-semibold uppercase tracking-wider ${
+                            darkMode ? "text-blue-400" : "text-blue-600"
+                          }`}>
+                            {item.field}
+                          </p>
+                        )}
 
-                        {item.status && (
-                          <div
-                            className={`px-2 py-1 rounded-md text-xs whitespace-nowrap ${
-                              darkMode
-                                ? "bg-gradient-to-r from-blue-900/40 to-purple-900/40"
-                                : "bg-gradient-to-r from-blue-100 to-purple-100"
+                        <p className={`text-base font-semibold mt-1 ${
+                          darkMode ? "text-gray-300" : "text-gray-700"
+                        }`}>
+                          {item.institution}
+                        </p>
+
+                        <div className="flex flex-wrap items-center gap-2 mt-2">
+                          <span
+                            className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                              darkMode ? "bg-gray-700/80 text-gray-300" : "bg-gray-100 text-gray-700"
                             }`}
                           >
+                            <Calendar className="w-3 h-3 mr-1" />
+                            {item.duration}
+                          </span>
+                          <span
+                            className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                              darkMode
+                                ? item.type === "college"
+                                  ? "bg-blue-900/40 text-blue-300 border border-blue-800/50"
+                                  : "bg-emerald-900/40 text-emerald-300 border border-emerald-800/50"
+                                : item.type === "college"
+                                  ? "bg-blue-50 text-blue-700 border border-blue-200"
+                                  : "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                            }`}
+                          >
+                            <MapPin className="w-3 h-3 mr-1" />
+                            {item.location}
+                          </span>
+                          {item.status && (
                             <span
-                              className={`font-medium ${darkMode ? "text-blue-300" : "text-blue-700"}`}
+                              className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                                darkMode
+                                  ? "bg-purple-900/40 text-purple-300 border border-purple-800/50"
+                                  : "bg-purple-50 text-purple-700 border border-purple-200"
+                              }`}
                             >
                               {item.status}
                             </span>
-                          </div>
-                        )}
-                      </div>
-
-                      {(item.degree || item.stream || item.grade) && (
-                        <div className="mb-2">
-                          <h4
-                            className={`font-semibold text-sm mb-1 flex items-center ${
-                              darkMode ? "text-blue-400" : "text-blue-600"
-                            }`}
-                          >
-                            <GraduationCap className="w-4 h-4 mr-1" />
-                            {item.degree || item.stream || item.grade}
-                          </h4>
-                          {item.field && (
-                            <p
-                              className={`text-xs ${darkMode ? "text-gray-400" : "text-gray-600"}`}
-                            >
-                              {item.field}
-                            </p>
                           )}
                         </div>
-                      )}
+                      </div>
 
                       <p
                         className={`text-sm mb-3 leading-relaxed ${

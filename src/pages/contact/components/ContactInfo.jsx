@@ -37,7 +37,7 @@ const ContactInfo = () => {
       icon: "Linkedin",
       label: "LinkedIn",
       username: "in/ratnakarsinghparihar",
-      url: "https://www.linkedin.com/in/ratnakarsinghparihar/",
+      url: "https://www.linkedin.com/in/ratnakar-singh-parihar-a87528260/",
     },
   ];
 
