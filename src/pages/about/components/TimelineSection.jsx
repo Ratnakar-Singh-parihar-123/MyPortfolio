@@ -146,7 +146,7 @@ const TimelineSection = () => {
         "Load Balancing",
       ],
       image:
-        "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1000&q=80",
+        "https://expertifie.com/wp-content/uploads/2022/07/System-designhld-lld.jpg",
     },
   ];
 
