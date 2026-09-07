@@ -97,7 +97,7 @@ const HeroSection = () => {
   const handlePopupClose = useCallback(() => setIsPopupOpen(false), []);
 
   return (
-    <section className="relative w-full min-h-screen pt-28 pb-16 lg:pt-36 lg:pb-24 flex items-center justify-center overflow-x-hidden bg-background">
+    <section className="relative w-full min-h-screen pt-16 sm:pt-20 lg:pt-24 pb-16 lg:pb-24 flex items-center justify-center overflow-x-hidden bg-background">
       {/* Background Subtle Orbs & Mesh */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute top-1/3 left-5 w-80 h-80 rounded-full bg-purple-500/10 dark:bg-purple-600/15 blur-3xl" />

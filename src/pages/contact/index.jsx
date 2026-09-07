@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Header from "../../components/ui/Header";
 import Icon from "../../components/AppIcon";
 import ContactForm from "./components/ContactForm";
 import ContactInfo from "./components/ContactInfo";
@@ -78,12 +77,11 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
-      {/* Hero Section */}
-      <section className="pt-16 pb-12 mt-5 bg-gradient-to-b from-primary/10 via-background to-background">
+            {/* Hero Section */}
+      <section className="pt-16 sm:pt-20 lg:pt-24 pb-12 bg-gradient-to-b from-primary/10 via-background to-background">
         <div className="max-w-2xl mx-auto text-center container-brand">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-medium mt-7">
+          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-medium">
             <Icon name="MessageCircle" size={16} />
             <span>Let’s Connect</span>
           </div>
@@ -297,7 +295,7 @@ const ContactPage = () => {
         </div>
       </section>
       {/* Footer */}
-      <footer className="py-12 border-t border-border bg-background">
+      <footer className="py-12 pb-28 sm:pb-32 border-t border-border bg-background">
         <div className="container-brand">
           <div className="grid items-start gap-10 md:grid-cols-3">
             {/* Brand Section */}

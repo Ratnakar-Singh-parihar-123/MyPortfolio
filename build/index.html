@@ -131,8 +131,26 @@
 }
 </script>
 
-  <script type="module" crossorigin src="/assets/index-CDXBGN9Q.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-Bvs7TzFr.css">
+  <!-- =========================================
+  THEME INITIALIZATION
+  ========================================== -->
+  <script>
+    (function() {
+      try {
+        var savedTheme = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
+        } else {
+          document.documentElement.classList.add('light');
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <script type="module" crossorigin src="/assets/index-6oolHVmS.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-B3Vv0iVG.css">
 </head>
 
 <body>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
-import Header from "../../components/ui/Header";
 import Icon from "../../components/AppIcon";
 import AchievementCard from "./components/AchievementCard";
 import AchievementTimeline from "./components/AchievementTimeline";
@@ -210,8 +209,7 @@ const AchievementsPage = () => {
           content="achievements, certifications, awards, recognition, professional milestones, project success, developer achievements"
         />
       </Helmet>
-      <Header />
-      <main className="pt-20">
+            <main className="pt-20">
         {/* Hero Section */}
         <section className="py-16 bg-gradient-subtle">
           <div className="container-brand">

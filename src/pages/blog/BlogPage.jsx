@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Icon from "../../components/AppIcon";
 import Button from "../../components/ui/Button";
-import Header from "../../components/ui/Header";
 
 const BlogPage = () => {
   const [activeTab, setActiveTab] = useState("all");
@@ -339,8 +338,7 @@ const BlogPage = () => {
         ? 'bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950' 
         : 'bg-gradient-to-b from-gray-50 via-white to-gray-50/50'
     }`}>
-      <Header />
-      
+            
       {/* Hero Section */}
       <section className="relative pt-28 pb-16 md:pt-32 md:pb-24 overflow-hidden">
         {/* Animated Background */}

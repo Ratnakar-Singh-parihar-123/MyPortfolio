@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-import Header from "../../components/ui/Header";
 import HeroSection from "./components/HeroSection";
 import SkillPreviewSection from "./components/SkillPreviewSection";
 import ProjectShowcaseSection from "./components/ProjectShowcaseSection";
@@ -103,9 +102,8 @@ const Homepage = () => {
       className="min-h-screen bg-background"
     >
       {/* Header Navigation */}
-      <Header />
-      {/* Main Content */}
-      <main className="relative">
+            {/* Main Content */}
+      <main className="relative pb-28">
         {/* Hero Section */}
         <HeroSection />
         <WhyHireMe />

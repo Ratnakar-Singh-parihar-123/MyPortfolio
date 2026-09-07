@@ -1,718 +1,595 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   GraduationCap,
-  School,
   Calendar,
   MapPin,
-  Award,
   BookOpen,
+  Award,
   ChevronRight,
-  Star,
-  Users,
-  Target,
-  BookMarked,
+  Sparkles,
   Trophy,
-  ExternalLink,
-  Clock,
-  Flag,
+  CheckCircle2,
+  Cpu,
+  Layers,
+  ArrowUpRight,
+  School,
+  Building2,
+  Compass,
 } from "lucide-react";
-import Header from "../../components/ui/Header";
+import { motion, AnimatePresence } from "framer-motion";
 import SchooleImg from "../../assets/schoolImg/schoolImg.webp";
 
+const TREE_MILESTONES = [
+  {
+    id: "milestone-1",
+    stageNumber: 1,
+    levelLabel: "Foundational Education",
+    degree: "10th Standard (HSC)",
+    institution: "Saraswati Higher Secondary School",
+    location: "Nagod, Satna, Madhya Pradesh",
+    duration: "2019 - 2020",
+    status: "Completed (Distinction)",
+    accentColor: "#10B981", // Emerald
+    gradient: "from-emerald-500 to-teal-600",
+    bgTint: "bg-emerald-500/10 dark:bg-emerald-500/20 border-emerald-500/30",
+    glowShadow: "shadow-[0_0_25px_rgba(16,185,129,0.35)]",
+    icon: School,
+    side: "left",
+    description:
+      "Completed secondary education with strong analytical foundations in science, mathematics, and logical reasoning.",
+    achievements: [
+      "Secondary school completion with academic excellence",
+      "Strong foundation in core Mathematics & General Science",
+      "Active participation in school science competitions",
+    ],
+    subjects: ["Mathematics", "General Science", "Social Science", "English", "Hindi"],
+    type: "school",
+    image: SchooleImg,
+    skillsLearned: ["Analytical Thinking", "Mathematics", "Science Fundamentals"],
+  },
+  {
+    id: "milestone-2",
+    stageNumber: 2,
+    levelLabel: "Higher Secondary (HSSC)",
+    degree: "12th Standard - PCM Stream",
+    institution: "Saraswati Higher Secondary School",
+    location: "Nagod, Satna, Madhya Pradesh",
+    duration: "2021 - 2022",
+    status: "Completed (PCM Science)",
+    accentColor: "#06B6D4", // Cyan
+    gradient: "from-cyan-500 to-blue-600",
+    bgTint: "bg-cyan-500/10 dark:bg-cyan-500/20 border-cyan-500/30",
+    glowShadow: "shadow-[0_0_25px_rgba(6,182,212,0.35)]",
+    icon: Award,
+    side: "right",
+    description:
+      "Specialized in Physics, Chemistry, and Mathematics (PCM), developing advanced problem-solving techniques and scientific analysis skills.",
+    achievements: [
+      "Completed HSSC in Science Stream (PCM)",
+      "High proficiency in Calculus and Applied Physics",
+      "Selected for regional science project presentation",
+    ],
+    subjects: ["Physics", "Chemistry", "Mathematics", "English"],
+    type: "school",
+    image: SchooleImg,
+    skillsLearned: ["Calculus & Logic", "Problem Solving", "Physics Concepts"],
+  },
+  {
+    id: "milestone-3",
+    stageNumber: 3,
+    levelLabel: "Undergraduate Degree",
+    degree: "B.Tech in Computer Science & Engineering",
+    institution: "IES University Bhopal",
+    location: "Bhopal, Madhya Pradesh",
+    duration: "2022 - 2026",
+    status: "Graduate Class of 2026",
+    accentColor: "#6366F1", // Indigo
+    gradient: "from-indigo-500 via-blue-600 to-purple-600",
+    bgTint: "bg-indigo-500/10 dark:bg-indigo-500/20 border-indigo-500/30",
+    glowShadow: "shadow-[0_0_30px_rgba(99,102,241,0.4)]",
+    icon: GraduationCap,
+    side: "left",
+    description:
+      "Bachelor of Technology in Computer Science & Engineering with intensive focus on software engineering, data structures, algorithms, and full-stack MERN development.",
+    achievements: [
+      "Engineered multiple production-grade MERN web applications",
+      "Proficient in Data Structures, Algorithms & Database Systems",
+      "Active participant in technical hackathons and coding events",
+    ],
+    subjects: [
+      "Data Structures & Algorithms",
+      "Database Management (DBMS)",
+      "Web Technologies",
+      "Operating Systems",
+      "Software Engineering",
+    ],
+    type: "college",
+    image:
+      "https://content.jdmagicbox.com/comp/bhopal/65/0755p755std2700465/catalogue/ies-university-bhopal-kalkheda-bhopal-institutes-9h4364j1aw.jpg?w=1920&q=75",
+    skillsLearned: ["Full Stack Development", "MERN Stack", "System Design", "OOP & DSA"],
+  },
+  {
+    id: "milestone-4",
+    stageNumber: 4,
+    levelLabel: "Future Horizon & Mastery",
+    degree: "Full Stack Engineering & Tech Innovation",
+    institution: "Continuous Industry Innovation",
+    location: "Global Software Systems",
+    duration: "2026 & Beyond",
+    status: "Active Career Expansion",
+    accentColor: "#A855F7", // Purple
+    gradient: "from-purple-500 to-pink-600",
+    bgTint: "bg-purple-500/10 dark:bg-purple-500/20 border-purple-500/30",
+    glowShadow: "shadow-[0_0_35px_rgba(168,85,247,0.45)]",
+    icon: Sparkles,
+    side: "right",
+    description:
+      "Expanding software architecture mastery into scalable cloud systems, advanced frontend micro-interactions, AI-driven applications, and high-performance Web APIs.",
+    achievements: [
+      "Architecting enterprise-grade full-stack products",
+      "Mastering modern cloud deployment & performance optimization",
+      "Contributing to open-source and cutting-edge web ecosystems",
+    ],
+    subjects: ["Cloud Architecture", "Next.js & Micro-Frontends", "AI Integrations", "DevOps"],
+    type: "future",
+    image:
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1200&auto=format&fit=crop",
+    skillsLearned: ["Cloud DevOps", "Scalable Systems", "AI Product Engineering"],
+  },
+];
+
+const SKILL_TREE_PROGRESS = [
+  { skill: "Data Structures & Algorithms", level: 92, category: "Core CS" },
+  { skill: "Full Stack (React, Node, Mongo)", level: 95, category: "Development" },
+  { skill: "Problem Solving & Logic", level: 94, category: "Analytical" },
+  { skill: "Database Architecture", level: 88, category: "Engineering" },
+  { skill: "System Design & APIs", level: 86, category: "Architecture" },
+];
+
 const Education = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [activeNodeId, setActiveNodeId] = useState("milestone-3");
+  const [viewMode, setViewMode] = useState("tree"); // 'tree' or 'cards'
 
-  useEffect(() => {
-    const handleThemeChange = (e) => {
-      setDarkMode(e.detail.isDark);
-    };
-
-    window.addEventListener("themeChange", handleThemeChange);
-
-    if (document.documentElement.classList.contains("dark")) {
-      setDarkMode(true);
-    }
-
-    return () => window.removeEventListener("themeChange", handleThemeChange);
-  }, []);
-
-  const educationTimeline = [
-    {
-      id: 1,
-      institution: "IES University Bhopal",
-      location: "Bhopal, Madhya Pradesh",
-      degree: "Bachelor of Technology (B.Tech)",
-      field: "Computer Science & Engineering",
-      duration: "2022 - 2026",
-      status: "B.Tech Graduate 2026 | Full Stack Developer",
-      description:
-        "Completed Bachelor of Technology in Computer Science & Engineering with focus on software development, web technologies, data structures, algorithms, and full-stack application development.",
-      achievements: [
-        "Built multiple full-stack MERN projects",
-        "Developed responsive web applications using React.js",
-        "Participated in coding and technical events",
-        "Completed academic and personal software projects",
-      ],
-      courses: [
-        "Data Structures & Algorithms",
-        "Database Management Systems",
-        "Operating Systems",
-        "Computer Networks",
-        "Web Development",
-      ],
-      type: "college",
-      image:
-        "https://content.jdmagicbox.com/comp/bhopal/65/0755p755std2700465/catalogue/ies-university-bhopal-kalkheda-bhopal-institutes-9h4364j1aw.jpg?w=1920&q=75",
-      color: "blue",
-    },
-    {
-      id: 2,
-      institution: "Saraswati Higher Secondary school ",
-      location: "Nagod District Satna , Madhya Pradesh",
-      stream: "Science Stream (PCM)",
-      duration: "2021 - 2022",
-      description:
-        "Completed Higher Secondary Education (11th & 12th) with a focus on Physics, Chemistry, and Mathematics.",
-      achievements: [
-        "Science stream with PCM",
-        "Mathematics proficiency",
-        "Science project participation",
-      ],
-      focus: ["Physics", "Chemistry", "Mathematics", "English"],
-      type: "school",
-      image: SchooleImg,
-      color: "green",
-    },
-    {
-      id: 3,
-      institution: "Saraswati Higher Secondary school ",
-      location: "Nagod District Satna , Madhya Pradesh",
-      grade: "10th Standard",
-      duration: "2019 - 2020",
-      description:
-        "Completed foundational education with strong academic performance and participation in extracurricular activities.",
-      achievements: [
-        "Completed secondary education",
-        "Science and mathematics foundation",
-        "Extracurricular participation",
-        "Academic excellence",
-      ],
-      type: "school",
-      image: SchooleImg,
-      color: "purple",
-    },
-  ];
-
-  const milestones = [
-    {
-      title: "Started Engineering Journey",
-      year: "2022",
-      description: "Began B.Tech in Computer Science",
-      icon: <GraduationCap className="w-5 h-5" />,
-      color: "from-blue-500 to-cyan-500",
-    },
-    {
-      title: "Science Stream Selection",
-      year: "2020",
-      description: "Chose PCM for 11th & 12th",
-      icon: <BookOpen className="w-5 h-5" />,
-      color: "from-green-500 to-emerald-500",
-    },
-    {
-      title: "Current Focus",
-      year: "Present",
-      description: "B.Tech Graduate (2026) | Full Stack Developer ",
-      icon: <Target className="w-5 h-5" />,
-      color: "from-purple-500 to-pink-500",
-    },
-    {
-      title: "Career Milestone",
-      year: "2026 - Present",
-      description:
-        "Full Stack Developer Intern at BinaryLogix Technologies LLP, contributing to modern web applications and strengthening industry-level development skills.",
-      icon: <Flag className="w-5 h-5" />,
-      color: "from-orange-500 to-red-500",
-    },
-  ];
-
-  const developedSkills = [
-    { skill: "Problem Solving", level: 95, category: "Analytical" },
-    { skill: "Logical Thinking", level: 90, category: "Analytical" },
-    { skill: "Mathematics", level: 88, category: "Academic" },
-    { skill: "Computer Fundamentals", level: 92, category: "Technical" },
-    { skill: "Web Development", level: 85, category: "Technical" },
-    { skill: "Team Collaboration", level: 80, category: "Soft Skills" },
-    { skill: "Project Management", level: 75, category: "Soft Skills" },
-    { skill: "Research Skills", level: 82, category: "Academic" },
-  ];
+  const activeMilestone =
+    TREE_MILESTONES.find((m) => m.id === activeNodeId) || TREE_MILESTONES[2];
 
   return (
     <section
       id="education"
-      className={`min-h-screen py-10 px-4 md:px-6 transition-all duration-300 ${
-        darkMode
-          ? "bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white"
-          : "bg-gradient-to-b from-blue-50 via-white to-gray-50 text-gray-800"
-      }`}
+      className="relative min-h-screen pt-20 sm:pt-24 lg:pt-28 pb-36 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors overflow-hidden"
     >
-      <Header />
+      {/* Background Micro Particle Mesh */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30 dark:opacity-20">
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-gradient-to-tr from-indigo-500/20 via-purple-500/20 to-emerald-500/20 rounded-full blur-[140px]" />
+        <div className="absolute bottom-10 left-10 w-96 h-96 bg-blue-500/15 rounded-full blur-[120px]" />
+        <div className="absolute top-20 right-10 w-96 h-96 bg-emerald-500/15 rounded-full blur-[120px]" />
+      </div>
 
-      <div className="max-w-6xl pt-2 mx-auto">
-        {/* Header Section - More Compact */}
-        <div className="mt-6 mb-10 text-center">
-          <div className="relative inline-block mb-4">
-            <h1
-              className={`text-3xl md:text-5xl font-bold relative ${
-                darkMode ? "text-white" : "text-gray-800"
-              }`}
-            >
-              Academic{" "}
-              <span className="text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
-                Journey
-              </span>
-            </h1>
+      <div className="max-w-6xl mx-auto relative z-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-center mb-12 sm:mb-16"
+        >
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 dark:bg-indigo-500/20 border border-indigo-500/30 text-indigo-600 dark:text-indigo-400 text-xs sm:text-sm font-semibold tracking-wide mb-4">
+            <Compass className="w-4 h-4 animate-spin-slow" />
+            Interactive Tree Growth Pathway
           </div>
-          <p
-            className={`text-base max-w-2xl mx-auto mb-6 ${
-              darkMode ? "text-gray-300" : "text-gray-600"
-            }`}
-          >
-            My educational path from school to engineering, focusing on
-            continuous learning and skill development
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 text-slate-900 dark:text-white">
+            Academic <span className="text-transparent bg-gradient-to-r from-emerald-500 via-cyan-500 to-indigo-500 bg-clip-text">Journey</span>
+          </h1>
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+            Growing through learning, one milestone at a time. Explore my academic evolution from foundational schooling to engineering and future horizon goals.
           </p>
 
-          {/* Current Status Badge - Smaller */}
-          <div
-            className={`inline-flex items-center px-4 py-2 rounded-full shadow-md ${
-              darkMode
-                ? "bg-gradient-to-r from-blue-900/30 to-purple-900/30 border border-blue-700/30"
-                : "bg-gradient-to-r from-blue-100 to-purple-100 border border-blue-200"
-            }`}
-          >
-            <div
-              className={`p-1.5 rounded-full mr-2 ${
-                darkMode ? "bg-blue-800/50" : "bg-white"
+          {/* Mode Switcher */}
+          <div className="mt-8 inline-flex p-1 rounded-2xl bg-slate-200/80 dark:bg-slate-900 border border-slate-300/80 dark:border-slate-800 shadow-inner">
+            <button
+              onClick={() => setViewMode("tree")}
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${
+                viewMode === "tree"
+                  ? "bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-md"
+                  : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
               }`}
             >
-              <Target
-                className={`h-4 w-4 ${darkMode ? "text-blue-400" : "text-blue-600"}`}
+              <Layers className="w-4 h-4" />
+              Interactive Tree View
+            </button>
+            <button
+              onClick={() => setViewMode("cards")}
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${
+                viewMode === "cards"
+                  ? "bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-md"
+                  : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+              }`}
+            >
+              <Cpu className="w-4 h-4" />
+              Classic Card Grid
+            </button>
+          </div>
+        </motion.div>
+
+        {/* VIEW 1: INTERACTIVE TREE VIEW */}
+        {viewMode === "tree" && (
+          <div className="relative my-8 lg:my-12">
+            {/* Tree Top Crown Indicator */}
+            <div className="flex flex-col items-center mb-8">
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 p-0.5 shadow-xl shadow-purple-500/30 flex items-center justify-center relative"
+              >
+                <div className="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center text-purple-400">
+                  <Sparkles className="w-7 h-7 animate-pulse" />
+                </div>
+                <div className="absolute -top-2 px-2.5 py-0.5 rounded-full bg-purple-500 text-[10px] font-bold text-white uppercase tracking-wider shadow-md">
+                  Crown / Horizon
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Central Tree Stem Line (Upward Growth Trunk) */}
+            <div className="relative">
+              {/* Vertical Trunk Line */}
+              <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-1.5 rounded-full bg-gradient-to-b from-purple-500 via-indigo-500 via-cyan-500 to-emerald-500 shadow-[0_0_12px_rgba(99,102,241,0.5)] z-0" />
+
+              {/* Animated Light Pulse travelling UP the trunk */}
+              <motion.div
+                className="absolute left-1/2 -translate-x-1/2 w-3 h-16 rounded-full bg-gradient-to-t from-transparent via-cyan-400 to-white shadow-[0_0_18px_#38bdf8] z-0 pointer-events-none"
+                animate={{ top: ["100%", "0%"] }}
+                transition={{ repeat: Infinity, duration: 4.5, ease: "linear" }}
               />
-            </div>
-            <div>
-              <span className="text-sm font-bold">Current Status:</span>
-              <span
-                className={`ml-1 text-sm ${darkMode ? "text-blue-300" : "text-blue-700"}`}
-              >
-                B.Tech Computer Science Graduate • Full Stack Developer
-              </span>
-            </div>
-          </div>
-        </div>
 
-        {/* Timeline Section - Compact Cards */}
-        <div className="relative mb-16">
-          <div className="absolute w-1 h-full transform left-4 md:left-1/2 md:-translate-x-1/2">
-            <div
-              className={`h-full w-0.5 ${
-                darkMode
-                  ? "bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500"
-                  : "bg-gradient-to-b from-blue-200 via-purple-200 to-pink-200"
-              }`}
-            ></div>
-          </div>
+              {/* Milestones Tree Nodes Container */}
+              <div className="space-y-16 lg:space-y-24 relative z-10 py-6">
+                {/* Render Milestones in reverse chronological order (Bottom = 10th, Top = Future) */}
+                {[...TREE_MILESTONES].reverse().map((milestone) => {
+                  const isSelected = activeNodeId === milestone.id;
+                  const IconComponent = milestone.icon;
+                  const isLeft = milestone.side === "left";
 
-          {educationTimeline.map((item, index) => (
-            <div
-              key={item.id}
-              className={`relative mb-8 ${
-                index % 2 === 0
-                  ? "md:pr-1/2 md:pl-0 md:text-right"
-                  : "md:pl-1/2 md:pr-0"
-              }`}
-            >
-              <div
-                className={`absolute left-3 md:left-1/2 transform md:-translate-x-1/2 w-3 h-3 rounded-full z-10 ${
-                  item.type === "college"
-                    ? "bg-blue-500 ring-3 ring-blue-500/20"
-                    : "bg-green-500 ring-3 ring-green-500/20"
-                }`}
-              ></div>
-
-              <div
-                className={`ml-10 md:ml-0 ${
-                  index % 2 === 0 ? "md:pr-8" : "md:pl-8"
-                }`}
-              >
-                <div
-                  className={`group rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 ${
-                    darkMode
-                      ? "bg-gray-800/50 border border-gray-700"
-                      : "bg-white border border-gray-100"
-                  }`}
-                >
-                  <div className="md:flex">
-                    {/* Image Section - Smaller */}
-                    <div
-                      className={`md:w-2/5 h-32 md:h-auto relative overflow-hidden ${
-                        item.type === "college"
-                          ? "bg-gradient-to-br from-blue-500/10 to-purple-500/10"
-                          : "bg-gradient-to-br from-green-500/10 to-emerald-500/10"
-                      }`}
+                  return (
+                    <motion.div
+                      key={milestone.id}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.5, ease: "easeOut" }}
+                      className="relative flex items-center justify-center group"
                     >
-                      <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/20 to-transparent"></div>
-                      <img
-                        src={item.image}
-                        alt={item.institution}
-                        className="object-cover object-center w-full h-full transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute z-20 bottom-2 left-2">
-                        <div
-                          className={`px-2 py-0.5 rounded-full backdrop-blur-sm text-xs ${
-                            darkMode
-                              ? "bg-black/40 text-white"
-                              : "bg-white/80 text-gray-800"
+                      {/* Central Trunk Ring Junction Node */}
+                      <button
+                        onClick={() => setActiveNodeId(milestone.id)}
+                        className={`relative z-20 w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 outline-none ${
+                          isSelected
+                            ? `bg-slate-900 text-white border-2 border-white scale-125 ${milestone.glowShadow}`
+                            : "bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:scale-110"
+                        }`}
+                      >
+                        <IconComponent
+                          className={`w-5 h-5 transition-transform duration-300 ${
+                            isSelected ? "scale-110" : ""
                           }`}
+                          style={{ color: isSelected ? milestone.accentColor : undefined }}
+                        />
+                        {/* Node Stage Ring Badge */}
+                        <div
+                          className="absolute -bottom-6 px-2 py-0.5 rounded-full text-[10px] font-bold text-white shadow-sm whitespace-nowrap"
+                          style={{ backgroundColor: milestone.accentColor }}
                         >
-                          {item.type === "college" ? "College" : "School"}
+                          Stage {milestone.stageNumber}
                         </div>
-                      </div>
-                    </div>
+                      </button>
 
-                    {/* Content Section - Tighter Padding */}
-                    <div className="p-4 md:w-3/5">
-                      {/* Visual Hierarchy: Degree -> Institution -> Duration -> Details */}
-                      <div className="mb-3">
-                        <h3 className={`text-xl font-bold flex items-center gap-1.5 ${
-                          darkMode ? "text-white" : "text-gray-900"
-                        }`}>
-                          <GraduationCap className="w-5 h-5 text-blue-500 shrink-0" />
-                          <span>{item.degree || item.stream || item.grade}</span>
-                        </h3>
-                        {item.field && (
-                          <p className={`text-xs font-semibold uppercase tracking-wider ${
-                            darkMode ? "text-blue-400" : "text-blue-600"
-                          }`}>
-                            {item.field}
-                          </p>
-                        )}
+                      {/* Desktop Branch & Floating Card */}
+                      <div className="hidden lg:flex absolute inset-0 items-center justify-between pointer-events-none">
+                        {/* Left Card Slot */}
+                        <div className={`w-[45%] ${isLeft ? "pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
+                          {isLeft && (
+                            <TreeMilestoneCard
+                              milestone={milestone}
+                              isSelected={isSelected}
+                              onSelect={() => setActiveNodeId(milestone.id)}
+                            />
+                          )}
+                        </div>
 
-                        <p className={`text-base font-semibold mt-1 ${
-                          darkMode ? "text-gray-300" : "text-gray-700"
-                        }`}>
-                          {item.institution}
-                        </p>
+                        {/* Curved SVG Branch Connector */}
+                        <div className="w-[10%] flex justify-center pointer-events-none">
+                          <svg className="w-full h-12 overflow-visible">
+                            <motion.path
+                              d={
+                                isLeft
+                                  ? "M 0 24 C 40 24, 60 24, 100 24"
+                                  : "M 0 24 C 40 24, 60 24, 100 24"
+                              }
+                              fill="none"
+                              stroke={isSelected ? milestone.accentColor : "#64748b"}
+                              strokeWidth={isSelected ? 3 : 1.5}
+                              strokeDasharray={isSelected ? "none" : "4 4"}
+                              className="transition-all duration-300"
+                            />
+                          </svg>
+                        </div>
 
-                        <div className="flex flex-wrap items-center gap-2 mt-2">
-                          <span
-                            className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                              darkMode ? "bg-gray-700/80 text-gray-300" : "bg-gray-100 text-gray-700"
-                            }`}
-                          >
-                            <Calendar className="w-3 h-3 mr-1" />
-                            {item.duration}
-                          </span>
-                          <span
-                            className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                              darkMode
-                                ? item.type === "college"
-                                  ? "bg-blue-900/40 text-blue-300 border border-blue-800/50"
-                                  : "bg-emerald-900/40 text-emerald-300 border border-emerald-800/50"
-                                : item.type === "college"
-                                  ? "bg-blue-50 text-blue-700 border border-blue-200"
-                                  : "bg-emerald-50 text-emerald-700 border border-emerald-200"
-                            }`}
-                          >
-                            <MapPin className="w-3 h-3 mr-1" />
-                            {item.location}
-                          </span>
-                          {item.status && (
-                            <span
-                              className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                                darkMode
-                                  ? "bg-purple-900/40 text-purple-300 border border-purple-800/50"
-                                  : "bg-purple-50 text-purple-700 border border-purple-200"
-                              }`}
-                            >
-                              {item.status}
-                            </span>
+                        {/* Right Card Slot */}
+                        <div className={`w-[45%] ${!isLeft ? "pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
+                          {!isLeft && (
+                            <TreeMilestoneCard
+                              milestone={milestone}
+                              isSelected={isSelected}
+                              onSelect={() => setActiveNodeId(milestone.id)}
+                            />
                           )}
                         </div>
                       </div>
 
-                      <p
-                        className={`text-sm mb-3 leading-relaxed ${
-                          darkMode ? "text-gray-300" : "text-gray-600"
-                        }`}
-                      >
-                        {item.description}
-                      </p>
-
-                      {(item.courses || item.focus) && (
-                        <div className="mb-3">
-                          <h4
-                            className={`font-semibold text-xs mb-1.5 flex items-center ${
-                              darkMode ? "text-gray-200" : "text-gray-700"
-                            }`}
-                          >
-                            <BookMarked className="w-3 h-3 mr-1" />
-                            Key{" "}
-                            {item.type === "college" ? "Courses" : "Subjects"}
-                          </h4>
-                          <div className="flex flex-wrap gap-1.5">
-                            {(item.courses || item.focus).map((course, idx) => (
-                              <span
-                                key={idx}
-                                className={`px-2 py-0.5 rounded-full text-xs ${
-                                  darkMode
-                                    ? item.type === "college"
-                                      ? "bg-blue-900/30 text-blue-300"
-                                      : "bg-green-900/30 text-green-300"
-                                    : item.type === "college"
-                                      ? "bg-blue-50 text-blue-700 border border-blue-100"
-                                      : "bg-green-50 text-green-700 border border-green-100"
-                                }`}
-                              >
-                                {course}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {item.achievements && (
-                        <div>
-                          <h4
-                            className={`font-semibold text-xs mb-1.5 flex items-center ${
-                              darkMode ? "text-gray-200" : "text-gray-700"
-                            }`}
-                          >
-                            <Trophy className="w-3 h-3 mr-1" />
-                            Achievements
-                          </h4>
-                          <ul className="space-y-0.5">
-                            {item.achievements.map((achievement, idx) => (
-                              <li
-                                key={idx}
-                                className="flex items-start text-xs"
-                              >
-                                <ChevronRight
-                                  className={`h-3 w-3 mt-0.5 mr-1 flex-shrink-0 ${
-                                    darkMode ? "text-blue-400" : "text-blue-600"
-                                  }`}
-                                />
-                                <span
-                                  className={
-                                    darkMode ? "text-gray-300" : "text-gray-600"
-                                  }
-                                >
-                                  {achievement}
-                                </span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
+                      {/* Mobile / Tablet Responsive Tree Card */}
+                      <div className="lg:hidden w-full pl-16 sm:pl-20 mt-4 pr-2">
+                        <TreeMilestoneCard
+                          milestone={milestone}
+                          isSelected={isSelected}
+                          onSelect={() => setActiveNodeId(milestone.id)}
+                        />
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
-          ))}
-        </div>
 
-        {/* Milestones Section - Smaller Cards */}
-        <div className="mb-16">
-          <h2
-            className={`text-2xl md:text-3xl font-bold text-center mb-8 ${
-              darkMode ? "text-white" : "text-gray-800"
-            }`}
-          >
-            Academic{" "}
-            <span className="text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
-              Milestones
-            </span>
-          </h2>
-
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {milestones.map((milestone, index) => (
-              <div
-                key={index}
-                className={`relative rounded-xl p-4 overflow-hidden group transition-all duration-300 hover:scale-105 ${
-                  darkMode ? "bg-gray-800/50" : "bg-white"
-                } shadow-md`}
-              >
-                <div
-                  className={`absolute top-0 right-0 w-20 h-20 rounded-full -mr-10 -mt-10 opacity-20 bg-gradient-to-br ${milestone.color}`}
-                ></div>
-                <div
-                  className={`absolute bottom-0 left-0 w-20 h-20 rounded-full -ml-10 -mb-10 opacity-20 bg-gradient-to-tr ${milestone.color}`}
-                ></div>
-
-                <div className="relative">
-                  <div
-                    className={`inline-flex p-2 rounded-lg mb-3 ${
-                      darkMode
-                        ? "bg-gray-700/50 text-white"
-                        : "bg-gradient-to-br from-gray-50 to-white text-gray-800"
-                    }`}
-                  >
-                    {milestone.icon}
-                  </div>
-
-                  <div className="mb-1 text-2xl font-bold">
-                    {milestone.year}
-                  </div>
-                  <h3 className="mb-1 text-base font-bold">
-                    {milestone.title}
-                  </h3>
-                  <p
-                    className={`text-xs ${darkMode ? "text-gray-300" : "text-gray-600"}`}
-                  >
-                    {milestone.description}
-                  </p>
-                </div>
+            {/* Tree Base Root Indicator */}
+            <div className="flex flex-col items-center mt-12 pt-6">
+              <div className="w-16 h-3 rounded-full bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 blur-sm mb-2" />
+              <div className="px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-400 border border-slate-300/80 dark:border-slate-700">
+                🌱 Root Stage (2019)
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* VIEW 2: CLASSIC CARD GRID VIEW */}
+        {viewMode === "cards" && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
+            {TREE_MILESTONES.map((item) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-xl hover:border-indigo-500/50 transition-all group"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div
+                    className="p-3 rounded-2xl text-white shadow-md"
+                    style={{ backgroundColor: item.accentColor }}
+                  >
+                    <item.icon className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-wider text-indigo-500">
+                      {item.levelLabel}
+                    </span>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                      {item.degree}
+                    </h3>
+                  </div>
+                </div>
+                <p className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                  {item.institution}
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4 text-xs text-slate-500">
+                  <span className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-full">
+                    <Calendar className="w-3.5 h-3.5" /> {item.duration}
+                  </span>
+                  <span className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-full">
+                    <MapPin className="w-3.5 h-3.5" /> {item.location}
+                  </span>
+                </div>
+                <p className="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                  {item.description}
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {item.subjects.map((sub, i) => (
+                    <span
+                      key={i}
+                      className="px-2.5 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs rounded-md"
+                    >
+                      {sub}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        )}
 
-        {/* Skills Section - More Compact */}
-        <div
-          className={`rounded-xl p-6 ${
-            darkMode
-              ? "bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700"
-              : "bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-100"
-          }`}
-        >
-          <div className="mb-8 text-center">
-            <h2 className="mb-2 text-2xl font-bold md:text-3xl">
-              Skills{" "}
-              <span className="text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
-                Developed
-              </span>
-            </h2>
-            <p
-              className={`text-sm ${darkMode ? "text-gray-300" : "text-gray-600"}`}
-            >
-              Key competencies gained through my academic journey
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            <div>
-              <h3 className="mb-4 text-xl font-bold">Skill Proficiency</h3>
-              <div className="space-y-4">
-                {developedSkills.map((skill, index) => (
-                  <div key={index}>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-sm font-medium">{skill.skill}</span>
-                      <span
-                        className={`text-sm font-bold ${
-                          skill.category === "Analytical"
-                            ? "text-blue-600"
-                            : skill.category === "Technical"
-                              ? "text-purple-600"
-                              : skill.category === "Academic"
-                                ? "text-green-600"
-                                : "text-orange-600"
-                        }`}
-                      >
-                        {skill.level}%
-                      </span>
-                    </div>
-                    <div
-                      className={`h-1.5 rounded-full overflow-hidden ${
-                        darkMode ? "bg-gray-700" : "bg-gray-200"
-                      }`}
-                    >
-                      <div
-                        className={`h-full rounded-full ${
-                          skill.category === "Analytical"
-                            ? "bg-gradient-to-r from-blue-500 to-cyan-500"
-                            : skill.category === "Technical"
-                              ? "bg-gradient-to-r from-purple-500 to-pink-500"
-                              : skill.category === "Academic"
-                                ? "bg-gradient-to-r from-green-500 to-emerald-500"
-                                : "bg-gradient-to-r from-orange-500 to-yellow-500"
-                        }`}
-                        style={{ width: `${skill.level}%` }}
-                      ></div>
-                    </div>
-                    <div className="mt-0.5 text-xs opacity-70">
-                      {skill.category}
-                    </div>
-                  </div>
-                ))}
+        {/* BOTTOM SECTION: SKILLS PROFICIENCY & HIGHLIGHTS */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16 sm:mt-24">
+          {/* Skill Proficiency Progress */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-8 rounded-3xl shadow-xl"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-2.5 rounded-2xl bg-indigo-500/10 text-indigo-500">
+                <Cpu className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                  Academic Skill Growth
+                </h3>
+                <p className="text-xs text-slate-500">Skills cultivated through degree & coursework</p>
               </div>
             </div>
 
-            <div>
-              <div
-                className={`rounded-lg p-5 h-full ${
-                  darkMode ? "bg-gray-800/30" : "bg-white/50"
-                }`}
-              >
-                <h3 className="mb-4 text-xl font-bold">Academic Highlights</h3>
-
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="flex items-center mb-2 text-sm font-bold">
-                      <Users className="w-4 h-4 mr-1 text-blue-500" />
-                      University Journey
-                    </h4>
-
-                    <ul className="space-y-1.5 text-sm">
-                      <li className="flex items-center">
-                        <Star className="w-3 h-3 mr-2 text-yellow-500" />
-                        <span>B.Tech CSE Graduate (2026)</span>
-                      </li>
-
-                      <li className="flex items-center">
-                        <Star className="w-3 h-3 mr-2 text-yellow-500" />
-                        <span>Strong Foundation in Computer Science</span>
-                      </li>
-
-                      <li className="flex items-center">
-                        <Star className="w-3 h-3 mr-2 text-yellow-500" />
-                        <span>Hands-on MERN Stack Development</span>
-                      </li>
-
-                      <li className="flex items-center">
-                        <Star className="w-3 h-3 mr-2 text-yellow-500" />
-                        <span>15+ Academic & Personal Projects</span>
-                      </li>
-                    </ul>
+            <div className="space-y-4">
+              {SKILL_TREE_PROGRESS.map((item, idx) => (
+                <div key={idx}>
+                  <div className="flex justify-between mb-1.5 text-xs sm:text-sm font-semibold">
+                    <span className="text-slate-800 dark:text-slate-200">{item.skill}</span>
+                    <span className="text-indigo-600 dark:text-indigo-400">{item.level}%</span>
                   </div>
-
-                  <div>
-                    <h4 className="flex items-center mb-2 text-sm font-bold">
-                      <BookOpen className="w-4 h-4 mr-1 text-green-500" />
-                      Core Learning Areas
-                    </h4>
-
-                    <ul className="space-y-1.5 text-sm">
-                      <li className="flex items-center">
-                        <ChevronRight className="w-3 h-3 mr-2 text-green-500" />
-                        <span>Data Structures & Algorithms</span>
-                      </li>
-
-                      <li className="flex items-center">
-                        <ChevronRight className="w-3 h-3 mr-2 text-green-500" />
-                        <span>Database Management Systems</span>
-                      </li>
-
-                      <li className="flex items-center">
-                        <ChevronRight className="w-3 h-3 mr-2 text-green-500" />
-                        <span>Operating Systems & Computer Networks</span>
-                      </li>
-
-                      <li className="flex items-center">
-                        <ChevronRight className="w-3 h-3 mr-2 text-green-500" />
-                        <span>Full Stack Web Development</span>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h4 className="flex items-center mb-2 text-sm font-bold">
-                      <Target className="w-4 h-4 mr-1 text-purple-500" />
-                      Career Objective
-                    </h4>
-
-                    <p
-                      className={`text-sm ${
-                        darkMode ? "text-gray-300" : "text-gray-600"
-                      }`}
-                    >
-                      Seeking opportunities as a Full Stack Developer where I
-                      can apply my expertise in React.js, Node.js, Express.js,
-                      and MongoDB to build scalable applications while
-                      continuously learning modern technologies and industry
-                      best practices.
-                    </p>
+                  <div className="h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${item.level}%` }}
+                      transition={{ duration: 1, ease: "easeOut" }}
+                      viewport={{ once: true }}
+                      className="h-full rounded-full bg-gradient-to-r from-emerald-500 via-cyan-500 to-indigo-500"
+                    />
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
-          </div>
-        </div>
+          </motion.div>
 
-        {/* Final Note - More Compact */}
-        <div
-          className={`mt-12 text-center rounded-xl p-6 ${
-            darkMode
-              ? "bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-800/30"
-              : "bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200"
-          }`}
-        >
-          <div className="max-w-2xl mx-auto">
-            <h3 className="mb-2 text-xl font-bold md:text-2xl">
-              Building the Future Through Technology
-            </h3>
-
-            <p
-              className={`text-sm mb-4 ${
-                darkMode ? "text-gray-300" : "text-gray-700"
-              }`}
-            >
-              My journey from academic learning to real-world development has
-              equipped me with strong problem-solving abilities, software
-              engineering principles, and hands-on experience in building modern
-              web applications. As a B.Tech Computer Science graduate, I am
-              passionate about creating impactful digital solutions and
-              continuously expanding my technical expertise.
-            </p>
-
-            <div className="flex flex-wrap justify-center gap-3">
-              <div
-                className={`inline-flex items-center px-3 py-1 rounded-full text-xs ${
-                  darkMode
-                    ? "bg-gray-700 text-gray-300"
-                    : "bg-white text-gray-700"
-                }`}
-              >
-                <p className="w-3 h-3 mr-1" />
-                Full Stack Developer
+          {/* Highlights & Aspirations */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white p-6 sm:p-8 rounded-3xl shadow-2xl border border-slate-800 flex flex-col justify-between"
+          >
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-2.5 rounded-2xl bg-emerald-500/20 text-emerald-400">
+                  <Trophy className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-bold">Academic Highlights</h3>
+                  <p className="text-xs text-slate-400">IES University & School Achievements</p>
+                </div>
               </div>
 
-              <div
-                className={`inline-flex items-center px-3 py-1 rounded-full text-xs ${
-                  darkMode
-                    ? "bg-gray-700 text-gray-300"
-                    : "bg-white text-gray-700"
-                }`}
-              >
-                <Target className="w-3 h-3 mr-1" />
-                Career Ready
-              </div>
-
-              <div
-                className={`inline-flex items-center px-3 py-1 rounded-full text-xs ${
-                  darkMode
-                    ? "bg-gray-700 text-gray-300"
-                    : "bg-white text-gray-700"
-                }`}
-              >
-                <p className="w-3 h-3 mr-1" />
-                Growth Mindset
-              </div>
-
-              <div
-                className={`inline-flex items-center px-3 py-1 rounded-full text-xs ${
-                  darkMode
-                    ? "bg-gray-700 text-gray-300"
-                    : "bg-white text-gray-700"
-                }`}
-              >
-                <p className="w-3 h-3 mr-1" />
-                Open to Opportunities
-              </div>
+              <ul className="space-y-3.5 mb-6 text-sm text-slate-300">
+                <li className="flex items-start gap-2.5">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                  <span>
+                    <strong>B.Tech CSE Graduate (Class of 2026)</strong> — Comprehensive training in Computer Science fundamentals and software engineering.
+                  </span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <CheckCircle2 className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
+                  <span>
+                    <strong>Full-Stack Mastery</strong> — Practical hands-on development using React.js, Node.js, Express, and MongoDB.
+                  </span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <CheckCircle2 className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" />
+                  <span>
+                    <strong>Science & Math Foundation</strong> — PCM stream HSSC with strong problem-solving proficiency.
+                  </span>
+                </li>
+              </ul>
             </div>
-          </div>
+
+            <div className="pt-4 border-t border-slate-800 flex items-center justify-between">
+              <span className="text-xs text-slate-400 font-medium">Ready for Full-Stack Opportunities</span>
+              <a
+                href="/contact"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-400 hover:text-indigo-300 transition-colors"
+              >
+                Let's Connect <ArrowUpRight className="w-4 h-4" />
+              </a>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 };
+
+// Sub-Component for Tree Milestone Card
+function TreeMilestoneCard({ milestone, isSelected, onSelect }) {
+  const IconComponent = milestone.icon;
+
+  return (
+    <motion.div
+      onClick={onSelect}
+      whileHover={{ y: -4 }}
+      className={`relative cursor-pointer rounded-3xl p-5 sm:p-6 transition-all duration-300 border backdrop-blur-xl ${
+        isSelected
+          ? `bg-white/95 dark:bg-slate-900/95 border-2 shadow-2xl ${milestone.bgTint}`
+          : "bg-white/80 dark:bg-slate-900/70 border-slate-200/80 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 shadow-md opacity-90 hover:opacity-100"
+      }`}
+    >
+      {/* Header Stage Badge & Duration */}
+      <div className="flex items-center justify-between gap-2 mb-3">
+        <span
+          className="px-2.5 py-1 rounded-full text-[11px] font-bold text-white shadow-xs tracking-wide uppercase"
+          style={{ backgroundColor: milestone.accentColor }}
+        >
+          {milestone.levelLabel}
+        </span>
+        <span className="flex items-center gap-1 text-xs font-semibold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-2.5 py-1 rounded-full">
+          <Calendar className="w-3.5 h-3.5" />
+          {milestone.duration}
+        </span>
+      </div>
+
+      {/* Degree & Institution */}
+      <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-snug mb-1">
+        {milestone.degree}
+      </h3>
+      <p className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 flex items-center gap-1.5">
+        <Building2 className="w-4 h-4 shrink-0 text-slate-400" />
+        {milestone.institution}
+      </p>
+
+      {/* Location */}
+      <p className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1 mb-3">
+        <MapPin className="w-3.5 h-3.5 shrink-0" />
+        {milestone.location}
+      </p>
+
+      {/* Short Description */}
+      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-4 line-clamp-3 leading-relaxed">
+        {milestone.description}
+      </p>
+
+      {/* Course Pills */}
+      <div className="flex flex-wrap gap-1.5 mb-4">
+        {milestone.subjects.map((sub, i) => (
+          <span
+            key={i}
+            className="px-2.5 py-0.5 text-[11px] font-medium rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200/60 dark:border-slate-700/50"
+          >
+            {sub}
+          </span>
+        ))}
+      </div>
+
+      {/* Selected Card Expanded Content */}
+      <AnimatePresence>
+        {isSelected && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="pt-4 border-t border-slate-200/80 dark:border-slate-800/80 space-y-2 overflow-hidden"
+          >
+            <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-1">
+              <Trophy className="w-3.5 h-3.5 text-yellow-500" /> Key Milestones & Achievements:
+            </h4>
+            <ul className="space-y-1.5 text-xs text-slate-600 dark:text-slate-400">
+              {milestone.achievements.map((ach, i) => (
+                <li key={i} className="flex items-start gap-1.5">
+                  <ChevronRight className="w-3.5 h-3.5 text-indigo-500 shrink-0 mt-0.5" />
+                  <span>{ach}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+}
 
 export default Education;

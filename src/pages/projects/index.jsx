@@ -15,7 +15,6 @@ import {
   Wifi,
   Battery,
 } from "lucide-react";
-import Header from "../../components/ui/Header";
 import Icon from "../../components/AppIcon";
 import Button from "../../components/ui/Button";
 import ProjectCard from "./components/ProjectCard";
@@ -692,10 +691,9 @@ const Projects = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
-
+      
       {/* Hero Section */}
-      <section className="pb-16 pt-28 bg-gradient-to-b from-primary/5 via-background to-background">
+      <section className="pb-16 pt-16 sm:pt-20 lg:pt-24 bg-gradient-to-b from-primary/5 via-background to-background">
         <div className="container-brand">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

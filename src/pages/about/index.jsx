@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-import Header from "../../components/ui/Header";
 import HeroSection from "./components/HeroSection";
 import TimelineSection from "./components/TimelineSection";
 import ReadingProgressIndicator from "./components/ReadingProgressIndicator";
@@ -27,10 +26,9 @@ const About = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <Header />
-
+      
       {/* Page Content */}
-      <main className="pt-16">
+      <main className="pt-0 pb-28">
         <HeroSection />
         <TimelineSection />
         <ReadingProgressIndicator />
