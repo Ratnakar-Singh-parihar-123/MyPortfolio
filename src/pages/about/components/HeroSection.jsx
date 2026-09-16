@@ -59,10 +59,30 @@ const HeroSection = () => {
 
   const stats = useMemo(
     () => [
-      { value: "8+", label: "Projects Built", icon: Briefcase, color: "text-blue-600 dark:text-blue-400" },
-      { value: "300+", label: "DSA Problems Solved", icon: Code2, color: "text-emerald-600 dark:text-emerald-400" },
-      { value: "15+", label: "Technologies", icon: Layers, color: "text-purple-600 dark:text-purple-400" },
-      { value: "100%", label: "Dedication", icon: Heart, color: "text-rose-600 dark:text-rose-400" },
+      {
+        value: "8+",
+        label: "Projects Built",
+        icon: Briefcase,
+        color: "text-blue-600 dark:text-blue-400",
+      },
+      {
+        value: "300+",
+        label: "DSA Problems Solved",
+        icon: Code2,
+        color: "text-emerald-600 dark:text-emerald-400",
+      },
+      {
+        value: "15+",
+        label: "Technologies",
+        icon: Layers,
+        color: "text-purple-600 dark:text-purple-400",
+      },
+      {
+        value: "100%",
+        label: "Dedication",
+        icon: Heart,
+        color: "text-rose-600 dark:text-rose-400",
+      },
     ],
     [],
   );
@@ -97,11 +117,11 @@ const HeroSection = () => {
   const handlePopupClose = useCallback(() => setIsPopupOpen(false), []);
 
   return (
-    <section className="relative w-full min-h-screen pt-16 sm:pt-20 lg:pt-24 pb-16 lg:pb-24 flex items-center justify-center overflow-x-hidden bg-background">
+    <section className="relative flex items-center justify-center w-full min-h-screen pt-16 pb-16 overflow-x-hidden sm:pt-20 lg:pt-24 lg:pb-24 bg-background">
       {/* Background Subtle Orbs & Mesh */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/3 left-5 w-80 h-80 rounded-full bg-purple-500/10 dark:bg-purple-600/15 blur-3xl" />
-        <div className="absolute bottom-1/3 right-5 w-80 h-80 rounded-full bg-blue-500/10 dark:bg-blue-600/15 blur-3xl" />
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute rounded-full top-1/3 left-5 w-80 h-80 bg-purple-500/10 dark:bg-purple-600/15 blur-3xl" />
+        <div className="absolute rounded-full bottom-1/3 right-5 w-80 h-80 bg-blue-500/10 dark:bg-blue-600/15 blur-3xl" />
         <div
           className="absolute inset-0 opacity-[0.025] dark:opacity-[0.05]"
           style={{
@@ -111,47 +131,50 @@ const HeroSection = () => {
         />
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
-
+      <div className="relative z-10 w-full px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
           {/* LEFT COLUMN — Visual Profile Card Composition */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="lg:col-span-5 flex justify-center w-full"
+            className="flex justify-center w-full lg:col-span-5"
           >
             <div className="relative w-full max-w-sm sm:max-w-md">
               {/* Card Container */}
-              <div className="relative p-1 rounded-3xl bg-gradient-to-br from-purple-600/25 via-blue-600/25 to-pink-600/25 shadow-xl border border-border/50">
+              <div className="relative p-1 border shadow-xl rounded-3xl bg-gradient-to-br from-purple-600/25 via-blue-600/25 to-pink-600/25 border-border/50">
                 <div className="relative overflow-hidden rounded-[22px] bg-card p-4 space-y-4">
-                  
                   {/* Photo Container */}
                   <div className="relative overflow-hidden rounded-2xl bg-muted aspect-[4/4.8] w-full">
                     <Image
                       src={AboutImg}
                       alt="Ratnakar Singh Parihar"
-                      className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+                      className="object-cover object-top w-full h-full transition-transform duration-500 hover:scale-105"
                       onLoad={() => setIsImageLoaded(true)}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
-                    
+
                     {/* Status Pill on Photo */}
                     <div className="absolute top-3 left-3 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-white text-xs font-medium flex items-center gap-1.5">
-                      <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                       <span>Bhopal, MP, India</span>
+                      {/* <span>Bengaluru, Karnataka, India</span> */}
                     </div>
 
                     {/* Photo Footer Label */}
-                    <div className="absolute bottom-3 left-4 right-4 text-white">
-                      <h3 className="text-lg font-bold">Ratnakar Singh Parihar</h3>
-                      <p className="text-xs text-blue-300 font-medium">Software & Mobile App Engineer</p>
+                    <div className="absolute text-white bottom-3 left-4 right-4">
+                      <h3 className="text-lg font-bold">
+                        Ratnakar Singh Parihar
+                      </h3>
+                      <p className="text-xs font-medium text-blue-300">
+                        Software & Mobile App Engineer
+                      </p>
                     </div>
                   </div>
 
                   {/* Social Links Row */}
-                  <div className="flex items-center justify-between pt-1 px-1">
-                    <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                  <div className="flex items-center justify-between px-1 pt-1">
+                    <span className="text-xs font-semibold tracking-wider uppercase text-muted-foreground">
                       Social Profiles
                     </span>
                     <div className="flex items-center gap-2">
@@ -164,7 +187,7 @@ const HeroSection = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label={social.name}
-                            className="p-2 rounded-lg border border-border/80 bg-background/80 text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-muted transition-all"
+                            className="p-2 transition-all border rounded-lg border-border/80 bg-background/80 text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-muted"
                           >
                             <IconComp className="w-4 h-4" />
                           </a>
@@ -180,16 +203,21 @@ const HeroSection = () => {
                       return (
                         <div
                           key={stat.label}
-                          className="p-3 rounded-xl border border-border/60 bg-muted/40 text-center"
+                          className="p-3 text-center border rounded-xl border-border/60 bg-muted/40"
                         >
-                          <IconComponent className={`w-4 h-4 mx-auto mb-1 ${stat.color}`} />
-                          <div className="text-base font-extrabold text-foreground">{stat.value}</div>
-                          <div className="text-[11px] text-muted-foreground font-medium leading-tight">{stat.label}</div>
+                          <IconComponent
+                            className={`w-4 h-4 mx-auto mb-1 ${stat.color}`}
+                          />
+                          <div className="text-base font-extrabold text-foreground">
+                            {stat.value}
+                          </div>
+                          <div className="text-[11px] text-muted-foreground font-medium leading-tight">
+                            {stat.label}
+                          </div>
                         </div>
                       );
                     })}
                   </div>
-
                 </div>
               </div>
             </div>
@@ -200,7 +228,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-            className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6"
+            className="flex flex-col items-center space-y-6 text-center lg:col-span-7 lg:items-start lg:text-left"
           >
             {/* About Badge */}
             <motion.div
@@ -214,7 +242,7 @@ const HeroSection = () => {
             </motion.div>
 
             {/* Supporting Headline */}
-            <div className="space-y-2 w-full">
+            <div className="w-full space-y-2">
               <motion.h1
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -233,13 +261,29 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.25, duration: 0.5 }}
-              className="space-y-3 text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl"
+              className="max-w-2xl space-y-3 text-sm leading-relaxed sm:text-base text-muted-foreground"
             >
               <p>
-                I am <strong className="text-foreground font-semibold">Ratnakar Singh Parihar</strong>, a Full-Stack & React Native Developer currently pursuing my B.Tech in Computer Science & Engineering (Graduating 2026).
+                I am{" "}
+                <strong className="font-semibold text-foreground">
+                  Ratnakar Singh Parihar
+                </strong>
+                , a Full-Stack & React Native Developer currently pursuing my
+                B.Tech in Computer Science & Engineering (Graduating 2026).
               </p>
               <p>
-                My passion lies in taking complex real-world problems and engineering clean, efficient, and user-friendly digital solutions. From real-time MERN stack platforms like the <strong className="text-foreground font-semibold">Vehicle Service Booking Platform</strong> and <strong className="text-foreground font-semibold">YammiVerse</strong> to cross-platform mobile apps, I bring strong algorithmic thinking and production-minded engineering to every project.
+                My passion lies in taking complex real-world problems and
+                engineering clean, efficient, and user-friendly digital
+                solutions. From real-time MERN stack platforms like the{" "}
+                <strong className="font-semibold text-foreground">
+                  Vehicle Service Booking Platform
+                </strong>{" "}
+                and{" "}
+                <strong className="font-semibold text-foreground">
+                  YammiVerse
+                </strong>{" "}
+                to cross-platform mobile apps, I bring strong algorithmic
+                thinking and production-minded engineering to every project.
               </p>
             </motion.div>
 
@@ -248,7 +292,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
-              className="space-y-3 w-full max-w-2xl text-left"
+              className="w-full max-w-2xl space-y-3 text-left"
             >
               {developerPillars.map((pillar) => (
                 <div
@@ -259,8 +303,12 @@ const HeroSection = () => {
                     <CheckCircle2 className="w-4 h-4" />
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-foreground">{pillar.title}</h4>
-                    <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{pillar.desc}</p>
+                    <h4 className="text-sm font-bold text-foreground">
+                      {pillar.title}
+                    </h4>
+                    <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
+                      {pillar.desc}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -271,7 +319,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.35, duration: 0.5 }}
-              className="flex flex-col sm:flex-row items-center gap-4 w-full pt-2 sm:w-auto"
+              className="flex flex-col items-center w-full gap-4 pt-2 sm:flex-row sm:w-auto"
             >
               <Link to="/contact" className="w-full sm:w-auto">
                 <button
@@ -292,9 +340,7 @@ const HeroSection = () => {
                 <span>View Resume</span>
               </button>
             </motion.div>
-
           </motion.div>
-
         </div>
       </div>
 

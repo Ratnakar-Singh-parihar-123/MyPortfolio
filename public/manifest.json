@@ -1,7 +1,7 @@
 {
-  "short_name": "Ratnakar Portfolio",
-  "name": "Ratnakar Singh Parihar — Full Stack Developer Portfolio",
-  "description": "Portfolio of Ratnakar Singh Parihar — Full Stack & React Native Developer specializing in MERN Stack and Mobile Development.",
+"short_name": "Ratnakar Singh Parihar",
+"name": "Ratnakar Singh Parihar | Software Engineer",
+"description": "Explore the portfolio of Ratnakar Singh Parihar — a Software Engineer building scalable web and mobile applications with MERN, React Native, Node.js, Java, and System Design.",
   "icons": [
     {
       "src": "/vite.svg",

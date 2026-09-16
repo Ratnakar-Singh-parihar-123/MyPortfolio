@@ -77,8 +77,8 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
-            {/* Hero Section */}
-      <section className="pt-16 sm:pt-20 lg:pt-24 pb-12 bg-gradient-to-b from-primary/10 via-background to-background">
+      {/* Hero Section */}
+      <section className="pt-16 pb-12 sm:pt-20 lg:pt-24 bg-gradient-to-b from-primary/10 via-background to-background">
         <div className="max-w-2xl mx-auto text-center container-brand">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-medium">
@@ -118,33 +118,34 @@ const ContactPage = () => {
       <section className="py-12 md:py-16">
         <div className="container-brand">
           <div className="mx-auto max-w-7xl">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-              
+            <div className="grid items-start grid-cols-1 gap-10 lg:grid-cols-12">
               {/* LEFT COLUMN: Contact Info, Socials, FAQs */}
-              <div className="lg:col-span-5 space-y-6">
-                
+              <div className="space-y-6 lg:col-span-5">
                 {/* Contact Card Details */}
-                <div className="p-6 border bg-card border-border rounded-2xl shadow-sm space-y-4">
-                  <h3 className="text-xl font-bold text-foreground flex items-center gap-2">
+                <div className="p-6 space-y-4 border shadow-sm bg-card border-border rounded-2xl">
+                  <h3 className="flex items-center gap-2 text-xl font-bold text-foreground">
                     <Icon name="Mail" size={22} className="text-primary" />
                     <span>Contact Information</span>
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    Feel free to reach out directly via email, phone, or social channels.
+                    Feel free to reach out directly via email, phone, or social
+                    channels.
                   </p>
 
-                  <div className="space-y-3 pt-2">
+                  <div className="pt-2 space-y-3">
                     {/* Email */}
                     <a
                       href="mailto:ratnakarsinghparihar9399@gmail.com"
                       className="flex items-center gap-3.5 p-3.5 border rounded-xl border-border/70 bg-muted/30 hover:bg-muted transition-all group"
                     >
-                      <div className="flex items-center justify-center rounded-lg w-10 h-10 bg-primary/10 text-primary group-hover:scale-110 transition-transform">
+                      <div className="flex items-center justify-center w-10 h-10 transition-transform rounded-lg bg-primary/10 text-primary group-hover:scale-110">
                         <Icon name="Mail" size={20} />
                       </div>
                       <div className="min-w-0">
-                        <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider">Email Me</p>
-                        <p className="text-sm font-medium text-foreground truncate">
+                        <p className="text-xs font-semibold tracking-wider uppercase text-muted-foreground">
+                          Email Me
+                        </p>
+                        <p className="text-sm font-medium truncate text-foreground">
                           ratnakarsinghparihar9399@gmail.com
                         </p>
                       </div>
@@ -155,11 +156,13 @@ const ContactPage = () => {
                       href="tel:+919399741051"
                       className="flex items-center gap-3.5 p-3.5 border rounded-xl border-border/70 bg-muted/30 hover:bg-muted transition-all group"
                     >
-                      <div className="flex items-center justify-center rounded-lg w-10 h-10 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform">
+                      <div className="flex items-center justify-center w-10 h-10 transition-transform rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 group-hover:scale-110">
                         <Icon name="Phone" size={20} />
                       </div>
                       <div className="min-w-0">
-                        <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider">Call / WhatsApp</p>
+                        <p className="text-xs font-semibold tracking-wider uppercase text-muted-foreground">
+                          Call / WhatsApp
+                        </p>
                         <p className="text-sm font-medium text-foreground">
                           +91 93997 41051
                         </p>
@@ -168,11 +171,13 @@ const ContactPage = () => {
 
                     {/* Location */}
                     <div className="flex items-center gap-3.5 p-3.5 border rounded-xl border-border/70 bg-muted/30">
-                      <div className="flex items-center justify-center rounded-lg w-10 h-10 bg-purple-500/10 text-purple-600 dark:text-purple-400">
+                      <div className="flex items-center justify-center w-10 h-10 text-purple-600 rounded-lg bg-purple-500/10 dark:text-purple-400">
                         <Icon name="MapPin" size={20} />
                       </div>
                       <div className="min-w-0">
-                        <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider">Location</p>
+                        <p className="text-xs font-semibold tracking-wider uppercase text-muted-foreground">
+                          Location
+                        </p>
                         <p className="text-sm font-medium text-foreground">
                           Bhopal, MP, India
                         </p>
@@ -182,7 +187,7 @@ const ContactPage = () => {
 
                   {/* Social Links */}
                   <div className="pt-4 border-t border-border">
-                    <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+                    <p className="mb-3 text-xs font-semibold tracking-wider uppercase text-muted-foreground">
                       Connect on Social Media
                     </p>
                     <div className="flex items-center gap-3">
@@ -224,42 +229,46 @@ const ContactPage = () => {
                       </a>
                     </div>
                   </div>
-
                 </div>
 
                 {/* FAQ Section */}
-                <div className="p-6 border bg-card border-border rounded-2xl shadow-sm space-y-4">
-                  <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
-                    <Icon name="HelpCircle" size={20} className="text-primary" />
+                <div className="p-6 space-y-4 border shadow-sm bg-card border-border rounded-2xl">
+                  <h3 className="flex items-center gap-2 text-lg font-semibold text-foreground">
+                    <Icon
+                      name="HelpCircle"
+                      size={20}
+                      className="text-primary"
+                    />
                     <span>Quick FAQ</span>
                   </h3>
                   <div className="space-y-3 text-sm">
                     <div className="p-3.5 rounded-xl bg-muted/40 border border-border/50">
-                      <p className="font-bold text-foreground mb-1">
+                      <p className="mb-1 font-bold text-foreground">
                         🕒 What is your typical project timeline?
                       </p>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        Timelines range from 2–6 weeks depending on scope, features, and platform (web or React Native).
+                      <p className="text-xs leading-relaxed text-muted-foreground">
+                        Timelines range from 2–6 weeks depending on scope,
+                        features, and platform (web or React Native).
                       </p>
                     </div>
                     <div className="p-3.5 rounded-xl bg-muted/40 border border-border/50">
-                      <p className="font-bold text-foreground mb-1">
+                      <p className="mb-1 font-bold text-foreground">
                         💼 Are you available for full-time roles?
                       </p>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        Yes! I am actively open to Full-Time, Internship, and Freelance opportunities in Full-Stack & React Native development.
+                      <p className="text-xs leading-relaxed text-muted-foreground">
+                        Yes! I am actively open to Full-Time, Internship, and
+                        Freelance opportunities in Full-Stack & React Native
+                        development.
                       </p>
                     </div>
                   </div>
                 </div>
-
               </div>
 
               {/* RIGHT COLUMN: Contact Form */}
               <div className="lg:col-span-7">
                 <ContactForm />
               </div>
-
             </div>
           </div>
         </div>
@@ -295,7 +304,7 @@ const ContactPage = () => {
         </div>
       </section>
       {/* Footer */}
-      <footer className="py-12 pb-28 sm:pb-32 border-t border-border bg-background">
+      <footer className="py-12 border-t pb-28 sm:pb-32 border-border bg-background">
         <div className="container-brand">
           <div className="grid items-start gap-10 md:grid-cols-3">
             {/* Brand Section */}
