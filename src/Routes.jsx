@@ -18,7 +18,7 @@ const Experience = lazy(() => import('./pages/experience/experience'));
 const Education = lazy(() => import('./pages/education/education'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
-// A wrapper component to handle useLocation for AnimatePresence
+
 const AnimatedRoutes = () => {
   const location = useLocation();
   return (

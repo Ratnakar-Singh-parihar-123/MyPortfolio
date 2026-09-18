@@ -369,7 +369,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
       institution: "Graphic Era Hill University",
       period: "2022 - 2026",
       details: "Specialized in Web Development and Data Structures",
-      gpa: "CGPA: 8.01/10",
+      // gpa: "CGPA: 8.01/10",
       courses: [
         "Web Technologies",
         "Data Structures",
@@ -1265,18 +1265,19 @@ const ResumePopup = ({ isOpen, onClose }) => {
                             </h3>
                           </div>
                           <p className="text-lg leading-relaxed text-gray-600 dark:text-gray-300">
-                            Full Stack MERN & React Native Developer
-                            specializing in building secure, scalable, and
-                            production-ready web and mobile applications.
-                            Experienced in developing cross-platform mobile apps
-                            using React Native and designing robust RESTful APIs
-                            with JWT-based authentication. Skilled in creating
-                            responsive, high-performance user interfaces with a
-                            strong focus on user experience and clean
-                            architecture. Solid understanding of Data
-                            Structures, DBMS, and modern backend systems, with
-                            hands-on experience in integrating real-time
-                            features, third-party APIs, and cloud services.
+                            MERN & React Native Developer specializing in
+                            building scalable web and cross-platform mobile
+                            applications. Experienced in developing RESTful APIs
+                            with Node.js and Express.js, implementing JWT-based
+                            authentication, real-time features, and third-party
+                            integrations. Skilled in React.js, React Native,
+                            MongoDB, JavaScript, and responsive UI development,
+                            with hands-on experience in cloud deployment and
+                            backend systems. Strong foundation in Data
+                            Structures, OOP, DBMS, Operating Systems, Computer
+                            Networks, and System Design, with a focus on clean
+                            code, performance, and reliable application
+                            architecture.
                           </p>
                         </motion.section>
 

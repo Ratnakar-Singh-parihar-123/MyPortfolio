@@ -88,12 +88,19 @@ const HeroSection = () => {
   // Memoized tagline data
   const taglines = useMemo(
     () => [
-      "Full Stack & Mobile Engineer — Scalable Web & Mobile Apps",
-      "Java, MERN & React Native Developer — Robust Backend & Modern UI",
-      "System Design, RESTful APIs & High-Performance Databases",
-      "Clean Code, Data Structures & CI/CD Automated Pipelines",
-      "React & React Native Interfaces Powered by Node.js, Java & SQL",
-      "Passionate Software Engineer Exploring Full-Stack & System Architecture",
+      // "Full Stack & Mobile Engineer — Scalable Web & Mobile Apps",
+      // "Java, MERN & React Native Developer — Robust Backend & Modern UI",
+      // "System Design, RESTful APIs & High-Performance Databases",
+      // "Clean Code, Data Structures & CI/CD Automated Pipelines",
+      // "React & React Native Interfaces Powered by Node.js, Java & MySQL",
+      // "Passionate Software Engineer Exploring Full-Stack & System Architecture",
+
+      "MERN & React Native Developer",
+      "Java & Backend Development",
+      "REST APIs & Scalable Systems",
+      "DSA & System Design",
+      "React & React Native Development",
+      "Software Engineer | Scalable Solutions",
     ],
     [],
   );
@@ -105,56 +112,64 @@ const HeroSection = () => {
       {
         name: "JavaScript",
         icon: SiJavascript,
-        color: "text-amber-500 dark:text-amber-400 bg-amber-500/10 border-amber-500/25 hover:bg-amber-500/20",
+        color:
+          "text-amber-500 dark:text-amber-400 bg-amber-500/10 border-amber-500/25 hover:bg-amber-500/20",
         glow: "shadow-amber-500/10",
         featured: true,
       },
       {
         name: "React.js",
         icon: SiReact,
-        color: "text-cyan-500 dark:text-cyan-400 bg-cyan-500/10 border-cyan-500/25 hover:bg-cyan-500/20",
+        color:
+          "text-cyan-500 dark:text-cyan-400 bg-cyan-500/10 border-cyan-500/25 hover:bg-cyan-500/20",
         glow: "shadow-cyan-500/10",
         featured: true,
       },
       {
         name: "Node.js",
         icon: SiNodedotjs,
-        color: "text-emerald-500 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/25 hover:bg-emerald-500/20",
+        color:
+          "text-emerald-500 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/25 hover:bg-emerald-500/20",
         glow: "shadow-emerald-500/10",
         featured: true,
       },
       {
         name: "Java",
         icon: FaJava,
-        color: "text-red-500 dark:text-red-400 bg-red-500/10 border-red-500/25 hover:bg-red-500/20",
+        color:
+          "text-red-500 dark:text-red-400 bg-red-500/10 border-red-500/25 hover:bg-red-500/20",
         glow: "shadow-red-500/10",
         featured: true,
       },
       {
         name: "MongoDB",
         icon: SiMongodb,
-        color: "text-green-600 dark:text-green-400 bg-green-600/10 border-green-600/25 hover:bg-green-600/20",
+        color:
+          "text-green-600 dark:text-green-400 bg-green-600/10 border-green-600/25 hover:bg-green-600/20",
         glow: "shadow-green-600/10",
         featured: true,
       },
       {
-        name: "SQL",
+        name: "MySQL",
         icon: Database,
-        color: "text-blue-500 dark:text-blue-400 bg-blue-500/10 border-blue-500/25 hover:bg-blue-500/20",
+        color:
+          "text-blue-500 dark:text-blue-400 bg-blue-500/10 border-blue-500/25 hover:bg-blue-500/20",
         glow: "shadow-blue-500/10",
         featured: true,
       },
       {
         name: "System Design",
         icon: Server,
-        color: "text-purple-500 dark:text-purple-400 bg-purple-500/10 border-purple-500/25 hover:bg-purple-500/20",
+        color:
+          "text-purple-500 dark:text-purple-400 bg-purple-500/10 border-purple-500/25 hover:bg-purple-500/20",
         glow: "shadow-purple-500/10",
         featured: true,
       },
       {
         name: "CI/CD",
         icon: Workflow,
-        color: "text-orange-500 dark:text-orange-400 bg-orange-500/10 border-orange-500/25 hover:bg-orange-500/20",
+        color:
+          "text-orange-500 dark:text-orange-400 bg-orange-500/10 border-orange-500/25 hover:bg-orange-500/20",
         glow: "shadow-orange-500/10",
         featured: true,
       },
@@ -162,48 +177,73 @@ const HeroSection = () => {
       {
         name: "React Native",
         icon: Smartphone,
-        color: "text-sky-500 dark:text-sky-400 bg-sky-500/10 border-sky-500/25 hover:bg-sky-500/20",
+        color:
+          "text-sky-500 dark:text-sky-400 bg-sky-500/10 border-sky-500/25 hover:bg-sky-500/20",
         glow: "shadow-sky-500/10",
         featured: false,
       },
       {
         name: "Express.js",
         icon: SiExpress,
-        color: "text-slate-600 dark:text-slate-300 bg-slate-500/10 border-slate-500/25 hover:bg-slate-500/20",
+        color:
+          "text-slate-600 dark:text-slate-300 bg-slate-500/10 border-slate-500/25 hover:bg-slate-500/20",
         glow: "shadow-slate-500/10",
         featured: false,
       },
       {
         name: "Tailwind CSS",
         icon: SiTailwindcss,
-        color: "text-teal-500 dark:text-teal-400 bg-teal-500/10 border-teal-500/25 hover:bg-teal-500/20",
+        color:
+          "text-teal-500 dark:text-teal-400 bg-teal-500/10 border-teal-500/25 hover:bg-teal-500/20",
         glow: "shadow-teal-500/10",
         featured: false,
       },
       {
         name: "Data Structures & Algorithms",
         icon: Brain,
-        color: "text-indigo-500 dark:text-indigo-400 bg-indigo-500/10 border-indigo-500/25 hover:bg-indigo-500/20",
+        color:
+          "text-indigo-500 dark:text-indigo-400 bg-indigo-500/10 border-indigo-500/25 hover:bg-indigo-500/20",
         glow: "shadow-indigo-500/10",
         featured: false,
       },
-      {
-        name: "Computer Science",
-        icon: Cpu,
-        color: "text-violet-500 dark:text-violet-400 bg-violet-500/10 border-violet-500/25 hover:bg-violet-500/20",
-        glow: "shadow-violet-500/10",
-        featured: false,
-      },
+      // {
+      //   name: "Computer Science",
+      //   icon: Cpu,
+      //   color:
+      //     "text-violet-500 dark:text-violet-400 bg-violet-500/10 border-violet-500/25 hover:bg-violet-500/20",
+      //   glow: "shadow-violet-500/10",
+      //   featured: false,
+      // },
     ],
     [],
   );
 
   const stats = useMemo(
     () => [
-      { value: 8, suffix: "+", label: "Projects Built", color: "text-blue-600 dark:text-blue-400" },
-      { value: 300, suffix: "+", label: "DSA Problems Solved", color: "text-emerald-600 dark:text-emerald-400" },
-      { value: 15, suffix: "+", label: "Tech Stack", color: "text-purple-600 dark:text-purple-400" },
-      { value: 1, suffix: "+ Yrs", label: "Industry & Practice", color: "text-amber-600 dark:text-amber-400" },
+      {
+        value: 8,
+        suffix: "+",
+        label: "Projects Built",
+        color: "text-blue-600 dark:text-blue-400",
+      },
+      {
+        value: 300,
+        suffix: "+",
+        label: "DSA Problems Solved",
+        color: "text-emerald-600 dark:text-emerald-400",
+      },
+      {
+        value: 15,
+        suffix: "+",
+        label: "Tech Stack",
+        color: "text-purple-600 dark:text-purple-400",
+      },
+      {
+        value: 1,
+        suffix: "+ Yrs",
+        label: "Industry & Practice",
+        color: "text-amber-600 dark:text-amber-400",
+      },
     ],
     [],
   );
@@ -256,13 +296,13 @@ const HeroSection = () => {
   return (
     <section
       ref={containerRef}
-      className="relative w-full min-h-screen pt-16 sm:pt-20 lg:pt-24 pb-16 lg:pb-24 flex items-center justify-center overflow-x-hidden bg-background"
+      className="relative flex items-center justify-center w-full min-h-screen pt-16 pb-16 overflow-x-hidden sm:pt-20 lg:pt-24 lg:pb-24 bg-background"
     >
       {/* Background Subtle Elements */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         {/* Subtle gradient glowing spots */}
-        <div className="absolute top-1/4 left-10 w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-blue-500/10 dark:bg-blue-600/15 blur-3xl" />
-        <div className="absolute bottom-1/4 right-10 w-80 h-80 sm:w-96 sm:h-96 rounded-full bg-purple-500/10 dark:bg-purple-600/15 blur-3xl" />
+        <div className="absolute rounded-full top-1/4 left-10 w-72 h-72 sm:w-96 sm:h-96 bg-blue-500/10 dark:bg-blue-600/15 blur-3xl" />
+        <div className="absolute rounded-full bottom-1/4 right-10 w-80 h-80 sm:w-96 sm:h-96 bg-purple-500/10 dark:bg-purple-600/15 blur-3xl" />
 
         {/* Ambient Grid Pattern */}
         <div
@@ -275,15 +315,14 @@ const HeroSection = () => {
       </div>
 
       {/* Main Container */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          
+      <div className="relative z-10 w-full px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8">
           {/* LEFT COLUMN — Hero Content */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6"
+            className="flex flex-col items-center space-y-6 text-center lg:col-span-7 lg:items-start lg:text-left"
           >
             {/* Status Badge */}
             <motion.div
@@ -292,20 +331,20 @@ const HeroSection = () => {
               transition={{ delay: 0.1, duration: 0.4 }}
               className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-blue-500/20 bg-blue-500/5 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs sm:text-sm font-medium shadow-sm backdrop-blur-sm"
             >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              <span className="relative flex w-2 h-2">
+                <span className="absolute inline-flex w-full h-full rounded-full opacity-75 animate-ping bg-emerald-400" />
+                <span className="relative inline-flex w-2 h-2 rounded-full bg-emerald-500" />
               </span>
               <span>Available for Full-Time & Internship Roles</span>
             </motion.div>
 
             {/* Main Headline */}
-            <div className="space-y-2 w-full">
+            <div className="w-full space-y-2">
               <motion.span
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="text-sm sm:text-base font-semibold tracking-wide text-muted-foreground uppercase"
+                className="text-sm font-semibold tracking-wide uppercase sm:text-base text-muted-foreground"
               >
                 Full Stack & React Native Developer
               </motion.span>
@@ -332,7 +371,7 @@ const HeroSection = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.4 }}
-                  className="text-base sm:text-lg md:text-xl font-medium text-blue-600 dark:text-blue-400"
+                  className="text-base font-medium text-blue-600 sm:text-lg md:text-xl dark:text-blue-400"
                 >
                   {taglines[currentTagline]}
                 </motion.p>
@@ -344,13 +383,26 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.35, duration: 0.5 }}
-              className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl"
+              className="max-w-2xl text-sm leading-relaxed sm:text-base md:text-lg text-muted-foreground"
             >
               Full Stack & Mobile Engineer proficient in{" "}
-              <strong className="text-foreground font-semibold">JavaScript, Java, MERN Stack</strong>, and{" "}
-              <strong className="text-foreground font-semibold">React Native</strong>. Experienced in building scalable web & mobile applications, designing RESTful APIs, optimizing{" "}
-              <strong className="text-foreground font-semibold">SQL & MongoDB databases</strong>, and applying{" "}
-              <strong className="text-foreground font-semibold">System Design & CI/CD best practices</strong>.
+              <strong className="font-semibold text-foreground">
+                JavaScript, Java, MERN Stack
+              </strong>
+              , and{" "}
+              <strong className="font-semibold text-foreground">
+                React Native
+              </strong>
+              . Experienced in building scalable web & mobile applications,
+              designing RESTful APIs, optimizing{" "}
+              <strong className="font-semibold text-foreground">
+                MySQL & MongoDB databases
+              </strong>
+              , and applying{" "}
+              <strong className="font-semibold text-foreground">
+                System Design & CI/CD best practices
+              </strong>
+              .
             </motion.p>
 
             {/* Tech Stack Skill Badges Container */}
@@ -360,12 +412,12 @@ const HeroSection = () => {
               transition={{ delay: 0.4, duration: 0.5 }}
               className="w-full space-y-2.5 pt-1"
             >
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 justify-center lg:justify-start">
+              <div className="flex items-center justify-center gap-2 text-xs font-bold tracking-wider uppercase text-slate-500 dark:text-slate-400 lg:justify-start">
                 <Sparkles className="w-3.5 h-3.5 text-indigo-500" />
                 <span>Technical Skill Set & Core Competencies</span>
               </div>
 
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 max-w-2xl">
+              <div className="flex flex-wrap items-center justify-center max-w-2xl gap-2 lg:justify-start">
                 {techStack.map((tech) => {
                   const IconComponent = tech.icon;
                   return (
@@ -373,7 +425,11 @@ const HeroSection = () => {
                       key={tech.name}
                       whileHover={{ y: -2, scale: 1.05 }}
                       whileTap={{ scale: 0.98 }}
-                      transition={{ type: "spring", stiffness: 450, damping: 22 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 450,
+                        damping: 22,
+                      }}
                       className={`
                         inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border backdrop-blur-md transition-all cursor-default
                         ${tech.color} ${tech.glow}
@@ -393,7 +449,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45, duration: 0.5 }}
-              className="flex flex-col sm:flex-row items-center gap-4 w-full pt-2 sm:w-auto"
+              className="flex flex-col items-center w-full gap-4 pt-2 sm:flex-row sm:w-auto"
             >
               <Link to="/contact" className="w-full sm:w-auto">
                 <button
@@ -422,7 +478,7 @@ const HeroSection = () => {
               transition={{ delay: 0.5 }}
               className="flex items-center gap-3 pt-2"
             >
-              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mr-1">
+              <span className="mr-1 text-xs font-semibold tracking-wider uppercase text-muted-foreground">
                 Connect:
               </span>
               {socialLinks.map((social) => {
@@ -447,7 +503,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.55, duration: 0.5 }}
-              className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full pt-6"
+              className="grid w-full grid-cols-2 gap-3 pt-6 sm:grid-cols-4"
             >
               {stats.map((stat) => (
                 <div
@@ -455,7 +511,8 @@ const HeroSection = () => {
                   className="p-3.5 rounded-xl border border-border/60 bg-card/60 backdrop-blur-sm text-center lg:text-left transition-all hover:border-border"
                 >
                   <div className={`text-2xl font-extrabold ${stat.color}`}>
-                    {stat.value}{stat.suffix}
+                    {stat.value}
+                    {stat.suffix}
                   </div>
                   <div className="text-xs text-muted-foreground font-medium mt-0.5">
                     {stat.label}
@@ -463,7 +520,6 @@ const HeroSection = () => {
                 </div>
               ))}
             </motion.div>
-
           </motion.div>
 
           {/* RIGHT COLUMN — Profile Card & Visual Container */}
@@ -471,7 +527,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-            className="lg:col-span-5 flex justify-center w-full"
+            className="flex justify-center w-full lg:col-span-5"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             ref={imageRef}
@@ -485,25 +541,28 @@ const HeroSection = () => {
               className="relative w-full max-w-sm sm:max-w-md"
             >
               {/* Outer Decorative Gradient Border Card */}
-              <div className="relative p-1 rounded-3xl bg-gradient-to-br from-blue-600/30 via-purple-600/30 to-pink-600/30 shadow-2xl shadow-blue-500/10">
+              <div className="relative p-1 shadow-2xl rounded-3xl bg-gradient-to-br from-blue-600/30 via-purple-600/30 to-pink-600/30 shadow-blue-500/10">
                 <div className="relative overflow-hidden rounded-[22px] bg-card border border-border p-3 sm:p-4">
-                  
                   {/* Photo Container */}
                   <div className="relative overflow-hidden rounded-2xl bg-muted aspect-[4/5] w-full">
                     <Image
                       src={HeroImg}
                       alt="Ratnakar Singh Parihar"
-                      className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105"
+                      className="object-cover object-top w-full h-full transition-transform duration-700 hover:scale-105"
                       onLoad={() => setIsImageLoaded(true)}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                    
+
                     {/* Bottom Floating Identity Overlay */}
-                    <div className="absolute bottom-4 left-4 right-4 text-white">
+                    <div className="absolute text-white bottom-4 left-4 right-4">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-xs font-semibold text-blue-300 uppercase tracking-wider">Full-Stack Engineer</p>
-                          <h3 className="text-lg font-bold">Ratnakar Singh Parihar</h3>
+                          <p className="text-xs font-semibold tracking-wider text-blue-300 uppercase">
+                            Full-Stack Engineer
+                          </p>
+                          <h3 className="text-lg font-bold">
+                            Ratnakar Singh Parihar
+                          </h3>
                         </div>
                         <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-[11px] font-medium backdrop-blur-md">
                           🟢 Active
@@ -513,27 +572,47 @@ const HeroSection = () => {
                   </div>
 
                   {/* Code Card Widget */}
-                  <div className="mt-3 p-3 rounded-xl bg-slate-900 text-slate-200 font-mono text-xs border border-slate-800 shadow-inner space-y-1">
+                  <div className="p-3 mt-3 space-y-1 font-mono text-xs border shadow-inner rounded-xl bg-slate-900 text-slate-200 border-slate-800">
                     <div className="flex items-center justify-between text-[11px] text-slate-400 pb-1 border-b border-slate-800">
                       <span className="flex items-center gap-1.5">
                         <Terminal className="w-3.5 h-3.5 text-blue-400" />
                         developer.config.ts
                       </span>
-                      <span className="text-emerald-400">● Full Stack & Systems</span>
+                      <span className="text-emerald-400">
+                        ● Full Stack & Systems
+                      </span>
                     </div>
-                    <p className="pt-1"><span className="text-purple-400">const</span> <span className="text-blue-400">developer</span> = &#123;</p>
-                    <p className="pl-4"><span className="text-slate-400">name:</span> <span className="text-amber-300">"Ratnakar Singh Parihar"</span>,</p>
-                    <p className="pl-4"><span className="text-slate-400">stack:</span> [<span className="text-emerald-300">"Java"</span>, <span className="text-emerald-300">"MERN"</span>, <span className="text-emerald-300">"SQL"</span>, <span className="text-emerald-300">"System Design"</span>],</p>
-                    <p className="pl-4"><span className="text-slate-400">status:</span> <span className="text-cyan-300">"Ready for Opportunities"</span></p>
+                    <p className="pt-1">
+                      <span className="text-purple-400">const</span>{" "}
+                      <span className="text-blue-400">developer</span> = &#123;
+                    </p>
+                    <p className="pl-4">
+                      <span className="text-slate-400">name:</span>{" "}
+                      <span className="text-amber-300">
+                        "Ratnakar Singh Parihar"
+                      </span>
+                      ,
+                    </p>
+                    <p className="pl-4">
+                      <span className="text-slate-400">stack:</span> [
+                      <span className="text-emerald-300">"Java"</span>,{" "}
+                      <span className="text-emerald-300">"MERN"</span>,{" "}
+                      <span className="text-emerald-300">"SQL"</span>,{" "}
+                      <span className="text-emerald-300">"System Design"</span>
+                      ],
+                    </p>
+                    <p className="pl-4">
+                      <span className="text-slate-400">status:</span>{" "}
+                      <span className="text-cyan-300">
+                        "Ready for Opportunities"
+                      </span>
+                    </p>
                     <p>&#125;;</p>
                   </div>
-
                 </div>
               </div>
-
             </motion.div>
           </motion.div>
-
         </div>
       </div>
 
