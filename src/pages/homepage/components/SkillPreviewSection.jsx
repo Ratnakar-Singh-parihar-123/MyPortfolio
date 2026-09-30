@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import Icon from "../../../components/AppIcon";
 import {
   Sparkles,
   Layers,
@@ -10,12 +9,68 @@ import {
   Globe,
   Server,
   Code,
+  Monitor,
+  Settings,
+  Brain,
+  FileCode,
+  Palette,
+  Layout,
+  Smartphone,
+  Wind,
+  Terminal,
+  Database,
+  Code2,
+  GitBranch,
+  Github,
+  Send,
+  Lightbulb,
+  Network,
+  MessageCircle,
+  ArrowRight,
+  Binary,
+  Workflow,
+  Boxes,
+  Gauge,
+  AppWindow,
+  Triangle,
 } from "lucide-react";
 import { ClockIcon } from "@heroicons/react/24/outline";
 
 const SkillPreviewSection = () => {
   const [hoveredSkill, setHoveredSkill] = useState(null);
   const [hoveredCategory, setHoveredCategory] = useState(null);
+
+  // Icon component map — direct lucide icons
+  const iconMap = {
+    Monitor,
+    Server,
+    Settings,
+    Brain,
+    FileCode,
+    Palette,
+    Code,
+    Layout,
+    Smartphone,
+    Wind,
+    Terminal,
+    Zap,
+    Database,
+    Code2,
+    GitBranch,
+    Github,
+    Send,
+    Globe,
+    Lightbulb,
+    Network,
+    ArrowRight,
+    MessageCircle,
+    Binary,
+    Workflow,
+    Boxes,
+    Gauge,
+    AppWindow,
+    Triangle,
+  };
 
   const skillCategories = [
     {
@@ -26,8 +81,6 @@ const SkillPreviewSection = () => {
       gradientTo: "to-cyan-500",
       bgColor: "bg-blue-500/10",
       borderColor: "border-blue-500/20",
-      lightBg: "bg-blue-50",
-      darkBg: "dark:bg-blue-950/50",
       skills: [
         { name: "HTML", level: 95, icon: "FileCode", color: "text-orange-500" },
         { name: "CSS", level: 93, icon: "Palette", color: "text-blue-400" },
@@ -60,8 +113,6 @@ const SkillPreviewSection = () => {
       gradientTo: "to-emerald-500",
       bgColor: "bg-green-500/10",
       borderColor: "border-green-500/20",
-      lightBg: "bg-green-50",
-      darkBg: "dark:bg-green-950/50",
       skills: [
         {
           name: "Node.js",
@@ -69,14 +120,14 @@ const SkillPreviewSection = () => {
           icon: "Terminal",
           color: "text-green-600",
         },
-        { name: "Express.js", level: 82, icon: "Zap", color: "text-gray-600" },
+        { name: "Express.js", level: 82, icon: "Zap", color: "text-gray-500" },
         {
           name: "MongoDB",
           level: 80,
           icon: "Database",
           color: "text-green-500",
         },
-        { name: "SQL", level: 78, icon: "Database", color: "text-blue-600" },
+        { name: "MySQL", level: 78, icon: "Database", color: "text-blue-600" },
         { name: "Java", level: 75, icon: "Code2", color: "text-red-500" },
       ],
     },
@@ -88,8 +139,6 @@ const SkillPreviewSection = () => {
       gradientTo: "to-red-500",
       bgColor: "bg-orange-500/10",
       borderColor: "border-orange-500/20",
-      lightBg: "bg-orange-50",
-      darkBg: "dark:bg-orange-950/50",
       skills: [
         { name: "Git", level: 92, icon: "GitBranch", color: "text-orange-600" },
         { name: "GitHub", level: 90, icon: "Github", color: "text-purple-600" },
@@ -97,15 +146,20 @@ const SkillPreviewSection = () => {
         {
           name: "Vercel",
           level: 80,
-          icon: "Globe",
+          icon: "Triangle",
           color: "text-black dark:text-white",
         },
         { name: "Render", level: 78, icon: "Server", color: "text-blue-600" },
-        { name: "VS Code", level: 95, icon: "Code", color: "text-blue-500" },
+        {
+          name: "VS Code",
+          level: 95,
+          icon: "AppWindow",
+          color: "text-blue-500",
+        },
         {
           name: "Android Studio",
           level: 85,
-          icon: "Smartphone",
+          icon: "Boxes",
           color: "text-green-500",
         },
       ],
@@ -118,8 +172,6 @@ const SkillPreviewSection = () => {
       gradientTo: "to-pink-500",
       bgColor: "bg-purple-500/10",
       borderColor: "border-purple-500/20",
-      lightBg: "bg-purple-50",
-      darkBg: "dark:bg-purple-950/50",
       skills: [
         {
           name: "Problem Solving",
@@ -129,9 +181,15 @@ const SkillPreviewSection = () => {
         },
         {
           name: "REST APIs",
-          level: 80,
+          level: 85,
           icon: "Network",
           color: "text-green-500",
+        },
+        {
+          name: "System Design",
+          level: 75,
+          icon: "Workflow",
+          color: "text-indigo-500",
         },
         {
           name: "Responsive Design",
@@ -142,8 +200,14 @@ const SkillPreviewSection = () => {
         {
           name: "Performance Opt.",
           level: 85,
-          icon: "Zap",
+          icon: "Gauge",
           color: "text-orange-500",
+        },
+        {
+          name: "DSA Fundamentals",
+          level: 80,
+          icon: "Binary",
+          color: "text-pink-500",
         },
       ],
     },
@@ -166,7 +230,7 @@ const SkillPreviewSection = () => {
     },
     {
       label: "Technologies",
-      value: "15+",
+      value: "20+",
       icon: Cpu,
       color: "text-purple-500",
       bgColor: "bg-purple-500/10",
@@ -196,6 +260,7 @@ const SkillPreviewSection = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
           className="mb-16 text-center"
         >
           <div className="inline-flex items-center justify-center gap-3 mb-4">
@@ -223,13 +288,15 @@ const SkillPreviewSection = () => {
                 initial={{ width: 0 }}
                 whileInView={{ width: "100%" }}
                 transition={{ duration: 1, delay: 0.3 }}
+                viewport={{ once: true }}
               />
             </span>
           </h2>
 
           <p className="max-w-3xl mx-auto text-lg leading-relaxed text-muted-foreground">
             A comprehensive skill set spanning the full development lifecycle,
-            from user experience design to scalable backend architecture.
+            from user experience design to scalable backend architecture and
+            system design.
           </p>
         </motion.div>
 
@@ -238,6 +305,7 @@ const SkillPreviewSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
           className="grid grid-cols-2 gap-4 mb-16 lg:grid-cols-4"
         >
           {overallStats.map((stat, index) => (
@@ -266,152 +334,166 @@ const SkillPreviewSection = () => {
 
         {/* Skills Grid */}
         <div className="grid grid-cols-1 gap-6 mb-20 md:grid-cols-2 lg:grid-cols-4">
-          {skillCategories?.map((category, categoryIndex) => (
-            <motion.div
-              key={category?.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
-              viewport={{ once: true }}
-              onMouseEnter={() => setHoveredCategory(categoryIndex)}
-              onMouseLeave={() => setHoveredCategory(null)}
-              className="relative cursor-pointer group"
-            >
-              {/* Card Container */}
-              <div className="relative h-full overflow-hidden transition-all duration-500 border shadow-lg bg-gradient-to-b from-card to-card/80 border-border/50 rounded-2xl hover:shadow-2xl hover:-translate-y-2">
-                {/* Glow Effect */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${category.gradientFrom.replace("from-", "from-")} ${category.gradientTo.replace("to-", "to-")}/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-                ></div>
+          {skillCategories?.map((category, categoryIndex) => {
+            const CategoryIcon = iconMap[category.icon] || Monitor;
+            return (
+              <motion.div
+                key={category?.title}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
+                viewport={{ once: true }}
+                onMouseEnter={() => setHoveredCategory(categoryIndex)}
+                onMouseLeave={() => setHoveredCategory(null)}
+                className="relative cursor-pointer group"
+              >
+                {/* Card Container */}
+                <div className="relative h-full overflow-hidden transition-all duration-500 border shadow-lg bg-gradient-to-b from-card to-card/80 border-border/50 rounded-2xl hover:shadow-2xl hover:-translate-y-2">
+                  {/* Top Accent Bar */}
+                  <div
+                    className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${category.gradientFrom} ${category.gradientTo} opacity-70 group-hover:opacity-100 transition-opacity duration-500`}
+                  ></div>
 
-                {/* Content */}
-                <div className="p-6">
-                  {/* Category Header */}
-                  <div className="flex items-center mb-6 space-x-3">
-                    <div
-                      className={`w-12 h-12 ${category.bgColor} rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200 relative`}
-                    >
-                      <Icon
-                        name={category?.icon}
-                        size={24}
-                        className={category?.color}
-                      />
-                      <motion.div
-                        className="absolute w-3 h-3 bg-green-500 rounded-full -top-1 -right-1"
-                        animate={{ scale: [1, 1.2, 1] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold transition-colors duration-300 text-foreground group-hover:text-primary">
-                        {category?.title}
-                      </h3>
-                      <p className="text-xs text-muted-foreground">
-                        {category.skills.length} Technologies
-                      </p>
-                    </div>
-                  </div>
+                  {/* Glow Effect */}
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${category.gradientFrom} ${category.gradientTo} opacity-0 group-hover:opacity-[0.04] transition-opacity duration-500`}
+                  ></div>
 
-                  {/* Skills List */}
-                  <div className="space-y-4">
-                    {category?.skills?.map((skill, skillIndex) => (
-                      <motion.div
-                        key={skill?.name}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{
-                          duration: 0.4,
-                          delay: categoryIndex * 0.1 + skillIndex * 0.05,
-                        }}
-                        viewport={{ once: true }}
-                        className="group/skill"
-                        onMouseEnter={() =>
-                          setHoveredSkill(`${categoryIndex}-${skillIndex}`)
-                        }
-                        onMouseLeave={() => setHoveredSkill(null)}
+                  {/* Content */}
+                  <div className="relative p-6">
+                    {/* Category Header */}
+                    <div className="flex items-center mb-6 space-x-3">
+                      <div
+                        className={`w-12 h-12 ${category.bgColor} rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200 relative`}
                       >
-                        <div className="flex items-center justify-between mb-2">
-                          <div className="flex items-center space-x-2">
-                            <Icon
-                              name={skill?.name || skill?.icon}
-                              size={16}
-                              className={`${skill.color || "text-muted-foreground"} group-hover/skill:scale-110 transition-transform duration-200`}
-                            />
-                            <span className="text-sm font-medium text-foreground">
-                              {skill?.name}
-                            </span>
-                          </div>
-                          <span className="text-xs font-semibold text-primary">
-                            {skill?.level}%
-                          </span>
-                        </div>
+                        <CategoryIcon
+                          size={24}
+                          className={category?.color}
+                          strokeWidth={2}
+                        />
+                        <motion.div
+                          className="absolute w-3 h-3 bg-green-500 rounded-full -top-1 -right-1 ring-2 ring-card"
+                          animate={{ scale: [1, 1.2, 1] }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                        />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-bold transition-colors duration-300 text-foreground group-hover:text-primary">
+                          {category?.title}
+                        </h3>
+                        <p className="text-xs text-muted-foreground">
+                          {category.skills.length} Technologies
+                        </p>
+                      </div>
+                    </div>
 
-                        {/* Progress Bar */}
-                        <div className="w-full bg-muted/30 rounded-full h-1.5 overflow-hidden">
+                    {/* Skills List */}
+                    <div className="space-y-4">
+                      {category?.skills?.map((skill, skillIndex) => {
+                        const SkillIcon = iconMap[skill.icon] || Code;
+                        return (
                           <motion.div
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${skill?.level}%` }}
+                            key={skill?.name}
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
                             transition={{
-                              duration: 1,
-                              delay: categoryIndex * 0.2 + skillIndex * 0.1,
-                              ease: "easeOut",
+                              duration: 0.4,
+                              delay: categoryIndex * 0.1 + skillIndex * 0.05,
                             }}
                             viewport={{ once: true }}
-                            className={`h-full rounded-full bg-gradient-to-r ${category.gradientFrom} ${category.gradientTo} relative`}
+                            className="group/skill"
+                            onMouseEnter={() =>
+                              setHoveredSkill(`${categoryIndex}-${skillIndex}`)
+                            }
+                            onMouseLeave={() => setHoveredSkill(null)}
                           >
-                            <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"></div>
+                            <div className="flex items-center justify-between mb-2">
+                              <div className="flex items-center min-w-0 space-x-2">
+                                <SkillIcon
+                                  size={16}
+                                  className={`${skill.color || "text-muted-foreground"} group-hover/skill:scale-110 transition-transform duration-200 flex-shrink-0`}
+                                  strokeWidth={2.2}
+                                />
+                                <span className="text-sm font-medium truncate text-foreground">
+                                  {skill?.name}
+                                </span>
+                              </div>
+                              <span className="flex-shrink-0 ml-2 text-xs font-semibold text-primary">
+                                {skill?.level}%
+                              </span>
+                            </div>
 
-                            {/* Animated pulse on hover */}
-                            {hoveredSkill ===
-                              `${categoryIndex}-${skillIndex}` && (
+                            {/* Progress Bar */}
+                            <div className="w-full bg-muted/30 rounded-full h-1.5 overflow-hidden">
                               <motion.div
-                                className="absolute inset-0 bg-white/30"
-                                initial={{ x: "-100%" }}
-                                animate={{ x: "100%" }}
-                                transition={{ duration: 1, repeat: Infinity }}
-                              />
-                            )}
-                          </motion.div>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
+                                initial={{ width: 0 }}
+                                whileInView={{ width: `${skill?.level}%` }}
+                                transition={{
+                                  duration: 1,
+                                  delay: categoryIndex * 0.2 + skillIndex * 0.1,
+                                  ease: "easeOut",
+                                }}
+                                viewport={{ once: true }}
+                                className={`h-full rounded-full bg-gradient-to-r ${category.gradientFrom} ${category.gradientTo} relative`}
+                              >
+                                <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"></div>
 
-                  {/* Footer with category stats */}
-                  <div className="pt-4 mt-6 border-t border-border/50">
-                    <div className="flex items-center justify-between text-xs">
-                      <div className="flex items-center gap-1">
-                        <Zap className="w-3 h-3 text-primary" />
-                        <span className="text-muted-foreground">
-                          Avg.{" "}
-                          {(
-                            category.skills.reduce(
-                              (acc, s) => acc + s.level,
-                              0,
-                            ) / category.skills.length
-                          ).toFixed(1)}
-                          %
-                        </span>
+                                {/* Animated pulse on hover */}
+                                {hoveredSkill ===
+                                  `${categoryIndex}-${skillIndex}` && (
+                                  <motion.div
+                                    className="absolute inset-0 bg-white/30"
+                                    initial={{ x: "-100%" }}
+                                    animate={{ x: "100%" }}
+                                    transition={{
+                                      duration: 1,
+                                      repeat: Infinity,
+                                    }}
+                                  />
+                                )}
+                              </motion.div>
+                            </div>
+                          </motion.div>
+                        );
+                      })}
+                    </div>
+
+                    {/* Footer with category stats */}
+                    <div className="pt-4 mt-6 border-t border-border/50">
+                      <div className="flex items-center justify-between text-xs">
+                        <div className="flex items-center gap-1">
+                          <Zap className="w-3 h-3 text-primary" />
+                          <span className="text-muted-foreground">
+                            Avg.{" "}
+                            {(
+                              category.skills.reduce(
+                                (acc, s) => acc + s.level,
+                                0,
+                              ) / category.skills.length
+                            ).toFixed(1)}
+                            %
+                          </span>
+                        </div>
+                        <motion.a
+                          href="/skills"
+                          className="inline-flex items-center gap-1 font-medium transition-colors duration-200 text-primary hover:text-primary/80"
+                          whileHover={{ x: 3 }}
+                        >
+                          <span>Explore</span>
+                          <ArrowRight size={12} />
+                        </motion.a>
                       </div>
-                      <motion.a
-                        href="/skills"
-                        className="inline-flex items-center gap-1 font-medium transition-colors duration-200 text-primary hover:text-primary/80"
-                        whileHover={{ x: 3 }}
-                      >
-                        <span>Explore</span>
-                        <Icon name="ArrowRight" size={12} />
-                      </motion.a>
                     </div>
                   </div>
-                </div>
 
-                {/* Decorative Corner */}
-                <div
-                  className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${category.gradientFrom} ${category.gradientTo}/5 rounded-bl-3xl`}
-                ></div>
-              </div>
-            </motion.div>
-          ))}
+                  {/* Decorative Corner */}
+                  <div
+                    className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${category.gradientFrom} ${category.gradientTo} opacity-[0.06] rounded-bl-3xl pointer-events-none`}
+                  ></div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* CTA Section */}
@@ -469,7 +551,7 @@ const SkillPreviewSection = () => {
                       ease: "linear",
                     }}
                   />
-                  <Icon name="MessageCircle" size={18} />
+                  <MessageCircle size={18} />
                   <span>Let's Connect</span>
                 </motion.a>
 
@@ -479,7 +561,7 @@ const SkillPreviewSection = () => {
                   whileTap={{ scale: 0.95 }}
                   className="inline-flex items-center gap-2 px-8 py-4 font-semibold text-white transition-all duration-300 border-2 border-white/30 rounded-xl hover:bg-white/10"
                 >
-                  <Icon name="Code" size={18} />
+                  <Code size={18} />
                   <span>View All Skills</span>
                 </motion.a>
               </div>

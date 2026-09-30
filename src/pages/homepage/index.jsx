@@ -7,7 +7,7 @@ import CertificatesSection from "./components/TestimonialSection";
 import CTASection from "./components/CTASection";
 import FloatingActionButton from "./components/FloatingActionButton";
 import WhyHireMe from "./components/WhyHireMe";
-// import ReaalSections from "./components/VideoModel";
+import ReaalSections from "./components/VideoModel";
 
 const Homepage = () => {
   useEffect(() => {
@@ -102,14 +102,14 @@ const Homepage = () => {
       className="min-h-screen bg-background"
     >
       {/* Header Navigation */}
-            {/* Main Content */}
+      {/* Main Content */}
       <main className="relative pb-28">
         {/* Hero Section */}
         <HeroSection />
         <WhyHireMe />
 
         {/* // reel sections  */}
-        {/* <ReaalSections /> */}
+        <ReaalSections />
 
         {/* Skills Preview Section */}
         <SkillPreviewSection />
@@ -128,7 +128,7 @@ const Homepage = () => {
       {/* Skip to content link for accessibility */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-primary-foreground px-4 py-2 rounded-lg z-50 transition-all duration-200"
+        className="z-50 px-4 py-2 transition-all duration-200 rounded-lg sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-primary-foreground"
       >
         Skip to main content
       </a>

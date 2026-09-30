@@ -335,7 +335,7 @@ const HeroSection = () => {
                 <span className="absolute inline-flex w-full h-full rounded-full opacity-75 animate-ping bg-emerald-400" />
                 <span className="relative inline-flex w-2 h-2 rounded-full bg-emerald-500" />
               </span>
-              <span>Available for Full-Time & Internship Roles</span>
+              <span>Open to Full-Time Software Engineering Opportunities</span>
             </motion.div>
 
             {/* Main Headline */}
@@ -597,7 +597,7 @@ const HeroSection = () => {
                       <span className="text-slate-400">stack:</span> [
                       <span className="text-emerald-300">"Java"</span>,{" "}
                       <span className="text-emerald-300">"MERN"</span>,{" "}
-                      <span className="text-emerald-300">"SQL"</span>,{" "}
+                      <span className="text-emerald-300">"MySQL"</span>,{" "}
                       <span className="text-emerald-300">"System Design"</span>
                       ],
                     </p>

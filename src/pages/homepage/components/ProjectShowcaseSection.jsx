@@ -55,17 +55,23 @@ import {
   Wifi,
   Signal,
   Car,
+  Utensils,
+  Bike,
 } from "lucide-react";
 
 // Import your images
 import yammiverse from "../../../assets/projectsImg/yammiverse.png";
 import vsbp from "../../../assets/projectsImg/vsbp.png";
 import bodp from "../../../assets/projectsImg/bloodAndOrganDonationsImg/jeevandaancareHome.png";
+import foodmitra from "../../../assets/projectsImg/foodmitra/foodmitra.png";
 
 // import appimg
 import ECommrce from "../../../assets/AppImg/ecomm.jpeg";
 import safeGuard from "../../../assets/AppImg/safeGuard.jpeg";
 import parkingapp from "../../../assets/AppImg/parkingapp.jpeg";
+import FoodMitraCustumer from "../../../assets/AppImg/FoodMitra/FoodMitraCustumer.jpeg";
+import FoodMitraDeliveryPartner from "../../../assets/AppImg/FoodMitraDelivery/FoodMitraDeliveryPartner.jpeg";
+import FoodMitraHouseTiffin from "../../../assets/AppImg/FoodMitraHouseTiffin/FoodMitraHouseTiffin.jpeg";
 
 // App Images
 const getAppImage = (appName) => {
@@ -75,7 +81,9 @@ const getAppImage = (appName) => {
     marketplaceApp: ECommrce,
     SafeGuard: safeGuard,
     ParkEasy: parkingapp,
-    ReWearMarket: ECommrce,
+    FoodMitraCustumer: FoodMitraCustumer,
+    FoodMitraDeliveryPartner: FoodMitraDeliveryPartner,
+    FoodMitraTiffinHouse: FoodMitraHouseTiffin,
   };
   return (
     images[appName] ||
@@ -87,6 +95,50 @@ const getAppImage = (appName) => {
 const webProjects = [
   {
     id: 1,
+    title: "FoodMitra",
+    shortDescription:
+      "Full-stack food delivery ecosystem connecting customers, vendors, delivery partners, and home-based tiffin providers.",
+    description:
+      "A full-stack food delivery platform consisting of Customer, Delivery Partner, and House Tiffin applications.",
+    fullDescription:
+      "FoodMitra is a full-stack food delivery ecosystem built to connect customers, food vendors, delivery partners, and home-based tiffin providers through a unified platform. The ecosystem includes a Customer App for browsing and ordering food, a Delivery Partner App for managing assigned deliveries and updating order status, and FoodMitra House Tiffin for connecting customers with locally prepared home-style meals. The platform includes role-based authentication, vendor approval workflows, real-time order and delivery updates using Socket.IO, online payments with Razorpay, Firebase services, Google APIs for location and map-related functionality, and REST APIs powered by Node.js, Express.js, and MongoDB.",
+    image: foodmitra,
+    technologies: [
+      "React",
+      "React Native",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Socket.io",
+      "JWT",
+      "Firebase",
+      "Google APIs",
+      "Razorpay",
+      "Tailwind CSS",
+      "Custom CSS",
+    ],
+    liveUrl: "https://myfoodmitra.vercel.app/",
+    githubUrl:
+      "https://github.com/Ratnakar-Singh-parihar-123/Food-Delivery-Platform-",
+    category: "Food Delivery",
+    complexity: "Advanced",
+    rating: 4.9,
+    status: "Live",
+    color: "from-orange-500 to-amber-500",
+    features: [
+      "Customer food ordering",
+      "Delivery partner app",
+      "House tiffin platform",
+      "Role-based authentication",
+      "Real-time order tracking",
+      "Vendor approval workflow",
+      "Online payments",
+      "Location & map integration",
+      "Admin management",
+    ],
+  },
+  {
+    id: 2,
     title: "Vehicle Service Booking Platform",
     shortDescription:
       "Connect customers with nearby vehicle service centers for real-time booking.",
@@ -118,40 +170,6 @@ const webProjects = [
       "Role-based dashboards",
       "Service analytics",
       "Email/SMS notifications",
-    ],
-  },
-  {
-    id: 2,
-    title: "YammiVerse",
-    shortDescription:
-      "Recipe sharing platform for food enthusiasts to discover and share creations.",
-    description:
-      "A MERN-based recipe sharing platform with secure login and image uploads.",
-    fullDescription:
-      "A social recipe sharing community where food enthusiasts can discover, create, and share culinary creations. Features include AI-powered recipe recommendations, step-by-step cooking guides, nutritional analysis, and social interaction capabilities.",
-    image: yammiverse,
-    technologies: [
-      "React",
-      "Node.js",
-      "Express",
-      "MongoDB",
-      "Tailwind CSS",
-      "Cloudinary",
-    ],
-    liveUrl: "https://yammiverse.onrender.com",
-    githubUrl: "https://github.com/Ratnakar-Singh-parihar-123/YammiVerse",
-    category: "Recipe Platform",
-    complexity: "Intermediate",
-    rating: 4.5,
-    status: "Live",
-    color: "from-orange-500 to-red-500",
-    features: [
-      "Create & share recipes",
-      "Likes & comments",
-      "Recipe collections",
-      "Advanced search",
-      "AI recommendations",
-      "Nutritional info",
     ],
   },
   {
@@ -190,49 +208,175 @@ const webProjects = [
       "Live availability",
     ],
   },
+  // {
+  //   id: 4,
+  //   title: "YammiVerse",
+  //   shortDescription:
+  //     "Recipe sharing platform for food enthusiasts to discover and share creations.",
+  //   description:
+  //     "A MERN-based recipe sharing platform with secure login and image uploads.",
+  //   fullDescription:
+  //     "A social recipe sharing community where food enthusiasts can discover, create, and share culinary creations. Features include AI-powered recipe recommendations, step-by-step cooking guides, nutritional analysis, and social interaction capabilities.",
+  //   image: yammiverse,
+  //   technologies: [
+  //     "React",
+  //     "Node.js",
+  //     "Express",
+  //     "MongoDB",
+  //     "Tailwind CSS",
+  //     "Cloudinary",
+  //   ],
+  //   liveUrl: "https://yammiverse.onrender.com",
+  //   githubUrl: "https://github.com/Ratnakar-Singh-parihar-123/YammiVerse",
+  //   category: "Recipe Platform",
+  //   complexity: "Intermediate",
+  //   rating: 4.5,
+  //   status: "Live",
+  //   color: "from-orange-500 to-red-500",
+  //   features: [
+  //     "Create & share recipes",
+  //     "Likes & comments",
+  //     "Recipe collections",
+  //     "Advanced search",
+  //     "AI recommendations",
+  //     "Nutritional info",
+  //   ],
+  // },
 ];
 
 // Mobile Apps Data
 const mobileApps = [
   {
     id: 1,
-    title: "SafeGuard",
-    tagline: "Your Safety, Just One Tap Away",
+    title: "FoodMitra",
+    tagline: "Your Food, Delivered with Ease",
     shortDescription:
-      "A real-time emergency response app with one-tap SOS alerts, live location tracking, and instant access to nearby emergency services.",
+      "A complete food ordering and delivery platform that connects customers with local food vendors and Tiffin Houses for convenient meal ordering and doorstep delivery.",
     fullDescription:
-      "SafeGuard is a real-time emergency response application designed to enhance personal safety during critical situations. With a single tap, users can instantly trigger an SOS alert that shares their live location with pre-selected emergency contacts.\n\nThe app ensures rapid assistance through real-time location tracking, automatic emergency calling, and instant notifications. It is optimized to work reliably even in the background, ensuring continuous protection.\n\nAdditionally, users can quickly locate nearby hospitals, police stations, and emergency services using integrated map-based features, making help easily accessible when needed most.",
-    imageKey: "SafeGuard",
-    iconBg: "from-red-500 to-pink-600",
-    icon: Shield,
-    platforms: ["iOS", "Android"],
-    status: "Coming Soon",
+      "FoodMitra is a full-stack food ordering and delivery platform designed to connect customers with local restaurants, food vendors, and Tiffin Houses through a seamless digital experience.\n\nCustomers can discover nearby food options, explore menus, add items to their cart, place orders, make secure online payments, and track their orders. The application uses location-based services to provide relevant nearby food options and a smooth ordering experience.\n\nFoodMitra is built as part of a multi-app ecosystem that connects customers, delivery partners, and Tiffin Houses. The platform focuses on real-time order processing, secure authentication, location-based services, payment integration, and reliable communication between all participants.",
+    imageKey: "FoodMitraCustumer",
+    iconBg: "from-orange-500 to-red-500",
+    icon: Utensils,
+    platforms: ["Android"],
+    status: "Live • Development Updates",
     rating: 4.8,
     technologies: [
       "React Native",
+      "CSS",
+      "JavaScript",
       "Node.js",
       "Express.js",
       "MongoDB",
       "Firebase",
+      "Socket.io",
       "Google Maps API",
     ],
     features: [
-      "One-tap SOS alert with live location sharing",
-      "Real-time location tracking for emergency contacts",
-      "Automatic emergency calling system",
-      "Nearby hospitals, police stations & emergency services",
-      "Push notifications for instant alerts",
-      "Background location tracking for continuous safety",
-      "Fast, reliable, and user-friendly interface",
+      "Browse nearby food vendors and Tiffin Houses",
+      "Location-based food discovery",
+      "Explore menus and food items",
+      "Cart and order management",
+      "Secure online payment integration",
+      "Real-time order status updates",
+      "Order tracking using location services",
+      "Customer authentication and profile management",
+      "Push notifications for order updates",
+      "Seamless communication between customers, vendors, and delivery partners",
     ],
     metrics: [
       { icon: Download, value: "Soon", label: "Downloads" },
-      // { icon: Star, value: "4.8", label: "Expected Rating" },
-      { icon: Shield, value: "24/7", label: "Emergency Support" },
+      { icon: Star, value: "4.8", label: "Expected Rating" },
+      { icon: Users, value: "1K+", label: "Target Users" },
     ],
   },
   {
     id: 2,
+    title: "FoodMitra Delivery Partner",
+    tagline: "Deliver Smarter, Earn Better",
+    shortDescription:
+      "A dedicated delivery partner application for managing food deliveries, discovering nearby orders, tracking routes, and handling the complete delivery workflow in real time.",
+    fullDescription:
+      "FoodMitra Delivery Partner is the dedicated rider application of the FoodMitra ecosystem, built to help delivery partners efficiently manage and complete food deliveries.\n\nDelivery partners can receive nearby delivery requests, view order details, accept or decline orders, access pickup and delivery locations, and manage their active deliveries through a centralized interface. Location services and map-based navigation help riders reach vendors and customers efficiently.\n\nThe application works as a real-time communication layer between customers, Tiffin Houses, and delivery partners. Order updates are synchronized across the ecosystem, allowing riders to manage their delivery workflow from order acceptance through pickup and final delivery.",
+    imageKey: "FoodMitraDeliveryPartner",
+    iconBg: "from-blue-500 to-cyan-500",
+    icon: Bike,
+    platforms: ["Android", "iOS"],
+    status: "Live • Development Updates",
+    rating: 4.8,
+    technologies: [
+      "React Native",
+      "CSS",
+      "JavaScript",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Socket.io",
+      "Google Maps API",
+    ],
+    features: [
+      "Real-time nearby delivery requests",
+      "Accept or decline delivery orders",
+      "Order details and customer information",
+      "Vendor pickup and customer delivery locations",
+      "Real-time location tracking",
+      "Map-based navigation support",
+      "Active delivery management",
+      "Order status updates",
+      "Push notifications for new orders",
+      "Delivery workflow from pickup to completion",
+      "Real-time communication with the FoodMitra platform",
+    ],
+    metrics: [
+      { icon: Download, value: "Soon", label: "Downloads" },
+      { icon: Star, value: "4.8", label: "Expected Rating" },
+      { icon: Users, value: "100+", label: "Target Partners" },
+    ],
+  },
+  {
+    id: 3,
+    title: "FoodMitra House Tiffin",
+    tagline: "Manage Your Kitchen, Grow Your Business",
+    shortDescription:
+      "A dedicated platform for Tiffin Houses and food vendors to manage menus, orders, customers, delivery operations, and daily food business activities.",
+    fullDescription:
+      "FoodMitra Tiffin House is the vendor-side application of the FoodMitra ecosystem, designed for Tiffin Houses and local food businesses to manage their digital food operations.\n\nTiffin House owners can manage their food items and menu, receive and process customer orders, monitor order status, and coordinate deliveries through the FoodMitra platform. The application provides a centralized interface for managing day-to-day food business activities.\n\nThe platform connects Tiffin Houses directly with customers and delivery partners, creating an integrated workflow from food listing and order placement to preparation, pickup, and final delivery. This helps local food businesses establish a digital presence while managing their orders efficiently.",
+    imageKey: "FoodMitraTiffinHouse",
+    iconBg: "from-green-500 to-emerald-600",
+    icon: Store,
+    platforms: ["Android"],
+    status: "Live • Development Updates",
+    rating: 4.8,
+    technologies: [
+      "React Native",
+      "CSS",
+      "JavaScript",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Socket.io",
+      "Razorpay",
+    ],
+    features: [
+      "Tiffin House and vendor registration",
+      "Manage food items and menus",
+      "Receive real-time customer orders",
+      "Accept and process orders",
+      "Update order preparation status",
+      "Manage daily food availability",
+      "Order history and management",
+      "Customer and delivery partner coordination",
+      "Real-time order status synchronization",
+      "Push notifications for new orders",
+      "Integrated delivery workflow",
+    ],
+    metrics: [
+      { icon: Download, value: "Soon", label: "Downloads" },
+      { icon: Star, value: "4.8", label: "Expected Rating" },
+      { icon: Users, value: "100+", label: "Target Vendors" },
+    ],
+  },
+  {
+    id: 4,
     title: "ParkEasy",
     tagline: "Smart Parking, Simplified",
     shortDescription:
@@ -246,7 +390,6 @@ const mobileApps = [
     status: "Live • Updates Coming Soon",
     androidUrl:
       "https://github.com/Ratnakar-Singh-parihar-123/ParkEasy/releases/download/v1.0/application-2b19fc59-78f1-4a7e-91b1-c437d35ac120.apk",
-    // rating: 4.7,
     technologies: ["React Native", "CSS", "Node.js", "Express.js", "MongoDB"],
     features: [
       "Location-based nearby parking search",
@@ -261,43 +404,6 @@ const mobileApps = [
       { icon: Download, value: "Soon", label: "Downloads" },
       { icon: Star, value: "4.7", label: "Expected Rating" },
       { icon: Users, value: "1K+", label: "Target Users" },
-    ],
-  },
-  {
-    id: 3,
-    title: "ReWear Market",
-    tagline: "Smart Marketplace for Pre-Owned Products",
-    shortDescription:
-      "A full-stack marketplace app for buying and selling second-hand products with real-time chat and smart discovery features.",
-    fullDescription:
-      "ReWear Market is a modern full-stack mobile marketplace application that enables users to buy and sell pre-owned products efficiently. Users can list items with images, explore products through advanced search and filtering, and communicate instantly via real-time chat.\n\nThe platform enhances user experience with wishlist functionality, user profile management, and secure image handling using Cloudinary. Built with scalability and performance in mind, it delivers a smooth and engaging digital marketplace experience.\n\nReWear Market promotes sustainable and affordable shopping by encouraging the reuse of products.",
-    imageKey: "ReWearMarket",
-    iconBg: "from-purple-500 to-pink-500",
-    icon: ShoppingBag,
-    platforms: ["iOS", "Android"],
-    status: "Coming Soon",
-    rating: 4.8,
-    technologies: [
-      "React Native",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "Socket.io",
-      "Cloudinary",
-    ],
-    features: [
-      "Product listing with image uploads",
-      "Real-time chat between buyers and sellers (Socket.io)",
-      "Advanced search and filtering system",
-      "Wishlist and saved products",
-      "User profile and listing management",
-      "Secure image storage with Cloudinary",
-      "Responsive and smooth mobile experience",
-    ],
-    metrics: [
-      { icon: Download, value: "Soon", label: "Downloads" },
-      { icon: Star, value: "4.8", label: "Expected Rating" },
-      { icon: ShoppingBag, value: "5K+", label: "Target Listings" },
     ],
   },
 ];
@@ -530,7 +636,7 @@ const ProjectShowcaseSection = () => {
 
           {/* Mobile Apps - Responsive Grid */}
           {activeTab === "apps" && (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 sm:gap-8 lg:gap-6 xl:gap-8 justify-items-center">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-6 lg:gap-5 xl:gap-6 justify-items-center">
               {mobileApps.map((app, index) => (
                 <MobileAppCard
                   key={app.id}
@@ -581,9 +687,13 @@ const ProjectShowcaseSection = () => {
   );
 };
 
-// Mobile App Card Component - Fully Responsive
+/* ============================================================
+   MOBILE APP CARD — Compact + Platform-specific Phone Design
+   Hover pe app ka apna lucide icon (Store / Bike / Utensils / Car) dikhta hai
+============================================================ */
 const MobileAppCard = ({ app, index, onClick }) => {
   const IconComponent = app.icon;
+  const isAndroid = app.platforms.includes("Android");
 
   return (
     <motion.div
@@ -593,18 +703,32 @@ const MobileAppCard = ({ app, index, onClick }) => {
       viewport={{ once: true, margin: "-50px" }}
       whileHover={{ y: -8 }}
       onClick={onClick}
-      className="group cursor-pointer w-full max-w-[280px] mx-auto"
+      className="group cursor-pointer w-full max-w-[220px] mx-auto"
     >
       <div className="flex flex-col items-center">
-        {/* Phone Mockup - Responsive */}
-        <div className="relative w-[220px] sm:w-[240px] md:w-[260px] lg:w-[240px] xl:w-[260px]">
-          {/* Phone Frame */}
-          <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-[2rem] p-1.5 shadow-2xl">
-            <div className="relative bg-black rounded-[1.75rem] overflow-hidden">
-              {/* Dynamic Island */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90px] h-[28px] bg-black rounded-b-xl z-10 flex items-center justify-center gap-1">
-                <div className="w-1.5 h-1.5 rounded-full bg-green-500/50 animate-pulse" />
-              </div>
+        {/* Phone Mockup */}
+        <div className="relative w-[130px] sm:w-[140px] md:w-[150px]">
+          <div
+            className={`relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 shadow-2xl transition-all duration-500 group-hover:shadow-primary/30 ${
+              isAndroid ? "rounded-[1.3rem] p-1" : "rounded-[1.8rem] p-1.5"
+            }`}
+          >
+            <div
+              className={`relative bg-black overflow-hidden ${
+                isAndroid ? "rounded-[1rem]" : "rounded-[1.5rem]"
+              }`}
+            >
+              {/* Camera Notch: Android punch-hole / iOS Dynamic Island */}
+              {isAndroid ? (
+                <div className="absolute top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-black ring-[1.5px] ring-gray-700/80 z-10">
+                  <div className="absolute inset-[2px] rounded-full bg-gray-900/80" />
+                </div>
+              ) : (
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[52px] h-[16px] bg-black rounded-b-xl z-10 flex items-center justify-center gap-1">
+                  <div className="w-1 h-1 rounded-full bg-green-500/50 animate-pulse" />
+                  <div className="w-5 h-1.5 rounded-full bg-gray-900" />
+                </div>
+              )}
 
               {/* App Screenshot */}
               <div className="relative w-full" style={{ aspectRatio: "9/19" }}>
@@ -615,88 +739,103 @@ const MobileAppCard = ({ app, index, onClick }) => {
                 />
 
                 {/* Gradient Overlay */}
-                <div className="absolute inset-0 transition-opacity duration-500 opacity-0 bg-gradient-to-t from-black/60 via-transparent to-transparent group-hover:opacity-100" />
+                <div className="absolute inset-0 transition-opacity duration-500 opacity-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent group-hover:opacity-100" />
 
                 {/* Status Bar */}
-                <div className="absolute top-1.5 left-0 right-0 px-4 py-0.5 flex justify-between text-white/70 text-[8px] font-medium">
+                <div
+                  className={`absolute left-0 right-0 flex justify-between text-white/70 text-[6px] font-medium z-10 ${
+                    isAndroid ? "top-1 px-2.5" : "top-1 px-3"
+                  }`}
+                >
                   <span>9:41</span>
                   <div className="flex items-center gap-0.5">
-                    <Signal className="w-2 h-2" />
-                    <Wifi className="w-2 h-2" />
-                    <Battery className="w-3 h-2" />
+                    <Signal className="w-1.5 h-1.5" />
+                    <Wifi className="w-1.5 h-1.5" />
+                    <Battery className="w-2 h-1.5" />
                   </div>
                 </div>
 
-                {/* App Icon Overlay on Hover */}
+                {/* ⭐ HOVER pe app ka apna lucide icon dikhta hai (Store / Bike / Utensils / Car) */}
                 <div className="absolute transition-all duration-500 transform -translate-x-1/2 -translate-y-1/2 opacity-0 top-1/2 left-1/2 group-hover:opacity-100 group-hover:scale-110">
                   <div
-                    className={`w-12 h-12 rounded-xl bg-gradient-to-br ${app.iconBg} flex items-center justify-center shadow-2xl`}
+                    className={`w-10 h-10 rounded-2xl bg-gradient-to-br ${app.iconBg} flex items-center justify-center shadow-2xl ring-2 ring-white/20`}
                   >
-                    <IconComponent className="w-6 h-6 text-white" />
+                    <IconComponent className="w-5 h-5 text-white" />
                   </div>
                 </div>
               </div>
 
               {/* Home Indicator */}
-              <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-24 h-0.5 bg-white/30 rounded-full" />
+              <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-14 h-0.5 bg-white/30 rounded-full" />
             </div>
 
-            {/* Side Buttons */}
-            <div className="absolute left-0 top-16 -translate-x-[1.5px] w-0.5 h-5 bg-gray-700 rounded-l-full" />
-            <div className="absolute left-0 top-24 -translate-x-[1.5px] w-0.5 h-9 bg-gray-700 rounded-l-full" />
-            <div className="absolute right-0 top-20 translate-x-[1.5px] w-0.5 h-10 bg-gray-700 rounded-r-full" />
+            {/* Side Buttons — Platform specific */}
+            {isAndroid ? (
+              <>
+                {/* Android: power + volume dono right side */}
+                <div className="absolute right-0 top-8 translate-x-[1px] w-0.5 h-4 bg-gray-700 rounded-r-full" />
+                <div className="absolute right-0 top-14 translate-x-[1px] w-0.5 h-6 bg-gray-700 rounded-r-full" />
+                {/* Left side (assistant button) */}
+                <div className="absolute left-0 top-12 -translate-x-[1px] w-0.5 h-4 bg-gray-700 rounded-l-full" />
+              </>
+            ) : (
+              <>
+                {/* iOS: volume left, power right */}
+                <div className="absolute left-0 top-10 -translate-x-[1.5px] w-0.5 h-4 bg-gray-700 rounded-l-full" />
+                <div className="absolute left-0 top-16 -translate-x-[1.5px] w-0.5 h-6 bg-gray-700 rounded-l-full" />
+                <div className="absolute right-0 top-14 translate-x-[1.5px] w-0.5 h-7 bg-gray-700 rounded-r-full" />
+              </>
+            )}
           </div>
         </div>
 
-        {/* Card Content Below Phone - Responsive */}
-        <div className="w-full mt-4 text-center">
-          <div className="flex items-center justify-center gap-2 mb-2">
+        {/* Card Content Below Phone */}
+        <div className="w-full mt-3 text-center">
+          <div className="flex items-center justify-center gap-1.5 mb-1.5">
             <div
-              className={`w-8 h-8 rounded-lg bg-gradient-to-br ${app.iconBg} flex items-center justify-center shadow-md`}
+              className={`w-7 h-7 rounded-lg bg-gradient-to-br ${app.iconBg} flex items-center justify-center shadow-md flex-shrink-0`}
             >
-              <IconComponent className="w-4 h-4 text-white" />
+              <IconComponent className="w-3.5 h-3.5 text-white" />
             </div>
-            <h3 className="text-sm font-bold transition-colors sm:text-base text-foreground group-hover:text-primary">
+            <h3 className="text-xs font-bold transition-colors sm:text-sm text-foreground group-hover:text-primary line-clamp-1">
               {app.title}
             </h3>
           </div>
 
-          <p className="text-[11px] sm:text-xs text-muted-foreground line-clamp-2 px-2">
+          <p className="text-[10px] sm:text-[11px] text-muted-foreground line-clamp-2 px-2">
             {app.shortDescription}
           </p>
 
-          <div className="flex items-center justify-center gap-2 mt-2">
+          <div className="flex items-center justify-center gap-2 mt-1.5">
             <div className="flex items-center gap-0.5">
-              <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
-              <span className="text-xs font-medium">{app.rating}</span>
+              <Star className="w-2.5 h-2.5 fill-amber-500 text-amber-500" />
+              <span className="text-[11px] font-medium">{app.rating}</span>
             </div>
-            <span className="text-[10px] sm:text-xs text-muted-foreground">
-              •
-            </span>
-            <span className="text-[10px] sm:text-xs text-muted-foreground">
+            <span className="text-[9px] text-muted-foreground">•</span>
+            <span className="text-[9px] sm:text-[10px] text-muted-foreground line-clamp-1">
               {app.status}
             </span>
           </div>
 
-          <div className="flex items-center justify-center gap-1.5 mt-2 flex-wrap">
+          <div className="flex items-center justify-center gap-1.5 mt-1.5 flex-wrap">
             {app.platforms.map((platform, idx) => (
               <span
                 key={idx}
                 className="flex items-center gap-0.5 px-1.5 py-0.5 text-[9px] bg-muted rounded-full"
               >
                 {platform === "iOS" ? (
-                  <Apple className="w-2.5 h-2.5" />
+                  <Apple className="w-2 h-2" />
                 ) : (
-                  <Cpu className="w-2.5 h-2.5" />
+                  <Cpu className="w-2 h-2" />
                 )}
                 {platform}
               </span>
             ))}
           </div>
 
-          <div className="mt-2 text-primary text-[11px] font-medium flex items-center justify-center gap-1">
+          <div className="mt-1.5 text-primary text-[10px] font-medium flex items-center justify-center gap-1">
             <span>Tap to explore</span>
-            <ChevronRight className="w-3 h-3" />
+            <ChevronRight className="w-2.5 h-2.5" />
           </div>
         </div>
       </div>
@@ -704,19 +843,12 @@ const MobileAppCard = ({ app, index, onClick }) => {
   );
 };
 
-// App Modal Component - Fully Responsive
+/* ============================================================
+   APP MODAL — Compact phone, hover icon same, platform frame
+============================================================ */
 const AppModal = ({ app, onClose, openDownloadLink, getAppImage }) => {
   const IconComponent = app.icon;
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+  const isAndroid = app.platforms.includes("Android");
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4">
@@ -745,28 +877,47 @@ const AppModal = ({ app, onClose, openDownloadLink, getAppImage }) => {
         {/* Scrollable Content */}
         <div className="flex-1 overflow-y-auto">
           <div className="p-4 sm:p-6 md:p-8">
-            {/* Responsive Layout */}
             <div className="flex flex-col gap-6 lg:flex-row md:gap-8">
               {/* Left Side - Phone Mockup */}
-              <div className="lg:w-[320px] xl:w-[360px] flex-shrink-0">
+              <div className="lg:w-[300px] xl:w-[340px] flex-shrink-0">
                 <div className="sticky flex flex-col items-center top-4">
                   {/* Phone Frame */}
-                  <div className="relative w-[260px] sm:w-[280px] md:w-[300px] lg:w-[280px] xl:w-[300px]">
-                    <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-[2rem] p-1.5 shadow-2xl">
-                      <div className="relative bg-black rounded-[1.75rem] overflow-hidden">
-                        {/* Dynamic Island */}
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100px] h-[32px] bg-black rounded-b-xl z-10 flex items-center justify-center gap-1">
-                          <div className="w-1.5 h-1.5 rounded-full bg-green-500/50 animate-pulse" />
-                          <div className="w-10 h-2.5 bg-gray-800 rounded-full" />
-                        </div>
+                  <div className="relative w-[220px] sm:w-[240px] md:w-[260px]">
+                    <div
+                      className={`relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 shadow-2xl ${
+                        isAndroid
+                          ? "rounded-[1.8rem] p-1.5"
+                          : "rounded-[2.2rem] p-1.5"
+                      }`}
+                    >
+                      <div
+                        className={`relative bg-black overflow-hidden ${
+                          isAndroid ? "rounded-[1.4rem]" : "rounded-[1.9rem]"
+                        }`}
+                      >
+                        {/* Camera Notch */}
+                        {isAndroid ? (
+                          <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-black ring-[2px] ring-gray-700/80 z-10">
+                            <div className="absolute inset-[2px] rounded-full bg-gray-900/70" />
+                          </div>
+                        ) : (
+                          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90px] h-[26px] bg-black rounded-b-xl z-10 flex items-center justify-center gap-1">
+                            <div className="w-1.5 h-1.5 rounded-full bg-green-500/50 animate-pulse" />
+                            <div className="w-8 h-2 bg-gray-900 rounded-full" />
+                          </div>
+                        )}
 
                         {/* Status Bar */}
-                        <div className="absolute top-2 left-0 right-0 px-5 py-1 flex justify-between text-white/70 text-[9px] font-medium z-10">
+                        <div
+                          className={`absolute left-0 right-0 flex justify-between text-white/70 text-[8px] font-medium z-10 ${
+                            isAndroid ? "top-1.5 px-3" : "top-2 px-5"
+                          }`}
+                        >
                           <span className="font-semibold">9:41</span>
                           <div className="flex items-center gap-1">
-                            <Signal className="w-2.5 h-2.5" />
-                            <Wifi className="w-2.5 h-2.5" />
-                            <Battery className="w-3.5 h-2.5" />
+                            <Signal className="w-2 h-2" />
+                            <Wifi className="w-2 h-2" />
+                            <Battery className="w-3 h-2" />
                           </div>
                         </div>
 
@@ -784,24 +935,33 @@ const AppModal = ({ app, onClose, openDownloadLink, getAppImage }) => {
                         </div>
 
                         {/* Home Indicator */}
-                        <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-28 h-0.5 bg-white/30 rounded-full" />
+                        <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-20 h-0.5 bg-white/30 rounded-full" />
                       </div>
 
                       {/* Side Buttons */}
-                      <div className="absolute left-0 top-20 -translate-x-[1.5px] w-0.5 h-7 bg-gray-700 rounded-l-full" />
-                      <div className="absolute left-0 top-28 -translate-x-[1.5px] w-0.5 h-11 bg-gray-700 rounded-l-full" />
-                      <div className="absolute right-0 top-24 translate-x-[1.5px] w-0.5 h-14 bg-gray-700 rounded-r-full" />
+                      {isAndroid ? (
+                        <>
+                          <div className="absolute right-0 top-16 translate-x-[1px] w-0.5 h-5 bg-gray-700 rounded-r-full" />
+                          <div className="absolute right-0 top-24 translate-x-[1px] w-0.5 h-9 bg-gray-700 rounded-r-full" />
+                          <div className="absolute left-0 top-20 -translate-x-[1px] w-0.5 h-8 bg-gray-700 rounded-l-full" />
+                        </>
+                      ) : (
+                        <>
+                          <div className="absolute left-0 top-16 -translate-x-[1.5px] w-0.5 h-6 bg-gray-700 rounded-l-full" />
+                          <div className="absolute left-0 top-24 -translate-x-[1.5px] w-0.5 h-10 bg-gray-700 rounded-l-full" />
+                          <div className="absolute right-0 top-20 translate-x-[1.5px] w-0.5 h-12 bg-gray-700 rounded-r-full" />
+                        </>
+                      )}
                     </div>
                   </div>
 
                   {/* Download Buttons */}
-                  <div className="mt-6 w-full max-w-[280px] space-y-3">
+                  <div className="mt-6 w-full max-w-[260px] space-y-3">
                     {/* iOS Button */}
                     {app.iosUrl && (
                       <button
                         onClick={() => openDownloadLink(app.iosUrl)}
-                        className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-2xl
-      bg-black text-white hover:scale-[1.02] hover:bg-gray-900 transition-all duration-300 shadow-md"
+                        className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-2xl bg-black text-white hover:scale-[1.02] hover:bg-gray-900 transition-all duration-300 shadow-md"
                       >
                         <Apple className="w-5 h-5" />
                         <div className="leading-tight text-left">
@@ -817,10 +977,7 @@ const AppModal = ({ app, onClose, openDownloadLink, getAppImage }) => {
                     {app.androidUrl && (
                       <button
                         onClick={() => openDownloadLink(app.androidUrl)}
-                        className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-2xl
-      bg-gradient-to-r from-green-600 to-emerald-600 text-white
-      hover:scale-[1.02] hover:from-green-700 hover:to-emerald-700
-      transition-all duration-300 shadow-md"
+                        className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-2xl bg-gradient-to-r from-green-600 to-emerald-600 text-white hover:scale-[1.02] hover:from-green-700 hover:to-emerald-700 transition-all duration-300 shadow-md"
                       >
                         <Cpu className="w-5 h-5" />
                         <div className="leading-tight text-left">
@@ -961,7 +1118,9 @@ const AppModal = ({ app, onClose, openDownloadLink, getAppImage }) => {
   );
 };
 
-// Web Project Card Component (Grid View)
+/* ============================================================
+   WEB PROJECT CARD (Grid View)
+============================================================ */
 const WebProjectCard = ({
   project,
   index,
@@ -1058,7 +1217,9 @@ const WebProjectCard = ({
   );
 };
 
-// Web Project List Item Component
+/* ============================================================
+   WEB PROJECT LIST ITEM
+============================================================ */
 const WebProjectListItem = ({ project, index, onClick }) => {
   return (
     <motion.div
@@ -1119,7 +1280,9 @@ const WebProjectListItem = ({ project, index, onClick }) => {
   );
 };
 
-// Project Modal Component
+/* ============================================================
+   PROJECT MODAL (Web)
+============================================================ */
 const ProjectModal = ({ project, onClose }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">

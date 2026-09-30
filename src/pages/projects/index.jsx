@@ -1,630 +1,79 @@
-import React, { useState, useMemo } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useMemo, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
-  Apple,
-  Smartphone as AndroidIcon,
-  Download,
-  Star,
-  ChevronRight,
   Search,
   X,
-  Eye,
+  Sparkles,
   Github,
-  Globe,
-  Signal,
-  Wifi,
-  Battery,
+  SlidersHorizontal,
+  Check,
 } from "lucide-react";
+
 import Icon from "../../components/AppIcon";
 import Button from "../../components/ui/Button";
 import ProjectCard from "./components/ProjectCard";
 import ProjectModal from "./components/ProjectModal";
 import RelatedProjects from "./components/RelatedProjects";
+import MobileAppPhoneCard from "./components/MobileAppPhoneCard";
 
-// Import all images
-import vsbp from "../../assets/projectsImg/VSBPImg/VSBPHome.png";
-import yammiverse from "../../assets/projectsImg/yammiverse.png";
-import bodp from "../../assets/projectsImg/bloodAndOrganDonationsImg/jeevandaancareHome.png";
-import textutils from "../../assets/projectsImg/textUtilksImg/textutils.png";
-import portfolio from "../../assets/projectsImg/portfolioImg/portfolioHome.png";
-import SpiceCraft from "../../assets/projectsImg/spiceCraftTradersImg/SpiceCraft Traders Home.png";
-import RestaurantMain from "../../assets/projectsImg/restaurantImg/restaurant home.png";
-import CoachingMain from "../../assets/projectsImg/coachingWebsitesimg/CoachingWebsiite Home.png";
-import tiffinDelivery from "../../assets/projectsImg/tiffinDeliveryImg/TiffinDeliveryHome.png";
-// import AppImgs from "../../assets/AppImg/app.png";
+import { allProjects, portfolioStats } from "../../data/projectsData";
+import {
+  categories,
+  sortOptions,
+  TYPE_ORDER,
+  COMPLEXITY_ORDER,
+  heroPills,
+} from "../../data/categories";
 
-// app img
-import safeGuard from "../../assets/AppImg/safeGuard.jpeg";
-import parkingapp from "../../assets/AppImg/parkingapp.jpeg";
-import ecomm from "../../assets/AppImg/ecomm.jpeg";
-
-// Gallery images
-import bodp1 from "../../assets/projectsImg/bloodAndOrganDonationsImg/Blood And Organ Donation 2.png";
-import bodp6 from "../../assets/projectsImg/bloodAndOrganDonationsImg/loadinghompeage.png";
-import bodp2 from "../../assets/projectsImg/bloodAndOrganDonationsImg/Blood And Organ Donation 3.png";
-import bodp3 from "../../assets/projectsImg/bloodAndOrganDonationsImg/Blood And Organ Donation hospitals.png";
-import bodp4 from "../../assets/projectsImg/bloodAndOrganDonationsImg/Blood And Organ Donation About.png";
-import bodp5 from "../../assets/projectsImg/bloodAndOrganDonationsImg/Blood And Organ Donation Footers.png";
-import textutils1 from "../../assets/projectsImg/textUtilksImg/Textutils1.png";
-import textutilshome from "../../assets/projectsImg/textUtilksImg/Textutils home.png";
-import textutils2 from "../../assets/projectsImg/textUtilksImg/TextUtils 2.png";
-import SpiceCraft1 from "../../assets/projectsImg/spiceCraftTradersImg/SpiceCraft Traders 1.png";
-import SpiceCraft2 from "../../assets/projectsImg/spiceCraftTradersImg/SpiceCraft Traders 2.png";
-import SpiceCraft3 from "../../assets/projectsImg/spiceCraftTradersImg/SpiceCraft Traders 3.png";
-import SpiceCraft4 from "../../assets/projectsImg/spiceCraftTradersImg/SpiceCraft Traders 4.png";
-import SpiceCraft5 from "../../assets/projectsImg/spiceCraftTradersImg/SpiceCraft Traders 5.png";
-import SpiceCraft6 from "../../assets/projectsImg/spiceCraftTradersImg/SpiceCraft Traders 6.png";
-import RestaurantMenu from "../../assets/projectsImg/restaurantImg/restaurant 1.png";
-import RestaurantChef from "../../assets/projectsImg/restaurantImg/restaurant 2.png";
-import RestaurantGallery from "../../assets/projectsImg/restaurantImg/restaurant 3.png";
-import RestaurantAbout from "../../assets/projectsImg/restaurantImg/restaurant 4.png";
-import UpcomingEvents from "../../assets/projectsImg/restaurantImg/restaurant 5.png";
-import RestaurantContact from "../../assets/projectsImg/restaurantImg/restaurant 6.png";
-import RestaurantFooter from "../../assets/projectsImg/restaurantImg/restaurant 7.png";
-import CoachingCourses from "../../assets/projectsImg/coachingWebsitesimg/CoachingWebsiite 2.png";
-import CoachingHomeSecond from "../../assets/projectsImg/coachingWebsitesimg/CoachingWebsiite Home 1.png";
-import CoachingFeatures from "../../assets/projectsImg/coachingWebsitesimg/CoachingWebsiite 4.png";
-import CoachingTestimonials from "../../assets/projectsImg/coachingWebsitesimg/CoachingWebsiite 4.png";
-import TiffinDeliveryUser from "../../assets/projectsImg/tiffinDeliveryImg/TiffinDeliveryUser.png";
-import TiffinDeliveryAdmindashboard from "../../assets/projectsImg/tiffinDeliveryImg/TiffinDelivery1.png";
-import TiffinDeliveryCreateAcc from "../../assets/projectsImg/tiffinDeliveryImg/TiffinDelivery2.png";
-import TiffinDelivery3 from "../../assets/projectsImg/tiffinDeliveryImg/TiffinDelivery3.png";
-import TiffinDelivery4 from "../../assets/projectsImg/tiffinDeliveryImg/TiffinDelivery4.png";
-import TiffinDelivery5 from "../../assets/projectsImg/tiffinDeliveryImg/TiffinDelivery5.png";
-import TiffinDelivery6 from "../../assets/projectsImg/tiffinDeliveryImg/TiffinDelivery6.png";
-import TiffinDelivery7 from "../../assets/projectsImg/tiffinDeliveryImg/TiffinDelivery7.png";
-import portfolioHome1 from "../../assets/projectsImg/portfolioImg/portfolioHome1.png";
-import portfolio1 from "../../assets/projectsImg/portfolioImg/portfolio1.png";
-import portfolio2 from "../../assets/projectsImg/portfolioImg/portfolio2.png";
-import portfolio3 from "../../assets/projectsImg/portfolioImg/portfolio3.png";
-import portfolio4 from "../../assets/projectsImg/portfolioImg/portfolio4.png";
-import portfolio5 from "../../assets/projectsImg/portfolioImg/portfolio5.png";
-import portfolio6 from "../../assets/projectsImg/portfolioImg/portfolio6.png";
-import portfolio7 from "../../assets/projectsImg/portfolioImg/portfolio7.png";
-import portfolio8 from "../../assets/projectsImg/portfolioImg/portfolio8.png";
-import portfolio9 from "../../assets/projectsImg/portfolioImg/portfolio9.png";
-import portfolio10 from "../../assets/projectsImg/portfolioImg/portfolio10.png";
-import portfolio11 from "../../assets/projectsImg/portfolioImg/portfolio11.png";
-import portfolio12 from "../../assets/projectsImg/portfolioImg/portfolio12.png";
-import portfolio13 from "../../assets/projectsImg/portfolioImg/portfolio13.png";
-import portfolio14 from "../../assets/projectsImg/portfolioImg/portfolio14.png";
-import portfolio15 from "../../assets/projectsImg/portfolioImg/portfolio15.png";
-import portfolio16 from "../../assets/projectsImg/portfolioImg/portfolio15.png";
-import portfolio17 from "../../assets/projectsImg/portfolioImg/portfolio15.png";
-import VSBP1 from "../../assets/projectsImg/VSBPImg/VSBP1.png";
-import VSBP2 from "../../assets/projectsImg/VSBPImg/VSBP2.png";
-import VSBP3 from "../../assets/projectsImg/VSBPImg/VSBP3.png";
-import VSBP4 from "../../assets/projectsImg/VSBPImg/VSBP4.png";
-import VSBP5 from "../../assets/projectsImg/VSBPImg/VSBP5.png";
-import VSBP6 from "../../assets/projectsImg/VSBPImg/VSBP6.png";
-import VSBP7 from "../../assets/projectsImg/VSBPImg/VSBP7.png";
-import VSBP8 from "../../assets/projectsImg/VSBPImg/VSBP8.png";
-import VSBP9 from "../../assets/projectsImg/VSBPImg/VSBP9.png";
-import VSBP10 from "../../assets/projectsImg/VSBPImg/VSBP10.png";
-import VSBP11 from "../../assets/projectsImg/VSBPImg/VSBP11.png";
-import VSBP12 from "../../assets/projectsImg/VSBPImg/VSBP12.png";
-import VSBP13 from "../../assets/projectsImg/VSBPImg/VSBP13.png";
-import VSBP14 from "../../assets/projectsImg/VSBPImg/VSBP14.png";
-import VSBP15 from "../../assets/projectsImg/VSBPImg/VSBP15.png";
-import VSBP16 from "../../assets/projectsImg/VSBPImg/VSBP16.png";
-import VSBP17 from "../../assets/projectsImg/VSBPImg/VSBP17.png";
-import VSBP18 from "../../assets/projectsImg/VSBPImg/VSBP18.png";
-import VSBP19 from "../../assets/projectsImg/VSBPImg/VSBP19.png";
-import VSBP20 from "../../assets/projectsImg/VSBPImg/VSBP20.png";
-import VSBP21 from "../../assets/projectsImg/VSBPImg/VSBP21.png";
-import VSBP22 from "../../assets/projectsImg/VSBPImg/VSBP22.png";
-import VSBP23 from "../../assets/projectsImg/VSBPImg/VSBP23.png";
-import VSBP24 from "../../assets/projectsImg/VSBPImg/VSBP24.png";
-import VSBP25 from "../../assets/projectsImg/VSBPImg/VSBP25.png";
-
-// Web Projects Data
-const webProjects = [
-  {
-    id: 1,
-    title: "Vehicle Service Booking Platform",
-    category: "Full-Stack Web Application",
-    projectType: "fullstack",
-    industry: "Automotive",
-    description:
-      "A real-time vehicle service booking system connecting customers with local service centers.",
-    fullDescription: `Developed a real-world MERN stack platform enabling customers to book, track, and manage vehicle services online. Service centers can view customer requests, update service status, and handle digital payments. Includes live chat, order tracking, and dynamic dashboards.`,
-    image: vsbp,
-    gallery: [
-      vsbp,
-      VSBP1,
-      VSBP2,
-      VSBP3,
-      VSBP4,
-      VSBP5,
-      VSBP6,
-      VSBP7,
-      VSBP8,
-      VSBP9,
-      VSBP10,
-      VSBP11,
-      VSBP12,
-      VSBP13,
-      VSBP14,
-      VSBP15,
-      VSBP16,
-      VSBP17,
-      VSBP18,
-      VSBP19,
-      VSBP20,
-      VSBP21,
-      VSBP22,
-      VSBP23,
-      VSBP24,
-      VSBP25,
-    ],
-    technologies: [
-      "React",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "Socket.io",
-      "Tailwind CSS",
-    ],
-    complexity: "Advanced",
-    duration: "3 months",
-    // teamSize: "1",
-    rating: 5,
-    // impact: "30% faster service process",
-    liveUrl: "https://vehicle-service-booking-platform.onrender.com",
-    githubUrl:
-      "https://github.com/Ratnakar-Singh-parihar-123/Vehicle-Service-Booking-Platform",
-    features: [
-      "Role-based login",
-      "Real-time chat",
-      "Live service tracking",
-      "Payment management",
-      "Analytics dashboards",
-    ],
-    metrics: [
-      { icon: "Users", value: "1000+", label: "Active Users" },
-      { icon: "Wrench", value: "500+", label: "Services Completed" },
-      { icon: "Clock", value: "Real-time", label: "Service Tracking" },
-    ],
-    status: "Live",
-    featured: true,
+/* ============================================================
+   🎨 COLOR HELPERS
+   ============================================================ */
+const colorMap = {
+  primary: {
+    bg: "bg-primary/10",
+    text: "text-primary",
+    hover: "hover:bg-primary/20",
   },
-  {
-    id: 2,
-    title: "YammiVerse",
-    category: "Web Application",
-    projectType: "react",
-    industry: "Food & Recipes",
-    description:
-      "A community-driven recipe platform for sharing, exploring, and saving food recipes.",
-    fullDescription: `Built a feature-rich MERN stack application that allows users to upload, save, and discover recipes. Includes user authentication, image uploads, and responsive design.`,
-    image: yammiverse,
-    gallery: [yammiverse],
-    technologies: ["React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS"],
-    complexity: "Intermediate",
-    duration: "3 months",
-    // teamSize: "1",
-    rating: 4,
-    // impact: "10K+ recipes shared",
-    liveUrl: "https://yammiverse.onrender.com",
-    githubUrl: "https://github.com/Ratnakar-Singh-parihar-123/YammiVerse",
-    features: [
-      "User authentication",
-      "Recipe creation",
-      "Favorites",
-      "Responsive UI",
-      "Search filtering",
-    ],
-    metrics: [
-      { icon: "Utensils", value: "10K+", label: "Recipes Uploaded" },
-      { icon: "Users", value: "3K+", label: "Active Users" },
-      { icon: "Heart", value: "8K+", label: "Recipes Liked" },
-    ],
-    status: "Live",
-    featured: true,
+  blue: {
+    bg: "bg-blue-500/10",
+    text: "text-blue-500",
+    hover: "hover:bg-blue-500/20",
   },
-  {
-    id: 3,
-    title: "Jeevandaan – Blood & Organ Donation",
-    category: "Full-Stack Application",
-    projectType: "fullstack",
-    industry: "Healthcare",
-    description:
-      "Real-time healthcare platform connecting blood and organ donors with recipients.",
-    fullDescription: `Jeevandaan is an advanced MERN stack healthcare platform designed to reduce emergency response time by intelligently connecting donors, recipients, and hospitals in real time.`,
-    image: bodp,
-    gallery: [bodp6, bodp, bodp1, bodp2, bodp3, bodp4, bodp5],
-    technologies: [
-      "React",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "Socket.io",
-      "Twilio",
-      "Tailwind CSS",
-      "Mapbox",
-    ],
-    complexity: "Advanced",
-    duration: "4 months",
-    // teamSize: "1",
-    rating: 5,
-    // impact: "300+ Lives Positively Impacted",
-    liveUrl: "https://jeevandaancare.vercel.app/",
-    githubUrl:
-      "https://github.com/Ratnakar-Singh-parihar-123/Blood-Organ-Donations-",
-    features: [
-      "Real-time donor matching",
-      "OTP authentication",
-      "Emergency alerts",
-      "Hospital dashboard",
-      "Location search",
-    ],
-    metrics: [
-      { icon: "HeartPulse", value: "250+", label: "Successful Donations" },
-      { icon: "Hospital", value: "60+", label: "Partner Hospitals" },
-      { icon: "Users", value: "1800+", label: "Verified Donors" },
-    ],
-    status: "Production Ready",
-    featured: true,
+  emerald: {
+    bg: "bg-emerald-500/10",
+    text: "text-emerald-500",
+    hover: "hover:bg-emerald-500/20",
   },
-  {
-    id: 4,
-    title: "TextUtils",
-    category: "React Utility App",
-    projectType: "react",
-    industry: "Productivity",
-    description:
-      "A lightweight React-based text utility app offering real-time text transformations.",
-    fullDescription: `Developed a fast, interactive web app using React to manipulate and analyze text. Supports uppercase/lowercase conversion, word/character counting, and reading time estimation.`,
-    image: textutils,
-    gallery: [textutils, textutils1, textutils2, textutilshome],
-    technologies: ["React", "Tailwind CSS"],
-    complexity: "Beginner",
-    duration: "2 weeks",
-    // teamSize: "1",
-    rating: 4,
-    // impact: "500+ daily users",
-    liveUrl: "https://ratnakar-singh-parihar-123.github.io/TextUtils/",
-    githubUrl: "https://github.com/Ratnakar-Singh-parihar-123/TextUtils",
-    features: [
-      "Text transformation",
-      "Word counter",
-      "Reading time",
-      "Dark mode",
-    ],
-    metrics: [
-      { icon: "Users", value: "", label: "Daily Users" },
-      { icon: "Star", value: "4.0", label: "Rating" },
-    ],
-    status: "Live",
+  purple: {
+    bg: "bg-purple-500/10",
+    text: "text-purple-500",
+    hover: "hover:bg-purple-500/20",
   },
-  {
-    id: 5,
-    title: "Personal Portfolio Website",
-    category: "Web Portfolio",
-    projectType: "react",
-    industry: "Personal Branding",
-    description:
-      "A professional developer portfolio showcasing projects, achievements, and skills.",
-    fullDescription: `Developed using React and Tailwind CSS, this portfolio highlights all professional work, projects, and achievements.`,
-    image: portfolio,
-    gallery: [
-      portfolio,
-      portfolioHome1,
-      portfolio1,
-      portfolio2,
-      portfolio3,
-      portfolio4,
-      portfolio5,
-      portfolio6,
-      portfolio7,
-      portfolio8,
-      portfolio9,
-      portfolio10,
-      portfolio11,
-      portfolio12,
-      portfolio13,
-      portfolio14,
-      portfolio15,
-      portfolio16,
-      portfolio17,
-    ],
-    technologies: ["React", "Tailwind CSS", "Framer Motion"],
-    complexity: "Intermediate",
-    duration: "2 months",
-    // teamSize: "1",
-    rating: 5,
-    liveUrl: "https://my-portfolio-78gt.vercel.app/",
-    githubUrl: "https://github.com/Ratnakar-Singh-parihar-123/MyPortfolio",
-    features: [
-      "Dark mode",
-      "Smooth animations",
-      "Projects section",
-      "Responsive design",
-    ],
-    metrics: [
-      { icon: "Users", value: "100+", label: "Visitors" },
-      { icon: "Star", value: "5.0", label: "Rating" },
-    ],
-    status: "Live",
-    featured: true,
+  orange: {
+    bg: "bg-orange-500/10",
+    text: "text-orange-500",
+    hover: "hover:bg-orange-500/20",
   },
-  {
-    id: 6,
-    title: "SpiceCraft Traders",
-    category: "E-commerce Website",
-    projectType: "htmlcss",
-    industry: "Food & Spices",
-    description:
-      "A clean, responsive HTML-CSS website for a fictional spice brand.",
-    fullDescription: `SpiceCraft Traders is a visually appealing and fast-loading spice brand website built using pure HTML and CSS.`,
-    image: SpiceCraft,
-    gallery: [
-      SpiceCraft,
-      SpiceCraft1,
-      SpiceCraft2,
-      SpiceCraft3,
-      SpiceCraft4,
-      SpiceCraft5,
-      SpiceCraft6,
-    ],
-    technologies: ["HTML", "CSS"],
-    complexity: "Beginner",
-    duration: "1 week",
-    // teamSize: "1",
-    rating: 3,
-    liveUrl: "https://spice-craft-traders.vercel.app/",
-    githubUrl:
-      "https://github.com/Ratnakar-Singh-parihar-123/SpiceCraft-Traders",
-    features: [
-      "Hero banner",
-      "Product section",
-      "Hover animations",
-      "Contact form",
-      "Responsive",
-    ],
-    metrics: [{ icon: "Eye", value: "1K+", label: "Views" }],
-    status: "Live",
-  },
-  {
-    id: 7,
-    title: "FlavorBite Restaurant",
-    category: "Landing Page",
-    projectType: "htmlcss",
-    industry: "Food & Restaurant",
-    description:
-      "A modern, responsive restaurant landing page built with pure HTML and CSS.",
-    fullDescription: `FlavorBite Restaurant is a fully responsive restaurant landing page with sections like hero banner, about us, menu highlights, services, and contact form.`,
-    image: RestaurantMain,
-    gallery: [
-      RestaurantMain,
-      RestaurantMenu,
-      RestaurantAbout,
-      RestaurantChef,
-      RestaurantGallery,
-      RestaurantContact,
-      UpcomingEvents,
-      RestaurantFooter,
-    ],
-    technologies: ["HTML", "CSS"],
-    complexity: "Beginner",
-    duration: "5 days",
-    // teamSize: "1",
-    rating: 3,
-    liveUrl: "https://restaurant-landing-page-one.vercel.app/",
-    githubUrl:
-      "https://github.com/Ratnakar-Singh-parihar-123/Restaurant-Landing-Page",
-    features: [
-      "Hero section",
-      "Menu highlights",
-      "Gallery",
-      "Contact form",
-      "Responsive",
-    ],
-    metrics: [],
-    status: "Live",
-  },
-  {
-    id: 8,
-    title: "EduMentor Coaching",
-    category: "Landing Page",
-    projectType: "htmlcss",
-    industry: "Education & Coaching",
-    description:
-      "A clean and responsive coaching-course landing page built with pure HTML and CSS.",
-    fullDescription: `EduMentor Coaching is a fully responsive coaching landing page with sections like hero banner, courses offered, features, testimonials, and contact form.`,
-    image: CoachingMain,
-    gallery: [
-      CoachingMain,
-      CoachingHomeSecond,
-      CoachingCourses,
-      CoachingFeatures,
-      CoachingTestimonials,
-    ],
-    technologies: ["HTML", "CSS"],
-    complexity: "Beginner",
-    duration: "5 days",
-    // teamSize: "1",
-    rating: 3,
-    liveUrl: "https://coaching-course-website.vercel.app/",
-    githubUrl:
-      "https://github.com/Ratnakar-Singh-parihar-123/Coaching-Course-Website",
-    features: [
-      "Hero section",
-      "Courses section",
-      "Testimonials",
-      "Contact form",
-      "Responsive",
-    ],
-    metrics: [],
-    status: "Live",
-  },
-  {
-    id: 9,
-    title: "Tiffin Delivery Web App",
-    category: "Food Delivery",
-    projectType: "react",
-    industry: "Food & Services",
-    description:
-      "A modern tiffin delivery web application with user authentication.",
-    fullDescription: `Built using React and Tailwind CSS, this tiffin delivery platform allows users to register, log in, and explore daily meal plans.`,
-    image: tiffinDelivery,
-    gallery: [
-      tiffinDelivery,
-      TiffinDeliveryUser,
-      TiffinDeliveryCreateAcc,
-      TiffinDeliveryAdmindashboard,
-      TiffinDelivery3,
-      TiffinDelivery4,
-      TiffinDelivery5,
-      TiffinDelivery6,
-      TiffinDelivery7,
-    ],
-    technologies: ["React", "Tailwind CSS", "React Router"],
-    complexity: "Intermediate",
-    duration: "1.5 months",
-    // teamSize: "1",
-    rating: 4,
-    liveUrl: "https://tiffin-delievery.vercel.app/",
-    githubUrl: "https://github.com/Ratnakar-Singh-parihar-123/tiffin-delivery",
-    features: [
-      "User login/signup",
-      "Form validation",
-      "Protected routes",
-      "Responsive UI",
-    ],
-    metrics: [],
-    status: "Live",
-    featured: true,
-  },
-];
+};
 
-// Mobile Apps Data with phone mockup styling
-const mobileAppsData = [
-  {
-    id: "app1",
-    title: "SafeGuard",
-    projectType: "mobile",
-    description:
-      "Real-time emergency response app with one-tap SOS alerts and live location sharing.",
-
-    fullDescription: `SafeGuard is a real-time emergency response application built using React Native. It allows users to instantly send SOS alerts to emergency contacts along with live location tracking during critical situations. The app ensures user safety through fast communication, automatic alerts, and background tracking.\n\nAdditionally, users can quickly find nearby hospitals, police stations, and emergency services using integrated map features, ensuring immediate help when needed.`,
-
-    image: safeGuard,
-    gallery: [safeGuard],
-
-    technologies: [
-      "React Native",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "Firebase",
-      "Google Maps API",
-    ],
-
-    platforms: ["iOS", "Android"],
-    complexity: "Advanced",
-    duration: "4 months",
-    teamSize: "1",
-
-    impact: "Improves emergency response time and user safety",
-    liveUrl: "",
-    githubUrl: "",
-    status: "Planned",
-    featured: true,
-
-    iconColor: "from-red-500 to-pink-600",
-    iconName: "Shield",
-  },
-
-  {
-    id: "app2",
-    title: "ParkEasy",
-    projectType: "mobile",
-    description:
-      "Smart parking app with nearby search, real-time availability, and slot booking with secure payments.",
-
-    fullDescription: `ParkEasy is a smart parking management application designed to simplify finding and booking parking spaces in urban areas. Users can search for nearby parking spots, check real-time slot availability, and book parking with integrated payment support.\n\nThe platform also includes a powerful admin system where parking owners can manage locations, monitor available and occupied slots, define parking capacity, and control overall parking operations efficiently.\n\nThis system reduces the time and stress of finding parking while providing full control and insights to parking owners.`,
-
-    image: parkingapp,
-    gallery: [parkingapp],
-
-    technologies: ["React Native", "CSS", "Node.js", "Express.js", "MongoDB"],
-
-    platforms: ["iOS", "Android"],
-    complexity: "Intermediate",
-    duration: "2 months",
-    teamSize: "1",
-
-    impact: "Optimizes parking management and reduces search time",
-    liveUrl:
-      "https://github.com/Ratnakar-Singh-parihar-123/ParkEasy/releases/download/v1.0/application-2b19fc59-78f1-4a7e-91b1-c437d35ac120.apk",
-    githubUrl: "https://github.com/Ratnakar-Singh-parihar-123/ParkEasy",
-    status: "Planned",
-    featured: true,
-
-    iconColor: "from-blue-500 to-indigo-600",
-    iconName: "Car",
-  },
-
-  {
-    id: "app3",
-    title: "ReWear Market",
-    projectType: "mobile",
-    description:
-      "Second-hand marketplace app with real-time chat and smart product discovery.",
-
-    fullDescription: `ReWear Market is a full-stack mobile marketplace application that enables users to buy and sell pre-owned products بسهولة. Users can list items with images, browse products using advanced search and filters, and connect with buyers/sellers through real-time chat.\n\nThe platform includes wishlist functionality, user profile management, and secure image uploads using Cloudinary. Built with scalability in mind, the app ensures a smooth and engaging user experience for modern digital commerce.`,
-
-    image: ecomm,
-    gallery: [ecomm],
-
-    technologies: [
-      "React Native",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "Socket.io",
-      "Cloudinary",
-    ],
-
-    platforms: ["iOS", "Android"],
-    complexity: "Intermediate",
-    duration: "4 months",
-    teamSize: "1",
-
-    impact: "Promotes sustainable and affordable shopping",
-    liveUrl: "",
-    githubUrl: "",
-    status: "Planned",
-    featured: true,
-
-    iconColor: "from-purple-500 to-pink-500",
-    iconName: "ShoppingBag",
-  },
-];
-
-// Merge all projects
-const allProjects = [...webProjects, ...mobileAppsData];
-
+/* ============================================================
+   🚀 MAIN COMPONENT
+   ============================================================ */
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
   const [sortBy, setSortBy] = useState("category");
-
-  const categories = [
-    { id: "all", name: "All Projects", icon: "Grid3x3" },
-    { id: "fullstack", name: "Full Stack", icon: "Layers" },
-    { id: "react", name: "React Apps", icon: "React" },
-    { id: "htmlcss", name: "HTML/CSS", icon: "Code" },
-    { id: "mobile", name: "Mobile Apps", icon: "Smartphone" },
-  ];
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const getCategoryCount = (categoryId) => {
     if (categoryId === "all") return allProjects.length;
     return allProjects.filter((p) => p.projectType === categoryId).length;
   };
+
+  const activeCategoryObj = categories.find((c) => c.id === activeCategory);
+  const hasActiveFilter = activeCategory !== "all";
 
   const filteredProjects = useMemo(() => {
     let filtered = allProjects;
@@ -660,19 +109,17 @@ const Projects = () => {
 
     switch (sortBy) {
       case "category":
-        const typeOrder = { fullstack: 1, react: 2, htmlcss: 3, mobile: 4 };
         return [...filtered].sort(
-          (a, b) => typeOrder[a.projectType] - typeOrder[b.projectType],
+          (a, b) => TYPE_ORDER[a.projectType] - TYPE_ORDER[b.projectType],
         );
       case "recent":
         return [...filtered].sort((a, b) => b.id - a.id);
       case "rating":
         return [...filtered].sort((a, b) => b.rating - a.rating);
       case "complexity":
-        const complexityOrder = { Beginner: 1, Intermediate: 2, Advanced: 3 };
         return [...filtered].sort(
           (a, b) =>
-            complexityOrder[b.complexity] - complexityOrder[a.complexity],
+            COMPLEXITY_ORDER[b.complexity] - COMPLEXITY_ORDER[a.complexity],
         );
       default:
         return filtered;
@@ -680,21 +127,51 @@ const Projects = () => {
   }, [searchQuery, activeCategory, sortBy]);
 
   const clearSearch = () => setSearchQuery("");
+  const clearAllFilters = () => {
+    setSearchQuery("");
+    setActiveCategory("all");
+  };
+
   const handleViewDetails = (project) => {
     setSelectedProject(project);
     setIsModalOpen(true);
   };
+
   const closeModal = () => {
     setIsModalOpen(false);
     setTimeout(() => setSelectedProject(null), 300);
   };
 
+  /* Body scroll lock when filter sheet is open */
+  useEffect(() => {
+    if (isFilterOpen) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = prev;
+      };
+    }
+  }, [isFilterOpen]);
+
+  /* ESC to close filter */
+  useEffect(() => {
+    if (!isFilterOpen) return;
+    const onKey = (e) => e.key === "Escape" && setIsFilterOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [isFilterOpen]);
+
   return (
     <div className="min-h-screen bg-background">
-      
-      {/* Hero Section */}
-      <section className="pb-16 pt-16 sm:pt-20 lg:pt-24 bg-gradient-to-b from-primary/5 via-background to-background">
-        <div className="container-brand">
+      {/* ================================================================ */}
+      {/* HERO                                                              */}
+      {/* ================================================================ */}
+      <section className="relative pt-16 pb-12 overflow-hidden sm:pt-20 sm:pb-16 lg:pt-24 bg-gradient-to-b from-primary/5 via-background to-background">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute rounded-full -top-40 -right-40 w-96 h-96 bg-primary/10 blur-3xl" />
+        </div>
+
+        <div className="relative container-brand">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -702,82 +179,142 @@ const Projects = () => {
             className="max-w-4xl mx-auto text-center"
           >
             <div className="flex items-center justify-center mb-6">
-              <div className="flex items-center justify-center w-20 h-20 shadow-lg bg-gradient-to-br from-primary/20 to-primary/5 backdrop-blur-sm rounded-2xl">
-                <Icon name="FolderKanban" size={36} className="text-primary" />
+              <div className="relative">
+                <div className="flex items-center justify-center w-16 h-16 shadow-lg sm:w-20 sm:h-20 bg-gradient-to-br from-primary/20 to-primary/5 backdrop-blur-sm rounded-2xl">
+                  <Icon
+                    name="FolderKanban"
+                    size={32}
+                    className="text-primary sm:hidden"
+                  />
+                  <Icon
+                    name="FolderKanban"
+                    size={36}
+                    className="hidden text-primary sm:block"
+                  />
+                </div>
+                <motion.div
+                  className="absolute w-3 h-3 rounded-full sm:w-4 sm:h-4 -top-1 -right-1 bg-primary"
+                  animate={{ scale: [1, 1.3, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
               </div>
             </div>
-            <h1 className="mb-5 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl text-foreground">
+
+            <h1 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl text-foreground">
               My <span className="text-gradient-brand">Project Portfolio</span>
             </h1>
-            <p className="max-w-3xl mx-auto mb-10 text-lg leading-relaxed md:text-xl text-muted-foreground">
+
+            <p className="max-w-3xl px-4 mx-auto mb-8 text-base leading-relaxed sm:text-lg md:text-xl text-muted-foreground sm:mb-10">
               Explore my journey through full-stack applications, React
               projects, HTML/CSS websites, and cross-platform mobile apps for
               iOS & Android.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                <Icon name="Layers" size={14} /> Full-Stack Apps
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-500/10 text-blue-600 text-sm font-medium">
-                <Icon name="React" size={14} /> React Projects
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-600 text-sm font-medium">
-                <Icon name="Code" size={14} /> HTML/CSS Websites
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-purple-500/10 text-purple-600 text-sm font-medium">
-                <Icon name="Smartphone" size={14} /> Mobile Apps
-                <span className="ml-1 text-xs">iOS & Android</span>
-              </span>
+
+            <div className="flex flex-wrap items-center justify-center gap-2 mb-4 sm:gap-3">
+              {heroPills.map((pill, idx) => {
+                const colors = colorMap[pill.color] || colorMap.primary;
+                return (
+                  <motion.span
+                    key={idx}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 + idx * 0.08 }}
+                    className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full ${colors.bg} ${colors.text} text-xs sm:text-sm font-medium`}
+                  >
+                    <Icon name={pill.icon} size={12} />
+                    {pill.label}
+                    {pill.subLabel && (
+                      <span className="hidden ml-1 text-xs opacity-70 sm:inline">
+                        {pill.subLabel}
+                      </span>
+                    )}
+                  </motion.span>
+                );
+              })}
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Main Content */}
-      <section className="py-12">
+      {/* ================================================================ */}
+      {/* MAIN CONTENT                                                      */}
+      {/* ================================================================ */}
+      <section className="py-8 sm:py-12">
         <div className="container-brand">
-          {/* Search Bar */}
-          <div className="mb-8">
-            <div className="relative max-w-2xl mx-auto">
-              <div className="relative">
+          {/* Search + Filter Row */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mb-6 sm:mb-8"
+          >
+            <div className="flex flex-col gap-3 mx-auto sm:gap-4 sm:flex-row sm:items-center sm:max-w-3xl">
+              <div className="relative flex-1">
+                <Search className="absolute w-5 h-5 -translate-y-1/2 pointer-events-none left-4 top-1/2 text-muted-foreground" />
                 <input
                   type="text"
-                  placeholder="Search projects by title, technology, industry, or features..."
+                  placeholder="Search projects..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full py-4 pl-12 pr-12 text-base transition-all border shadow-sm bg-card border-border rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50"
+                  className="w-full py-3.5 pl-12 pr-12 text-sm sm:text-base transition-all border shadow-sm bg-card border-border rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50"
                 />
-                <Search className="absolute w-5 h-5 -translate-y-1/2 left-4 top-1/2 text-muted-foreground" />
                 {searchQuery && (
                   <button
                     onClick={clearSearch}
-                    className="absolute p-1 transition-colors -translate-y-1/2 rounded-full right-4 top-1/2 hover:bg-muted"
+                    className="absolute p-1 -translate-y-1/2 rounded-full right-4 top-1/2 hover:bg-muted"
+                    aria-label="Clear search"
                   >
                     <X className="w-4 h-4 text-muted-foreground hover:text-foreground" />
                   </button>
                 )}
               </div>
+
+              {/* Filter button — mobile + tablet */}
+              <button
+                onClick={() => setIsFilterOpen(true)}
+                className={`relative flex items-center justify-center gap-2 px-4 py-3.5 sm:py-4 rounded-2xl border transition-all duration-300 lg:hidden ${
+                  hasActiveFilter
+                    ? "bg-primary text-white border-primary shadow-md shadow-primary/20"
+                    : "bg-card text-foreground border-border hover:border-primary/50"
+                }`}
+                aria-label="Open filters"
+              >
+                <SlidersHorizontal className="w-4 h-4" />
+                <span className="text-sm font-semibold">Filters</span>
+                {hasActiveFilter && (
+                  <span className="flex items-center justify-center w-5 h-5 ml-1 text-[10px] font-bold rounded-full text-primary bg-white">
+                    1
+                  </span>
+                )}
+              </button>
+            </div>
+
+            <AnimatePresence>
               {searchQuery && (
-                <div className="mt-3 text-center">
+                <motion.div
+                  initial={{ opacity: 0, y: -4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -4 }}
+                  className="mt-3 text-center"
+                >
                   <p className="text-sm text-muted-foreground">
                     Found{" "}
                     <span className="font-semibold text-primary">
                       {filteredProjects.length}
                     </span>{" "}
-                    project{filteredProjects.length !== 1 ? "s" : ""} matching "
+                    project{filteredProjects.length !== 1 ? "s" : ""} matching{" "}
                     <span className="font-medium text-foreground">
-                      {searchQuery}
+                      "{searchQuery}"
                     </span>
-                    "
                   </p>
-                </div>
+                </motion.div>
               )}
-            </div>
-          </div>
+            </AnimatePresence>
+          </motion.div>
 
-          {/* Category Tabs */}
-          <div className="mb-10">
-            <div className="flex flex-col items-start justify-between gap-4 mb-6 sm:flex-row sm:items-center">
+          {/* Category Tabs — DESKTOP ONLY */}
+          <div className="hidden mb-10 lg:block">
+            <div className="flex items-start justify-between gap-4 mb-6 sm:items-center">
               <div>
                 <h2 className="text-2xl font-bold text-foreground">
                   Browse by Category
@@ -791,106 +328,170 @@ const Projects = () => {
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => setActiveCategory(category.id)}
-                  className={`flex items-center gap-2 px-4 py-3 rounded-xl transition-all duration-200 ${
-                    activeCategory === category.id
-                      ? "bg-primary text-white shadow-md"
-                      : "bg-card hover:bg-accent text-foreground"
-                  }`}
-                >
-                  <Icon name={category.icon} size={18} />
-                  <span className="font-medium">{category.name}</span>
-                  <span
-                    className={`ml-2 px-2 py-0.5 rounded-full text-xs ${activeCategory === category.id ? "bg-white/20" : "bg-primary/10 text-primary"}`}
+              {categories.map((category) => {
+                const isActive = activeCategory === category.id;
+                return (
+                  <button
+                    key={category.id}
+                    onClick={() => setActiveCategory(category.id)}
+                    className={`flex items-center gap-2 px-4 py-3 rounded-xl transition-all duration-200 ${
+                      isActive
+                        ? "bg-primary text-white shadow-md shadow-primary/20"
+                        : "bg-card hover:bg-accent text-foreground border border-border"
+                    }`}
                   >
-                    {getCategoryCount(category.id)}
-                  </span>
-                </button>
-              ))}
+                    <Icon name={category.icon} size={18} />
+                    <span className="font-medium">{category.name}</span>
+                    <span
+                      className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
+                        isActive ? "bg-white/20" : "bg-primary/10 text-primary"
+                      }`}
+                    >
+                      {getCategoryCount(category.id)}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
-          {/* Sort Section */}
-          <div className="flex justify-end mb-6">
-            <div className="flex items-center space-x-3">
+          {/* Active filter chip — mobile */}
+          <AnimatePresence>
+            {hasActiveFilter && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                className="overflow-hidden lg:hidden"
+              >
+                <div className="flex items-center gap-2 pb-4 mb-4 border-b border-border">
+                  <span className="text-xs font-medium text-muted-foreground">
+                    Active filter:
+                  </span>
+                  <button
+                    onClick={() => setActiveCategory("all")}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold hover:bg-primary/20 transition"
+                  >
+                    <Icon name={activeCategoryObj?.icon} size={12} />
+                    {activeCategoryObj?.name}
+                    <X className="w-3 h-3 ml-0.5" />
+                  </button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Sort + Result Count */}
+          <div className="flex items-center justify-between gap-4 mb-6">
+            <div className="text-sm text-muted-foreground">
+              <span className="font-semibold text-foreground">
+                {filteredProjects.length}
+              </span>{" "}
+              project{filteredProjects.length !== 1 ? "s" : ""}
+            </div>
+            <div className="flex items-center gap-2 sm:gap-3">
               <Icon
                 name="ArrowUpDown"
-                size={20}
-                className="text-muted-foreground"
+                size={18}
+                className="hidden text-muted-foreground sm:block"
               />
-              <span className="text-sm font-medium text-foreground">
-                Sort by:
+              <span className="hidden text-sm font-medium text-foreground sm:inline">
+                Sort:
               </span>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="px-3 py-2 text-sm border rounded-lg bg-card border-border focus:outline-none focus:ring-2 focus:ring-primary"
+                className="px-3 py-2 text-xs border rounded-lg sm:text-sm bg-card border-border focus:outline-none focus:ring-2 focus:ring-primary"
               >
-                <option value="category">Category</option>
-                <option value="recent">Most Recent</option>
-                <option value="rating">Highest Rated</option>
-                <option value="complexity">Complexity</option>
+                {sortOptions.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
 
-          {/* Projects Grid */}
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {filteredProjects.map((project, index) =>
-              project.projectType === "mobile" ? (
-                <MobileAppPhoneCard
+          {/* Grid — whole card clickable */}
+          <div className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <AnimatePresence mode="popLayout">
+              {filteredProjects.map((project, index) => (
+                <motion.div
                   key={project.id}
-                  app={project}
-                  onViewDetails={handleViewDetails}
-                  index={index}
-                />
-              ) : (
-                <ProjectCard
-                  key={project.id}
-                  project={project}
-                  onViewDetails={handleViewDetails}
-                  index={index}
-                />
-              ),
-            )}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.3 }}
+                  onClick={(e) => {
+                    /* Don't trigger if user clicked a button/link inside */
+                    if (e.target.closest("button") || e.target.closest("a")) {
+                      return;
+                    }
+                    handleViewDetails(project);
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      handleViewDetails(project);
+                    }
+                  }}
+                  className="cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-2xl"
+                >
+                  {project.projectType === "mobile" ? (
+                    <MobileAppPhoneCard
+                      app={project}
+                      onViewDetails={handleViewDetails}
+                      index={index}
+                    />
+                  ) : (
+                    <ProjectCard
+                      project={project}
+                      onViewDetails={handleViewDetails}
+                      index={index}
+                    />
+                  )}
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </div>
 
-          {/* No Results */}
+          {/* No results */}
           {filteredProjects.length === 0 && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="py-16 text-center border bg-card rounded-2xl border-border"
             >
-              <div className="flex items-center justify-center w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary/5 to-primary/10">
-                <Search size={32} className="text-primary" />
+              <div className="flex items-center justify-center w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary/5 to-primary/10 sm:w-24 sm:h-24">
+                <Search size={28} className="text-primary sm:hidden" />
+                <Search size={32} className="hidden text-primary sm:block" />
               </div>
-              <h3 className="mb-2 text-xl font-semibold text-foreground">
+              <h3 className="mb-2 text-lg font-semibold sm:text-xl text-foreground">
                 No Projects Found
               </h3>
-              <p className="max-w-md mx-auto mb-6 text-muted-foreground">
+              <p className="max-w-md px-4 mx-auto mb-6 text-sm text-muted-foreground sm:text-base">
                 {searchQuery
                   ? `No projects matching "${searchQuery}". Try a different search term.`
                   : "No projects in this category. Try selecting a different category."}
               </p>
-              {searchQuery && (
+              {(searchQuery || hasActiveFilter) && (
                 <Button
                   variant="outline"
                   iconName="X"
                   iconPosition="left"
-                  onClick={clearSearch}
+                  onClick={clearAllFilters}
                   className="border-primary text-primary hover:bg-primary hover:text-white"
                 >
-                  Clear Search
+                  Clear All Filters
                 </Button>
               )}
             </motion.div>
           )}
 
-          {/* Related Projects */}
+          {/* Related */}
           {selectedProject && (
             <RelatedProjects
               projects={allProjects}
@@ -901,102 +502,76 @@ const Projects = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-gradient-to-br from-card via-background to-card">
+      {/* ================================================================ */}
+      {/* STATS                                                             */}
+      {/* ================================================================ */}
+      <section className="py-12 sm:py-16 bg-gradient-to-br from-card via-background to-card">
         <div className="container-brand">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="mb-12 text-center"
+            className="mb-10 text-center sm:mb-12"
           >
-            <h2 className="mb-3 text-3xl font-bold text-foreground">
+            <h2 className="mb-3 text-2xl font-bold sm:text-3xl text-foreground">
               By the Numbers
             </h2>
-            <p className="max-w-2xl mx-auto text-muted-foreground">
+            <p className="max-w-2xl mx-auto text-sm text-muted-foreground sm:text-base">
               A quick look at my project portfolio across different technologies
             </p>
           </motion.div>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="p-6 border shadow-sm bg-background rounded-2xl border-border">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10">
-                  <Icon name="Layers" size={24} className="text-primary" />
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-foreground">3</div>
-                  <div className="text-sm text-muted-foreground">
-                    Full-Stack Apps
+
+          <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 sm:gap-6">
+            {portfolioStats.map((stat, idx) => {
+              const colors = colorMap[stat.color] || colorMap.primary;
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  viewport={{ once: true }}
+                  className="p-4 transition-all duration-300 border shadow-sm sm:p-6 bg-background rounded-2xl border-border hover:shadow-lg hover:-translate-y-1"
+                >
+                  <div className="flex items-center gap-3 mb-3 sm:gap-4 sm:mb-4">
+                    <div
+                      className={`flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-xl ${colors.bg} flex-shrink-0`}
+                    >
+                      <Icon
+                        name={stat.icon}
+                        size={20}
+                        className={`${colors.text} sm:hidden`}
+                      />
+                      <Icon
+                        name={stat.icon}
+                        size={24}
+                        className={`${colors.text} hidden sm:block`}
+                      />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-xl font-bold sm:text-3xl text-foreground">
+                        {stat.value}
+                      </div>
+                      <div className="text-xs truncate sm:text-sm text-muted-foreground">
+                        {stat.label}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Complete MERN stack applications with backend APIs, databases,
-                and authentication
-              </p>
-            </div>
-            <div className="p-6 border shadow-sm bg-background rounded-2xl border-border">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-blue-500/10">
-                  <Icon name="React" size={24} className="text-blue-500" />
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-foreground">3</div>
-                  <div className="text-sm text-muted-foreground">
-                    React Projects
-                  </div>
-                </div>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Modern React applications with state management, responsive
-                design, and interactive features
-              </p>
-            </div>
-            <div className="p-6 border shadow-sm bg-background rounded-2xl border-border">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-emerald-500/10">
-                  <Icon name="Code" size={24} className="text-emerald-500" />
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-foreground">3</div>
-                  <div className="text-sm text-muted-foreground">
-                    HTML/CSS Websites
-                  </div>
-                </div>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Responsive websites built with pure HTML & CSS, focusing on
-                clean design
-              </p>
-            </div>
-            <div className="p-6 border shadow-sm bg-background rounded-2xl border-border">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-purple-500/10">
-                  <Icon
-                    name="Smartphone"
-                    size={24}
-                    className="text-purple-500"
-                  />
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-foreground">3</div>
-                  <div className="text-sm text-muted-foreground">
-                    Mobile Apps
-                  </div>
-                </div>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Cross-platform mobile apps for iOS & Android built with React
-                Native
-              </p>
-            </div>
+                  <p className="text-xs leading-snug sm:text-sm text-muted-foreground line-clamp-2">
+                    {stat.description}
+                  </p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-b from-primary/10 via-primary/5 to-background">
+      {/* ================================================================ */}
+      {/* CTA — CLEAN & NEUTRAL                                             */}
+      {/* ================================================================ */}
+      <section className="py-16 border-t sm:py-20 bg-background border-border">
         <div className="container-brand">
           <motion.div
             initial={{ opacity: 0, y: 25 }}
@@ -1006,27 +581,30 @@ const Projects = () => {
             className="max-w-3xl mx-auto text-center"
           >
             <div className="flex items-center justify-center mb-6">
-              <div className="flex items-center justify-center w-14 h-14 bg-primary/10 rounded-2xl">
-                <Icon name="Rocket" size={30} className="text-primary" />
+              <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-primary/10">
+                <Sparkles size={28} className="text-primary" />
               </div>
             </div>
-            <h2 className="mb-4 text-3xl font-bold leading-snug md:text-4xl text-foreground">
+
+            <h2 className="mb-4 text-2xl font-bold leading-snug sm:text-3xl md:text-4xl text-foreground">
               Ready to Build Something{" "}
-              <span className="text-gradient-brand">Amazing?</span>
+              <span className="text-primary">Amazing?</span>
             </h2>
-            <p className="max-w-2xl mx-auto mb-10 text-lg text-muted-foreground">
+
+            <p className="max-w-2xl px-4 mx-auto mb-8 text-base sm:text-lg text-muted-foreground sm:mb-10">
               From full-stack web applications to React Native mobile apps and
               modern websites, I'm always excited to collaborate and transform
               ideas into scalable, user-friendly, and impactful digital
               solutions.
             </p>
-            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+
+            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
               <Button
                 variant="default"
                 size="lg"
                 iconName="MessageCircle"
                 iconPosition="left"
-                className="px-8 font-semibold shadow-md hover:shadow-lg"
+                className="w-full px-8 font-semibold shadow-md sm:w-auto hover:shadow-lg"
                 onClick={() =>
                   (window.location.href =
                     "mailto:ratnakarsinghparihar9399@gmail.com")
@@ -1039,7 +617,7 @@ const Projects = () => {
                 size="lg"
                 iconName="Github"
                 iconPosition="left"
-                className="px-8 font-medium"
+                className="w-full px-8 font-medium sm:w-auto"
                 onClick={() =>
                   window.open(
                     "https://github.com/Ratnakar-Singh-parihar-123",
@@ -1054,7 +632,129 @@ const Projects = () => {
         </div>
       </section>
 
-      {/* Project Modal */}
+      {/* ================================================================ */}
+      {/* MOBILE FILTER — DROPS FROM TOP                                    */}
+      {/* ================================================================ */}
+      <AnimatePresence>
+        {isFilterOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              onClick={() => setIsFilterOpen(false)}
+              className="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm lg:hidden"
+            />
+
+            {/* Sheet — drops from TOP */}
+            <motion.div
+              initial={{ y: "-100%", opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: "-100%", opacity: 0 }}
+              transition={{
+                type: "spring",
+                damping: 32,
+                stiffness: 320,
+                mass: 0.9,
+              }}
+              className="fixed top-0 left-0 right-0 z-[101] bg-card rounded-b-3xl shadow-2xl max-h-[85vh] overflow-hidden lg:hidden flex flex-col"
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between px-5 pt-5 pb-4 border-b border-border">
+                <div>
+                  <h3 className="text-base font-bold text-foreground">
+                    Filter Projects
+                  </h3>
+                  <p className="text-[11px] text-muted-foreground">
+                    Choose a category to filter
+                  </p>
+                </div>
+                <button
+                  onClick={() => setIsFilterOpen(false)}
+                  className="flex items-center justify-center transition rounded-full w-9 h-9 hover:bg-muted"
+                  aria-label="Close filter"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Category list */}
+              <div className="flex-1 p-4 space-y-2 overflow-y-auto">
+                {categories.map((category) => {
+                  const isActive = activeCategory === category.id;
+                  return (
+                    <button
+                      key={category.id}
+                      onClick={() => {
+                        setActiveCategory(category.id);
+                        setTimeout(() => setIsFilterOpen(false), 200);
+                      }}
+                      className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all duration-200 ${
+                        isActive
+                          ? "bg-primary text-white shadow-md shadow-primary/25"
+                          : "bg-muted/50 hover:bg-muted text-foreground"
+                      }`}
+                    >
+                      <div
+                        className={`flex items-center justify-center w-9 h-9 rounded-xl flex-shrink-0 ${
+                          isActive ? "bg-white/20" : "bg-background"
+                        }`}
+                      >
+                        <Icon name={category.icon} size={18} />
+                      </div>
+                      <div className="flex-1 text-left">
+                        <p className="text-sm font-semibold">{category.name}</p>
+                        <p
+                          className={`text-[11px] ${
+                            isActive ? "text-white/75" : "text-muted-foreground"
+                          }`}
+                        >
+                          {getCategoryCount(category.id)} project
+                          {getCategoryCount(category.id) !== 1 ? "s" : ""}
+                        </p>
+                      </div>
+                      {isActive && (
+                        <div className="flex items-center justify-center w-6 h-6 bg-white rounded-full">
+                          <Check
+                            className="w-3.5 h-3.5 text-primary"
+                            strokeWidth={3}
+                          />
+                        </div>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Footer actions */}
+              <div className="flex items-center gap-3 p-4 pb-5 border-t border-border bg-card">
+                <button
+                  onClick={() => {
+                    setActiveCategory("all");
+                    setSearchQuery("");
+                  }}
+                  className="flex-1 py-3 text-sm font-semibold transition border rounded-xl bg-background border-border hover:bg-muted"
+                >
+                  Clear All
+                </button>
+                <button
+                  onClick={() => setIsFilterOpen(false)}
+                  className="flex-1 py-3 text-sm font-semibold text-white transition shadow-md rounded-xl bg-primary hover:bg-primary/90 shadow-primary/25"
+                >
+                  Show {filteredProjects.length} Result
+                  {filteredProjects.length !== 1 ? "s" : ""}
+                </button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      {/* ================================================================ */}
+      {/* MODAL                                                             */}
+      {/* ================================================================ */}
       <ProjectModal
         project={selectedProject}
         isOpen={isModalOpen}
@@ -1064,272 +764,4 @@ const Projects = () => {
   );
 };
 
-// Mobile App Phone Card Component - Complete Phone Mockup Design
-const MobileAppPhoneCard = ({ app, onViewDetails, index }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
-  const getIconName = (iconName) => {
-    switch (iconName) {
-      case "Shield":
-        return "Shield";
-      case "FileText":
-        return "FileText";
-      case "ShoppingBag":
-        return "ShoppingBag";
-      default:
-        return "Smartphone";
-    }
-  };
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      viewport={{ once: true }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onClick={() => onViewDetails(app)}
-      className="cursor-pointer group"
-    >
-      <div className="relative h-full p-4 overflow-hidden transition-all duration-300 border bg-gradient-to-br from-card to-card/80 rounded-2xl border-border hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1">
-        {/* Compact Layout */}
-        <div className="flex gap-4">
-          {/* Smaller Phone Mockup */}
-          <div className="flex-shrink-0">
-            <div className="relative w-[140px]">
-              <div className="relative p-1 shadow-xl bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl">
-                <div className="relative overflow-hidden bg-black rounded-xl">
-                  {/* Dynamic Island */}
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60px] h-[25px] bg-black rounded-b-lg z-10 flex items-center justify-center">
-                    <div className="w-1 h-1 rounded-full bg-green-400/60" />
-                  </div>
-
-                  {/* App Screenshot */}
-                  <div
-                    className="relative w-full"
-                    style={{ aspectRatio: "9/19" }}
-                  >
-                    <img
-                      src={app.image}
-                      alt={app.title}
-                      className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
-                    />
-
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 transition-opacity duration-300 opacity-0 bg-gradient-to-t from-black/50 via-transparent to-transparent group-hover:opacity-100" />
-
-                    {/* Status Bar */}
-                    <div className="absolute top-1 left-0 right-0 px-3 py-0.5 flex justify-between text-white/60 text-[7px] font-medium">
-                      <span>9:41</span>
-                      <div className="flex items-center gap-0.5">
-                        <Signal className="w-2 h-2" />
-                        <Wifi className="w-2 h-2" />
-                        <Battery className="w-2.5 h-2" />
-                      </div>
-                    </div>
-
-                    {/* Status Badge */}
-                    <div className="absolute top-6 left-1">
-                      <span className="px-1.5 py-0.5 text-[6px] font-semibold rounded-full bg-green-500/90 text-white backdrop-blur-sm">
-                        {app.status}
-                      </span>
-                    </div>
-
-                    {/* Platform Badge */}
-                    <div className="absolute top-6 right-1">
-                      <span className="px-1.5 py-0.5 text-[6px] font-medium rounded-full bg-purple-500/90 text-white backdrop-blur-sm flex items-center gap-0.5">
-                        {app.platforms?.includes("iOS") && (
-                          <Apple className="w-1.5 h-1.5" />
-                        )}
-                        {app.platforms?.includes("Android") && (
-                          <AndroidIcon className="w-1.5 h-1.5" />
-                        )}
-                      </span>
-                    </div>
-
-                    {/* App Icon Overlay */}
-                    <div className="absolute transition-all duration-300 transform -translate-x-1/2 -translate-y-1/2 opacity-0 top-1/2 left-1/2 group-hover:opacity-100 group-hover:scale-110">
-                      <div
-                        className={`w-10 h-10 rounded-xl bg-gradient-to-br ${app.iconColor} flex items-center justify-center shadow-lg`}
-                      >
-                        <Icon
-                          name={getIconName(app.iconName)}
-                          size={18}
-                          className="text-white"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Home Indicator */}
-                  <div className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-16 h-0.5 bg-white/20 rounded-full" />
-                </div>
-
-                {/* Side Buttons */}
-                <div className="absolute left-0 top-12 -translate-x-[1px] w-0.5 h-5 bg-gray-700 rounded-l-full" />
-                <div className="absolute left-0 top-18 -translate-x-[1px] w-0.5 h-8 bg-gray-700 rounded-l-full" />
-                <div className="absolute right-0 top-14 translate-x-[1px] w-0.5 h-10 bg-gray-700 rounded-r-full" />
-              </div>
-            </div>
-          </div>
-
-          {/* App Info - Compact Version */}
-          <div className="flex-1 min-w-0">
-            {/* Header with Icon */}
-            <div className="flex items-center gap-2 mb-2">
-              <div
-                className={`w-8 h-8 rounded-lg bg-gradient-to-br ${app.iconColor} flex items-center justify-center shadow-md flex-shrink-0`}
-              >
-                <Icon
-                  name={getIconName(app.iconName)}
-                  size={16}
-                  className="text-white"
-                />
-              </div>
-              <div className="min-w-0">
-                <h3 className="text-base font-bold truncate transition-colors text-foreground group-hover:text-primary">
-                  {app.title}
-                </h3>
-                <p className="text-[10px] text-muted-foreground truncate">
-                  {app.category || "Mobile App"}
-                </p>
-              </div>
-            </div>
-
-            {/* Rating */}
-            {/* <div className="flex items-center gap-1 mb-2">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  className={`w-3 h-3 ${i < Math.floor(app.rating) ? "fill-amber-500 text-amber-500" : "text-muted-foreground opacity-30"}`}
-                />
-              ))}
-              <span className="text-xs font-medium ml-0.5">{app.rating}</span>
-            </div> */}
-
-            {/* Description */}
-            <p className="text-[11px] text-muted-foreground mb-2 line-clamp-2">
-              {app.description}
-            </p>
-
-            {/* Tech Stack - Compact */}
-            <div className="flex flex-wrap gap-1 mb-2">
-              {app.technologies?.slice(0, 2).map((tech, i) => (
-                <span
-                  key={i}
-                  className="px-1.5 py-0.5 text-[8px] bg-muted text-muted-foreground rounded"
-                >
-                  {tech.split(" ")[0]}
-                </span>
-              ))}
-              {app.technologies?.length > 2 && (
-                <span className="px-1.5 py-0.5 text-[8px] bg-muted text-muted-foreground rounded">
-                  +{app.technologies.length - 2}
-                </span>
-              )}
-            </div>
-
-            {/* Platforms - Compact */}
-            <div className="flex items-center gap-1 mb-2">
-              {app.platforms.map((platform, idx) => (
-                <span
-                  key={idx}
-                  className="flex items-center gap-0.5 px-1.5 py-0.5 text-[8px] bg-muted rounded-full"
-                >
-                  {platform === "iOS" ? (
-                    <Apple className="w-2 h-2" />
-                  ) : (
-                    <AndroidIcon className="w-2 h-2" />
-                  )}
-                  {platform}
-                </span>
-              ))}
-            </div>
-
-            {/* Metrics - Compact */}
-            <div className="flex items-center justify-between mb-2 text-[10px]">
-              <div className="flex items-center gap-2">
-                <div className="flex items-center gap-0.5 text-muted-foreground">
-                  <Icon name="Calendar" size={9} />
-                  <span>{app.duration}</span>
-                </div>
-                <div className="flex items-center gap-0.5 text-muted-foreground">
-                  <Icon name="Users" size={9} />
-                  <span>{app.teamSize}</span>
-                </div>
-              </div>
-              <div className="flex items-center gap-0.5 text-success">
-                <Icon name="TrendingUp" size={9} />
-                <span className="font-medium">{app.impact}</span>
-              </div>
-            </div>
-
-            {/* Action Buttons - Compact */}
-            <div className="flex gap-1.5">
-              {app.liveUrl && (
-                <Button
-                  variant="secondary"
-                  size="xs"
-                  iconName="ExternalLink"
-                  iconPosition="left"
-                  className="flex-1 text-[10px] h-7"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    window.open(app.liveUrl, "_blank");
-                  }}
-                >
-                  Live
-                </Button>
-              )}
-              {app.githubUrl && (
-                <Button
-                  variant="outline"
-                  size="xs"
-                  iconName="Github"
-                  className="flex-1 text-[10px] h-7"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    window.open(app.githubUrl, "_blank");
-                  }}
-                >
-                  Code
-                </Button>
-              )}
-              <Button
-                variant="outline"
-                size="xs"
-                iconName="ArrowRight"
-                iconPosition="right"
-                onClick={() => onViewDetails(app)}
-                className="flex-1 group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300 text-[10px] h-7"
-              >
-                Details
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        {/* Complexity Badge - Repositioned */}
-        <div className="absolute top-3 right-3">
-          <div
-            className={`px-1.5 py-0.5 rounded-full text-[8px] font-medium ${
-              app.complexity === "Advanced"
-                ? "bg-destructive/10 text-destructive border border-destructive/20"
-                : app.complexity === "Intermediate"
-                  ? "bg-warning/10 text-warning border border-warning/20"
-                  : "bg-success/10 text-success border border-success/20"
-            }`}
-          >
-            {app.complexity}
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
-// Optional: Add xs size to your Button component if not already present
-// Button component size variants:
-// size="xs" -> padding: "py-1 px-2", text: "text-[10px]", height: "h-7"
 export default Projects;
