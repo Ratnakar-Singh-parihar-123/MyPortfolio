@@ -5,7 +5,7 @@ import vsbp from "../assets/projectsImg/VSBPImg/VSBPHome.png";
 import yammiverse from "../assets/projectsImg/yammiverse.png";
 import bodp from "../assets/projectsImg/bloodAndOrganDonationsImg/jeevandaancareHome.png";
 import textutils from "../assets/projectsImg/textUtilksImg/textutils.png";
-import portfolio from "../assets/projectsImg/portfolioImg/portfolioHome.png";
+// import portfolio2 from "../assets/projectsImg/portfolioImg/portfolio2.png";
 import SpiceCraft from "../assets/projectsImg/spiceCraftTradersImg/SpiceCraft Traders Home.png";
 import RestaurantMain from "../assets/projectsImg/restaurantImg/restaurant home.png";
 import CoachingMain from "../assets/projectsImg/coachingWebsitesimg/CoachingWebsiite Home.png";
@@ -15,9 +15,11 @@ import foodmitra from "../assets/projectsImg/foodmitra/foodmitra.png";
 // ============================================================
 // 🖼️ MOBILE APP IMAGES
 // ============================================================
-import safeGuard from "../assets/AppImg/safeGuard.jpeg";
+// import safeGuard from "../assets/AppImg/safeGuard.jpeg";
+import parkEasyFront from "../assets/AppImg/ParkEasyAdmin/ParkEasyFront.jpg";
 import parkingapp from "../assets/AppImg/parkingapp.jpeg";
-import ecomm from "../assets/AppImg/ecomm.jpeg";
+
+// import ecomm from "../assets/AppImg/ecomm.jpeg";
 
 // ============================================================
 // 🖼️ GALLERY IMAGES — Web Projects
@@ -69,7 +71,6 @@ import TiffinDelivery6 from "../assets/projectsImg/tiffinDeliveryImg/TiffinDeliv
 import TiffinDelivery7 from "../assets/projectsImg/tiffinDeliveryImg/TiffinDelivery7.png";
 
 // Portfolio gallery
-import portfolioHome1 from "../assets/projectsImg/portfolioImg/portfolioHome1.png";
 import portfolio1 from "../assets/projectsImg/portfolioImg/portfolio1.png";
 import portfolio2 from "../assets/projectsImg/portfolioImg/portfolio2.png";
 import portfolio3 from "../assets/projectsImg/portfolioImg/portfolio3.png";
@@ -85,8 +86,23 @@ import portfolio12 from "../assets/projectsImg/portfolioImg/portfolio12.png";
 import portfolio13 from "../assets/projectsImg/portfolioImg/portfolio13.png";
 import portfolio14 from "../assets/projectsImg/portfolioImg/portfolio14.png";
 import portfolio15 from "../assets/projectsImg/portfolioImg/portfolio15.png";
-import portfolio16 from "../assets/projectsImg/portfolioImg/portfolio15.png";
-import portfolio17 from "../assets/projectsImg/portfolioImg/portfolio15.png";
+import portfolio16 from "../assets/projectsImg/portfolioImg/portfolio16.png";
+import portfolio17 from "../assets/projectsImg/portfolioImg/portfolio17.png";
+import portfolio18 from "../assets/projectsImg/portfolioImg/portfolio18.png";
+import portfolio19 from "../assets/projectsImg/portfolioImg/portfolio19.png";
+import portfolio20 from "../assets/projectsImg/portfolioImg/portfolio20.png";
+import portfolio21 from "../assets/projectsImg/portfolioImg/portfolio21.png";
+import portfolio22 from "../assets/projectsImg/portfolioImg/portfolio22.png";
+import portfolio23 from "../assets/projectsImg/portfolioImg/portfolio23.png";
+import portfolio24 from "../assets/projectsImg/portfolioImg/portfolio24.png";
+import portfolio25 from "../assets/projectsImg/portfolioImg/portfolio25.png";
+import portfolio26 from "../assets/projectsImg/portfolioImg/portfolio26.png";
+import portfolio27 from "../assets/projectsImg/portfolioImg/portfolio27.png";
+import portfolio28 from "../assets/projectsImg/portfolioImg/portfolio28.png";
+import portfolio29 from "../assets/projectsImg/portfolioImg/portfolio29.png";
+import portfolio30 from "../assets/projectsImg/portfolioImg/portfolio30.png";
+import portfolio31 from "../assets/projectsImg/portfolioImg/portfolio31.png";
+import portfolio32 from "../assets/projectsImg/portfolioImg/portfolio32.png";
 
 // VSBP gallery
 import VSBP1 from "../assets/projectsImg/VSBPImg/VSBP1.png";
@@ -175,7 +191,142 @@ import FoodMitraAdmin34 from "../assets/projectsImg/FoodMitraAdmin/FoodMitraAdmi
 import FoodMitraAdmin35 from "../assets/projectsImg/FoodMitraAdmin/FoodMitraAdmin35.png";
 import FoodMitraAdmin36 from "../assets/projectsImg/FoodMitraAdmin/FoodMitraAdmin36.png";
 
-// ============================================================
+//. FoodMitra Vendor
+import FoodMitraVendor from "../assets/projectsImg/FoodMitraVendor/FoodMitraVendor.png";
+import FoodMitraVendor1 from "../assets/projectsImg/FoodMitraVendor/FoodMitraVendor1.png";
+import FoodMitraVendor2 from "../assets/projectsImg/FoodMitraVendor/FoodMitraVendor2.png";
+import FoodMitraVendor3 from "../assets/projectsImg/FoodMitraVendor/FoodMitraVendor3.png";
+import FoodMitraVendor4 from "../assets/projectsImg/FoodMitraVendor/FoodMitraVendor4.png";
+import FoodMitraVendor5 from "../assets/projectsImg/FoodMitraVendor/FoodMitraVendor5.png";
+import FoodMitraVendor6 from "../assets/projectsImg/FoodMitraVendor/FoodMitraVendor6.png";
+import FoodMitraVendor7 from "../assets/projectsImg/FoodMitraVendor/FoodMitraVendor7.png";
+import FoodMitraVendor8 from "../assets/projectsImg/FoodMitraVendor/FoodMitraVendor8.png";
+import FoodMitraVendor9 from "../assets/projectsImg/FoodMitraVendor/FoodMitraVendor9.png";
+import FoodMitraVendor10 from "../assets/projectsImg/FoodMitraVendor/FoodMitraVendor10.png";
+import FoodMitraVendor11 from "../assets/projectsImg/FoodMitraVendor/FoodMitraVendor11.png";
+import FoodMitraVendor12 from "../assets/projectsImg/FoodMitraVendor/FoodMitraVendor12.png";
+import FoodMitraVendor13 from "../assets/projectsImg/FoodMitraVendor/FoodMitraVendor13.png";
+import FoodMitraVendor14 from "../assets/projectsImg/FoodMitraVendor/FoodMitraVendor14.png";
+import FoodMitraVendor15 from "../assets/projectsImg/FoodMitraVendor/FoodMitraVendor15.png";
+import FoodMitraVendor16 from "../assets/projectsImg/FoodMitraVendor/FoodMitraVendor16.png";
+import FoodMitraVendor17 from "../assets/projectsImg/FoodMitraVendor/FoodMitraVendor17.png";
+import FoodMitraVendor18 from "../assets/projectsImg/FoodMitraVendor/FoodMitraVendor18.png";
+import FoodMitraVendor19 from "../assets/projectsImg/FoodMitraVendor/FoodMitraVendor19.png";
+import FoodMitraVendor20 from "../assets/projectsImg/FoodMitraVendor/FoodMitraVendor20.png";
+
+// FoodMitra App Image
+import FoodMitraApp from "../assets/AppImg/FoodMitra/FoodMitraCustumer.jpeg";
+import FoodMitraApp1 from "../assets/AppImg/FoodMitra/FoodMitraApp1.jpg";
+import FoodMitraApp2 from "../assets/AppImg/FoodMitra/FoodMitraApp2.jpg";
+import FoodMitraApp3 from "../assets/AppImg/FoodMitra/FoodMitraApp3.jpg";
+import FoodMitraApp4 from "../assets/AppImg/FoodMitra/FoodMitraApp4.jpg";
+import FoodMitraApp5 from "../assets/AppImg/FoodMitra/FoodMitraApp5.jpg";
+import FoodMitraApp6 from "../assets/AppImg/FoodMitra/FoodMitraApp6.jpg";
+import FoodMitraApp7 from "../assets/AppImg/FoodMitra/FoodMitraApp7.jpg";
+import FoodMitraApp8 from "../assets/AppImg/FoodMitra/FoodMitraApp8.jpg";
+import FoodMitraApp9 from "../assets/AppImg/FoodMitra/FoodMitraApp9.jpg";
+import FoodMitraApp10 from "../assets/AppImg/FoodMitra/FoodMitraApp10.jpg";
+import FoodMitraApp11 from "../assets/AppImg/FoodMitra/FoodMitraApp11.jpg";
+import FoodMitraApp12 from "../assets/AppImg/FoodMitra/FoodMitraApp12.jpg";
+import FoodMitraApp13 from "../assets/AppImg/FoodMitra/FoodMitraApp13.jpg";
+import FoodMitraApp14 from "../assets/AppImg/FoodMitra/FoodMitraApp14.jpg";
+import FoodMitraApp15 from "../assets/AppImg/FoodMitra/FoodMitraApp15.jpg";
+import FoodMitraApp16 from "../assets/AppImg/FoodMitra/FoodMitraApp16.jpg";
+import FoodMitraApp17 from "../assets/AppImg/FoodMitra/FoodMitraApp17.jpg";
+import FoodMitraApp18 from "../assets/AppImg/FoodMitra/FoodMitraApp18.jpg";
+import FoodMitraApp19 from "../assets/AppImg/FoodMitra/FoodMitraApp19.jpg";
+import FoodMitraApp20 from "../assets/AppImg/FoodMitra/FoodMitraApp20.jpg";
+import FoodMitraApp21 from "../assets/AppImg/FoodMitra/FoodMitraApp21.jpg";
+import FoodMitraApp22 from "../assets/AppImg/FoodMitra/FoodMitraApp22.jpg";
+import FoodMitraApp23 from "../assets/AppImg/FoodMitra/FoodMitraApp23.jpg";
+import FoodMitraApp24 from "../assets/AppImg/FoodMitra/FoodMitraApp24.jpg";
+import FoodMitraApp25 from "../assets/AppImg/FoodMitra/FoodMitraApp25.jpg";
+import FoodMitraApp26 from "../assets/AppImg/FoodMitra/FoodMitraApp26.jpg";
+import FoodMitraApp27 from "../assets/AppImg/FoodMitra/FoodMitraApp27.jpg";
+import FoodMitraApp28 from "../assets/AppImg/FoodMitra/FoodMitraApp28.jpg";
+import FoodMitraApp29 from "../assets/AppImg/FoodMitra/FoodMitraApp29.jpg";
+import FoodMitraApp30 from "../assets/AppImg/FoodMitra/FoodMitraApp30.jpg";
+import FoodMitraApp31 from "../assets/AppImg/FoodMitra/FoodMitraApp31.jpg";
+import FoodMitraApp32 from "../assets/AppImg/FoodMitra/FoodMitraApp32.jpg";
+import FoodMitraApp33 from "../assets/AppImg/FoodMitra/FoodMitraApp33.jpg";
+import FoodMitraApp34 from "../assets/AppImg/FoodMitra/FoodMitraApp34.jpg";
+import FoodMitraApp35 from "../assets/AppImg/FoodMitra/FoodMitraApp35.jpg";
+import FoodMitraApp36 from "../assets/AppImg/FoodMitra/FoodMitraApp36.jpg";
+
+// FoodMitra Delivery App
+import FoodMitraDeliveryApp from "../assets/AppImg/FoodMitraDelivery/FoodMitraDeliveryPartner.jpeg";
+import FoodMitraDeliveryApp1 from "../assets/AppImg/FoodMitraDelivery/FoodMitraDeliveryApp1.jpg";
+import FoodMitraDeliveryApp2 from "../assets/AppImg/FoodMitraDelivery/FoodMitraDeliveryApp2.jpg";
+import FoodMitraDeliveryApp3 from "../assets/AppImg/FoodMitraDelivery/FoodMitraDeliveryApp3.jpg";
+import FoodMitraDeliveryApp4 from "../assets/AppImg/FoodMitraDelivery/FoodMitraDeliveryApp4.jpg";
+import FoodMitraDeliveryApp5 from "../assets/AppImg/FoodMitraDelivery/FoodMitraDeliveryApp5.jpg";
+import FoodMitraDeliveryApp6 from "../assets/AppImg/FoodMitraDelivery/FoodMitraDeliveryApp6.jpg";
+import FoodMitraDeliveryApp7 from "../assets/AppImg/FoodMitraDelivery/FoodMitraDeliveryApp7.jpg";
+import FoodMitraDeliveryApp8 from "../assets/AppImg/FoodMitraDelivery/FoodMitraDeliveryApp8.jpg";
+import FoodMitraDeliveryApp9 from "../assets/AppImg/FoodMitraDelivery/FoodMitraDeliveryApp9.jpg";
+import FoodMitraDeliveryApp10 from "../assets/AppImg/FoodMitraDelivery/FoodMitraDeliveryApp10.jpg";
+import FoodMitraDeliveryApp11 from "../assets/AppImg/FoodMitraDelivery/FoodMitraDeliveryApp11.jpg";
+import FoodMitraDeliveryApp12 from "../assets/AppImg/FoodMitraDelivery/FoodMitraDeliveryApp12.jpg";
+import FoodMitraDeliveryApp13 from "../assets/AppImg/FoodMitraDelivery/FoodMitraDeliveryApp13.jpg";
+import FoodMitraDeliveryApp14 from "../assets/AppImg/FoodMitraDelivery/FoodMitraDeliveryApp14.jpg";
+import FoodMitraDeliveryApp15 from "../assets/AppImg/FoodMitraDelivery/FoodMitraDeliveryApp15.jpg";
+import FoodMitraDeliveryApp16 from "../assets/AppImg/FoodMitraDelivery/FoodMitraDeliveryApp16.jpg";
+import FoodMitraDeliveryApp17 from "../assets/AppImg/FoodMitraDelivery/FoodMitraDeliveryApp17.jpg";
+
+//. house tiffin app
+import FoodMitraTiffinHouseApp from "../assets/AppImg/FoodMitraHouseTiffin/FoodMitraHouseTiffin.jpeg";
+import FoodMitraTiffinHouseApp1 from "../assets/AppImg/FoodMitraHouseTiffin/FoodMitraTiffinHouseApp1.jpg";
+import FoodMitraTiffinHouseApp2 from "../assets/AppImg/FoodMitraHouseTiffin/FoodMitraTiffinHouseApp2.jpg";
+import FoodMitraTiffinHouseApp3 from "../assets/AppImg/FoodMitraHouseTiffin/FoodMitraTiffinHouseApp3.jpg";
+import FoodMitraTiffinHouseApp4 from "../assets/AppImg/FoodMitraHouseTiffin/FoodMitraTiffinHouseApp4.jpg";
+import FoodMitraTiffinHouseApp5 from "../assets/AppImg/FoodMitraHouseTiffin/FoodMitraTiffinHouseApp5.jpg";
+import FoodMitraTiffinHouseApp6 from "../assets/AppImg/FoodMitraHouseTiffin/FoodMitraTiffinHouseApp6.jpg";
+import FoodMitraTiffinHouseApp7 from "../assets/AppImg/FoodMitraHouseTiffin/FoodMitraTiffinHouseApp7.jpg";
+import FoodMitraTiffinHouseApp8 from "../assets/AppImg/FoodMitraHouseTiffin/FoodMitraTiffinHouseApp8.jpg";
+import FoodMitraTiffinHouseApp9 from "../assets/AppImg/FoodMitraHouseTiffin/FoodMitraTiffinHouseApp9.jpg";
+import FoodMitraTiffinHouseApp10 from "../assets/AppImg/FoodMitraHouseTiffin/FoodMitraTiffinHouseApp10.jpg";
+import FoodMitraTiffinHouseApp11 from "../assets/AppImg/FoodMitraHouseTiffin/FoodMitraTiffinHouseApp11.jpg";
+import FoodMitraTiffinHouseApp12 from "../assets/AppImg/FoodMitraHouseTiffin/FoodMitraTiffinHouseApp12.jpg";
+import FoodMitraTiffinHouseApp13 from "../assets/AppImg/FoodMitraHouseTiffin/FoodMitraTiffinHouseApp13.jpg";
+import FoodMitraTiffinHouseApp14 from "../assets/AppImg/FoodMitraHouseTiffin/FoodMitraTiffinHouseApp14.jpg";
+import FoodMitraTiffinHouseApp15 from "../assets/AppImg/FoodMitraHouseTiffin/FoodMitraTiffinHouseApp15.jpg";
+import FoodMitraTiffinHouseApp16 from "../assets/AppImg/FoodMitraHouseTiffin/FoodMitraTiffinHouseApp16.jpg";
+import FoodMitraTiffinHouseApp17 from "../assets/AppImg/FoodMitraHouseTiffin/FoodMitraTiffinHouseApp17.jpg";
+import FoodMitraTiffinHouseApp18 from "../assets/AppImg/FoodMitraHouseTiffin/FoodMitraTiffinHouseApp18.jpg";
+import FoodMitraTiffinHouseApp19 from "../assets/AppImg/FoodMitraHouseTiffin/FoodMitraTiffinHouseApp19.jpg";
+import FoodMitraTiffinHouseApp20 from "../assets/AppImg/FoodMitraHouseTiffin/FoodMitraTiffinHouseApp20.jpg";
+import FoodMitraTiffinHouseApp21 from "../assets/AppImg/FoodMitraHouseTiffin/FoodMitraTiffinHouseApp21.jpg";
+
+//. parkEasy App User
+import parkEasyUser1 from "../assets/AppImg/parkEasyUser/parkEasyUserApp1.jpg";
+import parkEasyUser2 from "../assets/AppImg/parkEasyUser/parkEasyUserApp2.jpg";
+import parkEasyUser3 from "../assets/AppImg/parkEasyUser/parkEasyUserApp3.jpg";
+import parkEasyUser4 from "../assets/AppImg/parkEasyUser/parkEasyUserApp4.jpg";
+import parkEasyUser5 from "../assets/AppImg/parkEasyUser/parkEasyUserApp5.jpg";
+import parkEasyUser6 from "../assets/AppImg/parkEasyUser/parkEasyUserApp6.jpg";
+import parkEasyUser7 from "../assets/AppImg/parkEasyUser/parkEasyUserApp7.jpg";
+import parkEasyUser8 from "../assets/AppImg/parkEasyUser/parkEasyUserApp8.jpg";
+import parkEasyUser9 from "../assets/AppImg/parkEasyUser/parkEasyUserApp9.jpg";
+import parkEasyUser10 from "../assets/AppImg/parkEasyUser/parkEasyUserApp10.jpg";
+import parkEasyUser11 from "../assets/AppImg/parkEasyUser/parkEasyUserApp11.jpg";
+import parkEasyUser12 from "../assets/AppImg/parkEasyUser/parkEasyUserApp12.jpg";
+import parkEasyUser13 from "../assets/AppImg/parkEasyUser/parkEasyUserApp13.jpg";
+import parkEasyUser14 from "../assets/AppImg/parkEasyUser/parkEasyUserApp14.jpg";
+
+//. parkeasyAdmin site
+import parkEasyAdmin1 from "../assets/AppImg/ParkEasyAdmin/parkEasyAdmin1.jpg";
+import parkEasyAdmin2 from "../assets/AppImg/ParkEasyAdmin/parkEasyAdmin2.jpg";
+import parkEasyAdmin3 from "../assets/AppImg/ParkEasyAdmin/parkEasyAdmin3.jpg";
+import parkEasyAdmin4 from "../assets/AppImg/ParkEasyAdmin/parkEasyAdmin4.jpg";
+import parkEasyAdmin5 from "../assets/AppImg/ParkEasyAdmin/parkEasyAdmin5.jpg";
+import parkEasyAdmin6 from "../assets/AppImg/ParkEasyAdmin/parkEasyAdmin6.jpg";
+import parkEasyAdmin7 from "../assets/AppImg/ParkEasyAdmin/parkEasyAdmin7.jpg";
+import parkEasyAdmin8 from "../assets/AppImg/ParkEasyAdmin/parkEasyAdmin8.jpg";
+import parkEasyAdmin9 from "../assets/AppImg/ParkEasyAdmin/parkEasyAdmin9.jpg";
+import parkEasyAdmin10 from "../assets/AppImg/ParkEasyAdmin/parkEasyAdmin10.jpg";
+import parkEasyAdmin11 from "../assets/AppImg/ParkEasyAdmin/parkEasyAdmin11.jpg";
+import parkEasyAdmin12 from "../assets/AppImg/ParkEasyAdmin/parkEasyAdmin12.jpg";
+import parkEasyAdmin13 from "../assets/AppImg/ParkEasyAdmin/parkEasyAdmin13.jpg";
 // 📦 WEB PROJECTS DATA
 // ============================================================
 export const webProjects = [
@@ -250,6 +401,27 @@ The platform includes role-based authentication using JWT and HTTP Cookies, vend
       FoodMitraAdmin34,
       FoodMitraAdmin35,
       FoodMitraAdmin36,
+      FoodMitraVendor,
+      FoodMitraVendor1,
+      FoodMitraVendor2,
+      FoodMitraVendor3,
+      FoodMitraVendor4,
+      FoodMitraVendor5,
+      FoodMitraVendor6,
+      FoodMitraVendor7,
+      FoodMitraVendor8,
+      FoodMitraVendor9,
+      FoodMitraVendor10,
+      FoodMitraVendor11,
+      FoodMitraVendor12,
+      FoodMitraVendor13,
+      FoodMitraVendor14,
+      FoodMitraVendor15,
+      FoodMitraVendor16,
+      FoodMitraVendor17,
+      FoodMitraVendor18,
+      FoodMitraVendor19,
+      FoodMitraVendor20,
     ],
     technologies: [
       "React",
@@ -466,13 +638,15 @@ The platform includes role-based authentication using JWT and HTTP Cookies, vend
     category: "Web Portfolio",
     projectType: "react",
     industry: "Personal Branding",
+
     description:
-      "A professional developer portfolio showcasing projects, achievements, and skills.",
-    fullDescription: `Developed using React and Tailwind CSS, this portfolio highlights all professional work, projects, and achievements.`,
-    image: portfolio,
+      "A modern and interactive developer portfolio designed to showcase professional projects, technical skills, achievements, experience, and learning journey.",
+
+    fullDescription: `Designed and developed a modern, responsive personal portfolio using React and Tailwind CSS. The portfolio focuses on creating a premium user experience with smooth animations, interactive project showcases, technical skill sections, achievements, experience, education, and a dedicated contact experience. It is optimized for desktop, tablet, and mobile devices with a clean and scalable component-based architecture.`,
+
+    image: portfolio2,
+
     gallery: [
-      portfolio,
-      portfolioHome1,
       portfolio1,
       portfolio2,
       portfolio3,
@@ -490,23 +664,69 @@ The platform includes role-based authentication using JWT and HTTP Cookies, vend
       portfolio15,
       portfolio16,
       portfolio17,
+      portfolio18,
+      portfolio19,
+      portfolio20,
+      portfolio21,
+      portfolio22,
+      portfolio23,
+      portfolio24,
+      portfolio25,
+      portfolio26,
+      portfolio27,
+      portfolio28,
+      portfolio29,
+      portfolio30,
+      portfolio31,
+      portfolio32,
     ],
-    technologies: ["React", "Tailwind CSS", "Framer Motion"],
+
+    technologies: [
+      "React",
+      "Tailwind CSS",
+      "Framer Motion",
+      "JavaScript",
+      "React Router",
+      "Lucide React",
+    ],
+
     complexity: "Intermediate",
     duration: "2 months",
     rating: 5,
+
     liveUrl: "https://my-portfolio-78gt.vercel.app/",
     githubUrl: "https://github.com/Ratnakar-Singh-parihar-123/MyPortfolio",
+
     features: [
-      "Dark mode",
-      "Smooth animations",
-      "Projects section",
       "Responsive design",
+      "Dark and light mode",
+      "Smooth page transitions",
+      "Interactive project showcase",
+      "Animated components",
+      "Project search functionality",
+      "Project case study view",
+      "Book My Call integration",
+      "Skills and technology showcase",
+      "Experience and education timeline",
+      "Achievements section",
+      "Mobile-friendly navigation",
+      "Resume download",
+      "Contact section",
     ],
+
     metrics: [
-      { icon: "Users", value: "100+", label: "Visitors" },
-      { icon: "Star", value: "5.0", label: "Rating" },
+      {
+        icon: "Users",
+        value: "100+",
+        label: "Visitors",
+      },
+      {
+        icon: "Star",
+        value: "5.0",
+        label: "Rating",
+      },
     ],
+
     status: "Live",
     featured: true,
   },
@@ -664,13 +884,68 @@ export const mobileAppsData = [
     id: "app1",
     title: "FoodMitra",
     projectType: "mobile",
-    description:
-      "Food delivery app connecting customers with nearby food vendors and Tiffin Houses for seamless ordering and delivery.",
-    fullDescription: `FoodMitra is a customer-focused food delivery application designed to connect users with nearby food vendors and Tiffin Houses. Customers can discover available food options, explore menus, add items to their cart, place orders, make secure payments, and track their deliveries.
 
-The platform is designed around a complete food ordering workflow, connecting customers with Tiffin Houses and delivery partners through a unified ecosystem.`,
-    image: foodmitra,
-    gallery: [foodmitra],
+    description:
+      "FoodMitra is a complete food delivery ecosystem that connects customers with nearby food vendors and Tiffin Houses. The platform supports food discovery, menu browsing, cart management, order placement, online payments, real-time order updates, and delivery tracking through dedicated mobile applications.",
+
+    fullDescription: `FoodMitra is a full-stack food delivery ecosystem built to simplify the complete food ordering and delivery experience. The platform connects customers with nearby food vendors and home-based Tiffin Houses through a unified mobile application.
+
+Customers can discover nearby food options, browse menus, view food details, add items to their cart, manage quantities, place orders, and complete secure online payments. The application also provides order status updates and delivery tracking to create a smooth end-to-end ordering experience.
+
+The ecosystem is designed with multiple user roles including Customers, Vendors, Delivery Partners, Tiffin Houses, and Admin. Vendors and Tiffin Houses can manage their food items and incoming orders, while delivery partners can handle assigned deliveries and update delivery status.
+
+FoodMitra also integrates real-time communication using Socket.io for order and delivery updates. Authentication and user management are handled using JWT and Firebase services, while Razorpay is integrated for online payment processing.
+
+The backend is deployed on Render and the mobile application is available as an APK for Android testing. Since the backend is hosted on Render's free/server-sleep infrastructure, the first API request after a period of inactivity may take a little longer while the server starts. Once the backend is active, subsequent requests work normally.
+
+Demo Login:
+Mobile Number: 9399741051
+OTP: 123456
+
+The demo credentials are provided only for portfolio/project demonstration purposes.`,
+
+    image: FoodMitraApp,
+
+    gallery: [
+      FoodMitraApp,
+      FoodMitraApp1,
+      FoodMitraApp2,
+      FoodMitraApp3,
+      FoodMitraApp4,
+      FoodMitraApp5,
+      FoodMitraApp6,
+      FoodMitraApp7,
+      FoodMitraApp8,
+      FoodMitraApp9,
+      FoodMitraApp10,
+      FoodMitraApp11,
+      FoodMitraApp12,
+      FoodMitraApp13,
+      FoodMitraApp14,
+      FoodMitraApp15,
+      FoodMitraApp16,
+      FoodMitraApp17,
+      FoodMitraApp18,
+      FoodMitraApp19,
+      FoodMitraApp20,
+      FoodMitraApp21,
+      FoodMitraApp22,
+      FoodMitraApp23,
+      FoodMitraApp24,
+      FoodMitraApp25,
+      FoodMitraApp26,
+      FoodMitraApp27,
+      FoodMitraApp28,
+      FoodMitraApp29,
+      FoodMitraApp30,
+      FoodMitraApp31,
+      FoodMitraApp32,
+      FoodMitraApp33,
+      FoodMitraApp34,
+      FoodMitraApp35,
+      FoodMitraApp36,
+    ],
+
     technologies: [
       "React Native",
       "Node.js",
@@ -679,64 +954,236 @@ The platform is designed around a complete food ordering workflow, connecting cu
       "Socket.io",
       "Razorpay",
       "Firebase",
+      "JWT",
     ],
-    platforms: ["Android", "iOS"],
+
+    platforms: ["Android"],
+
+    features: [
+      "Customer food discovery",
+      "Nearby food vendors and Tiffin Houses",
+      "Menu and food item browsing",
+      "Cart and quantity management",
+      "Order placement and management",
+      "Online payment integration",
+      "Real-time order updates",
+      "Delivery partner workflow",
+      "Order tracking",
+      "Vendor and Tiffin House management",
+      "Firebase-based authentication",
+      "JWT-based authorization",
+      "Admin-controlled vendor approval",
+    ],
+
+    platforms: ["Android"],
+
     complexity: "Advanced",
-    duration: "4 months",
+
+    duration: "2 months",
+
     teamSize: "1",
+
     impact:
-      "Simplifies food ordering by connecting customers with nearby vendors and Tiffin Houses",
-    liveUrl: "",
-    githubUrl: "",
+      "Provides an end-to-end food ordering ecosystem that connects customers, food vendors, Tiffin Houses, delivery partners, and administrators through a unified platform.",
+
+    liveUrl: "https://myfoodmitra.vercel.app/",
+
+    githubUrl:
+      "https://github.com/Ratnakar-Singh-parihar-123/Food-Delivery-Platform-",
+
+    apkUrl: "../../public/foodmitra-customer.apk",
+
+    backendUrl: "https://food-delivery-platform-ypx6.onrender.com",
+
+    demoCredentials: {
+      mobile: "9399741051",
+      otp: "123456",
+    },
+
+    deploymentNote:
+      "The backend is deployed on Render. Due to server sleep/cold-start behavior, the first request may take a little longer after inactivity. Please wait a few seconds and retry if required.",
+
     status: "In Development",
+
     featured: true,
+
     iconColor: "from-orange-500 to-red-500",
+
     iconName: "Utensils",
   },
   {
     id: "app2",
-    title: "FoodMitra Delivery Partner",
-    projectType: "mobile",
-    description:
-      "Delivery partner app for receiving nearby orders, managing pickups, navigating to customers, and completing deliveries.",
-    fullDescription: `FoodMitra Delivery Partner is a dedicated mobile application built for delivery partners within the FoodMitra ecosystem. Delivery partners can receive nearby delivery requests, review order details, accept or decline requests, and manage the complete pickup-to-delivery workflow.
 
-The application is designed to keep delivery partners updated with order status, pickup and delivery locations, and real-time order information, helping coordinate deliveries efficiently between Tiffin Houses and customers.`,
-    image: foodmitra,
-    gallery: [foodmitra],
+    title: "FoodMitra Delivery Partner",
+
+    projectType: "mobile",
+
+    description:
+      "FoodMitra Delivery Partner is a dedicated delivery management application that enables delivery partners to receive nearby orders, accept delivery requests, manage pickups, navigate to customer locations, and complete deliveries with real-time order updates.",
+
+    fullDescription: `FoodMitra Delivery Partner is a dedicated mobile application developed as part of the FoodMitra food delivery ecosystem. The application is designed specifically for delivery partners and manages the complete delivery workflow from receiving a delivery request to successfully completing the order.
+
+Delivery partners can securely log in using mobile number authentication with dynamically generated OTPs. After authentication, they can view available delivery requests, check order details, review pickup and customer locations, and accept suitable delivery requests.
+
+Once an order is accepted, the delivery partner can manage the complete pickup-to-delivery process. The application provides relevant order information, pickup details, customer information, and delivery location to help partners complete deliveries efficiently.
+
+Real-time communication is implemented using Socket.io so that important order and delivery status changes can be synchronized between the customer, vendor/Tiffin House, backend, and delivery partner applications.
+
+The application also integrates location and mapping functionality to assist delivery partners in navigating between pickup and customer locations. The backend is built with Node.js and Express.js and uses MongoDB for data management.
+
+Unlike the FoodMitra Customer App, this application does not use Firebase. Mobile authentication and OTP generation are handled through the application's backend OTP workflow.
+
+The Delivery Partner application is an important part of the FoodMitra ecosystem, connecting vendors and Tiffin Houses with customers through an organized delivery workflow.
+
+Demo Note:
+For portfolio demonstration, a valid mobile number can be used to test the OTP-based login flow. The OTP is dynamically generated by the application's authentication system, so there is no fixed demo OTP.
+
+Backend Note:
+The backend is deployed on Render. Because the server may go into an inactive state, the first API request after a period of inactivity can take a little longer while the backend starts. Once the server is active, subsequent requests should respond normally.`,
+
+    image: FoodMitraDeliveryApp,
+
+    gallery: [
+      FoodMitraDeliveryApp1,
+      FoodMitraDeliveryApp2,
+      FoodMitraDeliveryApp3,
+      FoodMitraDeliveryApp4,
+      FoodMitraDeliveryApp5,
+      FoodMitraDeliveryApp6,
+      FoodMitraDeliveryApp7,
+      FoodMitraDeliveryApp8,
+      FoodMitraDeliveryApp9,
+      FoodMitraDeliveryApp10,
+      FoodMitraDeliveryApp11,
+      FoodMitraDeliveryApp12,
+      FoodMitraDeliveryApp13,
+      FoodMitraDeliveryApp14,
+      FoodMitraDeliveryApp15,
+      FoodMitraDeliveryApp16,
+      FoodMitraDeliveryApp17,
+    ],
+
     technologies: [
       "React Native",
       "Node.js",
       "Express.js",
       "MongoDB",
       "Socket.io",
-      "Firebase",
+      "JWT",
       "Google Maps",
     ],
-    platforms: ["Android", "iOS"],
+
+    features: [
+      "Mobile number authentication",
+      "Dynamic OTP generation",
+      "Delivery partner onboarding",
+      "Nearby delivery requests",
+      "Order details and pickup information",
+      "Accept and manage delivery requests",
+      "Pickup-to-delivery workflow",
+      "Customer location tracking",
+      "Google Maps integration",
+      "Real-time order updates",
+      "Socket.io-based communication",
+      "Delivery status management",
+      "Backend API integration",
+    ],
+
+    platforms: ["Android"],
+
     complexity: "Advanced",
-    duration: "4 months",
+
+    duration: "2 months",
+
     teamSize: "1",
+
     impact:
-      "Streamlines delivery operations from order acceptance and pickup to customer delivery",
-    liveUrl: "",
-    githubUrl: "",
+      "Streamlines the complete delivery workflow by connecting delivery partners with vendors, Tiffin Houses, and customers through real-time order management and location-based delivery coordination.",
+
+    liveUrl: "https://myfoodmitra.vercel.app",
+
+    githubUrl:
+      "https://github.com/Ratnakar-Singh-parihar-123/Food-Delivery-Platform-",
+
+    apkUrl: "../../public/foodmitra-delivery.apk",
+
+    backendUrl: "https://food-delivery-platform-ypx6.onrender.com",
+
+    demoCredentials: {
+      type: "Dynamic OTP",
+      mobile:
+        "Use a valid/demo mobile number supported by the OTP authentication flow",
+      otp: "Generated dynamically",
+    },
+
+    deploymentNote:
+      "Backend deployed on Render. The first API request may take a few seconds after inactivity because of server cold-start behavior.",
+
     status: "In Development",
+
     featured: true,
+
     iconColor: "from-blue-500 to-cyan-500",
+
     iconName: "Bike",
   },
   {
     id: "app3",
-    title: "FoodMitra Tiffin House",
-    projectType: "mobile",
-    description:
-      "Vendor management app for Tiffin Houses to manage menus, receive orders, prepare meals, and coordinate deliveries.",
-    fullDescription: `FoodMitra Tiffin House is a dedicated mobile application for Tiffin House owners and food vendors. It provides a centralized workflow for managing food items, receiving customer orders, updating order status, and coordinating with delivery partners.
 
-Tiffin House owners can manage their available menu, review incoming orders, update preparation status, and monitor order progress from a dedicated vendor interface. The application connects the vendor side with customers and delivery partners as part of the complete FoodMitra ecosystem.`,
-    image: foodmitra,
-    gallery: [foodmitra],
+    title: "FoodMitra Tiffin House",
+
+    projectType: "mobile",
+
+    description:
+      "FoodMitra Tiffin House is a dedicated vendor-side mobile application that enables Tiffin House owners and food vendors to manage menus, receive customer orders, update food preparation status, and coordinate deliveries within the FoodMitra ecosystem.",
+
+    fullDescription: `FoodMitra Tiffin House is a dedicated mobile application being developed for Tiffin House owners and food vendors as part of the FoodMitra food delivery ecosystem.
+
+The application is designed to provide Tiffin Houses with a simple and centralized workflow for managing their daily food business. Vendors can manage their food menu, add and update food items, control item availability, receive incoming customer orders, and monitor the progress of each order.
+
+The application is also designed to support the complete order preparation workflow. Tiffin House owners can review new orders, accept orders, update preparation status, and keep customers and delivery partners informed about the current order state.
+
+Real-time order communication is implemented using Socket.io, allowing important order status changes to be synchronized across the FoodMitra ecosystem. This helps connect Tiffin Houses with customers and delivery partners during the complete ordering and delivery process.
+
+The application uses React Native for mobile development and is connected to a Node.js and Express.js backend with MongoDB for data management. Firebase services are used where required within the vendor-side application.
+
+This project is currently under active development. The complete vendor workflow, UI improvements, and additional management features are still being implemented and tested.
+
+The Android APK is not available yet. A demo APK will be provided once the current development and testing phase is completed.
+
+APK Status:
+Coming Soon
+
+Project Status:
+In Development`,
+
+    image: FoodMitraTiffinHouseApp,
+
+    gallery: [
+      FoodMitraTiffinHouseApp,
+      FoodMitraTiffinHouseApp1,
+      FoodMitraTiffinHouseApp2,
+      FoodMitraTiffinHouseApp3,
+      FoodMitraTiffinHouseApp4,
+      FoodMitraTiffinHouseApp5,
+      FoodMitraTiffinHouseApp6,
+      FoodMitraTiffinHouseApp7,
+      FoodMitraTiffinHouseApp8,
+      FoodMitraTiffinHouseApp9,
+      FoodMitraTiffinHouseApp10,
+      FoodMitraTiffinHouseApp11,
+      FoodMitraTiffinHouseApp12,
+      FoodMitraTiffinHouseApp13,
+      FoodMitraTiffinHouseApp14,
+      FoodMitraTiffinHouseApp15,
+      FoodMitraTiffinHouseApp16,
+      FoodMitraTiffinHouseApp17,
+      FoodMitraTiffinHouseApp18,
+      FoodMitraTiffinHouseApp19,
+      FoodMitraTiffinHouseApp20,
+      FoodMitraTiffinHouseApp21,
+    ],
+
     technologies: [
       "React Native",
       "Node.js",
@@ -744,45 +1191,161 @@ Tiffin House owners can manage their available menu, review incoming orders, upd
       "MongoDB",
       "Socket.io",
       "Firebase",
+      "JWT",
     ],
-    platforms: ["Android", "iOS"],
+
+    features: [
+      "Tiffin House vendor management",
+      "Food menu management",
+      "Add and update food items",
+      "Food availability management",
+      "Incoming customer orders",
+      "Order acceptance and management",
+      "Order preparation status",
+      "Real-time order updates",
+      "Delivery partner coordination",
+      "Customer order synchronization",
+      "Vendor-side order workflow",
+      "Backend API integration",
+    ],
+
+    platforms: ["Android"],
+
     complexity: "Advanced",
-    duration: "4 months",
+
+    duration: "2 months+",
+
     teamSize: "1",
+
     impact:
-      "Helps Tiffin Houses manage food orders and coordinate the complete delivery workflow",
-    liveUrl: "",
-    githubUrl: "",
+      "Provides Tiffin Houses with a dedicated digital workflow for managing menus, customer orders, food preparation, and delivery coordination within the FoodMitra ecosystem.",
+
+    liveUrl: "https://myfoodmitra.vercel.app/",
+
+    githubUrl:
+      "https://github.com/Ratnakar-Singh-parihar-123/Food-Delivery-Platform-",
+
+    apkUrl: null,
+
+    apkStatus: "Coming Soon",
+
+    backendUrl: "https://food-delivery-platform-ypx6.onrender.com",
+
     status: "In Development",
+
+    developmentNote:
+      "This project is currently under active development. Core vendor workflows are being implemented and tested, while additional features and improvements are still in progress.",
+
+    deploymentNote:
+      "The backend is deployed on Render. The first API request may take a few seconds after inactivity because of server cold-start behavior.",
+
     featured: true,
+
     iconColor: "from-green-500 to-emerald-600",
+
     iconName: "Store",
   },
   {
     id: "app4",
+
     title: "ParkEasy",
+
     projectType: "mobile",
+
     description:
-      "Smart parking app with nearby search, real-time availability, and slot booking with secure payments.",
-    fullDescription: `ParkEasy is a smart parking management application designed to simplify finding and booking parking spaces in urban areas. Users can search for nearby parking spots, check real-time slot availability, and book parking with integrated payment support.
+      "ParkEasy is a smart parking management application that helps users discover nearby parking spaces, check slot availability, book parking slots, and manage parking through a convenient mobile experience.",
 
-The platform also includes a powerful admin system where parking owners can manage locations, monitor available and occupied slots, define parking capacity, and control overall parking operations efficiently.
+    fullDescription: `ParkEasy is a smart parking management application designed to simplify the process of finding and booking parking spaces in urban areas.
 
-This system reduces the time and stress of finding parking while providing full control and insights to parking owners.`,
-    image: parkingapp,
-    gallery: [parkingapp],
-    technologies: ["React Native", "CSS", "Node.js", "Express.js", "MongoDB"],
-    platforms: ["iOS", "Android"],
+Users can discover nearby parking locations, view available parking slots, check parking capacity, and book a suitable slot directly through the mobile application. The application is designed to make parking more convenient by reducing the time users spend searching for available spaces.
+
+ParkEasy also includes a dedicated parking management workflow for administrators and parking owners. Through the admin interface, parking operators can manage parking locations, configure parking capacity, monitor available and occupied slots, and manage the overall parking operation.
+
+The application follows a complete parking workflow starting from location discovery and slot availability checking to booking and payment. This provides users with a more organized way to plan their parking before reaching the destination.
+
+The mobile application is built using React Native and communicates with a Node.js and Express.js backend. MongoDB is used for data storage, while payment functionality is integrated into the booking workflow.
+
+ParkEasy is designed as a practical solution for managing parking availability digitally and improving coordination between parking users and parking operators.
+
+The Android APK is available for demonstration and testing. The project is currently marked as Planned in the portfolio while additional improvements and refinements are being considered.`,
+
+    image: parkEasyFront,
+
+    gallery: [
+      parkingapp,
+
+      parkEasyUser1,
+      parkEasyUser2,
+      parkEasyUser3,
+      parkEasyUser4,
+      parkEasyUser5,
+      parkEasyUser6,
+      parkEasyUser7,
+      parkEasyUser8,
+      parkEasyUser9,
+      parkEasyUser10,
+      parkEasyUser11,
+      parkEasyUser12,
+      parkEasyUser13,
+      parkEasyUser14,
+
+      parkEasyAdmin1,
+      parkEasyAdmin2,
+      parkEasyAdmin3,
+      parkEasyAdmin4,
+      parkEasyAdmin5,
+      parkEasyAdmin6,
+      parkEasyAdmin7,
+      parkEasyAdmin8,
+      parkEasyAdmin9,
+      parkEasyAdmin10,
+      parkEasyAdmin11,
+      parkEasyAdmin12,
+      parkEasyAdmin13,
+    ],
+
+    technologies: ["React Native", "Node.js", "Express.js", "MongoDB", "CSS"],
+
+    features: [
+      "Nearby parking search",
+      "Parking location discovery",
+      "Real-time slot availability",
+      "Parking capacity management",
+      "Parking slot booking",
+      "Booking management",
+      "Secure payment integration",
+      "Admin parking management",
+      "Available and occupied slot monitoring",
+      "Parking location management",
+      "User-friendly mobile interface",
+      "REST API integration",
+    ],
+
+    platforms: ["Android"],
+
     complexity: "Intermediate",
+
     duration: "2 months",
+
     teamSize: "1",
-    impact: "Optimizes parking management and reduces search time",
-    liveUrl:
-      "https://github.com/Ratnakar-Singh-parihar-123/ParkEasy/releases/download/v1.0/application-2b19fc59-78f1-4a7e-91b1-c437d35ac120.apk",
+
+    impact:
+      "Reduces the time and effort required to find parking by providing nearby parking discovery, slot availability, booking, and digital parking management in one platform.",
+
+    liveUrl: "",
+
     githubUrl: "https://github.com/Ratnakar-Singh-parihar-123/ParkEasy",
+
+    apkUrl: "/application-2b19fc59-78f1-4a7e-91b1-c437d35ac120.apk",
+
+    apkStatus: "Available",
+
     status: "Planned",
+
     featured: true,
+
     iconColor: "from-blue-500 to-indigo-600",
+
     iconName: "Car",
   },
 ];

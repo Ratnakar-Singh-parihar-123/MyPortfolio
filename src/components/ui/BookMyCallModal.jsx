@@ -159,7 +159,8 @@ const BookMyCallModal = ({ isOpen, onClose }) => {
   };
 
   const formattedSelectedDateStr = `${MONTH_NAMES[currentMonth]} ${selectedDay}, ${currentYear}`;
-  const meetingDurationStr = meetingType === "discovery" ? "15 minutes" : "30 minutes";
+  const meetingDurationStr =
+    meetingType === "discovery" ? "15 minutes" : "30 minutes";
   const meetingTitleStr =
     meetingType === "discovery" ? "Discovery Call" : "Technical Consultation";
 
@@ -210,7 +211,7 @@ I would like to book an appointment with you:
 Looking forward to connecting!`;
 
     window.location.href = `mailto:ratnakarsinghparihar07@gmail.com?subject=${encodeURIComponent(
-      subject
+      subject,
     )}&body=${encodeURIComponent(body)}`;
 
     setTimeout(() => {
@@ -278,14 +279,14 @@ Looking forward to connecting!`;
                     />
                   </div>
                   {/* Status Indicator */}
-                  <div className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500 border-2 border-white dark:border-slate-900" />
+                  <div className="absolute flex items-center justify-center w-4 h-4 -bottom-1 -right-1">
+                    <span className="absolute inline-flex w-full h-full rounded-full opacity-75 animate-ping bg-emerald-400" />
+                    <span className="relative inline-flex w-3 h-3 border-2 border-white rounded-full bg-emerald-500 dark:border-slate-900" />
                   </div>
                 </div>
 
                 <div>
-                  <h3 className="text-base font-bold text-slate-900 dark:text-white leading-tight">
+                  <h3 className="text-base font-bold leading-tight text-slate-900 dark:text-white">
                     Ratnakar Singh Parihar
                   </h3>
                   <p className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 mt-0.5">
@@ -295,30 +296,31 @@ Looking forward to connecting!`;
               </div>
 
               {/* Bio Quote */}
-              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                "Building scalable web & mobile experiences with modern technologies."
+              <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
+                "Building scalable web & mobile experiences with modern
+                technologies."
               </p>
 
               <div className="h-px bg-slate-200/80 dark:bg-slate-800" />
 
               {/* Meeting Meta Details */}
-              <div className="space-y-3 text-xs text-slate-700 dark:text-slate-300 font-medium">
+              <div className="space-y-3 text-xs font-medium text-slate-700 dark:text-slate-300">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-xl bg-indigo-500/10 dark:bg-indigo-500/20 text-indigo-500 flex items-center justify-center shrink-0">
+                  <div className="flex items-center justify-center w-8 h-8 text-indigo-500 rounded-xl bg-indigo-500/10 dark:bg-indigo-500/20 shrink-0">
                     <Clock className="w-4 h-4" />
                   </div>
                   <span>{meetingDurationStr}</span>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-xl bg-purple-500/10 dark:bg-purple-500/20 text-purple-500 flex items-center justify-center shrink-0">
+                  <div className="flex items-center justify-center w-8 h-8 text-purple-500 rounded-xl bg-purple-500/10 dark:bg-purple-500/20 shrink-0">
                     <Video className="w-4 h-4" />
                   </div>
                   <span>Google Meet / Online Video Call</span>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-500 flex items-center justify-center shrink-0">
+                  <div className="flex items-center justify-center w-8 h-8 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-500 shrink-0">
                     <Globe className="w-4 h-4" />
                   </div>
                   <span className="truncate">{userTimezone}</span>
@@ -329,7 +331,13 @@ Looking forward to connecting!`;
 
               {/* Tech Stack Pills */}
               <div className="flex flex-wrap gap-1.5">
-                {["MERN Stack", "React", "Node.js", "MongoDB", "React Native"].map((tech, i) => (
+                {[
+                  "MERN Stack",
+                  "React",
+                  "Node.js",
+                  "MongoDB",
+                  "React Native",
+                ].map((tech, i) => (
                   <span
                     key={i}
                     className="px-2.5 py-1 text-[11px] font-semibold rounded-lg bg-slate-200/70 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300"
@@ -350,7 +358,7 @@ Looking forward to connecting!`;
           </motion.div>
 
           {/* MOBILE HEADER (Compacted Host Info for Mobile) */}
-          <div className="md:hidden p-4 bg-slate-100/90 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+          <div className="flex items-center justify-between p-4 border-b md:hidden bg-slate-100/90 dark:bg-slate-950 border-slate-200 dark:border-slate-800">
             <div className="flex items-center gap-3">
               <div className="relative w-10 h-10 rounded-xl p-0.5 bg-gradient-to-tr from-indigo-500 to-purple-500 shrink-0">
                 <img
@@ -360,7 +368,7 @@ Looking forward to connecting!`;
                 />
               </div>
               <div>
-                <h4 className="text-xs font-bold text-slate-900 dark:text-white leading-tight">
+                <h4 className="text-xs font-bold leading-tight text-slate-900 dark:text-white">
                   Ratnakar Singh Parihar
                 </h4>
                 <p className="text-[11px] text-indigo-500 font-semibold mt-0.5">
@@ -378,9 +386,9 @@ Looking forward to connecting!`;
           </div>
 
           {/* RIGHT PANEL: SCHEDULING AREA */}
-          <div className="flex-1 flex flex-col justify-between overflow-hidden bg-white dark:bg-slate-900">
+          <div className="flex flex-col justify-between flex-1 overflow-hidden bg-white dark:bg-slate-900">
             {/* Top Navigation & Smart Progress Bar */}
-            <div className="px-6 py-4 border-b border-slate-200/80 dark:border-slate-800/80 flex items-center justify-between">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200/80 dark:border-slate-800/80">
               {/* Back Button */}
               {stage > 0 && stage < 4 ? (
                 <button
@@ -409,8 +417,8 @@ Looking forward to connecting!`;
                             isActive
                               ? "text-indigo-600 dark:text-indigo-400 font-bold"
                               : isCompleted
-                              ? "text-emerald-500"
-                              : "text-slate-400 dark:text-slate-600"
+                                ? "text-emerald-500"
+                                : "text-slate-400 dark:text-slate-600"
                           }`}
                         >
                           {isCompleted ? (
@@ -419,7 +427,9 @@ Looking forward to connecting!`;
                           <span>{step.label}</span>
                         </div>
                         {idx < STEPS.length - 1 && (
-                          <span className="text-slate-300 dark:text-slate-700 text-xs">›</span>
+                          <span className="text-xs text-slate-300 dark:text-slate-700">
+                            ›
+                          </span>
                         )}
                       </React.Fragment>
                     );
@@ -437,7 +447,7 @@ Looking forward to connecting!`;
             </div>
 
             {/* Dynamic Stage Content Area */}
-            <div className="flex-1 p-6 sm:p-8 overflow-y-auto no-scrollbar">
+            <div className="flex-1 p-6 overflow-y-auto sm:p-8 no-scrollbar">
               <AnimatePresence mode="wait">
                 {/* STAGE 0: MEETING TYPE SELECTION */}
                 {stage === 0 && (
@@ -450,11 +460,12 @@ Looking forward to connecting!`;
                     className="space-y-6"
                   >
                     <div>
-                      <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-1">
+                      <h2 className="mb-1 text-xl font-bold sm:text-2xl text-slate-900 dark:text-white">
                         Select Meeting Type
                       </h2>
                       <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                        Choose the consultation format that best fits your conversation goal.
+                        Choose the consultation format that best fits your
+                        conversation goal.
                       </p>
                     </div>
 
@@ -470,15 +481,16 @@ Looking forward to connecting!`;
                         }`}
                       >
                         <div className="flex items-center gap-4">
-                          <div className="w-11 h-11 rounded-2xl bg-indigo-500/20 text-indigo-500 flex items-center justify-center shrink-0">
+                          <div className="flex items-center justify-center text-indigo-500 w-11 h-11 rounded-2xl bg-indigo-500/20 shrink-0">
                             <Video className="w-5 h-5" />
                           </div>
                           <div>
-                            <h4 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-500 transition-colors">
+                            <h4 className="text-sm font-bold transition-colors text-slate-900 dark:text-white group-hover:text-indigo-500">
                               Discovery Call
                             </h4>
                             <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                              Quick 15-min intro to discuss your project or hiring opportunity.
+                              Quick 15-min intro to discuss your project or
+                              hiring opportunity.
                             </p>
                           </div>
                         </div>
@@ -501,15 +513,16 @@ Looking forward to connecting!`;
                         }`}
                       >
                         <div className="flex items-center gap-4">
-                          <div className="w-11 h-11 rounded-2xl bg-purple-500/20 text-purple-500 flex items-center justify-center shrink-0">
+                          <div className="flex items-center justify-center text-purple-500 w-11 h-11 rounded-2xl bg-purple-500/20 shrink-0">
                             <Code2 className="w-5 h-5" />
                           </div>
                           <div>
-                            <h4 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-purple-500 transition-colors">
+                            <h4 className="text-sm font-bold transition-colors text-slate-900 dark:text-white group-hover:text-purple-500">
                               Technical Consultation
                             </h4>
                             <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                              Deep-dive technical discussion (architecture, code review, tech stack).
+                              Deep-dive technical discussion (architecture, code
+                              review, tech stack).
                             </p>
                           </div>
                         </div>
@@ -545,19 +558,19 @@ Looking forward to connecting!`;
                       </div>
 
                       {/* Month Navigation */}
-                      <div className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800/80 p-1 rounded-xl">
+                      <div className="flex items-center gap-2 p-1 bg-slate-100 dark:bg-slate-800/80 rounded-xl">
                         <button
                           onClick={handlePrevMonth}
-                          className="p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-colors"
+                          className="p-1 transition-colors rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300"
                         >
                           <ChevronLeft className="w-4 h-4" />
                         </button>
-                        <span className="text-xs font-bold text-slate-900 dark:text-white px-2">
+                        <span className="px-2 text-xs font-bold text-slate-900 dark:text-white">
                           {MONTH_NAMES[currentMonth]} {currentYear}
                         </span>
                         <button
                           onClick={handleNextMonth}
-                          className="p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-colors"
+                          className="p-1 transition-colors rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300"
                         >
                           <ChevronRight className="w-4 h-4" />
                         </button>
@@ -565,7 +578,7 @@ Looking forward to connecting!`;
                     </div>
 
                     {/* Days of Week Header */}
-                    <div className="grid grid-cols-7 gap-1 text-center text-xs font-bold text-slate-400">
+                    <div className="grid grid-cols-7 gap-1 text-xs font-bold text-center text-slate-400">
                       {DAYS_OF_WEEK.map((day) => (
                         <div key={day} className="py-1">
                           {day}
@@ -583,7 +596,11 @@ Looking forward to connecting!`;
                       {/* Day slots */}
                       {Array.from({ length: daysInMonth }).map((_, i) => {
                         const dayNum = i + 1;
-                        const dateObj = new Date(currentYear, currentMonth, dayNum);
+                        const dateObj = new Date(
+                          currentYear,
+                          currentMonth,
+                          dayNum,
+                        );
                         const isPast =
                           dateObj.setHours(0, 0, 0, 0) <
                           new Date().setHours(0, 0, 0, 0);
@@ -602,10 +619,10 @@ Looking forward to connecting!`;
                               isPast
                                 ? "text-slate-300 dark:text-slate-700 pointer-events-none opacity-40"
                                 : isSelected
-                                ? "bg-indigo-500 text-white shadow-lg shadow-indigo-500/30 scale-105"
-                                : isToday
-                                ? "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/40"
-                                : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80"
+                                  ? "bg-indigo-500 text-white shadow-lg shadow-indigo-500/30 scale-105"
+                                  : isToday
+                                    ? "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/40"
+                                    : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80"
                             }`}
                           >
                             {dayNum}
@@ -680,7 +697,7 @@ Looking forward to connecting!`;
                     </div>
 
                     {/* Summary Appointment Badge */}
-                    <div className="p-4 rounded-2xl bg-indigo-500/10 dark:bg-indigo-500/20 border border-indigo-500/30 flex flex-wrap gap-4 text-xs font-semibold text-slate-800 dark:text-slate-200">
+                    <div className="flex flex-wrap gap-4 p-4 text-xs font-semibold border rounded-2xl bg-indigo-500/10 dark:bg-indigo-500/20 border-indigo-500/30 text-slate-800 dark:text-slate-200">
                       <div className="flex items-center gap-1.5">
                         <CalendarIcon className="w-3.5 h-3.5 text-indigo-500" />
                         <span>{formattedSelectedDateStr}</span>
@@ -691,14 +708,19 @@ Looking forward to connecting!`;
                       </div>
                       <div className="flex items-center gap-1.5">
                         <Video className="w-3.5 h-3.5 text-indigo-500" />
-                        <span>{meetingTitleStr} ({meetingDurationStr})</span>
+                        <span>
+                          {meetingTitleStr} ({meetingDurationStr})
+                        </span>
                       </div>
                     </div>
 
                     {/* Form Input Fields */}
-                    <form onSubmit={handleConfirmBooking} className="space-y-3.5">
+                    <form
+                      onSubmit={handleConfirmBooking}
+                      className="space-y-3.5"
+                    >
                       <div>
-                        <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                        <label className="block mb-1 text-xs font-semibold text-slate-700 dark:text-slate-300">
                           Your Full Name <span className="text-red-500">*</span>
                         </label>
                         <div className="relative">
@@ -715,8 +737,9 @@ Looking forward to connecting!`;
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                          Your Email Address <span className="text-red-500">*</span>
+                        <label className="block mb-1 text-xs font-semibold text-slate-700 dark:text-slate-300">
+                          Your Email Address{" "}
+                          <span className="text-red-500">*</span>
                         </label>
                         <div className="relative">
                           <input
@@ -731,7 +754,7 @@ Looking forward to connecting!`;
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                        <label className="block mb-1 text-xs font-semibold text-slate-700 dark:text-slate-300">
                           Message / Topics to Discuss (Optional)
                         </label>
                         <textarea
@@ -746,7 +769,9 @@ Looking forward to connecting!`;
                       {/* Submit Button */}
                       <button
                         type="submit"
-                        disabled={!userName.trim() || !userEmail.trim() || isSending}
+                        disabled={
+                          !userName.trim() || !userEmail.trim() || isSending
+                        }
                         className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold text-xs sm:text-sm shadow-lg disabled:opacity-50 disabled:cursor-not-allowed hover:brightness-110 active:scale-[0.99] transition-all flex items-center justify-center gap-2 mt-2"
                       >
                         {isSending ? (
@@ -768,15 +793,19 @@ Looking forward to connecting!`;
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ type: "spring", stiffness: 350, damping: 25 }}
-                    className="py-6 flex flex-col items-center text-center space-y-4"
+                    className="flex flex-col items-center py-6 space-y-4 text-center"
                   >
                     {/* Animated Green Checkmark & Profile Photo */}
                     <div className="relative flex items-center justify-center">
                       <motion.div
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                        className="w-20 h-20 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center shadow-lg ring-4 ring-emerald-500/20"
+                        transition={{
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 20,
+                        }}
+                        className="flex items-center justify-center w-20 h-20 rounded-full shadow-lg bg-emerald-500/10 text-emerald-500 ring-4 ring-emerald-500/20"
                       >
                         <CheckCircle2 className="w-12 h-12 text-emerald-500" />
                       </motion.div>
@@ -786,18 +815,19 @@ Looking forward to connecting!`;
                       <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
                         Meeting Request Sent! 🎉
                       </h3>
-                      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-sm">
-                        I'll get back to you shortly to confirm the meeting details.
+                      <p className="max-w-sm text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+                        I'll get back to you shortly to confirm the meeting
+                        details.
                       </p>
                     </div>
 
                     {/* Booking Card Summary */}
-                    <div className="w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-800 dark:text-slate-200 space-y-2 max-w-sm">
-                      <div className="flex items-center gap-3 border-b border-slate-200 dark:border-slate-700/80 pb-3">
+                    <div className="w-full max-w-sm p-4 space-y-2 text-xs font-semibold border rounded-2xl bg-slate-50 dark:bg-slate-800/60 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200">
+                      <div className="flex items-center gap-3 pb-3 border-b border-slate-200 dark:border-slate-700/80">
                         <img
                           src={ProfileImg}
                           alt="Ratnakar Singh Parihar"
-                          className="w-10 h-10 rounded-xl object-cover"
+                          className="object-cover w-10 h-10 rounded-xl"
                         />
                         <div className="text-left">
                           <p className="text-xs font-bold text-slate-900 dark:text-white">
@@ -811,7 +841,7 @@ Looking forward to connecting!`;
 
                       <div className="flex items-center justify-between text-slate-600 dark:text-slate-400">
                         <span>Date & Time:</span>
-                        <span className="text-slate-900 dark:text-white font-bold">
+                        <span className="font-bold text-slate-900 dark:text-white">
                           {formattedSelectedDateStr} at {selectedTime}
                         </span>
                       </div>
@@ -819,7 +849,7 @@ Looking forward to connecting!`;
 
                     <button
                       onClick={onClose}
-                      className="px-8 py-3 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold text-xs sm:text-sm shadow-lg hover:brightness-110 active:scale-95 transition-all mt-2"
+                      className="px-8 py-3 mt-2 text-xs font-bold text-white transition-all shadow-lg rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-600 sm:text-sm hover:brightness-110 active:scale-95"
                     >
                       Close
                     </button>

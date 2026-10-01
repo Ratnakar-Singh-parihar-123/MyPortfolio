@@ -67,7 +67,7 @@ function Cursor() {
           damping: 15,
           mass: 0.8,
         }}
-        className="w-16 h-16 bg-gradient-to-r from-purple-400/30 to-pink-400/30 rounded-full fixed pointer-events-none z-40 blur-2xl"
+        className="fixed z-40 w-16 h-16 rounded-full pointer-events-none bg-gradient-to-r from-purple-400/30 to-pink-400/30 blur-2xl"
       />
 
       {/* Main ring */}
@@ -84,7 +84,7 @@ function Cursor() {
           damping: 20,
           mass: 0.3,
         }}
-        className="w-8 h-8 border-2 border-purple-400 rounded-full fixed pointer-events-none z-50"
+        className="fixed z-50 w-8 h-8 border-2 border-purple-400 rounded-full pointer-events-none"
         style={{
           borderTopColor: hover ? "#f472b6" : "#c084fc",
           borderRightColor: hover ? "#c084fc" : "#f472b6",

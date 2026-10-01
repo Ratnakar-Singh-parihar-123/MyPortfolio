@@ -4,9 +4,9 @@ import {
   Search,
   X,
   Sparkles,
-  Github,
   SlidersHorizontal,
-  Check,
+  Download,
+  Clock,
 } from "lucide-react";
 
 import Icon from "../../components/AppIcon";
@@ -57,6 +57,26 @@ const colorMap = {
 };
 
 /* ============================================================
+   📥 APK HELPER
+   ------------------------------------------------------------
+   Only real web-accessible URLs are shown as download buttons.
+   Local machine paths (e.g. "/Users/.../app.apk") are ignored so
+   the UI never renders a broken download link.
+   ============================================================ */
+const getApkUrl = (project) => {
+  const url = project?.apkUrl;
+  if (!url || typeof url !== "string") return null;
+  if (url.startsWith("/Users/") || /^[A-Za-z]:\\/.test(url)) return null;
+  return url;
+};
+
+/* Recency order (position inside allProjects) — safe for string ids */
+const RECENCY_ORDER = allProjects.reduce(
+  (acc, p, i) => ({ ...acc, [p.id]: i }),
+  {},
+);
+
+/* ============================================================
    🚀 MAIN COMPONENT
    ============================================================ */
 const Projects = () => {
@@ -72,9 +92,10 @@ const Projects = () => {
     return allProjects.filter((p) => p.projectType === categoryId).length;
   };
 
-  const activeCategoryObj = categories.find((c) => c.id === activeCategory);
   const hasActiveFilter = activeCategory !== "all";
+  const activeCategoryObj = categories.find((c) => c.id === activeCategory);
 
+  /* ---------------- FILTER + SORT ---------------- */
   const filteredProjects = useMemo(() => {
     let filtered = allProjects;
 
@@ -113,7 +134,9 @@ const Projects = () => {
           (a, b) => TYPE_ORDER[a.projectType] - TYPE_ORDER[b.projectType],
         );
       case "recent":
-        return [...filtered].sort((a, b) => b.id - a.id);
+        return [...filtered].sort(
+          (a, b) => RECENCY_ORDER[b.id] - RECENCY_ORDER[a.id],
+        );
       case "rating":
         return [...filtered].sort((a, b) => b.rating - a.rating);
       case "complexity":
@@ -125,6 +148,17 @@ const Projects = () => {
         return filtered;
     }
   }, [searchQuery, activeCategory, sortBy]);
+
+  /* ---------------- SPLIT INTO SECTIONS ---------------- */
+  const webResults = useMemo(
+    () => filteredProjects.filter((p) => p.projectType !== "mobile"),
+    [filteredProjects],
+  );
+
+  const mobileResults = useMemo(
+    () => filteredProjects.filter((p) => p.projectType === "mobile"),
+    [filteredProjects],
+  );
 
   const clearSearch = () => setSearchQuery("");
   const clearAllFilters = () => {
@@ -142,7 +176,7 @@ const Projects = () => {
     setTimeout(() => setSelectedProject(null), 300);
   };
 
-  /* Body scroll lock when filter sheet is open */
+  /* Body scroll lock when filter drawer is open */
   useEffect(() => {
     if (isFilterOpen) {
       const prev = document.body.style.overflow;
@@ -153,13 +187,81 @@ const Projects = () => {
     }
   }, [isFilterOpen]);
 
-  /* ESC to close filter */
+  /* ESC to close filter drawer */
   useEffect(() => {
     if (!isFilterOpen) return;
     const onKey = (e) => e.key === "Escape" && setIsFilterOpen(false);
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [isFilterOpen]);
+
+  /* ============================================================
+     🧩 FILTER PANEL — reused inside the slide-in drawer
+     ============================================================ */
+  const filterPanel = (
+    <div className="space-y-6">
+      {/* Categories */}
+      <div>
+        <h3 className="mb-3 text-[11px] font-bold tracking-wider uppercase text-muted-foreground">
+          Categories
+        </h3>
+        <div className="space-y-1.5">
+          {categories.map((category) => {
+            const isActive = activeCategory === category.id;
+            const count = getCategoryCount(category.id);
+            return (
+              <button
+                key={category.id}
+                onClick={() => setActiveCategory(category.id)}
+                className={`w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm transition-all duration-200 ${
+                  isActive
+                    ? "bg-primary text-white shadow-sm shadow-primary/25"
+                    : "text-foreground hover:bg-muted border border-transparent hover:border-border"
+                }`}
+              >
+                <div
+                  className={`flex items-center justify-center w-8 h-8 rounded-lg flex-shrink-0 ${
+                    isActive ? "bg-white/20" : "bg-muted"
+                  }`}
+                >
+                  <Icon
+                    name={category.icon}
+                    size={15}
+                    className={
+                      isActive ? "text-white" : "text-muted-foreground"
+                    }
+                  />
+                </div>
+                <span className="flex-1 font-medium text-left truncate">
+                  {category.name}
+                </span>
+                <span
+                  className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${
+                    isActive
+                      ? "bg-white/20 text-white"
+                      : "bg-muted text-muted-foreground"
+                  }`}
+                >
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Clear */}
+      {hasActiveFilter && (
+        <button
+          onClick={clearAllFilters}
+          className="flex items-center justify-center w-full gap-2 px-3 py-2.5 text-xs font-semibold transition border rounded-xl border-border text-muted-foreground hover:bg-muted hover:text-foreground"
+        >
+          <X className="w-3.5 h-3.5" />
+          Clear all filters
+        </button>
+      )}
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -241,22 +343,22 @@ const Projects = () => {
       {/* ================================================================ */}
       <section className="py-8 sm:py-12">
         <div className="container-brand">
-          {/* Search + Filter Row */}
+          {/* ---------------- TOOLBAR ---------------- */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mb-6 sm:mb-8"
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="max-w-4xl mx-auto"
           >
-            <div className="flex flex-col gap-3 mx-auto sm:gap-4 sm:flex-row sm:items-center sm:max-w-3xl">
+            <div className="flex gap-3">
               <div className="relative flex-1">
                 <Search className="absolute w-5 h-5 -translate-y-1/2 pointer-events-none left-4 top-1/2 text-muted-foreground" />
                 <input
                   type="text"
-                  placeholder="Search projects..."
+                  placeholder="Search projects, tech, features..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full py-3.5 pl-12 pr-12 text-sm sm:text-base transition-all border shadow-sm bg-card border-border rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50"
+                  className="w-full py-3.5 pl-12 pr-12 text-sm transition-all border shadow-sm bg-card border-border rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 sm:text-base"
                 />
                 {searchQuery && (
                   <button
@@ -269,196 +371,244 @@ const Projects = () => {
                 )}
               </div>
 
-              {/* Filter button — mobile + tablet */}
+              {/* Filter button — visible on ALL screen sizes */}
               <button
                 onClick={() => setIsFilterOpen(true)}
-                className={`relative flex items-center justify-center gap-2 px-4 py-3.5 sm:py-4 rounded-2xl border transition-all duration-300 lg:hidden ${
+                className={`relative flex items-center justify-center gap-2 px-4 py-3.5 rounded-2xl border transition-all duration-300 ${
                   hasActiveFilter
                     ? "bg-primary text-white border-primary shadow-md shadow-primary/20"
-                    : "bg-card text-foreground border-border hover:border-primary/50"
+                    : "bg-card text-foreground border-border hover:border-primary/50 hover:bg-accent"
                 }`}
                 aria-label="Open filters"
               >
                 <SlidersHorizontal className="w-4 h-4" />
-                <span className="text-sm font-semibold">Filters</span>
+                <span className="hidden text-sm font-semibold sm:inline">
+                  Filters
+                </span>
                 {hasActiveFilter && (
-                  <span className="flex items-center justify-center w-5 h-5 ml-1 text-[10px] font-bold rounded-full text-primary bg-white">
+                  <span className="flex items-center justify-center w-5 h-5 text-[10px] font-bold rounded-full text-primary bg-white">
                     1
                   </span>
                 )}
               </button>
             </div>
 
-            <AnimatePresence>
-              {searchQuery && (
-                <motion.div
-                  initial={{ opacity: 0, y: -4 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -4 }}
-                  className="mt-3 text-center"
+            {/* Result count + sort */}
+            <div className="flex items-center justify-between gap-4 mt-4 mb-6">
+              <div className="text-sm text-muted-foreground">
+                <span className="font-semibold text-foreground">
+                  {filteredProjects.length}
+                </span>{" "}
+                project{filteredProjects.length !== 1 ? "s" : ""}
+                {hasActiveFilter && (
+                  <span className="hidden ml-1 sm:inline">· filtered</span>
+                )}
+              </div>
+
+              <div className="flex items-center gap-2 sm:gap-3">
+                <Icon
+                  name="ArrowUpDown"
+                  size={16}
+                  className="hidden text-muted-foreground sm:block"
+                />
+                <span className="hidden text-sm font-medium text-foreground sm:inline">
+                  Sort:
+                </span>
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="px-3 py-2 text-xs border rounded-lg sm:text-sm bg-card border-border focus:outline-none focus:ring-2 focus:ring-primary"
                 >
-                  <p className="text-sm text-muted-foreground">
-                    Found{" "}
-                    <span className="font-semibold text-primary">
-                      {filteredProjects.length}
-                    </span>{" "}
-                    project{filteredProjects.length !== 1 ? "s" : ""} matching{" "}
-                    <span className="font-medium text-foreground">
-                      "{searchQuery}"
+                  {sortOptions.map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Active filter chips — visible on ALL screen sizes */}
+            <AnimatePresence>
+              {hasActiveFilter && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="overflow-hidden"
+                >
+                  <div className="flex items-center gap-2 pb-4 mb-6 border-b border-border">
+                    <span className="text-xs font-medium text-muted-foreground">
+                      Active:
                     </span>
-                  </p>
+                    <button
+                      onClick={() => setActiveCategory("all")}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold hover:bg-primary/20 transition"
+                    >
+                      <Icon name={activeCategoryObj?.icon} size={12} />
+                      {activeCategoryObj?.name}
+                      <X className="w-3 h-3 ml-0.5" />
+                    </button>
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
           </motion.div>
 
-          {/* Category Tabs — DESKTOP ONLY */}
-          <div className="hidden mb-10 lg:block">
-            <div className="flex items-start justify-between gap-4 mb-6 sm:items-center">
-              <div>
-                <h2 className="text-2xl font-bold text-foreground">
-                  Browse by Category
-                </h2>
-                <p className="mt-1 text-muted-foreground">
-                  Filter projects based on technology stack
-                </p>
-              </div>
-              <div className="text-sm text-muted-foreground">
-                Total: {allProjects.length} projects
-              </div>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {categories.map((category) => {
-                const isActive = activeCategory === category.id;
-                return (
-                  <button
-                    key={category.id}
-                    onClick={() => setActiveCategory(category.id)}
-                    className={`flex items-center gap-2 px-4 py-3 rounded-xl transition-all duration-200 ${
-                      isActive
-                        ? "bg-primary text-white shadow-md shadow-primary/20"
-                        : "bg-card hover:bg-accent text-foreground border border-border"
-                    }`}
-                  >
-                    <Icon name={category.icon} size={18} />
-                    <span className="font-medium">{category.name}</span>
-                    <span
-                      className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
-                        isActive ? "bg-white/20" : "bg-primary/10 text-primary"
-                      }`}
-                    >
-                      {getCategoryCount(category.id)}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Active filter chip — mobile */}
-          <AnimatePresence>
-            {hasActiveFilter && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                className="overflow-hidden lg:hidden"
-              >
-                <div className="flex items-center gap-2 pb-4 mb-4 border-b border-border">
-                  <span className="text-xs font-medium text-muted-foreground">
-                    Active filter:
-                  </span>
-                  <button
-                    onClick={() => setActiveCategory("all")}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold hover:bg-primary/20 transition"
-                  >
-                    <Icon name={activeCategoryObj?.icon} size={12} />
-                    {activeCategoryObj?.name}
-                    <X className="w-3 h-3 ml-0.5" />
-                  </button>
+          {/* ============================================================ */}
+          {/* 🌐 WEB PROJECTS SECTION                                       */}
+          {/* ============================================================ */}
+          {webResults.length > 0 && (
+            <section className="mb-14">
+              <div className="flex items-center gap-3 mb-5">
+                <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10">
+                  <Icon name="Globe" size={20} className="text-primary" />
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                <div className="flex-1 min-w-0">
+                  <h2 className="text-lg font-bold sm:text-xl text-foreground">
+                    Web Projects
+                  </h2>
+                  <p className="text-xs truncate sm:text-sm text-muted-foreground">
+                    Full-stack apps, React applications & HTML/CSS websites
+                  </p>
+                </div>
+                <span className="flex-shrink-0 px-2.5 py-1 text-xs font-semibold rounded-full bg-primary/10 text-primary">
+                  {webResults.length}
+                </span>
+              </div>
 
-          {/* Sort + Result Count */}
-          <div className="flex items-center justify-between gap-4 mb-6">
-            <div className="text-sm text-muted-foreground">
-              <span className="font-semibold text-foreground">
-                {filteredProjects.length}
-              </span>{" "}
-              project{filteredProjects.length !== 1 ? "s" : ""}
-            </div>
-            <div className="flex items-center gap-2 sm:gap-3">
-              <Icon
-                name="ArrowUpDown"
-                size={18}
-                className="hidden text-muted-foreground sm:block"
-              />
-              <span className="hidden text-sm font-medium text-foreground sm:inline">
-                Sort:
-              </span>
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="px-3 py-2 text-xs border rounded-lg sm:text-sm bg-card border-border focus:outline-none focus:ring-2 focus:ring-primary"
-              >
-                {sortOptions.map((opt) => (
-                  <option key={opt.value} value={opt.value}>
-                    {opt.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
+              <div className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <AnimatePresence mode="popLayout">
+                  {webResults.map((project, index) => (
+                    <motion.div
+                      key={project.id}
+                      layout
+                      initial={{ opacity: 0, scale: 0.94 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.94 }}
+                      transition={{ duration: 0.3 }}
+                      onClick={(e) => {
+                        if (e.target.closest("button") || e.target.closest("a"))
+                          return;
+                        handleViewDetails(project);
+                      }}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          handleViewDetails(project);
+                        }
+                      }}
+                      className="cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-2xl"
+                    >
+                      <ProjectCard
+                        project={project}
+                        onViewDetails={handleViewDetails}
+                        index={index}
+                      />
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </div>
+            </section>
+          )}
 
-          {/* Grid — whole card clickable */}
-          <div className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <AnimatePresence mode="popLayout">
-              {filteredProjects.map((project, index) => (
-                <motion.div
-                  key={project.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3 }}
-                  onClick={(e) => {
-                    /* Don't trigger if user clicked a button/link inside */
-                    if (e.target.closest("button") || e.target.closest("a")) {
-                      return;
-                    }
-                    handleViewDetails(project);
-                  }}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      handleViewDetails(project);
-                    }
-                  }}
-                  className="cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-2xl"
-                >
-                  {project.projectType === "mobile" ? (
-                    <MobileAppPhoneCard
-                      app={project}
-                      onViewDetails={handleViewDetails}
-                      index={index}
-                    />
-                  ) : (
-                    <ProjectCard
-                      project={project}
-                      onViewDetails={handleViewDetails}
-                      index={index}
-                    />
-                  )}
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
+          {/* ============================================================ */}
+          {/* 📱 MOBILE APPS SECTION                                        */}
+          {/* ============================================================ */}
+          {mobileResults.length > 0 && (
+            <section className="pt-8 border-t border-border">
+              <div className="flex items-center gap-3 mb-5">
+                <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 rounded-xl bg-purple-500/10">
+                  <Icon
+                    name="Smartphone"
+                    size={20}
+                    className="text-purple-500"
+                  />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h2 className="text-lg font-bold sm:text-xl text-foreground">
+                    Mobile Applications
+                  </h2>
+                  <p className="text-xs truncate sm:text-sm text-muted-foreground">
+                    React Native apps for Android — download & try the APK
+                  </p>
+                </div>
+                <span className="flex-shrink-0 px-2.5 py-1 text-xs font-semibold rounded-full bg-purple-500/10 text-purple-500">
+                  {mobileResults.length}
+                </span>
+              </div>
 
-          {/* No results */}
+              <div className="grid grid-cols-1 gap-6 sm:gap-7 md:grid-cols-2 lg:grid-cols-3">
+                <AnimatePresence mode="popLayout">
+                  {mobileResults.map((project, index) => {
+                    const apkUrl = getApkUrl(project);
+                    return (
+                      <motion.div
+                        key={project.id}
+                        layout
+                        initial={{ opacity: 0, scale: 0.94 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.94 }}
+                        transition={{ duration: 0.3 }}
+                        className="flex flex-col"
+                      >
+                        <div
+                          onClick={(e) => {
+                            if (
+                              e.target.closest("button") ||
+                              e.target.closest("a")
+                            )
+                              return;
+                            handleViewDetails(project);
+                          }}
+                          role="button"
+                          tabIndex={0}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                              e.preventDefault();
+                              handleViewDetails(project);
+                            }
+                          }}
+                          className="cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-2xl"
+                        >
+                          <MobileAppPhoneCard
+                            app={project}
+                            onViewDetails={handleViewDetails}
+                            index={index}
+                          />
+                        </div>
+
+                        {/* APK ACTION ROW */}
+                        <div className="flex gap-2 mt-3">
+                          {apkUrl ? (
+                            <a
+                              href={apkUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                              download
+                              className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-white text-sm font-semibold shadow-sm shadow-primary/25 hover:bg-primary/90 transition"
+                            >
+                              <Download size={16} />
+                              Download APK
+                            </a>
+                          ) : (
+                            <div className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-muted text-muted-foreground text-sm font-medium border border-border">
+                              <Clock size={16} />
+                              {project.apkStatus || "APK Coming Soon"}
+                            </div>
+                          )}
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </AnimatePresence>
+              </div>
+            </section>
+          )}
+
+          {/* ---------------- NO RESULTS ---------------- */}
           {filteredProjects.length === 0 && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -491,7 +641,7 @@ const Projects = () => {
             </motion.div>
           )}
 
-          {/* Related */}
+          {/* ---------------- RELATED ---------------- */}
           {selectedProject && (
             <RelatedProjects
               projects={allProjects}
@@ -569,7 +719,7 @@ const Projects = () => {
       </section>
 
       {/* ================================================================ */}
-      {/* CTA — CLEAN & NEUTRAL                                             */}
+      {/* CTA                                                               */}
       {/* ================================================================ */}
       <section className="py-16 border-t sm:py-20 bg-background border-border">
         <div className="container-brand">
@@ -633,7 +783,7 @@ const Projects = () => {
       </section>
 
       {/* ================================================================ */}
-      {/* MOBILE FILTER — DROPS FROM TOP                                    */}
+      {/* FILTER DRAWER — SLIDES IN FROM LEFT (all screen sizes)            */}
       {/* ================================================================ */}
       <AnimatePresence>
         {isFilterOpen && (
@@ -645,31 +795,36 @@ const Projects = () => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
               onClick={() => setIsFilterOpen(false)}
-              className="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm"
             />
 
-            {/* Sheet — drops from TOP */}
-            <motion.div
-              initial={{ y: "-100%", opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: "-100%", opacity: 0 }}
+            {/* Drawer */}
+            <motion.aside
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
               transition={{
                 type: "spring",
                 damping: 32,
                 stiffness: 320,
                 mass: 0.9,
               }}
-              className="fixed top-0 left-0 right-0 z-[101] bg-card rounded-b-3xl shadow-2xl max-h-[85vh] overflow-hidden lg:hidden flex flex-col"
+              className="fixed top-0 bottom-0 left-0 z-[101] w-[88%] max-w-sm bg-card rounded-r-3xl shadow-2xl flex flex-col"
             >
               {/* Header */}
               <div className="flex items-center justify-between px-5 pt-5 pb-4 border-b border-border">
-                <div>
-                  <h3 className="text-base font-bold text-foreground">
-                    Filter Projects
-                  </h3>
-                  <p className="text-[11px] text-muted-foreground">
-                    Choose a category to filter
-                  </p>
+                <div className="flex items-center gap-2.5">
+                  <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-primary/10">
+                    <SlidersHorizontal className="w-4 h-4 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-bold text-foreground">
+                      Filter Projects
+                    </h3>
+                    <p className="text-[11px] text-muted-foreground">
+                      Choose a category to filter
+                    </p>
+                  </div>
                 </div>
                 <button
                   onClick={() => setIsFilterOpen(false)}
@@ -680,55 +835,10 @@ const Projects = () => {
                 </button>
               </div>
 
-              {/* Category list */}
-              <div className="flex-1 p-4 space-y-2 overflow-y-auto">
-                {categories.map((category) => {
-                  const isActive = activeCategory === category.id;
-                  return (
-                    <button
-                      key={category.id}
-                      onClick={() => {
-                        setActiveCategory(category.id);
-                        setTimeout(() => setIsFilterOpen(false), 200);
-                      }}
-                      className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all duration-200 ${
-                        isActive
-                          ? "bg-primary text-white shadow-md shadow-primary/25"
-                          : "bg-muted/50 hover:bg-muted text-foreground"
-                      }`}
-                    >
-                      <div
-                        className={`flex items-center justify-center w-9 h-9 rounded-xl flex-shrink-0 ${
-                          isActive ? "bg-white/20" : "bg-background"
-                        }`}
-                      >
-                        <Icon name={category.icon} size={18} />
-                      </div>
-                      <div className="flex-1 text-left">
-                        <p className="text-sm font-semibold">{category.name}</p>
-                        <p
-                          className={`text-[11px] ${
-                            isActive ? "text-white/75" : "text-muted-foreground"
-                          }`}
-                        >
-                          {getCategoryCount(category.id)} project
-                          {getCategoryCount(category.id) !== 1 ? "s" : ""}
-                        </p>
-                      </div>
-                      {isActive && (
-                        <div className="flex items-center justify-center w-6 h-6 bg-white rounded-full">
-                          <Check
-                            className="w-3.5 h-3.5 text-primary"
-                            strokeWidth={3}
-                          />
-                        </div>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
+              {/* Panel */}
+              <div className="flex-1 p-4 overflow-y-auto">{filterPanel}</div>
 
-              {/* Footer actions */}
+              {/* Footer */}
               <div className="flex items-center gap-3 p-4 pb-5 border-t border-border bg-card">
                 <button
                   onClick={() => {
@@ -747,7 +857,7 @@ const Projects = () => {
                   {filteredProjects.length !== 1 ? "s" : ""}
                 </button>
               </div>
-            </motion.div>
+            </motion.aside>
           </>
         )}
       </AnimatePresence>

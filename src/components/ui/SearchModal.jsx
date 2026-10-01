@@ -1,461 +1,1532 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Search as SearchIcon, 
-  X, 
-  Layout, 
-  FolderOpen, 
-  Smartphone, 
-  Code2, 
-  Award, 
-  GraduationCap, 
-  Mail, 
-  FileText,
-  ArrowRight,
-  Sparkles,
-  Command,
-  CornerDownLeft,
-  ArrowUp,
-  ArrowDown,
-  Clock,
-  Briefcase,
-  User,
-  Home
-} from "lucide-react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-// Authoritative Search Data
-export const searchData = [
-  // Core Pages
-  { id: "home-1", title: "Home", path: "/", category: "Page", description: "Welcome to my portfolio — Ratnakar Singh Parihar", keywords: ["home", "welcome", "portfolio", "main", "start"], icon: Home },
-  { id: "about-1", title: "About Me", path: "/about", category: "Page", description: "Full-Stack Engineer journey, background, and technical philosophy", keywords: ["about", "bio", "journey", "background", "story"], icon: User },
-  { id: "skills-1", title: "Skills & Technologies", path: "/skills", category: "Page", description: "MERN Stack, React Native, Java, REST APIs, Databases & Dev Tools", keywords: ["skills", "technologies", "react", "node", "mongodb", "express", "java", "native"], icon: Code2 },
-  { id: "projects-1", title: "All Projects", path: "/projects", category: "Page", description: "Web applications, MERN stack platforms, and iOS/Android mobile apps", keywords: ["projects", "portfolio", "work", "showcase", "apps"], icon: FolderOpen },
-  { id: "experience-1", title: "Professional Experience", path: "/experience", category: "Page", description: "BinaryLogix, Sky Info Group internship, and Freelance engineering", keywords: ["experience", "internship", "work", "binarylogix", "job", "career"], icon: Briefcase },
-  { id: "education-1", title: "Academic Background", path: "/education", category: "Page", description: "B.Tech Computer Science Engineering (2022-2026) & Schooling", keywords: ["education", "academic", "qualification", "btech", "degree", "school"], icon: GraduationCap },
-  { id: "achievements-1", title: "Verified Achievements", path: "/achievements", category: "Page", description: "300+ DSA Problems Solved, HackerRank Certifications & Coding Challenges", keywords: ["achievements", "awards", "certifications", "hackerrank", "dsa", "leetcode"], icon: Award },
-  { id: "contact-1", title: "Contact & Collaboration", path: "/contact", category: "Page", description: "Get in touch for engineering roles, project inquiries, or discovery calls", keywords: ["contact", "email", "message", "hire", "reach", "connect"], icon: Mail },
+import {
+  Search,
+  X,
+  ArrowUp,
+  ArrowDown,
+  CornerDownLeft,
+  ExternalLink,
+  Linkedin,
+  Github,
+  Mail,
+  Twitter,
+  MessageCircle,
+} from "lucide-react";
 
-  // Key Projects
-  { id: "project-vsbp", title: "Vehicle Service Booking Platform", path: "/projects", category: "Project", description: "Full-stack MERN platform for vehicle service booking with real-time tracking", keywords: ["vehicle", "service", "booking", "mern", "fullstack"], icon: FolderOpen },
-  { id: "project-yammiverse", title: "YammiVerse", path: "/projects", category: "Project", description: "Recipe sharing platform built for food enthusiasts to discover and share recipes", keywords: ["recipe", "food", "cooking", "yammiverse"], icon: FolderOpen },
-  { id: "project-jeevandaan", title: "Jeevandaan Care Platform", path: "/projects", category: "Project", description: "Healthcare platform for blood and organ donation matching", keywords: ["blood", "organ", "donation", "healthcare", "jeevandaan"], icon: FolderOpen },
-  { id: "app-parkeasy", title: "ParkEasy Mobile App", path: "/projects", category: "Mobile App", description: "Smart parking management app with real-time slot booking built in React Native", keywords: ["parking", "parkeasy", "react native", "mobile", "ios", "android"], icon: Smartphone },
-  { id: "app-foodiehub", title: "FoodieHub Mobile App", path: "/projects", category: "Mobile App", description: "Cross-platform food delivery app for iOS and Android", keywords: ["food", "delivery", "mobile", "foodiehub"], icon: Smartphone },
+/* =========================================================
+   SEARCH DATA
+========================================================= */
 
-  // Specific Skills
-  { id: "skill-react", title: "React.js & React Native", path: "/skills", category: "Skill", description: "Frontend web & mobile app development with hooks, state & navigation", keywords: ["react", "native", "frontend", "hooks", "components"], icon: Code2 },
-  { id: "skill-node", title: "Node.js & Express.js", path: "/skills", category: "Skill", description: "Backend REST APIs, authentication middleware, and server architecture", keywords: ["node", "express", "backend", "api", "rest"], icon: Code2 },
-  { id: "skill-mongodb", title: "MongoDB & Databases", path: "/skills", category: "Skill", description: "Document schemas, Mongoose models, aggregation pipelines & MySQL", keywords: ["mongodb", "mysql", "database", "mongoose"], icon: Code2 },
-  { id: "skill-java", title: "Java & Algorithms", path: "/skills", category: "Skill", description: "Object-oriented programming, data structures, and algorithmic logic", keywords: ["java", "dsa", "algorithms", "data structures"], icon: Code2 },
+const searchData = [
+  /* =======================================================
+     PAGES
+  ======================================================= */
 
-  // Contact Items
-  { id: "contact-email", title: "Direct Email", path: "/contact", category: "Contact", description: "ratnakarsinghparihar07@gmail.com", keywords: ["email", "mail", "contact"], isContact: true, icon: Mail },
-  { id: "contact-linkedin", title: "LinkedIn Profile", path: "/contact", category: "Contact", description: "linkedin.com/in/ratnakar-singh-parihar", keywords: ["linkedin", "professional"], externalUrl: "https://www.linkedin.com/in/ratnakar-singh-parihar-a87528260/", icon: Mail },
-  { id: "contact-github", title: "GitHub Repositories", path: "/contact", category: "Contact", description: "github.com/Ratnakar-Singh-parihar-123", keywords: ["github", "code", "repos"], externalUrl: "https://github.com/Ratnakar-Singh-parihar-123", icon: Mail },
+  {
+    id: "home",
+    title: "Home",
+    description: "Explore my portfolio and latest work.",
+    category: "Pages",
+    path: "/",
+    keywords: ["home", "main", "portfolio", "landing"],
+  },
+
+  {
+    id: "about",
+    title: "About",
+    description: "Learn more about me, my background and development journey.",
+    category: "Pages",
+    path: "/about",
+    keywords: ["about", "profile", "ratnakar", "developer", "background"],
+  },
+
+  {
+    id: "projects",
+    title: "Projects",
+    description: "Explore my web, mobile and full-stack projects.",
+    category: "Pages",
+    path: "/projects",
+    keywords: ["projects", "work", "portfolio", "apps", "applications"],
+  },
+
+  {
+    id: "experience",
+    title: "Experience",
+    description: "View my internship and professional experience.",
+    category: "Pages",
+    path: "/experience",
+    keywords: ["experience", "internship", "career", "work"],
+  },
+
+  {
+    id: "skills",
+    title: "Tech Stack",
+    description: "Technologies, tools and development skills I work with.",
+    category: "Pages",
+    path: "/skills",
+    keywords: [
+      "skills",
+      "tech",
+      "stack",
+      "technology",
+      "technologies",
+      "mern",
+      "react",
+      "java",
+    ],
+  },
+
+  {
+    id: "achievements",
+    title: "Achievements",
+    description: "Certifications, accomplishments and coding achievements.",
+    category: "Pages",
+    path: "/achievements",
+    keywords: ["achievements", "certificates", "certifications", "coding"],
+  },
+
+  {
+    id: "contact",
+    title: "Contact",
+    description: "Get in touch for opportunities and collaborations.",
+    category: "Pages",
+    path: "/contact",
+    keywords: ["contact", "reach", "connect", "message"],
+  },
+
+  {
+    id: "education",
+    title: "Education",
+    description: "My academic journey and educational background.",
+    category: "Pages",
+    path: "/education",
+    keywords: ["education", "college", "school", "btech", "degree"],
+  },
+
+  /* =======================================================
+     PROJECTS
+  ======================================================= */
+
+  {
+    id: "vehicle-service",
+    title: "Vehicle Service Booking Platform",
+    description:
+      "MERN-based vehicle service booking platform with real-time communication.",
+    category: "Projects",
+    path: "/projects",
+    keywords: [
+      "vehicle",
+      "service",
+      "booking",
+      "mern",
+      "socket",
+      "socket.io",
+      "project",
+    ],
+  },
+
+  {
+    id: "foodmitra",
+    title: "FoodMitra",
+    description:
+      "Food delivery ecosystem with customer, rider and House Tiffin applications.",
+    category: "Projects",
+    path: "/projects",
+    keywords: [
+      "foodmitra",
+      "food",
+      "delivery",
+      "rider",
+      "customer",
+      "tiffin",
+      "mern",
+      "react native",
+      "project",
+    ],
+  },
+
+  {
+    id: "yammiverse",
+    title: "YammiVerse",
+    description:
+      "Food and social-style platform built with modern web technologies.",
+    category: "Projects",
+    path: "/projects",
+    keywords: ["yammiverse", "yammi", "food", "social", "mern", "project"],
+  },
+
+  {
+    id: "jeevandaan",
+    title: "Jeevandaan",
+    description:
+      "Blood and organ donation platform with OTP, maps and real-time features.",
+    category: "Projects",
+    path: "/projects",
+    keywords: [
+      "jeevandaan",
+      "blood",
+      "organ",
+      "donation",
+      "otp",
+      "twilio",
+      "socket.io",
+      "mapbox",
+      "project",
+    ],
+  },
+
+  {
+    id: "parkeasy",
+    title: "ParkEasy",
+    description:
+      "React Native parking application for discovering and booking parking spaces.",
+    category: "Projects",
+    path: "/projects",
+    keywords: [
+      "parkeasy",
+      "parking",
+      "react native",
+      "expo",
+      "mobile",
+      "project",
+    ],
+  },
+
+  {
+    id: "scalagate",
+    title: "ScaleGate",
+    description:
+      "Java high-performance load balancer focused on system design and scalability.",
+    category: "Projects",
+    path: "/projects",
+    keywords: [
+      "scalagate",
+      "load balancer",
+      "java",
+      "system design",
+      "dsa",
+      "multithreading",
+      "networking",
+      "backend",
+      "project",
+    ],
+  },
+
+  /* =======================================================
+     SKILLS
+  ======================================================= */
+
+  {
+    id: "react",
+    title: "React",
+    description: "Frontend development with React.js.",
+    category: "Skills",
+    path: "/skills",
+    keywords: ["react", "frontend", "javascript", "ui"],
+  },
+
+  {
+    id: "react-native",
+    title: "React Native",
+    description: "Cross-platform mobile application development.",
+    category: "Skills",
+    path: "/skills",
+    keywords: ["react native", "mobile", "expo", "android", "ios"],
+  },
+
+  {
+    id: "mern",
+    title: "MERN Stack",
+    description: "MongoDB, Express.js, React.js and Node.js.",
+    category: "Skills",
+    path: "/skills",
+    keywords: ["mern", "mongodb", "express", "react", "node", "full stack"],
+  },
+
+  {
+    id: "node",
+    title: "Node.js",
+    description: "Backend development and REST API development.",
+    category: "Skills",
+    path: "/skills",
+    keywords: ["node", "nodejs", "backend", "express", "api"],
+  },
+
+  {
+    id: "java",
+    title: "Java",
+    description: "Java programming, OOP, DSA and backend fundamentals.",
+    category: "Skills",
+    path: "/skills",
+    keywords: ["java", "oop", "dsa", "backend"],
+  },
+
+  {
+    id: "javascript",
+    title: "JavaScript",
+    description: "Modern JavaScript and ES6+ development.",
+    category: "Skills",
+    path: "/skills",
+    keywords: ["javascript", "js", "es6", "frontend", "backend"],
+  },
+
+  {
+    id: "dsa",
+    title: "Data Structures & Algorithms",
+    description: "Problem solving and algorithmic fundamentals.",
+    category: "Skills",
+    path: "/skills",
+    keywords: ["dsa", "algorithms", "data structures", "problem solving"],
+  },
+
+  {
+    id: "system-design",
+    title: "System Design",
+    description: "Learning scalable architecture, HLD and LLD concepts.",
+    category: "Skills",
+    path: "/skills",
+    keywords: [
+      "system design",
+      "hld",
+      "lld",
+      "architecture",
+      "scalability",
+      "distributed systems",
+    ],
+  },
+
+  {
+    id: "mongodb",
+    title: "MongoDB",
+    description: "NoSQL database development with MongoDB.",
+    category: "Skills",
+    path: "/skills",
+    keywords: ["mongodb", "database", "nosql"],
+  },
+
+  {
+    id: "mysql",
+    title: "MySQL",
+    description: "Relational database and SQL fundamentals.",
+    category: "Skills",
+    path: "/skills",
+    keywords: ["mysql", "sql", "database", "relational"],
+  },
+
+  /* =======================================================
+     CONTACT
+  ======================================================= */
+
+  {
+    id: "email",
+    title: "Email Me",
+    description: "ratnakarsinghparihar9399@gmail.com",
+    category: "Contact",
+    type: "contact-email",
+    keywords: ["email", "mail", "gmail", "contact"],
+  },
+
+  {
+    id: "linkedin",
+    title: "LinkedIn",
+    description: "Connect with me professionally on LinkedIn.",
+    category: "Contact",
+    externalUrl: "https://www.linkedin.com/in/ratnakarsinghparihar/",
+    keywords: ["linkedin", "professional", "social"],
+  },
+
+  {
+    id: "github",
+    title: "GitHub",
+    description: "Explore my source code and projects.",
+    category: "Contact",
+    externalUrl: "https://github.com/Ratnakar-Singh-parihar-123",
+    keywords: ["github", "code", "repositories", "projects", "source"],
+  },
+
+  {
+    id: "twitter",
+    title: "Twitter / X",
+    description: "Follow me on Twitter / X.",
+    category: "Contact",
+    externalUrl: "https://x.com/RatnakarSi85551",
+    keywords: ["twitter", "x", "social"],
+  },
 ];
 
+/* =========================================================
+   POPULAR SEARCHES
+========================================================= */
+
+// const POPULAR = ["React", "MERN", "Java", "DSA", "Projects"];
+
+/* =========================================================
+   SOCIAL ICONS
+========================================================= */
+
+const SOCIAL_ICONS = [
+  {
+    id: "linkedin",
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/ratnakarsinghparihar/",
+    icon: Linkedin,
+    tint: "rgba(10, 102, 194, 0.10)",
+    hover: "rgba(10, 102, 194, 0.16)",
+  },
+  {
+    id: "github",
+    label: "GitHub",
+    href: "https://github.com/Ratnakar-Singh-parihar-123",
+    icon: Github,
+    tint: "rgba(100, 116, 139, 0.10)",
+    hover: "rgba(100, 116, 139, 0.17)",
+  },
+  {
+    id: "contact",
+    label: "Contact",
+    href: "/contact",
+    icon: MessageCircle,
+    tint: "rgba(244, 63, 94, 0.09)",
+    hover: "rgba(244, 63, 94, 0.15)",
+  },
+  {
+    id: "mail",
+    label: "Email",
+    href: "mailto:ratnakarsinghparihar9399@gmail.com",
+    icon: Mail,
+    tint: "rgba(16, 185, 129, 0.09)",
+    hover: "rgba(16, 185, 129, 0.15)",
+  },
+  {
+    id: "twitter",
+    label: "Twitter / X",
+    href: "https://twitter.com/",
+    icon: Twitter,
+    tint: "rgba(71, 85, 105, 0.09)",
+    hover: "rgba(71, 85, 105, 0.15)",
+  },
+];
+
+/* =========================================================
+   KEYBOARD BADGE
+========================================================= */
+
+const Kbd = ({ children }) => {
+  return (
+    <span
+      className="
+        inline-flex
+        min-w-[22px]
+        items-center
+        justify-center
+        rounded-md
+        bg-slate-100
+        px-1.5
+        py-1
+        text-[10px]
+        font-medium
+        text-slate-500
+        shadow-[inset_0_-1px_0_rgba(15,23,42,0.08)]
+        dark:bg-white/[0.07]
+        dark:text-slate-400
+        dark:shadow-[inset_0_-1px_0_rgba(255,255,255,0.05)]
+      "
+    >
+      {children}
+    </span>
+  );
+};
+
+/* =========================================================
+   HIGHLIGHT SEARCH TEXT
+========================================================= */
+
+const Highlight = ({ text, query }) => {
+  if (!query?.trim()) {
+    return <>{text}</>;
+  }
+
+  const cleanQuery = query.trim();
+
+  const parts = text.split(new RegExp(`(${escapeRegExp(cleanQuery)})`, "gi"));
+
+  return (
+    <>
+      {parts.map((part, index) => {
+        const matched = part.toLowerCase() === cleanQuery.toLowerCase();
+
+        return matched ? (
+          <mark
+            key={index}
+            className="
+              rounded-[4px]
+              bg-slate-200
+              px-0.5
+              text-slate-900
+              dark:bg-white/[0.12]
+              dark:text-white
+            "
+          >
+            {part}
+          </mark>
+        ) : (
+          <React.Fragment key={index}>{part}</React.Fragment>
+        );
+      })}
+    </>
+  );
+};
+
+/* =========================================================
+   ESCAPE REGEX
+========================================================= */
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/* =========================================================
+   SEARCH MODAL
+========================================================= */
+
 const SearchModal = ({ isOpen, onClose }) => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const searchInputRef = useRef(null);
-  const resultsContainerRef = useRef(null);
   const navigate = useNavigate();
+  const reduceMotion = useReducedMotion();
 
-  // Quick navigation suggestions when query is empty
-  const quickNav = useMemo(() => [
-    { title: "Home", path: "/", icon: Home, badge: "Main" },
-    { title: "About Me", path: "/about", icon: User, badge: "Story" },
-    { title: "Skills", path: "/skills", icon: Code2, badge: "Tech" },
-    { title: "Experience", path: "/experience", icon: Briefcase, badge: "Career" },
-    { title: "Projects", path: "/projects", icon: FolderOpen, badge: "Work" },
-    { title: "Education", path: "/education", icon: GraduationCap, badge: "Academic" },
-    { title: "Achievements", path: "/achievements", icon: Award, badge: "300+ DSA" },
-    { title: "Contact", path: "/contact", icon: Mail, badge: "Connect" },
-  ], []);
+  const inputRef = useRef(null);
+  const resultsRef = useRef(null);
 
-  // Lock scroll & focus input on open
+  const [query, setQuery] = useState("");
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  /* =======================================================
+     RESET WHEN OPENING
+  ======================================================= */
+
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-      const timer = setTimeout(() => searchInputRef.current?.focus(), 80);
-      return () => clearTimeout(timer);
-    } else {
-      document.body.style.overflow = "";
-      setSearchQuery("");
-      setSearchResults([]);
-      setSelectedIndex(0);
-    }
+    if (!isOpen) return;
+
+    setQuery("");
+    setSelectedIndex(0);
+
+    const timer = window.setTimeout(() => {
+      inputRef.current?.focus();
+    }, 80);
+
+    return () => window.clearTimeout(timer);
   }, [isOpen]);
 
-  // Global Cmd+K / Ctrl+K keyboard shortcut listener
+  /* =======================================================
+     CMD / CTRL + K
+  ======================================================= */
+
   useEffect(() => {
-    const handleGlobalKeyDown = (e) => {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
-        e.preventDefault();
-        if (isOpen) {
-          onClose();
-        } else {
-          // If search trigger is called from anywhere
-          const event = new CustomEvent("openSearchModal");
-          window.dispatchEvent(event);
-        }
+    const handleKeyboardShortcut = (event) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+
+        /*
+         * IMPORTANT:
+         * Since Dock controls this component,
+         * Cmd/Ctrl + K needs to communicate with
+         * the parent through the custom event.
+         */
+
+        window.dispatchEvent(new CustomEvent("openSearchModal"));
       }
     };
-    window.addEventListener("keydown", handleGlobalKeyDown);
-    return () => window.removeEventListener("keydown", handleGlobalKeyDown);
-  }, [isOpen, onClose]);
 
-  // Perform filtering
-  const handleSearch = useCallback((query) => {
-    if (!query.trim()) {
-      setSearchResults([]);
-      setSelectedIndex(0);
-      return;
-    }
-    const lowerQuery = query.toLowerCase().trim();
-    const results = searchData.filter((item) => {
-      if (item.title.toLowerCase().includes(lowerQuery)) return true;
-      if (item.description.toLowerCase().includes(lowerQuery)) return true;
-      if (item.category.toLowerCase().includes(lowerQuery)) return true;
-      if (item.keywords?.some((k) => k.toLowerCase().includes(lowerQuery))) return true;
-      return false;
-    });
+    window.addEventListener("keydown", handleKeyboardShortcut);
 
-    // Rank title matches first
-    const sortedResults = results.sort((a, b) => {
-      const aTitleMatch = a.title.toLowerCase().includes(lowerQuery);
-      const bTitleMatch = b.title.toLowerCase().includes(lowerQuery);
-      if (aTitleMatch && !bTitleMatch) return -1;
-      if (!aTitleMatch && bTitleMatch) return 1;
-      return 0;
-    });
-
-    setSearchResults(sortedResults);
-    setSelectedIndex(0);
+    return () => {
+      window.removeEventListener("keydown", handleKeyboardShortcut);
+    };
   }, []);
 
+  /* =======================================================
+     HEADER / OTHER COMPONENT SEARCH EVENT
+  ======================================================= */
+
   useEffect(() => {
-    const timer = setTimeout(() => handleSearch(searchQuery), 120);
-    return () => clearTimeout(timer);
-  }, [searchQuery, handleSearch]);
+    const handleOpenSearch = () => {
+      /*
+       * We cannot directly change parent's state.
+       *
+       * Instead we support the event by calling a
+       * callback event that Dock listens to.
+       */
 
-  const handleResultClick = useCallback((result) => {
-    if (result.externalUrl) {
-      window.open(result.externalUrl, "_blank");
-    } else {
-      navigate(result.path);
-      if (result.isContact) {
-        setTimeout(() => {
-          const element = document.getElementById(result.id);
-          if (element) element.scrollIntoView({ behavior: "smooth" });
-        }, 100);
-      }
-    }
-    onClose();
-  }, [navigate, onClose]);
+      window.dispatchEvent(new CustomEvent("searchModalRequest"));
+    };
 
-  // Keyboard navigation inside modal
+    window.addEventListener("openSearchModal", handleOpenSearch);
+
+    return () => {
+      window.removeEventListener("openSearchModal", handleOpenSearch);
+    };
+  }, []);
+
+  /* =======================================================
+     IMPORTANT BRIDGE
+     
+     Dock needs to listen to searchModalRequest.
+     This component itself cannot update parent's state.
+     
+     To make Cmd/Ctrl+K work without changing Dock,
+     we use the existing openSearchModal event only when
+     this component is already controlled.
+  ======================================================= */
+
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (!isOpen) return;
+    if (!isOpen) return;
 
-      const activeList = searchQuery.trim() ? searchResults : quickNav;
-      const maxIndex = activeList.length - 1;
-
-      switch (e.key) {
-        case "ArrowDown":
-          e.preventDefault();
-          setSelectedIndex((prev) => (prev < maxIndex ? prev + 1 : 0));
-          break;
-
-        case "ArrowUp":
-          e.preventDefault();
-          setSelectedIndex((prev) => (prev > 0 ? prev - 1 : maxIndex));
-          break;
-
-        case "Enter":
-          e.preventDefault();
-          if (activeList.length > 0 && activeList[selectedIndex]) {
-            handleResultClick(activeList[selectedIndex]);
-          }
-          break;
-
-        case "Escape":
-          e.preventDefault();
-          onClose();
-          break;
+    const handleCloseShortcut = (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        onClose?.();
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, searchQuery, searchResults, quickNav, selectedIndex, handleResultClick, onClose]);
+    window.addEventListener("keydown", handleCloseShortcut);
 
-  // Auto scroll active item into view
+    return () => {
+      window.removeEventListener("keydown", handleCloseShortcut);
+    };
+  }, [isOpen, onClose]);
+
+  /* =======================================================
+     BODY SCROLL LOCK
+  ======================================================= */
+
   useEffect(() => {
-    if (resultsContainerRef.current) {
-      const activeEl = resultsContainerRef.current.querySelector('[data-selected="true"]');
-      if (activeEl) {
-        activeEl.scrollIntoView({ block: "nearest", behavior: "smooth" });
-      }
+    if (!isOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen]);
+
+  /* =======================================================
+     SEARCH RESULTS
+  ======================================================= */
+
+  const filteredResults = useMemo(() => {
+    const value = query.trim().toLowerCase();
+
+    if (!value) {
+      return [];
     }
-  }, [selectedIndex]);
 
-  // Group search results by category
-  const groupedResults = useMemo(() => {
-    const groups = {};
-    searchResults.forEach((item) => {
-      if (!groups[item.category]) groups[item.category] = [];
-      groups[item.category].push(item);
+    const scored = searchData
+      .map((item) => {
+        const title = item.title.toLowerCase();
+        const description = item.description.toLowerCase();
+        const keywords = (item.keywords || []).map((keyword) =>
+          keyword.toLowerCase(),
+        );
+
+        let score = 0;
+
+        if (title === value) {
+          score += 100;
+        }
+
+        if (title.startsWith(value)) {
+          score += 70;
+        }
+
+        if (title.includes(value)) {
+          score += 50;
+        }
+
+        if (description.includes(value)) {
+          score += 20;
+        }
+
+        keywords.forEach((keyword) => {
+          if (keyword === value) {
+            score += 60;
+          } else if (keyword.startsWith(value)) {
+            score += 35;
+          } else if (keyword.includes(value)) {
+            score += 20;
+          }
+        });
+
+        return {
+          ...item,
+          score,
+        };
+      })
+      .filter((item) => item.score > 0)
+      .sort((a, b) => b.score - a.score);
+
+    return scored.slice(0, 12);
+  }, [query]);
+
+  /* =======================================================
+     RESET SELECTED INDEX
+  ======================================================= */
+
+  useEffect(() => {
+    setSelectedIndex(0);
+  }, [query]);
+
+  /* =======================================================
+     SCROLL SELECTED RESULT INTO VIEW
+  ======================================================= */
+
+  useEffect(() => {
+    if (!query.trim()) return;
+
+    const selectedElement = resultsRef.current?.querySelector(
+      `[data-search-index="${selectedIndex}"]`,
+    );
+
+    selectedElement?.scrollIntoView({
+      block: "nearest",
+      behavior: reduceMotion ? "auto" : "smooth",
     });
-    return groups;
-  }, [searchResults]);
+  }, [selectedIndex, query, reduceMotion]);
 
-  if (!isOpen) return null;
+  /* =======================================================
+     OPEN RESULT
+  ======================================================= */
+
+  const openResult = (item) => {
+    if (!item) return;
+
+    if (item.externalUrl) {
+      window.open(item.externalUrl, "_blank", "noopener,noreferrer");
+      onClose?.();
+      return;
+    }
+
+    if (item.type === "contact-email") {
+      window.location.href = "mailto:ratnakarsinghparihar9399@gmail.com";
+
+      onClose?.();
+      return;
+    }
+
+    if (item.path) {
+      navigate(item.path);
+      onClose?.();
+    }
+  };
+
+  /* =======================================================
+     KEYBOARD NAVIGATION
+  ======================================================= */
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleNavigation = (event) => {
+      if (event.key === "ArrowDown") {
+        if (!filteredResults.length) return;
+
+        event.preventDefault();
+
+        setSelectedIndex((current) =>
+          current >= filteredResults.length - 1 ? 0 : current + 1,
+        );
+      }
+
+      if (event.key === "ArrowUp") {
+        if (!filteredResults.length) return;
+
+        event.preventDefault();
+
+        setSelectedIndex((current) =>
+          current <= 0 ? filteredResults.length - 1 : current - 1,
+        );
+      }
+
+      if (event.key === "Enter") {
+        if (!filteredResults.length) return;
+
+        event.preventDefault();
+
+        openResult(filteredResults[selectedIndex]);
+      }
+    };
+
+    window.addEventListener("keydown", handleNavigation);
+
+    return () => {
+      window.removeEventListener("keydown", handleNavigation);
+    };
+  }, [isOpen, filteredResults, selectedIndex]);
+
+  /* =======================================================
+     POPULAR SEARCH
+  ======================================================= */
+
+  // const handlePopularSearch = (value) => {
+  //   setQuery(value);
+
+  //   window.setTimeout(() => {
+  //     inputRef.current?.focus();
+  //   }, 20);
+  // };
+
+  /* =======================================================
+     SOCIAL CLICK
+  ======================================================= */
+
+  const handleSocialClick = (item) => {
+    if (item.href.startsWith("/")) {
+      navigate(item.href);
+      onClose?.();
+      return;
+    }
+
+    if (item.href.startsWith("mailto:")) {
+      window.location.href = item.href;
+      onClose?.();
+      return;
+    }
+
+    window.open(item.href, "_blank", "noopener,noreferrer");
+    onClose?.();
+  };
+
+  /* =======================================================
+     BACKDROP CLICK
+  ======================================================= */
+
+  const handleBackdropClick = (event) => {
+    if (event.target === event.currentTarget) {
+      onClose?.();
+    }
+  };
+
+  /* =======================================================
+     CLOSE
+  ======================================================= */
+
+  const closeModal = () => {
+    onClose?.();
+  };
+
+  /* =======================================================
+     RENDER
+  ======================================================= */
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[200] flex items-start sm:items-center justify-center pt-4 sm:pt-0 px-3 sm:px-4">
-        {/* Full-screen Backdrop with Blur */}
+      {isOpen && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          onClick={onClose}
-          className="absolute inset-0 bg-slate-900/50 dark:bg-black/70 backdrop-blur-md"
-        />
-
-        {/* macOS Command Palette Modal */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96, y: -16 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.96, y: -16 }}
-          transition={{ type: "spring", stiffness: 380, damping: 28 }}
-          className="relative w-full max-w-2xl bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl rounded-2xl sm:rounded-3xl shadow-2xl shadow-indigo-500/10 border border-slate-200/80 dark:border-slate-800/80 flex flex-col overflow-hidden z-10 max-h-[88vh] sm:max-h-[80vh]"
+          key="search-modal"
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+          }}
+          exit={{
+            opacity: 0,
+          }}
+          transition={{
+            duration: reduceMotion ? 0.12 : 0.22,
+            ease: "easeOut",
+          }}
+          onMouseDown={handleBackdropClick}
+          className="
+            fixed
+            inset-0
+            z-[200]
+            flex
+            items-start
+            justify-center
+            overflow-y-auto
+            bg-slate-950/[0.18]
+            px-4
+            pb-10
+            pt-[12vh]
+            backdrop-blur-[14px]
+            dark:bg-black/[0.52]
+            sm:px-6
+          "
         >
-          {/* Top Search Input Bar */}
-          <div className="relative flex items-center px-4 sm:px-6 py-4 border-b border-slate-200/80 dark:border-slate-800/80">
-            <SearchIcon className="text-indigo-500 dark:text-indigo-400 mr-3 flex-shrink-0" size={22} strokeWidth={2.5} />
-            
-            <input
-              ref={searchInputRef}
-              type="text"
-              placeholder="Search projects, skills, pages..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="flex-1 bg-transparent border-none outline-none text-slate-900 dark:text-white text-base sm:text-lg placeholder-slate-400 dark:placeholder-slate-500 font-medium"
-            />
-
-            {searchQuery ? (
-              <button
-                onClick={() => setSearchQuery("")}
-                className="p-1.5 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors mr-1"
-                aria-label="Clear search"
-              >
-                <X size={16} />
-              </button>
-            ) : (
-              <div className="hidden sm:flex items-center gap-1 px-2 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-400 text-[11px] font-mono border border-slate-200 dark:border-slate-700/60 mr-2">
-                <span>Esc</span>
-              </div>
-            )}
-
-            <button
-              onClick={onClose}
-              className="p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors"
-              aria-label="Close modal"
-            >
-              <X size={18} />
-            </button>
-          </div>
-
-          {/* Modal Content Scroll Area */}
-          <div 
-            ref={resultsContainerRef} 
-            className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-4 no-scrollbar min-h-[220px]"
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: reduceMotion ? 0 : -12,
+              scale: reduceMotion ? 1 : 0.97,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              scale: 1,
+            }}
+            exit={{
+              opacity: 0,
+              y: reduceMotion ? 0 : -8,
+              scale: reduceMotion ? 1 : 0.98,
+            }}
+            transition={{
+              duration: reduceMotion ? 0.14 : 0.32,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            onMouseDown={(event) => event.stopPropagation()}
+            className="
+              w-full
+              max-w-[820px]
+            "
           >
-            {/* Case 1: Empty Query — Quick Navigation Palette */}
-            {!searchQuery.trim() && (
-              <div>
-                <div className="flex items-center justify-between px-3 py-1.5 mb-2">
-                  <span className="text-xs font-bold tracking-wider text-slate-400 dark:text-slate-500 uppercase flex items-center gap-1.5">
-                    <Sparkles size={14} className="text-indigo-500" />
-                    Quick Navigation
-                  </span>
-                  <span className="text-[11px] text-slate-400 font-mono">Press ↵ to select</span>
+            {/* =================================================
+                SEARCH + SOCIAL
+            ================================================= */}
+
+            <div className="flex flex-col w-full gap-3 sm:flex-row sm:items-center">
+              {/* =================================================
+                  SEARCH BAR
+              ================================================= */}
+
+              <div
+                className="
+                  group
+                  relative
+                  flex
+                  h-[62px]
+                  min-w-0
+                  flex-1
+                  items-center
+                  overflow-hidden
+                  rounded-full
+                  bg-white/[0.97]
+                  shadow-[0_18px_55px_rgba(15,23,42,0.13),0_2px_10px_rgba(15,23,42,0.06)]
+                  backdrop-blur-2xl
+                  dark:bg-[#151619]/[0.98]
+                  dark:shadow-[0_22px_70px_rgba(0,0,0,0.38),0_2px_12px_rgba(0,0,0,0.24)]
+                "
+              >
+                {/* SEARCH ICON */}
+
+                <div
+                  className="
+                    ml-2
+                    flex
+                    h-11
+                    w-11
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-slate-100/90
+                    text-slate-500
+                    dark:bg-white/[0.065]
+                    dark:text-slate-400
+                  "
+                >
+                  <Search size={20} strokeWidth={2} />
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
-                  {quickNav.map((item, idx) => {
-                    const isSelected = selectedIndex === idx;
-                    const IconComp = item.icon;
+                {/* =================================================
+                    INPUT
+                    IMPORTANT:
+                    NO BORDER
+                    NO BLUE OUTLINE
+                    NO FOCUS RING
+                ================================================= */}
 
-                    return (
-                      <div
-                        key={item.path}
-                        data-selected={isSelected}
-                        onClick={() => handleResultClick(item)}
-                        onMouseEnter={() => setSelectedIndex(idx)}
-                        className={`
-                          flex items-center justify-between p-3 rounded-xl cursor-pointer transition-all duration-150 border
-                          ${isSelected 
-                            ? "bg-indigo-500/10 dark:bg-indigo-500/20 border-indigo-500/40 text-indigo-600 dark:text-indigo-400 shadow-sm" 
-                            : "border-transparent text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60"}
-                        `}
-                      >
-                        <div className="flex items-center gap-3">
-                          <div className={`p-2 rounded-lg ${isSelected ? "bg-indigo-500 text-white" : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400"}`}>
-                            <IconComp size={16} />
-                          </div>
-                          <span className="text-sm font-semibold">{item.title}</span>
-                        </div>
+                <input
+                  ref={inputRef}
+                  value={query}
+                  onChange={(event) => setQuery(event.target.value)}
+                  type="text"
+                  placeholder="Search portfolio..."
+                  autoComplete="off"
+                  spellCheck="false"
+                  aria-label="Search portfolio"
+                  className="
+                    spotlight-input
+                    h-full
+                    min-w-0
+                    flex-1
+                    bg-transparent
+                    px-4
+                    text-[15px]
+                    font-medium
+                    text-slate-900
+                    placeholder:text-slate-400
+                    focus:outline-none
+                    focus:ring-0
+                    focus:border-transparent
+                    active:outline-none
+                    dark:text-white
+                    dark:placeholder:text-slate-500
+                  "
+                  style={{
+                    outline: "none",
+                    boxShadow: "none",
+                    border: "0",
+                  }}
+                />
 
-                        <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">
-                          {item.badge}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
+                {/* CLEAR BUTTON */}
 
-                {/* Popular Topics Row */}
-                <div className="pt-4 mt-3 border-t border-slate-100 dark:border-slate-800/60 px-2">
-                  <p className="text-[11px] font-semibold text-slate-400 dark:text-slate-500 mb-2">
-                    Popular topics:
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {["React Native", "MERN Stack", "300+ DSA", "Vehicle Service App", "YammiVerse", "HackerRank"].map((query) => (
-                      <button
-                        key={query}
-                        onClick={() => setSearchQuery(query)}
-                        className="px-2.5 py-1 text-xs rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800/80 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors"
-                      >
-                        {query}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Case 2: Query Typed & Results Found */}
-            {searchQuery.trim() && searchResults.length > 0 && (
-              <div className="space-y-4">
-                {Object.entries(groupedResults).map(([category, items]) => (
-                  <div key={category} className="space-y-1">
-                    <div className="px-3 py-1.5 text-[11px] font-bold tracking-wider text-slate-400 dark:text-slate-500 uppercase flex items-center justify-between">
-                      <span>{category}s</span>
-                      <span>{items.length}</span>
-                    </div>
-
-                    {items.map((item) => {
-                      const globalIdx = searchResults.findIndex((r) => r.id === item.id);
-                      const isSelected = selectedIndex === globalIdx;
-                      const IconComp = item.icon || FileText;
-
-                      return (
-                        <div
-                          key={item.id}
-                          data-selected={isSelected}
-                          onClick={() => handleResultClick(item)}
-                          onMouseEnter={() => setSelectedIndex(globalIdx)}
-                          className={`
-                            flex items-center justify-between p-3 rounded-xl cursor-pointer transition-all duration-150 border group
-                            ${isSelected 
-                              ? "bg-indigo-500/10 dark:bg-indigo-500/20 border-indigo-500/40 text-indigo-600 dark:text-indigo-400 shadow-sm" 
-                              : "border-transparent text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60"}
-                          `}
-                        >
-                          <div className="flex items-center gap-3.5 min-w-0 flex-1">
-                            <div className={`p-2.5 rounded-xl shrink-0 transition-transform ${isSelected ? "bg-indigo-500 text-white scale-105" : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400"}`}>
-                              <IconComp size={18} />
-                            </div>
-
-                            <div className="min-w-0 flex-1 pr-2">
-                              <div className="flex items-center gap-2">
-                                <h4 className={`text-sm font-semibold truncate ${isSelected ? "text-indigo-600 dark:text-indigo-300" : "text-slate-900 dark:text-white"}`}>
-                                  {item.title}
-                                </h4>
-                                <span className="text-[10px] px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 font-medium shrink-0">
-                                  {item.category}
-                                </span>
-                              </div>
-                              <p className="text-xs text-slate-500 dark:text-slate-400 truncate mt-0.5">
-                                {item.description}
-                              </p>
-                            </div>
-                          </div>
-
-                          <ArrowRight 
-                            size={16} 
-                            className={`shrink-0 transition-transform ${isSelected ? "text-indigo-500 translate-x-1" : "text-slate-400 opacity-0 group-hover:opacity-100"}`} 
-                          />
-                        </div>
-                      );
-                    })}
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {/* Case 3: Query Typed & No Results Found */}
-            {searchQuery.trim() && searchResults.length === 0 && (
-              <div className="py-12 px-4 text-center">
-                <div className="w-16 h-16 rounded-2xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center mx-auto mb-4">
-                  <SearchIcon size={28} />
-                </div>
-                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-1">
-                  No matching results found
-                </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm mx-auto mb-6">
-                  We couldn't find anything matching "<span className="font-semibold text-indigo-500">{searchQuery}</span>". Try searching for "React", "Projects", "MERN", or "Skills".
-                </p>
-                <div className="flex flex-wrap justify-center gap-2">
-                  {["All Projects", "Skills", "Experience", "Contact"].map((btnText) => (
-                    <button
-                      key={btnText}
-                      onClick={() => setSearchQuery(btnText)}
-                      className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-indigo-500 hover:text-white dark:hover:bg-indigo-600 transition-colors"
+                <AnimatePresence>
+                  {query && (
+                    <motion.button
+                      type="button"
+                      initial={{
+                        opacity: 0,
+                        scale: 0.8,
+                      }}
+                      animate={{
+                        opacity: 1,
+                        scale: 1,
+                      }}
+                      exit={{
+                        opacity: 0,
+                        scale: 0.8,
+                      }}
+                      onClick={() => {
+                        setQuery("");
+                        inputRef.current?.focus();
+                      }}
+                      aria-label="Clear search"
+                      className="
+                        mr-2
+                        flex
+                        h-9
+                        w-9
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-full
+                        text-slate-400
+                        transition-all
+                        duration-200
+                        hover:bg-slate-100
+                        hover:text-slate-700
+                        dark:hover:bg-white/[0.07]
+                        dark:hover:text-white
+                      "
                     >
-                      {btnText}
+                      <X size={17} />
+                    </motion.button>
+                  )}
+                </AnimatePresence>
+
+                {/* DESKTOP SHORTCUT */}
+
+                {!query && (
+                  <div className="mr-4 hidden items-center gap-1.5 sm:flex">
+                    <Kbd>⌘</Kbd>
+                    <Kbd>K</Kbd>
+                  </div>
+                )}
+              </div>
+
+              {/* =================================================
+                  SOCIAL ICONS
+                  FULL CIRCLES
+              ================================================= */}
+
+              <div className="flex items-center justify-center gap-2 shrink-0 sm:justify-end">
+                {SOCIAL_ICONS.map((item) => {
+                  const Icon = item.icon;
+
+                  return (
+                    <motion.button
+                      key={item.id}
+                      type="button"
+                      onClick={() => handleSocialClick(item)}
+                      aria-label={item.label}
+                      title={item.label}
+                      whileHover={
+                        reduceMotion
+                          ? undefined
+                          : {
+                              y: -2,
+                              scale: 1.05,
+                            }
+                      }
+                      whileTap={
+                        reduceMotion
+                          ? undefined
+                          : {
+                              scale: 0.93,
+                            }
+                      }
+                      className="
+                        flex
+                        h-[46px]
+                        w-[46px]
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-full
+                        bg-white/[0.96]
+                        text-slate-500
+                        shadow-[0_12px_32px_rgba(15,23,42,0.10)]
+                        transition-colors
+                        duration-200
+                        hover:text-slate-900
+                        dark:bg-[#151619]/[0.98]
+                        dark:text-slate-400
+                        dark:shadow-[0_14px_35px_rgba(0,0,0,0.28)]
+                        dark:hover:text-white
+                      "
+                      style={{
+                        backgroundColor: item.tint,
+                      }}
+                      onMouseEnter={(event) => {
+                        event.currentTarget.style.backgroundColor = item.hover;
+                      }}
+                      onMouseLeave={(event) => {
+                        event.currentTarget.style.backgroundColor = item.tint;
+                      }}
+                    >
+                      <Icon size={18} strokeWidth={1.9} />
+                    </motion.button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* =================================================
+                POPULAR SEARCHES
+            ================================================= */}
+
+            {/* <AnimatePresence initial={false}>
+              {!query && (
+                <motion.div
+                  initial={{
+                    opacity: 0,
+                    y: -5,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  exit={{
+                    opacity: 0,
+                    y: -5,
+                  }}
+                  transition={{
+                    duration: reduceMotion ? 0.12 : 0.2,
+                  }}
+                  className="flex flex-wrap items-center gap-2 px-1 mt-3 "
+                >
+                  <span className="mr-1 text-[10px] font-medium uppercase tracking-[0.12em] text-white/80 drop-shadow-sm">
+                    Popular
+                  </span>
+
+                  {POPULAR.map((item) => (
+                    <button
+                      key={item}
+                      type="button"
+                      onClick={() => handlePopularSearch(item)}
+                      className="
+                        rounded-full
+                        bg-white/[0.78]
+                        px-3
+                        py-1.5
+                        text-[10px]
+                        font-medium
+                        text-slate-600
+                        shadow-[0_6px_20px_rgba(15,23,42,0.07)]
+                        transition-all
+                        duration-200
+                        hover:-translate-y-[1px]
+                        hover:bg-white
+                        hover:text-slate-900
+                        dark:bg-white/[0.08]
+                        dark:text-slate-300
+                        dark:hover:bg-white/[0.12]
+                        dark:hover:text-white
+                      "
+                    >
+                      {item}
                     </button>
                   ))}
-                </div>
-              </div>
-            )}
-          </div>
+                </motion.div>
+              )}
+            </AnimatePresence> */}
 
-          {/* Modal Command Palette Footer Bar */}
-          <div className="px-4 sm:px-6 py-3 border-t border-slate-200/80 dark:border-slate-800/80 bg-slate-50/80 dark:bg-slate-900/80 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
-            <div className="flex items-center gap-4">
-              <span className="flex items-center gap-1.5">
-                <kbd className="px-1.5 py-0.5 rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[10px] font-mono shadow-xs">↑</kbd>
-                <kbd className="px-1.5 py-0.5 rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[10px] font-mono shadow-xs">↓</kbd>
-                <span>Navigate</span>
-              </span>
+            {/* =================================================
+                RESULTS
+                ONLY EXPANDS WHEN USER TYPES
+            ================================================= */}
 
-              <span className="flex items-center gap-1.5">
-                <kbd className="px-1.5 py-0.5 rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[10px] font-mono shadow-xs">↵</kbd>
-                <span>Select</span>
-              </span>
+            <AnimatePresence initial={false}>
+              {query.trim() && (
+                <motion.div
+                  initial={{
+                    opacity: 0,
+                    height: 0,
+                    y: -8,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    height: "auto",
+                    y: 0,
+                  }}
+                  exit={{
+                    opacity: 0,
+                    height: 0,
+                    y: -5,
+                  }}
+                  transition={{
+                    duration: reduceMotion ? 0.12 : 0.3,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="overflow-hidden"
+                >
+                  <div
+                    ref={resultsRef}
+                    className="
+                      mt-3
+                      max-h-[min(58vh,520px)]
+                      overflow-y-auto
+                      overscroll-contain
+                      rounded-[28px]
+                      bg-white/[0.98]
+                      p-2
+                      shadow-[0_24px_80px_rgba(15,23,42,0.16),0_3px_14px_rgba(15,23,42,0.07)]
+                      backdrop-blur-2xl
+                      dark:bg-[#151619]/[0.98]
+                      dark:shadow-[0_28px_90px_rgba(0,0,0,0.42),0_4px_18px_rgba(0,0,0,0.25)]
+                    "
+                    style={{
+                      scrollbarWidth: "thin",
+                    }}
+                  >
+                    {filteredResults.length > 0 ? (
+                      <div className="space-y-1">
+                        {filteredResults.map((item, index) => {
+                          const isSelected = index === selectedIndex;
 
-              <span className="flex items-center gap-1.5">
-                <kbd className="px-1.5 py-0.5 rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[10px] font-mono shadow-xs">Esc</kbd>
-                <span>Close</span>
-              </span>
-            </div>
+                          return (
+                            <motion.button
+                              key={item.id}
+                              type="button"
+                              data-search-index={index}
+                              onMouseEnter={() => setSelectedIndex(index)}
+                              onClick={() => openResult(item)}
+                              initial={
+                                reduceMotion
+                                  ? undefined
+                                  : {
+                                      opacity: 0,
+                                      y: 4,
+                                    }
+                              }
+                              animate={{
+                                opacity: 1,
+                                y: 0,
+                              }}
+                              transition={{
+                                duration: reduceMotion ? 0.1 : 0.18,
+                                delay: reduceMotion
+                                  ? 0
+                                  : Math.min(index * 0.025, 0.15),
+                              }}
+                              className={`
+                                group
+                                flex
+                                w-full
+                                items-center
+                                gap-3
+                                rounded-[20px]
+                                px-3
+                                py-3
+                                text-left
+                                transition-all
+                                duration-150
+                                ${
+                                  isSelected
+                                    ? "bg-slate-100/90 dark:bg-white/[0.075]"
+                                    : "bg-transparent hover:bg-slate-50 dark:hover:bg-white/[0.045]"
+                                }
+                              `}
+                            >
+                              {/* RESULT ICON */}
 
-            <div className="hidden sm:flex items-center gap-1 text-[11px] text-slate-400">
-              <Command size={12} />
-              <span>K to toggle</span>
-            </div>
-          </div>
+                              <div
+                                className={`
+                                  flex
+                                  h-10
+                                  w-10
+                                  shrink-0
+                                  items-center
+                                  justify-center
+                                  rounded-[14px]
+                                  transition-all
+                                  duration-200
+                                  ${
+                                    isSelected
+                                      ? "bg-white text-slate-800 shadow-sm dark:bg-white/[0.09] dark:text-white"
+                                      : "bg-slate-100 text-slate-500 dark:bg-white/[0.055] dark:text-slate-400"
+                                  }
+                                `}
+                              >
+                                {item.type === "contact-email" ? (
+                                  <Mail size={17} strokeWidth={1.9} />
+                                ) : item.externalUrl ? (
+                                  <ExternalLink size={16} strokeWidth={1.9} />
+                                ) : (
+                                  <Search size={16} strokeWidth={1.9} />
+                                )}
+                              </div>
+
+                              {/* RESULT CONTENT */}
+
+                              <div className="flex-1 min-w-0">
+                                <div
+                                  className={`
+                                    truncate
+                                    text-[13px]
+                                    font-semibold
+                                    ${
+                                      isSelected
+                                        ? "text-slate-950 dark:text-white"
+                                        : "text-slate-800 dark:text-slate-200"
+                                    }
+                                  `}
+                                >
+                                  <Highlight text={item.title} query={query} />
+                                </div>
+
+                                <div className="mt-0.5 truncate text-[10px] leading-5 text-slate-500 dark:text-slate-500">
+                                  <Highlight
+                                    text={item.description}
+                                    query={query}
+                                  />
+                                </div>
+                              </div>
+
+                              {/* CATEGORY */}
+
+                              <span
+                                className="
+                                  hidden
+                                  shrink-0
+                                  rounded-full
+                                  bg-slate-100
+                                  px-2.5
+                                  py-1
+                                  text-[9px]
+                                  font-medium
+                                  text-slate-500
+                                  sm:inline-flex
+                                  dark:bg-white/[0.055]
+                                  dark:text-slate-500
+                                "
+                              >
+                                {item.category}
+                              </span>
+
+                              {/* ENTER ICON */}
+
+                              <div
+                                className={`
+                                  flex
+                                  h-7
+                                  w-7
+                                  shrink-0
+                                  items-center
+                                  justify-center
+                                  rounded-full
+                                  transition-all
+                                  duration-150
+                                  ${
+                                    isSelected
+                                      ? "bg-white text-slate-500 shadow-sm dark:bg-white/[0.08] dark:text-slate-300"
+                                      : "text-slate-300 dark:text-slate-600"
+                                  }
+                                `}
+                              >
+                                {isSelected ? (
+                                  <CornerDownLeft size={14} />
+                                ) : (
+                                  <ArrowRightIcon />
+                                )}
+                              </div>
+                            </motion.button>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      /* =================================================
+                         NO RESULTS
+                      ================================================= */
+
+                      <motion.div
+                        initial={{
+                          opacity: 0,
+                        }}
+                        animate={{
+                          opacity: 1,
+                        }}
+                        className="
+                          flex
+                          min-h-[150px]
+                          flex-col
+                          items-center
+                          justify-center
+                          px-6
+                          py-10
+                          text-center
+                        "
+                      >
+                        <div
+                          className="
+                            flex
+                            h-12
+                            w-12
+                            items-center
+                            justify-center
+                            rounded-full
+                            bg-slate-100
+                            text-slate-400
+                            dark:bg-white/[0.06]
+                            dark:text-slate-500
+                          "
+                        >
+                          <Search size={20} />
+                        </div>
+
+                        <p className="mt-3 text-[13px] font-semibold text-slate-700 dark:text-slate-300">
+                          No results found
+                        </p>
+
+                        <p className="mt-1 text-[10px] text-slate-400">
+                          Try another keyword like React, Java or Projects.
+                        </p>
+                      </motion.div>
+                    )}
+
+                    {/* =================================================
+                        FOOTER
+                    ================================================= */}
+
+                    {filteredResults.length > 0 && (
+                      <div
+                        className="
+                          mt-1
+                          flex
+                          items-center
+                          justify-between
+                          px-3
+                          pb-1
+                          pt-2
+                          text-[9px]
+                          text-slate-400
+                          dark:text-slate-600
+                        "
+                      >
+                        <div className="flex items-center gap-2">
+                          <span className="items-center hidden gap-1 sm:flex">
+                            <Kbd>
+                              <ArrowUp size={10} />
+                            </Kbd>
+
+                            <Kbd>
+                              <ArrowDown size={10} />
+                            </Kbd>
+
+                            <span className="ml-1">Navigate</span>
+                          </span>
+
+                          <span className="items-center hidden gap-1 sm:flex">
+                            <Kbd>↵</Kbd>
+                            <span>Open</span>
+                          </span>
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={closeModal}
+                          className="
+                            flex
+                            items-center
+                            gap-1.5
+                            rounded-full
+                            px-2
+                            py-1
+                            transition-colors
+                            hover:bg-slate-100
+                            hover:text-slate-600
+                            dark:hover:bg-white/[0.06]
+                            dark:hover:text-slate-300
+                          "
+                        >
+                          <span>Close</span>
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+
+          {/* =================================================
+              GLOBAL INPUT FOCUS FIX
+          ================================================= */}
+
+          <style>{`
+            .spotlight-input,
+            .spotlight-input:hover,
+            .spotlight-input:active,
+            .spotlight-input:focus,
+            .spotlight-input:focus-visible {
+              outline: none !important;
+              box-shadow: none !important;
+              border: 0 !important;
+              border-color: transparent !important;
+              ring: 0 !important;
+            }
+
+            .spotlight-input::-webkit-search-decoration,
+            .spotlight-input::-webkit-search-cancel-button,
+            .spotlight-input::-webkit-search-results-button,
+            .spotlight-input::-webkit-search-results-decoration {
+              display: none !important;
+            }
+
+            * {
+              -webkit-tap-highlight-color: transparent;
+            }
+          `}</style>
         </motion.div>
-      </div>
+      )}
     </AnimatePresence>
+  );
+};
+
+/* =========================================================
+   SMALL ARROW
+========================================================= */
+
+const ArrowRightIcon = () => {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M5 12h14" />
+      <path d="m13 6 6 6-6 6" />
+    </svg>
   );
 };
 

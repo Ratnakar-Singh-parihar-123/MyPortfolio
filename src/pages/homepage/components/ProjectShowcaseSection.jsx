@@ -60,7 +60,7 @@ import {
 } from "lucide-react";
 
 // Import your images
-import yammiverse from "../../../assets/projectsImg/yammiverse.png";
+// import yammiverse from "../../../assets/projectsImg/yammiverse.png";
 import vsbp from "../../../assets/projectsImg/vsbp.png";
 import bodp from "../../../assets/projectsImg/bloodAndOrganDonationsImg/jeevandaancareHome.png";
 import foodmitra from "../../../assets/projectsImg/foodmitra/foodmitra.png";
@@ -68,7 +68,7 @@ import foodmitra from "../../../assets/projectsImg/foodmitra/foodmitra.png";
 // import appimg
 import ECommrce from "../../../assets/AppImg/ecomm.jpeg";
 import safeGuard from "../../../assets/AppImg/safeGuard.jpeg";
-import parkingapp from "../../../assets/AppImg/parkingapp.jpeg";
+import parkingapp from "../../../assets/AppImg/ParkEasyAdmin/ParkEasyFront.jpg";
 import FoodMitraCustumer from "../../../assets/AppImg/FoodMitra/FoodMitraCustumer.jpeg";
 import FoodMitraDeliveryPartner from "../../../assets/AppImg/FoodMitraDelivery/FoodMitraDeliveryPartner.jpeg";
 import FoodMitraHouseTiffin from "../../../assets/AppImg/FoodMitraHouseTiffin/FoodMitraHouseTiffin.jpeg";
@@ -250,161 +250,361 @@ const mobileApps = [
     id: 1,
     title: "FoodMitra",
     tagline: "Your Food, Delivered with Ease",
+
     shortDescription:
-      "A complete food ordering and delivery platform that connects customers with local food vendors and Tiffin Houses for convenient meal ordering and doorstep delivery.",
+      "A complete food delivery ecosystem connecting customers with nearby food vendors and Tiffin Houses for seamless food discovery, ordering, payment, and doorstep delivery.",
+
     fullDescription:
-      "FoodMitra is a full-stack food ordering and delivery platform designed to connect customers with local restaurants, food vendors, and Tiffin Houses through a seamless digital experience.\n\nCustomers can discover nearby food options, explore menus, add items to their cart, place orders, make secure online payments, and track their orders. The application uses location-based services to provide relevant nearby food options and a smooth ordering experience.\n\nFoodMitra is built as part of a multi-app ecosystem that connects customers, delivery partners, and Tiffin Houses. The platform focuses on real-time order processing, secure authentication, location-based services, payment integration, and reliable communication between all participants.",
+      "FoodMitra is a full-stack food ordering and delivery platform developed to connect customers with local food vendors and home-based Tiffin Houses through a unified digital ecosystem.\n\nCustomers can discover nearby food options using location-based services, browse menus, explore food items, manage their cart, place orders, and complete online payments. The application is designed to provide a smooth ordering experience from food discovery to final delivery.\n\nThe platform works as part of a multi-application ecosystem consisting of the Customer App, Delivery Partner App, Tiffin House App, and Admin/Web Panel. These applications communicate with the same backend infrastructure to coordinate users, vendors, delivery partners, and administrators.\n\nFoodMitra uses Socket.io for real-time order and delivery status synchronization. Authentication and user management are implemented using JWT and Firebase services, while location-related functionality is supported through Google Maps APIs. Razorpay is used for online payment processing where applicable.\n\nThe backend is built using Node.js, Express.js, and MongoDB and is deployed on Render. Since the backend may enter an inactive state, the first request after a period of inactivity can take a few seconds because of backend cold-start behavior.\n\nThe project is currently under active development and is being continuously improved with additional features, testing, UI refinements, and production improvements.",
+
     imageKey: "FoodMitraCustumer",
+
     iconBg: "from-orange-500 to-red-500",
+
     icon: Utensils,
+
     platforms: ["Android"],
-    status: "Live • Development Updates",
+
+    status: "In Development",
+
+    apkStatus: "Available",
+
+    // APK public folder me hai
+    androidUrl: "/foodmitra-customer.apk",
+
     rating: 4.8,
+
     technologies: [
       "React Native",
-      "CSS",
       "JavaScript",
+      "CSS",
       "Node.js",
       "Express.js",
       "MongoDB",
       "Firebase",
+      "JWT",
       "Socket.io",
+      "Razorpay",
       "Google Maps API",
     ],
+
     features: [
-      "Browse nearby food vendors and Tiffin Houses",
-      "Location-based food discovery",
-      "Explore menus and food items",
-      "Cart and order management",
-      "Secure online payment integration",
+      "Nearby food vendor discovery",
+      "Tiffin House discovery",
+      "Location-based food recommendations",
+      "Food menu browsing",
+      "Food item details",
+      "Cart management",
+      "Quantity management",
+      "Order placement",
+      "Order history",
+      "Online payment integration",
       "Real-time order status updates",
-      "Order tracking using location services",
-      "Customer authentication and profile management",
-      "Push notifications for order updates",
-      "Seamless communication between customers, vendors, and delivery partners",
+      "Delivery status tracking",
+      "Customer profile management",
+      "Firebase-based authentication",
+      "JWT-based authorization",
+      "Push notifications",
+      "Vendor and Tiffin House coordination",
+      "Delivery partner coordination",
+      "Real-time Socket.io communication",
+      "Google Maps and location services",
     ],
+
     metrics: [
-      { icon: Download, value: "Soon", label: "Downloads" },
-      { icon: Star, value: "4.8", label: "Expected Rating" },
-      { icon: Users, value: "1K+", label: "Target Users" },
+      {
+        icon: Download,
+        value: "Available",
+        label: "Android APK",
+      },
+      {
+        icon: Star,
+        value: "4.8",
+        label: "Expected Rating",
+      },
+      {
+        icon: Users,
+        value: "1K+",
+        label: "Target Users",
+      },
     ],
+
+    developmentNote:
+      "The application is actively being developed and tested. Additional features, performance improvements, and production refinements are currently in progress.",
+
+    deploymentNote:
+      "Backend deployed on Render. The first API request after inactivity may take a few seconds because of backend cold-start behavior.",
+
+    demoCredentials: {
+      mobile: "9399741051",
+      otp: "123456",
+    },
   },
+
   {
     id: 2,
     title: "FoodMitra Delivery Partner",
     tagline: "Deliver Smarter, Earn Better",
+
     shortDescription:
-      "A dedicated delivery partner application for managing food deliveries, discovering nearby orders, tracking routes, and handling the complete delivery workflow in real time.",
+      "A dedicated delivery partner application for receiving nearby orders, managing pickups, navigating to customers, and completing deliveries with real-time order synchronization.",
+
     fullDescription:
-      "FoodMitra Delivery Partner is the dedicated rider application of the FoodMitra ecosystem, built to help delivery partners efficiently manage and complete food deliveries.\n\nDelivery partners can receive nearby delivery requests, view order details, accept or decline orders, access pickup and delivery locations, and manage their active deliveries through a centralized interface. Location services and map-based navigation help riders reach vendors and customers efficiently.\n\nThe application works as a real-time communication layer between customers, Tiffin Houses, and delivery partners. Order updates are synchronized across the ecosystem, allowing riders to manage their delivery workflow from order acceptance through pickup and final delivery.",
+      "FoodMitra Delivery Partner is the dedicated rider application of the FoodMitra ecosystem. It is designed to simplify the complete delivery workflow for delivery partners, from receiving a delivery request to completing the order.\n\nDelivery partners can log in using mobile number authentication with dynamically generated OTPs. After authentication, they can view available delivery requests, inspect order details, review pickup and customer locations, and accept suitable delivery requests.\n\nOnce a delivery is accepted, the application helps the rider manage the complete pickup-to-delivery workflow. Important information such as vendor pickup location, customer delivery location, order details, and delivery status can be accessed through the application.\n\nThe application uses Socket.io to provide real-time communication between the delivery partner, customer, vendor or Tiffin House, and backend services. This allows important order and delivery status changes to be synchronized across the FoodMitra ecosystem.\n\nLocation and mapping functionality is integrated to assist delivery partners in navigating between pickup and delivery locations. The backend is built with Node.js, Express.js, and MongoDB.\n\nUnlike the FoodMitra Customer App, the Delivery Partner application does not use Firebase. Its mobile authentication and OTP workflow are handled through the application's backend system, with OTPs generated dynamically.\n\nThe application is currently being improved and tested as part of the complete FoodMitra delivery ecosystem.",
+
     imageKey: "FoodMitraDeliveryPartner",
+
     iconBg: "from-blue-500 to-cyan-500",
+
     icon: Bike,
+
     platforms: ["Android", "iOS"],
-    status: "Live • Development Updates",
+
+    status: "In Development",
+
+    apkStatus: "Available",
+
+    // Delivery Partner APK
+    androidUrl: "/foodmitra-delivery.apk",
+
     rating: 4.8,
+
     technologies: [
       "React Native",
-      "CSS",
       "JavaScript",
+      "CSS",
       "Node.js",
       "Express.js",
       "MongoDB",
       "Socket.io",
+      "JWT",
       "Google Maps API",
     ],
+
     features: [
-      "Real-time nearby delivery requests",
-      "Accept or decline delivery orders",
-      "Order details and customer information",
-      "Vendor pickup and customer delivery locations",
-      "Real-time location tracking",
-      "Map-based navigation support",
+      "Mobile number authentication",
+      "Dynamic OTP generation",
+      "Delivery partner onboarding",
+      "Nearby delivery requests",
+      "Order request management",
+      "Accept delivery requests",
+      "Decline delivery requests",
+      "Order details",
+      "Vendor pickup information",
+      "Customer delivery information",
+      "Pickup location access",
+      "Customer location access",
+      "Map-based navigation",
+      "Real-time delivery updates",
+      "Delivery status management",
       "Active delivery management",
-      "Order status updates",
-      "Push notifications for new orders",
-      "Delivery workflow from pickup to completion",
-      "Real-time communication with the FoodMitra platform",
+      "Pickup-to-delivery workflow",
+      "Push notifications",
+      "Socket.io real-time communication",
+      "Backend API integration",
     ],
+
     metrics: [
-      { icon: Download, value: "Soon", label: "Downloads" },
-      { icon: Star, value: "4.8", label: "Expected Rating" },
-      { icon: Users, value: "100+", label: "Target Partners" },
+      {
+        icon: Download,
+        value: "Available",
+        label: "Android APK",
+      },
+      {
+        icon: Star,
+        value: "4.8",
+        label: "Expected Rating",
+      },
+      {
+        icon: Users,
+        value: "100+",
+        label: "Target Partners",
+      },
     ],
+
+    developmentNote:
+      "The Delivery Partner application is under active development and testing. The complete rider workflow and additional delivery management features are being refined.",
+
+    deploymentNote:
+      "Backend deployed on Render. The first API request after inactivity may take a few seconds because of backend cold-start behavior.",
+
+    demoCredentials: {
+      type: "Dynamic OTP",
+      mobile: "Use a valid mobile number supported by the authentication flow",
+      otp: "Generated dynamically",
+    },
   },
+
   {
     id: 3,
     title: "FoodMitra House Tiffin",
     tagline: "Manage Your Kitchen, Grow Your Business",
+
     shortDescription:
-      "A dedicated platform for Tiffin Houses and food vendors to manage menus, orders, customers, delivery operations, and daily food business activities.",
+      "A dedicated vendor-side mobile application for Tiffin Houses and local food businesses to manage menus, food availability, customer orders, preparation status, and delivery coordination.",
+
     fullDescription:
-      "FoodMitra Tiffin House is the vendor-side application of the FoodMitra ecosystem, designed for Tiffin Houses and local food businesses to manage their digital food operations.\n\nTiffin House owners can manage their food items and menu, receive and process customer orders, monitor order status, and coordinate deliveries through the FoodMitra platform. The application provides a centralized interface for managing day-to-day food business activities.\n\nThe platform connects Tiffin Houses directly with customers and delivery partners, creating an integrated workflow from food listing and order placement to preparation, pickup, and final delivery. This helps local food businesses establish a digital presence while managing their orders efficiently.",
+      "FoodMitra House Tiffin is the vendor-side mobile application of the FoodMitra ecosystem, designed specifically for Tiffin House owners and local food businesses.\n\nThe application is being developed to provide Tiffin Houses with a centralized digital workflow for managing their daily food business. Vendors will be able to manage food items, update menus, control food availability, and handle incoming customer orders from a dedicated mobile interface.\n\nThe application is designed around the complete vendor order lifecycle. Tiffin House owners can review incoming orders, accept orders, manage preparation status, and coordinate with delivery partners when an order is ready for pickup.\n\nReal-time communication using Socket.io is planned as an important part of the application so that order status changes can be synchronized between customers, Tiffin Houses, delivery partners, and the backend.\n\nThe application is built using React Native and communicates with a Node.js and Express.js backend with MongoDB for data management. Firebase services are used where required within the vendor-side application.\n\nFoodMitra House Tiffin is currently under active development. The application is not yet considered complete, and several vendor workflows, UI improvements, testing, and additional features are still being implemented.\n\nThe Android APK is not available at the moment. A demo APK will be added to the portfolio once the current development and testing phase is completed.",
+
     imageKey: "FoodMitraTiffinHouse",
+
     iconBg: "from-green-500 to-emerald-600",
+
     icon: Store,
+
     platforms: ["Android"],
-    status: "Live • Development Updates",
+
+    status: "In Development",
+
+    apkStatus: "Coming Soon",
+
+    // APK abhi available nahi hai
+    androidUrl: null,
+
     rating: 4.8,
+
     technologies: [
       "React Native",
-      "CSS",
       "JavaScript",
+      "CSS",
       "Node.js",
       "Express.js",
       "MongoDB",
       "Socket.io",
-      "Razorpay",
+      "Firebase",
+      "JWT",
     ],
+
     features: [
-      "Tiffin House and vendor registration",
-      "Manage food items and menus",
-      "Receive real-time customer orders",
-      "Accept and process orders",
-      "Update order preparation status",
-      "Manage daily food availability",
-      "Order history and management",
-      "Customer and delivery partner coordination",
-      "Real-time order status synchronization",
-      "Push notifications for new orders",
-      "Integrated delivery workflow",
+      "Tiffin House registration",
+      "Vendor profile management",
+      "Food item management",
+      "Menu management",
+      "Add new food items",
+      "Update food item details",
+      "Food availability management",
+      "Receive customer orders",
+      "Review incoming orders",
+      "Accept customer orders",
+      "Order preparation workflow",
+      "Preparation status updates",
+      "Order history",
+      "Customer order coordination",
+      "Delivery partner coordination",
+      "Real-time order synchronization",
+      "Socket.io communication",
+      "Push notifications",
+      "Backend API integration",
     ],
+
     metrics: [
-      { icon: Download, value: "Soon", label: "Downloads" },
-      { icon: Star, value: "4.8", label: "Expected Rating" },
-      { icon: Users, value: "100+", label: "Target Vendors" },
+      {
+        icon: Download,
+        value: "Coming Soon",
+        label: "Android APK",
+      },
+      {
+        icon: Star,
+        value: "4.8",
+        label: "Expected Rating",
+      },
+      {
+        icon: Users,
+        value: "100+",
+        label: "Target Vendors",
+      },
     ],
+
+    developmentNote:
+      "This application is currently under active development. Core vendor workflows are being implemented and tested, while additional features and UI improvements are still in progress.",
+
+    deploymentNote:
+      "The backend is deployed on Render. The first API request after inactivity may take a few seconds because of backend cold-start behavior.",
+
+    demoCredentials: {
+      type: "Not available yet",
+      note: "Demo access will be provided after the application reaches a stable testing stage.",
+    },
   },
+
   {
     id: 4,
     title: "ParkEasy",
     tagline: "Smart Parking, Simplified",
+
     shortDescription:
-      "A smart parking app with real-time availability, location-based search, and seamless booking with secure payments.",
+      "A smart parking management application that helps users discover nearby parking spaces, check slot availability, reserve parking, and manage bookings through a convenient mobile experience.",
+
     fullDescription:
-      "ParkEasy is a smart parking management application built to simplify finding and booking parking spaces in busy urban environments. Users can discover nearby parking locations, check real-time slot availability, and reserve spaces with secure in-app payments.\n\nThe platform features a dual-role system. Users benefit from a smooth, intuitive experience, while admins (parking owners) gain access to a powerful dashboard to manage parking locations, monitor available and occupied slots, define capacity, and oversee operations.\n\nParkEasy reduces the time and stress involved in parking while providing full control and valuable insights to parking owners.",
+      "ParkEasy is a smart parking management application designed to simplify the process of finding and booking parking spaces in busy urban environments.\n\nUsers can discover nearby parking locations, check available parking slots, view parking capacity, and reserve a suitable space through the mobile application. The platform is designed to reduce the time users spend searching for available parking.\n\nParkEasy follows a dual-role architecture consisting of parking users and administrators or parking owners. Users get a simple mobile experience for discovering and booking parking, while administrators can manage parking locations, configure parking capacity, monitor available and occupied slots, and oversee parking operations.\n\nThe application supports the complete parking workflow, starting from location discovery and availability checking through booking and payment. This provides users with a more organized way to plan their parking before reaching their destination.\n\nThe mobile application is built using React Native and communicates with a Node.js and Express.js backend. MongoDB is used for data storage, while CSS is used for styling and interface development.\n\nThe Android APK is currently available for demonstration and testing. The project can be further improved with additional production features, UI refinements, and operational enhancements.",
+
     imageKey: "ParkEasy",
+
     iconBg: "from-blue-500 to-indigo-600",
+
     icon: Car,
-    platforms: ["iOS", "Android"],
-    status: "Live • Updates Coming Soon",
+
+    platforms: ["Android"],
+
+    status: "Available • Updates Coming Soon",
+
     androidUrl:
       "https://github.com/Ratnakar-Singh-parihar-123/ParkEasy/releases/download/v1.0/application-2b19fc59-78f1-4a7e-91b1-c437d35ac120.apk",
-    technologies: ["React Native", "CSS", "Node.js", "Express.js", "MongoDB"],
+
+    apkStatus: "Available",
+
+    rating: 4.7,
+
+    technologies: [
+      "React Native",
+      "JavaScript",
+      "CSS",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+    ],
+
     features: [
-      "Location-based nearby parking search",
-      "Real-time parking slot availability",
-      "Secure booking and payment system",
-      "User and Admin role-based access",
-      "Admin dashboard for full parking management",
-      "Track available and occupied slots",
-      "Manage multiple parking locations and capacity",
+      "Nearby parking search",
+      "Location-based parking discovery",
+      "Parking location details",
+      "Real-time slot availability",
+      "Available slot monitoring",
+      "Occupied slot monitoring",
+      "Parking capacity management",
+      "Parking slot booking",
+      "Booking management",
+      "Secure payment integration",
+      "User authentication",
+      "Admin role management",
+      "Parking owner management",
+      "Parking location management",
+      "Multiple parking location support",
+      "Parking capacity configuration",
+      "REST API integration",
+      "Mobile-first parking experience",
     ],
+
     metrics: [
-      { icon: Download, value: "Soon", label: "Downloads" },
-      { icon: Star, value: "4.7", label: "Expected Rating" },
-      { icon: Users, value: "1K+", label: "Target Users" },
+      {
+        icon: Download,
+        value: "Available",
+        label: "Android APK",
+      },
+      {
+        icon: Star,
+        value: "4.7",
+        label: "Expected Rating",
+      },
+      {
+        icon: Users,
+        value: "1K+",
+        label: "Target Users",
+      },
     ],
+
+    developmentNote:
+      "The current Android build is available for demonstration. Additional improvements and feature refinements can be added in future development iterations.",
   },
 ];
 
@@ -656,7 +856,7 @@ const ProjectShowcaseSection = () => {
             className="mt-12 text-center md:mt-16"
           >
             <a
-              href="/projectss"
+              href="/projects"
               className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl bg-primary hover:shadow-2xl hover:shadow-primary/30 group sm:text-base"
             >
               <span>View Full Project Collection</span>
