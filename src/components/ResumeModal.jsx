@@ -201,8 +201,9 @@ const ResumeModal = ({ isOpen, onClose }) => {
                       </div>
                       <ul className="ml-4 space-y-1 list-disc list-inside text-muted-foreground">
                         <li>
-                          Led development of 15+ enterprise web applications
-                          using React, Node.js, and MongoDB
+                          Led development of 10+ enterprise web applications and
+                          mobile apps using React,React Native, Tailwind CSS,
+                          Node.js, Express.js and MongoDB
                         </li>
                         <li>
                           Improved application performance by 40% through code

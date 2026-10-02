@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import Icon from '../../../components/AppIcon';
-import Image from '../../../components/AppImage';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Icon from "../../../components/AppIcon";
+import Image from "../../../components/AppImage";
 
 const PersonalInsightsSection = () => {
-  const [activeTab, setActiveTab] = useState('workspace');
+  const [activeTab, setActiveTab] = useState("workspace");
 
   const workspaceImages = [
     {
@@ -12,68 +12,74 @@ const PersonalInsightsSection = () => {
       src: "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=600&h=400&fit=crop",
       alt: "Modern home office setup with dual monitors",
       title: "My Command Center",
-      description: "Where ideas transform into reality"
+      description: "Where ideas transform into reality",
     },
     {
       id: 2,
       src: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop",
       alt: "Close-up of coding on laptop screen",
       title: "Late Night Coding",
-      description: "When the best ideas come to life"
+      description: "When the best ideas come to life",
     },
     {
       id: 3,
       src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop",
       alt: "Developer working with coffee and notebook",
       title: "Planning & Strategy",
-      description: "Every great project starts with a plan"
+      description: "Every great project starts with a plan",
     },
     {
       id: 4,
       src: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop",
       alt: "Team collaboration in modern office",
       title: "Collaboration Space",
-      description: "Where teamwork creates magic"
-    }
+      description: "Where teamwork creates magic",
+    },
   ];
 
   const personalFacts = [
     {
       icon: "Coffee",
       title: "Coffee Enthusiast",
-      description: "I\'ve perfected the art of brewing the perfect cup—essential fuel for those late-night coding sessions.",
-      color: "warning"
+      description:
+        "I\'ve perfected the art of brewing the perfect cup—essential fuel for those late-night coding sessions.",
+      color: "warning",
     },
     {
       icon: "BookOpen",
       title: "Continuous Learner",
-      description: "Currently reading \'Clean Architecture\' and taking a course on advanced React patterns.",
-      color: "primary"
+      description:
+        "Currently reading \'Clean Architecture\' and taking a course on advanced React patterns.",
+      color: "primary",
     },
     {
       icon: "Music",
       title: "Music & Code",
-      description: "Lo-fi hip hop and ambient electronic music are my go-to soundtracks for deep focus work.",
-      color: "accent"
+      description:
+        "Lo-fi hip hop and ambient electronic music are my go-to soundtracks for deep focus work.",
+      color: "accent",
     },
     {
       icon: "Camera",
       title: "Photography Hobbyist",
-      description: "Capturing moments and compositions helps me see design and user experience from new angles.",
-      color: "success"
+      description:
+        "Capturing moments and compositions helps me see design and user experience from new angles.",
+      color: "success",
     },
     {
       icon: "Gamepad2",
       title: "Gaming & UX",
-      description: "Video games taught me about user engagement, feedback loops, and intuitive interface design.",
-      color: "secondary"
+      description:
+        "Video games taught me about user engagement, feedback loops, and intuitive interface design.",
+      color: "secondary",
     },
     {
       icon: "Plane",
       title: "Travel Inspiration",
-      description: "Exploring different cultures and places fuels creativity and provides fresh perspectives on problem-solving.",
-      color: "primary"
-    }
+      description:
+        "Exploring different cultures and places fuels creativity and provides fresh perspectives on problem-solving.",
+      color: "primary",
+    },
   ];
 
   const dailyRoutine = [
@@ -81,56 +87,58 @@ const PersonalInsightsSection = () => {
       time: "6:00 AM",
       activity: "Morning Routine",
       description: "Coffee, meditation, and reviewing the day's priorities",
-      icon: "Sun"
+      icon: "Sun",
     },
     {
       time: "7:00 AM",
       activity: "Learning Time",
-      description: "Reading tech articles, documentation, or taking online courses",
-      icon: "BookOpen"
+      description:
+        "Reading tech articles, documentation, or taking online courses",
+      icon: "BookOpen",
     },
     {
       time: "9:00 AM",
       activity: "Deep Work",
-      description: "Focused coding sessions on complex features and architecture",
-      icon: "Code"
+      description:
+        "Focused coding sessions on complex features and architecture",
+      icon: "Code",
     },
     {
       time: "12:00 PM",
       activity: "Team Sync",
       description: "Standups, code reviews, and collaborative problem-solving",
-      icon: "Users"
+      icon: "Users",
     },
     {
       time: "2:00 PM",
       activity: "Creative Work",
       description: "UI/UX design, prototyping, and experimental projects",
-      icon: "Palette"
+      icon: "Palette",
     },
     {
       time: "5:00 PM",
       activity: "Community",
       description: "Open source contributions, mentoring, or tech meetups",
-      icon: "Heart"
+      icon: "Heart",
     },
     {
       time: "7:00 PM",
       activity: "Personal Projects",
       description: "Side projects, learning new technologies, or writing",
-      icon: "Lightbulb"
+      icon: "Lightbulb",
     },
     {
       time: "9:00 PM",
       activity: "Unwind",
       description: "Reading, gaming, or spending time with family and friends",
-      icon: "Home"
-    }
+      icon: "Home",
+    },
   ];
 
   const tabs = [
-    { id: 'workspace', label: 'Workspace', icon: 'Monitor' },
-    { id: 'personal', label: 'Personal', icon: 'User' },
-    { id: 'routine', label: 'Daily Routine', icon: 'Clock' }
+    { id: "workspace", label: "Workspace", icon: "Monitor" },
+    { id: "personal", label: "Personal", icon: "User" },
+    { id: "routine", label: "Daily Routine", icon: "Clock" },
   ];
 
   return (
@@ -142,28 +150,28 @@ const PersonalInsightsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="mb-16 text-center"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="mb-4 text-3xl font-bold md:text-4xl text-foreground">
             Behind the Scenes
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Get to know the person behind the code—my workspace, interests, and the daily rhythms 
-            that fuel creativity and productivity.
+          <p className="max-w-2xl mx-auto text-lg text-muted-foreground">
+            Get to know the person behind the code—my workspace, interests, and
+            the daily rhythms that fuel creativity and productivity.
           </p>
         </motion.div>
 
         {/* Tab Navigation */}
         <div className="flex justify-center mb-12">
-          <div className="flex bg-muted rounded-lg p-1">
+          <div className="flex p-1 rounded-lg bg-muted">
             {tabs?.map((tab) => (
               <button
                 key={tab?.id}
                 onClick={() => setActiveTab(tab?.id)}
                 className={`flex items-center space-x-2 px-6 py-3 rounded-md text-sm font-medium transition-all duration-200 ${
                   activeTab === tab?.id
-                    ? 'bg-background text-foreground shadow-sm'
-                    : 'text-muted-foreground hover:text-foreground'
+                    ? "bg-background text-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 <Icon name={tab?.icon} size={16} />
@@ -175,7 +183,7 @@ const PersonalInsightsSection = () => {
 
         {/* Tab Content */}
         <AnimatePresence mode="wait">
-          {activeTab === 'workspace' && (
+          {activeTab === "workspace" && (
             <motion.div
               key="workspace"
               initial={{ opacity: 0, y: 20 }}
@@ -183,7 +191,7 @@ const PersonalInsightsSection = () => {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid gap-6 md:grid-cols-2">
                 {workspaceImages?.map((image, index) => (
                   <motion.div
                     key={image?.id}
@@ -191,19 +199,23 @@ const PersonalInsightsSection = () => {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: index * 0.1, duration: 0.6 }}
                     whileHover={{ y: -4 }}
-                    className="group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300"
+                    className="relative overflow-hidden transition-all duration-300 shadow-sm group rounded-xl hover:shadow-lg"
                   >
-                    <div className="aspect-video overflow-hidden">
+                    <div className="overflow-hidden aspect-video">
                       <Image
                         src={image?.src}
                         alt={image?.alt}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                    <div className="absolute bottom-4 left-4 right-4 text-white">
-                      <h3 className="text-lg font-semibold mb-1">{image?.title}</h3>
-                      <p className="text-white/90 text-sm">{image?.description}</p>
+                    <div className="absolute text-white bottom-4 left-4 right-4">
+                      <h3 className="mb-1 text-lg font-semibold">
+                        {image?.title}
+                      </h3>
+                      <p className="text-sm text-white/90">
+                        {image?.description}
+                      </p>
                     </div>
                   </motion.div>
                 ))}
@@ -211,7 +223,7 @@ const PersonalInsightsSection = () => {
             </motion.div>
           )}
 
-          {activeTab === 'personal' && (
+          {activeTab === "personal" && (
             <motion.div
               key="personal"
               initial={{ opacity: 0, y: 20 }}
@@ -219,7 +231,7 @@ const PersonalInsightsSection = () => {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {personalFacts?.map((fact, index) => (
                   <motion.div
                     key={index}
@@ -227,15 +239,21 @@ const PersonalInsightsSection = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1, duration: 0.6 }}
                     whileHover={{ y: -4 }}
-                    className="bg-card border border-border rounded-xl p-6 hover:shadow-md transition-all duration-300"
+                    className="p-6 transition-all duration-300 border bg-card border-border rounded-xl hover:shadow-md"
                   >
-                    <div className={`w-12 h-12 bg-${fact?.color}/10 rounded-xl flex items-center justify-center mb-4`}>
-                      <Icon name={fact?.icon} size={24} className={`text-${fact?.color}`} />
+                    <div
+                      className={`w-12 h-12 bg-${fact?.color}/10 rounded-xl flex items-center justify-center mb-4`}
+                    >
+                      <Icon
+                        name={fact?.icon}
+                        size={24}
+                        className={`text-${fact?.color}`}
+                      />
                     </div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">
+                    <h3 className="mb-2 text-lg font-semibold text-foreground">
                       {fact?.title}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="leading-relaxed text-muted-foreground">
                       {fact?.description}
                     </p>
                   </motion.div>
@@ -244,7 +262,7 @@ const PersonalInsightsSection = () => {
             </motion.div>
           )}
 
-          {activeTab === 'routine' && (
+          {activeTab === "routine" && (
             <motion.div
               key="routine"
               initial={{ opacity: 0, y: 20 }}
@@ -260,11 +278,15 @@ const PersonalInsightsSection = () => {
                       initial={{ opacity: 0, x: -30 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1, duration: 0.6 }}
-                      className="flex items-center space-x-4 bg-card border border-border rounded-xl p-4 hover:shadow-sm transition-all duration-300"
+                      className="flex items-center p-4 space-x-4 transition-all duration-300 border bg-card border-border rounded-xl hover:shadow-sm"
                     >
                       <div className="flex-shrink-0">
-                        <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-                          <Icon name={item?.icon} size={20} className="text-primary" />
+                        <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-xl">
+                          <Icon
+                            name={item?.icon}
+                            size={20}
+                            className="text-primary"
+                          />
                         </div>
                       </div>
                       <div className="flex-shrink-0 w-20">
@@ -273,7 +295,7 @@ const PersonalInsightsSection = () => {
                         </span>
                       </div>
                       <div className="flex-grow">
-                        <h3 className="text-lg font-semibold text-foreground mb-1">
+                        <h3 className="mb-1 text-lg font-semibold text-foreground">
                           {item?.activity}
                         </h3>
                         <p className="text-muted-foreground">
@@ -296,26 +318,34 @@ const PersonalInsightsSection = () => {
           transition={{ duration: 0.8 }}
           className="mt-20"
         >
-          <div className="bg-gradient-subtle rounded-2xl p-8">
-            <h3 className="text-2xl font-bold text-foreground text-center mb-8">
+          <div className="p-8 bg-gradient-subtle rounded-2xl">
+            <h3 className="mb-8 text-2xl font-bold text-center text-foreground">
               Fun Facts & Numbers
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-2">500+</div>
-                <div className="text-sm text-muted-foreground">Cups of Coffee</div>
+                <div className="mb-2 text-3xl font-bold text-primary">500+</div>
+                <div className="text-sm text-muted-foreground">
+                  Cups of Coffee
+                </div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-accent mb-2">50+</div>
+                <div className="mb-2 text-3xl font-bold text-accent">50+</div>
                 <div className="text-sm text-muted-foreground">Books Read</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-success mb-2">1000+</div>
-                <div className="text-sm text-muted-foreground">GitHub Commits</div>
+                <div className="mb-2 text-3xl font-bold text-success">
+                  3000+
+                </div>
+                <div className="text-sm text-muted-foreground">
+                  GitHub Commits
+                </div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-warning mb-2">15+</div>
-                <div className="text-sm text-muted-foreground">Countries Visited</div>
+                <div className="mb-2 text-3xl font-bold text-warning">15+</div>
+                <div className="text-sm text-muted-foreground">
+                  Countries Visited
+                </div>
               </div>
             </div>
           </div>

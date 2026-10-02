@@ -403,7 +403,7 @@ const SOCIAL_ICONS = [
   {
     id: "twitter",
     label: "Twitter / X",
-    href: "https://twitter.com/",
+    href: "https://x.com/RatnakarSi85551",
     icon: Twitter,
     tint: "rgba(71, 85, 105, 0.09)",
     hover: "rgba(71, 85, 105, 0.15)",
@@ -1020,13 +1020,6 @@ const SearchModal = ({ isOpen, onClose }) => {
                 </AnimatePresence>
 
                 {/* DESKTOP SHORTCUT */}
-
-                {!query && (
-                  <div className="mr-4 hidden items-center gap-1.5 sm:flex">
-                    <Kbd>⌘</Kbd>
-                    <Kbd>K</Kbd>
-                  </div>
-                )}
               </div>
 
               {/* =================================================
@@ -1430,21 +1423,21 @@ const SearchModal = ({ isOpen, onClose }) => {
                       >
                         <div className="flex items-center gap-2">
                           <span className="items-center hidden gap-1 sm:flex">
-                            <Kbd>
+                            {/* <Kbd>
                               <ArrowUp size={10} />
-                            </Kbd>
+                            </Kbd> */}
 
-                            <Kbd>
+                            {/* <Kbd>
                               <ArrowDown size={10} />
-                            </Kbd>
+                            </Kbd> */}
 
                             <span className="ml-1">Navigate</span>
                           </span>
 
-                          <span className="items-center hidden gap-1 sm:flex">
+                          {/* <span className="items-center hidden gap-1 sm:flex">
                             <Kbd>↵</Kbd>
                             <span>Open</span>
-                          </span>
+                          </span> */}
                         </div>
 
                         <button

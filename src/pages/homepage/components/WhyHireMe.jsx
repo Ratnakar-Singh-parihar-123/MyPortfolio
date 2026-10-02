@@ -48,8 +48,8 @@ const WhyHireMe = () => {
       bgColor: "bg-purple-500/10",
       textColor: "text-purple-500",
       borderColor: "border-purple-500/20",
-      metrics: "15+ Projects",
-      experience: "MERN Stack",
+      metrics: "10+ Projects",
+      experience: "MERN Stack , React Native",
       progress: 90,
     },
     {

@@ -21,15 +21,6 @@ import AboutImg from "../../../assets/heroImg/hero.jpeg";
 
 const HeroSection = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
 
   const socialLinks = useMemo(
     () => [
@@ -40,7 +31,7 @@ const HeroSection = () => {
       },
       {
         name: "LinkedIn",
-        url: "https://www.linkedin.com/in/ratnakar-singh-parihar-a87528260/",
+        url: "https://www.linkedin.com/in/ratnakarsinghparihar-a87528260/",
         icon: Linkedin,
       },
       {
@@ -60,7 +51,7 @@ const HeroSection = () => {
   const stats = useMemo(
     () => [
       {
-        value: "8+",
+        value: "10+",
         label: "Projects Built",
         icon: Briefcase,
         color: "text-blue-600 dark:text-blue-400",
@@ -78,8 +69,8 @@ const HeroSection = () => {
         color: "text-purple-600 dark:text-purple-400",
       },
       {
-        value: "100%",
-        label: "Dedication",
+        value: "1+",
+        label: "Years Learning & Building",
         icon: Heart,
         color: "text-rose-600 dark:text-rose-400",
       },
@@ -91,41 +82,49 @@ const HeroSection = () => {
     () => [
       {
         title: "Full-Stack Web Development",
-        desc: "Building responsive MERN applications with clean React components, robust Node.js APIs, and optimized MongoDB schemas.",
+        desc: "Building responsive MERN applications with clean React components, robust Node.js APIs, and well-structured MongoDB databases.",
       },
       {
         title: "Cross-Platform Mobile Apps",
-        desc: "Crafting fluid iOS and Android experiences using React Native with native-feeling performance.",
+        desc: "Developing practical iOS and Android applications with React Native, focusing on smooth user experiences and reliable functionality.",
       },
       {
-        title: "Clean Architecture & Logic",
-        desc: "Writing maintainable, modular, and well-structured code with strong algorithmic problem-solving principles.",
+        title: "Clean Architecture & Problem Solving",
+        desc: "Writing maintainable and modular code while strengthening DSA, OOP, database fundamentals, and system design concepts.",
       },
     ],
     [],
   );
 
-  // Lock body scroll when resume popup is open
   useEffect(() => {
     document.body.style.overflow = isPopupOpen ? "hidden" : "";
+
     return () => {
       document.body.style.overflow = "";
     };
   }, [isPopupOpen]);
 
-  const handlePopupOpen = useCallback(() => setIsPopupOpen(true), []);
-  const handlePopupClose = useCallback(() => setIsPopupOpen(false), []);
+  const handlePopupOpen = useCallback(() => {
+    setIsPopupOpen(true);
+  }, []);
+
+  const handlePopupClose = useCallback(() => {
+    setIsPopupOpen(false);
+  }, []);
 
   return (
     <section className="relative flex items-center justify-center w-full min-h-screen pt-16 pb-16 overflow-x-hidden sm:pt-20 lg:pt-24 lg:pb-24 bg-background">
-      {/* Background Subtle Orbs & Mesh */}
+      {/* Background */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute rounded-full top-1/3 left-5 w-80 h-80 bg-purple-500/10 dark:bg-purple-600/15 blur-3xl" />
+
         <div className="absolute rounded-full bottom-1/3 right-5 w-80 h-80 bg-blue-500/10 dark:bg-blue-600/15 blur-3xl" />
+
         <div
           className="absolute inset-0 opacity-[0.025] dark:opacity-[0.05]"
           style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)",
             backgroundSize: "32px 32px",
           }}
         />
@@ -133,7 +132,7 @@ const HeroSection = () => {
 
       <div className="relative z-10 w-full px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
-          {/* LEFT COLUMN — Visual Profile Card Composition */}
+          {/* ================= LEFT COLUMN ================= */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
             animate={{ opacity: 1, x: 0 }}
@@ -141,45 +140,47 @@ const HeroSection = () => {
             className="flex justify-center w-full lg:col-span-5"
           >
             <div className="relative w-full max-w-sm sm:max-w-md">
-              {/* Card Container */}
+              {/* Profile Card */}
               <div className="relative p-1 border shadow-xl rounded-3xl bg-gradient-to-br from-purple-600/25 via-blue-600/25 to-pink-600/25 border-border/50">
                 <div className="relative overflow-hidden rounded-[22px] bg-card p-4 space-y-4">
-                  {/* Photo Container */}
+                  {/* Profile Image */}
                   <div className="relative overflow-hidden rounded-2xl bg-muted aspect-[4/4.8] w-full">
                     <Image
                       src={AboutImg}
                       alt="Ratnakar Singh Parihar"
                       className="object-cover object-top w-full h-full transition-transform duration-500 hover:scale-105"
-                      onLoad={() => setIsImageLoaded(true)}
                     />
+
                     <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
 
-                    {/* Status Pill on Photo */}
-                    <div className="absolute top-3 left-3 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-white text-xs font-medium flex items-center gap-1.5">
+                    {/* Location */}
+                    {/* <div className="absolute top-3 left-3 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-white text-xs font-medium flex items-center gap-1.5">
                       <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                      <span>Bhopal, MP, India</span>
-                      {/* <span>Bengaluru, Karnataka, India</span> */}
-                    </div>
+                      <span>Bengaluru, Karnataka, India</span>
+                    </div> */}
 
-                    {/* Photo Footer Label */}
+                    {/* Profile Footer */}
                     <div className="absolute text-white bottom-3 left-4 right-4">
                       <h3 className="text-lg font-bold">
                         Ratnakar Singh Parihar
                       </h3>
+
                       <p className="text-xs font-medium text-blue-300">
-                        Software & Mobile App Engineer
+                        Full-Stack & React Native Developer
                       </p>
                     </div>
                   </div>
 
-                  {/* Social Links Row */}
+                  {/* Social Links */}
                   <div className="flex items-center justify-between px-1 pt-1">
                     <span className="text-xs font-semibold tracking-wider uppercase text-muted-foreground">
                       Social Profiles
                     </span>
+
                     <div className="flex items-center gap-2">
                       {socialLinks.map((social) => {
                         const IconComp = social.icon;
+
                         return (
                           <a
                             key={social.name}
@@ -196,10 +197,11 @@ const HeroSection = () => {
                     </div>
                   </div>
 
-                  {/* Stats Grid inside Card */}
+                  {/* Stats */}
                   <div className="grid grid-cols-2 gap-2.5 pt-1">
                     {stats.map((stat) => {
                       const IconComponent = stat.icon;
+
                       return (
                         <div
                           key={stat.label}
@@ -208,9 +210,11 @@ const HeroSection = () => {
                           <IconComponent
                             className={`w-4 h-4 mx-auto mb-1 ${stat.color}`}
                           />
+
                           <div className="text-base font-extrabold text-foreground">
                             {stat.value}
                           </div>
+
                           <div className="text-[11px] text-muted-foreground font-medium leading-tight">
                             {stat.label}
                           </div>
@@ -223,14 +227,18 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* RIGHT COLUMN — About Story & Developer Highlights */}
+          {/* ================= RIGHT COLUMN ================= */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
+            transition={{
+              duration: 0.6,
+              delay: 0.15,
+              ease: "easeOut",
+            }}
             className="flex flex-col items-center space-y-6 text-center lg:col-span-7 lg:items-start lg:text-left"
           >
-            {/* About Badge */}
+            {/* Badge */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -238,29 +246,36 @@ const HeroSection = () => {
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-500/20 bg-purple-500/5 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 text-xs sm:text-sm font-semibold tracking-wide uppercase shadow-sm"
             >
               <Sparkles className="w-3.5 h-3.5" />
+
               <span>About My Developer Journey</span>
             </motion.div>
 
-            {/* Supporting Headline */}
+            {/* Headline */}
             <div className="w-full space-y-2">
               <motion.h1
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
+                transition={{
+                  delay: 0.2,
+                  duration: 0.5,
+                }}
                 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-foreground leading-[1.2]"
               >
-                Crafting Scalable Web & Mobile Apps with{" "}
+                Building Scalable Web & Mobile Apps with{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 dark:from-purple-400 dark:via-blue-400 dark:to-indigo-400">
                   Purpose & Precision
                 </span>
               </motion.h1>
             </div>
 
-            {/* Story Paragraphs */}
+            {/* Story */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.25, duration: 0.5 }}
+              transition={{
+                delay: 0.25,
+                duration: 0.5,
+              }}
               className="max-w-2xl space-y-3 text-sm leading-relaxed sm:text-base text-muted-foreground"
             >
               <p>
@@ -268,30 +283,34 @@ const HeroSection = () => {
                 <strong className="font-semibold text-foreground">
                   Ratnakar Singh Parihar
                 </strong>
-                , a Full-Stack & React Native Developer currently pursuing my
-                B.Tech in Computer Science & Engineering (Graduating 2026).
+                , a Full-Stack & React Native Developer with a B.Tech in
+                Computer Science & Engineering.
               </p>
+
               <p>
-                My passion lies in taking complex real-world problems and
-                engineering clean, efficient, and user-friendly digital
-                solutions. From real-time MERN stack platforms like the{" "}
+                I enjoy turning real-world problems into clean, practical, and
+                scalable digital solutions. My experience includes building
+                MERN-based web platforms, real-time applications, REST APIs, and
+                cross-platform mobile apps using React Native.
+              </p>
+
+              <p>
+                Alongside development, I continuously work on{" "}
                 <strong className="font-semibold text-foreground">
-                  Vehicle Service Booking Platform
+                  DSA, OOP, System Design, Databases, and Backend Engineering
                 </strong>{" "}
-                and{" "}
-                <strong className="font-semibold text-foreground">
-                  YammiVerse
-                </strong>{" "}
-                to cross-platform mobile apps, I bring strong algorithmic
-                thinking and production-minded engineering to every project.
+                to improve my problem-solving and software engineering skills.
               </p>
             </motion.div>
 
-            {/* Core Developer Pillars */}
+            {/* Developer Pillars */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
+              transition={{
+                delay: 0.3,
+                duration: 0.5,
+              }}
               className="w-full max-w-2xl space-y-3 text-left"
             >
               {developerPillars.map((pillar) => (
@@ -302,10 +321,12 @@ const HeroSection = () => {
                   <div className="p-1.5 rounded-lg bg-purple-500/10 text-purple-600 dark:text-purple-400 shrink-0 mt-0.5">
                     <CheckCircle2 className="w-4 h-4" />
                   </div>
+
                   <div>
                     <h4 className="text-sm font-bold text-foreground">
                       {pillar.title}
                     </h4>
+
                     <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
                       {pillar.desc}
                     </p>
@@ -314,11 +335,14 @@ const HeroSection = () => {
               ))}
             </motion.div>
 
-            {/* CTAs */}
+            {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.35, duration: 0.5 }}
+              transition={{
+                delay: 0.35,
+                duration: 0.5,
+              }}
               className="flex flex-col items-center w-full gap-4 pt-2 sm:flex-row sm:w-auto"
             >
               <Link to="/contact" className="w-full sm:w-auto">
@@ -327,6 +351,7 @@ const HeroSection = () => {
                   className="w-full sm:w-auto px-7 py-3.5 rounded-xl font-bold text-white bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 shadow-lg shadow-purple-500/20 hover:shadow-purple-500/35 transition-all duration-200 flex items-center justify-center gap-2 text-sm sm:text-base group"
                 >
                   <span>Let's Work Together</span>
+
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </button>
               </Link>
@@ -337,6 +362,7 @@ const HeroSection = () => {
                 className="w-full sm:w-auto px-7 py-3.5 rounded-xl font-semibold text-foreground bg-card hover:bg-muted border border-border shadow-sm hover:shadow transition-all duration-200 flex items-center justify-center gap-2 text-sm sm:text-base"
               >
                 <FileText className="w-4 h-4 text-purple-500" />
+
                 <span>View Resume</span>
               </button>
             </motion.div>

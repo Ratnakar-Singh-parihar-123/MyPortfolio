@@ -872,7 +872,7 @@ const HeroSection = () => {
       },
       {
         value: "1+",
-        label: "Year Experience",
+        label: "Years — Learning, Internships & Projects",
       },
     ],
     [],
