@@ -460,7 +460,7 @@ const WhyHireMe = () => {
               <div className="flex flex-wrap items-center justify-center gap-6 pt-8 mt-8 border-t border-white/10">
                 <div className="flex items-center gap-2">
                   <ShieldCheckIcon className="w-4 h-4 text-green-400" />
-                  <span className="text-sm text-white/60">8+ Projects</span>
+                  <span className="text-sm text-white/60">10+ Projects</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <ArrowTrendingUpIcon className="w-4 h-4 text-blue-400" />

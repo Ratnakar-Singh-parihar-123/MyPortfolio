@@ -223,7 +223,7 @@ const SkillPreviewSection = () => {
     },
     {
       label: "Projects Completed",
-      value: "8+",
+      value: "10+",
       icon: Layers,
       color: "text-green-500",
       bgColor: "bg-green-500/10",

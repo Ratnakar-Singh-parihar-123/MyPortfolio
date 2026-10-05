@@ -327,6 +327,8 @@ import parkEasyAdmin10 from "../assets/AppImg/ParkEasyAdmin/parkEasyAdmin10.jpg"
 import parkEasyAdmin11 from "../assets/AppImg/ParkEasyAdmin/parkEasyAdmin11.jpg";
 import parkEasyAdmin12 from "../assets/AppImg/ParkEasyAdmin/parkEasyAdmin12.jpg";
 import parkEasyAdmin13 from "../assets/AppImg/ParkEasyAdmin/parkEasyAdmin13.jpg";
+
+import Scalegate from "../assets/projectsImg/ScaleGateDemo.jpg";
 // 📦 WEB PROJECTS DATA
 // ============================================================
 export const webProjects = [
@@ -872,6 +874,87 @@ The platform includes role-based authentication using JWT and HTTP Cookies, vend
     ],
     metrics: [],
     status: "Live",
+    featured: true,
+  },
+  {
+    id: 11,
+
+    title: "ScaleGate",
+
+    category: "Java High-Performance Load Balancer",
+
+    projectType: "system-design",
+
+    industry: "Distributed Systems",
+
+    description:
+      "A Java-based high-performance load balancer project focused on distributed systems, routing algorithms, concurrency, fault tolerance, and scalable system design.",
+
+    fullDescription: `ScaleGate is an ongoing Java-based high-performance load balancer project built as a practical exploration of distributed systems, data structures, concurrency, networking, and system design.
+
+The project is designed to understand how a load balancer can distribute incoming requests across multiple backend servers while handling server health, failures, retries, rate limiting, and traffic distribution.
+
+The current implementation focuses on core load balancing concepts including Round Robin, Least Connections, Weighted Routing, and Consistent Hashing. Consistent Hashing uses a TreeMap-based hash ring and ceilingEntry() to efficiently locate the next available server.
+
+ScaleGate also explores fault-tolerance patterns such as health checks, retry and failover mechanisms, rate limiting, and circuit breaker behavior.
+
+The project is currently under active development. The implementation is not yet complete and does not currently have a public live deployment or published GitHub repository. New system design concepts, performance improvements, testing, and production-oriented features are being added incrementally.`,
+
+    // Temporary placeholder.
+    // Replace this after adding a dedicated ScaleGate screenshot.
+    image: Scalegate,
+
+    gallery: [Scalegate],
+
+    technologies: [
+      "Java",
+      "Data Structures",
+      "System Design",
+      "Multithreading",
+      "Networking",
+      "ConcurrentHashMap",
+      "TreeMap",
+      "Consistent Hashing",
+      "Docker",
+    ],
+
+    complexity: "Advanced",
+
+    duration: "Ongoing",
+
+    rating: 0,
+
+    // No public deployment yet
+    liveUrl: null,
+
+    // GitHub repository not public yet
+    githubUrl: null,
+
+    features: [
+      "Round Robin load balancing",
+      "Least Connections routing",
+      "Weighted routing",
+      "Consistent Hashing",
+      "TreeMap-based hash ring",
+      "TreeMap ceilingEntry() server lookup",
+      "Server health checks",
+      "Retry mechanism",
+      "Request failover",
+      "Rate limiting",
+      "Circuit breaker",
+      "Concurrent server registry",
+      "Traffic distribution",
+      "Performance and load testing",
+      "Metrics and request monitoring",
+    ],
+
+    metrics: [],
+
+    status: "In Development",
+
+    developmentNote:
+      "ScaleGate is currently under active development. Core load balancing and system design concepts are being implemented and tested. Public GitHub and live deployment will be added after the project reaches a stable milestone.",
+
     featured: true,
   },
 ];

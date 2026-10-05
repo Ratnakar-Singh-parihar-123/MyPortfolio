@@ -422,7 +422,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
     coding: [
       {
         label: "Projects Completed",
-        value: "8+",
+        value: "10+",
         icon: Briefcase,
         color: "text-purple-500",
       },
