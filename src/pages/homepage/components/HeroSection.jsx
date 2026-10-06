@@ -666,6 +666,7 @@ import {
   ExternalLink,
   Network,
   Boxes,
+  TestTube,
 } from "lucide-react";
 import {
   SiJavascript,
@@ -849,6 +850,12 @@ const HeroSection = () => {
         className:
           "text-indigo-500 bg-indigo-500/8 border-indigo-500/20 hover:bg-indigo-500/20 hover:border-indigo-500/50 hover:text-indigo-400 hover:shadow-lg hover:shadow-indigo-500/20 hover:-translate-y-0.5",
       },
+      {
+        name: "Testing & Debugging",
+        icon: TestTube,
+        className:
+          "text-emerald-500 bg-emerald-500/8 border-emerald-500/20 hover:bg-emerald-500/20 hover:border-emerald-500/50 hover:text-emerald-400 hover:shadow-lg hover:shadow-emerald-500/20 hover:-translate-y-0.5",
+      },
     ],
     [],
   );
@@ -901,7 +908,7 @@ const HeroSection = () => {
         url: "https://x.com/RatnakarSi85551",
         icon: Twitter,
         hover:
-          "hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white",
+          "hover:bg-blue-500 hover:text-white hover:border-blue-500 dark:hover:bg-white dark:hover:text-blue-500 dark:hover:border-white",
       },
       {
         name: "Email",
