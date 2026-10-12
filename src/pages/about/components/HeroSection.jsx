@@ -154,10 +154,10 @@ const HeroSection = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
 
                     {/* Location */}
-                    {/* <div className="absolute top-3 left-3 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-white text-xs font-medium flex items-center gap-1.5">
+                    <div className="absolute top-3 left-3 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-white text-xs font-medium flex items-center gap-1.5">
                       <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                       <span>Bengaluru, Karnataka, India</span>
-                    </div> */}
+                    </div>
 
                     {/* Profile Footer */}
                     <div className="absolute text-white bottom-3 left-4 right-4">

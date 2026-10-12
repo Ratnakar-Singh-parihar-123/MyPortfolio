@@ -179,7 +179,7 @@ const ContactPage = () => {
                           Location
                         </p>
                         <p className="text-sm font-medium text-foreground">
-                          Bhopal, MP, India
+                          Bengaluru, Karnataka, India
                         </p>
                       </div>
                     </div>

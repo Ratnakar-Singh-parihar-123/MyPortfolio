@@ -1241,7 +1241,7 @@ const ResumePopup = ({ isOpen, onClose }) => {
                         </div>
                         <div className="flex items-center justify-center gap-3 px-4 py-3 bg-gray-50 dark:bg-gray-800/50 rounded-xl">
                           <MapPin className="w-5 h-5" />
-                          <span>Bhopal, Madhya Pradesh</span>
+                          <span>Bengaluru, Karnataka, India</span>
                         </div>
                       </motion.div>
                     </div>

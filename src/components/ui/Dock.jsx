@@ -1,3 +1,1497 @@
+// import React, { useEffect, useRef, useState } from "react";
+// import { Link, useLocation } from "react-router-dom";
+// import {
+//   motion,
+//   AnimatePresence,
+//   useMotionValue,
+//   useTransform,
+//   useSpring,
+//   useReducedMotion,
+// } from "framer-motion";
+
+// import {
+//   House,
+//   UserRound,
+//   Layers3,
+//   BriefcaseBusiness,
+//   Code2,
+//   Medal,
+//   MessagesSquare,
+//   GraduationCap,
+//   Mail,
+//   Search as SearchIcon,
+//   PhoneCall,
+//   ArrowRight,
+//   Sparkles,
+//   X,
+//   CalendarDays,
+// } from "lucide-react";
+
+// import BookMyCallModal from "./BookMyCallModal";
+// import SearchModal from "./SearchModal";
+
+// /* =========================================================
+//    NAVIGATION ITEMS
+// ========================================================= */
+
+// const NAV_ITEMS = [
+//   {
+//     id: "home",
+//     label: "Home",
+//     icon: House,
+//     href: "/",
+//     type: "route",
+//     color: "#60A5FA",
+//     tint: "96,165,250",
+//   },
+//   {
+//     id: "about",
+//     label: "About",
+//     icon: UserRound,
+//     href: "/about",
+//     type: "route",
+//     color: "#A78BFA",
+//     tint: "167,139,250",
+//   },
+//   {
+//     id: "projects",
+//     label: "Projects",
+//     icon: Layers3,
+//     href: "/projects",
+//     type: "route",
+//     color: "#818CF8",
+//     tint: "129,140,248",
+//   },
+//   {
+//     id: "experience",
+//     label: "Experience",
+//     icon: BriefcaseBusiness,
+//     href: "/experience",
+//     type: "route",
+//     color: "#FB923C",
+//     tint: "251,146,60",
+//   },
+//   {
+//     id: "tech-stack",
+//     label: "Tech Stack",
+//     icon: Code2,
+//     href: "/skills",
+//     type: "route",
+//     color: "#22D3EE",
+//     tint: "34,211,238",
+//   },
+//   {
+//     id: "achievements",
+//     label: "Achievements",
+//     icon: Medal,
+//     href: "/achievements",
+//     type: "route",
+//     color: "#FBBF24",
+//     tint: "251,191,36",
+//   },
+//   {
+//     id: "contact",
+//     label: "Contact",
+//     icon: MessagesSquare,
+//     href: "/contact",
+//     type: "route",
+//     color: "#FB7185",
+//     tint: "251,113,133",
+//   },
+//   {
+//     id: "education",
+//     label: "Education",
+//     icon: GraduationCap,
+//     href: "/education",
+//     type: "route",
+//     color: "#34D399",
+//     tint: "52,211,153",
+//   },
+
+//   /* =======================================================
+//      EMAIL
+//   ======================================================= */
+
+//   {
+//     id: "email",
+//     label: "Email",
+//     icon: Mail,
+//     href: "mailto:ratnakarsinghparihar9399@gmail.com",
+//     type: "external",
+//     color: "#10B981",
+//     tint: "16,185,129",
+//   },
+
+//   /* =======================================================
+//      SEARCH
+//   ======================================================= */
+
+//   {
+//     id: "search",
+//     label: "Search",
+//     icon: SearchIcon,
+//     type: "action",
+//     color: "#94A3B8",
+//     tint: "148,163,184",
+//   },
+
+//   /* =======================================================
+//      BOOK A CALL
+//   ======================================================= */
+
+//   {
+//     id: "book-call",
+//     label: "Book a Call",
+//     icon: PhoneCall,
+//     type: "action",
+//     isProminent: true,
+//     color: "#F59E0B",
+//     tint: "245,158,11",
+//   },
+// ];
+
+// /* =========================================================
+//    DOCK ITEM
+// ========================================================= */
+
+// const DockItem = ({
+//   mouseX,
+//   item,
+//   isActive,
+//   isHovered,
+//   onMouseEnter,
+//   onMouseLeave,
+//   onClick,
+//   reduceMotion,
+//   showStartupHint,
+//   showEmailHint,
+//   onCloseStartupHint,
+//   onCloseEmailHint,
+// }) => {
+//   const ref = useRef(null);
+
+//   /* =======================================================
+//      MACOS STYLE MAGNIFICATION
+//   ======================================================= */
+
+//   const distance = useMotionValue(9999);
+
+//   const width = useTransform(
+//     distance,
+//     [-180, -150, -120, -90, -60, -30, 0, 30, 60, 90, 120, 150, 180],
+//     [52, 52, 53, 54, 56, 60, 68, 60, 56, 54, 53, 52, 52],
+//   );
+
+//   const scale = useTransform(
+//     distance,
+//     [-180, -150, -120, -90, -60, -30, 0, 30, 60, 90, 120, 150, 180],
+//     [1, 1, 1.005, 1.015, 1.035, 1.07, 1.12, 1.07, 1.035, 1.015, 1.005, 1, 1],
+//   );
+
+//   /*
+//    * Soft spring.
+//    *
+//    * This keeps the movement smooth instead of
+//    * making icons suddenly jump when the mouse moves.
+//    */
+
+//   const springWidth = useSpring(width, {
+//     stiffness: 300,
+//     damping: 26,
+//     mass: 0.55,
+//   });
+
+//   const springScale = useSpring(scale, {
+//     stiffness: 300,
+//     damping: 26,
+//     mass: 0.55,
+//   });
+
+//   /* =======================================================
+//      TRACK MOUSE
+//   ======================================================= */
+
+//   useEffect(() => {
+//     if (reduceMotion) return;
+
+//     const unsubscribe = mouseX.on("change", (latest) => {
+//       if (!ref.current) return;
+
+//       const rect = ref.current.getBoundingClientRect();
+
+//       const center = rect.left + rect.width / 2;
+
+//       distance.set(latest - center);
+//     });
+
+//     return () => unsubscribe();
+//   }, [mouseX, distance, reduceMotion]);
+
+//   /* =======================================================
+//      SPECIAL STATES
+//   ======================================================= */
+
+//   const isBookCall = item.id === "book-call";
+//   const isEmail = item.id === "email";
+
+//   const showBookHint = isBookCall && showStartupHint;
+//   const shouldShowEmailHint = isEmail && showEmailHint;
+
+//   const showSpotlight = showBookHint || shouldShowEmailHint;
+
+//   /* =======================================================
+//      BASE DOCK ITEM
+//   ======================================================= */
+
+//   const baseClass = `
+//     relative
+//     flex
+//     h-[52px]
+//     items-center
+//     justify-center
+//     rounded-2xl
+//     border
+//     select-none
+//     will-change-transform
+//     transition-[background-color,border-color,box-shadow]
+//     duration-200
+//   `;
+
+//   /* =======================================================
+//      NEUTRAL DOCK BACKGROUND
+
+//      IMPORTANT:
+//      Bottom bar stays neutral.
+//      Only icons receive individual colors.
+//   ======================================================= */
+
+//   const normalClass = `
+//     border-border/60
+//     bg-background/70
+//     text-muted-foreground
+//     backdrop-blur-xl
+//     hover:border-border
+//     hover:bg-background/90
+//   `;
+
+//   /* =======================================================
+//      INDIVIDUAL ICON COLOR
+//   ======================================================= */
+
+//   const iconColor = item.color || "currentColor";
+
+//   /* =======================================================
+//      SUBTLE COLORED HOVER
+
+//      Background remains almost neutral.
+//      Color only appears softly around hovered item.
+//   ======================================================= */
+
+//   const hoverTintStyle =
+//     isHovered && !isActive
+//       ? {
+//           backgroundColor: `rgba(${item.tint}, 0.045)`,
+//           borderColor: `rgba(${item.tint}, 0.30)`,
+//           boxShadow: `0 8px 22px rgba(${item.tint}, 0.08)`,
+//         }
+//       : undefined;
+
+//   /* =======================================================
+//      ACTIVE ROUTE
+//   ======================================================= */
+
+//   const activeClass = isActive
+//     ? `
+//       border-primary/50
+//       bg-primary/[0.06]
+//     `
+//     : "";
+
+//   /* =======================================================
+//      DOCK CONTENT
+//   ======================================================= */
+
+//   const content = (
+//     <motion.div
+//       ref={ref}
+//       style={{
+//         width: reduceMotion ? 52 : springWidth,
+//         scale: reduceMotion ? 1 : springScale,
+
+//         /*
+//          * Very important for Mac-like growth.
+//          *
+//          * Icons grow upward instead of moving
+//          * randomly around the dock.
+//          */
+//         transformOrigin: "bottom center",
+
+//         ...hoverTintStyle,
+//       }}
+//       onMouseEnter={onMouseEnter}
+//       onMouseLeave={onMouseLeave}
+//       onClick={item.type === "action" ? onClick : undefined}
+//       whileTap={
+//         reduceMotion
+//           ? undefined
+//           : {
+//               scale: 0.94,
+//             }
+//       }
+//       className={`
+//         ${baseClass}
+//         ${normalClass}
+//         ${activeClass}
+//         ${item.type === "action" ? "cursor-pointer" : ""}
+//       `}
+//     >
+//       {/* =================================================
+//           SOFT INDIVIDUAL ICON GLOW
+//       ================================================= */}
+
+//       <motion.div
+//         className="
+//           pointer-events-none
+//           absolute
+//           inset-1
+//           rounded-[15px]
+//         "
+//         animate={{
+//           opacity:
+//             isHovered || isActive ? 0.9 : isBookCall || isEmail ? 0.5 : 0,
+//         }}
+//         transition={{
+//           duration: 0.25,
+//           ease: "easeOut",
+//         }}
+//         style={{
+//           boxShadow: `inset 0 0 0 1px rgba(${item.tint}, ${
+//             isHovered || isActive ? "0.18" : "0.10"
+//           })`,
+//         }}
+//       />
+
+//       {/* =================================================
+//           EMAIL INNER ACCENT
+//       ================================================= */}
+
+//       {isEmail && (
+//         <motion.div
+//           className="absolute inset-0 pointer-events-none rounded-2xl"
+//           animate={{
+//             opacity: reduceMotion ? 0.65 : [0.3, 0.55, 0.3],
+//           }}
+//           transition={
+//             reduceMotion
+//               ? undefined
+//               : {
+//                   duration: 2.8,
+//                   repeat: Infinity,
+//                   ease: "easeInOut",
+//                 }
+//           }
+//           style={{
+//             boxShadow: "inset 0 0 0 1px rgba(16,185,129,0.42)",
+//           }}
+//         />
+//       )}
+
+//       {/* =================================================
+//           BOOK CALL INNER ACCENT
+//       ================================================= */}
+
+//       {isBookCall && (
+//         <motion.div
+//           className="absolute inset-0 pointer-events-none rounded-2xl"
+//           animate={{
+//             opacity: reduceMotion ? 0.65 : [0.3, 0.55, 0.3],
+//           }}
+//           transition={
+//             reduceMotion
+//               ? undefined
+//               : {
+//                   duration: 2.6,
+//                   repeat: Infinity,
+//                   ease: "easeInOut",
+//                 }
+//           }
+//           style={{
+//             boxShadow: "inset 0 0 0 1px rgba(245,158,11,0.42)",
+//           }}
+//         />
+//       )}
+
+//       {/* =================================================
+//           ICON
+//       ================================================= */}
+
+//       <motion.div
+//         className="relative z-10 flex items-center justify-center will-change-transform"
+//         animate={
+//           reduceMotion
+//             ? undefined
+//             : isBookCall || isEmail
+//               ? {
+//                   y: [0, -1, 0],
+//                 }
+//               : undefined
+//         }
+//         transition={
+//           reduceMotion
+//             ? undefined
+//             : {
+//                 duration: 2.5,
+//                 repeat: Infinity,
+//                 ease: "easeInOut",
+//               }
+//         }
+//       >
+//         <motion.div
+//           animate={{
+//             opacity: isHovered || isActive ? 1 : 0.9,
+//           }}
+//           transition={{
+//             duration: 0.18,
+//           }}
+//         >
+//           <item.icon
+//             size={21}
+//             strokeWidth={1.9}
+//             style={{
+//               color: iconColor,
+
+//               /*
+//                * Very subtle colored shadow.
+//                * This makes each icon feel alive without
+//                * making the whole dock colorful.
+//                */
+//               filter:
+//                 isHovered || isActive
+//                   ? `drop-shadow(0 0 5px rgba(${item.tint}, 0.28))`
+//                   : `drop-shadow(0 0 0 rgba(${item.tint}, 0))`,
+//             }}
+//           />
+//         </motion.div>
+//       </motion.div>
+
+//       {/* =================================================
+//           NORMAL TOOLTIP
+//       ================================================= */}
+
+//       <AnimatePresence>
+//         {isHovered && !showSpotlight && (
+//           <motion.div
+//             initial={{
+//               opacity: 0,
+//               y: 5,
+//               scale: 0.96,
+//             }}
+//             animate={{
+//               opacity: 1,
+//               y: 0,
+//               scale: 1,
+//             }}
+//             exit={{
+//               opacity: 0,
+//               y: 4,
+//               scale: 0.97,
+//             }}
+//             transition={{
+//               duration: 0.18,
+//               ease: "easeOut",
+//             }}
+//             className="
+//               pointer-events-none
+//               absolute
+//               bottom-[calc(100%+12px)]
+//               left-1/2
+//               z-[80]
+//               -translate-x-1/2
+//               whitespace-nowrap
+//               rounded-xl
+//               border
+//               border-border/70
+//               bg-background
+//               px-3
+//               py-1.5
+//               text-[11px]
+//               font-medium
+//               text-foreground
+//               shadow-xl
+//             "
+//           >
+//             {item.label}
+
+//             <span
+//               className="
+//                 absolute
+//                 bottom-[-4px]
+//                 left-1/2
+//                 h-2
+//                 w-2
+//                 -translate-x-1/2
+//                 rotate-45
+//                 border-b
+//                 border-r
+//                 border-border/70
+//                 bg-background
+//               "
+//             />
+//           </motion.div>
+//         )}
+//       </AnimatePresence>
+//     </motion.div>
+//   );
+
+//   /* =========================================================
+//      BOOK A CALL SPOTLIGHT
+//   ========================================================= */
+
+//   const bookSpotlight = (
+//     <AnimatePresence>
+//       {showBookHint && (
+//         <motion.div
+//           initial={{
+//             opacity: 0,
+//             y: 14,
+//             scale: 0.96,
+//           }}
+//           animate={{
+//             opacity: 1,
+//             y: 0,
+//             scale: 1,
+//           }}
+//           exit={{
+//             opacity: 0,
+//             y: 10,
+//             scale: 0.97,
+//           }}
+//           transition={{
+//             duration: reduceMotion ? 0.15 : 0.42,
+//             ease: [0.22, 1, 0.36, 1],
+//           }}
+//           className="
+//             absolute
+//             bottom-[calc(100%+18px)]
+//             right-0
+//             z-[100]
+//             w-[330px]
+//             overflow-hidden
+//             rounded-[20px]
+//             border
+//             border-amber-400/40
+//             bg-background
+//             text-foreground
+//             shadow-[0_22px_65px_rgba(0,0,0,0.18),0_8px_30px_rgba(245,158,11,0.10)]
+//           "
+//         >
+//           {/* SUBTLE AMBER LIGHT */}
+
+//           <div
+//             className="
+//               pointer-events-none
+//               absolute
+//               -right-20
+//               -top-20
+//               h-44
+//               w-44
+//               rounded-full
+//               bg-amber-400/[0.07]
+//               blur-3xl
+//             "
+//           />
+
+//           {/* TOP ACCENT */}
+
+//           <div
+//             className="
+//               absolute
+//               left-6
+//               right-6
+//               top-0
+//               h-[2px]
+//               rounded-full
+//               bg-gradient-to-r
+//               from-transparent
+//               via-amber-400
+//               to-transparent
+//               opacity-90
+//             "
+//           />
+
+//           <div className="relative p-[18px]">
+//             {/* HEADER */}
+
+//             <div className="flex items-start justify-between">
+//               <div className="flex items-center gap-3">
+//                 <div
+//                   className="
+//                     flex
+//                     h-10
+//                     w-10
+//                     shrink-0
+//                     items-center
+//                     justify-center
+//                     rounded-xl
+//                     border
+//                     border-amber-400/30
+//                     bg-amber-400/[0.08]
+//                     text-amber-500
+//                   "
+//                 >
+//                   <CalendarDays size={18} strokeWidth={1.8} />
+//                 </div>
+
+//                 <div>
+//                   <div className="text-[9px] font-bold tracking-[0.2em] text-amber-500">
+//                     LET&apos;S CONNECT
+//                   </div>
+
+//                   <div className="mt-0.5 text-[10px] text-muted-foreground">
+//                     Quick conversation
+//                   </div>
+//                 </div>
+//               </div>
+
+//               {/* CLOSE */}
+
+//               <button
+//                 type="button"
+//                 onClick={onCloseStartupHint}
+//                 aria-label="Close Book a Call"
+//                 className="
+//                   flex
+//                   h-8
+//                   w-8
+//                   shrink-0
+//                   items-center
+//                   justify-center
+//                   rounded-lg
+//                   text-muted-foreground
+//                   transition-all
+//                   duration-200
+//                   hover:bg-amber-400/[0.09]
+//                   hover:text-amber-500
+//                 "
+//               >
+//                 <X size={16} strokeWidth={1.8} />
+//               </button>
+//             </div>
+
+//             {/* TITLE */}
+
+//             <h3
+//               className="
+//                 mt-4
+//                 text-[18px]
+//                 font-semibold
+//                 leading-tight
+//                 tracking-tight
+//                 text-foreground
+//               "
+//             >
+//               Have a project in mind?
+//             </h3>
+
+//             {/* DESCRIPTION */}
+
+//             <p
+//               className="
+//                 mt-1.5
+//                 text-[11px]
+//                 leading-[1.65]
+//                 text-muted-foreground
+//               "
+//             >
+//               Let&apos;s discuss your idea, requirements, and how we can turn it
+//               into a scalable web or mobile product.
+//             </p>
+
+//             {/* AVAILABILITY */}
+
+//             <div
+//               className="
+//                 mt-4
+//                 flex
+//                 items-center
+//                 gap-2.5
+//                 rounded-xl
+//                 border
+//                 border-emerald-400/20
+//                 bg-emerald-400/[0.045]
+//                 px-3
+//                 py-2.5
+//               "
+//             >
+//               <span className="relative flex w-2 h-2 shrink-0">
+//                 <span className="absolute w-full h-full rounded-full animate-ping bg-emerald-400/45" />
+
+//                 <span className="relative w-2 h-2 rounded-full bg-emerald-400" />
+//               </span>
+
+//               <span className="text-[10px] font-medium text-emerald-500">
+//                 Available for a quick chat
+//               </span>
+//             </div>
+
+//             {/* CTA */}
+
+//             <button
+//               type="button"
+//               onClick={onClick}
+//               className="
+//                 group
+//                 mt-3
+//                 flex
+//                 w-full
+//                 items-center
+//                 justify-between
+//                 rounded-xl
+//                 border
+//                 border-amber-400/35
+//                 bg-amber-400/[0.075]
+//                 px-3.5
+//                 py-3
+//                 transition-all
+//                 duration-300
+//                 hover:border-amber-400/55
+//                 hover:bg-amber-400/[0.12]
+//               "
+//             >
+//               <span className="text-[11px] font-semibold text-amber-500">
+//                 Click to open scheduler
+//               </span>
+
+//               <ArrowRight
+//                 size={15}
+//                 strokeWidth={1.8}
+//                 className="transition-transform duration-300 text-amber-500 group-hover:translate-x-1"
+//               />
+//             </button>
+
+//             {/* FOOTER */}
+
+//             <div className="mt-3.5 flex items-center justify-between">
+//               <span className="text-[9px] text-muted-foreground">
+//                 Let&apos;s build something great.
+//               </span>
+
+//               <Sparkles
+//                 size={13}
+//                 strokeWidth={1.8}
+//                 className="text-amber-400"
+//               />
+//             </div>
+//           </div>
+
+//           {/* POINTER */}
+
+//           <span
+//             className="
+//               absolute
+//               bottom-[-6px]
+//               right-7
+//               h-3
+//               w-3
+//               rotate-45
+//               border-b
+//               border-r
+//               border-amber-400/40
+//               bg-background
+//             "
+//           />
+//         </motion.div>
+//       )}
+//     </AnimatePresence>
+//   );
+
+//   /* =========================================================
+//      EMAIL SPOTLIGHT
+//   ========================================================= */
+
+//   const emailSpotlight = (
+//     <AnimatePresence>
+//       {shouldShowEmailHint && (
+//         <motion.div
+//           initial={{
+//             opacity: 0,
+//             y: 14,
+//             scale: 0.96,
+//           }}
+//           animate={{
+//             opacity: 1,
+//             y: 0,
+//             scale: 1,
+//           }}
+//           exit={{
+//             opacity: 0,
+//             y: 10,
+//             scale: 0.97,
+//           }}
+//           transition={{
+//             duration: reduceMotion ? 0.15 : 0.42,
+//             ease: [0.22, 1, 0.36, 1],
+//           }}
+//           className="
+//             absolute
+//             bottom-[calc(100%+18px)]
+//             right-0
+//             z-[100]
+//             w-[330px]
+//             overflow-hidden
+//             rounded-[20px]
+//             border
+//             border-emerald-400/40
+//             bg-background
+//             text-foreground
+//             shadow-[0_22px_65px_rgba(0,0,0,0.18),0_8px_30px_rgba(16,185,129,0.10)]
+//           "
+//         >
+//           {/* SUBTLE GREEN LIGHT */}
+
+//           <div
+//             className="
+//               pointer-events-none
+//               absolute
+//               -right-20
+//               -top-20
+//               h-44
+//               w-44
+//               rounded-full
+//               bg-emerald-400/[0.07]
+//               blur-3xl
+//             "
+//           />
+
+//           {/* TOP ACCENT */}
+
+//           <div
+//             className="
+//               absolute
+//               left-6
+//               right-6
+//               top-0
+//               h-[2px]
+//               rounded-full
+//               bg-gradient-to-r
+//               from-transparent
+//               via-emerald-400
+//               to-transparent
+//               opacity-90
+//             "
+//           />
+
+//           <div className="relative p-[18px]">
+//             {/* HEADER */}
+
+//             <div className="flex items-start justify-between">
+//               <div className="flex items-center gap-3">
+//                 <div
+//                   className="
+//                     flex
+//                     h-10
+//                     w-10
+//                     shrink-0
+//                     items-center
+//                     justify-center
+//                     rounded-xl
+//                     border
+//                     border-emerald-400/30
+//                     bg-emerald-400/[0.08]
+//                     text-emerald-500
+//                   "
+//                 >
+//                   <Mail size={18} strokeWidth={1.8} />
+//                 </div>
+
+//                 <div>
+//                   <div className="text-[9px] font-bold tracking-[0.2em] text-emerald-500">
+//                     LET&apos;S TALK
+//                   </div>
+
+//                   <div className="mt-0.5 text-[10px] text-muted-foreground">
+//                     Direct communication
+//                   </div>
+//                 </div>
+//               </div>
+
+//               {/* CLOSE */}
+
+//               <button
+//                 type="button"
+//                 onClick={onCloseEmailHint}
+//                 aria-label="Close Email"
+//                 className="
+//                   flex
+//                   h-8
+//                   w-8
+//                   shrink-0
+//                   items-center
+//                   justify-center
+//                   rounded-lg
+//                   text-muted-foreground
+//                   transition-all
+//                   duration-200
+//                   hover:bg-emerald-400/[0.09]
+//                   hover:text-emerald-500
+//                 "
+//               >
+//                 <X size={16} strokeWidth={1.8} />
+//               </button>
+//             </div>
+
+//             {/* TITLE */}
+
+//             <h3
+//               className="
+//                 mt-4
+//                 text-[18px]
+//                 font-semibold
+//                 leading-tight
+//                 tracking-tight
+//                 text-foreground
+//               "
+//             >
+//               Have a question?
+//             </h3>
+
+//             {/* DESCRIPTION */}
+
+//             <p
+//               className="
+//                 mt-1.5
+//                 text-[11px]
+//                 leading-[1.65]
+//                 text-muted-foreground
+//               "
+//             >
+//               Want to discuss an opportunity, collaboration, or just say hello?
+//               Drop me an email.
+//             </p>
+
+//             {/* EMAIL ADDRESS */}
+
+//             <div
+//               className="
+//                 mt-4
+//                 rounded-xl
+//                 border
+//                 border-emerald-400/20
+//                 bg-emerald-400/[0.045]
+//                 px-3
+//                 py-2.5
+//               "
+//             >
+//               <p
+//                 className="
+//                   truncate
+//                   text-[10px]
+//                   font-medium
+//                   text-emerald-500
+//                 "
+//               >
+//                 ratnakarsinghparihar9399@gmail.com
+//               </p>
+//             </div>
+
+//             {/* CTA */}
+
+//             <button
+//               type="button"
+//               onClick={() => {
+//                 window.location.href =
+//                   "mailto:ratnakarsinghparihar9399@gmail.com";
+
+//                 onCloseEmailHint();
+//               }}
+//               className="
+//                 group
+//                 mt-3
+//                 flex
+//                 w-full
+//                 items-center
+//                 justify-between
+//                 rounded-xl
+//                 border
+//                 border-emerald-400/35
+//                 bg-emerald-400/[0.075]
+//                 px-3.5
+//                 py-3
+//                 transition-all
+//                 duration-300
+//                 hover:border-emerald-400/55
+//                 hover:bg-emerald-400/[0.12]
+//               "
+//             >
+//               <span className="text-[11px] font-semibold text-emerald-500">
+//                 Send me an email
+//               </span>
+
+//               <ArrowRight
+//                 size={15}
+//                 strokeWidth={1.8}
+//                 className="transition-transform duration-300 text-emerald-500 group-hover:translate-x-1"
+//               />
+//             </button>
+
+//             {/* FOOTER */}
+
+//             <div className="mt-3.5 flex items-center justify-between">
+//               <span className="text-[9px] text-muted-foreground">
+//                 Usually happy to connect.
+//               </span>
+
+//               <span className="relative flex w-2 h-2">
+//                 <span className="absolute w-full h-full rounded-full animate-ping bg-emerald-400/45" />
+
+//                 <span className="relative w-2 h-2 rounded-full bg-emerald-400" />
+//               </span>
+//             </div>
+//           </div>
+
+//           {/* POINTER */}
+
+//           <span
+//             className="
+//               absolute
+//               bottom-[-6px]
+//               right-7
+//               h-3
+//               w-3
+//               rotate-45
+//               border-b
+//               border-r
+//               border-emerald-400/40
+//               bg-background
+//             "
+//           />
+//         </motion.div>
+//       )}
+//     </AnimatePresence>
+//   );
+
+//   /* =========================================================
+//      RETURN ITEM
+//   ========================================================= */
+
+//   return (
+//     <div className="relative">
+//       {bookSpotlight}
+
+//       {emailSpotlight}
+
+//       {/* ROUTE */}
+
+//       {item.type === "route" && (
+//         <Link to={item.href} aria-label={item.label} className="block">
+//           {content}
+//         </Link>
+//       )}
+
+//       {/* EXTERNAL */}
+
+//       {item.type === "external" && (
+//         <a href={item.href} aria-label={item.label} className="block">
+//           {content}
+//         </a>
+//       )}
+
+//       {/* ACTION */}
+
+//       {item.type === "action" && content}
+//     </div>
+//   );
+// };
+
+// /* =========================================================
+//    MAIN DOCK
+// ========================================================= */
+
+// const Dock = () => {
+//   const location = useLocation();
+//   const reduceMotion = useReducedMotion();
+
+//   const mouseX = useMotionValue(Infinity);
+
+//   const [hoveredItem, setHoveredItem] = useState(null);
+
+//   const [isBookModalOpen, setIsBookModalOpen] = useState(false);
+
+//   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+
+//   const [isTransitioning, setIsTransitioning] = useState(false);
+
+//   const [showStartupHint, setShowStartupHint] = useState(false);
+
+//   const [showEmailHint, setShowEmailHint] = useState(false);
+
+//   /* =======================================================
+//      TIMER REFS
+//   ======================================================= */
+
+//   const startupBookTimerRef = useRef(null);
+//   const startupEmailTimerRef = useRef(null);
+//   const emailHideTimerRef = useRef(null);
+//   const transitionTimerRef = useRef(null);
+
+//   /* =======================================================
+//      TIMER HELPERS
+//   ======================================================= */
+
+//   const clearTimer = (timerRef) => {
+//     if (timerRef.current) {
+//       window.clearTimeout(timerRef.current);
+//       timerRef.current = null;
+//     }
+//   };
+
+//   const clearStartupTimers = () => {
+//     clearTimer(startupBookTimerRef);
+//     clearTimer(startupEmailTimerRef);
+//     clearTimer(emailHideTimerRef);
+//   };
+
+//   /* =========================================================
+//      STARTUP SPOTLIGHT SEQUENCE
+//   ========================================================= */
+
+//   useEffect(() => {
+//     if (typeof window === "undefined") return;
+
+//     setShowStartupHint(false);
+//     setShowEmailHint(false);
+
+//     /*
+//      * BOOK A CALL
+//      *
+//      * Appears after 1.2 seconds.
+//      */
+
+//     startupBookTimerRef.current = window.setTimeout(() => {
+//       setShowEmailHint(false);
+//       setShowStartupHint(true);
+//     }, 1200);
+
+//     /*
+//      * EMAIL
+//      *
+//      * Appears after Book a Call.
+//      *
+//      * Book Call:
+//      * 1.2s → 5.2s
+//      */
+
+//     startupEmailTimerRef.current = window.setTimeout(() => {
+//       setShowStartupHint(false);
+//       setShowEmailHint(true);
+
+//       /*
+//        * Email remains visible for 5.3 seconds.
+//        */
+
+//       emailHideTimerRef.current = window.setTimeout(() => {
+//         setShowEmailHint(false);
+//       }, 5300);
+//     }, 5200);
+
+//     return () => {
+//       clearStartupTimers();
+//       clearTimer(transitionTimerRef);
+//     };
+//   }, []);
+
+//   /* =========================================================
+//      ACTIVE ROUTE
+//   ========================================================= */
+
+//   const isItemActive = (item) => {
+//     if (item.type !== "route") return false;
+
+//     if (item.href === "/") {
+//       return location.pathname === "/";
+//     }
+
+//     return (
+//       location.pathname === item.href ||
+//       location.pathname.startsWith(`${item.href}/`)
+//     );
+//   };
+
+//   /* =========================================================
+//      CLOSE BOOK HINT
+//   ========================================================= */
+
+//   const closeStartupHint = () => {
+//     setShowStartupHint(false);
+
+//     clearTimer(startupBookTimerRef);
+//   };
+
+//   /* =========================================================
+//      CLOSE EMAIL HINT
+//   ========================================================= */
+
+//   const closeEmailHint = () => {
+//     setShowEmailHint(false);
+
+//     clearTimer(emailHideTimerRef);
+//   };
+
+//   /* =========================================================
+//      BOOK A CALL
+//   ========================================================= */
+
+//   const handleBookClick = () => {
+//     /*
+//      * Hide spotlight.
+//      */
+
+//     setShowStartupHint(false);
+//     setShowEmailHint(false);
+
+//     /*
+//      * Stop startup timers.
+//      */
+
+//     clearStartupTimers();
+
+//     /*
+//      * Clear existing transition.
+//      */
+
+//     clearTimer(transitionTimerRef);
+
+//     /*
+//      * Start smooth transition.
+//      */
+
+//     setIsTransitioning(true);
+
+//     transitionTimerRef.current = window.setTimeout(
+//       () => {
+//         setIsTransitioning(false);
+//         setIsBookModalOpen(true);
+
+//         transitionTimerRef.current = null;
+//       },
+//       reduceMotion ? 0 : 420,
+//     );
+//   };
+
+//   /* =========================================================
+//      SEARCH
+//   ========================================================= */
+
+//   const handleSearchClick = () => {
+//     setShowStartupHint(false);
+//     setShowEmailHint(false);
+
+//     clearStartupTimers();
+
+//     setIsSearchModalOpen(true);
+//   };
+
+//   /* =========================================================
+//      MOUSE
+//   ========================================================= */
+
+//   const handleMouseMove = (event) => {
+//     if (reduceMotion) return;
+
+//     /*
+//      * Only X position controls magnification.
+//      */
+
+//     mouseX.set(event.clientX);
+//   };
+
+//   const handleMouseLeave = () => {
+//     /*
+//      * Returning to Infinity smoothly resets
+//      * every icon back to its original size.
+//      */
+
+//     mouseX.set(Infinity);
+
+//     setHoveredItem(null);
+//   };
+
+//   /* =========================================================
+//      CLEANUP
+//   ========================================================= */
+
+//   useEffect(() => {
+//     return () => {
+//       clearStartupTimers();
+//       clearTimer(transitionTimerRef);
+//     };
+//   }, []);
+
+//   /* =========================================================
+//      RENDER
+//   ========================================================= */
+
+//   return (
+//     <>
+//       {/* =====================================================
+//           DESKTOP DOCK
+//       ===================================================== */}
+
+//       <div
+//         className="
+//           fixed
+//           bottom-5
+//           left-1/2
+//           z-[60]
+//           hidden
+//           -translate-x-1/2
+//           md:block
+//         "
+//       >
+//         <motion.div
+//           initial={
+//             reduceMotion
+//               ? undefined
+//               : {
+//                   opacity: 0,
+//                   y: 18,
+//                 }
+//           }
+//           animate={{
+//             opacity: 1,
+//             y: 0,
+//           }}
+//           transition={{
+//             duration: reduceMotion ? 0 : 0.5,
+//             ease: [0.22, 1, 0.36, 1],
+//           }}
+//           onMouseMove={handleMouseMove}
+//           onMouseLeave={handleMouseLeave}
+//           className="
+//             flex
+//             items-end
+//             gap-1.5
+//             rounded-[22px]
+//             border
+//             border-border/60
+//             bg-background/75
+//             px-2
+//             py-2
+//             shadow-[0_12px_45px_rgba(0,0,0,0.10)]
+//             backdrop-blur-2xl
+//           "
+//         >
+//           {NAV_ITEMS.map((item) => (
+//             <DockItem
+//               key={item.id}
+//               mouseX={mouseX}
+//               item={item}
+//               isActive={isItemActive(item)}
+//               isHovered={hoveredItem === item.id}
+//               onMouseEnter={() => setHoveredItem(item.id)}
+//               onMouseLeave={() => setHoveredItem(null)}
+//               onClick={
+//                 item.id === "book-call"
+//                   ? handleBookClick
+//                   : item.id === "search"
+//                     ? handleSearchClick
+//                     : undefined
+//               }
+//               reduceMotion={reduceMotion}
+//               showStartupHint={showStartupHint}
+//               showEmailHint={showEmailHint}
+//               onCloseStartupHint={closeStartupHint}
+//               onCloseEmailHint={closeEmailHint}
+//             />
+//           ))}
+//         </motion.div>
+//       </div>
+
+//       {/* =====================================================
+//           BOOK CALL TRANSITION
+//       ===================================================== */}
+
+//       <AnimatePresence>
+//         {isTransitioning && (
+//           <motion.div
+//             initial={{
+//               opacity: 0,
+//             }}
+//             animate={{
+//               opacity: 1,
+//             }}
+//             exit={{
+//               opacity: 0,
+//             }}
+//             transition={{
+//               duration: reduceMotion ? 0 : 0.22,
+//             }}
+//             className="
+//               pointer-events-none
+//               fixed
+//               inset-0
+//               z-[110]
+//               bg-background/30
+//               backdrop-blur-[2px]
+//             "
+//           >
+//             <motion.div
+//               initial={{
+//                 opacity: 0,
+//                 scale: 0.8,
+//               }}
+//               animate={{
+//                 opacity: 1,
+//                 scale: 1,
+//               }}
+//               exit={{
+//                 opacity: 0,
+//                 scale: 1.08,
+//               }}
+//               transition={{
+//                 duration: reduceMotion ? 0 : 0.4,
+//                 ease: [0.22, 1, 0.36, 1],
+//               }}
+//               className="
+//                 absolute
+//                 left-1/2
+//                 top-1/2
+//                 h-24
+//                 w-24
+//                 -translate-x-1/2
+//                 -translate-y-1/2
+//                 rounded-full
+//                 border
+//                 border-amber-400/20
+//                 bg-amber-400/[0.035]
+//               "
+//             />
+//           </motion.div>
+//         )}
+//       </AnimatePresence>
+
+//       {/* =====================================================
+//           BOOK MY CALL MODAL
+//       ===================================================== */}
+
+//       <BookMyCallModal
+//         isOpen={isBookModalOpen}
+//         onClose={() => setIsBookModalOpen(false)}
+//       />
+
+//       {/* =====================================================
+//           SEARCH MODAL
+//       ===================================================== */}
+
+//       <SearchModal
+//         isOpen={isSearchModalOpen}
+//         onClose={() => setIsSearchModalOpen(false)}
+//       />
+//     </>
+//   );
+// };
+
+// export default Dock;
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
@@ -15,14 +1509,15 @@ import {
   Layers3,
   BriefcaseBusiness,
   Code2,
-  Medal,
-  MessagesSquare,
+  Trophy,
+  Send,
   GraduationCap,
   Mail,
   Search as SearchIcon,
   PhoneCall,
   ArrowRight,
   Sparkles,
+  Wand2,
   X,
   CalendarDays,
 } from "lucide-react";
@@ -81,9 +1576,18 @@ const NAV_ITEMS = [
     tint: "34,211,238",
   },
   {
+    id: "role-mode",
+    label: "Role Mode",
+    icon: Wand2,
+    href: "/role/rolebasedaccess",
+    type: "route",
+    color: "#8B5CF6",
+    tint: "139,92,246",
+  },
+  {
     id: "achievements",
     label: "Achievements",
-    icon: Medal,
+    icon: Trophy,
     href: "/achievements",
     type: "route",
     color: "#FBBF24",
@@ -92,7 +1596,7 @@ const NAV_ITEMS = [
   {
     id: "contact",
     label: "Contact",
-    icon: MessagesSquare,
+    icon: Send,
     href: "/contact",
     type: "route",
     color: "#FB7185",
@@ -107,11 +1611,6 @@ const NAV_ITEMS = [
     color: "#34D399",
     tint: "52,211,153",
   },
-
-  /* =======================================================
-     EMAIL
-  ======================================================= */
-
   {
     id: "email",
     label: "Email",
@@ -121,11 +1620,6 @@ const NAV_ITEMS = [
     color: "#10B981",
     tint: "16,185,129",
   },
-
-  /* =======================================================
-     SEARCH
-  ======================================================= */
-
   {
     id: "search",
     label: "Search",
@@ -134,11 +1628,6 @@ const NAV_ITEMS = [
     color: "#94A3B8",
     tint: "148,163,184",
   },
-
-  /* =======================================================
-     BOOK A CALL
-  ======================================================= */
-
   {
     id: "book-call",
     label: "Book a Call",
@@ -149,6 +1638,90 @@ const NAV_ITEMS = [
     tint: "245,158,11",
   },
 ];
+
+/* =========================================================
+   ROLE MODE SPOTLIGHT (Desktop only)
+========================================================= */
+
+const RoleModeSpotlight = ({ show, onClose, onClick, reduceMotion }) => (
+  <AnimatePresence>
+    {show && (
+      <motion.div
+        initial={{ opacity: 0, y: 14, scale: 0.96 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 10, scale: 0.97 }}
+        transition={{
+          duration: reduceMotion ? 0.15 : 0.42,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        className="absolute bottom-[calc(100%+18px)] right-0 z-[100] w-[330px] overflow-hidden rounded-[20px] border border-indigo-400/40 bg-background text-foreground shadow-[0_22px_65px_rgba(0,0,0,0.18),0_8px_30px_rgba(139,92,246,0.14)]"
+      >
+        <div className="pointer-events-none absolute -right-20 -top-20 h-44 w-44 rounded-full bg-indigo-400/[0.09] blur-3xl" />
+        <div className="absolute left-6 right-6 top-0 h-[2px] rounded-full bg-gradient-to-r from-transparent via-indigo-400 to-transparent opacity-90" />
+
+        <div className="relative p-[18px]">
+          <div className="flex items-start justify-between">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-indigo-400/30 bg-gradient-to-br from-indigo-500/[0.14] to-violet-500/[0.08] text-indigo-500">
+                <Wand2 size={18} strokeWidth={1.8} />
+              </div>
+              <div>
+                <div className="text-[9px] font-bold tracking-[0.2em] text-indigo-500">
+                  EXPLORE YOUR ROLE
+                </div>
+                <div className="mt-0.5 text-[10px] text-muted-foreground">
+                  NEW EXPERIENCE
+                </div>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Close Role Mode spotlight"
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-all duration-200 hover:bg-indigo-400/[0.09] hover:text-indigo-500"
+            >
+              <X size={16} strokeWidth={1.8} />
+            </button>
+          </div>
+
+          <h3 className="mt-4 text-[18px] font-semibold leading-tight tracking-tight text-foreground">
+            A portfolio tailored to your role
+          </h3>
+
+          <p className="mt-1.5 text-[11px] leading-[1.65] text-muted-foreground">
+            Explore the skills, projects, experience, and resume most relevant
+            to the position you&apos;re hiring for.
+          </p>
+
+          <Link
+            to="/role/rolebasedaccess"
+            onClick={onClick}
+            className="group mt-4 flex w-full items-center justify-between rounded-xl border border-indigo-400/35 bg-indigo-400/[0.075] px-3.5 py-3 transition-all duration-300 hover:border-indigo-400/55 hover:bg-indigo-400/[0.12]"
+          >
+            <span className="text-[11px] font-semibold text-indigo-500">
+              Explore Role Mode
+            </span>
+            <ArrowRight
+              size={15}
+              strokeWidth={1.8}
+              className="text-indigo-500 transition-transform duration-300 group-hover:translate-x-1"
+            />
+          </Link>
+
+          <div className="mt-3.5 flex items-center justify-between">
+            <span className="text-[9px] text-muted-foreground">
+              Tailored for recruiters.
+            </span>
+            <span className="h-2 w-2 rounded-full bg-gradient-to-br from-indigo-400 to-violet-500 shadow-[0_0_8px_rgba(139,92,246,0.8)]" />
+          </div>
+        </div>
+
+        <span className="absolute bottom-[-6px] right-7 h-3 w-3 rotate-45 border-b border-r border-indigo-400/40 bg-background" />
+      </motion.div>
+    )}
+  </AnimatePresence>
+);
 
 /* =========================================================
    DOCK ITEM
@@ -165,15 +1738,12 @@ const DockItem = ({
   reduceMotion,
   showStartupHint,
   showEmailHint,
+  showRoleSpotlight,
   onCloseStartupHint,
   onCloseEmailHint,
+  onCloseRoleHint,
 }) => {
   const ref = useRef(null);
-
-  /* =======================================================
-     MACOS STYLE MAGNIFICATION
-  ======================================================= */
-
   const distance = useMotionValue(9999);
 
   const width = useTransform(
@@ -181,111 +1751,55 @@ const DockItem = ({
     [-180, -150, -120, -90, -60, -30, 0, 30, 60, 90, 120, 150, 180],
     [52, 52, 53, 54, 56, 60, 68, 60, 56, 54, 53, 52, 52],
   );
-
   const scale = useTransform(
     distance,
     [-180, -150, -120, -90, -60, -30, 0, 30, 60, 90, 120, 150, 180],
     [1, 1, 1.005, 1.015, 1.035, 1.07, 1.12, 1.07, 1.035, 1.015, 1.005, 1, 1],
   );
 
-  /*
-   * Soft spring.
-   *
-   * This keeps the movement smooth instead of
-   * making icons suddenly jump when the mouse moves.
-   */
-
   const springWidth = useSpring(width, {
     stiffness: 300,
     damping: 26,
     mass: 0.55,
   });
-
   const springScale = useSpring(scale, {
     stiffness: 300,
     damping: 26,
     mass: 0.55,
   });
 
-  /* =======================================================
-     TRACK MOUSE
-  ======================================================= */
-
   useEffect(() => {
     if (reduceMotion) return;
-
     const unsubscribe = mouseX.on("change", (latest) => {
       if (!ref.current) return;
-
       const rect = ref.current.getBoundingClientRect();
-
       const center = rect.left + rect.width / 2;
-
       distance.set(latest - center);
     });
-
     return () => unsubscribe();
   }, [mouseX, distance, reduceMotion]);
 
-  /* =======================================================
-     SPECIAL STATES
-  ======================================================= */
-
   const isBookCall = item.id === "book-call";
   const isEmail = item.id === "email";
+  const isRoleMode = item.id === "role-mode";
 
   const showBookHint = isBookCall && showStartupHint;
   const shouldShowEmailHint = isEmail && showEmailHint;
-
-  const showSpotlight = showBookHint || shouldShowEmailHint;
-
-  /* =======================================================
-     BASE DOCK ITEM
-  ======================================================= */
+  const shouldShowRoleHint = isRoleMode && showRoleSpotlight;
+  const showSpotlight =
+    showBookHint || shouldShowEmailHint || shouldShowRoleHint;
 
   const baseClass = `
-    relative
-    flex
-    h-[52px]
-    items-center
-    justify-center
-    rounded-2xl
-    border
-    select-none
-    will-change-transform
-    transition-[background-color,border-color,box-shadow]
-    duration-200
+    relative flex h-[52px] items-center justify-center rounded-2xl border
+    select-none will-change-transform
+    transition-[background-color,border-color,box-shadow] duration-200
   `;
 
-  /* =======================================================
-     NEUTRAL DOCK BACKGROUND
-     
-     IMPORTANT:
-     Bottom bar stays neutral.
-     Only icons receive individual colors.
-  ======================================================= */
-
-  const normalClass = `
-    border-border/60
-    bg-background/70
-    text-muted-foreground
-    backdrop-blur-xl
-    hover:border-border
-    hover:bg-background/90
-  `;
-
-  /* =======================================================
-     INDIVIDUAL ICON COLOR
-  ======================================================= */
+  const normalClass = isRoleMode
+    ? `border-indigo-400/40 bg-gradient-to-br from-indigo-500/[0.06] via-violet-500/[0.04] to-transparent text-indigo-500 backdrop-blur-xl hover:border-indigo-400/60 hover:bg-indigo-500/[0.10]`
+    : `border-border/60 bg-background/70 text-muted-foreground backdrop-blur-xl hover:border-border hover:bg-background/90`;
 
   const iconColor = item.color || "currentColor";
-
-  /* =======================================================
-     SUBTLE COLORED HOVER
-     
-     Background remains almost neutral.
-     Color only appears softly around hovered item.
-  ======================================================= */
 
   const hoverTintStyle =
     isHovered && !isActive
@@ -296,20 +1810,34 @@ const DockItem = ({
         }
       : undefined;
 
-  /* =======================================================
-     ACTIVE ROUTE
-  ======================================================= */
+  const roleGlowStyle = isRoleMode
+    ? {
+        boxShadow:
+          isHovered || isActive
+            ? `0 0 0 1px rgba(139,92,246,0.22), 0 10px 34px rgba(139,92,246,0.26)`
+            : `0 0 0 1px rgba(139,92,246,0.10), 0 8px 24px rgba(139,92,246,0.14)`,
+      }
+    : {};
 
   const activeClass = isActive
-    ? `
-      border-primary/50
-      bg-primary/[0.06]
-    `
+    ? isRoleMode
+      ? `border-indigo-400/70 bg-indigo-500/[0.12] shadow-[0_0_0_1px_rgba(139,92,246,0.12),0_8px_30px_rgba(139,92,246,0.22)]`
+      : `border-primary/50 bg-primary/[0.06]`
     : "";
 
-  /* =======================================================
-     DOCK CONTENT
-  ======================================================= */
+  const iconElement = (
+    <item.icon
+      size={21}
+      strokeWidth={1.9}
+      style={{
+        color: iconColor,
+        filter:
+          isHovered || isActive
+            ? `drop-shadow(0 0 5px rgba(${item.tint}, 0.28))`
+            : `drop-shadow(0 0 0 rgba(${item.tint}, 0))`,
+      }}
+    />
+  );
 
   const content = (
     <motion.div
@@ -317,53 +1845,25 @@ const DockItem = ({
       style={{
         width: reduceMotion ? 52 : springWidth,
         scale: reduceMotion ? 1 : springScale,
-
-        /*
-         * Very important for Mac-like growth.
-         *
-         * Icons grow upward instead of moving
-         * randomly around the dock.
-         */
         transformOrigin: "bottom center",
-
         ...hoverTintStyle,
+        ...roleGlowStyle,
       }}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={item.type === "action" ? onClick : undefined}
-      whileTap={
-        reduceMotion
-          ? undefined
-          : {
-              scale: 0.94,
-            }
-      }
-      className={`
-        ${baseClass}
-        ${normalClass}
-        ${activeClass}
-        ${item.type === "action" ? "cursor-pointer" : ""}
-      `}
+      whileTap={reduceMotion ? undefined : { scale: 0.94 }}
+      className={`${baseClass} ${normalClass} ${activeClass} ${
+        item.type === "action" ? "cursor-pointer" : ""
+      }`}
     >
-      {/* =================================================
-          SOFT INDIVIDUAL ICON GLOW
-      ================================================= */}
-
       <motion.div
-        className="
-          pointer-events-none
-          absolute
-          inset-1
-          rounded-[15px]
-        "
+        className="pointer-events-none absolute inset-1 rounded-[15px]"
         animate={{
           opacity:
             isHovered || isActive ? 0.9 : isBookCall || isEmail ? 0.5 : 0,
         }}
-        transition={{
-          duration: 0.25,
-          ease: "easeOut",
-        }}
+        transition={{ duration: 0.25, ease: "easeOut" }}
         style={{
           boxShadow: `inset 0 0 0 1px rgba(${item.tint}, ${
             isHovered || isActive ? "0.18" : "0.10"
@@ -371,59 +1871,48 @@ const DockItem = ({
         }}
       />
 
-      {/* =================================================
-          EMAIL INNER ACCENT
-      ================================================= */}
+      {isRoleMode && (
+        <motion.div
+          className="absolute inset-0 pointer-events-none rounded-2xl"
+          animate={{ opacity: reduceMotion ? 0.8 : [0.55, 0.9, 0.55] }}
+          transition={
+            reduceMotion
+              ? undefined
+              : { duration: 3, repeat: Infinity, ease: "easeInOut" }
+          }
+          style={{
+            background:
+              "linear-gradient(135deg, rgba(99,102,241,0.14), rgba(139,92,246,0.06), transparent)",
+            boxShadow: "inset 0 0 0 1px rgba(139,92,246,0.28)",
+          }}
+        />
+      )}
 
       {isEmail && (
         <motion.div
           className="absolute inset-0 pointer-events-none rounded-2xl"
-          animate={{
-            opacity: reduceMotion ? 0.65 : [0.3, 0.55, 0.3],
-          }}
+          animate={{ opacity: reduceMotion ? 0.65 : [0.3, 0.55, 0.3] }}
           transition={
             reduceMotion
               ? undefined
-              : {
-                  duration: 2.8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }
+              : { duration: 2.8, repeat: Infinity, ease: "easeInOut" }
           }
-          style={{
-            boxShadow: "inset 0 0 0 1px rgba(16,185,129,0.42)",
-          }}
+          style={{ boxShadow: "inset 0 0 0 1px rgba(16,185,129,0.42)" }}
         />
       )}
-
-      {/* =================================================
-          BOOK CALL INNER ACCENT
-      ================================================= */}
 
       {isBookCall && (
         <motion.div
           className="absolute inset-0 pointer-events-none rounded-2xl"
-          animate={{
-            opacity: reduceMotion ? 0.65 : [0.3, 0.55, 0.3],
-          }}
+          animate={{ opacity: reduceMotion ? 0.65 : [0.3, 0.55, 0.3] }}
           transition={
             reduceMotion
               ? undefined
-              : {
-                  duration: 2.6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }
+              : { duration: 2.6, repeat: Infinity, ease: "easeInOut" }
           }
-          style={{
-            boxShadow: "inset 0 0 0 1px rgba(245,158,11,0.42)",
-          }}
+          style={{ boxShadow: "inset 0 0 0 1px rgba(245,158,11,0.42)" }}
         />
       )}
-
-      {/* =================================================
-          ICON
-      ================================================= */}
 
       <motion.div
         className="relative z-10 flex items-center justify-center will-change-transform"
@@ -431,337 +1920,117 @@ const DockItem = ({
           reduceMotion
             ? undefined
             : isBookCall || isEmail
-              ? {
-                  y: [0, -1, 0],
-                }
+              ? { y: [0, -1, 0] }
               : undefined
         }
         transition={
           reduceMotion
             ? undefined
-            : {
-                duration: 2.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }
+            : { duration: 2.5, repeat: Infinity, ease: "easeInOut" }
         }
       >
         <motion.div
-          animate={{
-            opacity: isHovered || isActive ? 1 : 0.9,
-          }}
-          transition={{
-            duration: 0.18,
-          }}
+          animate={{ opacity: isHovered || isActive ? 1 : 0.9 }}
+          transition={{ duration: 0.18 }}
         >
-          <item.icon
-            size={21}
-            strokeWidth={1.9}
-            style={{
-              color: iconColor,
-
-              /*
-               * Very subtle colored shadow.
-               * This makes each icon feel alive without
-               * making the whole dock colorful.
-               */
-              filter:
-                isHovered || isActive
-                  ? `drop-shadow(0 0 5px rgba(${item.tint}, 0.28))`
-                  : `drop-shadow(0 0 0 rgba(${item.tint}, 0))`,
-            }}
-          />
+          {isRoleMode ? (
+            <div className="relative flex items-center justify-center w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500/20 to-violet-500/10">
+              {iconElement}
+              <span className="absolute -right-0.5 -top-0.5 h-1.5 w-1.5 rounded-full bg-gradient-to-br from-indigo-400 to-violet-500 shadow-[0_0_6px_rgba(139,92,246,0.8)]" />
+            </div>
+          ) : (
+            iconElement
+          )}
         </motion.div>
       </motion.div>
-
-      {/* =================================================
-          NORMAL TOOLTIP
-      ================================================= */}
 
       <AnimatePresence>
         {isHovered && !showSpotlight && (
           <motion.div
-            initial={{
-              opacity: 0,
-              y: 5,
-              scale: 0.96,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-              scale: 1,
-            }}
-            exit={{
-              opacity: 0,
-              y: 4,
-              scale: 0.97,
-            }}
-            transition={{
-              duration: 0.18,
-              ease: "easeOut",
-            }}
-            className="
-              pointer-events-none
-              absolute
-              bottom-[calc(100%+12px)]
-              left-1/2
-              z-[80]
-              -translate-x-1/2
-              whitespace-nowrap
-              rounded-xl
-              border
-              border-border/70
-              bg-background
-              px-3
-              py-1.5
-              text-[11px]
-              font-medium
-              text-foreground
-              shadow-xl
-            "
+            initial={{ opacity: 0, y: 5, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 4, scale: 0.97 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+            className="pointer-events-none absolute bottom-[calc(100%+12px)] left-1/2 z-[80] -translate-x-1/2 whitespace-nowrap rounded-xl border border-border/70 bg-background px-3 py-1.5 text-[11px] font-medium text-foreground shadow-xl"
           >
-            {item.label}
-
-            <span
-              className="
-                absolute
-                bottom-[-4px]
-                left-1/2
-                h-2
-                w-2
-                -translate-x-1/2
-                rotate-45
-                border-b
-                border-r
-                border-border/70
-                bg-background
-              "
-            />
+            {isRoleMode ? "Role Mode — Explore tailored profiles" : item.label}
+            <span className="absolute bottom-[-4px] left-1/2 h-2 w-2 -translate-x-1/2 rotate-45 border-b border-r border-border/70 bg-background" />
           </motion.div>
         )}
       </AnimatePresence>
     </motion.div>
   );
 
-  /* =========================================================
-     BOOK A CALL SPOTLIGHT
-  ========================================================= */
-
+  /* ---------- BOOK A CALL SPOTLIGHT ---------- */
   const bookSpotlight = (
     <AnimatePresence>
       {showBookHint && (
         <motion.div
-          initial={{
-            opacity: 0,
-            y: 14,
-            scale: 0.96,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-            scale: 1,
-          }}
-          exit={{
-            opacity: 0,
-            y: 10,
-            scale: 0.97,
-          }}
+          initial={{ opacity: 0, y: 14, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 10, scale: 0.97 }}
           transition={{
             duration: reduceMotion ? 0.15 : 0.42,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="
-            absolute
-            bottom-[calc(100%+18px)]
-            right-0
-            z-[100]
-            w-[330px]
-            overflow-hidden
-            rounded-[20px]
-            border
-            border-amber-400/40
-            bg-background
-            text-foreground
-            shadow-[0_22px_65px_rgba(0,0,0,0.18),0_8px_30px_rgba(245,158,11,0.10)]
-          "
+          className="absolute bottom-[calc(100%+18px)] right-0 z-[100] w-[330px] overflow-hidden rounded-[20px] border border-amber-400/40 bg-background text-foreground shadow-[0_22px_65px_rgba(0,0,0,0.18),0_8px_30px_rgba(245,158,11,0.10)]"
         >
-          {/* SUBTLE AMBER LIGHT */}
-
-          <div
-            className="
-              pointer-events-none
-              absolute
-              -right-20
-              -top-20
-              h-44
-              w-44
-              rounded-full
-              bg-amber-400/[0.07]
-              blur-3xl
-            "
-          />
-
-          {/* TOP ACCENT */}
-
-          <div
-            className="
-              absolute
-              left-6
-              right-6
-              top-0
-              h-[2px]
-              rounded-full
-              bg-gradient-to-r
-              from-transparent
-              via-amber-400
-              to-transparent
-              opacity-90
-            "
-          />
+          <div className="pointer-events-none absolute -right-20 -top-20 h-44 w-44 rounded-full bg-amber-400/[0.07] blur-3xl" />
+          <div className="absolute left-6 right-6 top-0 h-[2px] rounded-full bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-90" />
 
           <div className="relative p-[18px]">
-            {/* HEADER */}
-
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-3">
-                <div
-                  className="
-                    flex
-                    h-10
-                    w-10
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-xl
-                    border
-                    border-amber-400/30
-                    bg-amber-400/[0.08]
-                    text-amber-500
-                  "
-                >
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-amber-400/30 bg-amber-400/[0.08] text-amber-500">
                   <CalendarDays size={18} strokeWidth={1.8} />
                 </div>
-
                 <div>
                   <div className="text-[9px] font-bold tracking-[0.2em] text-amber-500">
                     LET&apos;S CONNECT
                   </div>
-
                   <div className="mt-0.5 text-[10px] text-muted-foreground">
                     Quick conversation
                   </div>
                 </div>
               </div>
 
-              {/* CLOSE */}
-
               <button
                 type="button"
                 onClick={onCloseStartupHint}
                 aria-label="Close Book a Call"
-                className="
-                  flex
-                  h-8
-                  w-8
-                  shrink-0
-                  items-center
-                  justify-center
-                  rounded-lg
-                  text-muted-foreground
-                  transition-all
-                  duration-200
-                  hover:bg-amber-400/[0.09]
-                  hover:text-amber-500
-                "
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-all duration-200 hover:bg-amber-400/[0.09] hover:text-amber-500"
               >
                 <X size={16} strokeWidth={1.8} />
               </button>
             </div>
 
-            {/* TITLE */}
-
-            <h3
-              className="
-                mt-4
-                text-[18px]
-                font-semibold
-                leading-tight
-                tracking-tight
-                text-foreground
-              "
-            >
+            <h3 className="mt-4 text-[18px] font-semibold leading-tight tracking-tight text-foreground">
               Have a project in mind?
             </h3>
 
-            {/* DESCRIPTION */}
-
-            <p
-              className="
-                mt-1.5
-                text-[11px]
-                leading-[1.65]
-                text-muted-foreground
-              "
-            >
+            <p className="mt-1.5 text-[11px] leading-[1.65] text-muted-foreground">
               Let&apos;s discuss your idea, requirements, and how we can turn it
               into a scalable web or mobile product.
             </p>
 
-            {/* AVAILABILITY */}
-
-            <div
-              className="
-                mt-4
-                flex
-                items-center
-                gap-2.5
-                rounded-xl
-                border
-                border-emerald-400/20
-                bg-emerald-400/[0.045]
-                px-3
-                py-2.5
-              "
-            >
+            <div className="mt-4 flex items-center gap-2.5 rounded-xl border border-emerald-400/20 bg-emerald-400/[0.045] px-3 py-2.5">
               <span className="relative flex w-2 h-2 shrink-0">
                 <span className="absolute w-full h-full rounded-full animate-ping bg-emerald-400/45" />
-
                 <span className="relative w-2 h-2 rounded-full bg-emerald-400" />
               </span>
-
               <span className="text-[10px] font-medium text-emerald-500">
                 Available for a quick chat
               </span>
             </div>
 
-            {/* CTA */}
-
             <button
               type="button"
               onClick={onClick}
-              className="
-                group
-                mt-3
-                flex
-                w-full
-                items-center
-                justify-between
-                rounded-xl
-                border
-                border-amber-400/35
-                bg-amber-400/[0.075]
-                px-3.5
-                py-3
-                transition-all
-                duration-300
-                hover:border-amber-400/55
-                hover:bg-amber-400/[0.12]
-              "
+              className="group mt-3 flex w-full items-center justify-between rounded-xl border border-amber-400/35 bg-amber-400/[0.075] px-3.5 py-3 transition-all duration-300 hover:border-amber-400/55 hover:bg-amber-400/[0.12]"
             >
               <span className="text-[11px] font-semibold text-amber-500">
                 Click to open scheduler
               </span>
-
               <ArrowRight
                 size={15}
                 strokeWidth={1.8}
@@ -769,13 +2038,10 @@ const DockItem = ({
               />
             </button>
 
-            {/* FOOTER */}
-
             <div className="mt-3.5 flex items-center justify-between">
               <span className="text-[9px] text-muted-foreground">
                 Let&apos;s build something great.
               </span>
-
               <Sparkles
                 size={13}
                 strokeWidth={1.8}
@@ -784,249 +2050,82 @@ const DockItem = ({
             </div>
           </div>
 
-          {/* POINTER */}
-
-          <span
-            className="
-              absolute
-              bottom-[-6px]
-              right-7
-              h-3
-              w-3
-              rotate-45
-              border-b
-              border-r
-              border-amber-400/40
-              bg-background
-            "
-          />
+          <span className="absolute bottom-[-6px] right-7 h-3 w-3 rotate-45 border-b border-r border-amber-400/40 bg-background" />
         </motion.div>
       )}
     </AnimatePresence>
   );
 
-  /* =========================================================
-     EMAIL SPOTLIGHT
-  ========================================================= */
-
+  /* ---------- EMAIL SPOTLIGHT ---------- */
   const emailSpotlight = (
     <AnimatePresence>
       {shouldShowEmailHint && (
         <motion.div
-          initial={{
-            opacity: 0,
-            y: 14,
-            scale: 0.96,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-            scale: 1,
-          }}
-          exit={{
-            opacity: 0,
-            y: 10,
-            scale: 0.97,
-          }}
+          initial={{ opacity: 0, y: 14, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 10, scale: 0.97 }}
           transition={{
             duration: reduceMotion ? 0.15 : 0.42,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="
-            absolute
-            bottom-[calc(100%+18px)]
-            right-0
-            z-[100]
-            w-[330px]
-            overflow-hidden
-            rounded-[20px]
-            border
-            border-emerald-400/40
-            bg-background
-            text-foreground
-            shadow-[0_22px_65px_rgba(0,0,0,0.18),0_8px_30px_rgba(16,185,129,0.10)]
-          "
+          className="absolute bottom-[calc(100%+18px)] right-0 z-[100] w-[330px] overflow-hidden rounded-[20px] border border-emerald-400/40 bg-background text-foreground shadow-[0_22px_65px_rgba(0,0,0,0.18),0_8px_30px_rgba(16,185,129,0.10)]"
         >
-          {/* SUBTLE GREEN LIGHT */}
-
-          <div
-            className="
-              pointer-events-none
-              absolute
-              -right-20
-              -top-20
-              h-44
-              w-44
-              rounded-full
-              bg-emerald-400/[0.07]
-              blur-3xl
-            "
-          />
-
-          {/* TOP ACCENT */}
-
-          <div
-            className="
-              absolute
-              left-6
-              right-6
-              top-0
-              h-[2px]
-              rounded-full
-              bg-gradient-to-r
-              from-transparent
-              via-emerald-400
-              to-transparent
-              opacity-90
-            "
-          />
+          <div className="pointer-events-none absolute -right-20 -top-20 h-44 w-44 rounded-full bg-emerald-400/[0.07] blur-3xl" />
+          <div className="absolute left-6 right-6 top-0 h-[2px] rounded-full bg-gradient-to-r from-transparent via-emerald-400 to-transparent opacity-90" />
 
           <div className="relative p-[18px]">
-            {/* HEADER */}
-
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-3">
-                <div
-                  className="
-                    flex
-                    h-10
-                    w-10
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-xl
-                    border
-                    border-emerald-400/30
-                    bg-emerald-400/[0.08]
-                    text-emerald-500
-                  "
-                >
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-emerald-400/30 bg-emerald-400/[0.08] text-emerald-500">
                   <Mail size={18} strokeWidth={1.8} />
                 </div>
-
                 <div>
                   <div className="text-[9px] font-bold tracking-[0.2em] text-emerald-500">
                     LET&apos;S TALK
                   </div>
-
                   <div className="mt-0.5 text-[10px] text-muted-foreground">
                     Direct communication
                   </div>
                 </div>
               </div>
 
-              {/* CLOSE */}
-
               <button
                 type="button"
                 onClick={onCloseEmailHint}
                 aria-label="Close Email"
-                className="
-                  flex
-                  h-8
-                  w-8
-                  shrink-0
-                  items-center
-                  justify-center
-                  rounded-lg
-                  text-muted-foreground
-                  transition-all
-                  duration-200
-                  hover:bg-emerald-400/[0.09]
-                  hover:text-emerald-500
-                "
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-all duration-200 hover:bg-emerald-400/[0.09] hover:text-emerald-500"
               >
                 <X size={16} strokeWidth={1.8} />
               </button>
             </div>
 
-            {/* TITLE */}
-
-            <h3
-              className="
-                mt-4
-                text-[18px]
-                font-semibold
-                leading-tight
-                tracking-tight
-                text-foreground
-              "
-            >
+            <h3 className="mt-4 text-[18px] font-semibold leading-tight tracking-tight text-foreground">
               Have a question?
             </h3>
 
-            {/* DESCRIPTION */}
-
-            <p
-              className="
-                mt-1.5
-                text-[11px]
-                leading-[1.65]
-                text-muted-foreground
-              "
-            >
+            <p className="mt-1.5 text-[11px] leading-[1.65] text-muted-foreground">
               Want to discuss an opportunity, collaboration, or just say hello?
               Drop me an email.
             </p>
 
-            {/* EMAIL ADDRESS */}
-
-            <div
-              className="
-                mt-4
-                rounded-xl
-                border
-                border-emerald-400/20
-                bg-emerald-400/[0.045]
-                px-3
-                py-2.5
-              "
-            >
-              <p
-                className="
-                  truncate
-                  text-[10px]
-                  font-medium
-                  text-emerald-500
-                "
-              >
+            <div className="mt-4 rounded-xl border border-emerald-400/20 bg-emerald-400/[0.045] px-3 py-2.5">
+              <p className="truncate text-[10px] font-medium text-emerald-500">
                 ratnakarsinghparihar9399@gmail.com
               </p>
             </div>
-
-            {/* CTA */}
 
             <button
               type="button"
               onClick={() => {
                 window.location.href =
                   "mailto:ratnakarsinghparihar9399@gmail.com";
-
                 onCloseEmailHint();
               }}
-              className="
-                group
-                mt-3
-                flex
-                w-full
-                items-center
-                justify-between
-                rounded-xl
-                border
-                border-emerald-400/35
-                bg-emerald-400/[0.075]
-                px-3.5
-                py-3
-                transition-all
-                duration-300
-                hover:border-emerald-400/55
-                hover:bg-emerald-400/[0.12]
-              "
+              className="group mt-3 flex w-full items-center justify-between rounded-xl border border-emerald-400/35 bg-emerald-400/[0.075] px-3.5 py-3 transition-all duration-300 hover:border-emerald-400/55 hover:bg-emerald-400/[0.12]"
             >
               <span className="text-[11px] font-semibold text-emerald-500">
                 Send me an email
               </span>
-
               <ArrowRight
                 size={15}
                 strokeWidth={1.8}
@@ -1034,69 +2133,54 @@ const DockItem = ({
               />
             </button>
 
-            {/* FOOTER */}
-
             <div className="mt-3.5 flex items-center justify-between">
               <span className="text-[9px] text-muted-foreground">
                 Usually happy to connect.
               </span>
-
               <span className="relative flex w-2 h-2">
                 <span className="absolute w-full h-full rounded-full animate-ping bg-emerald-400/45" />
-
                 <span className="relative w-2 h-2 rounded-full bg-emerald-400" />
               </span>
             </div>
           </div>
 
-          {/* POINTER */}
-
-          <span
-            className="
-              absolute
-              bottom-[-6px]
-              right-7
-              h-3
-              w-3
-              rotate-45
-              border-b
-              border-r
-              border-emerald-400/40
-              bg-background
-            "
-          />
+          <span className="absolute bottom-[-6px] right-7 h-3 w-3 rotate-45 border-b border-r border-emerald-400/40 bg-background" />
         </motion.div>
       )}
     </AnimatePresence>
   );
 
-  /* =========================================================
-     RETURN ITEM
-  ========================================================= */
+  const roleSpotlight = (
+    <RoleModeSpotlight
+      show={shouldShowRoleHint}
+      onClose={onCloseRoleHint}
+      onClick={onClick}
+      reduceMotion={reduceMotion}
+    />
+  );
 
   return (
     <div className="relative">
+      {roleSpotlight}
       {bookSpotlight}
-
       {emailSpotlight}
 
-      {/* ROUTE */}
-
       {item.type === "route" && (
-        <Link to={item.href} aria-label={item.label} className="block">
+        <Link
+          to={item.href}
+          aria-label={item.label}
+          className="block"
+          onClick={onClick}
+        >
           {content}
         </Link>
       )}
-
-      {/* EXTERNAL */}
 
       {item.type === "external" && (
         <a href={item.href} aria-label={item.label} className="block">
           {content}
         </a>
       )}
-
-      {/* ACTION */}
 
       {item.type === "action" && content}
     </div>
@@ -1107,6 +2191,19 @@ const DockItem = ({
    MAIN DOCK
 ========================================================= */
 
+const ROLE_SPOTLIGHT_SESSION_KEY = "role-mode-spotlight-dismissed";
+const SCROLL_TRIGGER_PX = 150;
+
+/* Desktop timings */
+const T_BOOK_SHOW = 1200;
+const T_BOOK_VISIBLE = 1400;
+const T_ROLE_FIRST = 4200;
+const T_ROLE_VISIBLE = 4200;
+const T_EMAIL_AFTER = 2000;
+const T_EMAIL_VISIBLE = 5000;
+const T_ROLE_REPEAT_MIN = 38000;
+const T_ROLE_REPEAT_MAX = 50000;
+
 const Dock = () => {
   const location = useLocation();
   const reduceMotion = useReducedMotion();
@@ -1116,27 +2213,81 @@ const Dock = () => {
   const [hoveredItem, setHoveredItem] = useState(null);
 
   const [isBookModalOpen, setIsBookModalOpen] = useState(false);
-
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
-
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const [showStartupHint, setShowStartupHint] = useState(false);
+  const [activeSpotlight, setActiveSpotlight] = useState(null);
+  const [isDockHovered, setIsDockHovered] = useState(false);
 
-  const [showEmailHint, setShowEmailHint] = useState(false);
+  /* ---------- SCROLL — only controls MOBILE FAB ---------- */
+  const [showMobileFAB, setShowMobileFAB] = useState(false);
 
-  /* =======================================================
-     TIMER REFS
-  ======================================================= */
+  /* ---------- DESKTOP DETECTION ---------- */
+  const [isDesktop, setIsDesktop] = useState(() => {
+    if (typeof window === "undefined") return true;
+    try {
+      return window.matchMedia("(min-width: 768px)").matches;
+    } catch {
+      return true;
+    }
+  });
+
+  const [roleDismissed, setRoleDismissed] = useState(() => {
+    if (typeof window === "undefined") return false;
+    try {
+      return window.sessionStorage.getItem(ROLE_SPOTLIGHT_SESSION_KEY) === "1";
+    } catch {
+      return false;
+    }
+  });
 
   const startupBookTimerRef = useRef(null);
+  const startupBookHideTimerRef = useRef(null);
   const startupEmailTimerRef = useRef(null);
   const emailHideTimerRef = useRef(null);
+  const roleShowTimerRef = useRef(null);
+  const roleHideTimerRef = useRef(null);
   const transitionTimerRef = useRef(null);
 
-  /* =======================================================
-     TIMER HELPERS
-  ======================================================= */
+  const activeSpotlightRef = useRef(null);
+  const roleDismissedRef = useRef(roleDismissed);
+  const isDockHoveredRef = useRef(false);
+  const isBookModalOpenRef = useRef(false);
+  const isSearchModalOpenRef = useRef(false);
+  const startupRanRef = useRef(false);
+
+  useEffect(() => {
+    activeSpotlightRef.current = activeSpotlight;
+  }, [activeSpotlight]);
+
+  useEffect(() => {
+    roleDismissedRef.current = roleDismissed;
+  }, [roleDismissed]);
+
+  useEffect(() => {
+    isDockHoveredRef.current = isDockHovered;
+  }, [isDockHovered]);
+
+  useEffect(() => {
+    isBookModalOpenRef.current = isBookModalOpen;
+  }, [isBookModalOpen]);
+
+  useEffect(() => {
+    isSearchModalOpenRef.current = isSearchModalOpen;
+  }, [isSearchModalOpen]);
+
+  /* ---------- DESKTOP MEDIA QUERY LISTENER ---------- */
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(min-width: 768px)");
+    const handler = (e) => setIsDesktop(e.matches);
+    if (mq.addEventListener) {
+      mq.addEventListener("change", handler);
+      return () => mq.removeEventListener("change", handler);
+    }
+    mq.addListener(handler);
+    return () => mq.removeListener(handler);
+  }, []);
 
   const clearTimer = (timerRef) => {
     if (timerRef.current) {
@@ -1147,179 +2298,263 @@ const Dock = () => {
 
   const clearStartupTimers = () => {
     clearTimer(startupBookTimerRef);
+    clearTimer(startupBookHideTimerRef);
     clearTimer(startupEmailTimerRef);
     clearTimer(emailHideTimerRef);
+    clearTimer(roleShowTimerRef);
+    clearTimer(roleHideTimerRef);
   };
 
   /* =========================================================
-     STARTUP SPOTLIGHT SEQUENCE
+     SCROLL LISTENER — ONLY FOR MOBILE FAB
   ========================================================= */
-
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    setShowStartupHint(false);
-    setShowEmailHint(false);
-
-    /*
-     * BOOK A CALL
-     *
-     * Appears after 1.2 seconds.
-     */
-
-    startupBookTimerRef.current = window.setTimeout(() => {
-      setShowEmailHint(false);
-      setShowStartupHint(true);
-    }, 1200);
-
-    /*
-     * EMAIL
-     *
-     * Appears after Book a Call.
-     *
-     * Book Call:
-     * 1.2s → 5.2s
-     */
-
-    startupEmailTimerRef.current = window.setTimeout(() => {
-      setShowStartupHint(false);
-      setShowEmailHint(true);
-
-      /*
-       * Email remains visible for 5.3 seconds.
-       */
-
-      emailHideTimerRef.current = window.setTimeout(() => {
-        setShowEmailHint(false);
-      }, 5300);
-    }, 5200);
-
-    return () => {
-      clearStartupTimers();
-      clearTimer(transitionTimerRef);
+    const onScroll = () => {
+      const y = window.scrollY || window.pageYOffset || 0;
+      setShowMobileFAB(y > SCROLL_TRIGGER_PX);
     };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   /* =========================================================
-     ACTIVE ROUTE
+     STARTUP SPOTLIGHT SEQUENCE — DESKTOP ONLY (on mount)
   ========================================================= */
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (!isDesktop) return;
+    if (startupRanRef.current) return;
 
+    startupRanRef.current = true;
+
+    /* ----- BOOK A CALL ----- */
+    const scheduleBook = (delay) => {
+      startupBookTimerRef.current = window.setTimeout(() => {
+        if (
+          roleDismissedRef.current ||
+          isDockHoveredRef.current ||
+          isBookModalOpenRef.current ||
+          isSearchModalOpenRef.current
+        ) {
+          return;
+        }
+        setActiveSpotlight("book");
+        startupBookHideTimerRef.current = window.setTimeout(() => {
+          setActiveSpotlight((prev) => (prev === "book" ? null : prev));
+        }, T_BOOK_VISIBLE);
+      }, delay);
+    };
+
+    /* ----- ROLE MODE ----- */
+    const scheduleRoleOnce = (delay) => {
+      roleShowTimerRef.current = window.setTimeout(() => {
+        if (
+          roleDismissedRef.current ||
+          isDockHoveredRef.current ||
+          isBookModalOpenRef.current ||
+          isSearchModalOpenRef.current ||
+          activeSpotlightRef.current
+        ) {
+          return;
+        }
+        setActiveSpotlight("role");
+        roleHideTimerRef.current = window.setTimeout(() => {
+          setActiveSpotlight((prev) => (prev === "role" ? null : prev));
+        }, T_ROLE_VISIBLE);
+      }, delay);
+    };
+
+    /* ----- EMAIL ----- */
+    const scheduleEmail = (delay) => {
+      startupEmailTimerRef.current = window.setTimeout(() => {
+        if (
+          roleDismissedRef.current ||
+          isDockHoveredRef.current ||
+          isBookModalOpenRef.current ||
+          isSearchModalOpenRef.current
+        ) {
+          scheduleEmail(3000);
+          return;
+        }
+        if (activeSpotlightRef.current) {
+          scheduleEmail(3000);
+          return;
+        }
+        setActiveSpotlight("email");
+        emailHideTimerRef.current = window.setTimeout(() => {
+          setActiveSpotlight((prev) => (prev === "email" ? null : prev));
+        }, T_EMAIL_VISIBLE);
+      }, delay);
+    };
+
+    scheduleBook(T_BOOK_SHOW);
+    scheduleRoleOnce(T_ROLE_FIRST);
+    scheduleEmail(T_ROLE_FIRST + T_ROLE_VISIBLE + T_EMAIL_AFTER);
+
+    return () => clearStartupTimers();
+  }, [isDesktop]);
+
+  /* =========================================================
+     RECURRING ROLE MODE SPOTLIGHT — DESKTOP ONLY
+  ========================================================= */
+  useEffect(() => {
+    if (roleDismissed) return;
+    if (typeof window === "undefined") return;
+    if (!isDesktop) return;
+
+    let cancelled = false;
+    let showTimer = null;
+    let hideTimer = null;
+
+    const getRepeatDelay = () =>
+      T_ROLE_REPEAT_MIN +
+      Math.random() * (T_ROLE_REPEAT_MAX - T_ROLE_REPEAT_MIN);
+
+    const scheduleShow = (delay) => {
+      window.clearTimeout(showTimer);
+      showTimer = window.setTimeout(() => {
+        if (cancelled) return;
+
+        if (
+          roleDismissedRef.current ||
+          isDockHoveredRef.current ||
+          isBookModalOpenRef.current ||
+          isSearchModalOpenRef.current ||
+          activeSpotlightRef.current ||
+          document.visibilityState !== "visible"
+        ) {
+          scheduleShow(4000);
+          return;
+        }
+
+        setActiveSpotlight("role");
+        window.clearTimeout(hideTimer);
+        hideTimer = window.setTimeout(() => {
+          if (cancelled) return;
+          setActiveSpotlight((prev) => (prev === "role" ? null : prev));
+          scheduleShow(getRepeatDelay());
+        }, T_ROLE_VISIBLE);
+      }, delay);
+    };
+
+    scheduleShow(getRepeatDelay());
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(showTimer);
+      window.clearTimeout(hideTimer);
+    };
+  }, [roleDismissed, isDesktop]);
+
+  /* ---------- TAB VISIBILITY ---------- */
+  useEffect(() => {
+    const handleVisibility = () => {
+      if (
+        document.visibilityState === "hidden" &&
+        activeSpotlightRef.current === "role"
+      ) {
+        setActiveSpotlight(null);
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibility);
+    return () =>
+      document.removeEventListener("visibilitychange", handleVisibility);
+  }, []);
+
+  /* ---------- HIDE ROLE SPOTLIGHT WHILE DOCK HOVERED ---------- */
+  useEffect(() => {
+    if (isDockHovered && activeSpotlight === "role") {
+      setActiveSpotlight(null);
+    }
+  }, [isDockHovered, activeSpotlight]);
+
+  /* ---------- ACTIVE ROUTE ---------- */
   const isItemActive = (item) => {
     if (item.type !== "route") return false;
-
+    if (item.id === "role-mode") {
+      return (
+        location.pathname === "/role" || location.pathname.startsWith("/role/")
+      );
+    }
     if (item.href === "/") {
       return location.pathname === "/";
     }
-
     return (
       location.pathname === item.href ||
       location.pathname.startsWith(`${item.href}/`)
     );
   };
 
-  /* =========================================================
-     CLOSE BOOK HINT
-  ========================================================= */
-
+  /* ---------- CLOSE HINTS ---------- */
   const closeStartupHint = () => {
-    setShowStartupHint(false);
-
+    setActiveSpotlight(null);
     clearTimer(startupBookTimerRef);
+    clearTimer(startupBookHideTimerRef);
   };
 
-  /* =========================================================
-     CLOSE EMAIL HINT
-  ========================================================= */
-
   const closeEmailHint = () => {
-    setShowEmailHint(false);
-
+    setActiveSpotlight(null);
     clearTimer(emailHideTimerRef);
   };
 
-  /* =========================================================
-     BOOK A CALL
-  ========================================================= */
+  const closeRoleHint = () => {
+    setActiveSpotlight(null);
+    setRoleDismissed(true);
+    try {
+      window.sessionStorage.setItem(ROLE_SPOTLIGHT_SESSION_KEY, "1");
+    } catch {}
+  };
 
+  /* ---------- BOOK A CALL ---------- */
   const handleBookClick = () => {
-    /*
-     * Hide spotlight.
-     */
-
-    setShowStartupHint(false);
-    setShowEmailHint(false);
-
-    /*
-     * Stop startup timers.
-     */
-
+    setActiveSpotlight(null);
     clearStartupTimers();
-
-    /*
-     * Clear existing transition.
-     */
-
     clearTimer(transitionTimerRef);
-
-    /*
-     * Start smooth transition.
-     */
-
     setIsTransitioning(true);
-
     transitionTimerRef.current = window.setTimeout(
       () => {
         setIsTransitioning(false);
         setIsBookModalOpen(true);
-
         transitionTimerRef.current = null;
       },
       reduceMotion ? 0 : 420,
     );
   };
 
-  /* =========================================================
-     SEARCH
-  ========================================================= */
-
+  /* ---------- SEARCH ---------- */
   const handleSearchClick = () => {
-    setShowStartupHint(false);
-    setShowEmailHint(false);
-
+    setActiveSpotlight(null);
     clearStartupTimers();
-
     setIsSearchModalOpen(true);
   };
 
-  /* =========================================================
-     MOUSE
-  ========================================================= */
+  /* ---------- ROLE MODE CLICK ---------- */
+  const handleRoleClick = () => {
+    setActiveSpotlight(null);
+    setRoleDismissed(true);
+    try {
+      window.sessionStorage.setItem(ROLE_SPOTLIGHT_SESSION_KEY, "1");
+    } catch {}
+  };
 
+  /* ---------- MOUSE ---------- */
   const handleMouseMove = (event) => {
     if (reduceMotion) return;
-
-    /*
-     * Only X position controls magnification.
-     */
-
     mouseX.set(event.clientX);
   };
 
   const handleMouseLeave = () => {
-    /*
-     * Returning to Infinity smoothly resets
-     * every icon back to its original size.
-     */
-
     mouseX.set(Infinity);
-
     setHoveredItem(null);
+    setIsDockHovered(false);
   };
 
-  /* =========================================================
-     CLEANUP
-  ========================================================= */
-
+  /* ---------- CLEANUP ---------- */
   useEffect(() => {
     return () => {
       clearStartupTimers();
@@ -1327,56 +2562,30 @@ const Dock = () => {
     };
   }, []);
 
-  /* =========================================================
-     RENDER
-  ========================================================= */
-
   return (
     <>
       {/* =====================================================
-          DESKTOP DOCK
+          DESKTOP DOCK — ALWAYS VISIBLE (no scroll needed)
+          Wrapper handles centering; motion.div handles entry animation
       ===================================================== */}
-
-      <div
-        className="
-          fixed
-          bottom-5
-          left-1/2
-          z-[60]
-          hidden
-          -translate-x-1/2
-          md:block
-        "
-      >
+      <div className="pointer-events-none fixed bottom-5 left-1/2 z-[60] hidden -translate-x-1/2 md:block">
         <motion.div
-          initial={
-            reduceMotion
-              ? undefined
-              : {
-                  opacity: 0,
-                  y: 18,
-                }
-          }
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
+          initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{
             duration: reduceMotion ? 0 : 0.5,
             ease: [0.22, 1, 0.36, 1],
           }}
+          onMouseEnter={() => setIsDockHovered(true)}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           className="
-            flex
-            items-end
-            gap-1.5
+            pointer-events-auto
+            flex items-end gap-1.5
             rounded-[22px]
-            border
-            border-border/60
+            border border-border/60
             bg-background/75
-            px-2
-            py-2
+            px-2 py-2
             shadow-[0_12px_45px_rgba(0,0,0,0.10)]
             backdrop-blur-2xl
           "
@@ -1395,93 +2604,111 @@ const Dock = () => {
                   ? handleBookClick
                   : item.id === "search"
                     ? handleSearchClick
-                    : undefined
+                    : item.id === "role-mode"
+                      ? handleRoleClick
+                      : undefined
               }
               reduceMotion={reduceMotion}
-              showStartupHint={showStartupHint}
-              showEmailHint={showEmailHint}
+              showStartupHint={activeSpotlight === "book"}
+              showEmailHint={activeSpotlight === "email"}
+              showRoleSpotlight={activeSpotlight === "role"}
               onCloseStartupHint={closeStartupHint}
               onCloseEmailHint={closeEmailHint}
+              onCloseRoleHint={closeRoleHint}
             />
           ))}
         </motion.div>
       </div>
 
       {/* =====================================================
+          📱 MOBILE FAB — Only on scroll
+      ===================================================== */}
+      <AnimatePresence>
+        {showMobileFAB && (
+          <motion.div
+            key="mobile-fab"
+            initial={
+              reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.6, y: 20 }
+            }
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={
+              reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.7, y: 20 }
+            }
+            transition={{
+              duration: reduceMotion ? 0 : 0.45,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="fixed right-5 z-[70] md:hidden"
+            style={{
+              bottom: "calc(env(safe-area-inset-bottom, 0px) + 96px)",
+            }}
+          >
+            <Link
+              to="/role/rolebasedaccess"
+              onClick={handleRoleClick}
+              aria-label="Role Mode — Explore tailored profiles"
+              className="
+                group relative flex h-14 w-14 items-center justify-center
+                rounded-full
+                bg-gradient-to-br from-indigo-500 via-violet-500 to-fuchsia-500
+                text-white
+                shadow-[0_16px_40px_rgba(139,92,246,0.45),0_6px_16px_rgba(139,92,246,0.30)]
+                transition-all duration-300
+                hover:scale-105
+                active:scale-95
+              "
+            >
+              <span className="absolute inset-0 rounded-full pointer-events-none bg-indigo-500/40 animate-ping" />
+              <span className="pointer-events-none absolute -inset-1.5 rounded-full border border-indigo-400/30" />
+              <span className="absolute inset-0 rounded-full pointer-events-none bg-gradient-to-br from-white/20 to-transparent" />
+
+              <Wand2
+                size={24}
+                strokeWidth={2}
+                className="relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]"
+              />
+
+              <span className="absolute -top-0.5 -right-0.5 h-4 w-4 rounded-full border-2 border-background bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.7)]">
+                <span className="absolute inset-0 rounded-full bg-emerald-400 animate-ping" />
+              </span>
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* =====================================================
           BOOK CALL TRANSITION
       ===================================================== */}
-
       <AnimatePresence>
         {isTransitioning && (
           <motion.div
-            initial={{
-              opacity: 0,
-            }}
-            animate={{
-              opacity: 1,
-            }}
-            exit={{
-              opacity: 0,
-            }}
-            transition={{
-              duration: reduceMotion ? 0 : 0.22,
-            }}
-            className="
-              pointer-events-none
-              fixed
-              inset-0
-              z-[110]
-              bg-background/30
-              backdrop-blur-[2px]
-            "
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: reduceMotion ? 0 : 0.22 }}
+            className="pointer-events-none fixed inset-0 z-[110] bg-background/30 backdrop-blur-[2px]"
           >
             <motion.div
-              initial={{
-                opacity: 0,
-                scale: 0.8,
-              }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-              }}
-              exit={{
-                opacity: 0,
-                scale: 1.08,
-              }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.08 }}
               transition={{
                 duration: reduceMotion ? 0 : 0.4,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="
-                absolute
-                left-1/2
-                top-1/2
-                h-24
-                w-24
-                -translate-x-1/2
-                -translate-y-1/2
-                rounded-full
-                border
-                border-amber-400/20
-                bg-amber-400/[0.035]
-              "
+              className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full border border-amber-400/20 bg-amber-400/[0.035]"
             />
           </motion.div>
         )}
       </AnimatePresence>
 
       {/* =====================================================
-          BOOK MY CALL MODAL
+          MODALS
       ===================================================== */}
-
       <BookMyCallModal
         isOpen={isBookModalOpen}
         onClose={() => setIsBookModalOpen(false)}
       />
-
-      {/* =====================================================
-          SEARCH MODAL
-      ===================================================== */}
 
       <SearchModal
         isOpen={isSearchModalOpen}

@@ -52,10 +52,6 @@ const getInitials = (title) =>
 // ============================================================
 // 🎬 PROJECT SHORT VIDEOS
 // ============================================================
-// ⭐ NEW: `fit` field per video — "contain" (no zoom, default)
-//         ya "cover" (screen bhar do, crop hoga).
-//         Aap kisi bhi video ke liye badal sakte ho.
-// ============================================================
 const videos = [
   {
     id: 1,
@@ -142,6 +138,8 @@ const videos = [
 // ============================================================
 const ENTER_EASE = [0.22, 1, 0.36, 1];
 const EXIT_EASE = [0.65, 0, 0.35, 1];
+// ⭐ Smooth "into screen edge" exit for mini widget
+const MINI_EXIT_EASE = [0.55, 0, 0.85, 0.35];
 
 export default function ReelSection({ open, onClose }) {
   const [mounted, setMounted] = useState(false);
@@ -169,7 +167,7 @@ export default function ReelSection({ open, onClose }) {
   // ============================================================
   const hasCustomAudio = (v) => Boolean(v?.audioUrl);
 
-  // ⭐ NEW: helper — video ka object-fit nikaalo
+  // ⭐ helper — video ka object-fit nikaalo
   const getFit = (v) => v?.fit || "contain";
 
   // ============================================================
@@ -321,7 +319,6 @@ export default function ReelSection({ open, onClose }) {
 
     if (!vid) return;
 
-    // ⭐ FIX: muted state se bind — hardcoded nahi
     vid.muted = isMuted;
 
     if (!isFullscreen && mounted) {
@@ -332,7 +329,7 @@ export default function ReelSection({ open, onClose }) {
   }, [isFullscreen, mounted, activeIndex, isMuted]);
 
   // ============================================================
-  // 🔇 SYNC MINI VIDEO MUTE (jab user toggle kare)
+  // 🔇 SYNC MINI VIDEO MUTE
   // ============================================================
   useEffect(() => {
     const vid = miniVideoRef.current;
@@ -340,7 +337,6 @@ export default function ReelSection({ open, onClose }) {
 
     vid.muted = isMuted;
 
-    // Agar user ne unmute kiya aur video ruk gaya ho, to chala do
     if (!isMuted && !isFullscreen && mounted && vid.paused) {
       vid.play().catch(() => {});
     }
@@ -587,16 +583,12 @@ export default function ReelSection({ open, onClose }) {
   };
 
   // ============================================================
-  // 🔊 TOGGLE MUTE  —  ⭐ FIXED
-  // Ab mini video bhi unmute ke turant baad play() karega.
-  // Ye click handler ke andar sync chal raha hai, isliye
-  // browser autoplay policy ise allow karti hai.
+  // 🔊 TOGGLE MUTE
   // ============================================================
   const toggleMute = useCallback(() => {
     const nextMuted = !isMuted;
     setIsMuted(nextMuted);
 
-    // ---- Mini video ko turant update karo ----
     const mini = miniVideoRef.current;
     if (mini) {
       mini.muted = nextMuted;
@@ -605,7 +597,6 @@ export default function ReelSection({ open, onClose }) {
       }
     }
 
-    // ---- Fullscreen video ko turant update karo ----
     const active = videoRefs.current[activeIndex];
     if (active && !hasCustomAudio(videos[activeIndex])) {
       active.muted = nextMuted;
@@ -614,7 +605,6 @@ export default function ReelSection({ open, onClose }) {
       }
     }
 
-    // ---- Custom audio ----
     const a = audioRef.current;
     if (a) a.muted = nextMuted;
   }, [isMuted, isFullscreen, isPaused, mounted, activeIndex]);
@@ -710,16 +700,18 @@ export default function ReelSection({ open, onClose }) {
         {!isFullscreen && (
           <motion.div
             key="mini-reel"
-            initial={{ x: -340, opacity: 0 }}
+            initial={{ x: -420, opacity: 0, scale: 0.94 }}
             animate={{
               x: 0,
               opacity: 1,
-              transition: { duration: 1.15, ease: ENTER_EASE },
+              scale: 1,
+              transition: { duration: 1.05, ease: ENTER_EASE },
             }}
             exit={{
-              x: -340,
+              x: -420,
               opacity: 0,
-              transition: { duration: 1.15, ease: EXIT_EASE },
+              scale: 0.94,
+              transition: { duration: 0.7, ease: MINI_EXIT_EASE },
             }}
             className="
               fixed
@@ -732,6 +724,8 @@ export default function ReelSection({ open, onClose }) {
               md:bottom-12
               lg:left-12
               lg:bottom-16
+              will-change-transform
+              origin-left
             "
           >
             <div className="relative">
@@ -791,11 +785,7 @@ export default function ReelSection({ open, onClose }) {
                 "
                 aria-label="Open reels"
               >
-                {/* ======================================================
-                    MINI VIDEO  —  ⭐ FIXED
-                    - muted ab isMuted state se bound
-                    - object-contain → koi zoom nahi, koi crop nahi
-                    ====================================================== */}
+                {/* MINI VIDEO */}
                 <video
                   key={activeIndex}
                   ref={miniVideoRef}
@@ -900,10 +890,7 @@ export default function ReelSection({ open, onClose }) {
                   <X className="w-3.5 h-3.5" />
                 </button>
 
-                {/* ======================================================
-                    MUTE BUTTON  —  ab toggleMute() click ke andar
-                    hi mini video ko unmute + play karta hai
-                    ====================================================== */}
+                {/* MUTE BUTTON */}
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
@@ -1050,11 +1037,7 @@ export default function ReelSection({ open, onClose }) {
                         key={video.id}
                         className="relative flex-shrink-0 w-full h-full overflow-hidden bg-black snap-start snap-always"
                       >
-                        {/* ==================================================
-                            FULLSCREEN VIDEO  —  ⭐ FIXED
-                            objectFit "contain" → wide video bhi poora
-                            dikhega, zoom / crop nahi hoga.
-                            ================================================== */}
+                        {/* FULLSCREEN VIDEO */}
                         <video
                           ref={(el) => (videoRefs.current[i] = el)}
                           src={video.url}

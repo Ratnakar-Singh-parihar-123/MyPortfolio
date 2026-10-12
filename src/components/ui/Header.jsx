@@ -20,6 +20,7 @@ import {
   Search,
   ArrowUpRight,
   Sparkles,
+  ArrowRight,
 } from "lucide-react";
 
 import { ThemeToggle } from "../ThemeProvider";
@@ -76,6 +77,21 @@ const NAV_LINKS = [
     color: "text-cyan-500 dark:text-cyan-400",
     bg: "bg-cyan-500/10 dark:bg-cyan-400/10",
   },
+
+  /* =======================================================
+     ROLE MODE — PREMIUM
+  ======================================================= */
+
+  {
+    path: "/role-dashboard",
+    label: "Role Mode",
+    icon: Sparkles,
+    color: "text-indigo-500 dark:text-indigo-300",
+    bg: "bg-gradient-to-br from-indigo-500/20 to-violet-500/15",
+    isPremium: true,
+    badge: "NEW",
+  },
+
   {
     path: "/achievements",
     label: "Achievements",
@@ -194,8 +210,168 @@ const menuItemVariants = {
 };
 
 /* =========================================================
+   MOBILE ROLE MODE SPOTLIGHT
+========================================================= */
+
+const MobileRoleModeSpotlight = ({ show, onClose, onClick, reduceMotion }) => (
+  <AnimatePresence>
+    {show && (
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 30 }}
+        transition={{
+          duration: reduceMotion ? 0.15 : 0.35,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        className="
+          fixed
+          inset-x-3
+          bottom-[calc(env(safe-area-inset-bottom,0px)+16px)]
+          z-[180]
+          md:hidden
+        "
+      >
+        <div
+          className="
+            relative
+            overflow-hidden
+            rounded-[22px]
+            border
+            border-indigo-400/40
+            bg-white/95
+            dark:bg-slate-950/95
+            p-4
+            shadow-[0_22px_65px_rgba(0,0,0,0.22),0_8px_30px_rgba(139,92,246,0.18)]
+            backdrop-blur-2xl
+          "
+        >
+          {/* SUBTLE INDIGO GLOW */}
+          <div
+            className="
+              pointer-events-none
+              absolute
+              -right-16
+              -top-16
+              h-36
+              w-36
+              rounded-full
+              bg-indigo-400/[0.10]
+              blur-3xl
+            "
+          />
+
+          {/* TOP ACCENT */}
+          <div
+            className="
+              absolute
+              left-6
+              right-6
+              top-0
+              h-[2px]
+              rounded-full
+              bg-gradient-to-r
+              from-transparent
+              via-indigo-400
+              to-transparent
+              opacity-90
+            "
+          />
+
+          <div className="relative">
+            <div className="flex items-start justify-between">
+              <div className="flex items-center gap-3">
+                <div className="flex items-center justify-center w-10 h-10 text-indigo-500 border shrink-0 rounded-xl border-indigo-400/30 bg-gradient-to-br from-indigo-500/20 to-violet-500/15 dark:text-indigo-300">
+                  <Sparkles size={18} strokeWidth={1.9} />
+                </div>
+
+                <div>
+                  <div className="text-[9px] font-bold tracking-[0.2em] text-indigo-500 dark:text-indigo-300">
+                    EXPLORE YOUR ROLE
+                  </div>
+                  <div className="mt-0.5 text-[10px] text-slate-500 dark:text-slate-400">
+                    NEW EXPERIENCE
+                  </div>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={onClose}
+                aria-label="Close Role Mode spotlight"
+                className="
+                  flex
+                  h-8
+                  w-8
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-lg
+                  text-slate-500
+                  dark:text-slate-400
+                  transition-all
+                  duration-200
+                  hover:bg-indigo-500/[0.10]
+                  hover:text-indigo-500
+                "
+              >
+                <X size={16} strokeWidth={1.9} />
+              </button>
+            </div>
+
+            <h3 className="mt-4 text-[16px] font-semibold leading-tight tracking-tight text-slate-900 dark:text-white">
+              A portfolio tailored to your role
+            </h3>
+
+            <p className="mt-1.5 text-[11px] leading-[1.65] text-slate-600 dark:text-slate-400">
+              Explore the skills, projects, experience, and resume most relevant
+              to the position you&apos;re hiring for.
+            </p>
+
+            <Link
+              to="/role/full-stack"
+              onClick={onClick}
+              className="
+                group
+                mt-4
+                flex
+                w-full
+                items-center
+                justify-between
+                rounded-xl
+                border
+                border-indigo-400/35
+                bg-indigo-500/[0.08]
+                px-3.5
+                py-3
+                transition-all
+                duration-300
+                hover:border-indigo-400/55
+                hover:bg-indigo-500/[0.14]
+                active:scale-[0.98]
+              "
+            >
+              <span className="text-[11.5px] font-semibold text-indigo-600 dark:text-indigo-300">
+                Explore Role Mode
+              </span>
+              <ArrowRight
+                size={15}
+                strokeWidth={1.9}
+                className="text-indigo-500 transition-transform duration-300 dark:text-indigo-300 group-hover:translate-x-1"
+              />
+            </Link>
+          </div>
+        </div>
+      </motion.div>
+    )}
+  </AnimatePresence>
+);
+
+/* =========================================================
    HEADER
 ========================================================= */
+
+const ROLE_SPOTLIGHT_SESSION_KEY = "role-mode-spotlight-dismissed";
 
 const Header = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -217,6 +393,30 @@ const Header = () => {
 
   const [isTransitioning, setIsTransitioning] = useState(false);
 
+  /* =========================================================
+     ROLE MODE SPOTLIGHT STATE
+  ========================================================= */
+
+  const [activeSpotlight, setActiveSpotlight] = useState(null);
+
+  const [roleDismissed, setRoleDismissed] = useState(() => {
+    if (typeof window === "undefined") return false;
+    try {
+      return window.sessionStorage.getItem(ROLE_SPOTLIGHT_SESSION_KEY) === "1";
+    } catch {
+      return false;
+    }
+  });
+
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === "undefined") return false;
+    try {
+      return window.matchMedia("(max-width: 767px)").matches;
+    } catch {
+      return false;
+    }
+  });
+
   const location = useLocation();
 
   const bookTimeoutRef = useRef(null);
@@ -233,16 +433,61 @@ const Header = () => {
   const scrollThreshold = 8;
 
   /* =========================================================
+     REFS FOR SPOTLIGHT SCHEDULER
+  ========================================================= */
+
+  const activeSpotlightRef = useRef(activeSpotlight);
+  const roleDismissedRef = useRef(roleDismissed);
+  const isDrawerOpenRef = useRef(isDrawerOpen);
+  const isBookModalOpenRef = useRef(isBookModalOpen);
+  const isSearchModalOpenRef = useRef(isSearchModalOpen);
+
+  useEffect(() => {
+    activeSpotlightRef.current = activeSpotlight;
+  }, [activeSpotlight]);
+
+  useEffect(() => {
+    roleDismissedRef.current = roleDismissed;
+  }, [roleDismissed]);
+
+  useEffect(() => {
+    isDrawerOpenRef.current = isDrawerOpen;
+  }, [isDrawerOpen]);
+
+  useEffect(() => {
+    isBookModalOpenRef.current = isBookModalOpen;
+  }, [isBookModalOpen]);
+
+  useEffect(() => {
+    isSearchModalOpenRef.current = isSearchModalOpen;
+  }, [isSearchModalOpen]);
+
+  /* =========================================================
+     TRACK MOBILE VIEWPORT
+  ========================================================= */
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const mq = window.matchMedia("(max-width: 767px)");
+    const handler = (e) => setIsMobile(e.matches);
+
+    if (mq.addEventListener) {
+      mq.addEventListener("change", handler);
+      return () => mq.removeEventListener("change", handler);
+    }
+
+    mq.addListener(handler);
+    return () => mq.removeListener(handler);
+  }, []);
+
+  /* =========================================================
      CLOSE DRAWER WHEN ROUTE CHANGES
   ========================================================= */
 
   useEffect(() => {
     setIsDrawerOpen(false);
 
-    /*
-     * Whenever route changes, make sure header
-     * is visible again.
-     */
     setIsHeaderVisible(true);
 
     lastScrollY.current = window.scrollY;
@@ -256,51 +501,26 @@ const Header = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      /*
-       * Always show header when user is at the top.
-       */
       if (currentScrollY <= 10) {
         setIsHeaderVisible(true);
         lastScrollY.current = currentScrollY;
         return;
       }
 
-      /*
-       * Calculate scroll difference.
-       */
       const scrollDifference = currentScrollY - lastScrollY.current;
 
-      /*
-       * Ignore tiny movements.
-       */
       if (Math.abs(scrollDifference) < scrollThreshold) {
         return;
       }
 
-      /*
-       * Scrolling DOWN
-       *
-       * Hide header.
-       */
       if (scrollDifference > 0) {
-        /*
-         * Don't hide header if drawer/modal is open.
-         */
         if (!isDrawerOpen && !isSearchModalOpen && !isBookModalOpen) {
           setIsHeaderVisible(false);
         }
       } else {
-        /*
-         * Scrolling UP
-         *
-         * Show header.
-         */
         setIsHeaderVisible(true);
       }
 
-      /*
-       * Update previous position.
-       */
       lastScrollY.current = currentScrollY;
     };
 
@@ -342,25 +562,113 @@ const Header = () => {
   }, []);
 
   /* =========================================================
-     SEARCH
+     RECURRING ROLE MODE SPOTLIGHT (MOBILE)
      
-     EXACTLY LIKE DOCK
+     Schedule:
+     - First appearance: ~2.8s
+     - Visible: ~5.6s
+     - Repeat: ~26-32s
+     - Paused when drawer / modals open
+     - Stopped if dismissed for the session
+  ========================================================= */
+
+  useEffect(() => {
+    if (!isMobile) return;
+    if (roleDismissed) return;
+    if (typeof window === "undefined") return;
+
+    let cancelled = false;
+    let showTimer = null;
+    let hideTimer = null;
+
+    const getRepeatDelay = () => {
+      const min = 26000;
+      const max = 32000;
+      return min + Math.random() * (max - min);
+    };
+
+    const scheduleShow = (delay) => {
+      window.clearTimeout(showTimer);
+
+      showTimer = window.setTimeout(() => {
+        if (cancelled) return;
+
+        if (
+          roleDismissedRef.current ||
+          isDrawerOpenRef.current ||
+          isBookModalOpenRef.current ||
+          isSearchModalOpenRef.current ||
+          activeSpotlightRef.current ||
+          document.visibilityState !== "visible"
+        ) {
+          scheduleShow(4000);
+          return;
+        }
+
+        setActiveSpotlight("role");
+
+        window.clearTimeout(hideTimer);
+
+        hideTimer = window.setTimeout(() => {
+          if (cancelled) return;
+
+          setActiveSpotlight((prev) => (prev === "role" ? null : prev));
+
+          scheduleShow(getRepeatDelay());
+        }, 5600);
+      }, delay);
+    };
+
+    scheduleShow(2800);
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(showTimer);
+      window.clearTimeout(hideTimer);
+    };
+  }, [isMobile, roleDismissed]);
+
+  /* =========================================================
+     PAUSE SPOTLIGHT WHEN TAB IS HIDDEN
+  ========================================================= */
+
+  useEffect(() => {
+    const handleVisibility = () => {
+      if (
+        document.visibilityState === "hidden" &&
+        activeSpotlightRef.current === "role"
+      ) {
+        setActiveSpotlight(null);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibility);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
+  }, []);
+
+  /* =========================================================
+     HIDE SPOTLIGHT WHEN DRAWER OPEN
+  ========================================================= */
+
+  useEffect(() => {
+    if (isDrawerOpen && activeSpotlight === "role") {
+      setActiveSpotlight(null);
+    }
+  }, [isDrawerOpen, activeSpotlight]);
+
+  /* =========================================================
+     SEARCH
   ========================================================= */
 
   const handleSearchClick = () => {
-    /*
-     * Close mobile drawer.
-     */
     setIsDrawerOpen(false);
-
-    /*
-     * Keep header visible while modal is open.
-     */
     setIsHeaderVisible(true);
 
-    /*
-     * Open SearchModal.
-     */
+    setActiveSpotlight(null);
+
     setIsSearchModalOpen(true);
   };
 
@@ -371,10 +679,9 @@ const Header = () => {
   const handleBookClick = () => {
     setIsDrawerOpen(false);
 
-    /*
-     * Keep header visible.
-     */
     setIsHeaderVisible(true);
+
+    setActiveSpotlight(null);
 
     setIsTransitioning(true);
 
@@ -389,10 +696,48 @@ const Header = () => {
   };
 
   /* =========================================================
+     ROLE MODE CLICK
+  ========================================================= */
+
+  const handleRoleClick = () => {
+    setActiveSpotlight(null);
+    setRoleDismissed(true);
+
+    try {
+      window.sessionStorage.setItem(ROLE_SPOTLIGHT_SESSION_KEY, "1");
+    } catch {
+      // ignore sessionStorage failures
+    }
+  };
+
+  /* =========================================================
+     CLOSE ROLE SPOTLIGHT
+  ========================================================= */
+
+  const closeRoleSpotlight = () => {
+    setActiveSpotlight(null);
+    setRoleDismissed(true);
+
+    try {
+      window.sessionStorage.setItem(ROLE_SPOTLIGHT_SESSION_KEY, "1");
+    } catch {
+      // ignore sessionStorage failures
+    }
+  };
+
+  /* =========================================================
      ACTIVE LINK
   ========================================================= */
 
   const isLinkActive = (path) => {
+    /* ROLE MODE — active for any /role/* route */
+
+    if (path === "/role/full-stack") {
+      return (
+        location.pathname === "/role" || location.pathname.startsWith("/role/")
+      );
+    }
+
     if (path === "/") {
       return location.pathname === "/";
     }
@@ -478,8 +823,6 @@ const Header = () => {
                 focus:outline-none
               "
             >
-              {/* Logo */}
-
               <div
                 className="
                   relative
@@ -547,8 +890,6 @@ const Header = () => {
                   "
                 />
               </div>
-
-              {/* Name */}
 
               <div className="min-w-0">
                 <div className="flex items-center gap-2">
@@ -637,8 +978,6 @@ const Header = () => {
             ================================================== */}
 
             <div className="items-center hidden gap-2 md:flex">
-              {/* SEARCH */}
-
               <button
                 type="button"
                 onClick={handleSearchClick}
@@ -697,8 +1036,6 @@ const Header = () => {
                 <span>Search</span>
               </button>
 
-              {/* RESUME */}
-
               <a
                 href={resumefile}
                 download="Ratnakar_Singh_Parihar_Resume.pdf"
@@ -745,8 +1082,6 @@ const Header = () => {
                 <span>Resume</span>
               </a>
 
-              {/* DIVIDER */}
-
               <div
                 className="
                   w-px
@@ -757,8 +1092,6 @@ const Header = () => {
                   dark:bg-slate-800
                 "
               />
-
-              {/* THEME */}
 
               <ThemeToggle />
             </div>
@@ -775,8 +1108,6 @@ const Header = () => {
                 gap-1.5
               "
             >
-              {/* SEARCH */}
-
               <button
                 type="button"
                 onClick={handleSearchClick}
@@ -827,17 +1158,14 @@ const Header = () => {
                 />
               </button>
 
-              {/* THEME */}
-
               <ThemeToggle />
-
-              {/* MENU */}
 
               <button
                 type="button"
                 onClick={() => {
                   setIsHeaderVisible(true);
                   setIsDrawerOpen(true);
+                  setActiveSpotlight(null);
                 }}
                 className="flex items-center justify-center transition-all duration-200 border w-9 h-9 rounded-xl border-slate-200/80 dark:border-slate-700/80 bg-white/70 dark:bg-slate-900/70 text-slate-700 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-indigo-400 active:scale-95"
                 aria-label="Open navigation menu"
@@ -856,8 +1184,6 @@ const Header = () => {
       <AnimatePresence>
         {isDrawerOpen && (
           <div className="fixed inset-0 z-[150] md:hidden">
-            {/* BACKDROP */}
-
             <motion.div
               variants={overlayVariants}
               initial="hidden"
@@ -874,8 +1200,6 @@ const Header = () => {
                 backdrop-blur-[4px]
               "
             />
-
-            {/* DRAWER */}
 
             <motion.aside
               variants={drawerVariants}
@@ -913,8 +1237,6 @@ const Header = () => {
 
               <div className="px-5 pt-6 pb-5 border-b border-slate-100 dark:border-slate-800 shrink-0">
                 <div className="flex items-center justify-between">
-                  {/* PROFILE */}
-
                   <div className="flex items-center gap-3">
                     <div className="relative shrink-0">
                       <div
@@ -988,8 +1310,6 @@ const Header = () => {
                     </div>
                   </div>
 
-                  {/* CLOSE */}
-
                   <button
                     type="button"
                     onClick={() => setIsDrawerOpen(false)}
@@ -999,8 +1319,6 @@ const Header = () => {
                     <X size={18} />
                   </button>
                 </div>
-
-                {/* INTRO */}
 
                 <div
                   className="
@@ -1157,7 +1475,161 @@ const Header = () => {
                       );
                     }
 
-                    /* INTERNAL */
+                    /* PREMIUM (ROLE MODE) */
+
+                    if (link.isPremium) {
+                      return (
+                        <motion.div key={link.path} variants={menuItemVariants}>
+                          <Link
+                            to={link.path}
+                            onClick={handleRoleClick}
+                            className={`
+                              group
+                              relative
+
+                              flex
+                              items-center
+
+                              gap-3
+
+                              w-full
+
+                              px-3
+                              py-2.5
+
+                              rounded-xl
+
+                              text-sm
+
+                              transition-all
+                              duration-200
+
+                              border
+
+                              ${
+                                active
+                                  ? `
+                                    border-indigo-400/60
+                                    bg-gradient-to-r
+                                    from-indigo-500/[0.12]
+                                    to-violet-500/[0.08]
+                                    text-indigo-700
+                                    dark:text-indigo-200
+                                    font-semibold
+                                    shadow-[0_6px_20px_rgba(139,92,246,0.18)]
+                                  `
+                                  : `
+                                    border-indigo-400/30
+                                    bg-gradient-to-r
+                                    from-indigo-500/[0.05]
+                                    to-violet-500/[0.03]
+                                    text-indigo-700
+                                    dark:text-indigo-200
+                                    font-semibold
+                                    hover:border-indigo-400/50
+                                    hover:from-indigo-500/[0.09]
+                                    hover:to-violet-500/[0.06]
+                                  `
+                              }
+                            `}
+                          >
+                            {active && (
+                              <motion.span
+                                layoutId="activeMenuIndicator"
+                                className="absolute left-0 w-1 -translate-y-1/2 rounded-r-full h-7 bg-gradient-to-b from-indigo-500 to-violet-500 top-1/2"
+                              />
+                            )}
+
+                            <span
+                              className="
+                                relative
+
+                                flex
+                                items-center
+                                justify-center
+
+                                w-9
+                                h-9
+
+                                rounded-xl
+
+                                bg-gradient-to-br
+                                from-indigo-500/25
+                                to-violet-500/20
+
+                                text-indigo-500
+                                dark:text-indigo-300
+
+                                border
+                                border-indigo-400/30
+
+                                transition-transform
+                                duration-200
+
+                                group-hover:scale-105
+
+                                shadow-[0_4px_14px_rgba(139,92,246,0.22)]
+                              "
+                            >
+                              <Icon size={17} strokeWidth={1.9} />
+
+                              {/* SPARKLE DOT */}
+                              <span
+                                className="
+                                  absolute
+                                  -right-0.5
+                                  -top-0.5
+
+                                  h-1.5
+                                  w-1.5
+
+                                  rounded-full
+
+                                  bg-gradient-to-br
+                                  from-indigo-400
+                                  to-violet-500
+
+                                  shadow-[0_0_6px_rgba(139,92,246,0.8)]
+                                "
+                              />
+                            </span>
+
+                            <span className="flex-1">{link.label}</span>
+
+                            {link.badge && (
+                              <span
+                                className="
+                                  inline-flex
+                                  items-center
+                                  gap-1
+
+                                  px-2
+                                  py-0.5
+
+                                  rounded-full
+
+                                  text-[9px]
+                                  font-bold
+                                  tracking-wider
+
+                                  text-white
+
+                                  bg-gradient-to-r
+                                  from-indigo-500
+                                  to-violet-500
+
+                                  shadow-[0_2px_8px_rgba(139,92,246,0.4)]
+                                "
+                              >
+                                {link.badge}
+                              </span>
+                            )}
+                          </Link>
+                        </motion.div>
+                      );
+                    }
+
+                    /* INTERNAL (DEFAULT) */
 
                     return (
                       <motion.div key={link.path} variants={menuItemVariants}>
@@ -1262,8 +1734,6 @@ const Header = () => {
               {/* DRAWER FOOTER */}
 
               <div className="p-4 border-t border-slate-100 dark:border-slate-800 shrink-0">
-                {/* BOOK CALL */}
-
                 <button
                   type="button"
                   onClick={handleBookClick}
@@ -1337,8 +1807,6 @@ const Header = () => {
                   />
                 </button>
 
-                {/* RESUME */}
-
                 <a
                   href={resumefile}
                   download="Ratnakar_Singh_Parihar_Resume.pdf"
@@ -1348,8 +1816,6 @@ const Header = () => {
 
                   <span>Download Resume</span>
                 </a>
-
-                {/* COPYRIGHT */}
 
                 <p
                   className="
@@ -1370,6 +1836,17 @@ const Header = () => {
           </div>
         )}
       </AnimatePresence>
+
+      {/* =======================================================
+          MOBILE ROLE MODE SPOTLIGHT
+      ======================================================== */}
+
+      <MobileRoleModeSpotlight
+        show={activeSpotlight === "role"}
+        onClose={closeRoleSpotlight}
+        onClick={handleRoleClick}
+        reduceMotion={false}
+      />
 
       {/* =======================================================
           BOOK CALL LOADING

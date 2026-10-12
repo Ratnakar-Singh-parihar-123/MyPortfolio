@@ -1,7 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-const Loader = ({ size = 72, text = "Loading" }) => {
+// ⬇️ Apna logo import karo (path adjust karo)
+import logoImg from "../../src/assets/logo/logo.jpeg";
+
+const Loader = ({
+  size = 96,
+  text = "Loading",
+  logoSrc = logoImg,
+  logoAlt = "Loading",
+}) => {
   const px = typeof size === "number" ? `${size}px` : size;
 
   return (
@@ -13,31 +21,30 @@ const Loader = ({ size = 72, text = "Loading" }) => {
         aria-label={text || "Loading"}
       >
         {/* Ambient halo */}
-        <span className="ambient" aria-hidden="true" />
+        <span className="halo" aria-hidden="true" />
 
-        {/* Outer conic sweep ring */}
+        {/* Outer elegant gradient ring */}
         <span className="ring ring-outer" aria-hidden="true" />
 
-        {/* Dotted middle ring */}
-        <span className="ring ring-dots" aria-hidden="true" />
-
-        {/* Inner dual-arc ring */}
+        {/* Inner progress arc */}
         <span className="ring ring-arc" aria-hidden="true" />
 
-        {/* Orbiting sparks */}
+        {/* Two orbiting sparks */}
         <span className="orbit orbit-a" aria-hidden="true">
           <i />
         </span>
         <span className="orbit orbit-b" aria-hidden="true">
           <i />
         </span>
-        <span className="orbit orbit-c" aria-hidden="true">
-          <i />
-        </span>
 
-        {/* Glass core */}
+        {/* Glass core with logo */}
         <span className="core" aria-hidden="true">
-          <span className="core-flare" />
+          <span className="core-ring" />
+          <span className="core-glow" />
+          <span className="core-logo">
+            <img src={logoSrc} alt={logoAlt} draggable="false" />
+          </span>
+          <span className="core-shine" />
         </span>
       </div>
 
@@ -60,11 +67,11 @@ const Loader = ({ size = 72, text = "Loading" }) => {
 ========================================================= */
 
 const Wrapper = styled.div`
-  /* Palette (HSL triplets for easy alpha) */
-  --c-1: 214 97% 59%; /* blue   */
-  --c-2: 280 90% 65%; /* violet */
-  --c-3: 330 90% 65%; /* pink   */
-  --c-4: 190 95% 55%; /* cyan   */
+  /* ---------- Palette ---------- */
+  --c-blue: 217 91% 60%;
+  --c-violet: 262 83% 66%;
+  --c-fuchsia: 330 85% 68%;
+  --c-cyan: 189 94% 55%;
 
   width: 100%;
   min-height: 100vh;
@@ -76,40 +83,40 @@ const Wrapper = styled.div`
   padding: 24px;
 
   /* =======================================================
-     STAGE (everything scales from --s)
+     STAGE
   ======================================================= */
   .stage {
     position: relative;
-    width: var(--s, 72px);
-    height: var(--s, 72px);
+    width: var(--s, 96px);
+    height: var(--s, 96px);
     display: grid;
     place-items: center;
     isolation: isolate;
   }
 
-  /* -------------------------------------------------------
-     Ambient halo
-  ------------------------------------------------------- */
-  .ambient {
+  /* =======================================================
+     HALO — soft ambient glow
+  ======================================================= */
+  .halo {
     position: absolute;
-    inset: -38%;
+    inset: -50%;
     border-radius: 50%;
     background: radial-gradient(
       circle,
-      hsl(var(--c-1) / 0.22) 0%,
-      hsl(var(--c-2) / 0.14) 32%,
-      hsl(var(--c-3) / 0.07) 52%,
+      hsl(var(--c-violet) / 0.22) 0%,
+      hsl(var(--c-blue) / 0.12) 35%,
+      hsl(var(--c-fuchsia) / 0.06) 55%,
       transparent 72%
     );
-    filter: blur(14px);
+    filter: blur(20px);
     z-index: -1;
-    animation: halo 2.6s ease-in-out infinite;
+    animation: halo 4s ease-in-out infinite;
     pointer-events: none;
   }
 
-  /* -------------------------------------------------------
-     Rings (shared)
-  ------------------------------------------------------- */
+  /* =======================================================
+     RINGS (base)
+  ======================================================= */
   .ring {
     position: absolute;
     border-radius: 50%;
@@ -117,17 +124,17 @@ const Wrapper = styled.div`
     will-change: transform;
   }
 
-  /* Outer — conic gradient masked into a ring */
+  /* ---------- OUTER RING — conic gradient sweep ---------- */
   .ring-outer {
     inset: 0;
     background: conic-gradient(
       from 0deg,
       transparent 0%,
-      hsl(var(--c-1)) 12%,
-      hsl(var(--c-4)) 28%,
-      hsl(var(--c-2)) 46%,
-      hsl(var(--c-3)) 62%,
-      transparent 78%
+      hsl(var(--c-blue) / 0.9) 15%,
+      hsl(var(--c-cyan)) 30%,
+      hsl(var(--c-violet)) 50%,
+      hsl(var(--c-fuchsia)) 70%,
+      transparent 88%
     );
     -webkit-mask: radial-gradient(
       farthest-side,
@@ -139,55 +146,24 @@ const Wrapper = styled.div`
       transparent calc(100% - 2.5px),
       #000 calc(100% - 2.5px) 100%
     );
-    animation: spin 2.6s linear infinite;
-    filter: drop-shadow(0 0 8px hsl(var(--c-1) / 0.5));
+    animation: spin 3s linear infinite;
+    filter: drop-shadow(0 0 6px hsl(var(--c-violet) / 0.5));
   }
 
-  /* Middle — dotted ring via repeating-conic */
-  .ring-dots {
-    inset: 15%;
-    background: repeating-conic-gradient(
-      from 0deg,
-      hsl(var(--c-2) / 0.9) 0deg 5deg,
-      transparent 5deg 22deg
-    );
-    -webkit-mask: radial-gradient(
-      farthest-side,
-      transparent calc(100% - 2px),
-      #000 calc(100% - 2px) 100%
-    );
-    mask: radial-gradient(
-      farthest-side,
-      transparent calc(100% - 2px),
-      #000 calc(100% - 2px) 100%
-    );
-    animation: spin-rev 3.4s linear infinite;
-    opacity: 0.95;
-  }
-
-  /* Inner — dual arc ring */
+  /* ---------- ARC — dual color, one full turn ---------- */
   .ring-arc {
-    inset: 30%;
+    inset: 16%;
     border: 2px solid transparent;
-    border-top-color: hsl(var(--c-3));
-    border-right-color: hsl(var(--c-1));
-    animation: spin 1.5s linear infinite;
-    filter: drop-shadow(0 0 6px hsl(var(--c-3) / 0.6));
-  }
-  .ring-arc::before {
-    content: "";
-    position: absolute;
-    inset: -4px;
-    border-radius: 50%;
-    border: 1px solid transparent;
-    border-bottom-color: hsl(var(--c-4) / 0.75);
-    border-left-color: hsl(var(--c-4) / 0.45);
-    animation: spin-rev 2.2s linear infinite;
+    border-top-color: hsl(var(--c-fuchsia) / 0.95);
+    border-right-color: hsl(var(--c-blue) / 0.9);
+    animation: spin 1.8s linear infinite;
+    filter: drop-shadow(0 0 5px hsl(var(--c-fuchsia) / 0.55));
+    opacity: 0.9;
   }
 
-  /* -------------------------------------------------------
-     Orbiting sparks
-  ------------------------------------------------------- */
+  /* =======================================================
+     ORBITS — two sparks, opposite directions
+  ======================================================= */
   .orbit {
     position: absolute;
     inset: 0;
@@ -198,95 +174,157 @@ const Wrapper = styled.div`
   }
   .orbit i {
     position: absolute;
-    top: -3px;
+    top: -3.5px;
     left: 50%;
-    width: 6px;
-    height: 6px;
-    margin-left: -3px;
+    width: 7px;
+    height: 7px;
+    margin-left: -3.5px;
     border-radius: 50%;
     display: block;
   }
 
   .orbit-a {
-    animation-duration: 4s;
+    animation-duration: 4.5s;
   }
   .orbit-a i {
-    background: hsl(var(--c-1));
+    background: hsl(var(--c-cyan));
     box-shadow:
-      0 0 8px hsl(var(--c-1) / 0.9),
-      0 0 18px hsl(var(--c-1) / 0.5);
+      0 0 8px hsl(var(--c-cyan) / 0.95),
+      0 0 16px hsl(var(--c-cyan) / 0.55);
   }
 
   .orbit-b {
-    inset: 15%;
-    animation-duration: 5.4s;
+    inset: 16%;
+    animation-duration: 6s;
     animation-direction: reverse;
   }
   .orbit-b i {
-    background: hsl(var(--c-3));
+    background: hsl(var(--c-fuchsia));
     box-shadow:
-      0 0 8px hsl(var(--c-3) / 0.9),
-      0 0 18px hsl(var(--c-3) / 0.5);
+      0 0 8px hsl(var(--c-fuchsia) / 0.95),
+      0 0 16px hsl(var(--c-fuchsia) / 0.55);
   }
 
-  .orbit-c {
-    inset: 30%;
-    animation-duration: 3.1s;
-  }
-  .orbit-c i {
-    background: hsl(var(--c-4));
-    box-shadow:
-      0 0 8px hsl(var(--c-4) / 0.9),
-      0 0 18px hsl(var(--c-4) / 0.5);
-  }
-
-  /* -------------------------------------------------------
-     Glass core
-  ------------------------------------------------------- */
+  /* =======================================================
+     CORE — glass plate + big logo
+  ======================================================= */
   .core {
     position: relative;
-    width: 26%;
-    height: 26%;
+    width: 60%;
+    height: 60%;
     border-radius: 50%;
+    display: grid;
+    place-items: center;
+    isolation: isolate;
     background: radial-gradient(
-      circle at 32% 28%,
-      hsl(0 0% 100% / 0.95) 0%,
-      hsl(var(--c-1) / 0.95) 25%,
-      hsl(var(--c-1)) 45%,
-      hsl(var(--c-2)) 80%
+      circle at 35% 30%,
+      hsl(0 0% 100% / 0.6) 0%,
+      hsl(0 0% 100% / 0.15) 50%,
+      hsl(var(--c-violet) / 0.14) 100%
     );
     box-shadow:
-      0 0 10px hsl(var(--c-1) / 0.75),
-      0 0 26px hsl(var(--c-2) / 0.45),
-      0 0 44px hsl(var(--c-3) / 0.2),
-      inset 0 -2px 4px hsl(var(--c-2) / 0.65),
-      inset 0 1px 2px hsl(0 0% 100% / 0.7);
-    animation: breathe 1.8s ease-in-out infinite;
-  }
-  .core-flare {
-    position: absolute;
-    inset: 14%;
-    border-radius: 50%;
-    background: radial-gradient(
-      circle at 30% 25%,
-      hsl(0 0% 100% / 0.9),
-      transparent 62%
-    );
-    opacity: 0.85;
-    animation: flare 2.2s ease-in-out infinite;
+      0 0 14px hsl(var(--c-violet) / 0.45),
+      0 0 34px hsl(var(--c-blue) / 0.28),
+      0 0 60px hsl(var(--c-fuchsia) / 0.14),
+      inset 0 0 0 1px hsl(0 0% 100% / 0.45),
+      inset 0 -3px 6px hsl(var(--c-violet) / 0.32),
+      inset 0 2px 4px hsl(0 0% 100% / 0.65);
+    animation: breathe 2.4s ease-in-out infinite;
   }
 
-  /* -------------------------------------------------------
-     Caption (gradient shimmer text)
-  ------------------------------------------------------- */
+  /* rotating conic ring border */
+  .core-ring {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    padding: 2px;
+    background: conic-gradient(
+      from 0deg,
+      hsl(var(--c-cyan)),
+      hsl(var(--c-blue)),
+      hsl(var(--c-violet)),
+      hsl(var(--c-fuchsia)),
+      hsl(var(--c-cyan))
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: spin 2.6s linear infinite;
+    filter: drop-shadow(0 0 6px hsl(var(--c-violet) / 0.55));
+    opacity: 0.92;
+    pointer-events: none;
+  }
+
+  /* glow behind logo */
+  .core-glow {
+    position: absolute;
+    inset: 5%;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      hsl(var(--c-violet) / 0.4) 0%,
+      hsl(var(--c-blue) / 0.18) 50%,
+      transparent 72%
+    );
+    filter: blur(5px);
+    animation: pulse-glow 2.4s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  /* LOGO */
+  .core-logo {
+    position: relative;
+    width: 88%;
+    height: 88%;
+    border-radius: 50%;
+    overflow: hidden;
+    display: block;
+    box-shadow:
+      inset 0 0 0 2px hsl(0 0% 100% / 0.9),
+      0 3px 10px hsl(0 0% 0% / 0.15);
+    background: #fff;
+  }
+  .core-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+    user-select: none;
+    -webkit-user-drag: none;
+    transform: scale(1.02);
+  }
+
+  /* subtle glass shine */
+  .core-shine {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(
+      135deg,
+      hsl(0 0% 100% / 0.5) 0%,
+      hsl(0 0% 100% / 0.1) 25%,
+      transparent 45%
+    );
+    pointer-events: none;
+    mix-blend-mode: screen;
+    opacity: 0.85;
+  }
+
+  /* =======================================================
+     CAPTION
+  ======================================================= */
   .caption {
-    margin-top: calc(var(--s, 72px) * 0.32);
+    margin-top: calc(var(--s, 96px) * 0.32);
     display: inline-flex;
     align-items: baseline;
     gap: 1px;
-    font-size: clamp(10px, calc(var(--s, 72px) * 0.16), 14px);
+    font-family: inherit;
+    font-size: clamp(10px, calc(var(--s, 96px) * 0.13), 13px);
     font-weight: 600;
-    letter-spacing: 0.34em;
+    letter-spacing: 0.36em;
     text-transform: uppercase;
     user-select: none;
     line-height: 1;
@@ -295,17 +333,17 @@ const Wrapper = styled.div`
   .caption-text {
     background: linear-gradient(
       90deg,
-      hsl(220 14% 40%) 0%,
-      hsl(var(--c-1)) 32%,
-      hsl(var(--c-2)) 52%,
-      hsl(var(--c-3)) 70%,
-      hsl(220 14% 40%) 100%
+      hsl(220 12% 42%) 0%,
+      hsl(var(--c-violet)) 30%,
+      hsl(var(--c-blue)) 50%,
+      hsl(var(--c-fuchsia)) 70%,
+      hsl(220 12% 42%) 100%
     );
     background-size: 220% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: shimmer 3s linear infinite;
+    animation: shimmer 3.6s linear infinite;
     padding-right: 0.06em;
   }
 
@@ -316,9 +354,9 @@ const Wrapper = styled.div`
   .caption-dots span {
     display: inline-block;
     opacity: 0;
-    color: hsl(var(--c-1));
-    text-shadow: 0 0 8px hsl(var(--c-1) / 0.7);
-    animation: dot-blink 1.4s infinite;
+    color: hsl(var(--c-violet));
+    text-shadow: 0 0 8px hsl(var(--c-violet) / 0.7);
+    animation: dot-blink 1.5s infinite;
     line-height: 1;
   }
   .caption-dots span:nth-child(2) {
@@ -328,73 +366,129 @@ const Wrapper = styled.div`
     animation-delay: 0.36s;
   }
 
-  /* -------------------------------------------------------
-     Dark mode
-  ------------------------------------------------------- */
-  @media (prefers-color-scheme: dark) {
+  /* =======================================================
+     DARK MODE — supports class-based (html.dark) AND media
+  ======================================================= */
+  html.dark &,
+  .dark & {
     .caption-text {
       background: linear-gradient(
         90deg,
-        hsl(220 14% 62%) 0%,
-        hsl(var(--c-4)) 32%,
-        hsl(var(--c-1)) 52%,
-        hsl(var(--c-2)) 70%,
-        hsl(220 14% 62%) 100%
+        hsl(220 12% 65%) 0%,
+        hsl(var(--c-cyan)) 30%,
+        hsl(var(--c-blue)) 50%,
+        hsl(var(--c-violet)) 70%,
+        hsl(220 12% 65%) 100%
       );
       background-size: 220% 100%;
       -webkit-background-clip: text;
       background-clip: text;
     }
-    .ring-outer {
-      filter: drop-shadow(0 0 10px hsl(var(--c-1) / 0.65));
+    .caption-dots span {
+      color: hsl(var(--c-cyan));
+      text-shadow: 0 0 8px hsl(var(--c-cyan) / 0.7);
     }
     .core {
+      background: radial-gradient(
+        circle at 35% 30%,
+        hsl(0 0% 100% / 0.22) 0%,
+        hsl(0 0% 100% / 0.06) 50%,
+        hsl(var(--c-violet) / 0.18) 100%
+      );
       box-shadow:
-        0 0 12px hsl(var(--c-1) / 0.85),
-        0 0 30px hsl(var(--c-2) / 0.55),
-        0 0 52px hsl(var(--c-3) / 0.28),
-        inset 0 -2px 4px hsl(var(--c-2) / 0.7),
-        inset 0 1px 2px hsl(0 0% 100% / 0.75);
+        0 0 16px hsl(var(--c-violet) / 0.55),
+        0 0 38px hsl(var(--c-blue) / 0.35),
+        0 0 68px hsl(var(--c-fuchsia) / 0.2),
+        inset 0 0 0 1px hsl(0 0% 100% / 0.25),
+        inset 0 -3px 6px hsl(var(--c-violet) / 0.45),
+        inset 0 2px 4px hsl(0 0% 100% / 0.4);
+    }
+    .core-logo {
+      box-shadow:
+        inset 0 0 0 2px hsl(0 0% 100% / 0.55),
+        0 3px 12px hsl(0 0% 0% / 0.4);
+    }
+    .ring-outer {
+      filter: drop-shadow(0 0 8px hsl(var(--c-violet) / 0.65));
     }
   }
 
-  /* -------------------------------------------------------
-     Accessibility — reduced motion
-  ------------------------------------------------------- */
+  @media (prefers-color-scheme: dark) {
+    .caption-text {
+      background: linear-gradient(
+        90deg,
+        hsl(220 12% 65%) 0%,
+        hsl(var(--c-cyan)) 30%,
+        hsl(var(--c-blue)) 50%,
+        hsl(var(--c-violet)) 70%,
+        hsl(220 12% 65%) 100%
+      );
+      background-size: 220% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    .caption-dots span {
+      color: hsl(var(--c-cyan));
+      text-shadow: 0 0 8px hsl(var(--c-cyan) / 0.7);
+    }
+    .core {
+      background: radial-gradient(
+        circle at 35% 30%,
+        hsl(0 0% 100% / 0.22) 0%,
+        hsl(0 0% 100% / 0.06) 50%,
+        hsl(var(--c-violet) / 0.18) 100%
+      );
+      box-shadow:
+        0 0 16px hsl(var(--c-violet) / 0.55),
+        0 0 38px hsl(var(--c-blue) / 0.35),
+        0 0 68px hsl(var(--c-fuchsia) / 0.2),
+        inset 0 0 0 1px hsl(0 0% 100% / 0.25),
+        inset 0 -3px 6px hsl(var(--c-violet) / 0.45),
+        inset 0 2px 4px hsl(0 0% 100% / 0.4);
+    }
+    .core-logo {
+      box-shadow:
+        inset 0 0 0 2px hsl(0 0% 100% / 0.55),
+        0 3px 12px hsl(0 0% 0% / 0.4);
+    }
+    .ring-outer {
+      filter: drop-shadow(0 0 8px hsl(var(--c-violet) / 0.65));
+    }
+  }
+
+  /* =======================================================
+     REDUCED MOTION
+  ======================================================= */
   @media (prefers-reduced-motion: reduce) {
+    .halo,
     .ring-outer,
-    .ring-dots,
     .ring-arc,
-    .ring-arc::before,
     .orbit,
     .orbit i,
     .core,
-    .core-flare,
-    .ambient,
+    .core-ring,
+    .core-glow,
     .caption-text,
     .caption-dots span {
       animation: none !important;
     }
     .caption-dots span {
-      opacity: 0.85;
+      opacity: 0.9;
     }
-    .ambient {
-      opacity: 0.85;
+    .halo {
+      opacity: 0.9;
+    }
+    .ring-arc {
+      opacity: 1;
     }
   }
 
-  /* -------------------------------------------------------
-     Keyframes
-  ------------------------------------------------------- */
+  /* =======================================================
+     KEYFRAMES
+  ======================================================= */
   @keyframes spin {
     to {
       transform: rotate(360deg);
-    }
-  }
-
-  @keyframes spin-rev {
-    to {
-      transform: rotate(-360deg);
     }
   }
 
@@ -404,26 +498,26 @@ const Wrapper = styled.div`
       transform: scale(1);
     }
     50% {
-      transform: scale(1.12);
+      transform: scale(1.045);
     }
   }
 
-  @keyframes flare {
+  @keyframes pulse-glow {
     0%,
     100% {
-      opacity: 0.5;
+      opacity: 0.55;
       transform: scale(1);
     }
     50% {
-      opacity: 0.95;
-      transform: scale(1.08);
+      opacity: 1;
+      transform: scale(1.1);
     }
   }
 
   @keyframes halo {
     0%,
     100% {
-      opacity: 0.7;
+      opacity: 0.75;
       transform: scale(1);
     }
     50% {
