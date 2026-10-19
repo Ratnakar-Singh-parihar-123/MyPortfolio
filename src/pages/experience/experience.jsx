@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Briefcase,
   Calendar,
@@ -37,28 +37,22 @@ const CAREER_TREE_MILESTONES = [
   {
     id: "career-1",
     stageNumber: 1,
-
     levelLabel: "Independent Projects & Product Building",
     role: "Independent Full Stack Developer",
     company: "Self-Directed Projects",
     location: "Remote",
     duration: "2024 – Present",
     status: "Continuous Learning & Building",
-
     current: false,
-
     accentColor: "#10B981",
     gradient: "from-emerald-500 to-teal-600",
     bgTint: "bg-emerald-500/10 dark:bg-emerald-500/20 border-emerald-500/30",
     glowShadow: "shadow-[0_0_25px_rgba(16,185,129,0.35)]",
-
     icon: Globe,
     logo: Freelancers,
     side: "left",
-
     description:
       "Building practical web and mobile applications through independent projects, focusing on real-world problem solving, full-stack development, API integration, responsive interfaces, and production deployment.",
-
     responsibilities: [
       "Analyzing requirements and planning application architecture",
       "Building full-stack applications using the MERN stack",
@@ -67,7 +61,6 @@ const CAREER_TREE_MILESTONES = [
       "Working with MongoDB for application data management",
       "Deploying projects using Vercel, Render, and GitHub workflows",
     ],
-
     techStack: [
       "React.js",
       "Node.js",
@@ -79,39 +72,27 @@ const CAREER_TREE_MILESTONES = [
       "Render",
       "Git",
     ],
-
     type: "Independent Projects",
   },
-
-  /* =======================================================
-     SKY INFO GROUP
-  ======================================================= */
-
   {
     id: "career-2",
     stageNumber: 2,
-
     levelLabel: "Industry Internship",
     role: "MERN Stack Developer Intern",
     company: "Sky Info Group",
     location: "Bhopal, MP",
     duration: "Nov 2025 – Jan 2026",
     status: "Completed Internship",
-
     current: false,
-
     accentColor: "#06B6D4",
     gradient: "from-cyan-500 to-blue-600",
     bgTint: "bg-cyan-500/10 dark:bg-cyan-500/20 border-cyan-500/30",
     glowShadow: "shadow-[0_0_25px_rgba(6,182,212,0.35)]",
-
     icon: Server,
     logo: SkyInfoGroup,
     side: "right",
-
     description:
       "Completed a 3-month software development internship focused on backend development, REST APIs, bug fixing, database integration, and improving application functionality within a collaborative development environment.",
-
     responsibilities: [
       "Worked on backend development using Node.js and Express.js",
       "Implemented and integrated RESTful API endpoints",
@@ -121,7 +102,6 @@ const CAREER_TREE_MILESTONES = [
       "Improved existing application features and functionality",
       "Collaborated with the development team using Git and GitHub",
     ],
-
     techStack: [
       "Node.js",
       "Express.js",
@@ -132,39 +112,27 @@ const CAREER_TREE_MILESTONES = [
       "Git",
       "GitHub",
     ],
-
     type: "Internship",
   },
-
-  /* =======================================================
-     BINARYLOGIX
-  ======================================================= */
-
   {
     id: "career-3",
     stageNumber: 3,
-
     levelLabel: "Professional Internship",
     role: "Full Stack Developer Intern",
     company: "BinaryLogix Technologies LLP",
     location: "Bhopal, MP",
     duration: "Jun 2026 – Aug 2026",
     status: "Completed Internship",
-
     current: false,
-
     accentColor: "#6366F1",
     gradient: "from-indigo-500 via-purple-600 to-pink-600",
     bgTint: "bg-indigo-500/10 dark:bg-indigo-500/20 border-indigo-500/30",
     glowShadow: "shadow-[0_0_30px_rgba(99,102,241,0.4)]",
-
     icon: Building2,
     logo: Binarylogix,
     side: "left",
-
     description:
       "Completed a 3-month full-stack development internship involving application development, API integration, debugging, application testing, technical task evaluation, and collaborative quality verification with the development team.",
-
     responsibilities: [
       "Developed and integrated application features using React.js and Node.js",
       "Built and integrated REST APIs using Express.js",
@@ -175,7 +143,6 @@ const CAREER_TREE_MILESTONES = [
       "Reviewed and tested technical tasks and assignments as part of the interview and evaluation process",
       "Worked with Git and GitHub as part of the development workflow",
     ],
-
     techStack: [
       "React.js",
       "Node.js",
@@ -188,39 +155,27 @@ const CAREER_TREE_MILESTONES = [
       "Git",
       "GitHub",
     ],
-
     type: "Internship",
   },
-
-  /* =======================================================
-     FUTURE
-  ======================================================= */
-
   {
     id: "career-4",
     stageNumber: 4,
-
     levelLabel: "Career Horizon",
     role: "Full Stack Engineer & System Design Enthusiast",
     company: "Future Goal",
     location: "Scalable Product Ecosystems",
     duration: "Future Horizon",
     status: "Long-Term Goal",
-
     current: false,
-
     accentColor: "#A855F7",
     gradient: "from-purple-500 via-pink-500 to-amber-500",
     bgTint: "bg-purple-500/10 dark:bg-purple-500/20 border-purple-500/30",
     glowShadow: "shadow-[0_0_35px_rgba(168,85,247,0.45)]",
-
     icon: Sparkles,
     logo: null,
     side: "right",
-
     description:
       "Working toward becoming a strong full-stack engineer capable of designing scalable systems, building high-performance applications, and applying system design, cloud, and AI concepts to real-world products.",
-
     responsibilities: [
       "Designing scalable and maintainable software architectures",
       "Deepening knowledge of system design and distributed systems",
@@ -228,7 +183,6 @@ const CAREER_TREE_MILESTONES = [
       "Building high-performance applications and APIs",
       "Exploring cloud technologies, DevOps, and AI integrations",
     ],
-
     techStack: [
       "System Design",
       "Java",
@@ -237,7 +191,6 @@ const CAREER_TREE_MILESTONES = [
       "DevOps",
       "AI APIs",
     ],
-
     type: "Future Goal",
   },
 ];
@@ -298,17 +251,38 @@ const CAREER_ACHIEVEMENTS = [
 
 const Experience = () => {
   const [activeNodeId, setActiveNodeId] = useState("career-3");
-  const [viewMode, setViewMode] = useState("tree");
+
+  /* Default view: mobile → cards, desktop → tree
+     User manual toggle overrides the responsive default. */
+  const [viewMode, setViewMode] = useState(() => {
+    if (typeof window === "undefined") return "tree";
+    return window.innerWidth < 768 ? "cards" : "tree";
+  });
+
+  const [userToggled, setUserToggled] = useState(false);
+
+  useEffect(() => {
+    if (userToggled) return;
+    if (typeof window === "undefined") return;
+
+    const onResize = () => {
+      setViewMode(window.innerWidth < 768 ? "cards" : "tree");
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [userToggled]);
+
+  const handleSetView = (mode) => {
+    setUserToggled(true);
+    setViewMode(mode);
+  };
 
   return (
     <section
       id="experience"
       className="relative min-h-screen px-4 pt-20 pb-32 overflow-hidden transition-colors sm:px-6 sm:pt-24 sm:pb-36 lg:px-8 lg:pt-28 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100"
     >
-      {/* =====================================================
-          BACKGROUND GLOW
-      ===================================================== */}
-
+      {/* BACKGROUND GLOW */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30 dark:opacity-20">
         <div
           className="
@@ -324,17 +298,12 @@ const Experience = () => {
             blur-[120px] sm:blur-[140px]
           "
         />
-
         <div className="absolute top-20 left-0 w-72 h-72 sm:w-96 sm:h-96 bg-purple-500/15 rounded-full blur-[100px] sm:blur-[120px]" />
-
         <div className="absolute bottom-20 right-0 w-72 h-72 sm:w-96 sm:h-96 bg-indigo-500/15 rounded-full blur-[100px] sm:blur-[120px]" />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        {/* ===================================================
-            HEADER
-        =================================================== */}
-
+        {/* HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -371,13 +340,10 @@ const Experience = () => {
             projects, and continuous engineering learning.
           </p>
 
-          {/* =================================================
-              VIEW SWITCHER
-          ================================================= */}
-
+          {/* VIEW SWITCHER */}
           <div className="inline-flex max-w-full p-1 border shadow-inner mt-7 rounded-2xl bg-slate-200/80 dark:bg-slate-900 border-slate-300/80 dark:border-slate-800">
             <button
-              onClick={() => setViewMode("tree")}
+              onClick={() => handleSetView("tree")}
               className={`
                 flex items-center justify-center gap-2
                 px-3 py-2 sm:px-4
@@ -398,7 +364,7 @@ const Experience = () => {
             </button>
 
             <button
-              onClick={() => setViewMode("cards")}
+              onClick={() => handleSetView("cards")}
               className={`
                 flex items-center justify-center gap-2
                 px-3 py-2 sm:px-4
@@ -421,312 +387,156 @@ const Experience = () => {
         </motion.div>
 
         {/* ===================================================
-            TREE VIEW
+            TREE VIEW — Clean vertical timeline
         =================================================== */}
-
         {viewMode === "tree" && (
-          <div className="relative my-8 lg:my-12">
-            {/* Future Crown */}
+          <div className="relative max-w-3xl mx-auto my-8 lg:my-12">
+            {/* TOP MARKER — Future Horizon */}
             <div className="flex flex-col items-center mb-8 sm:mb-10">
               <motion.div
                 initial={{ scale: 0, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 20,
-                }}
-                className="
-                  relative
-                  flex items-center justify-center
-                  w-12 h-12 sm:w-14 sm:h-14
-                  p-0.5
-                  rounded-2xl
-                  bg-gradient-to-tr
-                  from-purple-600
-                  via-indigo-600
-                  to-pink-500
-                  shadow-xl shadow-purple-500/30
-                "
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="relative flex items-center justify-center shadow-xl  w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-pink-500 shadow-purple-500/30"
               >
-                <div
-                  className="
-                    flex items-center justify-center
-                    w-full h-full
-                    bg-slate-950
-                    rounded-[14px]
-                    text-purple-400
-                  "
-                >
-                  <Rocket className="w-6 h-6 sm:w-7 sm:h-7" />
-                </div>
-
-                <div
-                  className="
-                    absolute -top-2
-                    px-2 py-0.5 sm:px-2.5
-                    rounded-full
-                    bg-purple-500
-                    text-[8px] sm:text-[10px]
-                    font-bold
-                    text-white
-                    uppercase
-                    tracking-wider
-                    whitespace-nowrap
-                  "
-                >
-                  Future Horizon
-                </div>
+                <Rocket className="w-5 h-5 text-white sm:w-6 sm:h-6" />
               </motion.div>
+              <div className="mt-2 px-2.5 py-0.5 rounded-full bg-purple-500/10 dark:bg-purple-500/20 border border-purple-500/30 text-[9px] sm:text-[10px] font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider">
+                Future Horizon
+              </div>
             </div>
 
-            {/* =================================================
-                TREE CONTAINER
-            ================================================= */}
-
+            {/* RAIL + MILESTONES */}
             <div className="relative">
-              {/* Desktop Central Trunk */}
+              {/* Vertical gradient rail */}
               <div
-                className="
-                  absolute
-                  hidden lg:block
-                  left-1/2
-                  -translate-x-1/2
-                  top-0 bottom-0
-                  w-1.5
-                  rounded-full
-                  bg-gradient-to-b
-                  from-purple-500
-                  via-indigo-500
-                  via-cyan-500
-                  to-emerald-500
-                  shadow-[0_0_12px_rgba(168,85,247,0.5)]
-                  z-0
-                "
+                className="absolute left-6 sm:left-8 top-0 bottom-0 w-[2px] rounded-full bg-gradient-to-b from-purple-500 via-indigo-500 via-cyan-500 to-emerald-500 opacity-60"
+                aria-hidden
               />
 
-              {/* Mobile Vertical Line */}
-              <div className="absolute top-0 bottom-0 w-1 rounded-full lg:hidden left-6 sm:left-8 bg-gradient-to-b from-purple-500 via-indigo-500 via-cyan-500 to-emerald-500 opacity-80" />
-
-              {/* Animated Desktop Pulse */}
+              {/* Animated growth pulse (moves upward) */}
               <motion.div
+                aria-hidden
                 className="
                   absolute
-                  hidden lg:block
-                  left-1/2
+                  left-6 sm:left-8
                   -translate-x-1/2
-                  w-3 h-16
+                  w-1 h-16
                   rounded-full
-                  bg-gradient-to-t
+                  bg-gradient-to-b
                   from-transparent
                   via-purple-400
                   to-white
-                  shadow-[0_0_18px_#c084fc]
-                  z-0
+                  blur-[1px]
                   pointer-events-none
                 "
-                animate={{ top: ["100%", "0%"] }}
+                animate={{ top: ["100%", "0%"], opacity: [0, 0.9, 0.9, 0] }}
                 transition={{
+                  duration: 5,
                   repeat: Infinity,
-                  duration: 4.5,
                   ease: "linear",
+                  times: [0, 0.1, 0.9, 1],
                 }}
               />
 
-              {/* =================================================
-                  MILESTONES
-              ================================================= */}
-
-              <div className="relative z-10 py-5 space-y-10 sm:space-y-14 lg:py-6 lg:space-y-24">
-                {[...CAREER_TREE_MILESTONES].reverse().map((milestone) => {
+              {/* Milestones (reverse = newest/future at top, oldest at bottom) */}
+              <div className="space-y-6 sm:space-y-9">
+                {[...CAREER_TREE_MILESTONES].reverse().map((milestone, idx) => {
                   const isSelected = activeNodeId === milestone.id;
-
-                  const isLeft = milestone.side === "left";
-
                   const IconComponent = milestone.icon;
 
                   return (
                     <motion.div
                       key={milestone.id}
-                      initial={{
-                        opacity: 0,
-                        y: 30,
-                      }}
-                      whileInView={{
-                        opacity: 1,
-                        y: 0,
-                      }}
-                      viewport={{
-                        once: true,
-                        margin: "-50px",
-                      }}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: "-60px" }}
                       transition={{
-                        duration: 0.5,
+                        duration: 0.45,
+                        delay: idx * 0.05,
                         ease: "easeOut",
                       }}
-                      className="relative flex items-center justify-center"
+                      className="relative pl-16 sm:pl-24"
                     >
-                      {/* =====================================
-                            MOBILE NODE
-                        ===================================== */}
-
+                      {/* NODE */}
                       <button
                         onClick={() => setActiveNodeId(milestone.id)}
                         className={`
-                            absolute
-                            left-0 sm:left-2
-                            lg:left-1/2
-                            lg:-translate-x-1/2
-                            top-5 lg:top-auto
-                            z-30
+                            absolute left-0 top-2
                             flex items-center justify-center
-                            w-12 h-12
-                            sm:w-14 sm:h-14
+                            w-12 h-12 sm:w-16 sm:h-16
                             rounded-2xl
+                            bg-white dark:bg-slate-900
+                            border-2
                             transition-all duration-300
                             outline-none
                             ${
                               isSelected
-                                ? `bg-slate-900 text-white border-2 border-white scale-110 lg:scale-125 ${milestone.glowShadow}`
-                                : "bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:scale-110"
+                                ? `scale-105 ${milestone.glowShadow}`
+                                : "border-slate-300 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-600 hover:-translate-y-0.5"
                             }
                           `}
+                        style={{
+                          borderColor: isSelected
+                            ? milestone.accentColor
+                            : undefined,
+                        }}
+                        aria-label={`Select ${milestone.company}`}
                       >
                         {milestone.logo ? (
                           <img
                             src={milestone.logo}
                             alt={`${milestone.company} logo`}
-                            className="object-cover w-7 h-7 rounded-xl"
+                            className="object-cover w-8 h-8 rounded-lg sm:w-12 sm:h-12"
                           />
                         ) : (
                           <IconComponent
-                            className="w-5 h-5"
-                            style={{
-                              color: milestone.accentColor,
-                            }}
+                            className="w-5 h-5 sm:w-7 sm:h-7"
+                            style={{ color: milestone.accentColor }}
                           />
                         )}
 
-                        <div
+                        {/* Stage number badge */}
+                        <span
                           className="
                               absolute
-                              -bottom-5
-                              px-2 py-0.5
+                              -top-2 -right-2
+                              min-w-[18px] h-[18px] sm:min-w-[22px] sm:h-[22px]
+                              px-1
                               rounded-full
-                              text-[9px]
+                              flex items-center justify-center
+                              text-[9px] sm:text-[10px]
                               font-bold
                               text-white
-                              shadow-sm
-                              whitespace-nowrap
+                              shadow-md
+                              border-2
+                              border-white
+                              dark:border-slate-900
                             "
                           style={{
                             backgroundColor: milestone.accentColor,
                           }}
                         >
-                          Stage {milestone.stageNumber}
-                        </div>
+                          {milestone.stageNumber}
+                        </span>
                       </button>
 
-                      {/* =====================================
-                            DESKTOP CARDS
-                        ===================================== */}
-
-                      <div className="absolute inset-0 items-center justify-between hidden pointer-events-none lg:flex">
-                        {/* Left */}
-                        <div
-                          className={`
-                              w-[45%]
-                              ${
-                                isLeft
-                                  ? "pointer-events-auto"
-                                  : "opacity-0 pointer-events-none"
-                              }
-                            `}
-                        >
-                          {isLeft && (
-                            <CareerMilestoneCard
-                              milestone={milestone}
-                              isSelected={isSelected}
-                              onSelect={() => setActiveNodeId(milestone.id)}
-                            />
-                          )}
-                        </div>
-
-                        {/* Connector */}
-                        <div className="w-[10%] flex justify-center pointer-events-none">
-                          <svg
-                            className="w-full h-12 overflow-visible"
-                            viewBox="0 0 100 48"
-                            preserveAspectRatio="none"
-                          >
-                            <motion.path
-                              d="M 0 24 C 40 24, 60 24, 100 24"
-                              fill="none"
-                              stroke={
-                                isSelected ? milestone.accentColor : "#64748b"
-                              }
-                              strokeWidth={isSelected ? 3 : 1.5}
-                              strokeDasharray={isSelected ? "none" : "4 4"}
-                              className="transition-all duration-300"
-                            />
-                          </svg>
-                        </div>
-
-                        {/* Right */}
-                        <div
-                          className={`
-                              w-[45%]
-                              ${
-                                !isLeft
-                                  ? "pointer-events-auto"
-                                  : "opacity-0 pointer-events-none"
-                              }
-                            `}
-                        >
-                          {!isLeft && (
-                            <CareerMilestoneCard
-                              milestone={milestone}
-                              isSelected={isSelected}
-                              onSelect={() => setActiveNodeId(milestone.id)}
-                            />
-                          )}
-                        </div>
-                      </div>
-
-                      {/* =====================================
-                            MOBILE CARD
-                        ===================================== */}
-
-                      <div
-                        className="
-                            w-full
-                            pl-[4.5rem]
-                            sm:pl-24
-                            pr-1
-                            pt-2
-                            lg:hidden
-                          "
-                      >
-                        <CareerMilestoneCard
-                          milestone={milestone}
-                          isSelected={isSelected}
-                          onSelect={() => setActiveNodeId(milestone.id)}
-                        />
-                      </div>
+                      {/* CARD */}
+                      <CareerMilestoneCard
+                        milestone={milestone}
+                        isSelected={isSelected}
+                        onSelect={() => setActiveNodeId(milestone.id)}
+                      />
                     </motion.div>
                   );
                 })}
               </div>
             </div>
 
-            {/* =================================================
-                TREE BASE
-            ================================================= */}
-
-            <div className="flex flex-col items-center pt-5 mt-10 sm:mt-12">
+            {/* BASE MARKER — Career Start */}
+            <div className="flex flex-col items-center pt-8 sm:pt-10">
               <div className="h-2 mb-2 rounded-full w-14 sm:w-16 sm:h-3 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 blur-sm" />
-
               <div
                 className="
                   px-3 py-1
@@ -748,20 +558,13 @@ const Experience = () => {
         {/* ===================================================
             CARD VIEW
         =================================================== */}
-
         {viewMode === "cards" && (
           <div className="grid grid-cols-1 gap-5 my-8 sm:gap-6 lg:gap-8 md:grid-cols-2">
             {CAREER_TREE_MILESTONES.map((item, index) => (
               <motion.div
                 key={item.id}
-                initial={{
-                  opacity: 0,
-                  y: 20,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{
                   duration: 0.45,
@@ -769,7 +572,6 @@ const Experience = () => {
                 }}
                 className="relative p-5 transition-all bg-white border shadow-xl sm:p-6 dark:bg-slate-900 border-slate-200 dark:border-slate-800 rounded-3xl hover:border-purple-500/50 hover:-translate-y-1"
               >
-                {/* Header */}
                 <div className="flex items-start gap-3 mb-4">
                   {item.logo ? (
                     <img
@@ -780,9 +582,7 @@ const Experience = () => {
                   ) : (
                     <div
                       className="p-3 text-white shadow-md rounded-2xl shrink-0"
-                      style={{
-                        backgroundColor: item.accentColor,
-                      }}
+                      style={{ backgroundColor: item.accentColor }}
                     >
                       <item.icon className="w-6 h-6" />
                     </div>
@@ -810,7 +610,6 @@ const Experience = () => {
                     <Calendar className="w-3.5 h-3.5" />
                     {item.duration}
                   </span>
-
                   <span className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-full">
                     <Pin className="w-3.5 h-3.5" />
                     {item.location}
@@ -821,27 +620,17 @@ const Experience = () => {
                   {item.description}
                 </p>
 
-                {/* Tech */}
                 <div className="flex flex-wrap gap-1.5 mb-5">
                   {item.techStack.map((tech, i) => (
                     <span
                       key={i}
-                      className="
-                          px-2.5 py-1
-                          bg-slate-100
-                          dark:bg-slate-800
-                          text-slate-600
-                          dark:text-slate-400
-                          text-[11px]
-                          rounded-md
-                        "
+                      className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[11px] rounded-md"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                {/* Responsibilities */}
                 <div className="pt-4 border-t border-slate-200 dark:border-slate-800">
                   <h4 className="flex items-center gap-1 mb-3 text-xs font-bold tracking-wider uppercase text-slate-900 dark:text-white">
                     <Briefcase className="w-3.5 h-3.5 text-purple-500" />
@@ -854,14 +643,7 @@ const Experience = () => {
                         key={i}
                         className="flex items-start gap-2 text-xs text-slate-600 dark:text-slate-400"
                       >
-                        <ChevronRight
-                          className="
-                              w-3.5 h-3.5
-                              text-purple-500
-                              shrink-0
-                              mt-0.5
-                            "
-                        />
+                        <ChevronRight className="w-3.5 h-3.5 text-purple-500 shrink-0 mt-0.5" />
                         <span>{resp}</span>
                       </li>
                     ))}
@@ -875,21 +657,11 @@ const Experience = () => {
         {/* ===================================================
             BOTTOM SECTION
         =================================================== */}
-
         <div className="grid grid-cols-1 gap-6 sm:gap-8 mt-14 sm:mt-20 lg:mt-24 md:grid-cols-2">
-          {/* =================================================
-              CORE COMPETENCIES
-          ================================================= */}
-
+          {/* CORE COMPETENCIES */}
           <motion.div
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="p-5 bg-white border shadow-xl sm:p-6 lg:p-8 dark:bg-slate-900 border-slate-200 dark:border-slate-800 rounded-3xl"
           >
@@ -897,12 +669,10 @@ const Experience = () => {
               <div className="p-2.5 rounded-2xl bg-purple-500/10 text-purple-500">
                 <Code2 className="w-6 h-6" />
               </div>
-
               <div>
                 <h3 className="text-xl font-bold sm:text-2xl text-slate-900 dark:text-white">
                   Core Engineering Capabilities
                 </h3>
-
                 <p className="text-xs text-slate-500 dark:text-slate-400">
                   Skills developed through projects and internships
                 </p>
@@ -913,28 +683,15 @@ const Experience = () => {
               {CORE_COMPETENCIES.map((comp, idx) => (
                 <div
                   key={idx}
-                  className="
-                      p-3.5
-                      rounded-2xl
-                      bg-slate-50
-                      dark:bg-slate-800/60
-                      border
-                      border-slate-200/60
-                      dark:border-slate-700/50
-                      flex items-start gap-3
-                      hover:border-purple-500/40
-                      transition-colors
-                    "
+                  className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/50 flex items-start gap-3 hover:border-purple-500/40 transition-colors"
                 >
                   <div className="p-2 text-purple-500 rounded-xl bg-purple-500/10 shrink-0">
                     <comp.icon className="w-4 h-4" />
                   </div>
-
                   <div className="min-w-0">
                     <h4 className="text-xs font-bold sm:text-sm text-slate-900 dark:text-white">
                       {comp.title}
                     </h4>
-
                     <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5">
                       {comp.desc}
                     </p>
@@ -944,19 +701,10 @@ const Experience = () => {
             </div>
           </motion.div>
 
-          {/* =================================================
-              CAREER HIGHLIGHTS
-          ================================================= */}
-
+          {/* CAREER HIGHLIGHTS */}
           <motion.div
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="flex flex-col justify-between p-5 text-white border shadow-2xl sm:p-6 lg:p-8 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 rounded-3xl border-slate-800"
           >
@@ -965,12 +713,10 @@ const Experience = () => {
                 <div className="p-2.5 rounded-2xl bg-purple-500/20 text-purple-400">
                   <Award className="w-6 h-6" />
                 </div>
-
                 <div>
                   <h3 className="text-xl font-bold sm:text-2xl">
                     Career Highlights
                   </h3>
-
                   <p className="text-xs text-slate-400">
                     Experience, learning & engineering milestones
                   </p>
@@ -980,22 +726,13 @@ const Experience = () => {
               <ul className="mb-6 space-y-3 text-xs sm:text-sm text-slate-300">
                 {CAREER_ACHIEVEMENTS.map((achievement, idx) => (
                   <li key={idx} className="flex items-start gap-2.5">
-                    <CheckCircle
-                      className="
-                          w-4 h-4
-                          text-purple-400
-                          shrink-0
-                          mt-0.5
-                        "
-                    />
-
+                    <CheckCircle className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
                     <span>{achievement}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Bottom CTA */}
             <div className="flex flex-col gap-3 pt-4 border-t border-slate-800 sm:flex-row sm:items-center sm:justify-between">
               <span className="text-xs font-medium text-slate-400">
                 Open to Full-Stack Opportunities
@@ -1003,21 +740,7 @@ const Experience = () => {
 
               <a
                 href="#contact"
-                className="
-                  inline-flex
-                  items-center
-                  justify-center
-                  gap-1.5
-                  px-3 py-2
-                  rounded-xl
-                  bg-purple-500/10
-                  hover:bg-purple-500/20
-                  text-xs
-                  font-bold
-                  text-purple-400
-                  hover:text-purple-300
-                  transition-colors
-                "
+                className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 text-xs font-bold text-purple-400 hover:text-purple-300 transition-colors"
               >
                 Hire / Collaborate
                 <ArrowUpRight className="w-4 h-4" />
@@ -1031,16 +754,14 @@ const Experience = () => {
 };
 
 /* =========================================================
-   CAREER MILESTONE CARD
+   CAREER MILESTONE CARD (unchanged — user liked this)
 ========================================================= */
 
 function CareerMilestoneCard({ milestone, isSelected, onSelect }) {
   return (
     <motion.div
       onClick={onSelect}
-      whileHover={{
-        y: -4,
-      }}
+      whileHover={{ y: -4 }}
       className={`
         relative
         cursor-pointer
@@ -1056,71 +777,30 @@ function CareerMilestoneCard({ milestone, isSelected, onSelect }) {
         }
       `}
     >
-      {/* =====================================================
-          TOP BADGES
-      ===================================================== */}
-
+      {/* TOP BADGES */}
       <div className="flex flex-col gap-2 mb-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-wrap items-center gap-2">
           <span
-            className="
-              px-2.5 py-1
-              rounded-full
-              text-[10px] sm:text-[11px]
-              font-bold
-              text-white
-              shadow-sm
-              tracking-wide
-              uppercase
-            "
-            style={{
-              backgroundColor: milestone.accentColor,
-            }}
+            className="px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold text-white shadow-sm tracking-wide uppercase"
+            style={{ backgroundColor: milestone.accentColor }}
           >
             {milestone.type}
           </span>
 
           {milestone.status && (
-            <span
-              className="
-                px-2.5 py-1
-                rounded-full
-                text-[10px]
-                font-medium
-                bg-slate-100
-                dark:bg-slate-800
-                text-slate-600
-                dark:text-slate-400
-              "
-            >
+            <span className="px-2.5 py-1 rounded-full text-[10px] font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
               {milestone.status}
             </span>
           )}
         </div>
 
-        <span
-          className="
-            flex items-center gap-1
-            w-fit
-            text-[10px] sm:text-xs
-            font-semibold
-            text-slate-500
-            dark:text-slate-400
-            bg-slate-100
-            dark:bg-slate-800/80
-            px-2.5 py-1
-            rounded-full
-          "
-        >
+        <span className="flex items-center gap-1 w-fit text-[10px] sm:text-xs font-semibold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-2.5 py-1 rounded-full">
           <Calendar className="w-3.5 h-3.5" />
           {milestone.duration}
         </span>
       </div>
 
-      {/* =====================================================
-          ROLE HEADER
-      ===================================================== */}
-
+      {/* ROLE HEADER */}
       <div className="flex items-start gap-3 mb-2">
         {milestone.logo && (
           <img
@@ -1129,26 +809,20 @@ function CareerMilestoneCard({ milestone, isSelected, onSelect }) {
             className="object-cover w-10 h-10 border shadow-xs sm:w-11 sm:h-11 rounded-xl border-slate-200 dark:border-slate-700 shrink-0"
           />
         )}
-
         <div className="min-w-0">
           <h3 className="text-base font-bold leading-snug sm:text-lg lg:text-xl text-slate-900 dark:text-white">
             {milestone.role}
           </h3>
-
           <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">
             {milestone.company}
           </p>
         </div>
       </div>
 
-      {/* Location */}
-
       <p className="flex items-center gap-1 mb-3 text-xs text-slate-500 dark:text-slate-400">
         <Pin className="w-3.5 h-3.5 shrink-0" />
         {milestone.location}
       </p>
-
-      {/* Description */}
 
       <p
         className={`
@@ -1163,69 +837,29 @@ function CareerMilestoneCard({ milestone, isSelected, onSelect }) {
         {milestone.description}
       </p>
 
-      {/* =====================================================
-          TECH STACK
-      ===================================================== */}
-
+      {/* TECH STACK */}
       <div className="flex flex-wrap gap-1.5 mb-4">
         {milestone.techStack.map((tech, index) => (
           <span
             key={`${tech}-${index}`}
-            className="
-                px-2 py-1
-                sm:px-2.5
-                text-[10px] sm:text-[11px]
-                font-medium
-                rounded-md
-                bg-slate-100
-                dark:bg-slate-800
-                text-slate-600
-                dark:text-slate-400
-                border
-                border-slate-200/60
-                dark:border-slate-700/50
-              "
+            className="px-2 py-1 sm:px-2.5 text-[10px] sm:text-[11px] font-medium rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200/60 dark:border-slate-700/50"
           >
             {tech}
           </span>
         ))}
       </div>
 
-      {/* =====================================================
-          EXPANDED CONTENT
-      ===================================================== */}
-
+      {/* EXPANDED CONTENT */}
       <AnimatePresence initial={false}>
         {isSelected && (
           <motion.div
-            initial={{
-              opacity: 0,
-              height: 0,
-            }}
-            animate={{
-              opacity: 1,
-              height: "auto",
-            }}
-            exit={{
-              opacity: 0,
-              height: 0,
-            }}
-            transition={{
-              duration: 0.3,
-            }}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
             className="pt-4 space-y-3 overflow-hidden border-t border-slate-200/80 dark:border-slate-800/80"
           >
-            <h4
-              className="
-                flex items-center gap-1
-                text-[10px] sm:text-xs
-                font-bold
-                tracking-wider
-                uppercase
-                text-slate-900
-                dark:text-white
-              "
-            >
+            <h4 className="flex items-center gap-1 text-[10px] sm:text-xs font-bold tracking-wider uppercase text-slate-900 dark:text-white">
               <Briefcase className="w-3.5 h-3.5 text-purple-500" />
               Key Responsibilities
             </h4>
@@ -1234,62 +868,22 @@ function CareerMilestoneCard({ milestone, isSelected, onSelect }) {
               {milestone.responsibilities.map((responsibility, index) => (
                 <li
                   key={index}
-                  className="
-                      flex items-start gap-1.5
-                      text-[11px] sm:text-xs
-                      leading-relaxed
-                      text-slate-600
-                      dark:text-slate-400
-                    "
+                  className="flex items-start gap-1.5 text-[11px] sm:text-xs leading-relaxed text-slate-600 dark:text-slate-400"
                 >
-                  <ChevronRight
-                    className="
-                        w-3.5 h-3.5
-                        text-purple-500
-                        shrink-0
-                        mt-0.5
-                      "
-                  />
-
+                  <ChevronRight className="w-3.5 h-3.5 text-purple-500 shrink-0 mt-0.5" />
                   <span>{responsibility}</span>
                 </li>
               ))}
             </ul>
 
-            {/* Small metadata */}
-
-            <div className="flex flex-wrap gap-2 pt-2 ">
-              <span
-                className="
-                  inline-flex
-                  items-center gap-1.5
-                  px-2.5 py-1
-                  rounded-lg
-                  bg-purple-500/10
-                  text-purple-600
-                  dark:text-purple-400
-                  text-[10px]
-                  font-semibold
-                "
-              >
+            <div className="flex flex-wrap gap-2 pt-2">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-purple-500/10 text-purple-600 dark:text-purple-400 text-[10px] font-semibold">
                 <GitBranch className="w-3.5 h-3.5" />
                 Professional Workflow
               </span>
 
               {milestone.type === "Internship" && (
-                <span
-                  className="
-                    inline-flex
-                    items-center gap-1.5
-                    px-2.5 py-1
-                    rounded-lg
-                    bg-cyan-500/10
-                    text-cyan-600
-                    dark:text-cyan-400
-                    text-[10px]
-                    font-semibold
-                  "
-                >
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 text-[10px] font-semibold">
                   <Users className="w-3.5 h-3.5" />
                   Team Collaboration
                 </span>

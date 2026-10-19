@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   GraduationCap,
   Calendar,
@@ -19,6 +19,10 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import SchooleImg from "../../assets/schoolImg/schoolImg.webp";
 
+/* =========================================================
+   TREE MILESTONES DATA
+========================================================= */
+
 const TREE_MILESTONES = [
   {
     id: "milestone-1",
@@ -29,7 +33,7 @@ const TREE_MILESTONES = [
     location: "Nagod, Satna, Madhya Pradesh",
     duration: "2019 - 2020",
     status: "Completed (Distinction)",
-    accentColor: "#10B981", // Emerald
+    accentColor: "#10B981",
     gradient: "from-emerald-500 to-teal-600",
     bgTint: "bg-emerald-500/10 dark:bg-emerald-500/20 border-emerald-500/30",
     glowShadow: "shadow-[0_0_25px_rgba(16,185,129,0.35)]",
@@ -42,10 +46,20 @@ const TREE_MILESTONES = [
       "Strong foundation in core Mathematics & General Science",
       "Active participation in school science competitions",
     ],
-    subjects: ["Mathematics", "General Science", "Social Science", "English", "Hindi"],
+    subjects: [
+      "Mathematics",
+      "General Science",
+      "Social Science",
+      "English",
+      "Hindi",
+    ],
     type: "school",
     image: SchooleImg,
-    skillsLearned: ["Analytical Thinking", "Mathematics", "Science Fundamentals"],
+    skillsLearned: [
+      "Analytical Thinking",
+      "Mathematics",
+      "Science Fundamentals",
+    ],
   },
   {
     id: "milestone-2",
@@ -56,7 +70,7 @@ const TREE_MILESTONES = [
     location: "Nagod, Satna, Madhya Pradesh",
     duration: "2021 - 2022",
     status: "Completed (PCM Science)",
-    accentColor: "#06B6D4", // Cyan
+    accentColor: "#06B6D4",
     gradient: "from-cyan-500 to-blue-600",
     bgTint: "bg-cyan-500/10 dark:bg-cyan-500/20 border-cyan-500/30",
     glowShadow: "shadow-[0_0_25px_rgba(6,182,212,0.35)]",
@@ -83,7 +97,7 @@ const TREE_MILESTONES = [
     location: "Bhopal, Madhya Pradesh",
     duration: "2022 - 2026",
     status: "Graduate Class of 2026",
-    accentColor: "#6366F1", // Indigo
+    accentColor: "#6366F1",
     gradient: "from-indigo-500 via-blue-600 to-purple-600",
     bgTint: "bg-indigo-500/10 dark:bg-indigo-500/20 border-indigo-500/30",
     glowShadow: "shadow-[0_0_30px_rgba(99,102,241,0.4)]",
@@ -106,7 +120,12 @@ const TREE_MILESTONES = [
     type: "college",
     image:
       "https://content.jdmagicbox.com/comp/bhopal/65/0755p755std2700465/catalogue/ies-university-bhopal-kalkheda-bhopal-institutes-9h4364j1aw.jpg?w=1920&q=75",
-    skillsLearned: ["Full Stack Development", "MERN Stack", "System Design", "OOP & DSA"],
+    skillsLearned: [
+      "Full Stack Development",
+      "MERN Stack",
+      "System Design",
+      "OOP & DSA",
+    ],
   },
   {
     id: "milestone-4",
@@ -117,7 +136,7 @@ const TREE_MILESTONES = [
     location: "Global Software Systems",
     duration: "2026 & Beyond",
     status: "Active Career Expansion",
-    accentColor: "#A855F7", // Purple
+    accentColor: "#A855F7",
     gradient: "from-purple-500 to-pink-600",
     bgTint: "bg-purple-500/10 dark:bg-purple-500/20 border-purple-500/30",
     glowShadow: "shadow-[0_0_35px_rgba(168,85,247,0.45)]",
@@ -130,256 +149,331 @@ const TREE_MILESTONES = [
       "Mastering modern cloud deployment & performance optimization",
       "Contributing to open-source and cutting-edge web ecosystems",
     ],
-    subjects: ["Cloud Architecture", "Next.js & Micro-Frontends", "AI Integrations", "DevOps"],
+    subjects: [
+      "Cloud Architecture",
+      "Next.js & Micro-Frontends",
+      "AI Integrations",
+      "DevOps",
+    ],
     type: "future",
     image:
       "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1200&auto=format&fit=crop",
-    skillsLearned: ["Cloud DevOps", "Scalable Systems", "AI Product Engineering"],
+    skillsLearned: [
+      "Cloud DevOps",
+      "Scalable Systems",
+      "AI Product Engineering",
+    ],
   },
 ];
 
+/* =========================================================
+   SKILL TREE PROGRESS
+========================================================= */
+
 const SKILL_TREE_PROGRESS = [
   { skill: "Data Structures & Algorithms", level: 92, category: "Core CS" },
-  { skill: "Full Stack (React, Node, Mongo)", level: 95, category: "Development" },
+  {
+    skill: "Full Stack (React, Node, Mongo)",
+    level: 95,
+    category: "Development",
+  },
   { skill: "Problem Solving & Logic", level: 94, category: "Analytical" },
   { skill: "Database Architecture", level: 88, category: "Engineering" },
   { skill: "System Design & APIs", level: 86, category: "Architecture" },
 ];
 
+/* =========================================================
+   EDUCATION COMPONENT
+========================================================= */
+
 const Education = () => {
   const [activeNodeId, setActiveNodeId] = useState("milestone-3");
-  const [viewMode, setViewMode] = useState("tree"); // 'tree' or 'cards'
 
-  const activeMilestone =
-    TREE_MILESTONES.find((m) => m.id === activeNodeId) || TREE_MILESTONES[2];
+  /* Smart default: mobile → cards, desktop → tree */
+  const [viewMode, setViewMode] = useState(() => {
+    if (typeof window === "undefined") return "tree";
+    return window.innerWidth < 768 ? "cards" : "tree";
+  });
+
+  const [userToggled, setUserToggled] = useState(false);
+
+  useEffect(() => {
+    if (userToggled) return;
+    if (typeof window === "undefined") return;
+
+    const onResize = () => {
+      setViewMode(window.innerWidth < 768 ? "cards" : "tree");
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [userToggled]);
+
+  const handleSetView = (mode) => {
+    setUserToggled(true);
+    setViewMode(mode);
+  };
 
   return (
     <section
       id="education"
-      className="relative min-h-screen pt-20 sm:pt-24 lg:pt-28 pb-36 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors overflow-hidden"
+      className="relative min-h-screen px-4 pt-20 overflow-hidden transition-colors pb-36 sm:px-6 sm:pt-24 lg:px-8 lg:pt-28 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100"
     >
-      {/* Background Micro Particle Mesh */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30 dark:opacity-20">
+      {/* BACKGROUND GLOW */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30 dark:opacity-20">
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-gradient-to-tr from-indigo-500/20 via-purple-500/20 to-emerald-500/20 rounded-full blur-[140px]" />
         <div className="absolute bottom-10 left-10 w-96 h-96 bg-blue-500/15 rounded-full blur-[120px]" />
         <div className="absolute top-20 right-10 w-96 h-96 bg-emerald-500/15 rounded-full blur-[120px]" />
       </div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        {/* Header */}
+      <div className="relative z-10 max-w-6xl mx-auto">
+        {/* HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-center mb-12 sm:mb-16"
+          className="mb-12 text-center sm:mb-16"
         >
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 dark:bg-indigo-500/20 border border-indigo-500/30 text-indigo-600 dark:text-indigo-400 text-xs sm:text-sm font-semibold tracking-wide mb-4">
             <Compass className="w-4 h-4 animate-spin-slow" />
             Interactive Tree Growth Pathway
           </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 text-slate-900 dark:text-white">
-            Academic <span className="text-transparent bg-gradient-to-r from-emerald-500 via-cyan-500 to-indigo-500 bg-clip-text">Journey</span>
+
+          <h1 className="mb-4 text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-slate-900 dark:text-white">
+            Academic{" "}
+            <span className="text-transparent bg-gradient-to-r from-emerald-500 via-cyan-500 to-indigo-500 bg-clip-text">
+              Journey
+            </span>
           </h1>
-          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
-            Growing through learning, one milestone at a time. Explore my academic evolution from foundational schooling to engineering and future horizon goals.
+
+          <p className="max-w-2xl mx-auto text-base leading-relaxed sm:text-lg text-slate-600 dark:text-slate-400">
+            Growing through learning, one milestone at a time. Explore my
+            academic evolution from foundational schooling to engineering and
+            future horizon goals.
           </p>
 
-          {/* Mode Switcher */}
-          <div className="mt-8 inline-flex p-1 rounded-2xl bg-slate-200/80 dark:bg-slate-900 border border-slate-300/80 dark:border-slate-800 shadow-inner">
+          {/* MODE SWITCHER */}
+          <div className="inline-flex max-w-full p-1 mt-8 border shadow-inner rounded-2xl bg-slate-200/80 dark:bg-slate-900 border-slate-300/80 dark:border-slate-800">
             <button
-              onClick={() => setViewMode("tree")}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${
-                viewMode === "tree"
-                  ? "bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-md"
-                  : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
-              }`}
+              onClick={() => handleSetView("tree")}
+              className={`
+                flex items-center justify-center gap-2
+                px-3 py-2 sm:px-4
+                rounded-xl
+                text-[11px] sm:text-sm
+                font-semibold
+                whitespace-nowrap
+                transition-all duration-200
+                ${
+                  viewMode === "tree"
+                    ? "bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-md"
+                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                }
+              `}
             >
               <Layers className="w-4 h-4" />
-              Interactive Tree View
+              <span>Tree View</span>
             </button>
+
             <button
-              onClick={() => setViewMode("cards")}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${
-                viewMode === "cards"
-                  ? "bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-md"
-                  : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
-              }`}
+              onClick={() => handleSetView("cards")}
+              className={`
+                flex items-center justify-center gap-2
+                px-3 py-2 sm:px-4
+                rounded-xl
+                text-[11px] sm:text-sm
+                font-semibold
+                whitespace-nowrap
+                transition-all duration-200
+                ${
+                  viewMode === "cards"
+                    ? "bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-md"
+                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                }
+              `}
             >
               <Cpu className="w-4 h-4" />
-              Classic Card Grid
+              <span>Card Grid</span>
             </button>
           </div>
         </motion.div>
 
-        {/* VIEW 1: INTERACTIVE TREE VIEW */}
+        {/* ===================================================
+            TREE VIEW — Clean vertical timeline
+        =================================================== */}
         {viewMode === "tree" && (
-          <div className="relative my-8 lg:my-12">
-            {/* Tree Top Crown Indicator */}
-            <div className="flex flex-col items-center mb-8">
+          <div className="relative max-w-3xl mx-auto my-8 lg:my-12">
+            {/* TOP CROWN — Future Horizon */}
+            <div className="flex flex-col items-center mb-8 sm:mb-10">
               <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 p-0.5 shadow-xl shadow-purple-500/30 flex items-center justify-center relative"
+                className="relative flex items-center justify-center shadow-xl w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 shadow-purple-500/30"
               >
-                <div className="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center text-purple-400">
-                  <Sparkles className="w-7 h-7 animate-pulse" />
-                </div>
-                <div className="absolute -top-2 px-2.5 py-0.5 rounded-full bg-purple-500 text-[10px] font-bold text-white uppercase tracking-wider shadow-md">
-                  Crown / Horizon
-                </div>
+                <GraduationCap className="w-5 h-5 text-white sm:w-6 sm:h-6" />
               </motion.div>
+              <div className="mt-2 px-2.5 py-0.5 rounded-full bg-purple-500/10 dark:bg-purple-500/20 border border-purple-500/30 text-[9px] sm:text-[10px] font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider">
+                Crown / Horizon
+              </div>
             </div>
 
-            {/* Central Tree Stem Line (Upward Growth Trunk) */}
+            {/* RAIL + MILESTONES */}
             <div className="relative">
-              {/* Vertical Trunk Line */}
-              <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-1.5 rounded-full bg-gradient-to-b from-purple-500 via-indigo-500 via-cyan-500 to-emerald-500 shadow-[0_0_12px_rgba(99,102,241,0.5)] z-0" />
-
-              {/* Animated Light Pulse travelling UP the trunk */}
-              <motion.div
-                className="absolute left-1/2 -translate-x-1/2 w-3 h-16 rounded-full bg-gradient-to-t from-transparent via-cyan-400 to-white shadow-[0_0_18px_#38bdf8] z-0 pointer-events-none"
-                animate={{ top: ["100%", "0%"] }}
-                transition={{ repeat: Infinity, duration: 4.5, ease: "linear" }}
+              {/* Vertical gradient rail */}
+              <div
+                className="absolute left-6 sm:left-8 top-0 bottom-0 w-[2px] rounded-full bg-gradient-to-b from-purple-500 via-indigo-500 via-cyan-500 to-emerald-500 opacity-60"
+                aria-hidden
               />
 
-              {/* Milestones Tree Nodes Container */}
-              <div className="space-y-16 lg:space-y-24 relative z-10 py-6">
-                {/* Render Milestones in reverse chronological order (Bottom = 10th, Top = Future) */}
-                {[...TREE_MILESTONES].reverse().map((milestone) => {
+              {/* Animated upward pulse */}
+              <motion.div
+                aria-hidden
+                className="absolute left-6 sm:left-8 -translate-x-1/2 w-1 h-16 rounded-full bg-gradient-to-b from-transparent via-cyan-400 to-white blur-[1px] pointer-events-none"
+                animate={{ top: ["100%", "0%"], opacity: [0, 0.9, 0.9, 0] }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "linear",
+                  times: [0, 0.1, 0.9, 1],
+                }}
+              />
+
+              {/* Milestones (reverse = newest at top, oldest at bottom) */}
+              <div className="space-y-6 sm:space-y-9">
+                {[...TREE_MILESTONES].reverse().map((milestone, idx) => {
                   const isSelected = activeNodeId === milestone.id;
                   const IconComponent = milestone.icon;
-                  const isLeft = milestone.side === "left";
 
                   return (
                     <motion.div
                       key={milestone.id}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-50px" }}
-                      transition={{ duration: 0.5, ease: "easeOut" }}
-                      className="relative flex items-center justify-center group"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: "-60px" }}
+                      transition={{
+                        duration: 0.45,
+                        delay: idx * 0.05,
+                        ease: "easeOut",
+                      }}
+                      className="relative pl-16 sm:pl-24"
                     >
-                      {/* Central Trunk Ring Junction Node */}
+                      {/* NODE */}
                       <button
                         onClick={() => setActiveNodeId(milestone.id)}
-                        className={`relative z-20 w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 outline-none ${
-                          isSelected
-                            ? `bg-slate-900 text-white border-2 border-white scale-125 ${milestone.glowShadow}`
-                            : "bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:scale-110"
-                        }`}
+                        className={`
+                          absolute left-0 top-2
+                          flex items-center justify-center
+                          w-12 h-12 sm:w-16 sm:h-16
+                          rounded-2xl
+                          bg-white dark:bg-slate-900
+                          border-2
+                          overflow-hidden
+                          transition-all duration-300
+                          outline-none
+                          ${
+                            isSelected
+                              ? `scale-105 ${milestone.glowShadow}`
+                              : "border-slate-300 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-600 hover:-translate-y-0.5"
+                          }
+                        `}
+                        style={{
+                          borderColor: isSelected
+                            ? milestone.accentColor
+                            : undefined,
+                        }}
+                        aria-label={`Select ${milestone.institution}`}
                       >
-                        <IconComponent
-                          className={`w-5 h-5 transition-transform duration-300 ${
-                            isSelected ? "scale-110" : ""
-                          }`}
-                          style={{ color: isSelected ? milestone.accentColor : undefined }}
-                        />
-                        {/* Node Stage Ring Badge */}
-                        <div
-                          className="absolute -bottom-6 px-2 py-0.5 rounded-full text-[10px] font-bold text-white shadow-sm whitespace-nowrap"
-                          style={{ backgroundColor: milestone.accentColor }}
+                        {/* Institution image */}
+                        {milestone.image ? (
+                          <img
+                            src={milestone.image}
+                            alt={milestone.institution}
+                            className="object-cover w-full h-full"
+                          />
+                        ) : (
+                          <IconComponent
+                            className="w-5 h-5 sm:w-7 sm:h-7"
+                            style={{ color: milestone.accentColor }}
+                          />
+                        )}
+
+                        {/* Stage badge */}
+                        <span
+                          className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 min-w-[18px] h-[18px] sm:min-w-[22px] sm:h-[22px] px-1 rounded-full flex items-center justify-center text-[9px] sm:text-[10px] font-bold text-white shadow-md border-2 border-white dark:border-slate-900 z-10"
+                          style={{
+                            backgroundColor: milestone.accentColor,
+                          }}
                         >
-                          Stage {milestone.stageNumber}
-                        </div>
+                          {milestone.stageNumber}
+                        </span>
                       </button>
 
-                      {/* Desktop Branch & Floating Card */}
-                      <div className="hidden lg:flex absolute inset-0 items-center justify-between pointer-events-none">
-                        {/* Left Card Slot */}
-                        <div className={`w-[45%] ${isLeft ? "pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
-                          {isLeft && (
-                            <TreeMilestoneCard
-                              milestone={milestone}
-                              isSelected={isSelected}
-                              onSelect={() => setActiveNodeId(milestone.id)}
-                            />
-                          )}
-                        </div>
-
-                        {/* Curved SVG Branch Connector */}
-                        <div className="w-[10%] flex justify-center pointer-events-none">
-                          <svg className="w-full h-12 overflow-visible">
-                            <motion.path
-                              d={
-                                isLeft
-                                  ? "M 0 24 C 40 24, 60 24, 100 24"
-                                  : "M 0 24 C 40 24, 60 24, 100 24"
-                              }
-                              fill="none"
-                              stroke={isSelected ? milestone.accentColor : "#64748b"}
-                              strokeWidth={isSelected ? 3 : 1.5}
-                              strokeDasharray={isSelected ? "none" : "4 4"}
-                              className="transition-all duration-300"
-                            />
-                          </svg>
-                        </div>
-
-                        {/* Right Card Slot */}
-                        <div className={`w-[45%] ${!isLeft ? "pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
-                          {!isLeft && (
-                            <TreeMilestoneCard
-                              milestone={milestone}
-                              isSelected={isSelected}
-                              onSelect={() => setActiveNodeId(milestone.id)}
-                            />
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Mobile / Tablet Responsive Tree Card */}
-                      <div className="lg:hidden w-full pl-16 sm:pl-20 mt-4 pr-2">
-                        <TreeMilestoneCard
-                          milestone={milestone}
-                          isSelected={isSelected}
-                          onSelect={() => setActiveNodeId(milestone.id)}
-                        />
-                      </div>
+                      {/* CARD */}
+                      <TreeMilestoneCard
+                        milestone={milestone}
+                        isSelected={isSelected}
+                        onSelect={() => setActiveNodeId(milestone.id)}
+                      />
                     </motion.div>
                   );
                 })}
               </div>
             </div>
 
-            {/* Tree Base Root Indicator */}
-            <div className="flex flex-col items-center mt-12 pt-6">
-              <div className="w-16 h-3 rounded-full bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 blur-sm mb-2" />
-              <div className="px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-400 border border-slate-300/80 dark:border-slate-700">
-                🌱 Root Stage (2019)
+            {/* BASE — Root Stage */}
+            <div className="flex flex-col items-center pt-8 sm:pt-10">
+              <div className="h-2 mb-2 rounded-full w-14 sm:w-16 sm:h-3 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 blur-sm" />
+              <div className="px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-800 text-[10px] sm:text-xs font-semibold text-slate-600 dark:text-slate-400 border border-slate-300/80 dark:border-slate-700">
+                🌱 Root Stage • 2019
               </div>
             </div>
           </div>
         )}
 
-        {/* VIEW 2: CLASSIC CARD GRID VIEW */}
+        {/* ===================================================
+            CARD VIEW
+        =================================================== */}
         {viewMode === "cards" && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
-            {TREE_MILESTONES.map((item) => (
+          <div className="grid grid-cols-1 gap-6 my-8 sm:gap-8 md:grid-cols-2">
+            {TREE_MILESTONES.map((item, index) => (
               <motion.div
                 key={item.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-xl hover:border-indigo-500/50 transition-all group"
+                transition={{ delay: index * 0.05, duration: 0.4 }}
+                className="p-6 transition-all bg-white border shadow-xl dark:bg-slate-900 border-slate-200 dark:border-slate-800 rounded-3xl hover:border-indigo-500/50 hover:-translate-y-1 group"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <div
-                    className="p-3 rounded-2xl text-white shadow-md"
-                    style={{ backgroundColor: item.accentColor }}
-                  >
-                    <item.icon className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-indigo-500">
+                <div className="flex items-start gap-3 mb-4">
+                  {item.image ? (
+                    <img
+                      src={item.image}
+                      alt={item.institution}
+                      className="object-cover border shadow-sm w-11 h-11 sm:w-12 sm:h-12 rounded-2xl border-slate-200 dark:border-slate-700 shrink-0"
+                    />
+                  ) : (
+                    <div
+                      className="p-3 text-white shadow-md rounded-2xl shrink-0"
+                      style={{ backgroundColor: item.accentColor }}
+                    >
+                      <item.icon className="w-6 h-6" />
+                    </div>
+                  )}
+
+                  <div className="min-w-0">
+                    <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-indigo-500">
                       {item.levelLabel}
                     </span>
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                    <h3 className="text-lg font-bold leading-snug sm:text-xl text-slate-900 dark:text-white">
                       {item.degree}
                     </h3>
                   </div>
                 </div>
-                <p className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+
+                <p className="mb-2 text-sm font-semibold text-slate-700 dark:text-slate-300">
                   {item.institution}
                 </p>
+
                 <div className="flex flex-wrap gap-2 mb-4 text-xs text-slate-500">
                   <span className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-full">
                     <Calendar className="w-3.5 h-3.5" /> {item.duration}
@@ -388,9 +482,11 @@ const Education = () => {
                     <MapPin className="w-3.5 h-3.5" /> {item.location}
                   </span>
                 </div>
-                <p className="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+
+                <p className="mb-4 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                   {item.description}
                 </p>
+
                 <div className="flex flex-wrap gap-1.5">
                   {item.subjects.map((sub, i) => (
                     <span
@@ -406,24 +502,28 @@ const Education = () => {
           </div>
         )}
 
-        {/* BOTTOM SECTION: SKILLS PROFICIENCY & HIGHLIGHTS */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16 sm:mt-24">
-          {/* Skill Proficiency Progress */}
+        {/* ===================================================
+            BOTTOM SECTION — SKILLS + HIGHLIGHTS
+        =================================================== */}
+        <div className="grid grid-cols-1 gap-8 mt-16 sm:mt-24 md:grid-cols-2">
+          {/* SKILL PROFICIENCY */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-8 rounded-3xl shadow-xl"
+            className="p-6 bg-white border shadow-xl dark:bg-slate-900 border-slate-200 dark:border-slate-800 sm:p-8 rounded-3xl"
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="p-2.5 rounded-2xl bg-indigo-500/10 text-indigo-500">
                 <Cpu className="w-6 h-6" />
               </div>
               <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                <h3 className="text-xl font-bold sm:text-2xl text-slate-900 dark:text-white">
                   Academic Skill Growth
                 </h3>
-                <p className="text-xs text-slate-500">Skills cultivated through degree & coursework</p>
+                <p className="text-xs text-slate-500">
+                  Skills cultivated through degree & coursework
+                </p>
               </div>
             </div>
 
@@ -431,10 +531,14 @@ const Education = () => {
               {SKILL_TREE_PROGRESS.map((item, idx) => (
                 <div key={idx}>
                   <div className="flex justify-between mb-1.5 text-xs sm:text-sm font-semibold">
-                    <span className="text-slate-800 dark:text-slate-200">{item.skill}</span>
-                    <span className="text-indigo-600 dark:text-indigo-400">{item.level}%</span>
+                    <span className="text-slate-800 dark:text-slate-200">
+                      {item.skill}
+                    </span>
+                    <span className="text-indigo-600 dark:text-indigo-400">
+                      {item.level}%
+                    </span>
                   </div>
-                  <div className="h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+                  <div className="h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
                     <motion.div
                       initial={{ width: 0 }}
                       whileInView={{ width: `${item.level}%` }}
@@ -448,12 +552,12 @@ const Education = () => {
             </div>
           </motion.div>
 
-          {/* Highlights & Aspirations */}
+          {/* HIGHLIGHTS */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white p-6 sm:p-8 rounded-3xl shadow-2xl border border-slate-800 flex flex-col justify-between"
+            className="flex flex-col justify-between p-6 text-white border shadow-2xl sm:p-8 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 rounded-3xl border-slate-800"
           >
             <div>
               <div className="flex items-center gap-3 mb-6">
@@ -461,38 +565,48 @@ const Education = () => {
                   <Trophy className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-bold">Academic Highlights</h3>
-                  <p className="text-xs text-slate-400">IES University & School Achievements</p>
+                  <h3 className="text-xl font-bold sm:text-2xl">
+                    Academic Highlights
+                  </h3>
+                  <p className="text-xs text-slate-400">
+                    IES University & School Achievements
+                  </p>
                 </div>
               </div>
 
-              <ul className="space-y-3.5 mb-6 text-sm text-slate-300">
+              <ul className="mb-6 space-y-3.5 text-sm text-slate-300">
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
                   <span>
-                    <strong>B.Tech CSE Graduate (Class of 2026)</strong> — Comprehensive training in Computer Science fundamentals and software engineering.
+                    <strong>B.Tech CSE Graduate (Class of 2026)</strong> —
+                    Comprehensive training in Computer Science fundamentals and
+                    software engineering.
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
                   <span>
-                    <strong>Full-Stack Mastery</strong> — Practical hands-on development using React.js, Node.js, Express, and MongoDB.
+                    <strong>Full-Stack Mastery</strong> — Practical hands-on
+                    development using React.js, Node.js, Express, and MongoDB.
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" />
                   <span>
-                    <strong>Science & Math Foundation</strong> — PCM stream HSSC with strong problem-solving proficiency.
+                    <strong>Science & Math Foundation</strong> — PCM stream HSSC
+                    with strong problem-solving proficiency.
                   </span>
                 </li>
               </ul>
             </div>
 
-            <div className="pt-4 border-t border-slate-800 flex items-center justify-between">
-              <span className="text-xs text-slate-400 font-medium">Ready for Full-Stack Opportunities</span>
+            <div className="flex flex-col gap-3 pt-4 border-t border-slate-800 sm:flex-row sm:items-center sm:justify-between">
+              <span className="text-xs font-medium text-slate-400">
+                Ready for Full-Stack Opportunities
+              </span>
               <a
                 href="/contact"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-400 hover:text-indigo-300 transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-indigo-500/10 hover:bg-indigo-500/20 text-xs font-bold text-indigo-400 hover:text-indigo-300 transition-colors"
               >
                 Let's Connect <ArrowUpRight className="w-4 h-4" />
               </a>
@@ -504,7 +618,10 @@ const Education = () => {
   );
 };
 
-// Sub-Component for Tree Milestone Card
+/* =========================================================
+   TREE MILESTONE CARD (same card design — user liked it)
+========================================================= */
+
 function TreeMilestoneCard({ milestone, isSelected, onSelect }) {
   const IconComponent = milestone.icon;
 
@@ -512,74 +629,97 @@ function TreeMilestoneCard({ milestone, isSelected, onSelect }) {
     <motion.div
       onClick={onSelect}
       whileHover={{ y: -4 }}
-      className={`relative cursor-pointer rounded-3xl p-5 sm:p-6 transition-all duration-300 border backdrop-blur-xl ${
-        isSelected
-          ? `bg-white/95 dark:bg-slate-900/95 border-2 shadow-2xl ${milestone.bgTint}`
-          : "bg-white/80 dark:bg-slate-900/70 border-slate-200/80 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 shadow-md opacity-90 hover:opacity-100"
-      }`}
+      className={`
+        relative
+        cursor-pointer
+        rounded-3xl
+        p-4 sm:p-5 lg:p-6
+        transition-all duration-300
+        border
+        backdrop-blur-xl
+        ${
+          isSelected
+            ? `bg-white/95 dark:bg-slate-900/95 border-2 shadow-2xl ${milestone.bgTint}`
+            : "bg-white/80 dark:bg-slate-900/70 border-slate-200/80 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 shadow-md opacity-95"
+        }
+      `}
     >
-      {/* Header Stage Badge & Duration */}
-      <div className="flex items-center justify-between gap-2 mb-3">
+      {/* HEADER BADGES */}
+      <div className="flex flex-col gap-2 mb-3 sm:flex-row sm:items-center sm:justify-between">
         <span
-          className="px-2.5 py-1 rounded-full text-[11px] font-bold text-white shadow-xs tracking-wide uppercase"
+          className="px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold text-white shadow-sm tracking-wide uppercase w-fit"
           style={{ backgroundColor: milestone.accentColor }}
         >
           {milestone.levelLabel}
         </span>
-        <span className="flex items-center gap-1 text-xs font-semibold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-2.5 py-1 rounded-full">
+
+        <span className="flex items-center gap-1 w-fit text-[10px] sm:text-xs font-semibold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-2.5 py-1 rounded-full">
           <Calendar className="w-3.5 h-3.5" />
           {milestone.duration}
         </span>
       </div>
 
-      {/* Degree & Institution */}
-      <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-snug mb-1">
+      {/* DEGREE + INSTITUTION */}
+      <h3 className="mb-1 text-base font-bold leading-snug sm:text-lg lg:text-xl text-slate-900 dark:text-white">
         {milestone.degree}
       </h3>
-      <p className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 flex items-center gap-1.5">
+      <p className="flex items-center gap-1.5 mb-2 text-sm font-semibold text-slate-700 dark:text-slate-300">
         <Building2 className="w-4 h-4 shrink-0 text-slate-400" />
         {milestone.institution}
       </p>
 
-      {/* Location */}
-      <p className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1 mb-3">
+      {/* LOCATION */}
+      <p className="flex items-center gap-1 mb-3 text-xs text-slate-500 dark:text-slate-400">
         <MapPin className="w-3.5 h-3.5 shrink-0" />
         {milestone.location}
       </p>
 
-      {/* Short Description */}
-      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-4 line-clamp-3 leading-relaxed">
+      {/* DESCRIPTION */}
+      <p
+        className={`
+          mb-4
+          text-xs sm:text-sm
+          leading-relaxed
+          text-slate-600
+          dark:text-slate-400
+          ${isSelected ? "" : "line-clamp-3"}
+        `}
+      >
         {milestone.description}
       </p>
 
-      {/* Course Pills */}
+      {/* SUBJECTS */}
       <div className="flex flex-wrap gap-1.5 mb-4">
         {milestone.subjects.map((sub, i) => (
           <span
             key={i}
-            className="px-2.5 py-0.5 text-[11px] font-medium rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200/60 dark:border-slate-700/50"
+            className="px-2 py-1 sm:px-2.5 text-[10px] sm:text-[11px] font-medium rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200/60 dark:border-slate-700/50"
           >
             {sub}
           </span>
         ))}
       </div>
 
-      {/* Selected Card Expanded Content */}
-      <AnimatePresence>
+      {/* EXPANDED ACHIEVEMENTS */}
+      <AnimatePresence initial={false}>
         {isSelected && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="pt-4 border-t border-slate-200/80 dark:border-slate-800/80 space-y-2 overflow-hidden"
+            className="pt-4 space-y-2 overflow-hidden border-t border-slate-200/80 dark:border-slate-800/80"
           >
-            <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-1">
-              <Trophy className="w-3.5 h-3.5 text-yellow-500" /> Key Milestones & Achievements:
+            <h4 className="flex items-center gap-1 text-[10px] sm:text-xs font-bold tracking-wider uppercase text-slate-900 dark:text-white">
+              <Trophy className="w-3.5 h-3.5 text-yellow-500" />
+              Key Milestones & Achievements
             </h4>
-            <ul className="space-y-1.5 text-xs text-slate-600 dark:text-slate-400">
+            <ul className="space-y-1.5">
               {milestone.achievements.map((ach, i) => (
-                <li key={i} className="flex items-start gap-1.5">
+                <li
+                  key={i}
+                  className="flex items-start gap-1.5 text-[11px] sm:text-xs leading-relaxed text-slate-600 dark:text-slate-400"
+                >
                   <ChevronRight className="w-3.5 h-3.5 text-indigo-500 shrink-0 mt-0.5" />
                   <span>{ach}</span>
                 </li>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   CodeBracketIcon,
   CommandLineIcon,
@@ -11,7 +11,6 @@ import {
   ArrowTrendingUpIcon,
   LightBulbIcon,
   ShieldCheckIcon,
-  UserGroupIcon,
   ClockIcon,
   HeartIcon,
   SparklesIcon,
@@ -20,6 +19,7 @@ import {
 
 const WhyHireMe = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const reduceMotion = useReducedMotion();
 
   const skills = [
     {
@@ -41,7 +41,7 @@ const WhyHireMe = () => {
       icon: CommandLineIcon,
       title: "Full-Stack Development",
       description:
-        "MERN Stack (MongoDB, Express.js, React, Node.js) with end-to-end JavaScript expertise.",
+        "MERN Stack (MySQL, MongoDB, Express.js, React, React Native, Node.js) with end-to-end JavaScript expertise.",
       fullDescription:
         "End-to-end development expertise with modern JavaScript. Building robust APIs, responsive UIs, and scalable database solutions.",
       color: "from-purple-500 to-pink-500",
@@ -49,7 +49,7 @@ const WhyHireMe = () => {
       textColor: "text-purple-500",
       borderColor: "border-purple-500/20",
       metrics: "10+ Projects",
-      experience: "MERN Stack , React Native",
+      experience: "MERN Stack, React Native",
       progress: 90,
     },
     {
@@ -86,7 +86,7 @@ const WhyHireMe = () => {
       icon: CircleStackIcon,
       title: "Database Management",
       description:
-        "MongoDB, MySQL, PostgreSQL, and Firebase with efficient query optimization.",
+        "MongoDB, MySQL, and Firebase with efficient query optimization.",
       fullDescription:
         "Designing efficient database schemas, writing optimized queries, and implementing data caching strategies for high-performance applications.",
       color: "from-indigo-500 to-purple-500",
@@ -125,7 +125,7 @@ const WhyHireMe = () => {
       </div>
 
       <div className="relative z-10 container-brand">
-        {/* Header Section */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -182,7 +182,6 @@ const WhyHireMe = () => {
             <div className="absolute transition-opacity duration-500 opacity-0 -inset-1 bg-gradient-to-r from-primary/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-xl group-hover:opacity-100"></div>
 
             <div className="relative p-6 overflow-hidden font-mono text-sm border shadow-xl bg-card border-border/50 rounded-2xl">
-              {/* Window Controls */}
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-3 h-3 bg-red-500 rounded-full"></div>
                 <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
@@ -192,7 +191,6 @@ const WhyHireMe = () => {
                 </span>
               </div>
 
-              {/* Code Content */}
               <div className="space-y-3">
                 <div>
                   <span className="text-blue-400">interface</span>{" "}
@@ -237,7 +235,6 @@ const WhyHireMe = () => {
                 </div>
                 <div>{"}"}</div>
 
-                {/* Output Line */}
                 <div className="pt-4 mt-4 border-t border-border/50">
                   <span className="text-gray-500">// Output: </span>
                   <span className="text-green-400">
@@ -252,140 +249,178 @@ const WhyHireMe = () => {
           </div>
         </motion.div>
 
-        {/* Skills Grid — Isolated Hover */}
+        {/* =====================================================
+            SKILLS GRID — TRUE ISOLATED HOVER
+            ✔ Grid cell: fixed minHeight (never grows)
+            ✔ Card: position absolute → expands WITHOUT pushing siblings
+            ✔ Hovered card: lifts + z-index 40 (floats above others)
+            ✔ Other 5 cards: literally zero movement
+        ===================================================== */}
         <div className="grid grid-cols-1 gap-6 mb-20 md:grid-cols-2 lg:grid-cols-3">
           {skills.map((skill, index) => {
             const SkillIcon = skill.icon;
             const isHovered = hoveredIndex === index;
 
             return (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.08 }}
-                viewport={{ once: true, margin: "-50px" }}
+                className="relative"
+                style={{ minHeight: 380 }}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                animate={{
-                  y: isHovered ? -8 : 0,
-                }}
-                className="relative cursor-pointer group"
               >
-                {/* Card Container — hover effects strictly scoped to this card */}
-                <div
-                  className={`relative h-full overflow-hidden transition-all duration-500 border shadow-lg bg-gradient-to-b from-card to-card/80 rounded-2xl ${
-                    isHovered
-                      ? "border-primary/40 shadow-2xl shadow-primary/10"
-                      : "border-border/50"
-                  }`}
+                {/* Framer wrapper — absolute so it doesn't affect grid cell height */}
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{
+                    duration: 0.6,
+                    delay: index * 0.08,
+                    ease: "easeOut",
+                  }}
+                  className="absolute top-0 left-0 right-0"
+                  style={{
+                    minHeight: 380,
+                    zIndex: isHovered ? 40 : 10,
+                    willChange: "transform, opacity",
+                  }}
                 >
-                  {/* Top Accent Bar */}
+                  {/* Lift wrapper — only translates on hover */}
                   <div
-                    className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${skill.color} transition-opacity duration-500 ${
-                      isHovered ? "opacity-100" : "opacity-60"
-                    }`}
-                  ></div>
-
-                  {/* Glow Effect — only when hovered */}
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${skill.color} transition-opacity duration-500 pointer-events-none ${
-                      isHovered ? "opacity-[0.05]" : "opacity-0"
-                    }`}
-                  ></div>
-
-                  {/* Content */}
-                  <div className="relative p-6">
-                    {/* Icon */}
-                    <div className="relative inline-block mb-4">
-                      <div
-                        className={`w-14 h-14 rounded-xl ${skill.bgColor} p-3 border ${skill.borderColor} transition-transform duration-300 ${
-                          isHovered ? "scale-110" : "scale-100"
-                        }`}
-                      >
-                        <SkillIcon
-                          className={`w-full h-full ${skill.textColor}`}
-                        />
-                      </div>
-                      <motion.div
-                        className="absolute w-3 h-3 bg-green-500 rounded-full -top-1 -right-1 ring-2 ring-card"
-                        animate={{ scale: [1, 1.2, 1] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      />
-                    </div>
-
-                    {/* Title */}
-                    <h3
-                      className={`mb-3 text-xl font-bold transition-colors duration-300 ${
-                        isHovered ? "text-primary" : "text-foreground"
+                    style={{
+                      minHeight: 380,
+                      willChange: "transform",
+                    }}
+                    className={`
+                      transition-transform duration-300
+                      ease-[cubic-bezier(0.22,1,0.36,1)]
+                      ${
+                        isHovered && !reduceMotion
+                          ? "-translate-y-2"
+                          : "translate-y-0"
+                      }
+                    `}
+                  >
+                    {/* THE CARD */}
+                    <div
+                      className={`relative overflow-hidden transition-all duration-500 border shadow-lg bg-gradient-to-b from-card to-card/80 rounded-2xl ${
+                        isHovered
+                          ? "border-primary/40 shadow-2xl shadow-primary/15"
+                          : "border-border/50"
                       }`}
                     >
-                      {skill.title}
-                    </h3>
+                      {/* Top Accent Bar */}
+                      <div
+                        className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${skill.color} transition-opacity duration-500 ${
+                          isHovered ? "opacity-100" : "opacity-60"
+                        }`}
+                      ></div>
 
-                    {/* Short Description */}
-                    <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
-                      {skill.description}
-                    </p>
+                      {/* Glow */}
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-br ${skill.color} transition-opacity duration-500 pointer-events-none ${
+                          isHovered ? "opacity-[0.05]" : "opacity-0"
+                        }`}
+                      ></div>
 
-                    {/* Full Description — expands ONLY on this card's hover */}
-                    <motion.div
-                      initial={false}
-                      animate={{
-                        opacity: isHovered ? 1 : 0,
-                        height: isHovered ? "auto" : 0,
-                        marginBottom: isHovered ? 16 : 0,
-                      }}
-                      transition={{ duration: 0.35, ease: "easeInOut" }}
-                      className="overflow-hidden"
-                    >
-                      <p className="pl-3 text-sm leading-relaxed border-l-2 text-foreground/80 border-primary">
-                        {skill.fullDescription}
-                      </p>
-                    </motion.div>
+                      {/* Content */}
+                      <div className="relative p-6">
+                        {/* Icon */}
+                        <div className="relative inline-block mb-4">
+                          <div
+                            className={`w-14 h-14 rounded-xl ${skill.bgColor} p-3 border ${skill.borderColor} transition-transform duration-300 ${
+                              isHovered ? "scale-110" : "scale-100"
+                            }`}
+                          >
+                            <SkillIcon
+                              className={`w-full h-full ${skill.textColor}`}
+                            />
+                          </div>
+                          <motion.div
+                            className="absolute w-3 h-3 bg-green-500 rounded-full -top-1 -right-1 ring-2 ring-card"
+                            animate={{ scale: [1, 1.2, 1] }}
+                            transition={{ duration: 2, repeat: Infinity }}
+                          />
+                        </div>
 
-                    {/* Tag Pills */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      <span
-                        className={`px-2 py-1 text-xs font-medium ${skill.bgColor} ${skill.textColor} rounded-lg border ${skill.borderColor}`}
-                      >
-                        {skill.metrics}
-                      </span>
-                      <span className="px-2 py-1 text-xs font-medium border rounded-lg bg-muted/50 text-muted-foreground border-border">
-                        {skill.experience}
-                      </span>
-                    </div>
+                        {/* Title */}
+                        <h3
+                          className={`mb-3 text-xl font-bold transition-colors duration-300 ${
+                            isHovered ? "text-primary" : "text-foreground"
+                          }`}
+                        >
+                          {skill.title}
+                        </h3>
 
-                    {/* Progress Indicator — reflects actual value */}
-                    <div className="relative pt-2">
-                      <div className="flex items-center justify-between mb-1.5">
-                        <span className="text-[11px] font-medium text-muted-foreground">
-                          Proficiency
-                        </span>
-                        <span className="text-[11px] font-bold text-primary">
-                          {skill.progress}%
-                        </span>
-                      </div>
-                      <div className="h-1.5 overflow-hidden rounded-full bg-muted/30">
+                        {/* Short Description */}
+                        <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
+                          {skill.description}
+                        </p>
+
+                        {/* Expanded Content — grows only within this absolute card */}
                         <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.progress}%` }}
-                          transition={{
-                            duration: 1.2,
-                            delay: 0.2 + index * 0.1,
-                            ease: "easeOut",
+                          initial={false}
+                          animate={{
+                            opacity: isHovered ? 1 : 0,
+                            height: isHovered ? "auto" : 0,
+                            marginBottom: isHovered ? 16 : 0,
                           }}
-                          viewport={{ once: true }}
-                          className={`h-full rounded-full bg-gradient-to-r ${skill.color}`}
-                        />
+                          transition={{
+                            duration: 0.35,
+                            ease: "easeInOut",
+                          }}
+                          className="overflow-hidden"
+                        >
+                          <p className="pl-3 text-sm leading-relaxed border-l-2 text-foreground/80 border-primary">
+                            {skill.fullDescription}
+                          </p>
+                        </motion.div>
+
+                        {/* Tag Pills */}
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          <span
+                            className={`px-2 py-1 text-xs font-medium ${skill.bgColor} ${skill.textColor} rounded-lg border ${skill.borderColor}`}
+                          >
+                            {skill.metrics}
+                          </span>
+                          <span className="px-2 py-1 text-xs font-medium border rounded-lg bg-muted/50 text-muted-foreground border-border">
+                            {skill.experience}
+                          </span>
+                        </div>
+
+                        {/* Progress */}
+                        <div className="relative pt-2">
+                          <div className="flex items-center justify-between mb-1.5">
+                            <span className="text-[11px] font-medium text-muted-foreground">
+                              Proficiency
+                            </span>
+                            <span className="text-[11px] font-bold text-primary">
+                              {skill.progress}%
+                            </span>
+                          </div>
+                          <div className="h-1.5 overflow-hidden rounded-full bg-muted/30">
+                            <motion.div
+                              initial={{ width: 0 }}
+                              whileInView={{ width: `${skill.progress}%` }}
+                              transition={{
+                                duration: 1.2,
+                                delay: 0.2 + index * 0.1,
+                                ease: "easeOut",
+                              }}
+                              viewport={{ once: true }}
+                              className={`h-full rounded-full bg-gradient-to-r ${skill.color}`}
+                            />
+                          </div>
+                        </div>
                       </div>
+
+                      {/* Corner Decoration */}
+                      <div className="absolute top-0 right-0 w-20 h-20 pointer-events-none bg-gradient-to-br from-transparent via-transparent to-primary/5 rounded-bl-3xl"></div>
                     </div>
                   </div>
-
-                  {/* Decorative Corner */}
-                  <div className="absolute top-0 right-0 w-20 h-20 pointer-events-none bg-gradient-to-br from-transparent via-transparent to-primary/5 rounded-bl-3xl"></div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </div>
             );
           })}
         </div>
@@ -456,7 +491,6 @@ const WhyHireMe = () => {
                 </motion.a>
               </div>
 
-              {/* Trust Indicators */}
               <div className="flex flex-wrap items-center justify-center gap-6 pt-8 mt-8 border-t border-white/10">
                 <div className="flex items-center gap-2">
                   <ShieldCheckIcon className="w-4 h-4 text-green-400" />

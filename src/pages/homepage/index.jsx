@@ -8,6 +8,7 @@ import CTASection from "./components/CTASection";
 import FloatingActionButton from "./components/FloatingActionButton";
 import WhyHireMe from "./components/WhyHireMe";
 import ReaalSections from "./components/VideoModel";
+import ScrollDots from "./components/ScrollDots";
 
 const Homepage = () => {
   useEffect(() => {
@@ -63,7 +64,6 @@ const Homepage = () => {
     script.text = JSON.stringify(structuredData);
     document.getElementsByTagName("head")?.[0]?.appendChild(script);
 
-    // Cleanup function
     return () => {
       const existingScript = document.querySelector(
         'script[type="application/ld+json"]',
@@ -74,7 +74,6 @@ const Homepage = () => {
     };
   }, []);
 
-  // Page transition variants
   const pageVariants = {
     initial: { opacity: 0 },
     animate: {
@@ -101,38 +100,52 @@ const Homepage = () => {
       exit="exit"
       className="min-h-screen bg-background"
     >
-      {/* Header Navigation */}
-      {/* Main Content */}
+      {/* =====================================================
+          SCROLL DOTS NAVIGATION — fixed right side, desktop only
+      ===================================================== */}
+      <ScrollDots />
+
       <main className="relative pb-28">
-        {/* Hero Section */}
-        <HeroSection />
-        <WhyHireMe />
+        {/* Each section wrapped with an ID — ScrollDots observes these IDs */}
+        <div id="hero">
+          <HeroSection />
+        </div>
 
-        {/* // reel sections  */}
-        <ReaalSections />
+        <div id="why-hire-me">
+          <WhyHireMe />
+        </div>
 
-        {/* Skills Preview Section */}
-        <SkillPreviewSection />
+        {/* Reels */}
+        <div id="reels">
+          <ReaalSections />
+        </div>
 
-        {/* Project Showcase Section */}
-        <ProjectShowcaseSection />
+        <div id="skills">
+          <SkillPreviewSection />
+        </div>
 
-        {/* Certificates Section */}
-        <CertificatesSection />
+        <div id="projects">
+          <ProjectShowcaseSection />
+        </div>
 
-        {/* Call-to-Action Section */}
-        <CTASection />
+        <div id="certificates">
+          <CertificatesSection />
+        </div>
+
+        <div id="contact">
+          <CTASection />
+        </div>
       </main>
-      {/* Floating Action Button */}
+
       <FloatingActionButton />
-      {/* Skip to content link for accessibility */}
+
       <a
         href="#main-content"
         className="z-50 px-4 py-2 transition-all duration-200 rounded-lg sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-primary-foreground"
       >
         Skip to main content
       </a>
-      {/* Scroll restoration */}
+
       <div id="main-content" className="sr-only">
         Main content starts here
       </div>

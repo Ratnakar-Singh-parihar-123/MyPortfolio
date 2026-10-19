@@ -62,8 +62,9 @@ import {
 // Import your images
 // import yammiverse from "../../../assets/projectsImg/yammiverse.png";
 import vsbp from "../../../assets/projectsImg/vsbp.png";
-import bodp from "../../../assets/projectsImg/bloodAndOrganDonationsImg/jeevandaancareHome.png";
+// import bodp from "../../../assets/projectsImg/bloodAndOrganDonationsImg/jeevandaancareHome.png";
 import foodmitra from "../../../assets/projectsImg/foodmitra/foodmitra.png";
+import vedbook from "../../../assets/projectsImg/vedbook/vedbook.png";
 
 // import appimg
 import ECommrce from "../../../assets/AppImg/ecomm.jpeg";
@@ -72,6 +73,7 @@ import parkingapp from "../../../assets/AppImg/ParkEasyAdmin/ParkEasyFront.jpg";
 import FoodMitraCustumer from "../../../assets/AppImg/FoodMitra/FoodMitraCustumer.jpeg";
 import FoodMitraDeliveryPartner from "../../../assets/AppImg/FoodMitraDelivery/FoodMitraDeliveryPartner.jpeg";
 import FoodMitraHouseTiffin from "../../../assets/AppImg/FoodMitraHouseTiffin/FoodMitraHouseTiffin.jpeg";
+import VedBookApp from "../../../assets/AppImg/vedbook/front.jpeg";
 
 // App Images
 const getAppImage = (appName) => {
@@ -84,6 +86,7 @@ const getAppImage = (appName) => {
     FoodMitraCustumer: FoodMitraCustumer,
     FoodMitraDeliveryPartner: FoodMitraDeliveryPartner,
     FoodMitraTiffinHouse: FoodMitraHouseTiffin,
+    VedBookApp: VedBookApp,
   };
   return (
     images[appName] ||
@@ -139,6 +142,52 @@ const webProjects = [
   },
   {
     id: 2,
+    title: "VedBook",
+    shortDescription:
+      "Full-stack digital library platform for discovering, managing, and reading books online.",
+    description:
+      "A full-stack digital library platform with an interactive web interface, admin dashboard, book management, and online PDF reading.",
+    fullDescription:
+      "VedBook is a full-stack digital library platform designed to make discovering and reading books accessible through the web. Built with React, Tailwind CSS, Node.js, Express.js, and MySQL, the platform provides book discovery, category-based browsing, search and filtering, online PDF reading, and a personalized library experience. It includes an admin dashboard for managing books, uploading PDFs and cover images, publishing or unpublishing books, managing categories, and monitoring library activity. The backend uses REST APIs, JWT-based authentication, and role-based access control to support secure administrative operations. The application is deployed using Vercel for the frontend and Render for the backend, with MySQL for structured data storage.",
+    image: vedbook,
+    technologies: [
+      "React",
+      "JavaScript",
+      "Tailwind CSS",
+      "Node.js",
+      "Express.js",
+      "MySQL",
+      "REST APIs",
+      "JWT",
+      "Vite",
+      "Vercel",
+      "Render",
+    ],
+    liveUrl: "https://thevedbook.vercel.app/",
+    githubUrl:
+      "https://github.com/Ratnakar-Singh-parihar-123/VedBook-Digital-Library-Platform",
+    category: "Digital Library",
+    complexity: "Advanced",
+    rating: 4.8,
+    status: "Live",
+    color: "from-amber-700 to-orange-500",
+    features: [
+      "Online PDF book reading",
+      "Book discovery and search",
+      "Category-based browsing",
+      "Admin dashboard",
+      "Book upload and management",
+      "PDF cover image generation",
+      "Publish and unpublish books",
+      "JWT-based admin authentication",
+      "Personalized reading library",
+      "Continue Reading functionality",
+      "MySQL database integration",
+      "Responsive web interface",
+    ],
+  },
+  {
+    id: 3,
     title: "Vehicle Service Booking Platform",
     shortDescription:
       "Connect customers with nearby vehicle service centers for real-time booking.",
@@ -172,42 +221,42 @@ const webProjects = [
       "Email/SMS notifications",
     ],
   },
-  {
-    id: 3,
-    title: "Jeevandaan",
-    shortDescription:
-      "Life-saving healthcare platform connecting donors with recipients.",
-    description:
-      "Healthcare platform for blood and organ donation with real-time matching.",
-    fullDescription:
-      "Jeevandaan is a life-saving full-stack healthcare platform that intelligently connects blood and organ donors with patients in critical need through real-time matching. Features OTP-based authentication, location-based donor search, emergency alert broadcasting, and comprehensive hospital management dashboard.",
-    image: bodp,
-    technologies: [
-      "React",
-      "Node.js",
-      "Express",
-      "MongoDB",
-      "Socket.io",
-      "Mapbox",
-      "Twilio",
-    ],
-    liveUrl: "https://jeevandaancare.vercel.app/",
-    githubUrl:
-      "https://github.com/Ratnakar-Singh-parihar-123/Blood-Organ-Donations-",
-    category: "Healthcare",
-    complexity: "Advanced",
-    rating: 4.9,
-    status: "Production",
-    color: "from-red-500 to-pink-500",
-    features: [
-      "Real-time donor matching",
-      "OTP authentication",
-      "Emergency alerts",
-      "Hospital dashboard",
-      "Location search",
-      "Live availability",
-    ],
-  },
+  // {
+  //   id: 3,
+  //   title: "Jeevandaan",
+  //   shortDescription:
+  //     "Life-saving healthcare platform connecting donors with recipients.",
+  //   description:
+  //     "Healthcare platform for blood and organ donation with real-time matching.",
+  //   fullDescription:
+  //     "Jeevandaan is a life-saving full-stack healthcare platform that intelligently connects blood and organ donors with patients in critical need through real-time matching. Features OTP-based authentication, location-based donor search, emergency alert broadcasting, and comprehensive hospital management dashboard.",
+  //   image: bodp,
+  //   technologies: [
+  //     "React",
+  //     "Node.js",
+  //     "Express",
+  //     "MongoDB",
+  //     "Socket.io",
+  //     "Mapbox",
+  //     "Twilio",
+  //   ],
+  //   liveUrl: "https://jeevandaancare.vercel.app/",
+  //   githubUrl:
+  //     "https://github.com/Ratnakar-Singh-parihar-123/Blood-Organ-Donations-",
+  //   category: "Healthcare",
+  //   complexity: "Advanced",
+  //   rating: 4.9,
+  //   status: "Production",
+  //   color: "from-red-500 to-pink-500",
+  //   features: [
+  //     "Real-time donor matching",
+  //     "OTP authentication",
+  //     "Emergency alerts",
+  //     "Hospital dashboard",
+  //     "Location search",
+  //     "Live availability",
+  //   ],
+  // },
   // {
   //   id: 4,
   //   title: "YammiVerse",
@@ -526,9 +575,92 @@ const mobileApps = [
       note: "Demo access will be provided after the application reaches a stable testing stage.",
     },
   },
-
   {
     id: 4,
+    title: "VedBook Mobile App",
+    tagline: "Your Digital Library, Anytime, Anywhere",
+
+    shortDescription:
+      "A digital library mobile application designed to help users discover books, read PDFs, explore categories, and manage their personal reading library from their Android devices.",
+
+    fullDescription:
+      "VedBook Mobile App is the mobile extension of the VedBook Digital Library Platform, designed to provide users with a convenient book discovery and reading experience on Android devices.\n\nThe application is designed to connect readers with a digital collection of books through an intuitive mobile interface. Users can explore available books, browse categories, discover published titles, and access online PDF reading functionality.\n\nThe mobile experience focuses on making reading convenient on smaller screens, with features such as book discovery, book details, reading progress, Continue Reading, and a personalized library experience wherever supported by the application.\n\nThe application is built using React Native and integrates with the VedBook backend powered by Node.js and Express.js, with MySQL for structured data management. The backend provides REST APIs and JWT-based authentication for supported account and administrative workflows.\n\nThe mobile application is intended to complement the VedBook web platform while maintaining a consistent digital library experience across devices.\n\nThe application should be marked as available only after the release APK has been built, tested, and made accessible through a verified download link. Until a distributable build is published, the Android APK remains unavailable for public download.",
+
+    imageKey: "VedBookApp",
+
+    iconBg: "from-amber-600 to-orange-600",
+
+    icon: BookOpen,
+
+    platforms: ["Android"],
+
+    status: "Available",
+
+    apkStatus: "Available",
+
+    // Set the actual hosted APK URL after publishing a verified release build.
+    androidUrl: "/VedBook-release.apk",
+
+    technologies: [
+      "React Native",
+      "CSS",
+      "JavaScript",
+      "Node.js",
+      "Express.js",
+      "MySQL",
+      "REST APIs",
+      "JWT",
+      "Android",
+    ],
+
+    features: [
+      "Digital book discovery",
+      "Browse published books",
+      "Category-based book browsing",
+      "Book details and descriptions",
+      "Online PDF reading",
+      "Personalized library",
+      "Continue Reading",
+      "Reading progress tracking",
+      "Book search and filtering",
+      "Backend API integration",
+      "JWT-based authentication where implemented",
+      "Responsive mobile reading interface",
+      "Integration with the VedBook web platform",
+    ],
+
+    metrics: [
+      {
+        icon: Download,
+        value: "Coming Soon",
+        label: "Android APK",
+      },
+      {
+        icon: BookOpen,
+        value: "Digital",
+        label: "Reading Experience",
+      },
+      {
+        icon: Smartphone,
+        value: "Android",
+        label: "Target Platform",
+      },
+    ],
+
+    developmentNote:
+      "The Android application must be tested against the deployed VedBook backend before being presented as production-ready. Features should be listed as complete only after they have been implemented and verified.",
+
+    deploymentNote:
+      "The VedBook web frontend is deployed on Vercel, and the backend is deployed on Render. The mobile application depends on the availability of the backend API, database, and persistent book-file storage.",
+
+    demoCredentials: {
+      type: "Not available yet",
+      note: "Demo access can be provided once a stable, tested Android release is available.",
+    },
+  },
+
+  {
+    id: 5,
     title: "ParkEasy",
     tagline: "Smart Parking, Simplified",
 

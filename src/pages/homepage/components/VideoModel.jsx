@@ -21,6 +21,7 @@ import ReelC from "../../../assets/video/FoodMitraDelivery.mp4";
 import ReelD from "../../../assets/video/FoodMitraHouseTiffin.mp4";
 import ReelE from "../../../assets/video/Yammiverse.mp4";
 import ScaleGateDemo from "../../../assets/video/ScaleGateDemo.mp4";
+import VedBookDeom from "../../../assets/video/VedBook.mp4";
 
 // ============================================================
 // 🖼️ IMPORT PROJECT LOGOS
@@ -29,6 +30,7 @@ import FoodMitraLogo from "../../../assets/AppImg/AppLogoImg/FoodMitra.png";
 import DeliveryPartnerLogo from "../../../assets/AppImg/AppLogoImg/FoodMitraDelivery.png";
 import TiffinHouseLogo from "../../../assets/AppImg/AppLogoImg/FoodMitraHouseTiffin.png";
 import YammiverseLogo from "../../../assets/websitelogo/Yammiverse.png";
+import VedBookLogo from "../../../assets/AppImg/AppLogoImg/vedbookLogo.png";
 
 // ============================================================
 // 📩 CONTACT + SOCIAL
@@ -107,6 +109,19 @@ const videos = [
   },
   {
     id: 5,
+    title: "VedBook — Digital Library App",
+    projectName: "VedBook",
+    desc: "A digital library experience for discovering books, exploring categories, reading PDFs online, and managing a personal reading library.",
+    url: VedBookDeom,
+    logo: VedBookLogo,
+    handle: "@vedbook",
+    brandColor: "from-amber-600 to-orange-500",
+    accent: "rgba(217,119,6,0.5)",
+    audioUrl: null,
+    fit: "contain",
+  },
+  {
+    id: 6,
     title: "Yammiverse — Recipe Sharing Platform",
     projectName: "Yammiverse",
     desc: "A MERN-based recipe-sharing platform where users can discover recipes, explore cooking instructions, and share their own creations.",
@@ -119,7 +134,7 @@ const videos = [
     fit: "contain",
   },
   {
-    id: 6,
+    id: 7,
     title: "ScaleGate — High-Performance Load Balancer",
     projectName: "ScaleGate",
     desc: "An interactive Java-based load balancer demonstrating Round Robin, Least Connections, Weighted Routing, Consistent Hashing, health checks, retry and failover, rate limiting, and circuit breaker patterns.",
@@ -1240,7 +1255,7 @@ export default function ReelSection({ open, onClose }) {
                             <span className="text-[10px] text-white/55">
                               Made by{" "}
                               <span className="font-semibold text-white/90">
-                                @ratnakar.dev
+                                @ratnakarsinghparihar
                               </span>
                             </span>
                           </div>

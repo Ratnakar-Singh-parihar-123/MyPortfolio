@@ -11,7 +11,7 @@ import RestaurantMain from "../assets/projectsImg/restaurantImg/restaurant home.
 import CoachingMain from "../assets/projectsImg/coachingWebsitesimg/CoachingWebsiite Home.png";
 import tiffinDelivery from "../assets/projectsImg/tiffinDeliveryImg/TiffinDeliveryHome.png";
 import foodmitra from "../assets/projectsImg/foodmitra/foodmitra.png";
-
+import VedBook from "../assets/projectsImg/vedbook/vedbook.png";
 // ============================================================
 // 🖼️ MOBILE APP IMAGES
 // ============================================================
@@ -328,6 +328,24 @@ import parkEasyAdmin11 from "../assets/AppImg/ParkEasyAdmin/parkEasyAdmin11.jpg"
 import parkEasyAdmin12 from "../assets/AppImg/ParkEasyAdmin/parkEasyAdmin12.jpg";
 import parkEasyAdmin13 from "../assets/AppImg/ParkEasyAdmin/parkEasyAdmin13.jpg";
 
+//. vedbook
+import VedBookApp from "../assets/AppImg/vedbook/front.jpeg";
+import VedBookApp1 from "../assets/AppImg/vedbook/vedbook1.jpeg";
+import VedBookApp2 from "../assets/AppImg/vedbook/vedbook2.jpeg";
+import VedBookApp3 from "../assets/AppImg/vedbook/vedbook3.jpeg";
+import VedBookApp4 from "../assets/AppImg/vedbook/vedbook4.jpeg";
+import VedBookApp5 from "../assets/AppImg/vedbook/vedbook5.jpeg";
+import VedBookApp6 from "../assets/AppImg/vedbook/vedbook6.jpeg";
+import VedBookApp7 from "../assets/AppImg/vedbook/vedbook7.jpeg";
+import VedBookApp8 from "../assets/AppImg/vedbook/vedbook8.jpeg";
+import VedBookApp9 from "../assets/AppImg/vedbook/vedbook9.jpeg";
+import VedBookApp10 from "../assets/AppImg/vedbook/vedbook10.jpeg";
+import VedBookApp11 from "../assets/AppImg/vedbook/vedbook11.jpeg";
+import VedBookApp12 from "../assets/AppImg/vedbook/vedbook12.jpeg";
+import VedBookApp13 from "../assets/AppImg/vedbook/vedbook13.jpeg";
+import VedBookApp14 from "../assets/AppImg/vedbook/vedbook14.jpeg";
+import VedBookApp15 from "../assets/AppImg/vedbook/vedbook15.jpeg";
+
 import Scalegate from "../assets/projectsImg/ScaleGateDemo.jpg";
 // 📦 WEB PROJECTS DATA
 // ============================================================
@@ -466,6 +484,95 @@ The platform includes role-based authentication using JWT and HTTP Cookies, vend
   },
   {
     id: 2,
+    title: "VedBook",
+    category: "Full-Stack Digital Library Platform",
+    projectType: "fullstack",
+    industry: "Education & Digital Publishing",
+
+    description:
+      "A full-stack digital library platform for discovering books, reading PDFs online, and managing a personalized reading experience.",
+
+    fullDescription: `VedBook is a full-stack digital library platform designed to make discovering and reading books accessible through a modern web experience.
+
+The platform allows readers to explore published books, browse categories, search for titles, view book details, and read PDF books online. Personalized library features include Continue Reading and reading progress where supported by the application.
+
+VedBook includes an admin dashboard for managing books, uploading PDF files and cover images, organizing categories, and publishing or unpublishing books. The backend uses Node.js, Express.js, and MySQL to manage application data through REST APIs, with JWT-based authentication and role-based authorization for administrative operations.
+
+The frontend is built using React, Vite, and Tailwind CSS. The application is deployed using Vercel for the frontend and Render for the backend, with MySQL providing structured data storage.
+
+The project focuses on providing an accessible digital reading experience, reliable book management, and a responsive interface across desktop and mobile browsers.`,
+
+    image: VedBook,
+
+    gallery: [VedBook],
+
+    technologies: [
+      "React",
+      "JavaScript",
+      "Vite",
+      "Tailwind CSS",
+      "Node.js",
+      "Express.js",
+      "MySQL",
+      "REST APIs",
+      "JWT",
+      "Git",
+      "Vercel",
+      "Render",
+      "React Native ",
+      "CSS",
+    ],
+
+    complexity: "Advanced",
+    duration: "Ongoing",
+    rating: 4,
+    liveUrl: "https://thevedbook.vercel.app/",
+    githubUrl:
+      "https://github.com/Ratnakar-Singh-parihar-123/VedBook-Digital-Library-Platform",
+
+    features: [
+      "Digital book discovery",
+      "Browse published books",
+      "Category-based browsing",
+      "Book search and filtering",
+      "Book details and descriptions",
+      "Online PDF reading",
+      "PDF book upload",
+      "Automatic cover image generation",
+      "Admin dashboard",
+      "Book publishing and unpublishing",
+      "Category management",
+      "JWT-based admin authentication",
+      "Continue Reading",
+      "Personalized reading library",
+      "Reading progress tracking",
+      "Responsive web interface",
+    ],
+
+    metrics: [
+      {
+        icon: "BookOpen",
+        value: "Online",
+        label: "PDF Reading",
+      },
+      {
+        icon: "Database",
+        value: "MySQL",
+        label: "Database",
+      },
+      {
+        icon: "ShieldCheck",
+        value: "JWT",
+        label: "Admin Authentication",
+      },
+    ],
+
+    status: "Live",
+    featured: true,
+  },
+
+  {
+    id: 3,
     title: "Vehicle Service Booking Platform",
     category: "Full-Stack Web Application",
     projectType: "fullstack",
@@ -532,7 +639,7 @@ The platform includes role-based authentication using JWT and HTTP Cookies, vend
     featured: true,
   },
   {
-    id: 3,
+    id: 4,
     title: "Jeevandaan – Blood & Organ Donation",
     category: "Full-Stack Application",
     projectType: "fullstack",
@@ -574,7 +681,7 @@ The platform includes role-based authentication using JWT and HTTP Cookies, vend
     featured: true,
   },
   {
-    id: 4,
+    id: 5,
     title: "YammiVerse",
     category: "Web Application",
     projectType: "react",
@@ -606,7 +713,7 @@ The platform includes role-based authentication using JWT and HTTP Cookies, vend
     featured: true,
   },
   {
-    id: 5,
+    id: 6,
     title: "TextUtils",
     category: "React Utility App",
     projectType: "react",
@@ -635,7 +742,7 @@ The platform includes role-based authentication using JWT and HTTP Cookies, vend
     status: "Live",
   },
   {
-    id: 6,
+    id: 7,
     title: "Personal Portfolio Website",
     category: "Web Portfolio",
     projectType: "react",
@@ -733,7 +840,7 @@ The platform includes role-based authentication using JWT and HTTP Cookies, vend
     featured: true,
   },
   {
-    id: 7,
+    id: 8,
     title: "SpiceCraft Traders",
     category: "E-commerce Website",
     projectType: "htmlcss",
@@ -769,7 +876,7 @@ The platform includes role-based authentication using JWT and HTTP Cookies, vend
     status: "Live",
   },
   {
-    id: 8,
+    id: 9,
     title: "FlavorBite Restaurant",
     category: "Landing Page",
     projectType: "htmlcss",
@@ -806,7 +913,7 @@ The platform includes role-based authentication using JWT and HTTP Cookies, vend
     status: "Live",
   },
   {
-    id: 9,
+    id: 10,
     title: "EduMentor Coaching",
     category: "Landing Page",
     projectType: "htmlcss",
@@ -840,7 +947,7 @@ The platform includes role-based authentication using JWT and HTTP Cookies, vend
     status: "Live",
   },
   {
-    id: 10,
+    id: 11,
     title: "Tiffin Delivery Web App",
     category: "Food Delivery",
     projectType: "react",
@@ -877,7 +984,7 @@ The platform includes role-based authentication using JWT and HTTP Cookies, vend
     featured: true,
   },
   {
-    id: 11,
+    id: 12,
 
     title: "ScaleGate",
 
@@ -1330,6 +1437,110 @@ In Development`,
   },
   {
     id: "app4",
+    title: "VedBook Mobile App",
+    projectType: "mobile",
+
+    description:
+      "VedBook Mobile App is a digital library application designed to help users discover books, explore categories, access book details, and read digital books through an Android-friendly interface connected to the VedBook backend.",
+
+    fullDescription: `VedBook Mobile App is the mobile extension of the VedBook Digital Library Platform, designed to provide a convenient digital reading experience on Android devices.
+
+The application aims to help readers discover published books, browse available categories, explore book details, and access online PDF reading through a mobile-friendly interface.
+
+The mobile experience is designed to support book discovery, Continue Reading, reading progress, and personalized library features wherever these functionalities are implemented and supported by the application.
+
+The application uses React Native and integrates with the VedBook backend built using Node.js and Express.js. MySQL is used for structured data storage, while REST APIs connect the mobile application to the backend.
+
+The web platform is deployed on Vercel, and the backend is hosted on Render. The mobile application depends on the availability of the backend API, database, and persistent PDF and cover-image storage.
+
+The Android APK should be made publicly available only after a release build has been generated, tested, and uploaded to a verified download location.
+
+APK Status:
+The public APK download link is not configured yet. Add the verified release APK URL once the build is ready for distribution.`,
+
+    image: VedBookApp,
+
+    gallery: [
+      VedBookApp,
+
+      VedBookApp1,
+      VedBookApp2,
+      VedBookApp3,
+      VedBookApp4,
+      VedBookApp5,
+      VedBookApp6,
+      VedBookApp7,
+      VedBookApp8,
+      VedBookApp9,
+      VedBookApp10,
+      VedBookApp11,
+      VedBookApp12,
+      VedBookApp13,
+      VedBookApp14,
+      VedBookApp15,
+    ],
+
+    technologies: [
+      "React Native",
+      "JavaScript",
+      "Node.js",
+      "Express.js",
+      "MySQL",
+      "REST APIs",
+      "JWT",
+      "Android",
+    ],
+
+    platforms: ["Android"],
+
+    features: [
+      "Digital book discovery",
+      "Browse published books",
+      "Category-based browsing",
+      "Book details and descriptions",
+      "Online PDF reading",
+      "Continue Reading where implemented",
+      "Reading progress where implemented",
+      "Personalized library where implemented",
+      "Backend API integration",
+      "Mobile-friendly reading interface",
+    ],
+
+    complexity: "Advanced",
+
+    duration: "Ongoing",
+
+    teamSize: "1",
+
+    impact:
+      "Extends the VedBook digital library experience to Android devices, making book discovery and digital reading more convenient for mobile users.",
+
+    liveUrl: "https://thevedbook.vercel.app/",
+
+    githubUrl:
+      "https://github.com/Ratnakar-Singh-parihar-123/VedBook-Digital-Library-Platform",
+
+    // Replace null with a verified, publicly accessible release APK URL.
+    apkUrl: "/VedBook-release.apk",
+
+    backendUrl: "https://vedbook-digital-library-platform.onrender.com",
+
+    demoCredentials: null,
+
+    deploymentNote:
+      "The web frontend is deployed on Vercel and the backend is hosted on Render. The first API request after inactivity may take longer if the service is sleeping. Book PDFs and cover images must use persistent storage to remain accessible after redeployment.",
+
+    status: "In Development",
+
+    featured: true,
+
+    iconColor: "from-amber-600 to-orange-500",
+
+    iconName: "BookOpen",
+  },
+
+  {
+    id: "app5",
 
     title: "ParkEasy",
 

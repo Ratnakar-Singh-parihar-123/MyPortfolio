@@ -20,7 +20,7 @@ import {
   Search,
   ArrowUpRight,
   Sparkles,
-  ArrowRight,
+  // ArrowRight,
 } from "lucide-react";
 
 import { ThemeToggle } from "../ThemeProvider";
@@ -82,15 +82,15 @@ const NAV_LINKS = [
      ROLE MODE — PREMIUM
   ======================================================= */
 
-  {
-    path: "/role-dashboard",
-    label: "Role Mode",
-    icon: Sparkles,
-    color: "text-indigo-500 dark:text-indigo-300",
-    bg: "bg-gradient-to-br from-indigo-500/20 to-violet-500/15",
-    isPremium: true,
-    badge: "NEW",
-  },
+  // {
+  //   path: "/role-dashboard",
+  //   label: "Role Mode",
+  //   icon: Sparkles,
+  //   color: "text-indigo-500 dark:text-indigo-300",
+  //   bg: "bg-gradient-to-br from-indigo-500/20 to-violet-500/15",
+  //   isPremium: true,
+  //   badge: "NEW",
+  // },
 
   {
     path: "/achievements",
@@ -210,9 +210,10 @@ const menuItemVariants = {
 };
 
 /* =========================================================
-   MOBILE ROLE MODE SPOTLIGHT
+   MOBILE ROLE MODE SPOTLIGHT — DISABLED
 ========================================================= */
 
+/*
 const MobileRoleModeSpotlight = ({ show, onClose, onClick, reduceMotion }) => (
   <AnimatePresence>
     {show && (
@@ -246,7 +247,6 @@ const MobileRoleModeSpotlight = ({ show, onClose, onClick, reduceMotion }) => (
             backdrop-blur-2xl
           "
         >
-          {/* SUBTLE INDIGO GLOW */}
           <div
             className="
               pointer-events-none
@@ -261,7 +261,6 @@ const MobileRoleModeSpotlight = ({ show, onClose, onClick, reduceMotion }) => (
             "
           />
 
-          {/* TOP ACCENT */}
           <div
             className="
               absolute
@@ -366,12 +365,13 @@ const MobileRoleModeSpotlight = ({ show, onClose, onClick, reduceMotion }) => (
     )}
   </AnimatePresence>
 );
+*/
 
 /* =========================================================
    HEADER
 ========================================================= */
 
-const ROLE_SPOTLIGHT_SESSION_KEY = "role-mode-spotlight-dismissed";
+// const ROLE_SPOTLIGHT_SESSION_KEY = "role-mode-spotlight-dismissed";
 
 const Header = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -394,28 +394,28 @@ const Header = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   /* =========================================================
-     ROLE MODE SPOTLIGHT STATE
+     ROLE MODE SPOTLIGHT STATE — DISABLED
   ========================================================= */
 
-  const [activeSpotlight, setActiveSpotlight] = useState(null);
+  // const [activeSpotlight, setActiveSpotlight] = useState(null);
 
-  const [roleDismissed, setRoleDismissed] = useState(() => {
-    if (typeof window === "undefined") return false;
-    try {
-      return window.sessionStorage.getItem(ROLE_SPOTLIGHT_SESSION_KEY) === "1";
-    } catch {
-      return false;
-    }
-  });
+  // const [roleDismissed, setRoleDismissed] = useState(() => {
+  //   if (typeof window === "undefined") return false;
+  //   try {
+  //     return window.sessionStorage.getItem(ROLE_SPOTLIGHT_SESSION_KEY) === "1";
+  //   } catch {
+  //     return false;
+  //   }
+  // });
 
-  const [isMobile, setIsMobile] = useState(() => {
-    if (typeof window === "undefined") return false;
-    try {
-      return window.matchMedia("(max-width: 767px)").matches;
-    } catch {
-      return false;
-    }
-  });
+  // const [isMobile, setIsMobile] = useState(() => {
+  //   if (typeof window === "undefined") return false;
+  //   try {
+  //     return window.matchMedia("(max-width: 767px)").matches;
+  //   } catch {
+  //     return false;
+  //   }
+  // });
 
   const location = useLocation();
 
@@ -433,53 +433,53 @@ const Header = () => {
   const scrollThreshold = 8;
 
   /* =========================================================
-     REFS FOR SPOTLIGHT SCHEDULER
+     REFS FOR SPOTLIGHT SCHEDULER — DISABLED
   ========================================================= */
 
-  const activeSpotlightRef = useRef(activeSpotlight);
-  const roleDismissedRef = useRef(roleDismissed);
-  const isDrawerOpenRef = useRef(isDrawerOpen);
-  const isBookModalOpenRef = useRef(isBookModalOpen);
-  const isSearchModalOpenRef = useRef(isSearchModalOpen);
+  // const activeSpotlightRef = useRef(activeSpotlight);
+  // const roleDismissedRef = useRef(roleDismissed);
+  // const isDrawerOpenRef = useRef(isDrawerOpen);
+  // const isBookModalOpenRef = useRef(isBookModalOpen);
+  // const isSearchModalOpenRef = useRef(isSearchModalOpen);
 
-  useEffect(() => {
-    activeSpotlightRef.current = activeSpotlight;
-  }, [activeSpotlight]);
+  // useEffect(() => {
+  //   activeSpotlightRef.current = activeSpotlight;
+  // }, [activeSpotlight]);
 
-  useEffect(() => {
-    roleDismissedRef.current = roleDismissed;
-  }, [roleDismissed]);
+  // useEffect(() => {
+  //   roleDismissedRef.current = roleDismissed;
+  // }, [roleDismissed]);
 
-  useEffect(() => {
-    isDrawerOpenRef.current = isDrawerOpen;
-  }, [isDrawerOpen]);
+  // useEffect(() => {
+  //   isDrawerOpenRef.current = isDrawerOpen;
+  // }, [isDrawerOpen]);
 
-  useEffect(() => {
-    isBookModalOpenRef.current = isBookModalOpen;
-  }, [isBookModalOpen]);
+  // useEffect(() => {
+  //   isBookModalOpenRef.current = isBookModalOpen;
+  // }, [isBookModalOpen]);
 
-  useEffect(() => {
-    isSearchModalOpenRef.current = isSearchModalOpen;
-  }, [isSearchModalOpen]);
+  // useEffect(() => {
+  //   isSearchModalOpenRef.current = isSearchModalOpen;
+  // }, [isSearchModalOpen]);
 
   /* =========================================================
-     TRACK MOBILE VIEWPORT
+     TRACK MOBILE VIEWPORT — DISABLED
   ========================================================= */
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const mq = window.matchMedia("(max-width: 767px)");
-    const handler = (e) => setIsMobile(e.matches);
-
-    if (mq.addEventListener) {
-      mq.addEventListener("change", handler);
-      return () => mq.removeEventListener("change", handler);
-    }
-
-    mq.addListener(handler);
-    return () => mq.removeListener(handler);
-  }, []);
+  // useEffect(() => {
+  //   if (typeof window === "undefined") return;
+  //
+  //   const mq = window.matchMedia("(max-width: 767px)");
+  //   const handler = (e) => setIsMobile(e.matches);
+  //
+  //   if (mq.addEventListener) {
+  //     mq.addEventListener("change", handler);
+  //     return () => mq.removeEventListener("change", handler);
+  //   }
+  //
+  //   mq.addListener(handler);
+  //   return () => mq.removeListener(handler);
+  // }, []);
 
   /* =========================================================
      CLOSE DRAWER WHEN ROUTE CHANGES
@@ -562,8 +562,8 @@ const Header = () => {
   }, []);
 
   /* =========================================================
-     RECURRING ROLE MODE SPOTLIGHT (MOBILE)
-     
+     RECURRING ROLE MODE SPOTLIGHT (MOBILE) — DISABLED
+
      Schedule:
      - First appearance: ~2.8s
      - Visible: ~5.6s
@@ -572,92 +572,92 @@ const Header = () => {
      - Stopped if dismissed for the session
   ========================================================= */
 
-  useEffect(() => {
-    if (!isMobile) return;
-    if (roleDismissed) return;
-    if (typeof window === "undefined") return;
-
-    let cancelled = false;
-    let showTimer = null;
-    let hideTimer = null;
-
-    const getRepeatDelay = () => {
-      const min = 26000;
-      const max = 32000;
-      return min + Math.random() * (max - min);
-    };
-
-    const scheduleShow = (delay) => {
-      window.clearTimeout(showTimer);
-
-      showTimer = window.setTimeout(() => {
-        if (cancelled) return;
-
-        if (
-          roleDismissedRef.current ||
-          isDrawerOpenRef.current ||
-          isBookModalOpenRef.current ||
-          isSearchModalOpenRef.current ||
-          activeSpotlightRef.current ||
-          document.visibilityState !== "visible"
-        ) {
-          scheduleShow(4000);
-          return;
-        }
-
-        setActiveSpotlight("role");
-
-        window.clearTimeout(hideTimer);
-
-        hideTimer = window.setTimeout(() => {
-          if (cancelled) return;
-
-          setActiveSpotlight((prev) => (prev === "role" ? null : prev));
-
-          scheduleShow(getRepeatDelay());
-        }, 5600);
-      }, delay);
-    };
-
-    scheduleShow(2800);
-
-    return () => {
-      cancelled = true;
-      window.clearTimeout(showTimer);
-      window.clearTimeout(hideTimer);
-    };
-  }, [isMobile, roleDismissed]);
-
-  /* =========================================================
-     PAUSE SPOTLIGHT WHEN TAB IS HIDDEN
-  ========================================================= */
-
-  useEffect(() => {
-    const handleVisibility = () => {
-      if (
-        document.visibilityState === "hidden" &&
-        activeSpotlightRef.current === "role"
-      ) {
-        setActiveSpotlight(null);
-      }
-    };
-
-    document.addEventListener("visibilitychange", handleVisibility);
-
-    return () => {
-      document.removeEventListener("visibilitychange", handleVisibility);
-    };
-  }, []);
+  // useEffect(() => {
+  //   if (!isMobile) return;
+  //   if (roleDismissed) return;
+  //   if (typeof window === "undefined") return;
+  //
+  //   let cancelled = false;
+  //   let showTimer = null;
+  //   let hideTimer = null;
+  //
+  //   const getRepeatDelay = () => {
+  //     const min = 26000;
+  //     const max = 32000;
+  //     return min + Math.random() * (max - min);
+  //   };
+  //
+  //   const scheduleShow = (delay) => {
+  //     window.clearTimeout(showTimer);
+  //
+  //     showTimer = window.setTimeout(() => {
+  //       if (cancelled) return;
+  //
+  //       if (
+  //         roleDismissedRef.current ||
+  //         isDrawerOpenRef.current ||
+  //         isBookModalOpenRef.current ||
+  //         isSearchModalOpenRef.current ||
+  //         activeSpotlightRef.current ||
+  //         document.visibilityState !== "visible"
+  //       ) {
+  //         scheduleShow(4000);
+  //         return;
+  //       }
+  //
+  //       setActiveSpotlight("role");
+  //
+  //       window.clearTimeout(hideTimer);
+  //
+  //       hideTimer = window.setTimeout(() => {
+  //         if (cancelled) return;
+  //
+  //         setActiveSpotlight((prev) => (prev === "role" ? null : prev));
+  //
+  //         scheduleShow(getRepeatDelay());
+  //       }, 5600);
+  //     }, delay);
+  //   };
+  //
+  //   scheduleShow(2800);
+  //
+  //   return () => {
+  //     cancelled = true;
+  //     window.clearTimeout(showTimer);
+  //     window.clearTimeout(hideTimer);
+  //   };
+  // }, [isMobile, roleDismissed]);
 
   /* =========================================================
-     HIDE SPOTLIGHT WHEN DRAWER OPEN
+     PAUSE SPOTLIGHT WHEN TAB IS HIDDEN — DISABLED
   ========================================================= */
 
-  useEffect(() => {
-    if (isDrawerOpen && activeSpotlight === "role") {
-      setActiveSpotlight(null);
-    }
-  }, [isDrawerOpen, activeSpotlight]);
+  // useEffect(() => {
+  //   const handleVisibility = () => {
+  //     if (
+  //       document.visibilityState === "hidden" &&
+  //       activeSpotlightRef.current === "role"
+  //     ) {
+  //       setActiveSpotlight(null);
+  //     }
+  //   };
+  //
+  //   document.addEventListener("visibilitychange", handleVisibility);
+  //
+  //   return () => {
+  //     document.removeEventListener("visibilitychange", handleVisibility);
+  //   };
+  // }, []);
+
+  /* =========================================================
+     HIDE SPOTLIGHT WHEN DRAWER OPEN — DISABLED
+  ========================================================= */
+
+  // useEffect(() => {
+  //   if (isDrawerOpen && activeSpotlight === "role") {
+  //     setActiveSpotlight(null);
+  //   }
+  // }, [isDrawerOpen, activeSpotlight]);
 
   /* =========================================================
      SEARCH
@@ -667,7 +667,7 @@ const Header = () => {
     setIsDrawerOpen(false);
     setIsHeaderVisible(true);
 
-    setActiveSpotlight(null);
+    // setActiveSpotlight(null);
 
     setIsSearchModalOpen(true);
   };
@@ -681,7 +681,7 @@ const Header = () => {
 
     setIsHeaderVisible(true);
 
-    setActiveSpotlight(null);
+    // setActiveSpotlight(null);
 
     setIsTransitioning(true);
 
@@ -696,47 +696,47 @@ const Header = () => {
   };
 
   /* =========================================================
-     ROLE MODE CLICK
+     ROLE MODE CLICK — DISABLED
   ========================================================= */
 
-  const handleRoleClick = () => {
-    setActiveSpotlight(null);
-    setRoleDismissed(true);
-
-    try {
-      window.sessionStorage.setItem(ROLE_SPOTLIGHT_SESSION_KEY, "1");
-    } catch {
-      // ignore sessionStorage failures
-    }
-  };
+  // const handleRoleClick = () => {
+  //   setActiveSpotlight(null);
+  //   setRoleDismissed(true);
+  //
+  //   try {
+  //     window.sessionStorage.setItem(ROLE_SPOTLIGHT_SESSION_KEY, "1");
+  //   } catch {
+  //     // ignore sessionStorage failures
+  //   }
+  // };
 
   /* =========================================================
-     CLOSE ROLE SPOTLIGHT
+     CLOSE ROLE SPOTLIGHT — DISABLED
   ========================================================= */
 
-  const closeRoleSpotlight = () => {
-    setActiveSpotlight(null);
-    setRoleDismissed(true);
-
-    try {
-      window.sessionStorage.setItem(ROLE_SPOTLIGHT_SESSION_KEY, "1");
-    } catch {
-      // ignore sessionStorage failures
-    }
-  };
+  // const closeRoleSpotlight = () => {
+  //   setActiveSpotlight(null);
+  //   setRoleDismissed(true);
+  //
+  //   try {
+  //     window.sessionStorage.setItem(ROLE_SPOTLIGHT_SESSION_KEY, "1");
+  //   } catch {
+  //     // ignore sessionStorage failures
+  //   }
+  // };
 
   /* =========================================================
      ACTIVE LINK
   ========================================================= */
 
   const isLinkActive = (path) => {
-    /* ROLE MODE — active for any /role/* route */
-
-    if (path === "/role/full-stack") {
-      return (
-        location.pathname === "/role" || location.pathname.startsWith("/role/")
-      );
-    }
+    /* ROLE MODE — DISABLED */
+    // if (path === "/role/full-stack") {
+    //   return (
+    //     location.pathname === "/role" ||
+    //     location.pathname.startsWith("/role/")
+    //   );
+    // }
 
     if (path === "/") {
       return location.pathname === "/";
@@ -1165,7 +1165,7 @@ const Header = () => {
                 onClick={() => {
                   setIsHeaderVisible(true);
                   setIsDrawerOpen(true);
-                  setActiveSpotlight(null);
+                  // setActiveSpotlight(null);
                 }}
                 className="flex items-center justify-center transition-all duration-200 border w-9 h-9 rounded-xl border-slate-200/80 dark:border-slate-700/80 bg-white/70 dark:bg-slate-900/70 text-slate-700 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-indigo-400 active:scale-95"
                 aria-label="Open navigation menu"
@@ -1475,8 +1475,8 @@ const Header = () => {
                       );
                     }
 
-                    /* PREMIUM (ROLE MODE) */
-
+                    /* PREMIUM (ROLE MODE) — DISABLED */
+                    /*
                     if (link.isPremium) {
                       return (
                         <motion.div key={link.path} variants={menuItemVariants}>
@@ -1573,7 +1573,6 @@ const Header = () => {
                             >
                               <Icon size={17} strokeWidth={1.9} />
 
-                              {/* SPARKLE DOT */}
                               <span
                                 className="
                                   absolute
@@ -1628,6 +1627,7 @@ const Header = () => {
                         </motion.div>
                       );
                     }
+                    */
 
                     /* INTERNAL (DEFAULT) */
 
@@ -1838,15 +1838,17 @@ const Header = () => {
       </AnimatePresence>
 
       {/* =======================================================
-          MOBILE ROLE MODE SPOTLIGHT
+          MOBILE ROLE MODE SPOTLIGHT — DISABLED
       ======================================================== */}
 
+      {/*
       <MobileRoleModeSpotlight
         show={activeSpotlight === "role"}
         onClose={closeRoleSpotlight}
         onClick={handleRoleClick}
         reduceMotion={false}
       />
+      */}
 
       {/* =======================================================
           BOOK CALL LOADING

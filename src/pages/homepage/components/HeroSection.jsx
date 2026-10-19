@@ -315,11 +315,11 @@
 //       {/* Main Container */}
 //       <div className="relative z-10 w-full px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
 //         <div className="grid items-center grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8">
-//           {/* ============================================================
+//           {/*
 //               LEFT COLUMN — Hero Content
 //               Mobile: order-2 (below image)
 //               Desktop: order-1 (left side)
-//              ============================================================ */}
+//               */}
 //           <motion.div
 //             initial={{ opacity: 0, y: 24 }}
 //             animate={{ opacity: 1, y: 0 }}
@@ -529,11 +529,11 @@
 //             </motion.div>
 //           </motion.div>
 
-//           {/* ============================================================
+//           {/*
 //               RIGHT COLUMN — Profile Card & Visual Container
 //               Mobile: order-1 (on top)
 //               Desktop: order-2 (right side)
-//              ============================================================ */}
+//               */}
 //           <motion.div
 //             initial={{ opacity: 0, scale: 0.95 }}
 //             animate={{ opacity: 1, scale: 1 }}
@@ -689,9 +689,9 @@ const HeroSection = () => {
 
   const imageRef = useRef(null);
 
-  /* ============================================================
+  /* 
      MOBILE DETECTION
-     ============================================================ */
+      */
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -706,9 +706,9 @@ const HeroSection = () => {
     };
   }, []);
 
-  /* ============================================================
+  /* 
      3D PROFILE TILT
-     ============================================================ */
+      */
   const rotateX = useMotionValue(0);
   const rotateY = useMotionValue(0);
 
@@ -747,9 +747,9 @@ const HeroSection = () => {
     rotateY.set(0);
   }, [rotateX, rotateY]);
 
-  /* ============================================================
+  /* 
      ROTATING SPECIALIZATIONS
-     ============================================================ */
+      */
   const taglines = useMemo(
     () => [
       "MERN & React Native Developer",
@@ -761,9 +761,9 @@ const HeroSection = () => {
     [],
   );
 
-  /* ============================================================
+  /* 
      TECH STACK
-     ============================================================ */
+      */
   const techStack = useMemo(
     () => [
       {
@@ -860,9 +860,9 @@ const HeroSection = () => {
     [],
   );
 
-  /* ============================================================
+  /* 
      STATS
-     ============================================================ */
+      */
   const stats = useMemo(
     () => [
       {
@@ -885,9 +885,9 @@ const HeroSection = () => {
     [],
   );
 
-  /* ============================================================
+  /* 
      SOCIAL LINKS
-     ============================================================ */
+      */
   const socialLinks = useMemo(
     () => [
       {
@@ -920,9 +920,9 @@ const HeroSection = () => {
     [],
   );
 
-  /* ============================================================
+  /* 
      TAGLINE ROTATION
-     ============================================================ */
+      */
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTagline((prev) => (prev + 1) % taglines.length);
@@ -931,9 +931,9 @@ const HeroSection = () => {
     return () => clearInterval(interval);
   }, [taglines.length]);
 
-  /* ============================================================
+  /* 
      RESUME MODAL SCROLL LOCK
-     ============================================================ */
+      */
   useEffect(() => {
     document.body.style.overflow = isPopupOpen ? "hidden" : "";
 
@@ -955,15 +955,15 @@ const HeroSection = () => {
       id="home"
       className="relative flex items-center w-full min-h-screen overflow-hidden bg-background"
     >
-      {/* ============================================================
+      {/* 
           MAIN CONTAINER
           Clean background — no gradients / blobs / grid
-          ============================================================ */}
+           */}
       <div className="relative z-10 w-full px-4 py-20 mx-auto max-w-7xl sm:px-6 lg:px-8 lg:py-20 xl:py-24">
         <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-12 xl:gap-16">
-          {/* ============================================================
+          {/* 
               LEFT CONTENT
-              ============================================================ */}
+               */}
           <motion.div
             initial={{
               opacity: 0,
@@ -980,9 +980,9 @@ const HeroSection = () => {
             className="order-2 lg:order-1 lg:col-span-7"
           >
             <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
-              {/* ========================================================
+              {/*
                   AVAILABILITY
-                  ======================================================== */}
+                  */}
               <motion.div
                 initial={{
                   opacity: 0,
@@ -1027,9 +1027,9 @@ const HeroSection = () => {
                 </span>
               </motion.div>
 
-              {/* ========================================================
+              {/*
                   ROLE LABEL
-                  ======================================================== */}
+                  */}
               <motion.div
                 initial={{
                   opacity: 0,
@@ -1061,9 +1061,9 @@ const HeroSection = () => {
                 </span>
               </motion.div>
 
-              {/* ========================================================
+              {/*
                   NAME
-                  ======================================================== */}
+                  */}
               <motion.h1
                 initial={{
                   opacity: 0,
@@ -1094,9 +1094,9 @@ const HeroSection = () => {
                 </span>
               </motion.h1>
 
-              {/* ========================================================
+              {/*
                   DYNAMIC TAGLINE
-                  ======================================================== */}
+                  */}
               <div
                 className="
                   flex
@@ -1135,10 +1135,10 @@ const HeroSection = () => {
                 </AnimatePresence>
               </div>
 
-              {/* ========================================================
+              {/*
                   DESCRIPTION
                   Kept commented intentionally.
-                  ======================================================== */}
+                  */}
 
               {/* <motion.p
                 initial={{ opacity: 0, y: 10 }}
@@ -1166,9 +1166,9 @@ const HeroSection = () => {
                 .
               </motion.p> */}
 
-              {/* ========================================================
+              {/*
                   TECH SECTION
-                  ======================================================== */}
+                  */}
               <motion.div
                 initial={{
                   opacity: 0,
@@ -1248,9 +1248,9 @@ const HeroSection = () => {
                 </div>
               </motion.div>
 
-              {/* ========================================================
+              {/*
                   CTA
-                  ======================================================== */}
+                  */}
               <motion.div
                 initial={{
                   opacity: 0,
@@ -1266,10 +1266,10 @@ const HeroSection = () => {
                 }}
                 className="flex flex-col items-center w-full gap-3 mt-7 sm:flex-row sm:w-auto"
               >
-                {/* ============================================================
+                {/* 
       PRIMARY CTA — LET'S CONNECT
       Blue + Dark Blue combination
-      ============================================================ */}
+       */}
                 <Link to="/contact" className="w-full sm:w-auto">
                   <button
                     type="button"
@@ -1318,9 +1318,9 @@ const HeroSection = () => {
                   </button>
                 </Link>
 
-                {/* ============================================================
+                {/* 
       SECONDARY CTA — VIEW RESUME
-      ============================================================ */}
+       */}
                 <button
                   type="button"
                   onClick={handlePopupOpen}
@@ -1361,9 +1361,9 @@ const HeroSection = () => {
                 </button>
               </motion.div>
 
-              {/* ========================================================
+              {/*
                   LOCATION
-                  ======================================================== */}
+                  */}
               <motion.div
                 initial={{
                   opacity: 0,
@@ -1390,9 +1390,9 @@ const HeroSection = () => {
                 </span>
               </motion.div>
 
-              {/* ========================================================
+              {/*
                   SOCIAL LINKS
-                  ======================================================== */}
+                  */}
               <motion.div
                 initial={{
                   opacity: 0,
@@ -1437,9 +1437,9 @@ const HeroSection = () => {
                 })}
               </motion.div>
 
-              {/* ========================================================
+              {/*
                   STATS
-                  ======================================================== */}
+                  */}
               <motion.div
                 initial={{
                   opacity: 0,
@@ -1473,9 +1473,9 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* ============================================================
+          {/* 
               RIGHT — PROFILE CARD
-              ============================================================ */}
+               */}
           <motion.div
             initial={{
               opacity: 0,
@@ -1512,9 +1512,9 @@ const HeroSection = () => {
                 xl:max-w-[420px]
               "
             >
-              {/* ========================================================
+              {/*
                   OUTER BORDER
-                  ======================================================== */}
+                  */}
               <div
                 className="
                   relative
@@ -1621,7 +1621,7 @@ const HeroSection = () => {
                   {/* ====================================================
                       CARD FOOTER
                       ==================================================== */}
-                  <div className="grid grid-cols-3 border-t divide-x divide-border border-border bg-card">
+                  {/* <div className="grid grid-cols-3 border-t divide-x divide-border border-border bg-card">
                     <div className="px-2 py-4 text-center">
                       <p className="text-xs font-bold text-foreground">MERN</p>
 
@@ -1649,13 +1649,13 @@ const HeroSection = () => {
                         Backend
                       </p>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
-              {/* ========================================================
+              {/*
                   FLOATING CARD — PROJECTS
-                  ======================================================== */}
+                  */}
               {/* <motion.div
                 animate={{
                   y: [0, -6, 0],
@@ -1696,9 +1696,9 @@ const HeroSection = () => {
                 </div>
               </motion.div> */}
 
-              {/* ========================================================
+              {/*
                   FLOATING CARD — SYSTEM DESIGN
-                  ======================================================== */}
+                  */}
               {/* <motion.div
                 animate={{
                   y: [0, 6, 0],
@@ -1743,9 +1743,9 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* ==============================================================
+      {/* ==
           RESUME MODAL
-          ============================================================== */}
+          == */}
       <ResumePopup isOpen={isPopupOpen} onClose={handlePopupClose} />
     </section>
   );
