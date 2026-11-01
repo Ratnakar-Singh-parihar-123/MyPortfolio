@@ -922,33 +922,19 @@ const Header = () => {
 
                   <span
                     className="
-                      hidden
-                      lg:inline-flex
-
-                      items-center
-                      gap-1
-
-                      px-2
-                      py-0.5
-
-                      rounded-full
-
-                      text-[9px]
-                      font-bold
-                      uppercase
-                      tracking-wider
-
-                      text-indigo-600
-                      dark:text-indigo-400
-
-                      bg-indigo-500/10
-
-                      border
-                      border-indigo-500/15
-                    "
+  hidden lg:inline-flex
+  items-center gap-1
+  px-2 py-0.5
+  rounded-full
+  text-[9px] font-bold
+  tracking-wider
+  text-indigo-600 dark:text-indigo-400
+  bg-indigo-500/10
+  border border-indigo-500/15
+"
                   >
                     <Sparkles size={9} />
-                    Developer
+                    DEV
                   </span>
                 </div>
 

@@ -274,31 +274,56 @@ const ContactPage = () => {
         </div>
       </section>
       {/* CTA Section */}
-      <section className="py-16 bg-muted/30">
+
+      <section className="relative py-20 overflow-hidden isolate bg-muted/30 md:py-28">
         <div className="container-brand">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="mb-6 text-3xl font-bold md:text-4xl text-foreground">
+            {/* Heading */}
+            <h2 className="mb-6 text-3xl font-bold tracking-tight text-foreground md:text-5xl">
               Ready to Build Something Amazing?
             </h2>
-            <p className="mb-8 text-xl text-muted-foreground">
+
+            {/* Description */}
+            <p className="max-w-2xl mx-auto mb-10 text-base leading-relaxed text-muted-foreground md:text-xl">
               Have a project idea or an opportunity to collaborate? Let’s
               connect and build something amazing together.
             </p>
-            <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
+
+            {/* Dock Style Buttons */}
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+              {/* Primary Button */}
               <button
                 onClick={() => setActiveTab("form")}
-                className="flex items-center px-8 py-3 space-x-2 font-medium transition-colors rounded-lg bg-primary text-primary-foreground hover:bg-primary/90"
+                className="group flex min-h-[52px] items-center gap-3 rounded-xl bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-primary/90 hover:shadow-xl active:scale-95"
               >
                 <Icon name="MessageSquare" size={18} />
                 <span>Start a Conversation</span>
+                <Icon
+                  name="ArrowUpRight"
+                  size={16}
+                  className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                />
               </button>
+
+              {/* Secondary Button */}
               <a
                 href="/projects"
-                className="flex items-center px-8 py-3 space-x-2 font-medium transition-colors border rounded-lg border-border text-foreground hover:bg-muted"
+                className="group flex min-h-[52px] items-center gap-3 rounded-xl border border-border bg-background px-7 py-3.5 text-sm font-semibold text-foreground shadow-sm transition-all duration-300 hover:-translate-y-1 hover:bg-muted hover:shadow-lg active:scale-95"
               >
                 <Icon name="Eye" size={18} />
                 <span>View My Work</span>
+                <Icon
+                  name="ArrowRight"
+                  size={16}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
               </a>
+            </div>
+
+            {/* Footer Caption */}
+            <div className="flex items-center justify-center gap-2 mt-10 text-xs text-muted-foreground">
+              <Icon name="Sparkles" size={14} />
+              <span>Turning ideas into digital experiences.</span>
             </div>
           </div>
         </div>

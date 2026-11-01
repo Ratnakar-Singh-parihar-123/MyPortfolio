@@ -6,19 +6,26 @@ import Cursor from "./components/Cursor";
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setLoading(false);
+      setLoading(false); // triggers split open
     }, 1500);
-
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <ThemeProvider>
       <Cursor />
-      {loading ? <Loader /> : <Routes />}
+      <Routes />
+      {showLoader && (
+        <Loader
+          text="Loading"
+          isOpen={!loading}
+          onOpened={() => setShowLoader(false)}
+        />
+      )}
     </ThemeProvider>
   );
 }

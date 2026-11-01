@@ -337,7 +337,6 @@ const Projects = () => {
           </motion.div>
         </div>
       </section>
-
       {/* ================================================================ */}
       {/* MAIN CONTENT                                                      */}
       {/* ================================================================ */}
@@ -651,7 +650,6 @@ const Projects = () => {
           )}
         </div>
       </section>
-
       {/* ================================================================ */}
       {/* STATS                                                             */}
       {/* ================================================================ */}
@@ -717,44 +715,49 @@ const Projects = () => {
           </div>
         </div>
       </section>
-
       {/* ================================================================ */}
       {/* CTA                                                               */}
       {/* ================================================================ */}
-      <section className="py-16 border-t sm:py-20 bg-background border-border">
+      ```jsx
+      <section className="relative py-20 overflow-hidden border-t isolate border-border bg-muted/30 sm:py-24 md:py-28">
         <div className="container-brand">
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.25 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <div className="flex items-center justify-center mb-6">
-              <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-primary/10">
+            {/* Icon */}
+            <div className="flex items-center justify-center mb-7">
+              <div className="flex items-center justify-center transition-transform duration-300 border h-14 w-14 rounded-2xl border-primary/10 bg-primary/10 hover:scale-110">
                 <Sparkles size={28} className="text-primary" />
               </div>
             </div>
 
-            <h2 className="mb-4 text-2xl font-bold leading-snug sm:text-3xl md:text-4xl text-foreground">
+            {/* Heading */}
+            <h2 className="mb-5 text-2xl font-bold leading-snug tracking-tight text-foreground sm:text-3xl md:text-4xl">
               Ready to Build Something{" "}
               <span className="text-primary">Amazing?</span>
             </h2>
 
-            <p className="max-w-2xl px-4 mx-auto mb-8 text-base sm:text-lg text-muted-foreground sm:mb-10">
+            {/* Description */}
+            <p className="max-w-2xl px-4 mx-auto text-base leading-relaxed mb-9 text-muted-foreground sm:mb-10 sm:text-lg">
               From full-stack web applications to React Native mobile apps and
               modern websites, I'm always excited to collaborate and transform
               ideas into scalable, user-friendly, and impactful digital
               solutions.
             </p>
 
-            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+            {/* Action Buttons */}
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+              {/* Email Button */}
               <Button
                 variant="default"
                 size="lg"
                 iconName="MessageCircle"
                 iconPosition="left"
-                className="w-full px-8 font-semibold shadow-md sm:w-auto hover:shadow-lg"
+                className="w-full px-8 font-semibold transition-all duration-300 shadow-md group hover:-translate-y-1 hover:shadow-xl sm:w-auto"
                 onClick={() =>
                   (window.location.href =
                     "mailto:ratnakarsinghparihar9399@gmail.com")
@@ -762,26 +765,35 @@ const Projects = () => {
               >
                 Start a Conversation
               </Button>
+
+              {/* GitHub Button */}
               <Button
                 variant="outline"
                 size="lg"
                 iconName="Github"
                 iconPosition="left"
-                className="w-full px-8 font-medium sm:w-auto"
+                className="w-full px-8 font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-lg sm:w-auto"
                 onClick={() =>
                   window.open(
                     "https://github.com/Ratnakar-Singh-parihar-123",
                     "_blank",
+                    "noopener,noreferrer",
                   )
                 }
               >
                 View GitHub
               </Button>
             </div>
+
+            {/* Bottom Caption */}
+            <div className="flex items-center justify-center gap-2 mt-10 text-xs text-muted-foreground sm:mt-12">
+              <Sparkles size={13} className="text-primary" />
+              <span>Let's turn your vision into reality.</span>
+            </div>
           </motion.div>
         </div>
       </section>
-
+      ```
       {/* ================================================================ */}
       {/* FILTER DRAWER — SLIDES IN FROM LEFT (all screen sizes)            */}
       {/* ================================================================ */}
@@ -861,7 +873,6 @@ const Projects = () => {
           </>
         )}
       </AnimatePresence>
-
       {/* ================================================================ */}
       {/* MODAL                                                             */}
       {/* ================================================================ */}

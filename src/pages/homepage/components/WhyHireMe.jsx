@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { Code2, CheckCircle2 } from "lucide-react";
 import {
   CodeBracketIcon,
   CommandLineIcon,
@@ -169,82 +170,167 @@ const WhyHireMe = () => {
             exceptional user experience.
           </p>
         </motion.div>
-
         {/* Code-Like Introduction */}
+
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="max-w-3xl mx-auto mb-20"
+          transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.2 }}
+          className="relative w-full max-w-4xl mx-auto mb-20"
         >
+          {/* Ambient Background Glow */}
+          <div className="pointer-events-none absolute -inset-4 rounded-[2rem] bg-gradient-to-r from-primary/10 via-purple-500/10 to-pink-500/10 opacity-60 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
+
           <div className="relative group">
-            <div className="absolute transition-opacity duration-500 opacity-0 -inset-1 bg-gradient-to-r from-primary/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-xl group-hover:opacity-100"></div>
+            {/* Animated Border Glow */}
+            <div className="absolute -inset-[1px] rounded-[22px] bg-gradient-to-br from-primary/40 via-purple-500/20 to-pink-500/30 opacity-60 blur-[2px] transition-opacity duration-500 group-hover:opacity-100" />
 
-            <div className="relative p-6 overflow-hidden font-mono text-sm border shadow-xl bg-card border-border/50 rounded-2xl">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                <span className="ml-2 text-xs text-muted-foreground">
-                  developer.ts
-                </span>
-              </div>
+            {/* Main Editor */}
+            <div className="relative overflow-hidden rounded-[20px] border border-border/70 bg-card/95 shadow-2xl backdrop-blur-xl">
+              {/* Editor Header */}
+              <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-4 border-b border-border/70 bg-muted/40 sm:px-6">
+                <div className="flex min-w-0 items-center gap-2.5">
+                  {/* Mac Controls */}
+                  <div className="flex shrink-0 items-center gap-1.5">
+                    <span className="h-2.5 w-2.5 rounded-full bg-red-500 sm:h-3 sm:w-3" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-yellow-500 sm:h-3 sm:w-3" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-green-500 sm:h-3 sm:w-3" />
+                  </div>
 
-              <div className="space-y-3">
-                <div>
-                  <span className="text-blue-400">interface</span>{" "}
-                  <span className="text-green-400">Developer</span> {"{"}
+                  <div className="flex items-center min-w-0 gap-2 ml-2">
+                    <div className="flex items-center justify-center rounded-lg h-7 w-7 shrink-0 bg-primary/10 text-primary">
+                      <Code2 size={15} />
+                    </div>
+                    <span className="font-mono text-xs font-medium truncate text-muted-foreground sm:text-sm">
+                      developer.js
+                    </span>
+                  </div>
                 </div>
-                <div className="ml-4 space-y-2">
-                  <div>
-                    <span className="text-purple-400">name</span>:{" "}
-                    <span className="text-green-400">
-                      "Ratnakar Singh Parihar"
-                    </span>
-                    ,
-                  </div>
-                  <div>
-                    <span className="text-purple-400">role</span>:{" "}
-                    <span className="text-green-400">
-                      "Full Stack Developer"
-                    </span>
-                    ,
-                  </div>
-                  <div>
-                    <span className="text-purple-400">experience</span>:{" "}
-                    <span className="text-yellow-400">
-                      "1+ Years — Learning, Internship & Projects"
-                    </span>
-                    ,
-                  </div>
-                  <div>
-                    <span className="text-purple-400">approach</span>: {"{"}
-                  </div>
-                  <div className="ml-4">
-                    <span className="text-purple-400">code</span>:{" "}
-                    <span className="text-green-400">"Clean & Scalable"</span>,
-                    <br />
-                    <span className="text-purple-400">design</span>:{" "}
-                    <span className="text-green-400">"User-Centric"</span>,
-                    <br />
-                    <span className="text-purple-400">performance</span>:{" "}
-                    <span className="text-green-400">"Optimized"</span>
-                  </div>
-                  <div>{"}"}</div>
-                </div>
-                <div>{"}"}</div>
 
-                <div className="pt-4 mt-4 border-t border-border/50">
-                  <span className="text-gray-500">// Output: </span>
-                  <span className="text-green-400">
-                    "Ready to build amazing things together!"
+                {/* File Badge */}
+                <div className="flex items-center gap-1.5 rounded-full border border-primary/15 bg-primary/5 px-3 py-1.5">
+                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-green-500" />
+                  <span className="text-[9px] font-bold tracking-wider text-primary sm:text-[10px]">
+                    FULL STACK DEV
                   </span>
                 </div>
               </div>
 
-              <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-primary/5 blur-2xl"></div>
-              <div className="absolute bottom-0 left-0 w-32 h-32 rounded-full bg-purple-500/5 blur-2xl"></div>
+              {/* Code Content */}
+              <div className="relative p-4 sm:p-7 md:p-9">
+                {/* Background Decoration */}
+                <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-primary/[0.06] blur-3xl" />
+                <div className="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-purple-500/[0.06] blur-3xl" />
+
+                <div className="relative space-y-3 overflow-x-auto font-mono text-[11px] leading-7 sm:text-sm sm:leading-8">
+                  {/* Interface */}
+                  <div className="whitespace-nowrap">
+                    <span className="text-blue-400">interface</span>{" "}
+                    <span className="font-semibold text-green-400">
+                      Developer
+                    </span>{" "}
+                    <span className="text-foreground">{"{"}</span>
+                  </div>
+
+                  <div className="space-y-1.5 pl-4 sm:pl-7">
+                    <div className="whitespace-nowrap">
+                      <span className="text-purple-400">name</span>
+                      <span className="text-foreground">: </span>
+                      <span className="text-green-400">
+                        "Ratnakar Singh Parihar"
+                      </span>
+                      <span className="text-foreground">,</span>
+                    </div>
+
+                    <div className="whitespace-nowrap">
+                      <span className="text-purple-400">role</span>
+                      <span className="text-foreground">: </span>
+                      <span className="text-green-400">
+                        "Full Stack Developer"
+                      </span>
+                      <span className="text-foreground">,</span>
+                    </div>
+
+                    <div className="whitespace-nowrap">
+                      <span className="text-purple-400">experience</span>
+                      <span className="text-foreground">: </span>
+                      <span className="text-yellow-400">
+                        "1+ Years — Learning, Internship & Projects"
+                      </span>
+                      <span className="text-foreground">,</span>
+                    </div>
+
+                    <div>
+                      <span className="text-purple-400">approach</span>
+                      <span className="text-foreground">: {"{"}</span>
+                    </div>
+
+                    <div className="space-y-1.5 pl-4 sm:pl-7">
+                      <div className="whitespace-nowrap">
+                        <span className="text-purple-400">code</span>
+                        <span className="text-foreground">: </span>
+                        <span className="text-green-400">
+                          "Clean & Scalable"
+                        </span>
+                        <span className="text-foreground">,</span>
+                      </div>
+
+                      <div className="whitespace-nowrap">
+                        <span className="text-purple-400">design</span>
+                        <span className="text-foreground">: </span>
+                        <span className="text-green-400">"User-Centric"</span>
+                        <span className="text-foreground">,</span>
+                      </div>
+
+                      <div className="whitespace-nowrap">
+                        <span className="text-purple-400">performance</span>
+                        <span className="text-foreground">: </span>
+                        <span className="text-green-400">"Optimized"</span>
+                      </div>
+                    </div>
+
+                    <div className="text-foreground">{"}"}</div>
+                  </div>
+
+                  <div className="text-foreground">{"}"}</div>
+                </div>
+
+                {/* Output Section */}
+                <div className="relative pt-5 border-t mt-7 border-border/70 sm:mt-8">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
+                    <span className="font-mono text-xs text-muted-foreground">
+                      // Output
+                    </span>
+                  </div>
+
+                  <div className="flex items-start gap-2.5">
+                    <CheckCircle2
+                      size={17}
+                      className="mt-0.5 shrink-0 text-green-500"
+                    />
+                    <span className="font-mono text-xs font-medium leading-relaxed text-green-500 sm:text-sm">
+                      "Ready to build amazing things together!"
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Editor Footer */}
+              <div className="flex items-center justify-between border-t border-border/60 bg-muted/30 px-4 py-2.5 sm:px-6">
+                <div className="flex items-center gap-3 text-[9px] text-muted-foreground sm:text-[10px]">
+                  <span className="flex items-center gap-1">
+                    <Code2 size={11} />
+                    JavaScript
+                  </span>
+                  <span>UTF-8</span>
+                </div>
+
+                <span className="text-[9px] font-medium text-muted-foreground sm:text-[10px]">
+                  Built with passion
+                </span>
+              </div>
             </div>
           </div>
         </motion.div>
@@ -424,7 +510,6 @@ const WhyHireMe = () => {
             );
           })}
         </div>
-
         {/* CTA Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

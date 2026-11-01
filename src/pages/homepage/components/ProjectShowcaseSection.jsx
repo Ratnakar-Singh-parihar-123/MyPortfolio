@@ -831,7 +831,7 @@ const ProjectShowcaseSection = () => {
                 />
               </div>
               <span className="text-xs md:text-sm font-semibold text-primary bg-primary/10 px-3 py-1.5 md:px-4 md:py-2 rounded-full">
-                MY PORTFOLIO
+                MY PORJECTS
               </span>
             </motion.div>
 
