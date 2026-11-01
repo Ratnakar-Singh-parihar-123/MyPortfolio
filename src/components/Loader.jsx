@@ -402,7 +402,7 @@ const Wrapper = styled.div`
   html.dark &,
   .dark & {
     .half {
-      background: var(--background, #0a0a0f);
+      background: var(--background, #11172a);
     }
     .caption {
       color: hsl(220 10% 68%);
